@@ -3,8 +3,8 @@
 A work-in-progress matching decompilation of **Pro Evolution Soccer 6** for
 PlayStation 2, PAL executable **SLES-542.03**.
 
-The current source snapshot contains **1,774 matched functions**, contributing
-**54,764 of 2,566,880 code bytes (2.13%)**. A complete local link reproduces the
+The current source snapshot contains **2,559 matched functions**, contributing
+**103,080 of 2,566,880 code bytes (4.02%)**. A complete local link reproduces the
 original code and data; unrecovered regions are taken from the user's own
 executable during the build. This is not a complete source recreation or a
 standalone game build. Overlays are not covered yet.
@@ -12,7 +12,8 @@ standalone game build. Overlays are not covered yet.
 ## Contents
 
 - `src/`: one verified function per file; address names remain until behavior is established.
-- `include/pes6/`: partial, evidence-based structure views with unknown fields left explicit.
+- `include/pes6/`: partial, evidence-based structure views with unknown fields left explicit;
+  `m2c.h` provides `M2C_FIELD` and placeholder types for sources whose fields are not yet named.
 - `config/`: executable layout, addresses and assembly-only function inventory.
 - `tools/`: extraction, splitting, matching, linking and local CI tools.
 - `project.toml`: compiler profiles and game configuration.

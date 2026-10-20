@@ -1,0 +1,9 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+M2C_UNK func_001F3D10(s32);                         /* extern */
+
+void func_00213800(void *arg0) {
+    if (arg0 != NULL) {
+        func_001F3D10(M2C_FIELD(arg0, s32 *, 0x590));
+    }
+}
