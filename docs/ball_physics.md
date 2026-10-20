@@ -9,7 +9,7 @@ main executable unless they are above 0x900000 (match overlay).
 
 ```
 overlay match loop (0x981324)
-  func_00286A60  Ball_Update          per frame
+  func_00286A60  Pes6Ball_Update          per frame
     func_00285100  Ball_Integrate     state machine below
 ```
 
@@ -24,7 +24,7 @@ applied once by overlay code (0xA6EFB0).
 | offset | type | meaning |
 |---|---|---|
 | 0x10 | float[3] | position x, y, z (height is negative y; resting y = -28) |
-| 0x20 | float[3] | position on the previous frame (copied by Ball_Update) |
+| 0x20 | float[3] | position on the previous frame (copied by Pes6Ball_Update) |
 | 0x30 | float | vertical velocity, 1/256 unit per tick, negative = upward |
 | 0x50 | s32 | horizontal speed, 1/256 unit per tick |
 | 0x58 | u16 | direction of travel, 0x10000 = full turn |
@@ -39,10 +39,10 @@ Units: about 255 per metre (ball radius 28 = 11 cm, goal lines at x = +-13400).
 `dt = *(float *)*(void **)0x3E74CC` is 1.2 on PAL: the game steps 50 times a
 second and scales every step by 60/50, so the ball moves at NTSC real-time speed.
 
-## Ball_Update (func_00286A60)
+## Pes6Ball_Update (func_00286A60)
 
 ```c
-void Ball_Update(void) {
+void Pes6Ball_Update(void) {
     Pes6Ball *b = gBall;
     b->prevPos = b->pos;              /* x, y, z */
     b->prevDir = b->dir;
@@ -60,36 +60,18 @@ void Ball_Update(void) {
 
 ### Matching status
 
-Not matched yet; the best C draft is 31 instructions off (aligned diff) out of
-226. What the draft needed, each confirmed against the original:
+Matched as `src/Pes6Ball_Update.c`. It needs the 2005 compiler build
+`mwcps2-3.0.1b151-050317` (profile `mwcc-3.0.1b151`; b145 gives the same code) plus
+`#pragma opt_propagation off`.
 
-- `#pragma opt_repositioncode on`: the original moves `else` arms (and the
-  `unk65` decrement) out of line after the epilogue.
-- `#pragma opt_propagation off`: the original reloads the ball pointer for every
-  statement.
-- The globals at 0x591E18-0x591F14 are one object (owner byte at +0x00, team
-  bytes at +0x01, frame counter at +0x0C, last touch at +0x3F, copied team bytes
-  at +0x4C, flag at +0xFC). Declared as separate arrays, the compiler reorders the
-  three-byte copy; as one struct the load/store order matches. The copy indexes
-  `side[k]`, `side[k + 1]`, `side[k + 2]` through separate index variables.
-- The owner-to-player helper is inlined three times:
-  `index = 1; if (id != 0xFF) index = id % 23; return players + index * 0x240;`,
-  with the owner id held in a `u32` local (the original re-masks it with
-  `andi 0xFF`).
-
-What is still different:
-
-- Branch-likely delay slots. The original fills a branch-likely slot from the
-  target only for the inlined `id == 0xFF` case and the `unk65` decrement; six
-  other branches keep a `nop`. With branch-likely enabled, b210 also fills those
-  six; with `#pragma no_branch_likely on` it fills none, including the two the
-  original has. Neither setting reproduces the mix. A sweep of every `opt_*`
-  pragma and the back-end pragmas (`peephole`, `schedule`, `conditional_move`,
-  `late_conditional_move`, ...), on and off, the other MWCC versions in
-  `toolchains/tc` and `-O` levels found nothing closer.
-- The `0.0f` fourth float argument of `func_009B34C0` is materialised in `$f15`
-  earlier in the original.
-- The `unk67` decrement reloads the byte through its address in the original.
+The project's usual b210 got within 31 instructions but never closer. b151 differs in
+the delay-slot filler: up to b151 the compiler does not hoist a branch target's first
+instruction into a branch-likely slot when the target has several predecessors, and
+b198 onwards (including b210) does. The original leaves those slots as `nop`. The same
+build also explains the other leftovers seen with b210 (earlier `$f15` setup, the
+`unk67` reload, the `unk65` `bnel`) and lays out the cold `else` arms without
+`opt_repositioncode`. The last detail was the three-byte copy, written as
+`i = k; ...[i]; i = k + 1; ...[i]; i = k + 2; ...[i]`.
 
 ## Matching status of Ball_Integrate
 

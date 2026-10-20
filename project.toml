@@ -87,6 +87,14 @@ command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1-020123/mwccps2.exe -O3 -c -Iinc
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O4,p -c -Iinclude"
 
+# An earlier 3.0.1 build (2005-03-17, decomp.me `mwcps2-3.0.1b151-050317`). Builds up to b151 do
+# not hoist a branch target's first instruction into a branch-likely delay slot when that target
+# has several predecessors; b198 and later (including b210) do. The match engine's ball update
+# (Pes6Ball_Update) needs this build; b145 produces the same code there.
+[compilers."mwcc-3.0.1b151"]
+dir = "toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b151-050317/mwccps2.exe -O4,p -c -Iinclude"
+
 # Sony SDK and runtime objects were built without small data (-G0): scalars are addressed
 # absolutely, not through $gp. Their sources are shared with the GT4 decompilation, which uses
 # the same SDK release; these profiles reproduce GT4's flags for them.

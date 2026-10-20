@@ -3,8 +3,8 @@
 A work-in-progress matching decompilation of **Pro Evolution Soccer 6** for
 PlayStation 2, PAL executable **SLES-542.03**.
 
-The current source snapshot contains **3,220 matched functions**, contributing
-**132,868 of 2,566,880 code bytes (5.18%)**. A complete local link reproduces the
+The current source snapshot contains **3,221 matched functions**, contributing
+**133,792 of 2,566,880 code bytes (5.21%)**. A complete local link reproduces the
 original code and data; unrecovered regions are taken from the user's own
 executable during the build. This is not a complete source recreation or a
 standalone game build. Overlays are not covered yet.
@@ -43,6 +43,7 @@ header caches and the Python package cache stay under ignored `build/`.
 | Sony ee-gcc 2.96 | `toolchains/ee-gcc2.96/` |
 | wibo | `toolchains/wibo/wibo` |
 | Metrowerks 3.0.1b210 | `toolchains/tc/mwcps2-3.0.1b210-060308/mwccps2.exe` |
+| Metrowerks 3.0.1b151 | `toolchains/tc/mwcps2-3.0.1b151-050317/mwccps2.exe` |
 | Metrowerks 2.4 | `toolchains/tc/mwcps2-2.4-001213/mwccps2.exe` |
 
 The default is ee-gcc 2.9. A first-line `/* compiler: NAME */` marker selects
@@ -53,6 +54,10 @@ Metrowerks 3.0.1b210 at `-O4,p` (`mwcc-3.0.1b210`); `-O3` does not invert loops 
 leave guard branches unfilled as the retail code does. The Sony SDK, newlib and
 libgcc objects were built without small data and use the `*-G0` ee-gcc profiles.
 Their sources are shared with the GT4 decompilation (see THIRD_PARTY.md).
+Some game code needs an earlier 3.0.1 build: `Pes6Ball_Update` only matches with
+3.0.1b151 (`mwcc-3.0.1b151`), whose delay-slot filler does not hoist into branch
+targets with several predecessors (b198 and later do; see `docs/ball_physics.md`).
+The Metrowerks builds are the ones distributed by decomp.me (`mwcps2-<version>`).
 Do not substitute compilers simply because the C looks equivalent.
 
 Extract the executable from your own supported disc image:

@@ -264,3 +264,4 @@ Pes6MatchObj28_Position = 0x005E1A20; // type:data
 Pes6MatchObj28_Heading = 0x005E1A30; // type:data
 Pes6MatchObj28_SetPosition = 0x002A9380; // type:func
 Pes6MatchObj28_SetPositionScaled = 0x002A9340; // type:func
+Pes6Ball_Update = 0x00286A60; // type:func
