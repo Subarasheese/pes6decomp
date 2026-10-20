@@ -5,12 +5,12 @@
 # The compiler must not read them from the Windows drive (old 32-bit compilers fail to stat files
 # there), and copying the whole tree for every compile is slow once the game headers are there. So
 # with INCLUDE_STAMP set (tools/project.py include_stamp(): a digest of every file's name, size and
-# mtime) one copy per stamp is kept under /tmp and linked; without it, the tree is copied as before.
+# mtime) one copy per stamp is kept in build/tmp and linked; otherwise the tree is copied.
 include_into() {
   local dest="$1" src
   src="$(cd "$(dirname "${BASH_SOURCE[0]}")/../include" && pwd)"
   if [ -n "$INCLUDE_STAMP" ]; then
-    local root="${TMPDIR:-/tmp}/include_cache" name cache tmp
+    local root="$(dirname "$src")/build/tmp/include_cache" name cache tmp
     name="$(basename "$(dirname "$src")")_$INCLUDE_STAMP"
     cache="$root/$name"
     if [ ! -d "$cache" ]; then

@@ -49,7 +49,7 @@ def repair(source, obj, command):
     offsets = corrupted_offsets(original[0], original[1])
     if not offsets:
         return False
-    with tempfile.TemporaryDirectory(prefix='gt4-align-retry-') as directory:
+    with tempfile.TemporaryDirectory(prefix='pes6-align-retry-', dir=project.path('build/tmp')) as directory:
         for flags, padding in RETRIES:
             candidate = Path(directory) / f"retry{'-' * padding}.o"
             result = subprocess.run(shlex.split(os.path.expandvars(command)) +

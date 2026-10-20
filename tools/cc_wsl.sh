@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 # Compile one source file with the project's compiler (Linux or WSL).
 # Usage: cc_wsl.sh input output.o compile-command...   (the command gets "input -o output" appended)
-# Old 32-bit compilers fail to stat files on Windows drives mounted in WSL, so the compiler only
-# ever sees files under /tmp. Each call works in its own temporary directory (many run at once),
+# Old 32-bit compilers require a Linux filesystem, so keep the checkout there.
+# The compiler uses a private build/tmp directory per call (many run at once),
 # and the output exists afterwards only if the compile succeeded: a stale output.o from an earlier
 # call is removed first, so a failure never leaves an object a later step could take for valid.
 set -eo pipefail
 in="$1"; out="$2"; shift 2
 tools="$(cd "$(dirname "$0")" && pwd)"
 # The alignment retry imports the project tools (rabbitizer): use the project venv when there is one.
-py="$HOME/.local/share/pes6/venv/bin/python"; [ -x "$py" ] || py=python3
+root="$(cd "$tools/.." && pwd)"
+py="$root/.venv/bin/python"; [ -x "$py" ] || py=python3
+export TMPDIR="$root/build/tmp"
+mkdir -p "$TMPDIR"
 rm -f "$out"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT

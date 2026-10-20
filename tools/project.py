@@ -2,6 +2,7 @@
 import importlib.util
 import os
 import re
+import shlex
 import tomllib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -52,17 +53,17 @@ def source_compiler(path):
 
 
 def compiler_command(name=None):
-    """The compile command for Linux/WSL, with $HOME in place of ~: the project's compiler, or the
-    alternative called name (see compilers())."""
+    """Resolve compiler paths relative to this repository, independent of cwd."""
     c = CONFIG["compiler"] if name is None else compilers()[name]
-    directory = c["dir"].replace("~", "$HOME", 1)
+    directory = os.path.abspath(path(os.path.expanduser(c["dir"])))
     # PES6_COMPILER_COMMAND overrides the project compiler's command (for experiments with flags).
     command = c["command"] if name else os.environ.get("PES6_COMPILER_COMMAND", c["command"])
     # {tools}: this repository's tools/ directory as Linux/WSL sees it (wrappers such as cc_as.sh)
     tools = os.path.dirname(os.path.abspath(__file__))
     if os.name == "nt":
         tools = "/mnt/" + tools[0].lower() + tools[2:].replace("\\", "/")
-    return command.replace("{dir}", directory).replace("{tools}", tools)
+        directory = "/mnt/" + directory[0].lower() + directory[2:].replace("\\", "/")
+    return command.replace("{dir}", shlex.quote(directory)).replace("{tools}", shlex.quote(tools))
 
 
 def knowledge():

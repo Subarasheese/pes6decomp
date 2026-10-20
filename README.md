@@ -20,23 +20,28 @@ standalone game build. Overlays are not covered yet.
 ## Local setup
 
 Use Linux or WSL with Python 3.11+, Bash, MIPS binutils (`mips-linux-gnu-*`),
-and the applicable compiler tools. Old Sony compiler executables may require
-32-bit runtime libraries. Compiler binaries are not provided.
+and the applicable compiler tools. On WSL, keep the checkout on the Linux
+filesystem so the legacy compilers can read its files. Old Sony compiler
+executables may require 32-bit runtime libraries. Compiler binaries are not provided.
 
 ```sh
 bash tools/setup_linux.sh
 ```
 
-Place the tools at the paths below, or edit `dir` in `project.toml` for your own
-installation. Metrowerks executables run through wibo.
+Keep tools inside the checkout at the paths below. All `dir` values in
+`project.toml` resolve relative to the repository root, including when CI
+compiles a temporary source copy. Metrowerks executables run through wibo.
+The setup script creates `.venv/`; compiler binaries must be supplied separately.
+Both `.venv/` and `toolchains/` are ignored by Git. Build scratch directories,
+header caches and the Python package cache stay under ignored `build/`.
 
-| Tool | Default location under your home directory |
+| Tool | Location inside the repository |
 | --- | --- |
-| Sony ee-gcc 2.9-991111 | `.local/share/pes6/compilers/ee-gcc2.9-991111/` |
-| Sony ee-gcc 2.96 | `.local/share/pes6/ee-gcc2.96/` |
-| wibo | `.local/share/pes6/toolchains/wibo/wibo` |
-| Metrowerks 3.0.1b210 | `.local/share/pes6/toolchains/tc/mwcps2-3.0.1b210-060308/mwccps2.exe` |
-| Metrowerks 2.4 | `.local/share/pes6/toolchains/tc/mwcps2-2.4-001213/mwccps2.exe` |
+| Sony ee-gcc 2.9-991111 | `toolchains/ee-gcc2.9-991111/` |
+| Sony ee-gcc 2.96 | `toolchains/ee-gcc2.96/` |
+| wibo | `toolchains/wibo/wibo` |
+| Metrowerks 3.0.1b210 | `toolchains/tc/mwcps2-3.0.1b210-060308/mwccps2.exe` |
+| Metrowerks 2.4 | `toolchains/tc/mwcps2-2.4-001213/mwccps2.exe` |
 
 The default is ee-gcc 2.9. A first-line `/* compiler: NAME */` marker selects
 another profile, including ee-gcc 2.96 with sibling-call optimization disabled.

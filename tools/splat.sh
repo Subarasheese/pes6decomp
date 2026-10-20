@@ -11,4 +11,4 @@ python3 tools/prepare_image.py
 touch config/symbol_addrs.txt
 # splat cannot read config/symbol_addrs.txt itself (aliases, type:data): give it generic names.
 python3 tools/splat_symbols.py "$config" build/splat_config
-"$HOME/.local/share/pes6/venv/bin/python" -m splat split "build/splat_config/$(basename "$config")" "$@"
+"$PWD/.venv/bin/python" -m splat split "build/splat_config/$(basename "$config")" "$@"

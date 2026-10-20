@@ -1,17 +1,19 @@
 #!/bin/bash
-# Run the CI's "check" workflow locally, before a push: the same steps and the same compile commands
-# as .github/workflows/check.yml (asm policy, organize --check, every source compiled on its own
-# from a fresh copy of src/ and include/). The full build cannot stand in for it: it reuses objects.
+# Check assembly policy, canonical names, and compilation from a fresh copy of
+# src/ and include/ using the project's compiler commands. The full build cannot
+# stand in for these fresh-compilation checks: it reuses objects.
 #
 #   bash tools/ci_local.sh [-j N]        exit 0 only if the CI would pass
 #
-# The old ee-gcc cannot stat files on /mnt/c (EOVERFLOW), so the tree is copied to Linux first.
+# The isolated source copy and compiler tools stay inside this checkout.
 set -uo pipefail
 jobs=2
 [ "${1:-}" = "-j" ] && jobs="$2"
 root="$(cd "$(dirname "$0")/.." && pwd)"
 export TOOLS="$root/tools"
-work="$(mktemp -d /tmp/ci_local.XXXXXX)"
+export TMPDIR="$root/build/tmp"
+mkdir -p "$TMPDIR"
+work="$(mktemp -d "$TMPDIR/ci_local.XXXXXX")"
 trap 'rm -rf "$work"' EXIT
 fail=0
 
@@ -25,14 +27,17 @@ echo "$out" | tail -1 | grep -q " 0 renamed inside, 0 moved" || { echo "$out" | 
 echo "== every source compiles (copy in $work)"
 mkdir -p "$work/obj"
 cp -r src include project.toml "$work/"
+# Resolve against the real checkout before compiling the fresh source copy.
+python3 - > "$work/commands.txt" <<'EOF'
+import sys
+sys.path.insert(0, "tools")
+import project
+print("__default__", project.compiler_command())
+for name in project.compilers():
+    print(name, project.compiler_command(name))
+EOF
 cd "$work"
 export CPATH="$work/include"
-python3 - > commands.txt <<'EOF'
-import tomllib, os
-config = tomllib.load(open("project.toml", "rb"))
-for name, c in {"__default__": config["compiler"], **config.get("compilers", {})}.items():
-    print(name, c["command"].replace("{dir}", os.path.expanduser(c["dir"])).replace("{tools}", os.environ.get("TOOLS", "")))
-EOF
 default=$(sed -n 's/^__default__ //p' commands.txt)
 find src -type f \( -name '*.c' -o -name '*.cpp' \) | sort > sources.txt
 export default
