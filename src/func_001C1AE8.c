@@ -1,5 +1,5 @@
-extern char D_00398A18[];
+extern char _impure_ptr[];
 int func_001C1AE8() {
-    int v2 = *( int *)(D_00398A18);
+    int v2 = *( int *)(_impure_ptr);
     return v2;
 }

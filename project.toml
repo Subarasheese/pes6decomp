@@ -80,6 +80,36 @@ command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0-011126/mwccps2.exe -O3 -c -Iinclu
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1-020123/mwccps2.exe -O3 -c -Iinclude"
 
+# The bulk of the non-leaf game code (s-registers saved with `sq`). `-O4,p` (level 4, speed) is
+# required: it inverts loops into a guard plus bottom test and leaves forward guard branches
+# unfilled, as the retail code does. Every leaf that matched at -O3 also matches at -O4,p.
 [compilers."mwcc-3.0.1b210"]
 dir = "toolchains"
-command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O3 -c -Iinclude"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O4,p -c -Iinclude"
+
+# Sony SDK and runtime objects were built without small data (-G0): scalars are addressed
+# absolutely, not through $gp. Their sources are shared with the GT4 decompilation, which uses
+# the same SDK release; these profiles reproduce GT4's flags for them.
+[compilers."ee-gcc-2.9-G0"]
+dir = "toolchains/ee-gcc2.9-991111"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"
+
+[compilers."ee-gcc-2.96-G0"]
+dir = "toolchains/ee-gcc2.96"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"
+
+[compilers."ee-gcc-2.96-nsa-G0"]
+dir = "toolchains/ee-gcc2.96"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -fno-strict-aliasing -Iinclude"
+
+[compilers."ee-gcc-2.96-nsa-nosib-G0"]
+dir = "toolchains/ee-gcc2.96"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -fno-strict-aliasing -fno-optimize-sibling-calls -Iinclude"
+
+[compilers."ee-gcc-2.96-G0-g"]
+dir = "toolchains/ee-gcc2.96"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -g -Iinclude"
+
+[compilers."ee-gcc-2.96-nsa-G0-g"]
+dir = "toolchains/ee-gcc2.96"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -fno-strict-aliasing -g -Iinclude"

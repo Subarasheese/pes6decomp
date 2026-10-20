@@ -9,3 +9,24 @@ Pes6PacketStream_AppendGsAD = 0x001038E8; // type:func
 // Caller-backed bit storage; metadata fields have not yet been identified.
 Pes6BitSet_Initialize = 0x00313A80; // type:func
 Pes6BitSet_Lookup = 0x00313AF0; // type:func
+Pes6BitSet_Write = 0x00313B30; // type:func
+// C runtime, libgcc and SDK names shared with the GT4 decompilation (same Sony SDK release);
+// addresses mapped through matching call sites.
+write = 0x00105928; // type:func
+read = 0x001059A8; // type:func
+fflush = 0x001C1CA8; // type:func
+fseek = 0x001C2990; // type:func
+object_mutex = 0x00371A24; // type:data
+_impure_ptr = 0x00398A18; // type:data
+_ctype_ = 0x003D1980; // type:data
+__muldi3 = 0x0011D6A0; // type:func
+__udivdi3 = 0x0011E440; // type:func
+__umoddi3 = 0x0011E9C0; // type:func
+// Library functions identified by their newlib 1.9.0 / libgcc sources (see the source comments).
+copysign = 0x0011C750; // type:func
+fabs = 0x0011C798; // type:func
+__unpack_f = 0x0011F468; // type:func
+__unpack_d = 0x0011F610; // type:func
+rand = 0x001C6B60; // type:func
+_strtol_r = 0x001C9790; // type:func
+_strtoul_r = 0x001C99F8; // type:func

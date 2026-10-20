@@ -3,8 +3,8 @@
 A work-in-progress matching decompilation of **Pro Evolution Soccer 6** for
 PlayStation 2, PAL executable **SLES-542.03**.
 
-The current source snapshot contains **1,430 matched functions**, contributing
-**19,724 of 2,566,880 code bytes (0.77%)**. A complete local link reproduces the
+The current source snapshot contains **1,710 matched functions**, contributing
+**42,496 of 2,566,880 code bytes (1.66%)**. A complete local link reproduces the
 original code and data; unrecovered regions are taken from the user's own
 executable during the build. This is not a complete source recreation or a
 standalone game build. Overlays are not covered yet.
@@ -45,6 +45,12 @@ header caches and the Python package cache stay under ignored `build/`.
 
 The default is ee-gcc 2.9. A first-line `/* compiler: NAME */` marker selects
 another profile, including ee-gcc 2.96 with sibling-call optimization disabled.
+
+Most non-leaf game code saves `$s` registers with 128-bit `sq` and comes from
+Metrowerks 3.0.1b210 at `-O4,p` (`mwcc-3.0.1b210`); `-O3` does not invert loops or
+leave guard branches unfilled as the retail code does. The Sony SDK, newlib and
+libgcc objects were built without small data and use the `*-G0` ee-gcc profiles.
+Their sources are shared with the GT4 decompilation (see THIRD_PARTY.md).
 Do not substitute compilers simply because the C looks equivalent.
 
 Extract the executable from your own supported disc image:

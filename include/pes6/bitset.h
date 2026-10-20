@@ -20,6 +20,9 @@ int Pes6BitSet_Initialize(struct Pes6BitSet *, int bitCount, unsigned int *words
 /* Sentinel 0x1FFF always matches. Other keys preserve the arithmetic result:
  * bit 31 of a word yields -1 when set; other set bits yield 1. */
 int Pes6BitSet_Lookup(struct Pes6BitSet *, int bitIndex);
+/* Ignores sentinels 0x1EEE/0x1FFF; accepts bitIndex == bitCount. Returns 1 when
+ * a bit was set, otherwise 0. */
+int Pes6BitSet_Write(struct Pes6BitSet *, int bitIndex, int value);
 #ifdef __cplusplus
 }
 #endif

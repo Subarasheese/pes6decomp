@@ -1,0 +1,33 @@
+/* compiler: ee-gcc-2.9-G0 */
+/* Sony SDK / C runtime code shared with GT4 (same SDK release); source ported
+ * from the GT4 decompilation (MIT, see THIRD_PARTY.md). */
+struct Item {
+    int key;
+    char pad4[0x38 - 4];
+    struct Item *next;
+};
+
+struct Group {
+    char pad0[8];
+    struct Item *items;
+    char padC[0x14 - 0xC];
+    struct Group *next;
+};
+
+struct Owner {
+    char pad0[0x28];
+    struct Group *groups;
+};
+
+struct Item *func_00108F68(int key, struct Owner *o) {
+    struct Group *g;
+    struct Item *it;
+    for (g = o->groups; g; g = g->next) {
+        for (it = g->items; it; it = it->next) {
+            if (it->key == key) {
+                return it;
+            }
+        }
+    }
+    return 0;
+}

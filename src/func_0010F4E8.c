@@ -1,5 +1,5 @@
-extern char D_00371A24[];
+extern char object_mutex[];
 int func_0010F4E8() {
-    int v2 = *( int *)(D_00371A24);
+    int v2 = *( int *)(object_mutex);
     return v2;
 }
