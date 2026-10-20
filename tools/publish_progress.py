@@ -1,25 +1,23 @@
 #!/usr/bin/env python3
-"""Publish the progress report: regenerate progress/report.json (tools/report.py), then force-push
-the report, alone, to the `progress` branch. The workflow on the default branch
-(.github/workflows/progress.yml) uploads it from there as the artifact progress sites read
-(VERSION_report, VERSION being the executable's file name, e.g. SLES_542.03_report). The branch
-always holds a single commit, so reports never pile up in history.
+"""Publish the progress report: regenerate progress/report.json (tools/report.py) from the last full
+build, commit it (with its provenance, progress/report.meta.json) and push the branch. The push run
+of .github/workflows/progress.yml then uploads it as the artifact progress sites read
+(VERSION_report, VERSION being the executable's file name, e.g. SLES_542.03_report).
 
     publish_progress.py [--check]      --check: only say whether a publish would be allowed
 
 Nothing is published unless the last full build (build/full/report.json, tools/build.py) is a
 complete one that reproduces the original (.text and .data hash alike), was made from the commit
 HEAD points at with no uncommitted change to src/, config/, include/ or tools/ (then and now),
-and found no orphan or duplicated source. The report pushed carries, in report.meta.json and in
-the commit message, the generation date and the exact commit it describes. So the order is:
-commit, build, publish.
+and found no orphan or duplicated source. The report commit carries, in report.meta.json and in
+its message, the generation date and the exact commit it describes. So the order is: commit,
+build, publish.
 """
 import datetime
 import json
 import os
 import subprocess
 import sys
-import tempfile
 
 import match
 import project
@@ -29,24 +27,6 @@ ROOT = match.ROOT
 BUILD_REPORT = os.path.join(ROOT, "build", "full", "report.json")
 # The version name progress sites use: the executable's file name.
 VERSION = os.path.basename(project.CONFIG["game"]["executable"])
-WORKFLOW = """name: progress
-
-# Uploads the objdiff report generated locally by tools/report.py (names, sizes and percentages
-# only). Progress sites read artifacts from the default branch, whose workflow republishes it.
-on:
-  push:
-    branches: [progress]
-
-jobs:
-  upload:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/upload-artifact@v4
-        with:
-          name: {version}_report
-          path: report.json
-"""
 
 
 def git(*args, cwd=ROOT):
@@ -107,31 +87,24 @@ def main():
         print("the last full build can be published")
         return
     report.main()
-    data = json.load(open(report.OUT))
     meta = json.load(open(report.META))
     head = git("rev-parse", "HEAD")
     meta["published"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    with tempfile.TemporaryDirectory() as tmp:
-        git("init", "-q", "-b", "progress", cwd=tmp)
-        for key in ("user.name", "user.email"):
-            git("config", key, git("config", key), cwd=tmp)
-        json.dump(data, open(os.path.join(tmp, "report.json"), "w"), separators=(",", ":"))
-        json.dump(meta, open(os.path.join(tmp, "report.meta.json"), "w"), indent=1)
-        os.makedirs(os.path.join(tmp, ".github", "workflows"))
-        open(os.path.join(tmp, ".github", "workflows", "progress.yml"), "w", newline="\n").write(WORKFLOW.replace("{version}", VERSION))
-        m = data["measures"]
-        git("add", "-A", cwd=tmp)
-        git("commit", "-q", "-m",
-            f"Progress report for {head[:12]} ({meta['generated'][:10]}): {m['matched_functions']}/{m['total_functions']} "
-            f"functions, {m['matched_code_percent']:.2f}% of code matched, {m['complete_code_percent']:.2f}% linked, "
-            f"{m['matched_data_percent']:.2f}% of data\n\n"
-            f"Describes commit {head}, built {meta['build']['generated']}, report generated {meta['generated']}; "
-            f"the full build hashes .text {meta['build']['text_sha1']} and .data {meta['build']['data_sha1']} "
-            "like the original.\n\n"
-            "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>", cwd=tmp)
-        url = git("remote", "get-url", "origin")
-        git("push", "-q", "-f", url, "progress", cwd=tmp)
-    print(f"pushed the report for {head[:12]} to the progress branch")
+    json.dump(meta, open(report.META, "w"), indent=1)
+    m = json.load(open(report.OUT))["measures"]
+    paths = [os.path.relpath(p, ROOT) for p in (report.OUT, report.META)]
+    git("add", "--", *paths)
+    git("commit", "-q", "-m",
+        f"Progress report for {head[:12]} ({meta['generated'][:10]}): {m['matched_functions']}/{m['total_functions']} "
+        f"functions, {m['matched_code_percent']:.2f}% of code matched, {m['complete_code_percent']:.2f}% linked, "
+        f"{m['matched_data_percent']:.2f}% of data\n\n"
+        f"Describes commit {head}, built {meta['build']['generated']}, report generated {meta['generated']}; "
+        f"the full build hashes .text {meta['build']['text_sha1']} and .data {meta['build']['data_sha1']} "
+        "like the original.\n\n"
+        "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>", "--", *paths)
+    branch = git("rev-parse", "--abbrev-ref", "HEAD")
+    git("push", "-q", "origin", f"HEAD:refs/heads/{branch}" if branch != "HEAD" else "HEAD:refs/heads/main")
+    print(f"committed and pushed the report for {head[:12]} ({' and '.join(paths)})")
 
 
 if __name__ == "__main__":

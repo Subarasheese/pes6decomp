@@ -1,7 +1,9 @@
 # Local game inputs and generated outputs.
 /orig/
 /build/
-/progress/
+/progress/*
+!/progress/report.json
+!/progress/report.meta.json
 /drafts/
 /toolchains/
 /tools/ext/
