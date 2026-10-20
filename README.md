@@ -3,8 +3,8 @@
 A work-in-progress matching decompilation of **Pro Evolution Soccer 6** for
 PlayStation 2, PAL executable **SLES-542.03**.
 
-The initial source snapshot contains **1,438 matched functions**, contributing
-**20,004 of 2,566,880 code bytes (0.78%)**. A complete local link reproduces the
+The current source snapshot contains **1,430 matched functions**, contributing
+**19,724 of 2,566,880 code bytes (0.77%)**. A complete local link reproduces the
 original code and data; unrecovered regions are taken from the user's own
 executable during the build. This is not a complete source recreation or a
 standalone game build. Overlays are not covered yet.
@@ -83,6 +83,15 @@ bitset lookup accepts `0x1FFF` without reading its context, and a set bit 31
 returns `-1`, not `1`. Packet helpers preserve all 64 value bits and advance the
 cursor by the observed record size. Descriptive names identify established
 behavior; they do not claim original C++ class identities.
+
+Inline assembly is excluded from C recoveries, including single-instruction
+blocks and assembly-inclusion macros in headers. Eight wrappers at `00105FE0`,
+`00106000`, `00106020`, `00106040`, `00106618`, `00145020`, `00155D00`, and
+`002DAF48` require `sync` and/or `ei`; the configured compiler does not recognize
+the candidate builtins for these instructions. They remain unrecovered and use
+the original executable's bytes or local disassembly in the full build, without
+contributing to recovered-source totals. Replacing their barriers or interrupt
+control with ordinary C or an unresolved external call would change behavior.
 
 Only publish source, configuration, and documentation. Keep original game
 files, BIOS, compiler distributions, generated assembly, build outputs,

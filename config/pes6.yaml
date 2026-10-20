@@ -26,6 +26,9 @@ options:
   ld_wildcard_sections: True
   find_file_boundaries: False
   o_as_suffix: True
+  # Track only C recoveries; do not generate inline-assembly inclusion headers.
+  generate_asm_macros_files: False
+  create_c_files: False
   create_asm_dependencies: False
 
   string_encoding: ASCII

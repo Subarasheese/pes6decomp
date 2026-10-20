@@ -1,47 +1,48 @@
 #!/usr/bin/env python3
-"""What inline assembly a decompiled source may contain.
+"""Reject inline assembly in recovered C/C++ sources and their headers.
 
-Allowed: single-instruction intrinsics the C compiler cannot express (e.g. `sqrt.s`, `max.s`).
-Rejected: file-scope assembly, raw instruction words (`.word`), inline blocks of more than one
-instruction, and register-pinned variables (`register T x asm("$3")`, a fakematch). Functions that were hand-written in assembly in the original belong in
-asm/ as .s files and are counted separately, not as decompiled functions.
+Instruction intrinsics written as assembly, file-scope assembly, assembly
+inclusion macros, and register-pinned variables are not C recoveries. Functions
+that cannot yet be expressed faithfully with the configured compiler remain
+unrecovered; the full build retains their original code from local game inputs.
 
-    asm_policy.py FILE...    print the violations; exit 1 if any
+    asm_policy.py FILE...    print violations; exit 1 if any
 """
 import re
 import sys
 
-STRING = r'"(?:[^"\\]|\\.)*"'
-ASM_BLOCK = re.compile(r'\b(?:__asm__|asm)\s*(?:volatile|__volatile__)?\s*\(\s*((?:' + STRING + r'\s*)+)')
-FILE_SCOPE = re.compile(r'^(?:__asm__|asm)\s*\(', re.M)
+# Remove comments and literals before checking C identifiers, so documentation,
+# string contents and escaped quotes cannot produce false positives.
+NON_CODE = re.compile(r'''//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*' ''', re.X)
+ASM = re.compile(r"\b(?:asm|__asm|__asm__)\b")
+INCLUSION = re.compile(r"\b(?:INCLUDE_ASM|INCLUDE_RODATA)\b")
+
+
+def code_only(src):
+    # C splices physical lines before tokenization, including inside comments.
+    src = re.sub(r"\\\r?\n", "", src)
+    return NON_CODE.sub(lambda match: re.sub(r"[^\n]", " ", match[0]), src)
 
 
 def violations(src):
+    code = code_only(src)
     out = []
-    if re.search(r'(?<![\w)\]])\.word\b', src):  # not a member access such as state.word
-        out.append("raw instruction words (.word)")
-    if FILE_SCOPE.search(src) or re.search(r'\.globl|glabel', src):
-        out.append("file-scope assembly")
-    if fakematch(src):
-        out.append("register variable pinned to a machine register (register ... asm(\"$n\")); "
-                   "the original code did not choose its registers by hand")
-    for m in ASM_BLOCK.finditer(src):
-        text = "".join(s[1:-1] for s in re.findall(STRING, m.group(1)))
-        insns = [s for s in re.split(r'\\n|;', text) if s.strip() and not s.strip().startswith(".")]
-        if len(insns) > 1:
-            out.append(f"inline block of {len(insns)} instructions")
+    if ASM.search(code):
+        out.append("inline or file-scope assembly is not a C recovery")
+    if INCLUSION.search(code):
+        out.append("assembly-inclusion macros are not C recoveries")
     return out
 
 
 def fakematch(src):
-    return bool(re.search(r'register\s+[^;=]*(?:\basm|__asm__)\s*\(', src))
+    return bool(re.search(r"\bregister\b[^;]*\b(?:asm|__asm|__asm__)\s*\(", code_only(src)))
 
 
 if __name__ == "__main__":
     bad = 0
     for path in sys.argv[1:]:
-        v = violations(open(path, encoding="utf-8").read())
-        if v:
+        problems = violations(open(path, encoding="utf-8").read())
+        if problems:
             bad += 1
-            print(f"{path}: {'; '.join(v)}")
+            print(f"{path}: {'; '.join(problems)}")
     sys.exit(1 if bad else 0)

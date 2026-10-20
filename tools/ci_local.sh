@@ -18,8 +18,10 @@ trap 'rm -rf "$work"' EXIT
 fail=0
 
 cd "$root"
+echo "== asm policy regression checks"
+python3 -m unittest discover -s tools -p test_asm_policy.py || fail=1
 echo "== asm policy"
-find src -type f \( -name '*.c' -o -name '*.cpp' \) -print0 | xargs -0 python3 tools/asm_policy.py || fail=1
+find src include -type f \( -name '*.c' -o -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 python3 tools/asm_policy.py || fail=1
 echo "== organize --check"
 out=$(python3 tools/organize.py --check 2>&1); echo "$out" | tail -1
 echo "$out" | tail -1 | grep -q " 0 renamed inside, 0 moved" || { echo "$out" | grep -E "rename|move" | head -20; fail=1; }
