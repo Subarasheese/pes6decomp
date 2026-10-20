@@ -16,7 +16,7 @@ extern int func_0010A0C0(int);
 extern void func_0010A0F0(void);
 extern int func_00105360(struct Semaphore *);
 extern int func_00105370(int);
-extern int func_001053A0(int);
+extern int WaitSema(int);
 extern unsigned func_00109B50(void *, int, int, void *, int, void *, int,
     void (*)(void *), void *, int);
 int func_0010C178(unsigned descriptor, void *output) {
@@ -39,13 +39,13 @@ int func_0010C178(unsigned descriptor, void *output) {
     request->result=&result;
     request->result_size=4;
     if((int)func_00109B50(&D_003EF400,11,0,request,32,&D_003EE940,4,0,0,0)<0) {
-        func_001053A0(semaphore);
+        WaitSema(semaphore);
         func_0010A0F0();return -11;
     }
     accepted=*(int *)((unsigned)&D_003EE940|0x20000000);
     func_0010A0F0();
     if(!accepted) {func_00105370(semaphore);return -11;}
-    func_001053A0(semaphore);
+    WaitSema(semaphore);
     func_00105370(semaphore);
     return result;
 }

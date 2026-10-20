@@ -11,7 +11,7 @@ typedef struct Slot {
 extern int D_00371398;
 extern Slot D_003EF200[32];
 extern void func_001099D8(void);
-extern int func_001053A0(int sema);
+extern int WaitSema(int sema);
 extern int func_00105380(int sema);
 
 Slot *func_00109AC8(void)
@@ -19,7 +19,7 @@ Slot *func_00109AC8(void)
     Slot *s;
 
     func_001099D8();
-    func_001053A0(D_00371398);
+    WaitSema(D_00371398);
     for (s = D_003EF200; s < D_003EF200 + 32; s++) {
         if (s->flags == 0) {
             s->flags = 0x10000000;

@@ -7,11 +7,11 @@
 struct Group { char unknown0[0x14]; struct Group *next; };
 struct Pool { char unknown0[0x28]; struct Group *groups; };
 extern struct Pool D_003EDC80;
-extern int func_0010F420(void);
-extern int func_0010F470(void);
+extern int DIntr(void);
+extern int EIntr(void);
 struct Group *func_001096E8(struct Group *target) {
     struct Group *group;
-    func_0010F420();
+    DIntr();
     group = D_003EDC80.groups;
     if (group == target) {
         D_003EDC80.groups = group->next;
@@ -23,6 +23,6 @@ struct Group *func_001096E8(struct Group *target) {
             }
         }
     }
-    func_0010F470();
+    EIntr();
     return group;
 }

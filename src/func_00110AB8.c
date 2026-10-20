@@ -11,16 +11,16 @@ struct Timer {
 };
 struct TimerState { char unknown0[0x1C]; int current; };
 extern volatile struct TimerState D_00372998;
-extern int func_0010F420(void);
-extern int func_0010F470(void);
+extern int DIntr(void);
+extern int EIntr(void);
 extern unsigned long long func_00110578(void);
 unsigned long long func_00110AB8(int handle, unsigned long long replacement) {
     struct Timer *timer = (struct Timer *)(((unsigned)handle >> 10) << 6);
-    int interrupts = func_0010F420();
+    int interrupts = DIntr();
     unsigned long long previous;
     if (handle < 0 || (handle & 0x3FF) != timer->id ||
         D_00372998.current == handle) {
-        if (interrupts) func_0010F470();
+        if (interrupts) EIntr();
         return -1;
     }
     previous = timer->elapsed;
@@ -32,6 +32,6 @@ unsigned long long func_00110AB8(int handle, unsigned long long replacement) {
     } else {
         timer->elapsed = replacement;
     }
-    if (interrupts) func_0010F470();
+    if (interrupts) EIntr();
     return previous;
 }

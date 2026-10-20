@@ -1,7 +1,7 @@
 /* compiler: ee-gcc-2.9-G0 */
 /* Sony SDK / C runtime code shared with GT4 (same SDK release); source ported
  * from the GT4 decompilation (MIT, see THIRD_PARTY.md). */
-extern int func_001092A8(void *, int, int, void *, int, void *, int,
+extern int sceSifCallRpc(void *, int, int, void *, int, void *, int,
                        void (*)(void *), void *);
 extern int func_001063D8(int);
 
@@ -15,7 +15,7 @@ unsigned int func_00109B50(void *client, int command, int mode,
     int delay_scale = 1;
     unsigned int failed;
     do {
-        failed = func_001092A8(client, command, mode, send,
+        failed = sceSifCallRpc(client, command, mode, send,
             send_size, receive, receive_size, callback, callback_argument) < 0;
         if (!failed || no_retry)
             break;

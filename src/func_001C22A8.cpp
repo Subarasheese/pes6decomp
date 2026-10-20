@@ -30,9 +30,9 @@ struct File {
 extern "C" s32 func_001C21F0(void *ptr, const char *mode, s32 *optr);
 extern "C" struct File *func_001C1FD0(void *ptr);
 extern "C" s32 func_001C60F8(void *ptr, const char *file, s32 oflags, s32 mode);
-extern "C" void func_001C7A38(void);
-extern "C" void func_001C7AA0(void);
-extern "C" void func_001C7B20(void);
+extern "C" void __sread(void);
+extern "C" void __swrite(void);
+extern "C" void __sseek(void);
 extern "C" void func_001C7B88(void);
 extern "C" void fseek(struct File *fp, s32 buf, s32 mode);
 
@@ -58,9 +58,9 @@ extern "C" struct File *func_001C22A8(void *ptr, const char *file, const char *m
         return 0;
     }
     fp->file = r;
-    fp->f_read = func_001C7A38;
-    fp->f_write = func_001C7AA0;
-    fp->f_seek = func_001C7B20;
+    fp->f_read = __sread;
+    fp->f_write = __swrite;
+    fp->f_seek = __sseek;
     fp->f_close = func_001C7B88;
     fp->flags = flags;
     fp->cookie = fp;

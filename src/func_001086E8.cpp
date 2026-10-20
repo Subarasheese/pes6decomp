@@ -3,8 +3,8 @@
  * from the GT4 decompilation (MIT, see THIRD_PARTY.md). */
 typedef int s32;
 
-extern "C" s32 func_00108570(s32, s32, s32, s32, s32, s32, s32);
+extern "C" s32 _sceSifSendCmd(s32, s32, s32, s32, s32, s32, s32);
 
 extern "C" s32 func_001086E8(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
-    return func_00108570(a, 1, b, c, d, e, f);
+    return _sceSifSendCmd(a, 1, b, c, d, e, f);
 }

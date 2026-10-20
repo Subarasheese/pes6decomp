@@ -7,13 +7,13 @@ struct Entry { int handle, occupied, unknown8, unknownC; };
 extern struct Entry D_003EF200[32];
 extern int D_00371398;
 extern void func_001099D8(void);
-extern int func_001053A0(int);
+extern int WaitSema(int);
 extern int func_00105380(int);
 int func_00109A48(void) {
     struct Entry *entry;
     int count = 0;
     func_001099D8();
-    func_001053A0(D_00371398);
+    WaitSema(D_00371398);
     for (entry = D_003EF200; entry < D_003EF200 + 32; ++entry)
         if (entry->occupied) ++count;
     func_00105380(D_00371398);

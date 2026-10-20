@@ -9,20 +9,20 @@ typedef char *va_list;
           (__builtin_args_info(2) >= 8 ? 0 : (8 - __builtin_args_info(2)) * 8))
 
 extern int func_00107EB8();
-extern int func_0010F420(void);
-extern void func_0010F470(void);
+extern int DIntr(void);
+extern void EIntr(void);
 extern int func_00107148(int (*)(), void *, unsigned int, const char *, va_list);
 
-void func_00108048(const char *fmt, ...)
+void printf(const char *fmt, ...)
 {
     int ctx;
     va_list args;
     int state;
 
     ctx = 0;
-    state = func_0010F420();
+    state = DIntr();
     va_start(args, fmt);
     func_00107148(func_00107EB8, &ctx, 0xFFFFFFFF, fmt, args);
     if (state)
-        func_0010F470();
+        EIntr();
 }

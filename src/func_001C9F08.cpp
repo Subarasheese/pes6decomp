@@ -15,7 +15,7 @@ typedef int s128 __attribute__((mode(TI))); typedef unsigned int u128 __attribut
 
 struct S { char pad0[4]; s32 f4; s32 f8; };
 
-extern s32 func_001C2FA8();
+extern s32 __sfvwrite();
 
 s32 func_001C9F08(void *arg0, struct S *arg1) {
     s32 temp_v0;
@@ -24,7 +24,7 @@ s32 func_001C9F08(void *arg0, struct S *arg1) {
         arg1->f4 = 0;
         return 0;
     }
-    temp_v0 = func_001C2FA8();
+    temp_v0 = __sfvwrite();
     arg1->f8 = 0;
     arg1->f4 = 0;
     return temp_v0;

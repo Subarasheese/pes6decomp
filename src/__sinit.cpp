@@ -42,7 +42,7 @@ struct func_005A3668_arg0 {
     s32 unk1E0;
 };
 
-extern "C" void func_001C2108(s32 *arg0) {
+extern "C" void __sinit(s32 *arg0) {
     char *v_s1;
     v_s1 = (char *)arg0 + 0x1e4;
     ((struct func_005A3668_arg0 *)arg0)->unk3C = (s32)&D_001C20C8;

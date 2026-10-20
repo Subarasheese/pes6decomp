@@ -19,8 +19,8 @@ extern int D_00374654, D_00374650, D_003F4E40;
 extern void func_00115B98(void *);
 extern int func_001053B0(int);
 extern int func_00105380(int);
-extern void func_00108870(void *, int);
-extern int func_001092A8(struct Client *, int, int, void *, int, void *, int,
+extern void sceSifWriteBackDCache(void *, int);
+extern int sceSifCallRpc(struct Client *, int, int, void *, int, void *, int,
     void (*)(void *), void *);
 int func_00115C48(int argument, void *buffer, int size) {
     if(!D_003F3880.server) return -100;
@@ -29,9 +29,9 @@ int func_00115C48(int argument, void *buffer, int size) {
     D_003F3900.buffer=buffer;
     D_003F3900.size=size;
     D_003F3900.scratch=D_003F3D80;
-    func_00108870(buffer,size);
-    func_00108870(D_003F3D80,0xC0);
-    if(func_001092A8(&D_003F3880,5,1,&D_003F3900,48,&D_003F4E40,4,
+    sceSifWriteBackDCache(buffer,size);
+    sceSifWriteBackDCache(D_003F3D80,0xC0);
+    if(sceSifCallRpc(&D_003F3880,5,1,&D_003F3900,48,&D_003F4E40,4,
         func_00115B98,D_003F3D80)) {
         func_00105380(D_00374654);
         return -91;

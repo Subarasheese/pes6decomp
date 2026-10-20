@@ -10,14 +10,14 @@ struct RpcBuf {
 extern struct RpcBuf D_003EF6C0;
 extern int D_003EF8C0;
 
-extern int func_0010DB60(void);
+extern int _lf_bind(void);
 extern int func_0010DC60(void);
 extern char *func_001C8590(char *dst, const char *src, unsigned int n);
-extern int func_001092A8(void *cd, int fno, unsigned int mode, void *send, int ssize, void *recv, int rsize, void *end, void *param);
+extern int sceSifCallRpc(void *cd, int fno, unsigned int mode, void *send, int ssize, void *recv, int rsize, void *end, void *param);
 
 int func_0010E1C8(const char *name)
 {
-    if (func_0010DB60() < 0) {
+    if (_lf_bind() < 0) {
         return -0x10000;
     }
     if (func_0010DC60() != 0) {
@@ -25,7 +25,7 @@ int func_0010E1C8(const char *name)
     }
     func_001C8590(D_003EF6C0.name, name, 0xFC);
     D_003EF6C0.name[0xFB] = 0;
-    if (func_001092A8(&D_003EF8C0, 9, 0, &D_003EF6C0, 0x200, &D_003EF6C0, 4, 0, 0) < 0) {
+    if (sceSifCallRpc(&D_003EF8C0, 9, 0, &D_003EF6C0, 0x200, &D_003EF6C0, 4, 0, 0) < 0) {
         return -0x10001;
     }
     return D_003EF6C0.result;

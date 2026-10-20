@@ -7,14 +7,14 @@ extern int D_00373C80[];
 
 int func_00113E88(int a);
 void func_00105380(int sema);
-int func_001092A8(void *cd, int fno, int mode, void *send, int ssize, void *recv, int rsize, void *end, void *arg);
+int sceSifCallRpc(void *cd, int fno, int mode, void *send, int ssize, void *recv, int rsize, void *end, void *arg);
 
 int func_00114A60(void)
 {
     int r;
     if (func_00113E88(1) == 0)
         return -1;
-    if (func_001092A8(D_00374600, 3, 0, 0, 0, D_00373C80, 4, 0, 0) < 0) {
+    if (sceSifCallRpc(D_00374600, 3, 0, 0, 0, D_00373C80, 4, 0, 0) < 0) {
         func_00105380(D_00372AAC);
         return -1;
     }

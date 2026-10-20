@@ -15,7 +15,7 @@ struct Queue {
 extern struct Queue D_003EB8E8;
 extern int D_003EB8E0;
 extern int D_003712E8;
-extern void func_00105390(int sema);
+extern void iSignalSema(int sema);
 
 int func_001062C0(unsigned int c) {
     struct Queue *q;
@@ -27,6 +27,6 @@ int func_001062C0(unsigned int c) {
     q->tail = i + 1;
     q->e[i].kind = 1;
     q->e[i].val = c;
-    func_00105390(D_003EB8E0);
+    iSignalSema(D_003EB8E0);
     return c;
 }

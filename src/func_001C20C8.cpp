@@ -14,8 +14,8 @@ typedef int s128 __attribute__((mode(TI))); typedef unsigned int u128 __attribut
 #endif
 
 extern char fflush[];
-extern "C" s32 func_001C3388(s32 arg0, char *arg1);
+extern "C" s32 _fwalk(s32 arg0, char *arg1);
 
 extern "C" s32 func_001C20C8(s32 arg0) {
-    return func_001C3388(arg0, fflush);
+    return _fwalk(arg0, fflush);
 }

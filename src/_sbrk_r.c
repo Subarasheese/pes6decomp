@@ -10,7 +10,7 @@ struct _reent {
 extern int D_0061EF04; /* errno */
 extern int func_00105A60(int fd);
 
-int func_001C7380(struct _reent *ptr, int fd) {
+int _sbrk_r(struct _reent *ptr, int fd) {
     int ret;
 
     D_0061EF04 = 0;

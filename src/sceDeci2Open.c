@@ -11,7 +11,7 @@ typedef struct Msg {
 extern char D_003EBCF0[];
 extern int func_00105790(int, Msg *);
 
-int func_00106640(unsigned short id, int a, int b) {
+int sceDeci2Open(unsigned short id, int a, int b) {
     Msg m;
     m.id = id;
     m.a = a;

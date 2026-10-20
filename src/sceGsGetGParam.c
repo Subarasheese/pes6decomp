@@ -1,4 +1,4 @@
 extern char D_00371190[];
-int func_00100400() {
+int sceGsGetGParam() {
     return (int)D_00371190;
 }

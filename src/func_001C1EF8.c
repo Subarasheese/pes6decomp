@@ -43,9 +43,9 @@ typedef struct __sFILE {
     struct _reent *_data;
 } FILE;
 
-extern int func_001C7A38(void *, char *, int);        /* __sread */
-extern int func_001C7AA0(void *, const char *, int);  /* __swrite */
-extern long func_001C7B20(void *, long, int);         /* __sseek */
+extern int __sread(void *, char *, int);        /* __sread */
+extern int __swrite(void *, const char *, int);  /* __swrite */
+extern long __sseek(void *, long, int);         /* __sseek */
 extern int func_001C7B88(void *);                     /* __sclose */
 
 void func_001C1EF8(FILE *ptr, int flags, int file, struct _reent *data)
@@ -59,9 +59,9 @@ void func_001C1EF8(FILE *ptr, int flags, int file, struct _reent *data)
     ptr->_bf._size = 0;
     ptr->_lbfsize = 0;
     ptr->_cookie = ptr;
-    ptr->_read = func_001C7A38;
-    ptr->_write = func_001C7AA0;
-    ptr->_seek = func_001C7B20;
+    ptr->_read = __sread;
+    ptr->_write = __swrite;
+    ptr->_seek = __sseek;
     ptr->_close = func_001C7B88;
     ptr->_data = data;
 }

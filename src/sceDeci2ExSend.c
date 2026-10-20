@@ -8,10 +8,10 @@ typedef struct Msg {
 } Msg;
 extern int func_00105790(int, Msg *);
 
-int func_00106760(int a, int b, unsigned short c) {
+int sceDeci2ExSend(int a, int b, unsigned short c) {
     Msg m;
     m.a = a;
     m.b = b;
     m.c = c;
-    return func_00105790(-5, &m);
+    return func_00105790(-6, &m);
 }

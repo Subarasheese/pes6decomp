@@ -18,8 +18,8 @@ extern void func_001115A8(int, int);
 extern void func_00105630(void);
 extern u32 func_00105770(int);
 extern void func_00105760(u32, u32);
-extern int func_00105720(struct Dma *, int);
-extern void func_00108870(void *, int);
+extern int sceSifSetDma(struct Dma *, int);
+extern void sceSifWriteBackDCache(void *, int);
 int func_0010E8C0(char *arguments, int mode) {
     struct Dma transfer;
     u32 destination;
@@ -40,9 +40,9 @@ int func_0010E8C0(char *arguments, int mode) {
     transfer.destination=destination;
     transfer.size=104;
     transfer.attributes=0x44;
-    func_00108870(&D_003EF900,104);
+    sceSifWriteBackDCache(&D_003EF900,104);
     func_00105760(4,0x40000);
-    if(func_00105720(&transfer,1)) {
+    if(sceSifSetDma(&transfer,1)) {
         func_00105760(4,0x10000);
         func_00105760(4,0x20000);
         func_00105760(0x80000002,0);

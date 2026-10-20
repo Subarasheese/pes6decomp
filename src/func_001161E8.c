@@ -16,9 +16,9 @@ extern int D_00374654, D_00374650, D_003F4E40;
 extern int func_001053B0(int);
 extern int func_00105380(int);
 extern char *func_001C8590(char *, const char *, unsigned);
-extern void func_00108870(void *, int);
+extern void sceSifWriteBackDCache(void *, int);
 extern void func_00115708(void *);
-extern int func_001092A8(struct Client *, int, int, void *, int, void *, int,
+extern int sceSifCallRpc(struct Client *, int, int, void *, int, void *, int,
     void (*)(void *), void *);
 int func_001161E8(int argument0, int argument1, const char *text,
                  int argument2, int record_count, struct Metadata *records) {
@@ -32,8 +32,8 @@ int func_001161E8(int argument0, int argument1, const char *text,
     D_003F3930.records=records;
     func_001C8590(D_003F3930.text,text,1023);
     D_003F3930.text[1023]=0;
-    if(record_count>=0) func_00108870(records,record_count*sizeof(*records));
-    if(func_001092A8(&D_003F3880,13,1,&D_003F3930,0x414,&D_003F4E40,4,
+    if(record_count>=0) sceSifWriteBackDCache(records,record_count*sizeof(*records));
+    if(sceSifCallRpc(&D_003F3880,13,1,&D_003F3930,0x414,&D_003F4E40,4,
         func_00115708,0)) {func_00105380(D_00374654);return -91;}
     D_00374650=13;
     return 0;

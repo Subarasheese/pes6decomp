@@ -22,7 +22,7 @@ extern int D_003712E8, D_003EB8E0;
 extern int D_003EB8E8[2];
 extern char D_003EB4E0[], _gp[];
 extern const char D_003C3940[];
-extern void func_00106060(void);
+extern void topThread(void);
 extern int func_00105360(SemaParameters *);
 extern int func_00105370(int);
 extern int func_00105160(ThreadParameters *);
@@ -44,7 +44,7 @@ int func_00106138(void)
     D_003EB8E0 = func_00105360(&semaphore);
     if (D_003EB8E0 < 0)
         return -1;
-    thread.entry = func_00106060;
+    thread.entry = topThread;
     thread.stack = D_003EB4E0;
     thread.stack_size = 0x400;
     thread.global_pointer = _gp;

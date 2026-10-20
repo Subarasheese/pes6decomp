@@ -12,14 +12,14 @@ struct Alarm {
     void *argument;
 };
 extern struct Alarm *volatile D_003F2FC0;
-extern int func_0010F420(void);
-extern int func_0010F470(void);
+extern int DIntr(void);
+extern int EIntr(void);
 extern int func_001107A0(int);
 int func_001112D0(int handle) {
     struct Alarm *alarm = (struct Alarm *)(((unsigned)handle >> 8) << 4);
-    int interrupts = func_0010F420();
+    int interrupts = DIntr();
     if (handle < 0 || ((handle ^ alarm->timer) & 255)) {
-        if (interrupts) func_0010F470();
+        if (interrupts) EIntr();
         return 0x80008002;
     }
     func_001107A0(alarm->timer);
@@ -29,6 +29,6 @@ int func_001112D0(int handle) {
         alarm->next = previous;
         alarm->timer = 0;
     }
-    if (interrupts) func_0010F470();
+    if (interrupts) EIntr();
     return 0;
 }

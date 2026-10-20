@@ -13,9 +13,9 @@ typedef int s128 __attribute__((mode(TI))); typedef unsigned int u128 __attribut
 
 #endif
 
-extern "C" void func_0010E338(s32 arg0, s32 arg1, s32 arg2, void *arg3, s32 arg4);
+extern "C" void _sceSifLoadModule(s32 arg0, s32 arg1, s32 arg2, void *arg3, s32 arg4);
 
 extern "C" void func_0010E560(s32 arg0, s32 arg1, s32 arg2) {
     s32 local[4];
-    func_0010E338(arg0, arg1, arg2, local, 0);
+    _sceSifLoadModule(arg0, arg1, arg2, local, 0);
 }

@@ -13,7 +13,7 @@ extern void func_00115708(void *);
 extern int func_001053B0(int);
 extern int func_00105380(int);
 extern char *func_001C8590(char *, const char *, unsigned);
-extern int func_001092A8(struct Client *, int, int, void *, int, void *, int,
+extern int sceSifCallRpc(struct Client *, int, int, void *, int, void *, int,
     void (*)(void *), void *);
 int func_00115898(int argument0, int argument1, const char *text, int argument2) {
     if(!D_003F3880.server) return -100;
@@ -24,7 +24,7 @@ int func_00115898(int argument0, int argument1, const char *text, int argument2)
     D_003F3930.argument2=argument2;
     D_003F3930.argument1=argument1;
     D_003F3930.text[1023]=0;
-    if(func_001092A8(&D_003F3880,2,1,&D_003F3930,0x414,
+    if(sceSifCallRpc(&D_003F3880,2,1,&D_003F3930,0x414,
         &D_003F4E40,4,func_00115708,0)) {
         func_00105380(D_00374654);
         return -91;

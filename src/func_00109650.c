@@ -3,13 +3,13 @@
  * from the GT4 decompilation (MIT, see THIRD_PARTY.md). */
 struct Node { char pad[0x38]; struct Node *next; };
 struct Queue { int a, b; struct Node *head; };
-int func_0010F420(void);
-void func_0010F470(void);
+int DIntr(void);
+void EIntr(void);
 
 struct Node *func_00109650(struct Node *n, struct Queue *q)
 {
     struct Node *p;
-    func_0010F420();
+    DIntr();
     p = q->head;
     if (p == n) {
         q->head = p->next;
@@ -22,6 +22,6 @@ struct Node *func_00109650(struct Node *n, struct Queue *q)
             p = p->next;
         }
     }
-    func_0010F470();
+    EIntr();
     return p;
 }

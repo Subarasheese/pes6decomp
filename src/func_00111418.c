@@ -12,15 +12,15 @@ struct Entry {
 };
 extern struct Entry *D_003729B8;
 extern unsigned int D_003729BC;
-extern int func_0010F420(void);
-extern int func_0010F470(void);
+extern int DIntr(void);
+extern int EIntr(void);
 extern void *func_001C48E8(void *, int, unsigned int);
 struct Entry *func_00111418(struct Entry *table, unsigned int count) {
-    int interrupts = func_0010F420();
+    int interrupts = DIntr();
     struct Entry *previous = D_003729B8;
     D_003729B8 = table;
     D_003729BC = count;
     func_001C48E8(table, 0, count * sizeof(struct Entry));
-    if (interrupts) func_0010F470();
+    if (interrupts) EIntr();
     return previous;
 }

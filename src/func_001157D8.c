@@ -10,13 +10,13 @@ extern struct Command D_003F3900;
 extern int D_00374654, D_003F4E40;
 extern int func_001053B0(int);
 extern int func_00105380(int);
-extern int func_001092A8(struct Client *, int, int, void *, int, void *, int,
+extern int sceSifCallRpc(struct Client *, int, int, void *, int, void *, int,
     void (*)(void *), void *);
 int func_001157D8(int argument) {
     if(!D_003F3880.server) return -100;
     if(func_001053B0(D_00374654)<0) return -200;
     D_003F3900.argument1=argument;
-    if(func_001092A8(&D_003F3880,21,0,&D_003F3900,48,&D_003F4E40,4,0,0)) {
+    if(sceSifCallRpc(&D_003F3880,21,0,&D_003F3900,48,&D_003F4E40,4,0,0)) {
         func_00105380(D_00374654);
         return -91;
     }

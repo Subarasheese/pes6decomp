@@ -20,8 +20,8 @@ static inline struct Alarm *take_record(void) {
     if(record) D_003F2FC0=record->next;
     return record;
 }
-extern int func_0010F420(void);
-extern int func_0010F470(void);
+extern int DIntr(void);
+extern int EIntr(void);
 extern int func_001106B8(void);
 extern int func_00110DD8(int, unsigned long long, TimerCallback, void *);
 extern unsigned long long func_00111050(int, unsigned long long, unsigned long long, void *);
@@ -30,10 +30,10 @@ int func_001110B0(unsigned long long delay, TimerCallback callback, void *argume
     struct Alarm *alarm;
     int interrupts, timer;
     if(!callback) return 0x80000016;
-    interrupts=func_0010F420();
+    interrupts=DIntr();
     alarm=take_record();
     if(!alarm) {
-        if(interrupts) func_0010F470();
+        if(interrupts) EIntr();
         return 0x80008005;
     }
     timer=func_001106B8();
@@ -42,7 +42,7 @@ int func_001110B0(unsigned long long delay, TimerCallback callback, void *argume
         D_003F2FC0=alarm;
         alarm->next=previous;
         alarm->timer=0;
-        if(interrupts) func_0010F470();
+        if(interrupts) EIntr();
         return timer;
     }
     alarm->callback=callback;
@@ -50,6 +50,6 @@ int func_001110B0(unsigned long long delay, TimerCallback callback, void *argume
     alarm->timer=timer;
     func_00110DD8(timer,delay,func_00111050,alarm);
     func_00110950(timer);
-    if(interrupts) func_0010F470();
+    if(interrupts) EIntr();
     return ((unsigned)alarm<<4)|(timer&0xFE)|1;
 }

@@ -4,13 +4,13 @@
 extern int D_00372A90;
 extern int D_00374638;
 extern char D_003F3858[];
-extern void func_00108048(const char *fmt, ...);
+extern void printf(const char *fmt, ...);
 extern int func_00115258(unsigned int, unsigned int, void *, int, void *);
 
 int func_001151B8(void)
 {
     D_00374638 = 1;
     if (D_00372A90 > 0)
-        func_00108048("sceCdStResume call\n");
+        printf("sceCdStResume call\n");
     return func_00115258(0, 0, 0, 8, D_003F3858);
 }
