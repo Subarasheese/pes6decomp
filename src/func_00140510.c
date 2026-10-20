@@ -1,0 +1,3 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "types.h"
+s32 func_00140510(void) { return *(s16 *)(*(u8 **)0x004FDC04 + 0xA); }
