@@ -25,6 +25,7 @@ extern "C" {
 #endif
 Pes6PlayerRecord *Pes6OptionData_GetPlayers(void);
 Pes6PlayerRecord *Pes6OptionData_GetEditedPlayers(void);
+Pes6PlayerRecord *Pes6Player_FindRecord(unsigned int id, int source);
 #ifdef __cplusplus
 }
 #endif

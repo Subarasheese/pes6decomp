@@ -4,7 +4,6 @@ extern int func_002242B0(int id);
 extern int func_00210DF0(void);
 extern u8 *func_00970870(int id);
 extern u8 *func_00AF71D0(int id);
-extern Pes6PlayerRecord *Pes6Player_FindRecord(int id, int source);
 /* The attribute block of a player id. Two game modes resolve some ids through
  * overlay code first; id 0x6000 always uses record 0. */
 u8 *Pes6Player_GetParams(int id) {

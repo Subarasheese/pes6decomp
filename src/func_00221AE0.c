@@ -1,6 +1,5 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/player_db.h"
-extern Pes6PlayerRecord *Pes6Player_FindRecord(int id, int source);
 /* The attribute block of a player id resolved through source 1 (the
  * alternate copy of the tables), falling back to record 0. */
 u8 *func_00221AE0(int id) {
