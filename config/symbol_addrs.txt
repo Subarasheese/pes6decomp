@@ -178,3 +178,13 @@ sceCdCbfunc_number = 0x00372AE4; // type:data
 __malloc_av_ = 0x00398A28; // type:data
 __malloc_sbrk_base = 0x00398E40; // type:data
 __malloc_current_mallinfo = 0x00398E58; // type:data
+// Option data (player database). Layout checked against the loaded data; see include/pes6/player_db.h.
+Pes6OptionData_Sections = 0x00530C40; // type:data
+Pes6OptionData_GetEditedPlayers = 0x00223B80; // type:func
+Pes6OptionData_GetPlayers = 0x00223B90; // type:func
+Pes6Player_GetRecord = 0x00222AD0; // type:func
+Pes6Player_FindRecord = 0x00222B00; // type:func
+Pes6Team_GetPlayerId = 0x00222EB0; // type:func
+Pes6Player_GetParams = 0x00222200; // type:func
+Pes6Player_GetNationality = 0x00222080; // type:func
+Pes6Team_GetPlayerParams = 0x00222140; // type:func
