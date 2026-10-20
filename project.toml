@@ -87,6 +87,13 @@ command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1-020123/mwccps2.exe -O3 -c -Iinc
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O4,p -c -Iinclude"
 
+# Same compiler at -O2. A minority of the game's leaves were built with -O2: they keep the
+# returned load before `jr` instead of moving it into the delay slot and do not if-convert a
+# store into a `bnel`/`beql` delay slot.
+[compilers."mwcc-3.0.1b210-O2"]
+dir = "toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O2 -c -Iinclude"
+
 # An earlier 3.0.1 build (2005-03-17, decomp.me `mwcps2-3.0.1b151-050317`). Builds up to b151 do
 # not hoist a branch target's first instruction into a branch-likely delay slot when that target
 # has several predecessors; b198 and later (including b210) do. The match engine's ball update
