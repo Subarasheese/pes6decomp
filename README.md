@@ -1,5 +1,7 @@
 # PES6 decompilation
 
+[![Code](https://bytematch.dev/Subarasheese/pes6decomp.svg?mode=shield&label=Code&measure=matched_code_percent)](https://bytematch.dev/Subarasheese/pes6decomp) [![Functions](https://bytematch.dev/Subarasheese/pes6decomp.svg?mode=shield&label=Functions&measure=matched_functions)](https://bytematch.dev/Subarasheese/pes6decomp)
+
 A work-in-progress matching decompilation of **Pro Evolution Soccer 6** for
 PlayStation 2, PAL executable **SLES-542.03**.
 
@@ -82,6 +84,24 @@ Generate local disassembly and the function inventory, then build:
 Outputs stay in ignored `build/`. A successful full build reports `.text OK`
 and `.data OK`; inspect `build/full/report.json` for per-function results.
 Undecompiled bytes included in this local output are not source progress.
+
+## Progress report
+
+The badges come from [ByteMatch](https://bytematch.dev/Subarasheese/pes6decomp), which
+reads an objdiff-format report from the `SLES_542.03_report` artifact of push runs on
+`main`. CI cannot build the game, so the report is made locally from a verified full
+build and republished by `.github/workflows/progress.yml`:
+
+```sh
+./run.sh python tools/build.py --jobs 2           # after committing
+./run.sh python tools/publish_progress.py         # pushes the report to the `progress` branch
+git push origin main                              # the push run uploads the artifact
+```
+
+`publish_progress.py` refuses a build that is partial, differs from the original, or
+does not describe the committed HEAD. The report leaves the functions written in
+assembly (`config/asm_functions.txt`) out of the total, so its percentage is slightly
+higher than the one above.
 
 ## Working on a function
 
