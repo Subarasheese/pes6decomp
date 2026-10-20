@@ -47,22 +47,20 @@ def measures(funcs, total_data=None, data=None):
     }
 
 
-def bss_range():
-    """(start, end) of .bss: the executable has no section for it (its .data segment's memory size
-    equals its file size), so the bounds come from the start-up code, which zeroes from _fbss
-    ($v0) to _end ($v1) with lui/addiu pairs a few instructions after the entry point."""
+def main_bss_size():
+    """Size of the main executable's .bss: the loaded segment holding the entry point keeps code,
+    data and .bss together, and its memory size beyond its file size is the .bss. (The start-up
+    code zeroes up to the end of RAM, overlay areas included, so it does not give this bound.)"""
+    import struct
     entry, _ = project.load_image()
-    text_addr, text = match.load_text()
-    high, value = {}, {}
-    for word in match.words_at(text_addr, text, entry, 0x200):
-        op, rs, rt, imm = word >> 26, (word >> 21) & 31, (word >> 16) & 31, word & 0xFFFF
-        if op == 0x0F and rt in (2, 3) and rt not in high:  # lui $v0 / $v1
-            high[rt] = imm << 16
-        elif op == 0x09 and rs == rt and rt in high and rt not in value:  # addiu $vN, $vN
-            value[rt] = (high[rt] + (imm - 0x10000 if imm & 0x8000 else imm)) & 0xFFFFFFFF
-        if len(value) == 2:
-            return value[2], value[3]
-    return 0, 0
+    elf = open(project.path(project.CONFIG["game"]["elf"]), "rb").read()
+    phoff, = struct.unpack_from("<I", elf, 0x1C)
+    phentsize, phnum = struct.unpack_from("<HH", elf, 0x2A)
+    for i in range(phnum):
+        p_type, _, vaddr, _, filesz, memsz = struct.unpack_from("<6I", elf, phoff + i * phentsize)
+        if p_type == 1 and vaddr <= entry < vaddr + memsz:
+            return memsz - filesz
+    return 0
 
 
 def load_names():
@@ -92,6 +90,8 @@ def main():
     done = {f"{a:08x}" for a in project.sources(refresh=True)}
     rows = list(csv.DictReader(open(match.FUNCTIONS)))
     text_addr, text = match.load_text()
+    # Code and data share one loaded segment: a function's span ends at the end of the code.
+    text_end = project.CONFIG["game"].get("text_end", text_addr + len(text))
     partial_path = os.path.join(ROOT, "build", "auto", "partial.json")
     partial = json.load(open(partial_path)) if os.path.exists(partial_path) else {}
     funcs = []
@@ -100,7 +100,8 @@ def main():
         if addr in asm:
             continue
         key = f"{addr:08x}"
-        words = match.trim_padding(match.words_at(text_addr, text, addr, int(r["max_size"])))
+        span = min(int(r["max_size"]), max(0, text_end - addr))
+        words = match.trim_padding(match.words_at(text_addr, text, addr, span)) if span else []
         size = int(sizes.get(key, 4 * len(words)))
         matched = key in done or status.get(key, "").startswith("linked as part of func_")
         funcs.append({"addr": addr, "size": size, "matched": matched,
@@ -123,8 +124,7 @@ def main():
     # .data, .rodata and .sdata, plus .bss/.sbss. Only the constants placed by the build count
     # as matched, and only while the built .data is identical to the original.
     data_size = int(build.get("data_bytes", 0))
-    fbss, end = bss_range()
-    bss_size = max(0, end - fbss)
+    bss_size = main_bss_size()
     total_data = data_size + bss_size
     m = measures(funcs, total_data)
 
