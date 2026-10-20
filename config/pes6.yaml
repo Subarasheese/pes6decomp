@@ -1,0 +1,49 @@
+# splat configuration for SLES_542.03 (Pro Evolution Soccer 6, PAL).
+# The "rom" is the executable's memory image, extracted from your own SLES_542.03.
+# Everything splat writes lives under build/splat/.
+name: Pro Evolution Soccer 6 (SLES_542.03)
+sha1: b7418854d37e2ecfb048e42500e859886f41fa3b
+options:
+  basename: pes6
+  base_path: ..
+  target_path: build/splat/pes6.rom
+  elf_path: build/splat/pes6.elf
+  platform: ps2
+  compiler: EEGCC
+  gp_value: 0x3EF370
+
+  asm_path: build/splat/asm
+  src_path: build/splat/src
+  build_path: build/splat/obj
+  ld_script_path: build/splat/pes6.ld
+  cache_path: build/splat/.splat_cache
+  symbol_addrs_path:
+    - config/symbol_addrs.txt
+  undefined_funcs_auto_path: build/splat/undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/splat/undefined_syms_auto.txt
+
+  ld_dependencies: False
+  ld_wildcard_sections: True
+  find_file_boundaries: False
+  o_as_suffix: True
+  create_asm_dependencies: False
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+  named_regs_for_c_funcs: False
+
+  section_order: [.text, .data, .rodata, .sdata, .sbss, .bss]
+  auto_link_sections: [.data, .rodata, .sdata, .sbss, .bss]
+
+segments:
+  - name: core
+    type: code
+    start: 0x000000
+    vram: 0x00100000
+    bss_size: 0x0
+    subsegments:
+      - [0x000000, c, core/text]      # code (one .s per function)
+      - [0x272AE0, data, core/data]   # 0x00372AE0: everything after the code
+  - [0x2E9780]

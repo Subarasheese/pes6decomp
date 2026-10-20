@@ -1,0 +1,85 @@
+# Everything the tools need to know about this game. Another game = another project.toml
+# (plus a loader in tools/loaders/ and a knowledge file); the tools themselves stay the same.
+#
+# The executable mixes Sony ee-gcc 2.9, ee-gcc 2.96 and Metrowerks objects.
+# Each recovered source selects a non-default compiler with its first-line marker.
+
+[game]
+name = "Pro Evolution Soccer 6 (PAL, SLES-542.03)"
+serial = "SLES-542.03"
+basename = "pes6"
+# This project keeps address-named functions flat until units are identified.
+source_layout = "flat"
+executable = "orig/SLES_542.03"
+# The executable is already a plain ELF, so it doubles as the "converted" ELF.
+elf = "orig/SLES_542.03"
+# The single PT_LOAD segment holds both code and data; this is where the code ends (tools/build.py).
+text_end = 0x00372AE0
+# Global pointer (config/pes6.yaml gp_value); the linker needs it for GP-relative relocations.
+gp = 0x003EF370
+splat_config = "config/pes6.yaml"
+# tools/loaders/<loader>.py must define load(path) -> (entry, [(address, bytes), ...])
+loader = "elf"
+
+[cpu]
+category = "R5900"
+as_flags = "-EL -march=r5900 -mabi=eabi"
+objdump_arch = "mips:5900"
+m2c_target = "mipsee-gcc-c"
+
+[compiler]
+name = "Sony ee-gcc 2.9-991111"
+# The image is mostly the older ee-gcc 2.9 (SCE 2.9-991111): it does true sibling calls (a bare
+# `j target` tail call with no stack frame), which 2.96 never emits. A minority of translation
+# units are ee-gcc 2.96 (`/* compiler: ee-gcc-2.96 */` marker). Default small-data (G = 8): a
+# scalar extern is addressed through $gp, an array/struct extern (larger than 8 bytes) is absolute.
+dir = "~/.local/share/pes6/compilers/ee-gcc2.9-991111"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -fno-exceptions -Iinclude"
+extension = "c"
+
+# The Metrowerks CodeWarrior PS2 compilers the .comment names; a source may ask for one with a
+# first-line marker `/* compiler: NAME */` (tools/project.py source_compiler). They run through
+# wibo (a Windows PE loader).
+[compilers."mwcc-3.0.3"]
+name = "Metrowerks CodeWarrior PS2 3.0.3 (mwccps2)"
+dir = "~/.local/share/pes6/toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.3-020716/mwccps2.exe -O3 -c -Iinclude"
+
+# Other Metrowerks PS2 versions a source may ask for with a marker on its first line,
+# `/* compiler: NAME */` (tools/project.py source_compiler).
+[compilers."ee-gcc-2.9"]
+name = "Sony ee-gcc 2.9-991111"
+dir = "~/.local/share/pes6/compilers/ee-gcc2.9-991111"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -fno-exceptions -Iinclude"
+
+[compilers."ee-gcc-2.96"]
+name = "Sony ee-gcc 2.96 (2.96-ee-001003-1)"
+dir = "~/.local/share/pes6/ee-gcc2.96"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -fno-exceptions -Iinclude"
+
+# Same compiler but with sibling-call optimization off: the original keeps a frame + `jal` + restore
+# for `void f(){ g(); }` wrappers (a sibling call would be a bare `j` and no frame).
+[compilers."ee-gcc-2.96-nosib"]
+name = "Sony ee-gcc 2.96, -fno-optimize-sibling-calls"
+dir = "~/.local/share/pes6/ee-gcc2.96"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -fno-optimize-sibling-calls -fno-exceptions -Iinclude"
+
+[compilers."mwcc-2.3.3"]
+dir = "~/.local/share/pes6/toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-2.3.3-000906/mwccps2.exe -O3 -c -Iinclude"
+
+[compilers."mwcc-2.4"]
+dir = "~/.local/share/pes6/toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-2.4-001213/mwccps2.exe -O3 -c -Iinclude"
+
+[compilers."mwcc-3.0"]
+dir = "~/.local/share/pes6/toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0-011126/mwccps2.exe -O3 -c -Iinclude"
+
+[compilers."mwcc-3.0.1"]
+dir = "~/.local/share/pes6/toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1-020123/mwccps2.exe -O3 -c -Iinclude"
+
+[compilers."mwcc-3.0.1b210"]
+dir = "~/.local/share/pes6/toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O3 -c -Iinclude"

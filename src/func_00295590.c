@@ -1,0 +1,7 @@
+/* compiler: mwcc-3.0.1b210 */
+extern char D_005A24A8[];
+int func_00295590() {
+    unsigned char v2;
+    v2 = *( unsigned char *)(D_005A24A8);
+    return v2;
+}

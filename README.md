@@ -1,0 +1,85 @@
+# PES6 decompilation
+
+A work-in-progress matching decompilation of **Pro Evolution Soccer 6** for
+PlayStation 2, PAL executable **SLES-542.03**.
+
+The initial source snapshot contains **1,438 matched functions**, contributing
+**20,004 of 2,566,880 code bytes (0.78%)**. A complete local link reproduces the
+original code and data; unrecovered regions are taken from the user's own
+executable during the build. This is not a complete source recreation or a
+standalone game build. Overlays are not covered yet.
+
+## Contents
+
+- `src/`: one verified function per file; address names remain until behavior is established.
+- `include/pes6/`: partial, evidence-based structure views with unknown fields left explicit.
+- `config/`: executable layout, addresses and assembly-only function inventory.
+- `tools/`: extraction, splitting, matching, linking and local CI tools.
+- `project.toml`: compiler profiles and game configuration.
+
+## Local setup
+
+Use Linux or WSL with Python 3.11+, Bash, MIPS binutils (`mips-linux-gnu-*`),
+and the applicable compiler tools. Old Sony compiler executables may require
+32-bit runtime libraries. Compiler binaries are not provided.
+
+```sh
+bash tools/setup_linux.sh
+```
+
+Place the tools at the paths below, or edit `dir` in `project.toml` for your own
+installation. Metrowerks executables run through wibo.
+
+| Tool | Default location under your home directory |
+| --- | --- |
+| Sony ee-gcc 2.9-991111 | `.local/share/pes6/compilers/ee-gcc2.9-991111/` |
+| Sony ee-gcc 2.96 | `.local/share/pes6/ee-gcc2.96/` |
+| wibo | `.local/share/pes6/toolchains/wibo/wibo` |
+| Metrowerks 3.0.1b210 | `.local/share/pes6/toolchains/tc/mwcps2-3.0.1b210-060308/mwccps2.exe` |
+| Metrowerks 2.4 | `.local/share/pes6/toolchains/tc/mwcps2-2.4-001213/mwccps2.exe` |
+
+The default is ee-gcc 2.9. A first-line `/* compiler: NAME */` marker selects
+another profile, including ee-gcc 2.96 with sibling-call optimization disabled.
+Do not substitute compilers simply because the C looks equivalent.
+
+Extract the executable from your own supported disc image:
+
+```sh
+./run.sh python tools/iso_extract.py "/path/to/your/disc.iso" SLES_542.03 -o orig
+sha1sum orig/SLES_542.03
+```
+
+Expected executable size: **3,057,568 bytes**. Expected SHA-1:
+`ea3bad52bcc53acc5f007d0d286644245946260c`.
+
+Generate local disassembly and the function inventory, then build:
+
+```sh
+./run.sh bash tools/splat.sh
+./run.sh python tools/inventory.py
+./run.sh python tools/build.py --jobs 2
+./run.sh bash tools/ci_local.sh -j 2
+```
+
+Outputs stay in ignored `build/`. A successful full build reports `.text OK`
+and `.data OK`; inspect `build/full/report.json` for per-function results.
+Undecompiled bytes included in this local output are not source progress.
+
+## Working on a function
+
+```sh
+./run.sh python tools/match.py asm 00313AF0
+./run.sh python tools/match.py check 00313AF0 src/Pes6BitSet_Lookup.c
+./run.sh python tools/organize.py --check
+```
+
+Keep exact types and edge cases while improving readability. For example,
+bitset lookup accepts `0x1FFF` without reading its context, and a set bit 31
+returns `-1`, not `1`. Packet helpers preserve all 64 value bits and advance the
+cursor by the observed record size. Descriptive names identify established
+behavior; they do not claim original C++ class identities.
+
+Only publish source, configuration, and documentation. Keep original game
+files, BIOS, compiler distributions, generated assembly, build outputs,
+save states, logs, and personal paths outside Git. See [THIRD_PARTY.md](THIRD_PARTY.md)
+for attribution and license scope.

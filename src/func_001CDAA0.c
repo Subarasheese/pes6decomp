@@ -1,0 +1,7 @@
+/* compiler: mwcc-3.0.1b210 */
+extern char D_00529AA8[];
+int func_001CDAA0() {
+    int v2;
+    v2 = *( int *)(D_00529AA8);
+    return v2;
+}

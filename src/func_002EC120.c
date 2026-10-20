@@ -1,0 +1,5 @@
+/* compiler: mwcc-3.0.1b210 */
+void func_002EC120(int a0, int a1) {
+    *( int *)((char *)a0 + 0x1900) = a1;
+    *( int *)((char *)a0 + 0x48) = 1;
+}

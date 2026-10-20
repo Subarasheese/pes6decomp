@@ -1,0 +1,11 @@
+_start = 0x00100008; // type:func
+_gp = 0x003EF370; // type:data
+
+// Descriptive names established from code and callers, not recovered original symbols.
+// 00103918 uses this stream for GS transfer registers and packet payloads.
+Pes6PacketStream_ReserveWords = 0x00103838; // type:func
+Pes6PacketStream_AppendWord = 0x001038D0; // type:func
+Pes6PacketStream_AppendGsAD = 0x001038E8; // type:func
+// Caller-backed bit storage; metadata fields have not yet been identified.
+Pes6BitSet_Initialize = 0x00313A80; // type:func
+Pes6BitSet_Lookup = 0x00313AF0; // type:func
