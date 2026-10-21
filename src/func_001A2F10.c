@@ -1,0 +1,12 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+M2C_UNK func_001A2F50(s32);                         /* extern */
+extern char D_0052037C[];
+
+void func_001A2F10(void *arg0) {
+    (*(s32 *)D_0052037C) = M2C_FIELD(arg0, s32 *, 0x44);
+    if (M2C_FIELD(arg0, s32 *, 0) != 0) {
+        func_001A2F50((s32)arg0);
+    }
+}
