@@ -73,3 +73,11 @@ and some newlib functions were found by compiling the sources of
 [crashwoc-decomp-ps2](https://github.com/denzi-gh/crashwoc-decomp-ps2) and comparing the
 normalized code with PES6. Each adapted file names its origin in its first comment and is
 verified against the PES6 executable.
+
+CRI middleware functions (ADX: ADXT, ADXF, ADXB, ADXSTM, ADXAMP; SVM; SJ stream joints; CVFS
+and its device interfaces) were found the same way in the CRI `libadxe` sources of
+[3s-decomp](https://github.com/crowded-street/3s-decomp) (Street Fighter III: 3rd Strike,
+AGPL-3.0) and of [recvx-decomp](https://github.com/fmil95/recvx-decomp) (Resident Evil Code:
+Veronica X, MIT). Each adapted file names its origin in its first comment; its headers were
+preprocessed and reduced to the declarations the function uses, and it is verified against the
+PES6 executable.
