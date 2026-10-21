@@ -176,7 +176,9 @@ def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".ro
             rodata_relocs[cur] = []
         elif cur is not None and rodata_relocs[cur] is not None:
             off, rtype, sym = line.split()[:3]
-            if rtype == "R_MIPS_32" and sym == ".text":
+            # gcc relocates a jump table against .text; MWCC against the function's own symbol,
+            # which starts its .text (the byte comparison below confirms the result either way).
+            if rtype == "R_MIPS_32" and sym in (".text", f"func_{cur:08X}"):
                 rodata_relocs[cur].append(int(off, 16))
             else:
                 rodata_relocs[cur] = None
@@ -193,6 +195,11 @@ def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".ro
                 struct.pack_into("<I", words, roff, (addr + struct.unpack_from("<I", words, roff)[0]) & 0xFFFFFFFF)
             rodata = bytes(words)
         mine = lambda off: struct.unpack_from("<I", blob, off)[0]
+        # MWCC addresses its data through local labels (`@32`) defined in the section: such a
+        # reference is the section plus the label's value.
+        elf = read_elf(path)
+        sec_index = next((i for i, s in enumerate(elf["sections"]) if s["name"] == section), None)
+        labels = {n: v for n, v, shndx, local in elf["symbols"] if local and shndx == sec_index and n}
         bases = set()
         offs = sorted(srelocs)
         if any(str(srelocs[o][1]).endswith("tab") for o in offs):
@@ -203,13 +210,13 @@ def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".ro
             continue
         for n, off in enumerate(offs):
             rtype, sym = srelocs[off][0], srelocs[off][1]
-            if sym != section or rtype != match.R_MIPS_HI16:
+            if (sym != section and sym not in labels) or rtype != match.R_MIPS_HI16:
                 continue
-            lo = next((o for o in offs[n + 1:] if srelocs[o][1] == section and srelocs[o][0] == match.R_MIPS_LO16), None)
+            lo = next((o for o in offs[n + 1:] if srelocs[o][1] == sym and srelocs[o][0] == match.R_MIPS_LO16), None)
             if lo is None:
                 bases.add(None)
                 continue
-            addend = ((mine(off) & 0xFFFF) << 16) + sext(mine(lo))
+            addend = ((mine(off) & 0xFFFF) << 16) + sext(mine(lo)) + labels.get(sym, 0)
             target = ((word(addr + off) & 0xFFFF) << 16) + sext(word(addr + lo))
             bases.add(target - addend)
         if len(bases) != 1 or None in bases:
