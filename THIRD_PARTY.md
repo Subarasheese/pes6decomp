@@ -67,8 +67,9 @@ cover modification of the file, and distribution when not linked into a combine 
 
 ## Sources adapted from other PS2 decompilations
 
-Sony SDK functions (libgraph, libdma, libvu0, libpad, SIF/RPC, TTY and DECI2 in libkernel)
-and some newlib functions were found by compiling the sources of
+Sony SDK functions (libgraph, libdma, libvu0, libdev, libpad, SIF/RPC, TTY, DECI2, interrupt
+handling and IOP reset in libkernel), libgcc soft-float helpers
+and newlib functions (malloc, stdio, printf, mprec, time) were found by compiling the sources of
 [kfiv-decomp](https://github.com/Voicedrew11/kfiv-decomp) and
 [crashwoc-decomp-ps2](https://github.com/denzi-gh/crashwoc-decomp-ps2) and comparing the
 normalized code with PES6. Each adapted file names its origin in its first comment and is

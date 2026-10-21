@@ -1037,7 +1037,7 @@ extern struct _reent *_impure_ptr;
 void _reclaim_reent (struct _reent *);
 typedef struct __sFILE FILE;
 extern int printf(const char* format, ...);
-extern int func_001CD490(char* buf, const char* fmt, ...);
+extern int vsprintf(char* buf, const char* fmt, ...);
 void* memset(void* s, int c, size_t n);
 size_t strlen(const char* s);
 char* strcpy(char* dest, const char* src);
@@ -1104,7 +1104,7 @@ void func_001796E0(const Char8* format, ...) {
     va_list args;
     memset(D_00396E58, 0, sizeof(D_00396E58));
     (args = ((char*) __builtin_next_arg (format) - (__builtin_args_info (2) >= 8 ? 0 : (8 - __builtin_args_info (2)) * 8)));
-    func_001CD490(&D_00396E58, format, args);
+    vsprintf(&D_00396E58, format, args);
     if (D_00510FB0.func != 0) {
         D_00510FB0.func(D_00510FB0.object, D_00396E58);
     }

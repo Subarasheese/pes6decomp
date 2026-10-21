@@ -364,3 +364,14 @@ SJX_Init = 0x00179160; // type:func
 SJX_Finish = 0x001792F8; // type:func
 SJX_Create = 0x00179370; // type:func
 SJX_Destroy = 0x00179468; // type:func
+
+// Sony SDK / C runtime functions recovered from crashwoc-decomp-ps2 and kfiv-decomp sources (second pass).
+atoi = 0x001C0358; // type:func
+memclr = 0x001C0470; // type:func
+_free_r = 0x001C2528; // type:func
+__smakebuf = 0x001C3AA8; // type:func
+malloc_extend_top = 0x001C3C00; // type:func
+_realloc_r = 0x001C6C28; // type:func
+_sprintf_r = 0x001C7870; // type:func
+sprintf = 0x001C78F8; // type:func
+vsprintf = 0x001CD490; // type:func
