@@ -22,6 +22,10 @@ OUT = os.path.join(ROOT, "progress", "report.json")
 META = os.path.join(ROOT, "progress", "report.meta.json")  # provenance and the README's counts
 
 
+# Progress categories, by the prefix of a unit's name (config/units.txt, tools/units.py).
+CATEGORIES = {"game": "Game", "sdk": "Sony SDK", "runtime": "C runtime", "middleware": "Middleware"}
+
+
 def measures(funcs, total_data=None, data=None):
     """Measures of a unit. Its data is, unless given, what its own functions bring from source."""
     total = sum(f["size"] for f in funcs)
@@ -135,6 +139,7 @@ def main():
         bounds = [(int(l.split()[0], 16), l.split()[1]) for l in open(units_path)
                   if l.strip() and not l.startswith("#")]
     names = load_names()
+    category_of = lambda uname: uname.split("/")[0] if "/" in uname and uname.split("/")[0] in CATEGORIES else "game"
     import bisect
     keys = [b[0] for b in bounds]
     grouped = {}
@@ -156,7 +161,7 @@ def main():
             "functions": [{"name": names.get(f["addr"], f"func_{f['addr']:08X}"), "size": str(f["size"]),
                            "fuzzy_match_percent": f["fuzzy"],
                            "metadata": {"virtual_address": str(f["addr"])}} for f in fs],
-            "metadata": {"complete": all(f["complete"] for f in fs), "progress_categories": ["game"],
+            "metadata": {"complete": all(f["complete"] for f in fs), "progress_categories": [category_of(uname)],
                          "auto_generated": True},
         })
     # The rest of the data belongs to no unit yet (the units are ranges of code): one more unit
@@ -175,8 +180,21 @@ def main():
         })
     m["total_units"] = len(units)
     m["complete_units"] = sum(u["metadata"]["complete"] for u in units)
-    report = {"measures": m, "units": units, "version": 2,
-              "categories": [{"id": "game", "name": "Game", "measures": m}]}
+    # Categories (the unit name's prefix): each one's measures over its own units; the data that no
+    # unit holds counts towards the game.
+    categories = []
+    for cid, cname in CATEGORIES.items():
+        fs = [f for f in funcs if category_of(bounds[max(0, bisect.bisect_right(keys, f["addr"]) - 1)][1]) == cid]
+        if not fs:
+            continue
+        cm = measures(fs)
+        own = [u for u in units if u["metadata"]["progress_categories"] == [cid]]
+        if cid == "game" and rest > 0:
+            cm = measures(fs, int(cm["total_data"]) + rest)
+        cm["total_units"] = len(own)
+        cm["complete_units"] = sum(u["metadata"]["complete"] for u in own)
+        categories.append({"id": cid, "name": cname, "measures": cm})
+    report = {"measures": m, "units": units, "version": 2, "categories": categories}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(report, open(OUT, "w"), indent=1)
     # Provenance, next to the report (objdiff's format has no room for it): when it was made,
