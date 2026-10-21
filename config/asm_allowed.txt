@@ -1,0 +1,5 @@
+# Sources allowed to use inline assembly (tools/asm_policy.py). Only functions that C cannot
+# express, approved by the maintainer; one source path per line, then a comment saying why.
+src/sceSdCallBack.c     # saves the caller's $gp with the handler
+src/sceSdRemote.c       # runs the RPC with the handler's saved $gp, then restores its own
+src/func_00113260.c     # saves the caller's $gp with the callback

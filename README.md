@@ -137,6 +137,11 @@ the original executable's bytes or local disassembly in the full build, without
 contributing to recovered-source totals. Replacing their barriers or interrupt
 control with ordinary C or an unresolved external call would change behavior.
 
+The only exceptions are listed in `config/asm_allowed.txt`, which `tools/asm_policy.py`
+honors: functions approved for inline assembly because C cannot express what they do. They
+are the three libsdr/libcdvd functions that save or switch the `$gp` register
+(`sceSdCallBack`, `sceSdRemote`, `func_00113260`), which use it only for those moves.
+
 Only publish source, configuration, and documentation. Keep original game
 files, BIOS, compiler distributions, generated assembly, build outputs,
 save states, logs, and personal paths outside Git. See [THIRD_PARTY.md](THIRD_PARTY.md)
