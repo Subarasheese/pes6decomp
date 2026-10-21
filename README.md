@@ -5,8 +5,8 @@
 A work-in-progress matching decompilation of **Pro Evolution Soccer 6** for
 PlayStation 2, PAL executable **SLES-542.03**.
 
-The current source snapshot contains **3,585 matched functions**, contributing
-**169,012 of 2,566,880 code bytes (6.58%)**. A complete local link reproduces the
+The current source snapshot contains **3,587 matched functions**, contributing
+**169,388 of 2,566,880 code bytes (6.60%)**. A complete local link reproduces the
 original code and data; unrecovered regions are taken from the user's own
 executable during the build. This is not a complete source recreation or a
 standalone game build. Overlays are not covered yet.
