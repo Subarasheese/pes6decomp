@@ -1,21 +1,21 @@
 {
  "measures": {
-  "fuzzy_match_percent": 6.8754,
-  "total_code": "2527548",
-  "matched_code": "173780",
-  "matched_code_percent": 6.8754,
+  "fuzzy_match_percent": 6.9164,
+  "total_code": "2527544",
+  "matched_code": "174816",
+  "matched_code_percent": 6.9164,
   "total_data": "2805024",
   "matched_data": "1158",
   "matched_data_percent": 0.0413,
   "total_functions": 10031,
-  "matched_functions": 3592,
-  "matched_functions_percent": 35.809,
-  "complete_code": "173780",
-  "complete_code_percent": 6.8754,
+  "matched_functions": 3595,
+  "matched_functions_percent": 35.8389,
+  "complete_code": "174816",
+  "complete_code_percent": 6.9164,
   "complete_data": "1158",
   "complete_data_percent": 0.0413,
   "total_units": 180,
-  "complete_units": 5
+  "complete_units": 6
  },
  "units": [
   {
@@ -3959,28 +3959,28 @@
   {
    "name": "sdk/libsdr",
    "measures": {
-    "fuzzy_match_percent": 11.2628,
-    "total_code": "1172",
-    "matched_code": "132",
-    "matched_code_percent": 11.2628,
+    "fuzzy_match_percent": 100.0,
+    "total_code": "1168",
+    "matched_code": "1168",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
     "total_functions": 4,
-    "matched_functions": 1,
-    "matched_functions_percent": 25.0,
-    "complete_code": "132",
-    "complete_code_percent": 11.2628,
+    "matched_functions": 4,
+    "matched_functions_percent": 100.0,
+    "complete_code": "1168",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
-    "complete_units": 0
+    "complete_units": 1
    },
    "sections": [
     {
      "name": ".text",
-     "size": "1172",
-     "fuzzy_match_percent": 11.2628
+     "size": "1168",
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
@@ -3993,17 +3993,17 @@
      }
     },
     {
-     "name": "func_00112EB8",
-     "size": "32",
-     "fuzzy_match_percent": 0.0,
+     "name": "sceSdCallBack",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1126072"
      }
     },
     {
-     "name": "func_00112ED8",
+     "name": "sceSdRemote",
      "size": "904",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1126104"
      }
@@ -4011,14 +4011,14 @@
     {
      "name": "func_00113260",
      "size": "104",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1127008"
      }
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "progress_categories": [
      "sdk"
     ],
@@ -86989,22 +86989,22 @@
    "id": "sdk",
    "name": "Sony SDK",
    "measures": {
-    "fuzzy_match_percent": 26.3135,
-    "total_code": "119756",
-    "matched_code": "31512",
-    "matched_code_percent": 26.3135,
+    "fuzzy_match_percent": 27.1795,
+    "total_code": "119752",
+    "matched_code": "32548",
+    "matched_code_percent": 27.1795,
     "total_data": "743",
     "matched_data": "743",
     "matched_data_percent": 100.0,
     "total_functions": 581,
-    "matched_functions": 266,
-    "matched_functions_percent": 45.7831,
-    "complete_code": "31512",
-    "complete_code_percent": 26.3135,
+    "matched_functions": 269,
+    "matched_functions_percent": 46.2995,
+    "complete_code": "32548",
+    "complete_code_percent": 27.1795,
     "complete_data": "743",
     "complete_data_percent": 100.0,
     "total_units": 17,
-    "complete_units": 3
+    "complete_units": 4
    }
   },
   {
