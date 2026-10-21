@@ -5,8 +5,8 @@
 A work-in-progress matching decompilation of **Pro Evolution Soccer 6** for
 PlayStation 2, PAL executable **SLES-542.03**.
 
-The current source snapshot contains **3,365 matched functions**, contributing
-**140,936 of 2,566,880 code bytes (5.49%)**. A complete local link reproduces the
+The current source snapshot contains **3,487 matched functions**, contributing
+**156,264 of 2,566,880 code bytes (6.09%)**. A complete local link reproduces the
 original code and data; unrecovered regions are taken from the user's own
 executable during the build. This is not a complete source recreation or a
 standalone game build. Overlays are not covered yet.
@@ -55,7 +55,8 @@ Most non-leaf game code saves `$s` registers with 128-bit `sq` and comes from
 Metrowerks 3.0.1b210 at `-O4,p` (`mwcc-3.0.1b210`); `-O3` does not invert loops or
 leave guard branches unfilled as the retail code does. The Sony SDK, newlib and
 libgcc objects were built without small data and use the `*-G0` ee-gcc profiles.
-Their sources are shared with the GT4 decompilation (see THIRD_PARTY.md).
+Their sources are shared with the GT4 decompilation, and part of the CRI ADX middleware
+comes from the 3s-decomp and recvx-decomp sources (see THIRD_PARTY.md).
 Some game code needs an earlier 3.0.1 build: `Pes6Ball_Update` only matches with
 3.0.1b151 (`mwcc-3.0.1b151`), whose delay-slot filler does not hoist into branch
 targets with several predecessors (b198 and later do; see `docs/ball_physics.md`).
