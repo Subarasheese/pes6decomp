@@ -27,7 +27,7 @@ typedef union {
 extern float __make_fp(fp_class_type class, unsigned int sign, int exp, unsigned int frac);
 double func_0011F538(fp_number_type *src);
 void D_0011F678(FLO_union_type *src, fp_number_type *dst);
-double func_0011F988(double arg_a, double arg_b);
+double dpsub(double arg_a, double arg_b);
 double D_0011F9E0(double arg_a, double arg_b);
 double D_0011FA48(double arg_a, double arg_b);
 double D_0011FCF8(double arg_a, double arg_b);

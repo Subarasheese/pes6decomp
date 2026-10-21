@@ -109,6 +109,14 @@ command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b151-050317/mwccps2.exe -O4,p -c
 dir = "toolchains/ee-gcc2.9-991111"
 command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"
 
+# Sony SDK objects assembled by SCE's later assembler: ee-gcc 2.9's compiler with the ee-as 2.10
+# shipped with ee-gcc 2.96, which fills branch and return delay slots that ee-as 2.9 leaves empty
+# (`jr $ra` followed by the result's sign extension in ftoi). The kernel printf object also keeps
+# the FP condition hazard nop (`c.eq.s; nop; bc1f`) that tools/cc_fpnop.sh restores.
+[compilers."ee-gcc-2.9-as210-G0"]
+dir = "toolchains/ee-gcc2.9-991111"
+command = "bash {tools}/cc_fpnop.sh {dir}/bin/ee-gcc -B {dir}/../ee-gcc2.96/ee/bin/ -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"
+
 [compilers."ee-gcc-2.96-G0"]
 dir = "toolchains/ee-gcc2.96"
 command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"

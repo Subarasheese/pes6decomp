@@ -32,7 +32,7 @@ double D_0011F9E0(double arg_a, double arg_b);
 double D_0011FC90(double arg_a, double arg_b);
 int litodp(double arg_a, double arg_b);
 double D_001201A8(fp_class_type class, unsigned int sign, int exp, unsigned long frac);
-float func_001200B0(double arg_a) {
+float dptofp(double arg_a) {
     fp_number_type in;
     unsigned int sffrac;
     FLO_union_type au;

@@ -71,9 +71,13 @@ QueueInit = 0x00106878; // type:func
 QueuePeekWriteDone = 0x001068A0; // type:func
 QueuePeekReadDone = 0x001068E0; // type:func
 sceTtyHandler = 0x00106920; // type:func
+sceTtyWrite = 0x00106AB8; // type:func
 sceTtyRead = 0x00106C30; // type:func
 sceTtyInit = 0x00106D00; // type:func
+kputchar = 0x00106DC0; // type:func
 serialPutchar = 0x00106EA8; // type:func
+ftoi = 0x00106EE0; // type:func
+printfloat = 0x00106F70; // type:func
 printf = 0x00108048; // type:func
 kprintf = 0x001080C8; // type:func
 sceSifGetSreg = 0x00108178; // type:func
@@ -375,3 +379,14 @@ _realloc_r = 0x001C6C28; // type:func
 _sprintf_r = 0x001C7870; // type:func
 sprintf = 0x001C78F8; // type:func
 vsprintf = 0x001CD490; // type:func
+
+// Call targets of the kernel printf object, named from the helpers ee-gcc 2.9 calls there
+// (soft-float double and 64-bit integer routines) and from the DECI2 requests sceTtyWrite makes.
+sceDeci2ReqSend = 0x001066B0; // type:func
+sceDeci2Poll = 0x001066E0; // type:func
+__divdi3 = 0x0011D718; // type:func
+__fixunsdfdi = 0x0011F0B8; // type:func
+dpsub = 0x0011F988; // type:func
+dpdiv = 0x0011FC78; // type:func
+dpcmp = 0x0011FED8; // type:func
+dptofp = 0x001200B0; // type:func

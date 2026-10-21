@@ -3,7 +3,7 @@
  * from the GT4 decompilation (MIT, see THIRD_PARTY.md). */
 extern int D_003712E0;
 extern int sceTtyInit(void);
-extern int func_00106AB8(int a, int b);
+extern int sceTtyWrite(int a, int b);
 
 int write(int mode, int a, int b)
 {
@@ -13,7 +13,7 @@ int write(int mode, int a, int b)
                 return -1;
             D_003712E0 = 1;
         }
-        return func_00106AB8(a, b);
+        return sceTtyWrite(a, b);
     }
     return -1;
 }

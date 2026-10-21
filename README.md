@@ -57,6 +57,10 @@ leave guard branches unfilled as the retail code does. The Sony SDK, newlib and
 libgcc objects were built without small data and use the `*-G0` ee-gcc profiles.
 Their sources are shared with the GT4 decompilation, and part of the CRI ADX middleware
 comes from the 3s-decomp and recvx-decomp sources (see THIRD_PARTY.md).
+Some SDK objects were assembled by SCE's later assembler, which fills delay slots that ee-as 2.9
+leaves empty: `ee-gcc-2.9-as210-G0` compiles with ee-gcc 2.9 and assembles with the ee-as 2.10
+from the ee-gcc 2.96 toolchain (both must be installed). For the kernel printf object,
+`tools/cc_fpnop.sh` also restores the FP compare hazard `nop` that the original assembler kept.
 Some game code needs an earlier 3.0.1 build: `Pes6Ball_Update` only matches with
 3.0.1b151 (`mwcc-3.0.1b151`), whose delay-slot filler does not hoist into branch
 targets with several predecessors (b198 and later do; see `docs/ball_physics.md`).
