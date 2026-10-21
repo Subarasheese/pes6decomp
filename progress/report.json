@@ -1,17 +1,17 @@
 {
  "measures": {
-  "fuzzy_match_percent": 6.5055,
-  "total_code": "2527692",
-  "matched_code": "164440",
-  "matched_code_percent": 6.5055,
+  "fuzzy_match_percent": 6.5304,
+  "total_code": "2527680",
+  "matched_code": "165068",
+  "matched_code_percent": 6.5304,
   "total_data": "2805024",
   "matched_data": "706",
   "matched_data_percent": 0.0252,
   "total_functions": 10031,
-  "matched_functions": 3522,
-  "matched_functions_percent": 35.1112,
-  "complete_code": "164440",
-  "complete_code_percent": 6.5055,
+  "matched_functions": 3530,
+  "matched_functions_percent": 35.1909,
+  "complete_code": "165068",
+  "complete_code_percent": 6.5304,
   "complete_data": "706",
   "complete_data_percent": 0.0252,
   "total_units": 180,
@@ -899,18 +899,18 @@
   {
    "name": "sdk/libvifpk",
    "measures": {
-    "fuzzy_match_percent": 4.3384,
-    "total_code": "5532",
-    "matched_code": "240",
-    "matched_code_percent": 4.3384,
+    "fuzzy_match_percent": 10.6522,
+    "total_code": "5520",
+    "matched_code": "588",
+    "matched_code_percent": 10.6522,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
     "total_functions": 44,
-    "matched_functions": 6,
-    "matched_functions_percent": 13.6364,
-    "complete_code": "240",
-    "complete_code_percent": 4.3384,
+    "matched_functions": 9,
+    "matched_functions_percent": 20.4545,
+    "complete_code": "588",
+    "complete_code_percent": 10.6522,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
@@ -919,8 +919,8 @@
    "sections": [
     {
      "name": ".text",
-     "size": "5532",
-     "fuzzy_match_percent": 4.3384
+     "size": "5520",
+     "fuzzy_match_percent": 10.6522
     }
    ],
    "functions": [
@@ -1222,16 +1222,16 @@
     },
     {
      "name": "func_001048D0",
-     "size": "120",
-     "fuzzy_match_percent": 0.0,
+     "size": "116",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1067216"
      }
     },
     {
      "name": "func_00104948",
-     "size": "120",
-     "fuzzy_match_percent": 0.0,
+     "size": "116",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1067336"
      }
@@ -1262,8 +1262,8 @@
     },
     {
      "name": "func_00104C60",
-     "size": "120",
-     "fuzzy_match_percent": 0.0,
+     "size": "116",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1068128"
      }
@@ -12835,18 +12835,18 @@
   {
    "name": "middleware/cri",
    "measures": {
-    "fuzzy_match_percent": 28.2993,
+    "fuzzy_match_percent": 28.4871,
     "total_code": "149092",
-    "matched_code": "42192",
-    "matched_code_percent": 28.2993,
+    "matched_code": "42472",
+    "matched_code_percent": 28.4871,
     "total_data": "415",
     "matched_data": "415",
     "matched_data_percent": 100.0,
     "total_functions": 1412,
-    "matched_functions": 842,
-    "matched_functions_percent": 59.6317,
-    "complete_code": "42192",
-    "complete_code_percent": 28.2993,
+    "matched_functions": 847,
+    "matched_functions_percent": 59.9858,
+    "complete_code": "42472",
+    "complete_code_percent": 28.4871,
     "complete_data": "415",
     "complete_data_percent": 100.0,
     "total_units": 1,
@@ -12856,7 +12856,7 @@
     {
      "name": ".text",
      "size": "149092",
-     "fuzzy_match_percent": 28.2993
+     "fuzzy_match_percent": 28.4871
     },
     {
      "name": ".rodata",
@@ -20772,7 +20772,7 @@
     {
      "name": "func_0016F090",
      "size": "56",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1503376"
      }
@@ -21228,7 +21228,7 @@
     {
      "name": "func_00170CB0",
      "size": "56",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1510576"
      }
@@ -21908,7 +21908,7 @@
     {
      "name": "func_00173278",
      "size": "56",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1520248"
      }
@@ -21940,7 +21940,7 @@
     {
      "name": "func_001734C0",
      "size": "56",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1520832"
      }
@@ -21956,7 +21956,7 @@
     {
      "name": "func_00173578",
      "size": "56",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1521016"
      }
@@ -86989,18 +86989,18 @@
    "id": "sdk",
    "name": "Sony SDK",
    "measures": {
-    "fuzzy_match_percent": 21.9977,
-    "total_code": "119776",
-    "matched_code": "26348",
-    "matched_code_percent": 21.9977,
+    "fuzzy_match_percent": 22.2905,
+    "total_code": "119764",
+    "matched_code": "26696",
+    "matched_code_percent": 22.2905,
     "total_data": "291",
     "matched_data": "291",
     "matched_data_percent": 100.0,
     "total_functions": 581,
-    "matched_functions": 255,
-    "matched_functions_percent": 43.8898,
-    "complete_code": "26348",
-    "complete_code_percent": 21.9977,
+    "matched_functions": 258,
+    "matched_functions_percent": 44.4062,
+    "complete_code": "26696",
+    "complete_code_percent": 22.2905,
     "complete_data": "291",
     "complete_data_percent": 100.0,
     "total_units": 17,
@@ -87033,18 +87033,18 @@
    "id": "middleware",
    "name": "Middleware",
    "measures": {
-    "fuzzy_match_percent": 28.2993,
+    "fuzzy_match_percent": 28.4871,
     "total_code": "149092",
-    "matched_code": "42192",
-    "matched_code_percent": 28.2993,
+    "matched_code": "42472",
+    "matched_code_percent": 28.4871,
     "total_data": "415",
     "matched_data": "415",
     "matched_data_percent": 100.0,
     "total_functions": 1412,
-    "matched_functions": 842,
-    "matched_functions_percent": 59.6317,
-    "complete_code": "42192",
-    "complete_code_percent": 28.2993,
+    "matched_functions": 847,
+    "matched_functions_percent": 59.9858,
+    "complete_code": "42472",
+    "complete_code_percent": 28.4871,
     "complete_data": "415",
     "complete_data_percent": 100.0,
     "total_units": 1,
