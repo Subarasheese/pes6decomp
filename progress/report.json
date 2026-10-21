@@ -1,21 +1,21 @@
 {
  "measures": {
-  "fuzzy_match_percent": 6.6868,
+  "fuzzy_match_percent": 6.7017,
   "total_code": "2527556",
-  "matched_code": "169012",
-  "matched_code_percent": 6.6868,
+  "matched_code": "169388",
+  "matched_code_percent": 6.7017,
   "total_data": "2805024",
   "matched_data": "706",
   "matched_data_percent": 0.0252,
   "total_functions": 10031,
-  "matched_functions": 3585,
-  "matched_functions_percent": 35.7392,
-  "complete_code": "169012",
-  "complete_code_percent": 6.6868,
+  "matched_functions": 3587,
+  "matched_functions_percent": 35.7591,
+  "complete_code": "169388",
+  "complete_code_percent": 6.7017,
   "complete_data": "706",
   "complete_data_percent": 0.0252,
   "total_units": 180,
-  "complete_units": 3
+  "complete_units": 4
  },
  "units": [
   {
@@ -2707,35 +2707,35 @@
   {
    "name": "sdk/iopheap",
    "measures": {
-    "fuzzy_match_percent": 72.1068,
+    "fuzzy_match_percent": 100.0,
     "total_code": "1348",
-    "matched_code": "972",
-    "matched_code_percent": 72.1068,
+    "matched_code": "1348",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
     "total_functions": 11,
-    "matched_functions": 9,
-    "matched_functions_percent": 81.8182,
-    "complete_code": "972",
-    "complete_code_percent": 72.1068,
+    "matched_functions": 11,
+    "matched_functions_percent": 100.0,
+    "complete_code": "1348",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
-    "complete_units": 0
+    "complete_units": 1
    },
    "sections": [
     {
      "name": ".text",
      "size": "1348",
-     "fuzzy_match_percent": 72.1068
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
     {
      "name": "sceSifInitIopHeap",
      "size": "136",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1103376"
      }
@@ -2775,7 +2775,7 @@
     {
      "name": "sceSifLoadIopHeap",
      "size": "240",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1103904"
      }
@@ -2822,7 +2822,7 @@
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "progress_categories": [
      "sdk"
     ],
@@ -86989,22 +86989,22 @@
    "id": "sdk",
    "name": "Sony SDK",
    "measures": {
-    "fuzzy_match_percent": 22.3306,
+    "fuzzy_match_percent": 22.6445,
     "total_code": "119764",
-    "matched_code": "26744",
-    "matched_code_percent": 22.3306,
+    "matched_code": "27120",
+    "matched_code_percent": 22.6445,
     "total_data": "291",
     "matched_data": "291",
     "matched_data_percent": 100.0,
     "total_functions": 581,
-    "matched_functions": 259,
-    "matched_functions_percent": 44.5783,
-    "complete_code": "26744",
-    "complete_code_percent": 22.3306,
+    "matched_functions": 261,
+    "matched_functions_percent": 44.9225,
+    "complete_code": "27120",
+    "complete_code_percent": 22.6445,
     "complete_data": "291",
     "complete_data_percent": 100.0,
     "total_units": 17,
-    "complete_units": 1
+    "complete_units": 2
    }
   },
   {
