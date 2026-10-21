@@ -1,21 +1,21 @@
 {
  "measures": {
-  "fuzzy_match_percent": 6.6849,
+  "fuzzy_match_percent": 6.6868,
   "total_code": "2527556",
-  "matched_code": "168964",
-  "matched_code_percent": 6.6849,
+  "matched_code": "169012",
+  "matched_code_percent": 6.6868,
   "total_data": "2805024",
   "matched_data": "706",
   "matched_data_percent": 0.0252,
   "total_functions": 10031,
-  "matched_functions": 3584,
-  "matched_functions_percent": 35.7292,
-  "complete_code": "168964",
-  "complete_code_percent": 6.6849,
+  "matched_functions": 3585,
+  "matched_functions_percent": 35.7392,
+  "complete_code": "169012",
+  "complete_code_percent": 6.6868,
   "complete_data": "706",
   "complete_data_percent": 0.0252,
   "total_units": 180,
-  "complete_units": 2
+  "complete_units": 3
  },
  "units": [
   {
@@ -1602,28 +1602,28 @@
   {
    "name": "sdk/deci2",
    "measures": {
-    "fuzzy_match_percent": 93.0233,
+    "fuzzy_match_percent": 100.0,
     "total_code": "688",
-    "matched_code": "640",
-    "matched_code_percent": 93.0233,
+    "matched_code": "688",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
     "total_functions": 15,
-    "matched_functions": 14,
-    "matched_functions_percent": 93.3333,
-    "complete_code": "640",
-    "complete_code_percent": 93.0233,
+    "matched_functions": 15,
+    "matched_functions_percent": 100.0,
+    "complete_code": "688",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
-    "complete_units": 0
+    "complete_units": 1
    },
    "sections": [
     {
      "name": ".text",
      "size": "688",
-     "fuzzy_match_percent": 93.0233
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
@@ -1662,7 +1662,7 @@
     {
      "name": "func_00106708",
      "size": "48",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1074952"
      }
@@ -1749,7 +1749,7 @@
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "progress_categories": [
      "sdk"
     ],
@@ -86989,22 +86989,22 @@
    "id": "sdk",
    "name": "Sony SDK",
    "measures": {
-    "fuzzy_match_percent": 22.2905,
+    "fuzzy_match_percent": 22.3306,
     "total_code": "119764",
-    "matched_code": "26696",
-    "matched_code_percent": 22.2905,
+    "matched_code": "26744",
+    "matched_code_percent": 22.3306,
     "total_data": "291",
     "matched_data": "291",
     "matched_data_percent": 100.0,
     "total_functions": 581,
-    "matched_functions": 258,
-    "matched_functions_percent": 44.4062,
-    "complete_code": "26696",
-    "complete_code_percent": 22.2905,
+    "matched_functions": 259,
+    "matched_functions_percent": 44.5783,
+    "complete_code": "26744",
+    "complete_code_percent": 22.3306,
     "complete_data": "291",
     "complete_data_percent": 100.0,
     "total_units": 17,
-    "complete_units": 0
+    "complete_units": 1
    }
   },
   {
