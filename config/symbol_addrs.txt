@@ -392,3 +392,16 @@ dpsub = 0x0011F988; // type:func
 dpdiv = 0x0011FC78; // type:func
 dpcmp = 0x0011FED8; // type:func
 dptofp = 0x001200B0; // type:func
+
+// CRI functions whose ports carried their own .rodata or matched with ee-gcc 2.96 -G0 (third pass).
+ADXB_CheckSpsd = 0x00159560; // type:func
+ADXERR_ItoA2 = 0x0015B648; // type:func
+ADXF_GetNumReqSct = 0x0015DDC0; // type:func
+ADXT_EntryAfs = 0x0015E9D0; // type:func
+ADXT_StartSeamless = 0x0015EAC8; // type:func
+ADXT_GetTimeSfreq = 0x00165B78; // type:func
+ADXT_IsHeader = 0x00167E98; // type:func
+ADXT_IsEndcode = 0x00167F30; // type:func
+ADXT_StartAfs = 0x001683C8; // type:func
+ADXT_StartMem2 = 0x001686E0; // type:func
+htci_is_bgn_host = 0x001711F0; // type:func
