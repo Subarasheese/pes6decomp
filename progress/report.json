@@ -1,18 +1,18 @@
 {
  "measures": {
-  "fuzzy_match_percent": 10.6176,
-  "total_code": "2526872",
-  "matched_code": "268292",
-  "matched_code_percent": 10.6176,
+  "fuzzy_match_percent": 10.6778,
+  "total_code": "2526892",
+  "matched_code": "269816",
+  "matched_code_percent": 10.6778,
   "total_data": "2805024",
-  "matched_data": "6407",
+  "matched_data": "6408",
   "matched_data_percent": 0.2284,
   "total_functions": 10031,
-  "matched_functions": 3961,
-  "matched_functions_percent": 39.4876,
-  "complete_code": "268292",
-  "complete_code_percent": 10.6176,
-  "complete_data": "6407",
+  "matched_functions": 3971,
+  "matched_functions_percent": 39.5873,
+  "complete_code": "269776",
+  "complete_code_percent": 10.6762,
+  "complete_data": "6408",
   "complete_data_percent": 0.2284,
   "total_units": 180,
   "complete_units": 9
@@ -3703,28 +3703,33 @@
   {
    "name": "sdk/libpad",
    "measures": {
-    "fuzzy_match_percent": 18.0766,
-    "total_code": "4492",
-    "matched_code": "812",
-    "matched_code_percent": 18.0766,
-    "total_data": "0",
-    "matched_data": "0",
-    "matched_data_percent": 0.0,
+    "fuzzy_match_percent": 36.6071,
+    "total_code": "4480",
+    "matched_code": "1640",
+    "matched_code_percent": 36.6071,
+    "total_data": "1",
+    "matched_data": "1",
+    "matched_data_percent": 100.0,
     "total_functions": 28,
-    "matched_functions": 8,
-    "matched_functions_percent": 28.5714,
-    "complete_code": "812",
-    "complete_code_percent": 18.0766,
-    "complete_data": "0",
-    "complete_data_percent": 0.0,
+    "matched_functions": 13,
+    "matched_functions_percent": 46.4286,
+    "complete_code": "1640",
+    "complete_code_percent": 36.6071,
+    "complete_data": "1",
+    "complete_data_percent": 100.0,
     "total_units": 1,
     "complete_units": 0
    },
    "sections": [
     {
      "name": ".text",
-     "size": "4492",
-     "fuzzy_match_percent": 18.0766
+     "size": "4480",
+     "fuzzy_match_percent": 36.6071
+    },
+    {
+     "name": ".rodata",
+     "size": "1",
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
@@ -3769,9 +3774,9 @@
      }
     },
     {
-     "name": "func_00111FE8",
-     "size": "56",
-     "fuzzy_match_percent": 0.0,
+     "name": "scePadStateIntToStr",
+     "size": "52",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1122280"
      }
@@ -3826,8 +3831,8 @@
     },
     {
      "name": "scePadSetMainMode",
-     "size": "184",
-     "fuzzy_match_percent": 0.0,
+     "size": "180",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1123536"
      }
@@ -3843,7 +3848,7 @@
     {
      "name": "scePadSetActAlign",
      "size": "216",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1123920"
      }
@@ -3859,7 +3864,7 @@
     {
      "name": "scePadSetButtonInfo",
      "size": "176",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1124312"
      }
@@ -3890,8 +3895,8 @@
     },
     {
      "name": "scePadSetVrefParam",
-     "size": "208",
-     "fuzzy_match_percent": 0.0,
+     "size": "204",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1124792"
      }
@@ -12845,18 +12850,18 @@
   {
    "name": "middleware/cri",
    "measures": {
-    "fuzzy_match_percent": 35.5946,
-    "total_code": "148944",
-    "matched_code": "53016",
-    "matched_code_percent": 35.5946,
+    "fuzzy_match_percent": 35.9385,
+    "total_code": "148932",
+    "matched_code": "53524",
+    "matched_code_percent": 35.9385,
     "total_data": "607",
     "matched_data": "607",
     "matched_data_percent": 100.0,
     "total_functions": 1412,
-    "matched_functions": 936,
-    "matched_functions_percent": 66.289,
-    "complete_code": "53016",
-    "complete_code_percent": 35.5946,
+    "matched_functions": 940,
+    "matched_functions_percent": 66.5722,
+    "complete_code": "53524",
+    "complete_code_percent": 35.9385,
     "complete_data": "607",
     "complete_data_percent": 100.0,
     "total_units": 1,
@@ -12865,8 +12870,8 @@
    "sections": [
     {
      "name": ".text",
-     "size": "148944",
-     "fuzzy_match_percent": 35.5946
+     "size": "148932",
+     "fuzzy_match_percent": 35.9385
     },
     {
      "name": ".rodata",
@@ -14132,9 +14137,9 @@
      }
     },
     {
-     "name": "func_0015B540",
-     "size": "264",
-     "fuzzy_match_percent": 0.0,
+     "name": "ADXERR_ItoA",
+     "size": "260",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1422656"
      }
@@ -15438,7 +15443,7 @@
     {
      "name": "func_0015F450",
      "size": "88",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1438800"
      }
@@ -21277,8 +21282,8 @@
     },
     {
      "name": "func_00170FB0",
-     "size": "80",
-     "fuzzy_match_percent": 0.0,
+     "size": "76",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1511344"
      }
@@ -23516,9 +23521,9 @@
      }
     },
     {
-     "name": "func_00178C18",
-     "size": "88",
-     "fuzzy_match_percent": 0.0,
+     "name": "SJUNI_CreateRmt",
+     "size": "84",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1543192"
      }
@@ -33565,18 +33570,18 @@
   {
    "name": "runtime/newlib",
    "measures": {
-    "fuzzy_match_percent": 76.2944,
-    "total_code": "53692",
-    "matched_code": "40964",
-    "matched_code_percent": 76.2944,
+    "fuzzy_match_percent": 76.5818,
+    "total_code": "53736",
+    "matched_code": "41152",
+    "matched_code_percent": 76.5818,
     "total_data": "2220",
     "matched_data": "2220",
     "matched_data_percent": 100.0,
     "total_functions": 147,
-    "matched_functions": 115,
-    "matched_functions_percent": 78.2313,
-    "complete_code": "40964",
-    "complete_code_percent": 76.2944,
+    "matched_functions": 116,
+    "matched_functions_percent": 78.9116,
+    "complete_code": "41112",
+    "complete_code_percent": 76.5074,
     "complete_data": "2220",
     "complete_data_percent": 100.0,
     "total_units": 1,
@@ -33585,8 +33590,8 @@
    "sections": [
     {
      "name": ".text",
-     "size": "53692",
-     "fuzzy_match_percent": 76.2944
+     "size": "53736",
+     "fuzzy_match_percent": 76.5818
     },
     {
      "name": ".rodata",
@@ -33965,15 +33970,15 @@
     },
     {
      "name": "_setlocale_r",
-     "size": "144",
-     "fuzzy_match_percent": 0.0,
+     "size": "180",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1849696"
      }
     },
     {
      "name": "func_001C39F0",
-     "size": "12",
+     "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1849840"
@@ -33981,7 +33986,7 @@
     },
     {
      "name": "func_001C3A00",
-     "size": "36",
+     "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1849856"
@@ -86951,7 +86956,7 @@
     "total_code": "0",
     "matched_code": "0",
     "matched_code_percent": 0.0,
-    "total_data": "2798617",
+    "total_data": "2798616",
     "matched_data": "0",
     "matched_data_percent": 0.0,
     "total_functions": 0,
@@ -86967,7 +86972,7 @@
    "sections": [
     {
      "name": ".data",
-     "size": "480153",
+     "size": "480152",
      "fuzzy_match_percent": 0.0
     },
     {
@@ -86996,7 +87001,7 @@
     "total_code": "2189716",
     "matched_code": "93744",
     "matched_code_percent": 4.2811,
-    "total_data": "2798661",
+    "total_data": "2798660",
     "matched_data": "44",
     "matched_data_percent": 0.0016,
     "total_functions": 7835,
@@ -87014,19 +87019,19 @@
    "id": "sdk",
    "name": "Sony SDK",
    "measures": {
-    "fuzzy_match_percent": 59.3896,
-    "total_code": "119536",
-    "matched_code": "70992",
-    "matched_code_percent": 59.3896,
-    "total_data": "3472",
-    "matched_data": "3472",
+    "fuzzy_match_percent": 60.0884,
+    "total_code": "119524",
+    "matched_code": "71820",
+    "matched_code_percent": 60.0884,
+    "total_data": "3473",
+    "matched_data": "3473",
     "matched_data_percent": 100.0,
     "total_functions": 581,
-    "matched_functions": 398,
-    "matched_functions_percent": 68.5026,
-    "complete_code": "70992",
-    "complete_code_percent": 59.3896,
-    "complete_data": "3472",
+    "matched_functions": 403,
+    "matched_functions_percent": 69.3632,
+    "complete_code": "71820",
+    "complete_code_percent": 60.0884,
+    "complete_data": "3473",
     "complete_data_percent": 100.0,
     "total_units": 17,
     "complete_units": 5
@@ -87036,18 +87041,18 @@
    "id": "runtime",
    "name": "C runtime",
    "measures": {
-    "fuzzy_match_percent": 73.5919,
-    "total_code": "68676",
-    "matched_code": "50540",
-    "matched_code_percent": 73.5919,
+    "fuzzy_match_percent": 73.8184,
+    "total_code": "68720",
+    "matched_code": "50728",
+    "matched_code_percent": 73.8184,
     "total_data": "2284",
     "matched_data": "2284",
     "matched_data_percent": 100.0,
     "total_functions": 203,
-    "matched_functions": 149,
-    "matched_functions_percent": 73.399,
-    "complete_code": "50540",
-    "complete_code_percent": 73.5919,
+    "matched_functions": 150,
+    "matched_functions_percent": 73.8916,
+    "complete_code": "50688",
+    "complete_code_percent": 73.7602,
     "complete_data": "2284",
     "complete_data_percent": 100.0,
     "total_units": 2,
@@ -87058,18 +87063,18 @@
    "id": "middleware",
    "name": "Middleware",
    "measures": {
-    "fuzzy_match_percent": 35.5946,
-    "total_code": "148944",
-    "matched_code": "53016",
-    "matched_code_percent": 35.5946,
+    "fuzzy_match_percent": 35.9385,
+    "total_code": "148932",
+    "matched_code": "53524",
+    "matched_code_percent": 35.9385,
     "total_data": "607",
     "matched_data": "607",
     "matched_data_percent": 100.0,
     "total_functions": 1412,
-    "matched_functions": 936,
-    "matched_functions_percent": 66.289,
-    "complete_code": "53016",
-    "complete_code_percent": 35.5946,
+    "matched_functions": 940,
+    "matched_functions_percent": 66.5722,
+    "complete_code": "53524",
+    "complete_code_percent": 35.9385,
     "complete_data": "607",
     "complete_data_percent": 100.0,
     "total_units": 1,
