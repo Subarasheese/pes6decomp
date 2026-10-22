@@ -3,3 +3,24 @@
 src/sceSdCallBack.c     # saves the caller's $gp with the handler
 src/sceSdRemote.c       # runs the RPC with the handler's saved $gp, then restores its own
 src/func_00113260.c     # saves the caller's $gp with the callback
+# SDK/runtime functions ported from GT4 that need instructions C cannot express:
+src/func_001057F0.c         # sync (ported from GT4)
+src/func_00105880.c         # sync (ported from GT4)
+src/func_00105A60.c         # mfc0 (COP0 status), di, sync.p, ei (ported from GT4)
+src/open.c                  # mfc0 (COP0 status) (ported from GT4)
+src/func_00105D98.c         # mfc0 (COP0 status) (ported from GT4)
+src/func_00105E30.cpp       # mfc0 (COP0 status) (ported from GT4)
+src/DisableIntc.c           # mfc0 (COP0 status), sync.l (ported from GT4)
+src/EnableIntc.c            # mfc0 (COP0 status), sync.l (ported from GT4)
+src/DisableDmac.c           # mfc0 (COP0 status), sync.l (ported from GT4)
+src/func_00105F78.c         # mfc0 (COP0 status), sync.l (ported from GT4)
+src/func_00105FE0.cpp       # sync (ported from GT4)
+src/func_00106000.cpp       # sync (ported from GT4)
+src/func_00106020.cpp       # sync (ported from GT4)
+src/func_00106040.cpp       # sync (ported from GT4)
+src/func_001084A8.c         # $gp move (ported from GT4)
+src/func_00108728.c         # sync.l, $gp move (ported from GT4)
+src/func_00108C20.c         # sync.l, $gp move (ported from GT4)
+src/EIntr.c                 # mfc0 (COP0 status), ei (ported from GT4)
+src/func_00111498.c         # $gp move (ported from GT4)
+src/func_00113718.c         # $gp move (ported from GT4)

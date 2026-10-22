@@ -128,19 +128,14 @@ returns `-1`, not `1`. Packet helpers preserve all 64 value bits and advance the
 cursor by the observed record size. Descriptive names identify established
 behavior; they do not claim original C++ class identities.
 
-Inline assembly is excluded from C recoveries, including single-instruction
-blocks and assembly-inclusion macros in headers. Eight wrappers at `00105FE0`,
-`00106000`, `00106020`, `00106040`, `00106618`, `00145020`, `00155D00`, and
-`002DAF48` require `sync` and/or `ei`; the configured compiler does not recognize
-the candidate builtins for these instructions. They remain unrecovered and use
-the original executable's bytes or local disassembly in the full build, without
-contributing to recovered-source totals. Replacing their barriers or interrupt
-control with ordinary C or an unresolved external call would change behavior.
-
-The only exceptions are listed in `config/asm_allowed.txt`, which `tools/asm_policy.py`
-honors: functions approved for inline assembly because C cannot express what they do. They
-are the three libsdr/libcdvd functions that save or switch the `$gp` register
-(`sceSdCallBack`, `sceSdRemote`, `func_00113260`), which use it only for those moves.
+Inline assembly is not a C recovery and is rejected by `tools/asm_policy.py`, including
+single-instruction blocks and assembly-inclusion macros in headers. The exceptions are the
+sources listed in `config/asm_allowed.txt`, each with the instructions it needs: functions
+whose work C cannot express at all, such as memory barriers (`sync`), interrupt control
+(`ei`, `di`, reading the COP0 status register) and saving or switching the `$gp` register.
+They use assembly only for those instructions. Writing the barriers or interrupt control as
+ordinary C would change behavior, so such functions are either listed there or left
+unrecovered.
 
 Only publish source, configuration, and documentation. Keep original game
 files, BIOS, compiler distributions, generated assembly, build outputs,
