@@ -43,6 +43,7 @@ header caches and the Python package cache stay under ignored `build/`.
 | --- | --- |
 | Sony ee-gcc 2.9-991111 | `toolchains/ee-gcc2.9-991111/` |
 | Sony ee-gcc 2.96 | `toolchains/ee-gcc2.96/` |
+| Sony ee-gcc 3.2-040921 (its ee-as 2.12 only) | `toolchains/ee-gcc3.2-040921/` |
 | wibo | `toolchains/wibo/wibo` |
 | Metrowerks 3.0.1b210 | `toolchains/tc/mwcps2-3.0.1b210-060308/mwccps2.exe` |
 | Metrowerks 3.0.1b151 | `toolchains/tc/mwcps2-3.0.1b151-050317/mwccps2.exe` |
@@ -61,6 +62,9 @@ Some SDK objects were assembled by SCE's later assembler, which fills delay slot
 leaves empty: `ee-gcc-2.9-as210-G0` compiles with ee-gcc 2.9 and assembles with the ee-as 2.10
 from the ee-gcc 2.96 toolchain (both must be installed). For the kernel printf object,
 `tools/cc_fpnop.sh` also restores the FP compare hazard `nop` that the original assembler kept.
+The libgcc 64-bit division objects use `ee-gcc-2.96-as212-G0`: ee-gcc 2.96 with the ee-as 2.12
+of the ee-gcc 3.2-040921 toolchain, which does not have ee-as 2.10's bug of leaving a load opcode
+on the `%hi` word of an indexed-load macro.
 Some game code needs an earlier 3.0.1 build: `Pes6Ball_Update` only matches with
 3.0.1b151 (`mwcc-3.0.1b151`), whose delay-slot filler does not hoist into branch
 targets with several predecessors (b198 and later do; see `docs/ball_physics.md`).

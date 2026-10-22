@@ -117,6 +117,13 @@ command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclud
 dir = "toolchains/ee-gcc2.9-991111"
 command = "bash {tools}/cc_fpnop.sh {dir}/bin/ee-gcc -B {dir}/../ee-gcc2.96/ee/bin/ -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"
 
+# libgcc objects assembled by the later ee-as 2.12 (ee-gcc 3.2-040921 toolchain): ee-as 2.10
+# leaves the load opcode on the %hi word of an indexed-load macro (`lbu $v0, __clz_tab($v1)`
+# expands to an `lbu` where `lui` belongs), which the original does not have.
+[compilers."ee-gcc-2.96-as212-G0"]
+dir = "toolchains/ee-gcc2.96"
+command = "{dir}/bin/ee-gcc -c -B {dir}/../ee-gcc3.2-040921/ee/bin/ -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"
+
 [compilers."ee-gcc-2.96-G0"]
 dir = "toolchains/ee-gcc2.96"
 command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"

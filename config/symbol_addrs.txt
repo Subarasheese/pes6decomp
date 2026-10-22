@@ -410,3 +410,4 @@ htci_is_bgn_host = 0x001711F0; // type:func
 open = 0x00105C58; // type:func
 dpadd = 0x0011F930; // type:func
 dptoli = 0x0011FFE0; // type:func
+abort = 0x001C02D8; // type:func
