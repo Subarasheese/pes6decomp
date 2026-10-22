@@ -1,21 +1,21 @@
 {
  "measures": {
-  "fuzzy_match_percent": 7.2419,
-  "total_code": "2527348",
-  "matched_code": "183028",
-  "matched_code_percent": 7.2419,
+  "fuzzy_match_percent": 7.3187,
+  "total_code": "2527328",
+  "matched_code": "184968",
+  "matched_code_percent": 7.3187,
   "total_data": "2805024",
   "matched_data": "1202",
   "matched_data_percent": 0.0429,
   "total_functions": 10031,
-  "matched_functions": 3684,
-  "matched_functions_percent": 36.7261,
-  "complete_code": "183028",
-  "complete_code_percent": 7.2419,
+  "matched_functions": 3703,
+  "matched_functions_percent": 36.9156,
+  "complete_code": "184968",
+  "complete_code_percent": 7.3187,
   "complete_data": "1202",
   "complete_data_percent": 0.0429,
   "total_units": 180,
-  "complete_units": 7
+  "complete_units": 8
  },
  "units": [
   {
@@ -630,28 +630,28 @@
   {
    "name": "sdk/libdev",
    "measures": {
-    "fuzzy_match_percent": 31.2763,
-    "total_code": "2852",
-    "matched_code": "892",
-    "matched_code_percent": 31.2763,
+    "fuzzy_match_percent": 100.0,
+    "total_code": "2832",
+    "matched_code": "2832",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
     "total_functions": 29,
-    "matched_functions": 10,
-    "matched_functions_percent": 34.4828,
-    "complete_code": "892",
-    "complete_code_percent": 31.2763,
+    "matched_functions": 29,
+    "matched_functions_percent": 100.0,
+    "complete_code": "2832",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
-    "complete_units": 0
+    "complete_units": 1
    },
    "sections": [
     {
      "name": ".text",
-     "size": "2852",
-     "fuzzy_match_percent": 31.2763
+     "size": "2832",
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
@@ -690,15 +690,15 @@
     {
      "name": "func_00102FF8",
      "size": "88",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1060856"
      }
     },
     {
      "name": "func_00103050",
-     "size": "120",
-     "fuzzy_match_percent": 0.0,
+     "size": "116",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1060944"
      }
@@ -706,15 +706,15 @@
     {
      "name": "func_001030C8",
      "size": "152",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1061064"
      }
     },
     {
      "name": "func_00103160",
-     "size": "120",
-     "fuzzy_match_percent": 0.0,
+     "size": "116",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1061216"
      }
@@ -730,23 +730,23 @@
     {
      "name": "func_001031F0",
      "size": "24",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1061360"
      }
     },
     {
      "name": "func_00103208",
-     "size": "168",
-     "fuzzy_match_percent": 0.0,
+     "size": "164",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1061384"
      }
     },
     {
      "name": "func_001032B0",
-     "size": "40",
-     "fuzzy_match_percent": 0.0,
+     "size": "36",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1061552"
      }
@@ -762,7 +762,7 @@
     {
      "name": "func_001032E8",
      "size": "88",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1061608"
      }
@@ -770,7 +770,7 @@
     {
      "name": "func_00103340",
      "size": "152",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1061696"
      }
@@ -778,7 +778,7 @@
     {
      "name": "func_001033D8",
      "size": "112",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1061848"
      }
@@ -786,7 +786,7 @@
     {
      "name": "func_00103448",
      "size": "88",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1061960"
      }
@@ -818,7 +818,7 @@
     {
      "name": "func_001034E0",
      "size": "88",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1062112"
      }
@@ -826,7 +826,7 @@
     {
      "name": "func_00103538",
      "size": "88",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1062200"
      }
@@ -834,7 +834,7 @@
     {
      "name": "func_00103590",
      "size": "152",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1062288"
      }
@@ -842,7 +842,7 @@
     {
      "name": "func_00103628",
      "size": "112",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1062440"
      }
@@ -850,7 +850,7 @@
     {
      "name": "func_00103698",
      "size": "88",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1062552"
      }
@@ -858,7 +858,7 @@
     {
      "name": "func_001036F0",
      "size": "88",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1062640"
      }
@@ -874,22 +874,22 @@
     {
      "name": "func_00103778",
      "size": "24",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1062776"
      }
     },
     {
      "name": "func_00103790",
-     "size": "168",
-     "fuzzy_match_percent": 0.0,
+     "size": "164",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "1062800"
      }
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "progress_categories": [
      "sdk"
     ],
@@ -86994,22 +86994,22 @@
    "id": "sdk",
    "name": "Sony SDK",
    "measures": {
-    "fuzzy_match_percent": 27.1795,
-    "total_code": "119752",
-    "matched_code": "32548",
-    "matched_code_percent": 27.1795,
+    "fuzzy_match_percent": 28.8043,
+    "total_code": "119732",
+    "matched_code": "34488",
+    "matched_code_percent": 28.8043,
     "total_data": "743",
     "matched_data": "743",
     "matched_data_percent": 100.0,
     "total_functions": 581,
-    "matched_functions": 269,
-    "matched_functions_percent": 46.2995,
-    "complete_code": "32548",
-    "complete_code_percent": 27.1795,
+    "matched_functions": 288,
+    "matched_functions_percent": 49.5697,
+    "complete_code": "34488",
+    "complete_code_percent": 28.8043,
     "complete_data": "743",
     "complete_data_percent": 100.0,
     "total_units": 17,
-    "complete_units": 4
+    "complete_units": 5
    }
   },
   {
