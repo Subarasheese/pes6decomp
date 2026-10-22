@@ -425,3 +425,6 @@ __kernel_cosf = 0x0011B7F8; // type:func
 __kernel_rem_pio2f = 0x0011B948; // type:func
 __kernel_sinf = 0x0011C1B0; // type:func
 copysignf = 0x0011D0F8; // type:func
+scePadStateIntToStr = 0x00111FE8; // type:func
+ADXERR_ItoA = 0x0015B540; // type:func
+SJUNI_CreateRmt = 0x00178C18; // type:func
