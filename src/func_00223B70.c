@@ -1,7 +1,8 @@
 /* compiler: mwcc-3.0.1b210 */
-extern char D_00530C5C[];
-int func_00223B70() {
-    int v2;
-    v2 = *( int *)(D_00530C5C);
-    return v2;
+#include "pes6/m2c.h"
+
+extern u8 D_00530C5C[];
+
+s32 func_00223B70(void) {
+    return *(s32 *)D_00530C5C;
 }
