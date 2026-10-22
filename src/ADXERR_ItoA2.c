@@ -13,9 +13,9 @@ size_t func_001C80F0(const char* s);
 void D_0015B468(void (*arg0)(void*, Sint8*), void* arg1);
 void D_0015B4D8(Sint8* arg0, Sint8* arg1);
 #pragma divbyzerocheck
-void func_0015B540(Sint32 value, Sint8* str, strlen_t base);
+void ADXERR_ItoA(Sint32 value, Sint8* str, strlen_t base);
 void ADXERR_ItoA2(Sint32 arg0, Sint32 arg1, Sint8* str, Sint32 base) {
-    func_0015B540(arg0, str, base);
+    ADXERR_ItoA(arg0, str, base);
     func_001C8228(str, " ", base - func_001C80F0(str) - 1);
-    func_0015B540(arg1, &str[func_001C80F0(str)], 4 - func_001C80F0(str));
+    ADXERR_ItoA(arg1, &str[func_001C80F0(str)], 4 - func_001C80F0(str));
 }
