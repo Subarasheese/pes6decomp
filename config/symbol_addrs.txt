@@ -405,3 +405,8 @@ ADXT_IsEndcode = 0x00167F30; // type:func
 ADXT_StartAfs = 0x001683C8; // type:func
 ADXT_StartMem2 = 0x001686E0; // type:func
 htci_is_bgn_host = 0x001711F0; // type:func
+
+// Shared SDK/runtime code ported from the GT4 decompilation (fourth pass).
+open = 0x00105C58; // type:func
+dpadd = 0x0011F930; // type:func
+dptoli = 0x0011FFE0; // type:func
