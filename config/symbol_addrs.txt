@@ -411,3 +411,17 @@ open = 0x00105C58; // type:func
 dpadd = 0x0011F930; // type:func
 dptoli = 0x0011FFE0; // type:func
 abort = 0x001C02D8; // type:func
+
+// CRI functions ported from Persona 4, Mortal Kombat Deception, RE4 and Shadow the Hedgehog decompilations.
+ADXB_SetAhxDecSmpl = 0x00156660; // type:func
+cvFsCallUsrErrFn = 0x0016A520; // type:func
+cvFsExecServer = 0x0016B240; // type:func
+pl2enc_err = 0x00173740; // type:func
+PL2LINK_DetachDolbyProLogicII = 0x001741D0; // type:func
+mfCiGetInterface = 0x00172DF8; // type:func
+ADXB_DecodeHeaderAdx = 0x00158068; // type:func
+SRD_GetReadStatusDvd = 0x0016D3A0; // type:func
+__kernel_cosf = 0x0011B7F8; // type:func
+__kernel_rem_pio2f = 0x0011B948; // type:func
+__kernel_sinf = 0x0011C1B0; // type:func
+copysignf = 0x0011D0F8; // type:func

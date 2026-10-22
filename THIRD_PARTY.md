@@ -82,3 +82,14 @@ AGPL-3.0) and of [recvx-decomp](https://github.com/fmil95/recvx-decomp) (Residen
 Veronica X, MIT). Each adapted file names its origin in its first comment; its headers were
 preprocessed and reduced to the declarations the function uses, and it is verified against the
 PES6 executable.
+
+More CRI functions (ADXB, ADXT, SRD, SVM, MFCI, Dolby Pro Logic II linking and others) and a
+few newlib libm routines (`__kernel_cosf`, `__kernel_sinf`, `__kernel_rem_pio2f`, `copysignf`)
+come from the C sources of
+[Persona4-Decompilation](https://github.com/Raikaru/Persona4-Decompilation) (PlayStation 2; no
+license file), [mk-deception](https://github.com/ShulkMaster/mk-deception) (CC0-1.0),
+[re4](https://github.com/adonis-singh/re4) (license not stated in a recognized form) and
+[shadow-decomp](https://github.com/dev-camo/shadow-decomp) (no license file); the last three are
+GameCube decompilations whose CRI ADX code is platform-independent C. They were found by
+compiling those sources with the PES6 compiler profiles and comparing normalized code, and each
+adapted file names its origin in its first comment.
