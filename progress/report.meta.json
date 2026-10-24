@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-24T19:50:03Z",
- "commit": "a0e919931428df10fe915aa9a11e1b0ccdd5c519",
+ "generated": "2026-10-24T20:14:03Z",
+ "commit": "1df8033adc0a831d21c625cbfaca5607ff583958",
  "dirty": false,
  "build": {
-  "generated": "2026-10-24T19:49:27Z",
+  "generated": "2026-10-24T20:13:58Z",
   "partial": false,
   "text_matches": true,
   "data_matches": true,
@@ -12,10 +12,33 @@
   "orphan_sources": 0,
   "duplicate_sources": 0
  },
- "linked_functions": 4342,
+ "linked_functions": 4350,
  "data_functions": 48,
  "asm_functions": 193,
  "data_bytes": 486560,
  "bss_bytes": 2318464,
- "published": "2026-10-24T19:50:04Z"
+ "images": {
+  "bootset": {
+   "target": "bootset",
+   "commit": "1df8033adc0a831d21c625cbfaca5607ff583958",
+   "dirty": false,
+   "text_sha1": "5dd540f7e23f277c8c8e87917f530ef5318bc112",
+   "data_sha1": "fc6d57c5fb8f8e5b171acf42889a6b29ab740e1e",
+   "text_matches": true,
+   "data_matches": true,
+   "original_image_sha1": "c4007f8bf8acc286953ba4fa77d00615e5b9715a"
+  },
+  "mc_conv": {
+   "target": "mc_conv",
+   "commit": "1df8033adc0a831d21c625cbfaca5607ff583958",
+   "dirty": false,
+   "text_sha1": "710d3351bc522a1aea05288c4fe5cec751e96d9d",
+   "data_sha1": "4233e36fd7610390246a0e87cff7fc4b11e29f7e",
+   "text_matches": true,
+   "data_matches": true,
+   "original_image_sha1": "2c4145f8f8b1befb93f5c346ae253793dd2b426f"
+  }
+ },
+ "scope": "resident + 37 MWo3 members + NTGUI2EU",
+ "published": "2026-10-24T20:14:12Z"
 }
