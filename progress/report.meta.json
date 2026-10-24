@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-24T20:35:14Z",
- "commit": "dce3a26a2ed7c62811b11b7c54ac7326698e3a5c",
+ "generated": "2026-10-24T20:43:39Z",
+ "commit": "55ce207ed414848dd7c0950f5ebe2c1fd66ddae2",
  "dirty": false,
  "build": {
-  "generated": "2026-10-24T20:34:53Z",
+  "generated": "2026-10-24T20:43:09Z",
   "partial": false,
   "text_matches": true,
   "data_matches": true,
@@ -12,7 +12,7 @@
   "orphan_sources": 0,
   "duplicate_sources": 0
  },
- "linked_functions": 4414,
+ "linked_functions": 4441,
  "data_functions": 48,
  "asm_functions": 193,
  "data_bytes": 486560,
@@ -20,7 +20,7 @@
  "images": {
   "bootset": {
    "target": "bootset",
-   "commit": "dce3a26a2ed7c62811b11b7c54ac7326698e3a5c",
+   "commit": "55ce207ed414848dd7c0950f5ebe2c1fd66ddae2",
    "dirty": false,
    "text_sha1": "5dd540f7e23f277c8c8e87917f530ef5318bc112",
    "data_sha1": "fc6d57c5fb8f8e5b171acf42889a6b29ab740e1e",
@@ -30,7 +30,7 @@
   },
   "mc_conv": {
    "target": "mc_conv",
-   "commit": "dce3a26a2ed7c62811b11b7c54ac7326698e3a5c",
+   "commit": "55ce207ed414848dd7c0950f5ebe2c1fd66ddae2",
    "dirty": false,
    "text_sha1": "710d3351bc522a1aea05288c4fe5cec751e96d9d",
    "data_sha1": "4233e36fd7610390246a0e87cff7fc4b11e29f7e",
@@ -38,9 +38,19 @@
    "data_matches": true,
    "original_image_sha1": "2c4145f8f8b1befb93f5c346ae253793dd2b426f"
   },
+  "title": {
+   "target": "title",
+   "commit": "55ce207ed414848dd7c0950f5ebe2c1fd66ddae2",
+   "dirty": false,
+   "text_sha1": "284ad0c0e7ee331cc83c10267d5af7ac4de65170",
+   "data_sha1": "34447a82c40cd509231138d413b712afe38083a3",
+   "text_matches": true,
+   "data_matches": true,
+   "original_image_sha1": "6edc5f21d468aefbc87e4f65a593a70fc12ef24c"
+  },
   "ntgui2eu": {
    "target": "ntgui2eu",
-   "commit": "dce3a26a2ed7c62811b11b7c54ac7326698e3a5c",
+   "commit": "55ce207ed414848dd7c0950f5ebe2c1fd66ddae2",
    "dirty": false,
    "text_sha1": "74d7f1f426be27c3b30ceb93672eb65db21688a0",
    "data_sha1": "5b3527653d8ecba631de7e119f83410991a394e0",
@@ -50,5 +60,5 @@
   }
  },
  "scope": "resident + 37 MWo3 members + NTGUI2EU",
- "published": "2026-10-24T20:35:14Z"
+ "published": "2026-10-24T20:43:48Z"
 }
