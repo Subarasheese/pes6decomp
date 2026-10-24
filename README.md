@@ -144,4 +144,4 @@ unrecovered.
 Only publish source, configuration, and documentation. Keep original game
 files, BIOS, compiler distributions, generated assembly, build outputs,
 save states, logs, and personal paths outside Git. See [THIRD_PARTY.md](THIRD_PARTY.md)
-for attribution and license scope.
+for attribution.

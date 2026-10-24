@@ -1,8 +1,7 @@
 # Attribution
 
 Build, matching, symbol, layout, and extraction tools are adapted from
-[gustavocanepa/gt4-decomp](https://github.com/gustavocanepa/gt4-decomp),
-under the MIT license reproduced in LICENSE. Retain its copyright notice.
+[gustavocanepa/gt4-decomp](https://github.com/gustavocanepa/gt4-decomp).
 PES6 configuration, recovered functions, and partial structure descriptions
 are maintained by Subarasheese and contributors. The descriptive names in
 config/symbol_addrs.txt are behavioral names, not recovered original symbols.
@@ -14,9 +13,9 @@ Sony ee-gcc, Metrowerks compilers, and wibo are external tools, not vendored her
 No game disc images, original executables, assets, BIOS files, SDKs, compiler
 binaries, generated disassembly, or emulator state are included.
 
-LICENSE covers the project tooling and original contributions; it does not
-grant rights to the original game or third-party tools. Pro Evolution Soccer
-and the original game remain the property of their respective owners.
+This repository grants no rights to the original game or third-party tools.
+Pro Evolution Soccer and the original game remain the property of their
+respective owners.
 
 ## Sources ported from gt4-decomp
 
@@ -26,8 +25,8 @@ whose relocation-normalized bytes are identical in both executables have their G
 source ported here, with GT4 addresses remapped to PES6 through the matching call
 sites and data references. Every ported file is verified independently against the
 PES6 executable. These sources come from
-[gustavocanepa/gt4-decomp](https://github.com/gustavocanepa/gt4-decomp) under the
-MIT license reproduced in LICENSE, and each begins with a provenance comment. Files
+[gustavocanepa/gt4-decomp](https://github.com/gustavocanepa/gt4-decomp), and each
+begins with a provenance comment. Files
 outside the SDK and C runtime regions carry a note that they are only byte-identical
 to a GT4 function; their names do not describe PES6 behavior.
 
