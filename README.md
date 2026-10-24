@@ -46,6 +46,7 @@ header caches and the Python package cache stay under ignored `build/`.
 | Sony ee-gcc 3.2-040921 (its ee-as 2.12 only) | `toolchains/ee-gcc3.2-040921/` |
 | wibo | `toolchains/wibo/wibo` |
 | Metrowerks 3.0.1b210 | `toolchains/tc/mwcps2-3.0.1b210-060308/mwccps2.exe` |
+| Metrowerks 3.0.1b198 | `toolchains/tc/mwcps2-3.0.1b198-051011/mwccps2.exe` |
 | Metrowerks 3.0.1b151 | `toolchains/tc/mwcps2-3.0.1b151-050317/mwccps2.exe` |
 | Metrowerks 2.4 | `toolchains/tc/mwcps2-2.4-001213/mwccps2.exe` |
 
@@ -68,6 +69,9 @@ on the `%hi` word of an indexed-load macro.
 Some game code needs an earlier 3.0.1 build: `Pes6Ball_Update` only matches with
 3.0.1b151 (`mwcc-3.0.1b151`), whose delay-slot filler does not hoist into branch
 targets with several predecessors (b198 and later do; see `docs/ball_physics.md`).
+`func_002D6860` uses the b198 profile (`mwcc-3.0.1b198`): b198 and b205 reproduce
+its branch schedule, while b210 fills an outer guard delay slot that the original leaves empty.
+This does not distinguish b198 from b205 as the original compiler.
 The Metrowerks builds are the ones distributed by decomp.me (`mwcps2-<version>`).
 Do not substitute compilers simply because the C looks equivalent.
 

@@ -102,6 +102,12 @@ command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O2 -c -
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b151-050317/mwccps2.exe -O4,p -c -Iinclude"
 
+# b198 reproduces the transition state's branch schedule in func_002D6860.
+# b205 emits the same code there; b210 additionally fills an outer guard delay slot.
+[compilers."mwcc-3.0.1b198"]
+dir = "toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b198-051011/mwccps2.exe -O4,p -c -Iinclude"
+
 # Sony SDK and runtime objects were built without small data (-G0): scalars are addressed
 # absolutely, not through $gp. Their sources are shared with the GT4 decompilation, which uses
 # the same SDK release; these profiles reproduce GT4's flags for them.
