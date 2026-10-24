@@ -103,3 +103,34 @@ separate logical images and must not be concatenated or address-deduplicated.
 | `training_free.ovl` | 15 | `0x008F6000` | 224,192 | 8,320 | 128 | 340 |
 | `training_situation.ovl` | 7 | `0x00802800` | 66,368 | 14,464 | 1,152 | 330 |
 | `NTGUI2EU.ELF` | ELF | `0x00100000` | 759,508 | 4,492,848 | 12,609,364 | 4,182 |
+
+## Cross-project recoveries
+
+The first auxiliary-program cross-match batch adds 16 plain-C functions (1,348
+bytes) to NTGUI2EU. Fifteen come from the recovered runtime/library sources in
+[vetusmagnus/rac3-uya-decomp](https://github.com/vetusmagnus/rac3-uya-decomp); one
+field accessor comes from [liolu/rac2-gc-decomp](https://github.com/liolu/rac2-gc-decomp).
+`config/cross_project_matches.json` pins each upstream revision, source function,
+license, PES6 address, compiler and byte count. The checked-in GPL text and source
+notices cover the GCC floating-point routines; `LICENSES/RAC2-MIT.txt` preserves
+the accessor's MIT notice.
+
+The runtime recoveries include word/byte copying, a bounded word scan, ring-buffer
+updates, a multibyte conversion helper, pointer-address conversion, float packing
+and unpacking, and double-part comparison. Field-access behavior alone does not
+establish a game's object type, so these files retain PES6 address names. Compiler
+profiles describe a reproducing compiler, without claiming a unique original
+compiler version.
+
+Each source passes an exact full-span comparison, with all relocations resolved
+and only zero trailing padding allowed. All 16 must report `linked` in the
+NTGUI2EU build, whose reconstructed complete ELF retains its original SHA-1.
+An unused upstream header helper, `nan()`, was omitted: its declaration of a
+foreign-image global prevented otherwise matching objects from linking. None of
+the imported functions calls it.
+
+Budokai Tenkaichi 3 and Xenosaga I were also screened. The former's additional
+candidates were assembly implementations or already-recovered resident routines;
+the latter's hits were empty variadic logging functions. Those add no accepted C
+recoveries in this batch. Cross-project candidates are references, never wholesale
+branch merges.
