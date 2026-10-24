@@ -1,0 +1,16 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+extern s32 func_00223A80(void);
+
+s32 func_002EDE90(s32 input) {
+    s32 value = input;
+    s32 selected = 0x99;
+    if (value >= 0x124 && value < 0x1BA) {
+        selected = M2C_FIELD((value - 0x124) + func_00223A80(), u8 *, 6);
+    } else if (value == 0x1BA) {
+        selected = 0x97;
+    } else if (value == 0x1BB) {
+        selected = 0x98;
+    }
+    return selected != 0x99;
+}
