@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-23T22:58:41Z",
- "commit": "3941cbb4b46183de439a3325ff052067ad6746ee",
+ "generated": "2026-10-24T09:21:19Z",
+ "commit": "b92a1689fcd4b59d434edf29cff4165de9034394",
  "dirty": false,
  "build": {
-  "generated": "2026-10-23T22:58:37Z",
+  "generated": "2026-10-24T09:21:10Z",
   "partial": false,
   "text_matches": true,
   "data_matches": true,
@@ -12,9 +12,10 @@
   "orphan_sources": 0,
   "duplicate_sources": 0
  },
- "linked_functions": 4108,
+ "linked_functions": 4116,
  "data_functions": 44,
  "asm_functions": 193,
  "data_bytes": 486560,
- "bss_bytes": 2318464
+ "bss_bytes": 2318464,
+ "published": "2026-10-24T09:21:19Z"
 }
