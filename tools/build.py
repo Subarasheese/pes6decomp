@@ -36,7 +36,7 @@ import project
 import symbols
 
 ROOT = match.ROOT
-OUT = os.path.join(ROOT, "build", "full")
+OUT = os.path.join(project.BUILD, "full")
 # Scratch directory for the Linux-side compile/link (kept inside the workspace, not $HOME).
 WSL_DIR = os.path.join(OUT, "work")
 ELF = project.path(project.CONFIG["game"]["elf"])
@@ -52,7 +52,7 @@ HARMLESS = {".text", ".reginfo", ".mdebug", ".mdebug.eabi64", ".comment", ".pdr"
 STRIP = "-R .eh_frame -R .rel.eh_frame -R .mdebug -R .mdebug.eabi64"
 
 
-SPLAT_DIR = os.path.join(ROOT, "build", "splat", "asm", "nonmatchings", "core", "text")
+SPLAT_DIR = os.path.join(project.BUILD, "splat", "asm", "nonmatchings" if project.TARGET == "main" else "matchings", "core", "text")
 SPLAT_SYMBOL = re.compile(r"\b(?:func|D|jtbl)_[0-9A-F]{8}\b")
 INSN = re.compile(r"^\s*/\* [0-9A-F]+ [0-9A-F]{8} [0-9A-F]{8} \*/")
 
@@ -487,7 +487,7 @@ def source_problems():
     source, of which project.sources keeps only one. Both make the numbers wrong, so the build
     reports them and fails on them (--keep-going still exits 0)."""
     orphans, by_addr = [], {}
-    for dirpath, _, files in os.walk(project.SRC):
+    for dirpath, _, files in project.source_walk():
         for name in files:
             p = os.path.join(dirpath, name)
             if os.path.splitext(name)[1] not in project.SOURCE_EXTS:
@@ -748,7 +748,7 @@ cd "$d/src"
             quoted = f'"{s}"' if re.search(r"[^\w]", s) else s
             syms.append(f"PROVIDE({quoted} = 0x{addr:08x});")
     for extra in ("undefined_syms_auto.txt", "undefined_funcs_auto.txt"):
-        path = os.path.join(ROOT, "build", "splat", extra)
+        path = os.path.join(project.BUILD, "splat", extra)
         if splat_funcs and os.path.exists(path):
             for line in open(path):
                 m = re.match(r"\s*(\w+)\s*=\s*(0x[0-9A-Fa-f]+);", line)
@@ -850,7 +850,7 @@ cp {IMAGE} built_text.bin built_data.bin {to_wsl(OUT)}/
     # Provenance first: when this build was made and the exact tree it proves, so a report built
     # from it (tools/report.py, publish_progress.py) can say what it describes and refuse a stale
     # or partial build.
-    report = {"generated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    report = {"target": project.TARGET, "generated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
               "commit": commit, "dirty": dirty, "partial": bool(a.limit or a.without),
               "sources": len(sources), "orphan_sources": orphans, "duplicate_sources": duplicates,
               "text_sha1": sha(built_text), "data_sha1": sha(built_data),

@@ -5,6 +5,9 @@
 # The ELF, the splat configuration and the ROM name come from [game] in project.toml.
 set -e
 cd "$(dirname "$0")/.."
+if [ "${PES6_TARGET:-main}" != main ]; then
+    exec python3 tools/overlays.py inventory "$PES6_TARGET"
+fi
 read -r elf config basename < <(python3 -c 'import tomllib; g = tomllib.load(open("project.toml", "rb"))["game"]; print(g["elf"], g["splat_config"], g["basename"])')
 mkdir -p build/splat
 python3 tools/prepare_image.py

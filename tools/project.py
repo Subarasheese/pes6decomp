@@ -1,5 +1,6 @@
 """Read project.toml: the per-game settings every tool uses."""
 import importlib.util
+import json
 import os
 import re
 import shlex
@@ -7,6 +8,24 @@ import tomllib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG = tomllib.load(open(os.path.join(ROOT, "project.toml"), "rb"))
+
+# A virtual address is meaningful only together with its loaded image. Keep both
+# source discovery and generated artifacts isolated for overlapping overlays.
+TARGET = os.environ.get("PES6_TARGET", "main")
+BUILD = os.path.join(ROOT, "build")
+CONFIG_ROOT = os.path.join(ROOT, "config")
+if TARGET != "main":
+    catalog = json.load(open(os.path.join(CONFIG_ROOT, "overlays.json")))
+    target = next((t for t in catalog["images"] if t["name"] == TARGET), None)
+    if not target or not target["executable"]:
+        raise SystemExit(f"{TARGET}: unknown or non-executable image")
+    BUILD = os.path.join(BUILD, "targets", TARGET)
+    CONFIG_ROOT = os.path.join(CONFIG_ROOT, "overlays", TARGET)
+    CONFIG["game"].update(name=target["disc_name"], basename="pes6_" + TARGET,
+        executable=os.path.relpath(os.path.join(BUILD, "image.elf"), ROOT),
+        elf=os.path.relpath(os.path.join(BUILD, "image.elf"), ROOT),
+        text_end=target["code_end"], gp=target["gp"], source_layout="flat",
+        splat_config=os.path.relpath(os.path.join(BUILD, "splat.yaml"), ROOT))
 
 _cache = {}
 
@@ -76,10 +95,17 @@ def knowledge():
 
 # ---------------------------------------------------------------- sources
 
-SRC = os.path.join(ROOT, "src")
+SRC = os.path.join(ROOT, "src", "overlays", TARGET) if TARGET != "main" else os.path.join(ROOT, "src")
 SOURCE_EXTS = (".c", ".cpp")
 INCLUDE = os.path.join(ROOT, "include")
 _sources = {}
+
+
+def source_walk():
+    for directory, dirs, files in os.walk(SRC):
+        if TARGET == "main" and directory == SRC:
+            dirs[:] = [d for d in dirs if d != "overlays"]
+        yield directory, dirs, files
 
 _stamp = {}
 
@@ -155,7 +181,7 @@ def sources(refresh=False):
     The scan is cached per process; refresh=True scans again."""
     if refresh or "map" not in _sources:
         out = {}
-        for dirpath, _, files in os.walk(SRC):
+        for dirpath, _, files in source_walk():
             for name in files:
                 p = os.path.join(dirpath, name)
                 addr = source_address(p)

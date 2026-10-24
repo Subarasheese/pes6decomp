@@ -11,6 +11,14 @@ import project
 
 
 def main():
+    if project.TARGET != "main":
+        entry, segments = project.load_image()
+        address, data = next((a,d) for a,d in segments if d)
+        boundary = project.target["code_end"] - address
+        if address != project.target["code_start"] or hashlib.sha1(data[:boundary]).hexdigest() != project.target["text_sha1"] or hashlib.sha1(data[boundary:]).hexdigest() != project.target["data_sha1"]:
+            raise SystemExit("Prepared overlay does not match catalog")
+        Path(project.BUILD, "image.rom").write_bytes(data)
+        return
     executable = Path(project.path(project.CONFIG["game"]["executable"]))
     expected = "ea3bad52bcc53acc5f007d0d286644245946260c"
     if hashlib.sha1(executable.read_bytes()).hexdigest() != expected:

@@ -18,8 +18,8 @@ import match
 import project
 
 ROOT = match.ROOT
-OUT = os.path.join(ROOT, "progress", "report.json")
-META = os.path.join(ROOT, "progress", "report.meta.json")  # provenance and the README's counts
+OUT = os.path.join(ROOT, "progress", "report.json") if project.TARGET == "main" else os.path.join(project.BUILD, "report.json")
+META = os.path.join(ROOT, "progress", "report.meta.json") if project.TARGET == "main" else os.path.join(project.BUILD, "report.meta.json")  # provenance and the README's counts
 
 
 # Progress categories, by the prefix of a unit's name (config/units.txt, tools/units.py).
@@ -86,7 +86,7 @@ def load_names():
 
 
 def main():
-    build = json.load(open(os.path.join(ROOT, "build", "full", "report.json")))
+    build = json.load(open(os.path.join(project.BUILD, "full", "report.json")))
     status = build["functions"]
     sizes = build.get("sizes", {})
     data_sizes = build.get("data_sizes", {})
@@ -133,7 +133,7 @@ def main():
     m = measures(funcs, total_data)
 
     # Units: config/units.txt (tools/units.py), else one unit for all the code.
-    units_path = os.path.join(ROOT, "config", "units.txt")
+    units_path = os.path.join(project.CONFIG_ROOT, "units.txt")
     bounds = [(0x100000, "core/text")]
     if os.path.exists(units_path):
         bounds = [(int(l.split()[0], 16), l.split()[1]) for l in open(units_path)
@@ -196,7 +196,6 @@ def main():
         categories.append({"id": cid, "name": cname, "measures": cm})
     report = {"measures": m, "units": units, "version": 2, "categories": categories}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    json.dump(report, open(OUT, "w"), indent=1)
     # Provenance, next to the report (objdiff's format has no room for it): when it was made,
     # which build it reads (its commit, date, hashes) and the counts the README quotes.
     linked = sum(1 for f in funcs if f["complete"])
@@ -209,6 +208,10 @@ def main():
                       "duplicate_sources": len(build.get("duplicate_sources", {}))},
             "linked_functions": linked, "data_functions": sum(1 for f in funcs if f["data"]),
             "asm_functions": len(asm), "data_bytes": data_size, "bss_bytes": bss_size}
+    if project.TARGET == "main":
+        import overlay_report
+        overlay_report.add_images(report, meta, measures)
+    json.dump(report, open(OUT, "w"), indent=1)
     json.dump(meta, open(META, "w"), indent=1)
     if not (build.get("text_matches") and build.get("data_matches")):
         print("WARNING: the build this report reads does not reproduce the original (.text/.data differ)")

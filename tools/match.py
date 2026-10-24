@@ -33,7 +33,7 @@ import symbols
 ROOT = project.ROOT
 CORE = project.path(project.CONFIG["game"]["executable"])
 CATEGORY = getattr(rabbitizer.InstrCategory, project.CONFIG["cpu"]["category"])
-FUNCTIONS = os.path.join(ROOT, "build", "functions.csv")
+FUNCTIONS = os.path.join(project.CONFIG_ROOT, "functions.csv") if project.TARGET != "main" else os.path.join(project.BUILD, "functions.csv")
 NOP = 0
 
 R_MIPS_26, R_MIPS_HI16, R_MIPS_LO16, R_MIPS_GPREL16 = 4, 5, 6, 7
@@ -120,8 +120,8 @@ def read_object(path, want_symbols=False):
 
 def compile_c(src):
     # One object per call: several checks may run at once (autoloop --jobs).
-    os.makedirs(os.path.join(ROOT, "build", "obj"), exist_ok=True)
-    obj = os.path.join(ROOT, "build", "obj", f"match_{os.getpid()}_{uuid.uuid4().hex}.o")
+    os.makedirs(os.path.join(project.BUILD, "obj"), exist_ok=True)
+    obj = os.path.join(project.BUILD, "obj", f"match_{os.getpid()}_{uuid.uuid4().hex}.o")
     rel = lambda p: os.path.relpath(os.path.abspath(p), ROOT).replace("\\", "/")
     args = project.with_include_stamp(["bash", "tools/cc_wsl.sh", rel(src), rel(obj), project.compiler_command(project.source_compiler(src))])
     if os.name == "nt":
@@ -184,7 +184,7 @@ def link_words(words, srelocs, foff, addr):
             v = s_addr + (imm - 0x10000 if imm & 0x8000 else imm)
             out[i] = (w & 0xFFFF0000) | (v & 0xFFFF)
         elif rel[0] == R_MIPS_GPREL16:
-            gp = symbols.address_of("_gp")
+            gp = project.CONFIG["game"].get("gp")
             if gp is None:
                 unresolved.add(off)
                 continue
@@ -509,7 +509,7 @@ def compile_many(srcs, jobs=2):
     does (tools/cc_wsl.sh with the compiler its first line names): {src: object path or None}.
     A failed compile leaves None and its messages in build/obj/<batch>/N.err."""
     import shlex
-    batch = os.path.join(ROOT, "build", "obj", f"batch_{os.getpid()}_{uuid.uuid4().hex[:8]}")
+    batch = os.path.join(project.BUILD, "obj", f"batch_{os.getpid()}_{uuid.uuid4().hex[:8]}")
     os.makedirs(batch)
     rel = lambda p: os.path.relpath(os.path.abspath(p), ROOT).replace("\\", "/")
     objs, lines = {}, []

@@ -17,9 +17,10 @@ import sys
 
 import build
 import match
+import project
 
 ROOT = match.ROOT
-ASM_LIST = os.path.join(ROOT, "config", "asm_functions.txt")
+ASM_LIST = os.path.join(project.CONFIG_ROOT, "asm_functions.txt")
 
 
 def asm_functions():
@@ -38,6 +39,10 @@ def targets():
 def main():
     if "--count" in sys.argv:
         print(targets())
+        return
+    if project.TARGET != "main":
+        from overlays import inventory
+        inventory(project.TARGET)
         return
     funcs = build.splat_functions()
     if not funcs:

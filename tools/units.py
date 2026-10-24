@@ -26,8 +26,8 @@ import match
 import project
 
 ROOT = match.ROOT
-OUT = os.path.join(ROOT, "config", "units.txt")
-ASM = os.path.join(ROOT, "build", "splat", "asm", "nonmatchings", "core", "text")
+OUT = os.path.join(project.CONFIG_ROOT, "units.txt")
+ASM = os.path.join(project.BUILD, "splat", "asm", "nonmatchings" if project.TARGET == "main" else "matchings", "core", "text")
 
 # Library units: (start address, name). Each runs up to the next entry. The start of each is its
 # first function identified by name (Sony SDK, libgcc, newlib) or by the strings its code uses

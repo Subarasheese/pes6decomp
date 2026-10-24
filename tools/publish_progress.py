@@ -72,6 +72,8 @@ def refusals():
                     newer.append(os.path.relpath(p, ROOT))
     if newer:
         out.append(f"{len(newer)} files changed after the build ({newer[0]}...): build again")
+    import overlay_report
+    out.extend(overlay_report.publication_errors(head))
     return out
 
 

@@ -5,11 +5,17 @@
 A work-in-progress matching decompilation of **Pro Evolution Soccer 6** for
 PlayStation 2, PAL executable **SLES-542.03**.
 
-The current source snapshot contains **4,349 matched functions**, contributing
-**303,584 of 2,566,880 code bytes (11.83%)**. A complete local link reproduces the
-original code and data; unrecovered regions are taken from the user's own
-executable during the build. This is not a complete source recreation or a
-standalone game build. Overlays are not covered yet.
+Coverage includes the resident executable, all **26 executable overlays** in
+`OVER.AFS`, its 11 data/reservation members, and the auxiliary `NTGUI2EU.ELF`.
+The combined inventory has **34,901 function targets**; **4,351 match**, covering
+**303,596 of 12,967,540 inventoried code bytes (2.34%)**. Function boundaries are
+estimated from disassembly. The larger denominator includes previously omitted
+images; existing resident matches are retained.
+
+Complete local links reproduce the original code and data. Unrecovered regions
+come from the user's own game inputs during the build. See
+[overlay mapping and commands](docs/overlays.md) for the image catalog, overlapping
+address ranges, extraction, verification, and the first eight overlay recoveries.
 
 ## Contents
 

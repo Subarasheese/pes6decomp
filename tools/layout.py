@@ -18,7 +18,7 @@ import project
 import symbols
 
 ROOT = symbols.ROOT
-SRC = os.path.join(ROOT, "src")
+SRC = project.SRC
 EXTS = (".c", ".cpp")
 _cache = {}
 
@@ -97,7 +97,7 @@ def path_for(addr, ext=".cpp"):
     """The planned path of a function's source, relative to the repository root, with / separators."""
     source_layout = project.CONFIG["game"].get("source_layout", "organized")
     if source_layout == "flat":
-        return "/".join(("src", stem(addr) + ext))
+        return "/".join((os.path.relpath(project.SRC, ROOT).replace(os.sep, "/"), stem(addr) + ext))
     if source_layout != "organized":
         raise ValueError(f"unknown source_layout: {source_layout!r}")
     return "/".join(("src", subsystem_of(addr), unit_of(addr), stem(addr) + ext))

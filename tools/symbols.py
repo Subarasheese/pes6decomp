@@ -35,6 +35,8 @@ import os
 import re
 import sys
 
+import project
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SYMBOL_ADDRS = os.path.join(ROOT, "config", "symbol_addrs.txt")
 ADHOC = os.path.join(ROOT, "config", "adhoc_methods.txt")
@@ -44,6 +46,16 @@ RESOLVED = os.path.join(ROOT, "config", "resolved_symbols.txt")
 # tools/libmatch.py: names of third-party library functions and data (libio's mangled C++ names)
 LIB_SYMBOLS = os.path.join(ROOT, "config", "libs")
 CLASSES = os.path.join(ROOT, "config", "classes.json")
+
+# The network utility replaces the resident executable at the same addresses.
+# Its symbols must never inherit the resident program's names.
+if project.TARGET != "main" and project.target["kind"] == "ee_elf":
+    SYMBOL_ADDRS = os.path.join(project.CONFIG_ROOT, "symbol_addrs.txt")
+    ADHOC = os.path.join(project.CONFIG_ROOT, "adhoc_methods.txt")
+    STL = os.path.join(project.CONFIG_ROOT, "stl_symbols.txt")
+    RESOLVED = os.path.join(project.CONFIG_ROOT, "resolved_symbols.txt")
+    LIB_SYMBOLS = os.path.join(project.CONFIG_ROOT, "libs")
+    CLASSES = os.path.join(project.CONFIG_ROOT, "classes.json")
 
 # func_ADDR / D_ADDR / jtbl_ADDR, with an optional C++ mangling suffix (func_00100230__Fv).
 GENERIC = re.compile(r"^(func|D|jtbl|sub|data)_([0-9A-Fa-f]{8})(?:__.*)?$")
