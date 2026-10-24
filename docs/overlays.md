@@ -134,3 +134,18 @@ candidates were assembly implementations or already-recovered resident routines;
 the latter's hits were empty variadic logging functions. Those add no accepted C
 recoveries in this batch. Cross-project candidates are references, never wholesale
 branch merges.
+
+The relocation-aware follow-up adds another 27 functions (7,496 bytes): ten MPEG/IPU
+functions in `title.ovl` and seventeen NTGUI2EU runtime functions. The title batch
+includes macroblock parsing, motion-vector decoding, bit extraction, and IPU
+synchronization. The auxiliary batch includes pad-data access and actuator
+queries, SIF/RPC setup, DMA setup and kernel-library helpers.
+
+Discovery compares instruction structure while accounting for relocations, then
+resolves every call/global against the selected PES6 image. Calls within an
+upstream translation unit are translated to explicit PES6 function addresses.
+Acceptance uses the normal unmasked relocation judge, an independent full-span
+comparison, and the complete image link; all newly added functions must link.
+Mutating one call address and one global address by four bytes was rejected.
+These 27 additions bring the accepted cross-project total to 43 functions and
+8,844 bytes. Pattern-only candidates and assembly implementations remain excluded.

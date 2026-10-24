@@ -3,11 +3,15 @@
   "notes": [
     "Matches establish the compiled function behavior, not that game-specific source identities or types are shared.",
     "Every accepted source is compiled independently and linked into its own PES6 image.",
-    "No assembly bodies, empty variadic logging functions, retail inputs or generated disassembly are imported."
+    "No assembly bodies, empty variadic logging functions, retail inputs or generated disassembly are imported.",
+    "The relocation-aware follow-up resolves external globals, calls and calls within the upstream translation unit. Wrong-call and wrong-global address mutations are rejected by the unmasked final judge."
   ],
   "images": {
     "ntgui2eu": {
       "original_sha1": "9c04f293a8e836d370fc3da39f2ea731d7dad412"
+    },
+    "title": {
+      "original_sha1": "6edc5f21d468aefbc87e4f65a593a70fc12ef24c"
     }
   },
   "support_files": [
@@ -20,6 +24,26 @@
     }
   ],
   "matches": [
+    {
+      "image": "ntgui2eu",
+      "address": "0x00103840",
+      "source": "src/overlays/ntgui2eu/func_00103840.c",
+      "compiler": "ee-gcc-2.96",
+      "code_bytes": 48,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/levels/common/func_0047E970.c",
+        "function": "func_0047E970"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_0047D868": "func_00135A80",
+        "func_0047E138": "func_00135B50",
+        "func_0047E680": "func_0010A490"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
     {
       "image": "ntgui2eu",
       "address": "0x00165B60",
@@ -64,6 +88,172 @@
         "function": "func_00129890"
       },
       "license": "GPL-2.0-or-later WITH GCC runtime linking exception"
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x00191048",
+      "source": "src/overlays/ntgui2eu/func_00191048.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 120,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/12A948.c",
+        "function": "func_0012AE20"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_0013F924_0012AE20": "D_005C8DE4",
+        "func_00124920": "func_001A4728",
+        "func_0012ADC8": "func_00190FF0",
+        "func_00121B70": "func_0019E030",
+        "D_0013F948_0012AE20": "D_005C8E08",
+        "func_00124970": "func_001A4778"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x001924B0",
+      "source": "src/overlays/ntgui2eu/func_001924B0.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 160,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/12A948.c",
+        "function": "func_0012C088"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_00151540": "D_005FEBF8",
+        "func_00123430": "func_001A0270",
+        "func_00123840": "func_001A08B8",
+        "func_001236C0": "func_001A0500",
+        "func_00117070": "func_001AD6F8"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x00192C88",
+      "source": "src/overlays/ntgui2eu/func_00192C88.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 232,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/12A948.c",
+        "function": "func_0012C820"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_00151588": "D_005FEC40",
+        "func_00121760_0012C820": "func_0019DBD0"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x00194978",
+      "source": "src/overlays/ntgui2eu/func_00194978.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 344,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/12A948.c",
+        "function": "func_0012F2A0"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_00124920": "func_001A4728",
+        "D_15BB90": "D_011FD510",
+        "func_0011F848": "func_0019BBD8",
+        "func_00124970": "func_001A4778"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x00194D98",
+      "source": "src/overlays/ntgui2eu/func_00194D98.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 280,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/12A948.c",
+        "function": "func_0012F608"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_15BB90_0012F608": "D_011FD510",
+        "func_0012F2A0_0012F608": "func_00194978"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x001951B8",
+      "source": "src/overlays/ntgui2eu/func_001951B8.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 200,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/12A948.c",
+        "function": "func_0012F918"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_0012F2A0_0012F918": "func_00194978",
+        "D_15BB90_0012F918": "D_011FD510",
+        "func_0012EFA0": "func_001945C0"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x00195280",
+      "source": "src/overlays/ntgui2eu/func_00195280.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 216,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/12A948.c",
+        "function": "func_0012F9E0"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_15BD80_0012F9E0": "D_011FD700",
+        "D_15BB40": "D_011FD4C0",
+        "func_00122810": "func_0019EE30",
+        "func_0012F4F0_0012F9E0": "func_00194C50"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x00195408",
+      "source": "src/overlays/ntgui2eu/func_00195408.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 176,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/12A948.c",
+        "function": "func_0012FB68"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_15BD80_0012FB68": "D_011FD700",
+        "D_15BB40": "D_011FD4C0",
+        "func_00122810": "func_0019EE30",
+        "func_0012F4F0_0012FB68": "func_00194C50"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
     },
     {
       "image": "ntgui2eu",
@@ -127,6 +317,90 @@
     },
     {
       "image": "ntgui2eu",
+      "address": "0x0019F560",
+      "source": "src/overlays/ntgui2eu/func_0019F560.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 112,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/11FA10.c",
+        "function": "func_00122A68"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_0013DC90_00122A68": "D_005CABF0",
+        "D_00150A50_00122A68": "D_006004D0",
+        "func_0011EE20": "func_0019B120",
+        "D_00150A60_00122A68": "D_006004E0",
+        "D_0013DC94_00122A68": "D_005CABF4"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x001A3878",
+      "source": "src/overlays/ntgui2eu/func_001A3878.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 56,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/11FA10.c",
+        "function": "func_00123EA0"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_0013DCA0": "D_005CAC00",
+        "D_1567E8": "D_01204F28",
+        "func_0011A264": "func_001AE7D8"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x001A45C8",
+      "source": "src/overlays/ntgui2eu/func_001A45C8.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 80,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/11FA10.c",
+        "function": "func_001242B8"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_0011F230": "func_0019B530",
+        "func_0011F2A0": "func_0019B5A0",
+        "func_00125F70": "func_001A68B0"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x001A4790",
+      "source": "src/overlays/ntgui2eu/func_001A4790.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 96,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/124988.c",
+        "function": "func_00124988"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_00150DC0": "D_006007C0",
+        "D_00150DD0": "D_006007D0",
+        "func_0011EE20": "func_0019B120",
+        "D_0013E310": "D_005CAC20",
+        "D_0013E314": "D_005CAC24"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
       "address": "0x001A4810",
       "source": "src/overlays/ntgui2eu/func_001A4810.c",
       "compiler": "ee-gcc-2.9",
@@ -172,6 +446,25 @@
     },
     {
       "image": "ntgui2eu",
+      "address": "0x001A4AA0",
+      "source": "src/overlays/ntgui2eu/func_001A4AA0.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 104,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/124988.c",
+        "function": "func_00124C50"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_0011EED0": "func_0019B1D0",
+        "func_0011EEC0": "func_0019B1C0"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
       "address": "0x001A4BC8",
       "source": "src/overlays/ntgui2eu/func_001A4BC8.c",
       "compiler": "ee-gcc-2.9",
@@ -199,6 +492,60 @@
         "function": "func_008010A8"
       },
       "license": "Upstream decompiled library source; see upstream LICENSE section 2"
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x001A55A0",
+      "source": "src/overlays/ntgui2eu/func_001A55A0.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 56,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/124988.c",
+        "function": "func_00125540"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_0013F2A0": "D_005CBBB0"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x001A5950",
+      "source": "src/overlays/ntgui2eu/func_001A5950.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 112,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/124988.c",
+        "function": "func_00125878"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_0013F288_125878": "D_005CBB98"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "ntgui2eu",
+      "address": "0x001A69C8",
+      "source": "src/overlays/ntgui2eu/func_001A69C8.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 48,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/11FA10.c",
+        "function": "func_0011FF30"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_0011F250": "func_0019B550"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
     },
     {
       "image": "ntgui2eu",
@@ -259,6 +606,214 @@
         "function": "func_0011A4A0"
       },
       "license": "Upstream decompiled library source; see upstream LICENSE section 2"
+    },
+    {
+      "image": "title",
+      "address": "0x008F6910",
+      "source": "src/overlays/title/func_008F6910.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 592,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/1301D8.c",
+        "function": "func_00130AA0"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_00151CF0": "D_00901CE0",
+        "func_0013A150": "func_00900558",
+        "func_00130398": "func_008F6208",
+        "func_00132D48": "func_008F8BB8"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "title",
+      "address": "0x008F7208",
+      "source": "src/overlays/title/func_008F7208.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 576,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/1301D8.c",
+        "function": "func_00131398"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_001315D8_00131398": "func_008F7448",
+        "func_00132A98_00131398": "func_008F8908",
+        "func_00135DC8": "func_008FBE28",
+        "func_00139F90": "func_00900398",
+        "func_0013A030": "func_00900438",
+        "func_00131178_00131398": "func_008F6FE8",
+        "D_00151D30": "D_00901D20",
+        "func_0013A0F8": "func_00900500"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "title",
+      "address": "0x008F7778",
+      "source": "src/overlays/title/func_008F7778.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 1064,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/1301D8.c",
+        "function": "func_00131908"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_00132A98_00131908": "func_008F8908",
+        "func_00132708_00131908": "func_008F8578",
+        "func_00132888_00131908": "func_008F86F8"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "title",
+      "address": "0x008F7D40",
+      "source": "src/overlays/title/func_008F7D40.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 1368,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/1301D8.c",
+        "function": "func_00131ED0"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_00151DA0": "D_00901D90",
+        "func_0013A0F8": "func_00900500",
+        "func_00132888_00131ED0": "func_008F86F8",
+        "func_00133BB8": "func_008F9A28",
+        "func_00132A98": "func_008F8908",
+        "func_00132708": "func_008F8578",
+        "func_00131D30": "func_008F7BA0",
+        "func_00131908": "func_008F7778",
+        "func_00132AD0": "func_008F8940"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "title",
+      "address": "0x008F8298",
+      "source": "src/overlays/title/func_008F8298.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 376,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/1301D8.c",
+        "function": "func_00132428"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "D_00151DC0": "D_00901DB0",
+        "func_00132A98_00132428": "func_008F8908",
+        "func_00132708_00132428": "func_008F8578",
+        "func_0013A150_00132428": "func_00900558",
+        "func_00132970": "func_008F87E0",
+        "func_00132AD0": "func_008F8940"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "title",
+      "address": "0x008F8410",
+      "source": "src/overlays/title/func_008F8410.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 360,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/1301D8.c",
+        "function": "func_001325A0"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_00135DC8": "func_008FBE28",
+        "func_00139F90": "func_00900398"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "title",
+      "address": "0x008F8578",
+      "source": "src/overlays/title/func_008F8578.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 384,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/1301D8.c",
+        "function": "func_00132708"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_00135DC8_00132708": "func_008FBE28",
+        "func_00139F90": "func_00900398"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "title",
+      "address": "0x008F86F8",
+      "source": "src/overlays/title/func_008F86F8.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 232,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/1301D8.c",
+        "function": "func_00132888"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_00132A98": "func_008F8908",
+        "func_00132708": "func_008F8578"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "title",
+      "address": "0x008F8908",
+      "source": "src/overlays/title/func_008F8908.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 52,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/1301D8.c",
+        "function": "func_00132A98"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_001325A0": "func_008F8410"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
+    },
+    {
+      "image": "title",
+      "address": "0x008FAA38",
+      "source": "src/overlays/title/func_008FAA38.c",
+      "compiler": "ee-gcc-2.9",
+      "code_bytes": 52,
+      "upstream": {
+        "repository": "https://github.com/vetusmagnus/rac3-uya-decomp",
+        "revision": "fc118a0b7442665a2b181055dc352ce5d117c41b",
+        "path": "src/boot_elf/core/1301D8.c",
+        "function": "func_00132A98"
+      },
+      "license": "Upstream decompiled library source; see upstream LICENSE section 2",
+      "symbol_mappings": {
+        "func_001325A0": "func_008F8410"
+      },
+      "verification": "Independently compiled; all relocations resolved; complete original function span compared."
     }
   ]
 }
