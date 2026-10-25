@@ -3,7 +3,7 @@
 
 s32 func_00309420(void);
 s32 func_00210DF0(void);
-s32 func_AFCAE0(void);
+s32 func_00AFCAE0(void);
 
 static inline s32 is_busy(void) {
     return func_00309420() != 0;
@@ -14,7 +14,7 @@ s32 func_0022D9F0(void) {
         return 0;
     }
     if (func_00210DF0() == 2) {
-        return func_AFCAE0();
+        return func_00AFCAE0();
     }
     return 0;
 }

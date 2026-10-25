@@ -3,7 +3,7 @@
 
 void func_001B6460(s32);
 void func_001B6670(void);
-s32 func_8B2E80(void);
+s32 func_008B2E80(void);
 void func_001B6780(s32);
 
 void func_0023EA10(s32 a) {
@@ -14,6 +14,6 @@ void func_0023EA10(s32 a) {
     } else if (a == 2) {
         func_001B6670();
     } else {
-        func_001B6780(func_8B2E80());
+        func_001B6780(func_008B2E80());
     }
 }
