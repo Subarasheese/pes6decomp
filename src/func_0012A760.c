@@ -4,7 +4,7 @@
 extern s32 D_00375B88[];
 extern s32 D_00375B8C[];
 s32 func_00105380(s32);
-void func_001053A0(s32);
+void WaitSema(s32);
 
 void func_0012A760(void) {
     s32 a = D_00375B88[0];
@@ -12,7 +12,7 @@ void func_0012A760(void) {
 
     if (a >= 0 && b >= 0) {
         if (func_00105380(a) == a) {
-            func_001053A0(b);
+            WaitSema(b);
         }
     }
 }

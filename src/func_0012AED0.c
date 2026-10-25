@@ -14,15 +14,15 @@ typedef struct {
     s32 pad[3];
 } ThreadParam;
 
-void func_001C0470(void *, s32);
+void memclr(void *, s32);
 s32 func_00105160(ThreadParam *);
-extern s32 D_003EF370;
+extern s32 _gp;
 
 s32 func_0012AED0(void *func, void *stack, s32 stackSize, s32 prio) {
     ThreadParam param;
 
-    func_001C0470(&param, sizeof(param));
-    param.gpReg = &D_003EF370;
+    memclr(&param, sizeof(param));
+    param.gpReg = &_gp;
     param.func = func;
     param.stack = stack;
     param.stackSize = stackSize;

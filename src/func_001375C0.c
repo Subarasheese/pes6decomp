@@ -9,13 +9,13 @@ typedef struct {
     s32 sema;
 } Stream;
 
-void func_001053A0(s32);
+void WaitSema(s32);
 void func_00105380(s32);
 
 s32 func_001375C0(Stream *s) {
     s32 offset;
 
-    func_001053A0(s->sema);
+    WaitSema(s->sema);
     offset = s->pos + (s->sector << 11);
     func_00105380(s->sema);
     return offset;

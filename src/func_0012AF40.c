@@ -10,13 +10,13 @@ typedef struct {
     u32 option;
 } SemaParam;
 
-void func_001C0470(void *, s32);
+void memclr(void *, s32);
 s32 func_00105360(SemaParam *);
 
 s32 func_0012AF40(s32 max_count, s32 init_count, u32 option) {
     SemaParam param;
 
-    func_001C0470(&param, sizeof(param));
+    memclr(&param, sizeof(param));
     param.max_count = max_count;
     param.init_count = init_count;
     param.option = option;

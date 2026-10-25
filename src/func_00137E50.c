@@ -10,11 +10,11 @@ typedef struct {
     s64 total;
 } Stream;
 
-void func_001053A0(s32);
+void WaitSema(s32);
 void func_00105380(s32);
 
 void func_00137E50(Stream *s, s32 size) {
-    func_001053A0(s->sema);
+    WaitSema(s->sema);
     s->pos += size;
     s->total += size;
     func_00105380(s->sema);
