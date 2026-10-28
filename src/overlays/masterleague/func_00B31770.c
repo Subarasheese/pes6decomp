@@ -1,0 +1,9 @@
+/* compiler: mwcc-3.0.1b151 */
+#include "types.h"
+
+extern u32 D_003EAE3C;
+
+u32 func_00B31770(void)
+{
+    return D_003EAE3C;
+}
