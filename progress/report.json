@@ -58389,7 +58389,7 @@
      }
     },
     {
-     "name": "func_0027D360",
+     "name": "Pes6Ball_PlaceAtRest",
      "size": "92",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -58613,7 +58613,7 @@
      }
     },
     {
-     "name": "func_00285100",
+     "name": "Pes6Ball_IntegratePhysics",
      "size": "6496",
      "fuzzy_match_percent": 0.0,
      "metadata": {
@@ -76746,7 +76746,7 @@
      }
     },
     {
-     "name": "func_0030E6C0",
+     "name": "Pes6MatchPlayer_GetSquadIndex",
      "size": "80",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -76754,7 +76754,7 @@
      }
     },
     {
-     "name": "func_0030E710",
+     "name": "Pes6MatchPlayer_GetSide",
      "size": "60",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -76954,7 +76954,7 @@
      }
     },
     {
-     "name": "func_0030EE30",
+     "name": "Pes6Ball_CopyPosition",
      "size": "44",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -76962,7 +76962,7 @@
      }
     },
     {
-     "name": "func_0030EE60",
+     "name": "Pes6Ball_GetPositionX",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -77780,7 +77780,7 @@
      }
     },
     {
-     "name": "func_00311250",
+     "name": "Pes6Ball_GetCurlCounter",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -77812,7 +77812,7 @@
      }
     },
     {
-     "name": "func_00311310",
+     "name": "Pes6Ball_GetCurlDirection",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
