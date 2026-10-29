@@ -8,13 +8,13 @@ typedef struct {
     u16 kit;
 } Kit;
 
-extern char D_0058E5B0[];
+extern char Pes6MatchPlayers[];
 extern char D_0058E5C6[];
 
 s32 func_00311730(s32 a, s32 b) {
     s32 mb = b & 0xFF;
     s32 ma;
-    u8 *rec = (u8 *)D_0058E5B0 + SLOT(mb) * 0x240;
+    u8 *rec = (u8 *)Pes6MatchPlayers + SLOT(mb) * 0x240;
 
     ma = a & 0xFF;
     if (*(u8 *)(D_0058E5C6 + SLOT(ma) * 0x240) == 13) {

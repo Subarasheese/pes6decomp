@@ -8,13 +8,13 @@ typedef struct {
 
 extern s32 func_00270570(void);
 extern void func_009B4010(f32 *v);
-extern Cam *D_003E7574;
+extern Cam *Pes6Ball_Current;
 
 void func_002871C0(f32 *v) {
     if (func_00270570() == 0) {
-        v[0] = D_003E7574->x;
-        v[1] = D_003E7574->y;
-        v[2] = D_003E7574->z;
+        v[0] = Pes6Ball_Current->x;
+        v[1] = Pes6Ball_Current->y;
+        v[2] = Pes6Ball_Current->z;
     } else {
         func_009B4010(v);
     }

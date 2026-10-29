@@ -428,3 +428,18 @@ copysignf = 0x0011D0F8; // type:func
 scePadStateIntToStr = 0x00111FE8; // type:func
 ADXERR_ItoA = 0x0015B540; // type:func
 SJUNI_CreateRmt = 0x00178C18; // type:func
+
+// Descriptive gameplay names, not original debug symbols; see docs/ball_physics.md
+// and the field layout in include/pes6/match_player.h.
+Pes6Ball_PlaceAtRest = 0x0027D360; // type:func
+Pes6Ball_IntegratePhysics = 0x00285100; // type:func
+Pes6MatchPlayer_GetSquadIndex = 0x0030E6C0; // type:func
+Pes6MatchPlayer_GetSide = 0x0030E710; // type:func
+Pes6Ball_CopyPosition = 0x0030EE30; // type:func
+Pes6Ball_GetPositionX = 0x0030EE60; // type:func
+Pes6Ball_GetCurlCounter = 0x00311250; // type:func
+Pes6Ball_GetCurlDirection = 0x00311310; // type:func
+Pes6Ball_Current = 0x003E7574; // type:data
+Pes6MatchPlayers = 0x0058E5B0; // type:data
+Pes6MatchSquads = 0x00592980; // type:data
+Pes6MatchState_Current = 0x00591E18; // type:data

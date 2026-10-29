@@ -12,7 +12,7 @@ typedef struct {
     u8 pad8[0x238];
 } Rec240;
 
-extern Rec240 D_0058E5B0[];
+extern Rec240 Pes6MatchPlayers[];
 
 u8 func_00311840(s32 index) {
     if ((u8)index != 0xFF) {
@@ -20,5 +20,5 @@ u8 func_00311840(s32 index) {
     } else {
         index = 1;
     }
-    return (*D_0058E5B0[index].info)->value;
+    return (*Pes6MatchPlayers[index].info)->value;
 }

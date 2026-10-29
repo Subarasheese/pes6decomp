@@ -7,7 +7,7 @@ typedef struct {
     u8 pad14[0x22C];
 } Rec240;
 
-extern Rec240 D_0058E5B0[];
+extern Rec240 Pes6MatchPlayers[];
 extern u8 D_00591EFD[];
 
 u8 func_003108E0(s32 index) {
@@ -18,6 +18,6 @@ u8 func_003108E0(s32 index) {
     } else {
         index = 1;
     }
-    rec = &D_0058E5B0[index];
+    rec = &Pes6MatchPlayers[index];
     return D_00591EFD[rec->kind];
 }

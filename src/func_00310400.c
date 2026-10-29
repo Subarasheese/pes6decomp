@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 void func_009B2E60(void *);
-extern char D_0058E5B0[];
+extern char Pes6MatchPlayers[];
 
 void func_00310400(s32 index) {
     s32 maskedIndex;
@@ -14,5 +14,5 @@ void func_00310400(s32 index) {
     } else {
         slot = 1;
     }
-    func_009B2E60(D_0058E5B0 + slot * 0x240);
+    func_009B2E60(Pes6MatchPlayers + slot * 0x240);
 }

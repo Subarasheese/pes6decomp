@@ -3,7 +3,7 @@
 
 extern char D_0058E5C1[];
 extern char D_0058E5C2[];
-extern char D_00592980[];
+extern char Pes6MatchSquads[];
 extern s32 func_00288670(s32,s32);
 
 s32 func_0030FC50(s32 arg0) {
@@ -22,5 +22,5 @@ s32 func_0030FC50(s32 arg0) {
     } else {
         var_a0 = 1;
     }
-    return func_00288670(M2C_FIELD(((*(((u8 *)D_0058E5C1) + (var_a2 * 0x240)) * 0x348) + (((u8 *)D_00592980) + (*(((u8 *)D_0058E5C2) + (var_a0 * 0x240)) * 0x6900))), u8 *, 0x76) & 0x7F, 0x28);
+    return func_00288670(M2C_FIELD(((*(((u8 *)D_0058E5C1) + (var_a2 * 0x240)) * 0x348) + (((u8 *)Pes6MatchSquads) + (*(((u8 *)D_0058E5C2) + (var_a0 * 0x240)) * 0x6900))), u8 *, 0x76) & 0x7F, 0x28);
 }

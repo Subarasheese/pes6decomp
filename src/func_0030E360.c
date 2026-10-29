@@ -9,7 +9,7 @@ int func_0030E360(int *out, int team, int slot)
         *out = 0;
         return 0;
     }
-    sp = &D_00592980[team].players[slot];
+    sp = &Pes6MatchSquads[team].players[slot];
     *out = sp->ability[4] & 0x7F;
     return 1;
 }

@@ -6,10 +6,10 @@ typedef struct Pes6Ball {
     u16 dir; /* 0x58 */
 } Pes6Ball;
 
-extern Pes6Ball *D_003E7574;
+extern Pes6Ball *Pes6Ball_Current;
 
 /* The ball's direction plus match player id's angle field (16-bit wrap). */
 u16 func_0030E7C0(u8 id)
 {
-    return D_003E7574->dir + D_0058E5B0[Pes6MatchPlayer_Index(id)].angle;
+    return Pes6Ball_Current->dir + Pes6MatchPlayers[Pes6MatchPlayer_Index(id)].angle;
 }

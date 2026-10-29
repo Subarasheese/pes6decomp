@@ -5,7 +5,7 @@ typedef struct {
     u8 data[0x348];
 } Ent;
 
-extern char D_0058E5B0[];
+extern char Pes6MatchPlayers[];
 extern Ent D_00592A54[][32];
 
 u8 func_00311BA0(s32 index) {
@@ -16,6 +16,6 @@ u8 func_00311BA0(s32 index) {
     } else {
         index = 1;
     }
-    rec = (u8 *)D_0058E5B0 + index * 0x240;
+    rec = (u8 *)Pes6MatchPlayers + index * 0x240;
     return D_00592A54[rec[0x12]][rec[0x11]].data[0];
 }

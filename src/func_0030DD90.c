@@ -7,7 +7,7 @@ typedef struct {
     u8 pad11[0x22F];
 } Rec240;
 
-extern Rec240 D_0058E5B0[];
+extern Rec240 Pes6MatchPlayers[];
 
 s32 func_0030DD90(u8 *out, s32 index) {
     if ((u8)index != 0xFF) {
@@ -15,6 +15,6 @@ s32 func_0030DD90(u8 *out, s32 index) {
     } else {
         index = 1;
     }
-    *out = D_0058E5B0[index].kind;
+    *out = Pes6MatchPlayers[index].kind;
     return 1;
 }

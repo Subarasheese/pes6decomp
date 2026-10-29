@@ -9,7 +9,7 @@ typedef struct {
     u8 padDC[0x26C];
 } Ent;
 
-extern Ent D_00592980[2][32];
+extern Ent Pes6MatchSquads[2][32];
 
 void func_00270E10(void) {
     s32 i;
@@ -17,7 +17,7 @@ void func_00270E10(void) {
 
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 32; j++) {
-            D_00592980[i][j].b = D_00592980[i][j].a;
+            Pes6MatchSquads[i][j].b = Pes6MatchSquads[i][j].a;
         }
     }
 }

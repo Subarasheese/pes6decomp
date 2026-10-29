@@ -12,7 +12,7 @@ typedef struct {
     u8 pad8[0x238];
 } Team;
 
-extern Team D_0058E5B0[];
+extern Team Pes6MatchPlayers[];
 void func_00209A00(Sub *, s32, s32);
 void func_001A5BE0(s32);
 void func_002CB9B0(s32);
@@ -22,7 +22,7 @@ void func_0027B530(void) {
     Team *team;
     s32 i;
 
-    for (team = D_0058E5B0, i = 0; i < 23; i++, team++) {
+    for (team = Pes6MatchPlayers, i = 0; i < 23; i++, team++) {
         if (team->sub->kit >= 0x59A) {
             func_00209A00(team->sub, 0, 0);
         }

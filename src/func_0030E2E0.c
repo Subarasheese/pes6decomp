@@ -4,6 +4,6 @@
 int func_0030E2E0(int id)
 {
     Pes6MatchPlayer *p = Pes6MatchPlayer_Get(id);
-    Pes6SquadPlayer *sp = &D_00592980[p->team].players[p->slot];
+    Pes6SquadPlayer *sp = &Pes6MatchSquads[p->team].players[p->slot];
     return sp->ability[4] & 0x7F;
 }

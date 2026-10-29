@@ -10,6 +10,6 @@ int func_0030F390(u8 id)
         return 0;
     }
     i = Pes6MatchPlayer_Index(id);
-    sp = &D_00592980[D_0058E5B0[Pes6MatchPlayer_Index(id)].team].players[D_0058E5B0[i].slot];
+    sp = &Pes6MatchSquads[Pes6MatchPlayers[Pes6MatchPlayer_Index(id)].team].players[Pes6MatchPlayers[i].slot];
     return sp->flagCF1;
 }

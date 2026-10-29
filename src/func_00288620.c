@@ -6,8 +6,8 @@ typedef struct {
     u8 sub[0x2B4];
 } Ent;
 
-extern Ent D_00592980[][32];
+extern Ent Pes6MatchSquads[][32];
 
 u8 *func_00288620(u8 a, u8 b) {
-    return D_00592980[a][b].sub;
+    return Pes6MatchSquads[a][b].sub;
 }

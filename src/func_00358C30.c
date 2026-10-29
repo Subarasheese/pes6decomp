@@ -5,7 +5,7 @@ void Pes6BitSet_Initialize(void *, s32, void *);
 void func_003139F0(void *, s32);
 void Pes6BitSet_Write(void *, s32, s32);
 void func_003414D0(void *, s32, s32);
-s32 func_0030E6C0(s32);
+s32 Pes6MatchPlayer_GetSquadIndex(s32);
 s32 func_00333710(s32, s32);
 s32 func_00335370(void);
 s32 func_00333440(s32, void *, s32);
@@ -25,7 +25,7 @@ s32 func_00358C30(void *arg0) {
     func_003139F0(b, p[0x30]);
     s0 = *(s32 *)(p + 0x44);
     func_003414D0(b + 0x1F, 2, 0xFF);
-    s2 = func_0030E6C0(D_00591E19[0]);
+    s2 = Pes6MatchPlayer_GetSquadIndex(D_00591E19[0]);
     s1 = func_00333710(s0, s2) < 0xD;
     s0 = s2 == b[0x1F];
     Pes6BitSet_Write(b, 1, s0 && (s2 == *(s32 *)(p + 0x30)) && !s1);

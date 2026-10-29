@@ -50,11 +50,11 @@ typedef struct Pes6Squad {
     Pes6SquadPlayer players[32];
 } Pes6Squad;
 
-extern Pes6MatchPlayer D_0058E5B0[];
+extern Pes6MatchPlayer Pes6MatchPlayers[];
 /* The two squads in the match: 32 player records each. */
-extern Pes6Squad D_00592980[2];
+extern Pes6Squad Pes6MatchSquads[2];
 
-/* Index of match player id in D_0058E5B0 (0xFF stands for player 1). */
+/* Index of match player id in Pes6MatchPlayers (0xFF stands for player 1). */
 static inline int Pes6MatchPlayer_Index(int id)
 {
     int index;
@@ -69,7 +69,7 @@ static inline int Pes6MatchPlayer_Index(int id)
 
 static inline Pes6MatchPlayer *Pes6MatchPlayer_Get(int id)
 {
-    return &D_0058E5B0[Pes6MatchPlayer_Index(id)];
+    return &Pes6MatchPlayers[Pes6MatchPlayer_Index(id)];
 }
 
 #endif

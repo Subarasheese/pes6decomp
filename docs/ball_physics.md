@@ -1,25 +1,25 @@
 # Ball physics
 
-How PES6 (SLES-542.03) moves the ball, from a non-matching decompilation of the
-per-frame ball update and from values traced in a live match with PCSX2. The C
-below is readable reconstruction, not matching source; addresses refer to the
-main executable unless they are above 0x900000 (match overlay).
+How PES6 (SLES-542.03) moves the ball, based on the matching per-frame update,
+a reconstruction of its integration step, and values traced in a live match
+with PCSX2. The C examples below are explanatory reconstructions; addresses
+refer to the main executable unless they are above 0x900000 (match overlay).
 
 ## Where it runs
 
 ```
 overlay match loop (0x981324)
-  func_00286A60  Pes6Ball_Update          per frame
-    func_00285100  Ball_Integrate     state machine below
+  Pes6Ball_Update (0x00286A60)              per frame
+    Pes6Ball_IntegratePhysics (0x00285100)     state machine below
 ```
 
 A write breakpoint on the ball's y showed every per-frame write coming from
-`func_00285100` (at rest: 0x285284, in flight: 0x285678); the kick itself is
+`Pes6Ball_IntegratePhysics` (0x00285100; at rest: 0x285284, in flight: 0x285678); the kick itself is
 applied once by overlay code (0xA6EFB0).
 
 ## The ball object
 
-`*(Pes6Ball **)0x3E7574` (match object id 0x1B), 0x5A0B90 in practice.
+`Pes6Ball_Current` (`*(Pes6Ball **)0x3E7574`) (match object id 0x1B), 0x5A0B90 in practice.
 
 | offset | type | meaning |
 |---|---|---|
@@ -43,7 +43,7 @@ second and scales every step by 60/50, so the ball moves at NTSC real-time speed
 
 ```c
 void Pes6Ball_Update(void) {
-    Pes6Ball *b = gBall;
+    Pes6Ball *b = Pes6Ball_Current;
     b->prevPos = b->pos;              /* x, y, z */
     b->prevDir = b->dir;
     b->prevState = b->state;
@@ -52,7 +52,7 @@ void Pes6Ball_Update(void) {
     /* owner bookkeeping: gBallOwner (0x591E18) indexes the 0x240-byte player
      * array at 0x58E5B0 (0xFF means player 1, otherwise id % 23) */
     ...
-    Ball_Integrate(0, &b->state, &b->speed, &b->vy, &b->pos[0], &b->pos[1], &b->pos[2],
+    Pes6Ball_IntegratePhysics(0, &b->state, &b->speed, &b->vy, &b->pos[0], &b->pos[1], &b->pos[2],
                    &b->dir, dt, &b->spin, &b->curl, &b->curlDir, owner);
     /* then last-touch, timers and overlay callbacks */
 }
@@ -75,7 +75,7 @@ build also explains the other leftovers seen with b210 (earlier `$f15` setup, th
 
 ## Matching status of Ball_Integrate
 
-`func_00285100` cannot be written as C under this repository's rules. It
+`Pes6Ball_IntegratePhysics` (0x00285100) cannot be written as C under this repository's rules. It
 transforms vectors with the VU0 sequence `vmulax`, `vmadday`, `vmaddaz`, `vmaddw`
 (a matrix applied to a vector, accumulating in `ACC`). MWCC's VU0 builtins
 (`_vmulbc`, `_vmaddbc`, ... with `#pragma enable_vu0_registers on`) compile, but
@@ -83,7 +83,7 @@ always produce a `vf` destination and copy it into `ACC` with an extra `vaddax`;
 no builtin or destination value targets `ACC` directly. The original therefore
 used inline assembly for that step, which `tools/asm_policy.py` rejects.
 
-## Ball_Integrate (func_00285100), per state
+## Pes6Ball_IntegratePhysics (0x00285100), per state
 
 `cosTab(dir, speed)` and `sinTab(dir, speed)` are overlay table lookups
 (0xBBB990, 0xBBB9C0) returning the speed's x and z components.
@@ -162,3 +162,27 @@ blended towards the animation's contact point over a few frames.
 ### State 0 and default
 
 `speed = 0; vy = 0; y = -28;`
+
+## Descriptive gameplay symbols
+
+These are behavior-based names, not recovered original debug symbols. Existing
+named symbols and structure layouts are preserved. The small accessors retain
+their original signatures, including integer addresses and output parameters.
+
+| Address | Name | Evidence |
+| --- | --- | --- |
+| `0x0027D360` | `Pes6Ball_PlaceAtRest` | Writes x/z and ground y = -28; clears velocity, speed, spin, curl and state, then calls the existing reset helper with 100. |
+| `0x00285100` | `Pes6Ball_IntegratePhysics` | The state-dependent integration step described above; naming its call does not make the assembly-backed function a C recovery. |
+| `0x0030EE30` | `Pes6Ball_CopyPosition` | Copies all three position coordinates to the destination and returns 1. |
+| `0x0030EE60` | `Pes6Ball_GetPositionX` | Stores the x coordinate in the output float and also returns its integer conversion. |
+| `0x00311250` | `Pes6Ball_GetCurlCounter` | Reads the unsigned 16-bit curl field at +0x6A. |
+| `0x00311310` | `Pes6Ball_GetCurlDirection` | Reads the unsigned byte at +0x6C. |
+| `0x0030E6C0` | `Pes6MatchPlayer_GetSquadIndex` | Reads the match player's +0x12 squad index; preserves the 0xFF sentinel. |
+| `0x0030E710` | `Pes6MatchPlayer_GetSide` | Reads the match player's +0x13 side after the existing player-id normalization. |
+| `0x003E7574` | `Pes6Ball_Current` | The ball pointer used by the update and position/curl accessors, confirmed by the runtime tracing above. |
+| `0x0058E5B0` | `Pes6MatchPlayers` | Match-player table with a 0x240-byte stride; see `include/pes6/match_player.h`. |
+| `0x00592980` | `Pes6MatchSquads` | Two squads of 32 player records, indexed by the match player's squad and slot fields. |
+| `0x00591E18` | `Pes6MatchState_Current` | State block whose ball-owner id and frame counter are used by `Pes6Ball_Update`. |
+
+The squad index and side remain distinct fields. Unidentified player abilities,
+state flags, and object roles retain their generic names.

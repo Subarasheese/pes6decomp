@@ -20,7 +20,7 @@ typedef struct {
     u8 pad234[0xC];
 } Team;
 
-extern Team D_0058E5B0[];
+extern Team Pes6MatchPlayers[];
 extern u8 D_0058DA30[][0x80];
 void func_0017B120(void);
 Inner *func_001A5B10(s32);
@@ -31,7 +31,7 @@ void func_00278670(void) {
     u8 *buf;
 
     func_0017B120();
-    for (team = D_0058E5B0, i = 0, buf = D_0058DA30[0]; i < 23; i++, team++, buf += 0x80) {
+    for (team = Pes6MatchPlayers, i = 0, buf = D_0058DA30[0]; i < 23; i++, team++, buf += 0x80) {
         team->id = i;
         team->sub = (Sub *)buf;
         team->sub->inner = func_001A5B10(i);

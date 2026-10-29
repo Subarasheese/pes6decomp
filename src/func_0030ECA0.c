@@ -8,6 +8,6 @@ int func_0030ECA0(int *out, int team, int slot)
         *out = 0;
         return 0;
     }
-    *out = D_00592980[team].players[slot].xD6;
+    *out = Pes6MatchSquads[team].players[slot].xD6;
     return 1;
 }

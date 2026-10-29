@@ -11,7 +11,7 @@ typedef struct {
     u8 padEC[0x154];
 } Rec240;
 
-extern Rec240 D_0058E5B0[];
+extern Rec240 Pes6MatchPlayers[];
 
 s32 func_0030DCC0(f32 *outX, f32 *outY, s32 index) {
     Rec240 *rec;
@@ -22,7 +22,7 @@ s32 func_0030DCC0(f32 *outX, f32 *outY, s32 index) {
     } else {
         index = 1;
     }
-    rec = &D_0058E5B0[index];
+    rec = &Pes6MatchPlayers[index];
     scale = rec->scale;
     *outX = rec->x * scale;
     *outY = rec->y * scale;

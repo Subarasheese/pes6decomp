@@ -3,5 +3,5 @@
 
 float func_0030EBB0(u8 id, int n, float scale)
 {
-    return n * (scale * D_0058E5B0[Pes6MatchPlayer_Index(id)].x14);
+    return n * (scale * Pes6MatchPlayers[Pes6MatchPlayer_Index(id)].x14);
 }

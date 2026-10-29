@@ -5,7 +5,7 @@ typedef struct {
     u8 pad[0x240];
 } Rec240;
 
-extern Rec240 D_0058E5B0[];
+extern Rec240 Pes6MatchPlayers[];
 void func_00952420(Rec240 *);
 
 void func_00310B60(s32 index) {
@@ -14,5 +14,5 @@ void func_00310B60(s32 index) {
     } else {
         index = 1;
     }
-    func_00952420(&D_0058E5B0[index]);
+    func_00952420(&Pes6MatchPlayers[index]);
 }

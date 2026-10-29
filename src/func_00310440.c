@@ -3,7 +3,7 @@
 
 extern char D_0058E5C1[];
 extern char D_0058E5C2[];
-extern char D_00592980[];
+extern char Pes6MatchSquads[];
 
 u64 func_00310440(s32 index) {
     s32 maskedIndex;
@@ -21,5 +21,5 @@ u64 func_00310440(s32 index) {
     } else {
         slot = 1;
     }
-    return (u64) ((u64) M2C_FIELD(((*(((u8 *)D_0058E5C1) + (otherSlot * 0x240)) * 0x348) + (((u8 *)D_00592980) + (*(((u8 *)D_0058E5C2) + (slot * 0x240)) * 0x6900))), u8 *, 0x85) << 0x3A) >> 0x3D;
+    return (u64) ((u64) M2C_FIELD(((*(((u8 *)D_0058E5C1) + (otherSlot * 0x240)) * 0x348) + (((u8 *)Pes6MatchSquads) + (*(((u8 *)D_0058E5C2) + (slot * 0x240)) * 0x6900))), u8 *, 0x85) << 0x3A) >> 0x3D;
 }

@@ -8,8 +8,8 @@ typedef struct {
     u8 pad7A[0x2CE];
 } Ent;
 
-extern char D_0058E5B0[];
-extern Ent D_00592980[][32];
+extern char Pes6MatchPlayers[];
+extern Ent Pes6MatchSquads[][32];
 
 u8 func_0030E260(s32 index) {
     u8 *rec;
@@ -20,7 +20,7 @@ u8 func_0030E260(s32 index) {
     } else {
         index = 1;
     }
-    rec = (u8 *)D_0058E5B0 + index * 0x240;
-    ent = &D_00592980[rec[0x12]][rec[0x11]];
+    rec = (u8 *)Pes6MatchPlayers + index * 0x240;
+    ent = &Pes6MatchSquads[rec[0x12]][rec[0x11]];
     return ent->flag;
 }
