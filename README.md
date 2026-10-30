@@ -1,6 +1,6 @@
 # PES6 decompilation
 
-[![Code](https://bytematch.dev/Subarasheese/pes6decomp.svg?mode=shield&label=Code&measure=matched_code_percent)](https://bytematch.dev/Subarasheese/pes6decomp) [![Functions](https://bytematch.dev/Subarasheese/pes6decomp.svg?mode=shield&label=Functions&measure=matched_functions)](https://bytematch.dev/Subarasheese/pes6decomp)
+[![Code](https://bytematch.dev/Subarasheese/pes6decomp.svg?mode=shield&label=Exact%20code&measure=matched_code_percent)](https://bytematch.dev/Subarasheese/pes6decomp) [![Functions](https://bytematch.dev/Subarasheese/pes6decomp.svg?mode=shield&label=Exact%20functions&measure=matched_functions)](https://bytematch.dev/Subarasheese/pes6decomp)
 
 [![C reconstruction](progress/reconstruction.svg)](docs/nonmatching.md) [![Instruction similarity](https://bytematch.dev/Subarasheese/pes6decomp.svg?mode=shield&label=Instruction%20similarity&measure=fuzzy_match_percent)](docs/nonmatching.md)
 
@@ -14,6 +14,12 @@ The combined inventory has **34,901 function targets**;
 **381,408 of 12,962,144 inventoried code bytes (2.94%)**. Function boundaries are
 estimated from disassembly. The larger denominator includes previously omitted
 images; existing resident matches are retained.
+
+Including **884 non-matching reconstructions**, C is available for
+**7,244 targets (20.76%)**, covering
+**710,268 code bytes (5.48%)**.
+Whole-project instruction similarity is **4.73%**.
+The reconstructions' types, layouts and call contracts remain provisional.
 
 Compiling non-matching C is accepted under `nonmatching/<image>/`. Its source
 coverage and measured instruction similarity are reported separately; the
