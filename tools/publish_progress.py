@@ -74,6 +74,11 @@ def refusals():
         out.append(f"{len(newer)} files changed after the build ({newer[0]}...): build again")
     import overlay_report
     out.extend(overlay_report.publication_errors(head))
+    import nonmatching
+    try:
+        nonmatching.verified_records()
+    except (ValueError, OSError) as error:
+        out.append(str(error))
     return out
 
 
@@ -95,6 +100,9 @@ def main():
     json.dump(meta, open(report.META, "w"), indent=1)
     m = json.load(open(report.OUT))["measures"]
     paths = [os.path.relpath(p, ROOT) for p in (report.OUT, report.META)]
+    import nonmatching
+    if nonmatching.MANIFEST.exists():
+        paths.extend(["progress/reconstruction.json", "progress/reconstruction.svg"])
     git("add", "--", *paths)
     git("commit", "-q", "-m",
         f"Progress report for {head[:12]} ({meta['generated'][:10]}): {m['matched_functions']}/{m['total_functions']} "
@@ -102,8 +110,7 @@ def main():
         f"{m['matched_data_percent']:.2f}% of data\n\n"
         f"Describes commit {head}, built {meta['build']['generated']}, report generated {meta['generated']}; "
         f"the full build hashes .text {meta['build']['text_sha1']} and .data {meta['build']['data_sha1']} "
-        "like the original.\n\n"
-        "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>", "--", *paths)
+        "like the original.", "--", *paths)
     branch = git("rev-parse", "--abbrev-ref", "HEAD")
     git("push", "-q", "origin", f"HEAD:refs/heads/{branch}" if branch != "HEAD" else "HEAD:refs/heads/main")
     print(f"committed and pushed the report for {head[:12]} ({' and '.join(paths)})")

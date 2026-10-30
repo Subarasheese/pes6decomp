@@ -2,6 +2,8 @@
 
 [![Code](https://bytematch.dev/Subarasheese/pes6decomp.svg?mode=shield&label=Code&measure=matched_code_percent)](https://bytematch.dev/Subarasheese/pes6decomp) [![Functions](https://bytematch.dev/Subarasheese/pes6decomp.svg?mode=shield&label=Functions&measure=matched_functions)](https://bytematch.dev/Subarasheese/pes6decomp)
 
+[![C reconstruction](progress/reconstruction.svg)](docs/nonmatching.md) [![Instruction similarity](https://bytematch.dev/Subarasheese/pes6decomp.svg?mode=shield&label=Instruction%20similarity&measure=fuzzy_match_percent)](docs/nonmatching.md)
+
 A matching decompilation of **Pro Evolution Soccer 6** for
 PlayStation 2, PAL executable **SLES-542.03**.
 
@@ -13,6 +15,11 @@ The combined inventory has **34,901 function targets**;
 estimated from disassembly. The larger denominator includes previously omitted
 images; existing resident matches are retained.
 
+Compiling non-matching C is accepted under `nonmatching/<image>/`. Its source
+coverage and measured instruction similarity are reported separately; the
+exact-match code and function badges retain their existing meaning. See
+[non-matching policy and verification](docs/nonmatching.md).
+
 Complete local links reproduce the original code and data. Unrecovered regions
 come from the user's own game inputs during the build. See
 [overlay mapping and commands](docs/overlays.md) for the image catalog, overlapping
@@ -21,6 +28,7 @@ address ranges, extraction, verification, and the verified overlay and auxiliary
 ## Contents
 
 - `src/`: one verified function per file; address names remain until behavior is established.
+- `nonmatching/`: compiler-checked C reconstructions with per-function similarity and known issues.
 - `include/pes6/`: partial, evidence-based structure views with unknown fields left explicit;
   `m2c.h` provides `M2C_FIELD` and placeholder types for sources whose fields are not yet named.
 - `docs/`: research notes on recovered game systems (e.g. `ball_physics.md`).

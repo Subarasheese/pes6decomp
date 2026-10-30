@@ -67,5 +67,10 @@ nl -ba sources.txt | xargs -P "$jobs" -L1 bash -c 'one "$1" "$0"' > compile.log 
 bad=$(grep -c '^FAIL' compile.log)
 echo "$(wc -l < sources.txt) sources, $bad do not compile"
 [ "$bad" -eq 0 ] || { grep -A3 '^FAIL' compile.log | head -40; fail=1; }
+cd "$root"
+if [ -f config/nonmatching.json ]; then
+  echo "== non-matching reconstruction compilation and comparison"
+  python3 tools/nonmatching.py check --jobs "$jobs" || fail=1
+fi
 [ $fail -eq 0 ] && echo "CI: PASS" || echo "CI: FAIL"
 exit $fail

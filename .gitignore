@@ -4,6 +4,8 @@
 /progress/*
 !/progress/report.json
 !/progress/report.meta.json
+!/progress/reconstruction.json
+!/progress/reconstruction.svg
 /drafts/
 /toolchains/
 /tools/ext/

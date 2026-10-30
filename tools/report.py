@@ -211,6 +211,8 @@ def main():
     if project.TARGET == "main":
         import overlay_report
         overlay_report.add_images(report, meta, measures)
+        import nonmatching
+        nonmatching.add_to_report(report, meta)
     json.dump(report, open(OUT, "w"), indent=1)
     json.dump(meta, open(META, "w"), indent=1)
     if not (build.get("text_matches") and build.get("data_matches")):
