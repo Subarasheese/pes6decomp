@@ -46,6 +46,27 @@ class ComparisonTests(unittest.TestCase):
 
 
 class ReportTests(unittest.TestCase):
+    def test_empty_reconstruction_set_clears_previous_progress(self):
+        report = {"units": [{"name": "game/core", "measures": {}, "sections": [{"name": ".text"}],
+                             "functions": [{"name": "f", "size": "40", "fuzzy_match_percent": 100,
+                                            "metadata": {"virtual_address": "2097152"}}],
+                             "metadata": {"progress_categories": ["game"]}}],
+                  "measures": {"matched_code": "40", "matched_functions": 1, "total_functions": 1},
+                  "categories": []}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "progress").mkdir()
+            out = root / "progress/reconstruction.json"
+            out.write_text(json.dumps({"nonmatching_functions": 99}))
+            with patch.object(nonmatching, "ROOT", root), \
+                    patch.object(nonmatching, "MANIFEST", root / "missing-manifest.json"), \
+                    patch.object(nonmatching, "verified_records", return_value=[]):
+                nonmatching.add_to_report(report, {"commit": "empty"})
+            summary = json.loads(out.read_text())
+            self.assertEqual(summary["nonmatching_functions"], 0)
+            self.assertEqual(summary["reconstructed_functions"], 1)
+            self.assertEqual(summary["reconstructed_code_bytes"], 40)
+
     def test_changed_dependencies_invalidate_verification(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "proof.json"

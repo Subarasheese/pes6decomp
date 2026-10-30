@@ -100,9 +100,8 @@ def main():
     json.dump(meta, open(report.META, "w"), indent=1)
     m = json.load(open(report.OUT))["measures"]
     paths = [os.path.relpath(p, ROOT) for p in (report.OUT, report.META)]
-    import nonmatching
-    if nonmatching.MANIFEST.exists():
-        paths.extend(["progress/reconstruction.json", "progress/reconstruction.svg"])
+    paths.extend(p for p in ["progress/reconstruction.json", "progress/reconstruction.svg"]
+                 if os.path.exists(os.path.join(ROOT, p)))
     git("add", "--", *paths)
     git("commit", "-q", "-m",
         f"Progress report for {head[:12]} ({meta['generated'][:10]}): {m['matched_functions']}/{m['total_functions']} "

@@ -234,8 +234,6 @@ def verified_records():
 
 def add_to_report(report, meta):
     records = verified_records()
-    if not records:
-        return
     lookup = {(r["image"], int(r["address"], 16)): r for r in records}
     found = set()
     reconstructed_bytes = reconstructed_functions = 0
@@ -276,7 +274,8 @@ def add_to_report(report, meta):
             category["measures"]["fuzzy_match_percent"] = round(sum(int(f["size"]) * f["fuzzy_match_percent"] for f in fs) / size, 4)
     exact = report["measures"]
     source_bytes = int(exact["matched_code"]) + reconstructed_bytes
-    summary = {"source_commit": meta["commit"], "fingerprint": json.loads(PROOF.read_text())["fingerprint"],
+    proof_fingerprint = json.loads(PROOF.read_text())["fingerprint"] if MANIFEST.exists() else None
+    summary = {"source_commit": meta["commit"], "fingerprint": proof_fingerprint,
                "exact_functions": exact["matched_functions"], "nonmatching_functions": reconstructed_functions,
                "reconstructed_functions": exact["matched_functions"] + reconstructed_functions,
                "reconstructed_functions_percent": round(100 * (exact["matched_functions"] + reconstructed_functions) / exact["total_functions"], 4),
