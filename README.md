@@ -15,11 +15,16 @@ The combined inventory has **34,901 function targets**;
 estimated from disassembly. The larger denominator includes previously omitted
 images; existing resident matches are retained.
 
-Including **884 non-matching reconstructions**, C is available for
-**7,244 targets (20.76%)**, covering
-**710,268 code bytes (5.48%)**.
-Whole-project instruction similarity is **4.73%**.
+Including **15,681 non-matching reconstructions**, C is available for
+**22,041 targets (63.15%)**, covering
+**3,477,208 code bytes (26.83%)**.
+Whole-project instruction similarity is **13.87%**.
 The reconstructions' types, layouts and call contracts remain provisional.
+
+The full-inventory sweep attempted all **27,657** remaining targets,
+admitting **14,797** new drafts and leaving **12,860** unresolved.
+Drafts below 50% similarity are labeled low confidence.
+See the [per-target attempt audit](progress/sweep.json) for every outcome.
 
 Compiling non-matching C is accepted under `nonmatching/<image>/`. Its source
 coverage and measured instruction similarity are reported separately; the
