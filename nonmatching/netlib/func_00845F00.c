@@ -1,0 +1,19 @@
+/* compiler: mwcc-3.0.1b210 */
+/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+
+extern char D_008B0E20[];
+
+s32 func_00845F00(void *arg0) {
+    s32 var_v0;
+
+    var_v0 = M2C_FIELD(arg0, s16 *, 0) != (*(s16 *)D_008B0E20);
+    if (var_v0 != 0) {
+        var_v0 = M2C_FIELD(arg0, s32 *, 8) != 0;
+    }
+    if (var_v0 != 0) {
+        var_v0 = M2C_FIELD(arg0, s8 *, 0x50) != 4;
+    }
+    return var_v0;
+}

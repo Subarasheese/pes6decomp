@@ -1,0 +1,13 @@
+/* compiler: mwcc-3.0.1b210 */
+/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+
+extern char D_0058C6D0[];
+extern char D_0058C6E0[];
+
+void func_00255F30(void) {
+    if ((*(s32 *)D_0058C6E0) != 0) {
+        M2C_FIELD(((void *)D_0058C6D0), M2C_UNK (**)(M2C_UNK *), 0x10)(((void *)D_0058C6D0));
+    }
+}

@@ -27,6 +27,11 @@ class ComparisonTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "indirect"):
             nonmatching.compare([0x0040F809, 0, 1, 2], [0, 0, 1, 2], 0x200000)
 
+    def test_low_similarity_keeps_its_actual_score(self):
+        r = nonmatching.compare([1, 2, 3, 4], [1, 5, 6, 7], 0x200000)
+        self.assertEqual(r["instruction_similarity"], 25)
+        self.assertEqual(r["identical_instructions"], 1)
+
     def test_global_address_evidence_rejects_wrong_global_and_loaded_value(self):
         # lui v0,0x40; lw v0,0x100(v0); lw v1,4(v0); lw v0,0x20(gp)
         addresses = nonmatching.referenced_addresses([0x3C020040, 0x8C420100, 0x8C430004, 0x8F820020], 0x3E0000)
@@ -38,6 +43,7 @@ class ComparisonTests(unittest.TestCase):
     def test_incomplete_or_faked_translation_is_rejected(self):
         for text in ["return M2C_ERROR(\"missing\");", "return CLZ(a);",
                      "#define fill(x) 0\nint f(void) { return fill(2); }",
+                     '/* Warning: missing "jr $ra" in last block of f (initial). */\nvoid f(void) {}',
                      "return saved_reg_s0;", 'asm("nop");']:
             self.assertTrue(nonmatching.source_problems(text), text)
         self.assertFalse(nonmatching.source_problems('return M2C_FIELD(p, s32 *, 4);'))
@@ -111,7 +117,7 @@ class ReportTests(unittest.TestCase):
                   "categories": [{"id": "game", "measures": {}}]}
         exact = copy.deepcopy(report["measures"])
         rows = [{"image": "main", "address": "00200000", "source": "nonmatching/main/f.c", "instruction_similarity": 90},
-                {"image": "other", "address": "00200000", "source": "nonmatching/other/f.c", "instruction_similarity": 50}]
+                {"image": "other", "address": "00200000", "source": "nonmatching/other/f.c", "instruction_similarity": 25}]
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "progress").mkdir()
@@ -123,7 +129,9 @@ class ReportTests(unittest.TestCase):
             summary = json.loads((root / "progress/reconstruction.json").read_text())
             self.assertEqual(summary["reconstructed_code_bytes"], 100)
             self.assertEqual(summary["nonmatching_functions"], 2)
-        self.assertEqual(report["measures"]["fuzzy_match_percent"], 66)
+        self.assertEqual(report["measures"]["fuzzy_match_percent"], 51)
+        self.assertEqual(report["units"][1]["functions"][0]["metadata"]["reconstruction_confidence"], "low")
+        self.assertEqual(report["units"][0]["functions"][0]["metadata"]["reconstruction_confidence"], "provisional")
         for key, value in exact.items():
             self.assertEqual(report["measures"][key], value)
 

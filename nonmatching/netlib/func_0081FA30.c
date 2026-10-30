@@ -1,0 +1,13 @@
+/* compiler: mwcc-3.0.1b210 */
+/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+
+extern char D_008A42A0[];
+extern char D_008A42FA[];
+
+s32 func_0081FA30(void) {
+    (*(s8 *)D_008A42FA) = 1;
+    (*(s32 *)D_008A42A0) |= 0x40;
+    return 0;
+}

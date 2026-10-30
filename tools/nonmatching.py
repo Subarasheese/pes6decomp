@@ -27,7 +27,8 @@ FORBIDDEN = re.compile(
     r"M2C_(?:ERROR|TRAP_IF|BREAK|SYNC|DCACHE_\w+|ICACHE_\w+|PREFETCH\w*|"
     r"LWL|FIRST3BYTES|UNALIGNED32|BITWISE|CARRY|OVERFLOW|LOAD_\w+|STORE_\w+|CMP_STR|TAS_B)|"
     r"GLUE_F64|MULT_HI|MULTU_HI|DMULT_HI|DMULTU_HI|CLZ|REVERSE_BITS|"
-    r"ROTATE_RIGHT|ARM_RRX|BSWAP\w*)\b|unset register|unhandled instruction",
+    r"ROTATE_RIGHT|ARM_RRX|BSWAP\w*)\b|unset register|unhandled instruction|"
+    r"Warning:\s*missing\s+\"jr\s+\$ra\"",
     re.I,
 )
 
@@ -210,7 +211,7 @@ def inspect(records, jobs=2):
             if row.get("original_sha256", original_hash) != original_hash:
                 raise ValueError("original image/body differs from reviewed target")
             result = compare(original, match.trim_padding(linked), address)
-            if result["instruction_similarity"] < row.get("minimum_similarity", 50):
+            if result["instruction_similarity"] < row.get("minimum_similarity", 0):
                 raise ValueError(f"similarity below reviewed threshold: {result['instruction_similarity']}")
             results.append({**row, **result, "original_sha256": original_hash,
                             "source_sha256": sha256(ROOT / path), "verified": True})
@@ -260,6 +261,8 @@ def add_to_report(report, meta):
                 found.add(key)
                 function["fuzzy_match_percent"] = row["instruction_similarity"]
                 function["metadata"]["source_path"] = row["source"]
+                function["metadata"]["reconstruction_confidence"] = (
+                    "low" if row["instruction_similarity"] < 50 else row.get("confidence", "provisional"))
                 reconstructed_bytes += int(function["size"])
                 reconstructed_functions += 1
         code = sum(int(f["size"]) for f in unit["functions"])
@@ -323,6 +326,8 @@ def main():
         return 0 if all(r["verified"] for r in result) else 1
     results = []
     for image in sorted({r["image"] for r in records}):
+        count = sum(r["image"] == image for r in records)
+        print(f"Checking {image}: {count} non-matching sources", flush=True)
         env = dict(os.environ, PES6_TARGET=image)
         subprocess.run([sys.executable, str(Path(__file__)), "check", "--image", image,
                         "--jobs", str(args.jobs)], env=env, cwd=ROOT, check=True)

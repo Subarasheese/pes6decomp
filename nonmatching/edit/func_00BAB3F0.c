@@ -1,0 +1,8 @@
+/* compiler: mwcc-3.0.1b210 */
+/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+extern void func_00B912F0(s32, u8);
+void func_00BAB3F0(s32 arg0) {
+    func_00B912F0(arg0, arg0 & 0xFF);
+}

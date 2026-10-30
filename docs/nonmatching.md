@@ -38,12 +38,16 @@ Verification compiles every candidate again. It requires a complete translation
 without assembly, missing-instruction macros, fabricated register values, or
 private writable storage. Parameter holes that shift argument registers and
 address-taken unknown locals with unestablished storage sizes are rejected.
+Translations reporting a missing function-return boundary are also rejected.
 All relocation targets must resolve, referenced symbol addresses must have
 evidence in the original instructions, and external direct call/tail-call
 targets and indirect-transfer counts must agree. Bodies that shrink below half
 or grow beyond 1.75 times the original instruction count are rejected. The
-initial admission threshold is 50% instruction similarity; the measured score
-is published per function, with remaining uncertainties explicitly recorded.
+full-inventory sweep has no instruction-similarity minimum for complete,
+compiling translations that pass the other checks. Scores below 50% are labeled
+low confidence. The actual score is published per function, with remaining
+uncertainties explicitly recorded. Earlier entries may retain their original
+50% verification threshold.
 
 No similarity threshold alone proves correct behavior. In particular, matching
 call addresses does not establish argument or return types. A reconstruction
@@ -55,6 +59,12 @@ inventories, original image bytes, and verification tools. Editing those inputs 
 check before publication. The report generator produces the separate
 `progress/reconstruction.json` and SVG badge, and includes measured instruction
 similarity in the existing objdiff report. CI publishes both reports.
+
+The full-inventory attempt audit is published as `progress/sweep.json`. It lists
+every target in that sweep by image and address, with its final outcome.
+Rejected translations and unknown tail-call contracts remain unresolved and
+contribute no C source coverage. The audit's starting baseline distinguishes
+earlier exact recoveries and reconstructions from newly attempted targets.
 
 ## Promotion
 

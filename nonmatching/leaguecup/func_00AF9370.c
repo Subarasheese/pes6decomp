@@ -1,0 +1,19 @@
+/* compiler: mwcc-3.0.1b210 */
+/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+extern u32 func_00B035D0(void);
+M2C_UNK func_00972040(s32, M2C_UNK, M2C_UNK);       /* extern */
+
+void func_00AF9370(void) {
+    u32 temp_v0;
+
+    temp_v0 = func_00B035D0();
+    if (temp_v0 != 0) {
+        if (M2C_FIELD(temp_v0, s32 *, 0x5E4) != 2) {
+            func_00972040(M2C_FIELD(temp_v0, s32 *, 0x254), 0, 0);
+        } else {
+            func_00972040(M2C_FIELD(temp_v0, s32 *, 0x254), 1, 0);
+        }
+    }
+}

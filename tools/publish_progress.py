@@ -100,7 +100,7 @@ def main():
     json.dump(meta, open(report.META, "w"), indent=1)
     m = json.load(open(report.OUT))["measures"]
     paths = [os.path.relpath(p, ROOT) for p in (report.OUT, report.META)]
-    paths.extend(p for p in ["progress/reconstruction.json", "progress/reconstruction.svg"]
+    paths.extend(p for p in ["progress/reconstruction.json", "progress/reconstruction.svg", "progress/sweep.json"]
                  if os.path.exists(os.path.join(ROOT, p)))
     git("add", "--", *paths)
     git("commit", "-q", "-m",

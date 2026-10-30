@@ -1,0 +1,22 @@
+/* compiler: ee-gcc-2.9 */
+/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+
+s32 func_00936B90();                                /* extern */
+
+u16 func_0095EBD0(void) {
+    s32 temp_v0;
+    u16 *var_v0;
+
+    temp_v0 = func_00936B90();
+    if (temp_v0 != 0) {
+        var_v0 = temp_v0 + 0x3DFD0;
+    } else {
+        var_v0 = NULL;
+    }
+    if (var_v0 != NULL) {
+        return *var_v0;
+    }
+    return 0U;
+}

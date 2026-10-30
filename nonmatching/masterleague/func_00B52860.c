@@ -1,0 +1,14 @@
+/* compiler: mwcc-3.0.1b210 */
+/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+
+s32 func_00B4E390();                                /* extern */
+extern s32 D_003EAE98;
+
+s32 func_00B52860(void) {
+    if (D_003EAE98 == 0) {
+        return 1;
+    }
+    return func_00B4E390();
+}

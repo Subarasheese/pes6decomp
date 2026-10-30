@@ -1,0 +1,17 @@
+/* compiler: mwcc-3.0.1b151 */
+/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+
+extern char D_00D376E8[];
+extern char D_00D3772C[];
+extern char D_00D37730[];
+
+s32 func_00D0BDF0(void) {
+    if ((*(s32 *)D_00D376E8) == 0) {
+        return 0;
+    }
+    (*(s32 *)D_00D3772C) = 0;
+    (*(s32 *)D_00D37730) = 9;
+    return 1;
+}

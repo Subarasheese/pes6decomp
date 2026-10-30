@@ -1,0 +1,90 @@
+/* compiler: ee-gcc-2.9 */
+/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+
+void func_0017E4D8(void *arg0) {
+    s32 temp_a1;
+    s32 temp_a2;
+    s32 temp_a3;
+    s32 temp_a4;
+    s32 temp_a5;
+    s32 temp_a5_2;
+    s32 temp_a6;
+    s32 temp_a7;
+    s32 temp_t0;
+    s32 temp_t1;
+    s32 temp_t2;
+    s32 temp_t3;
+    s32 temp_v1;
+    void *temp_t8;
+    void *temp_t8_10;
+    void *temp_t8_11;
+    void *temp_t8_12;
+    void *temp_t8_13;
+    void *temp_t8_14;
+    void *temp_t8_2;
+    void *temp_t8_3;
+    void *temp_t8_4;
+    void *temp_t8_5;
+    void *temp_t8_6;
+    void *temp_t8_7;
+    void *temp_t8_8;
+    void *temp_t8_9;
+
+    temp_a5 = M2C_FIELD(arg0, s32 *, 0x5D4);
+    temp_a3 = M2C_FIELD(arg0, s32 *, 0x5A0) + temp_a5;
+    temp_a2 = arg0 + 0x910 + (M2C_FIELD(arg0, s32 *, 0x4EC) * 0x240);
+    temp_t8 = temp_a2 + 0x70;
+    temp_a1 = M2C_FIELD(arg0, s32 *, 0x5A4) + temp_a5;
+    M2C_FIELD(temp_t8, s16 *, 0x10) = (s16) ((M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a3) - 0x20);
+    temp_a4 = (s32) M2C_FIELD(arg0, s32 *, 0x5AC) >> 1;
+    temp_a5_2 = temp_a3 + temp_a4;
+    temp_t0 = M2C_FIELD(arg0, s32 *, 0x5B0);
+    temp_t2 = temp_a4 + temp_a5_2;
+    temp_v1 = temp_t0 >> 1;
+    temp_a6 = temp_a1 + temp_v1;
+    temp_t3 = temp_v1 + temp_a6;
+    M2C_FIELD(temp_t8, s16 *, 0x12) = (s16) ((M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a1) - 0x20);
+    temp_t1 = temp_a4 * 3;
+    temp_t8_2 = temp_a2 + 0x90;
+    temp_a7 = (s32) (temp_v1 * 3) >> 1;
+    M2C_FIELD(temp_t8_2, s16 *, 0x10) = (s16) (M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a3);
+    M2C_FIELD(temp_t8_2, s16 *, 0x12) = (s16) (M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a1);
+    temp_t8_3 = temp_a2 + 0xB0;
+    M2C_FIELD(temp_t8_3, s16 *, 0x10) = (s16) (M2C_FIELD(arg0, u16 *, 0x4DC) + 0x20 + temp_t2);
+    M2C_FIELD(temp_t8_3, s16 *, 0x12) = (s16) ((M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a1) - 0x20);
+    temp_t8_4 = temp_a2 + 0xD0;
+    M2C_FIELD(temp_t8_4, s16 *, 0x10) = (s16) (M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a5_2 + temp_a4);
+    M2C_FIELD(temp_t8_4, s16 *, 0x12) = (s16) (M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a1);
+    temp_t8_5 = temp_a2 + 0xF0;
+    M2C_FIELD(temp_t8_5, s16 *, 0x10) = (s16) (M2C_FIELD(arg0, u16 *, 0x4DC) + 0x20 + temp_t2);
+    M2C_FIELD(temp_t8_5, s16 *, 0x12) = (s16) (M2C_FIELD(arg0, u16 *, 0x4E0) + 0x20 + temp_t3);
+    temp_t8_6 = temp_a2 + 0x110;
+    M2C_FIELD(temp_t8_6, s16 *, 0x10) = (s16) (M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a5_2 + temp_a4);
+    M2C_FIELD(temp_t8_6, s16 *, 0x12) = (s16) (M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a6 + temp_v1);
+    temp_t8_7 = temp_a2 + 0x130;
+    M2C_FIELD(temp_t8_7, s16 *, 0x10) = (s16) (((M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a5_2) - temp_a4) - 0x20);
+    M2C_FIELD(temp_t8_7, s16 *, 0x12) = (s16) (M2C_FIELD(arg0, u16 *, 0x4E0) + 0x20 + temp_t3);
+    temp_t8_8 = temp_a2 + 0x150;
+    M2C_FIELD(temp_t8_8, s16 *, 0x10) = (s16) ((M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a5_2) - temp_a4);
+    M2C_FIELD(temp_t8_8, s16 *, 0x12) = (s16) (M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a6 + temp_v1);
+    temp_t8_9 = temp_a2 + 0x170;
+    M2C_FIELD(temp_t8_9, s16 *, 0x10) = (s16) (((M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a5_2) - temp_a4) - 0x20);
+    M2C_FIELD(temp_t8_9, s16 *, 0x12) = (s16) (((M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a6) - temp_v1) - 0x20);
+    temp_t8_10 = temp_a2 + 0x190;
+    M2C_FIELD(temp_t8_10, s16 *, 0x10) = (s16) ((M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a5_2) - temp_a4);
+    M2C_FIELD(temp_t8_10, s16 *, 0x12) = (s16) ((M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a6) - temp_v1);
+    temp_t8_11 = temp_a2 + 0x1B0;
+    M2C_FIELD(temp_t8_11, s16 *, 0x10) = (s16) ((M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a5_2) - (temp_t1 >> 1));
+    M2C_FIELD(temp_t8_11, s16 *, 0x12) = (s16) (M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a6);
+    temp_t8_12 = temp_a2 + 0x1D0;
+    M2C_FIELD(temp_t8_12, s16 *, 0x10) = (s16) (M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a5_2);
+    M2C_FIELD(temp_t8_12, s16 *, 0x12) = (s16) (M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a6 + temp_a7);
+    temp_t8_13 = temp_a2 + 0x1F0;
+    M2C_FIELD(temp_t8_13, s16 *, 0x10) = (s16) (M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a5_2);
+    M2C_FIELD(temp_t8_13, s16 *, 0x12) = (s16) (M2C_FIELD(arg0, u16 *, 0x4E0) + temp_a6 + (temp_t0 >> 2));
+    temp_t8_14 = temp_a2 + 0x210;
+    M2C_FIELD(temp_t8_14, s16 *, 0x10) = (s16) (M2C_FIELD(arg0, u16 *, 0x4DC) + temp_a5_2 + temp_t1);
+    M2C_FIELD(temp_t8_14, s16 *, 0x12) = (s16) ((M2C_FIELD(arg0, u16 *, 0x4E0) - temp_a6) - temp_a7);
+}

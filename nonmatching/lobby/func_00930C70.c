@@ -1,0 +1,16 @@
+/* compiler: mwcc-3.0.1b210 */
+/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+
+void *func_00821780();                              /* extern */
+
+s8 func_00930C70(void) {
+    void *temp_v0;
+
+    temp_v0 = func_00821780();
+    if (temp_v0 != NULL) {
+        return M2C_FIELD(temp_v0, s8 *, 0x505);
+    }
+    return 0;
+}

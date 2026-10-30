@@ -1,0 +1,11 @@
+/* compiler: ee-gcc-2.9 */
+/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+#include "pes6/m2c.h"
+
+
+void func_00181B10(void *arg0) {
+    void *temp_a1;
+
+    temp_a1 = (M2C_FIELD(arg0, s32 *, 0x4EC) * 0x8C0) + arg0 + 0x920;
+    M2C_FIELD(temp_a1, s64 *, 0x50) = (s64) ((M2C_FIELD(temp_a1, s64 *, 0x50) & ~0x40) | ((M2C_FIELD(arg0, s32 *, 0x5DC) & 1) << 6));
+}

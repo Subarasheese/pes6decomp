@@ -27,4 +27,5 @@ jobs:
           path: |
             progress/reconstruction.json
             progress/reconstruction.svg
+            progress/sweep.json
           if-no-files-found: error
