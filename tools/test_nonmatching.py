@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -46,6 +47,26 @@ class ComparisonTests(unittest.TestCase):
 
 
 class ReportTests(unittest.TestCase):
+    def test_original_image_and_generated_inventory_are_bound_to_proof(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "orig").mkdir()
+            (root / "build").mkdir()
+            (root / "project.toml").write_text('[game]\nexecutable = "orig/game.elf"\n')
+            image = root / "orig/game.elf"
+            image.write_bytes(b"original image")
+            inventory = root / "build/functions.csv"
+            inventory.write_text("original boundaries")
+            digest = lambda p: hashlib.sha256(Path(p).read_bytes() if Path(p).exists() else b"").hexdigest()
+            with patch.object(nonmatching, "ROOT", root), patch.object(nonmatching, "sha256", side_effect=digest):
+                records = [{"image": "main", "source": "nonmatching/main/f.c"}]
+                original = nonmatching.fingerprint(records)
+                image.write_bytes(b"different image")
+                changed_image = nonmatching.fingerprint(records)
+                self.assertNotEqual(original, changed_image)
+                inventory.write_text("changed boundaries")
+                self.assertNotEqual(changed_image, nonmatching.fingerprint(records))
+
     def test_empty_reconstruction_set_clears_previous_progress(self):
         report = {"units": [{"name": "game/core", "measures": {}, "sections": [{"name": ".text"}],
                              "functions": [{"name": "f", "size": "40", "fuzzy_match_percent": 100,

@@ -51,7 +51,7 @@ remains non-matching even if its instruction score reaches 100%, until its ABI,
 full function span and full-image integration have passed the exact workflow.
 
 The local proof binds the manifest, source hashes, symbol tables, headers,
-inventories and verification tools. Editing those inputs requires another
+inventories, original image bytes, and verification tools. Editing those inputs requires another
 check before publication. The report generator produces the separate
 `progress/reconstruction.json` and SVG badge, and includes measured instruction
 similarity in the existing objdiff report. CI publishes both reports.

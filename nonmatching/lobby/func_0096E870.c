@@ -1,0 +1,63 @@
+/* compiler: mwcc-3.0.1b210 */
+/* Non-matching reconstruction; types and call contracts remain provisional. */
+#include "pes6/m2c.h"
+
+M2C_UNK func_008187D0();                            /* extern */
+s32 func_00819370(s32, M2C_UNK);                    /* extern */
+void *func_00969AF0();                              /* extern */
+s32 func_00969B90();                                /* extern */
+M2C_UNK func_0096BE00();                            /* extern */
+M2C_UNK func_0096BEF0();                            /* extern */
+M2C_UNK func_00971770();                            /* extern */
+M2C_UNK func_00971780();                            /* extern */
+M2C_UNK func_009717C0(M2C_UNK);                     /* extern */
+s32 func_00971920();                                /* extern */
+M2C_UNK func_009B4D20(M2C_UNK);                     /* extern */
+
+s32 func_0096E870(void) {
+    s32 temp_v0;
+    s32 var_s0;
+    void *temp_s1;
+    void *temp_v0_2;
+
+    var_s0 = 0;
+    func_00971780();
+    temp_v0 = func_00971920();
+    switch (temp_v0) {                              /* irregular */
+    case 0:
+        M2C_FIELD(func_00969AF0(), s32 *, 0x18) = 0;
+        func_009B4D20(1);
+        func_009717C0(1);
+        /* fallthrough */
+    case 1:
+        func_0096BEF0();
+        break;
+    case 2:
+        func_0096BE00();
+        break;
+    case 3:
+        temp_s1 = func_00969AF0();
+        if (func_00969B90() == 0) {
+            if (func_00819370(M2C_FIELD(temp_s1, s32 *, 0), -1) != 0) {
+                M2C_FIELD(temp_s1, s32 *, 0x18) = 1;
+                func_009717C0(4);
+            }
+        } else {
+            func_008187D0();
+            M2C_FIELD(temp_s1, s32 *, 0x18) = 1;
+            func_009717C0(4);
+        }
+        break;
+    case 4:
+        temp_v0_2 = func_00969AF0();
+        if (M2C_FIELD(temp_v0_2, s32 *, 0x28) == 0) {
+            var_s0 = M2C_FIELD(temp_v0_2, s32 *, 0x18);
+        } else {
+            var_s0 = 5;
+        }
+        func_009B4D20(0);
+        break;
+    }
+    func_00971770();
+    return var_s0;
+}

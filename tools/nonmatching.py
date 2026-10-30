@@ -17,6 +17,7 @@ import re
 import struct
 import subprocess
 import sys
+import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "config/nonmatching.json"
@@ -46,6 +47,13 @@ def fingerprint(records):
     if (ROOT / "config/overlays.json").exists():
         paths.add("config/overlays.json")
     paths.update(r["source"] for r in records)
+    # Main's inventory is generated under build/, unlike overlay inventories.
+    # Bind the actual local input images too, not just their catalog identities.
+    paths.add("build/functions.csv")
+    images = {r["image"] for r in records}
+    if "main" in images:
+        paths.add(tomllib.loads((ROOT / "project.toml").read_text())["game"]["executable"])
+    paths.update(f"build/targets/{image}/image.elf" for image in images if image != "main")
     h = hashlib.sha256()
     for name in sorted(paths):
         h.update(name.encode() + b"\0" + bytes.fromhex(sha256(ROOT / name)))
