@@ -1,5 +1,4 @@
 /* compiler: ee-gcc-2.9 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern u32 func_00192438(void);
@@ -12,5 +11,5 @@ void func_0018EC90(void *arg0, s32 arg1, s16 arg2, s16 arg3, s16 arg4) {
     } else {
         func_00192560(arg0, arg2, arg3, arg4, 0, 0);
     }
-    M2C_FIELD(arg0, s64 *, 0x10) = (s64) (((arg2 & 0xF) << 0xF) | ((((s32) (arg3 + 0x3F) >> 6) & 0x3F) << 9) | (arg1 & 0x1FF));
+    M2C_FIELD(arg0, s64 *, 0x10) = ((s64)(arg2 & 0xF) << 15) | ((s64)(((arg3 + 0x3F) >> 6) & 0x3F) << 9) | (arg1 & 0x1FF);
 }

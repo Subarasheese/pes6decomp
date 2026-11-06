@@ -1,24 +1,23 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
 s32 func_002C19F0(s32, s32, s32, M2C_UNK, s32);     /* extern */
-s32 func_002C1BF0(M2C_UNK);                         /* extern */
+s32 func_002C1BF0(s32, s32, s32, s32);                         /* extern */
 s32 func_00C13640(s32, M2C_UNK *, s32);             /* extern */
 extern char D_00CB3450[];
 extern char D_00CB3468[];
 
 s32 func_00C5BBC0(s32 arg0, s32 arg1, s32 arg2) {
-    s32 temp_s0;
     s32 temp_v0;
     s32 temp_v0_2;
-    s32 var_s1;
     s32 var_s2;
+    s32 var_s1;
+    s32 temp_s0;
 
     var_s2 = -1;
     if ((arg0 != -1) && (arg1 != -1)) {
-        temp_v0 = func_002C1BF0(6);
+        temp_v0 = func_002C1BF0(arg0, arg1, arg2, 6);
         var_s1 = temp_v0;
         if (temp_v0 != 0) {
             temp_s0 = (*(s32 *)D_00CB3468);
