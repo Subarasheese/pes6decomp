@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 s32 func_001454C0(M2C_UNK);                         /* extern */
@@ -10,8 +9,8 @@ extern char D_00520328[];
 extern char D_0052032C[];
 
 void func_0019EF00(void) {
-    s32 temp_s0;
     s32 temp_s1;
+    s32 temp_s0;
 
     (*(s32 *)D_00520320) = 0;
     (*(s32 *)D_00520324) = 0;
