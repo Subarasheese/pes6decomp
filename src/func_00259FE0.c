@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_0025EC20(s32);
@@ -24,15 +23,15 @@ void func_00259FE0(void) {
         func_0025EC20(3);
     }
     temp_v0 = func_0025E0E0(5);
-    switch (temp_v0) {                              /* irregular */
+    switch (temp_v0) {
+    case 0:
+    case 1:
+        break;
     case 2:
         func_0025A270();
-        return;
+        break;
     case 3:
         func_0025A170();
         break;
-    case 1:
-    case 0:
-        return;
     }
 }

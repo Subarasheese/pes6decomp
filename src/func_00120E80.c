@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_00101190(M2C_UNK, M2C_UNK);            /* extern */
@@ -14,12 +13,12 @@ M2C_UNK func_00260CB0();                            /* extern */
 extern s32 D_003E9784;
 extern s32 D_003E9C0C;
 extern char D_003FAE50[];
-extern void *D_003FAE54;
+extern void *D_003FAE54[];
 
 void func_00120E80(void) {
     void *var_s0;
 
-    var_s0 = D_003FAE54;
+    var_s0 = D_003FAE54[0];
     func_001A4150();
     if (D_003E9784 != 0) {
         do {

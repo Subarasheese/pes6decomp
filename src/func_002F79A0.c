@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 s32 func_0017A670(M2C_UNK);                         /* extern */
@@ -29,17 +28,17 @@ void func_002F79A0(void) {
         case 2:                                     /* switch 1 */
             temp_v0_2 = func_002F6DD0();
             switch (temp_v0_2) {                    /* switch 2; irregular */
-            case 3:                                 /* switch 2 */
-                func_0017A700(0, 4);
-                break;
-            case 2:                                 /* switch 2 */
-                func_0017A700(0, 9);
-                return;
-            case 1:                                 /* switch 2 */
+            case 1:
                 func_001FC780(5);
                 func_0029A0B0(0);
                 func_0017A700(0, 8);
                 return;
+            case 2:
+                func_0017A700(0, 9);
+                return;
+            case 3:
+                func_0017A700(0, 4);
+                break;
             }
         } else {
             return;
