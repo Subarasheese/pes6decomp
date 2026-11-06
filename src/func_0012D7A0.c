@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_0012D4F0(s32, s32);
@@ -15,12 +14,12 @@ extern s32 D_003E9794;
 s32 func_0012D7A0(s32 arg0, u32 arg1) {
     s32 temp_s0;
     s32 temp_s4;
-    s32 var_s0;
     s32 var_s1;
+    s32 var_s0;
 
     var_s1 = func_0012D640();
     var_s0 = 1;
-    if (D_003E9794 >= 2) {
+    if (D_003E9794 > 1) {
 loop_1:
         if (var_s0 != var_s1) {
             if (func_0012D540(var_s0, arg1) != 0) {
