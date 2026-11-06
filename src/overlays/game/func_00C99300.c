@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_002BB820(int, int);
@@ -7,7 +6,7 @@ extern int func_002DCA30(void);
 extern void func_00BBB960(u32);
 M2C_UNK func_002BBF20(M2C_UNK *);                   /* extern */
 s32 func_00BBB8C0(M2C_UNK);                         /* extern */
-M2C_UNK func_00BBC290(M2C_UNK, M2C_UNK *, M2C_UNK, s32, M2C_UNK); /* extern */
+M2C_UNK func_00BBC290(M2C_UNK, M2C_UNK *, M2C_UNK, s32, f32); /* extern */
 extern char D_003B9320[];
 extern char D_008B145C[];
 extern char D_00CA92B0[];
@@ -31,11 +30,11 @@ void func_00C99300(void *arg0) {
         } else {
             var_a0 = 3;
         }
-        if (M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x30) != 0x5A1) {
-            func_00BBC290(0, ((void *)D_00CA9300), 0, var_a0 & 0xFF, 0x40400000);
+        if (M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x30) == 0x5A1) {
+            func_00BBC290(0, ((void *)D_00CA92B0), 0, var_a0 & 0xFF, 3.0f);
             return;
         }
-        func_00BBC290(0, ((void *)D_00CA92B0), 0, var_a0 & 0xFF, 0x40400000);
+        func_00BBC290(0, ((void *)D_00CA9300), 0, var_a0 & 0xFF, 3.0f);
         return;
     }
     func_002BB820((s32) M2C_FIELD(arg0, u8 *, 0), 0x1D);

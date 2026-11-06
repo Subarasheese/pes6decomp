@@ -1,18 +1,17 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_00153FA0(void *);                      /* extern */
 
 void func_008FFE70(void *arg0) {
     void *temp_a0;
-    void *temp_s0;
-    void *temp_s1;
-    void *temp_s2;
-    void *temp_s3;
-    void *temp_s4;
-    void *temp_s5;
     void *temp_s6;
+    void *temp_s5;
+    void *temp_s4;
+    void *temp_s3;
+    void *temp_s2;
+    void *temp_s1;
+    void *temp_s0;
     void *temp_s7;
 
     if (arg0 != NULL) {

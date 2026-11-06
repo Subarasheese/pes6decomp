@@ -1,10 +1,9 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 void func_00B444B0(s32 arg0, s8 *arg1, s8 *arg2) {
     s32 temp_a0;
-    u32 var_a4;
+    s32 var_a4;
 
     temp_a0 = arg0 & 0xFFFF;
     if ((temp_a0 >= 0x40) && (temp_a0 < 0x54)) {
@@ -26,6 +25,6 @@ void func_00B444B0(s32 arg0, s8 *arg1, s8 *arg2) {
     } else {
         var_a4 = 0;
     }
-    *arg1 = (var_a4 / 20) + (var_a4 >> 0x1F);
-    *arg2 = (s8) ((s32) var_a4 % 20);
+    *arg1 = var_a4 / 20;
+    *arg2 = (s8) (var_a4 % 20);
 }

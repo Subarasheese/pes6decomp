@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern int func_002DCA30(void);
@@ -17,19 +16,19 @@ extern char D_00CCCD98[];
 extern char D_00CCCDA0[];
 extern char D_00CCCDA8[];
 extern char D_00CCCDB0[];
-extern M2C_UNK func_00C820D0;
-extern M2C_UNK func_00C82150;
+extern void func_00C820D0(void);
+extern void func_00C82150(void);
 
 void func_00C84210(void) {
-    M2C_UNK *var_s0;
     s32 var_s1;
+    u8 *var_s0;
     s32 var_v0;
 
     if (func_002DCA30() != 0) {
         func_00C843A0();
     }
     var_s1 = 0;
-    var_s0 = ((void *)D_00CCC200);
+    var_s0 = (u8 *)D_00CCC200;
     do {
         var_v0 = func_00C76850(var_s1);
         if ((var_v0 != 2) && (var_v0 != 1) && (var_v0 != 0)) {
@@ -58,6 +57,6 @@ void func_00C84210(void) {
         func_001C48E8(((void *)D_00CCCD98), 0, 8);
         func_001C48E8(((void *)D_00CCCD90), 0, 8);
     }
-    func_00C88EC0(0, &func_00C820D0, 0);
-    func_00C88DD0(0, &func_00C82150, 0);
+    func_00C88EC0(0, (void *)func_00C820D0, 0);
+    func_00C88DD0(0, (void *)func_00C82150, 0);
 }
