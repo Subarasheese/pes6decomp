@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_00145590(s32);                         /* extern */
@@ -25,17 +24,17 @@ extern char D_0051FF98[];
 extern char D_00520358[];
 extern char D_0052035C[];
 extern char D_00520360[];
-extern M2C_UNK func_001A25E0;
-extern M2C_UNK func_001A2D00;
+extern void func_001A25E0(void);
+extern void func_001A2D00(void);
 
 void func_001A11E0(void) {
     s32 sp3C;
-    s32 *var_s0;
     s32 temp_a0;
     s32 temp_s0;
     s32 temp_v0;
     s32 temp_v0_2;
     s32 var_s1;
+    s32 *var_s0;
 
     func_00186420();
     var_s1 = 0;
@@ -48,7 +47,7 @@ void func_001A11E0(void) {
             *var_s0 = 0;
         }
         var_s1 += 1;
-        var_s0 += 4;
+        var_s0 += 1;
     } while (var_s1 < 2);
     func_00183160();
     func_001830B0();
@@ -89,7 +88,7 @@ void func_001A11E0(void) {
     func_00145750(temp_v0_2);
     do {
 
-    } while (func_0017FA00(0x124F9, &func_001A25E0, 0, 0) != 1);
+    } while (func_0017FA00(0x124F9, (void *)func_001A25E0, 0, 0) != 1);
     func_001A2B30(1);
     temp_s0 = func_001CE760();
     (*(s32 *)D_0051FF80) = 0;
@@ -97,6 +96,6 @@ void func_001A11E0(void) {
     sp3C = 1;
     do {
 
-    } while (func_0017F9A0(temp_s0, &func_001A2D00, &sp3C, 4, ((void *)D_00520360)) != 1);
+    } while (func_0017F9A0(temp_s0, (void *)func_001A2D00, &sp3C, 4, ((void *)D_00520360)) != 1);
     func_001A27A0(1);
 }
