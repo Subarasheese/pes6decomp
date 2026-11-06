@@ -1,0 +1,10 @@
+/* compiler: ee-gcc-2.9 */
+#include "pes6/m2c.h"
+void *func_0016AB80(M2C_UNK, s32);
+void func_0016A718(M2C_UNK arg0, s32 arg1) {
+    void *temp_v0;
+    temp_v0 = func_0016AB80(arg0, 0x11);
+    if (temp_v0 != NULL) {
+        M2C_FIELD(temp_v0, s32 *, 0x14) = arg1;
+    }
+}
