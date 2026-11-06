@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_001AAF40(void *, signed char);
@@ -35,28 +34,18 @@ void func_00BEB690(void) {
     func_00B25380(*temp_v0);
     func_0027A880(0);
     temp_a0 = *temp_v0;
-    var_f0 = 12185.0f;
     temp_f1 = M2C_FIELD(temp_a0, f32 *, 0xE0);
-    if (temp_f1 <= 12185.0f) {
-        var_f0 = -12185.0f;
-        if (temp_f1 < -12185.0f) {
-            goto block_4;
-        }
-    } else {
-block_4:
-        M2C_FIELD(temp_a0, f32 *, 0xE0) = var_f0;
+    if (temp_f1 > 12185.0f) {
+        M2C_FIELD(temp_a0, f32 *, 0xE0) = 12185.0f;
+    } else if (temp_f1 < -12185.0f) {
+        M2C_FIELD(temp_a0, f32 *, 0xE0) = -12185.0f;
     }
     temp_a0_2 = *temp_v0;
-    var_f0_2 = 7449.0f;
     temp_f1_2 = M2C_FIELD(temp_a0_2, f32 *, 0xE8);
-    if (temp_f1_2 <= 7449.0f) {
-        var_f0_2 = -7449.0f;
-        if (temp_f1_2 < -7449.0f) {
-            goto block_7;
-        }
-    } else {
-block_7:
-        M2C_FIELD(temp_a0_2, f32 *, 0xE8) = var_f0_2;
+    if (temp_f1_2 > 7449.0f) {
+        M2C_FIELD(temp_a0_2, f32 *, 0xE8) = 7449.0f;
+    } else if (temp_f1_2 < -7449.0f) {
+        M2C_FIELD(temp_a0_2, f32 *, 0xE8) = -7449.0f;
     }
     if ((*(s32 *)D_00CBD570) != 0) {
         func_00BEAB30(temp_a0_2);

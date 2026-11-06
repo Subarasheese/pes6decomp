@@ -1,17 +1,17 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 s32 func_00AFBAB0(s32);                             /* extern */
-s32 func_00BDB8B0(M2C_UNK *);                       /* extern */
+s32 func_00BDB8B0(u8 *);                       /* extern */
 extern char D_0058EA30[];
 extern char D_005902F0[];
 
 /* Warning: Gap in callee-saved word stack region.
  * Saved: [0x0, 0x10, 0x14, 0x18, 0x1c, 0x20, 0x24, 0x28, 0x2c, 0x30, 0x34, 0x38, 0x3c, 0x40, 0x44, 0x48, 0x4c, 0x50, 0x54], gap at: 0x8. */
 u8 func_00914930(s32 arg0) {
-    M2C_UNK *var_s1;
-    M2C_UNK *var_s1_2;
+    u8 var_s2;
+    u8 *var_s1;
+    u8 *var_s1_2;
     f32 temp_f0;
     f32 temp_f0_2;
     f32 var_f20;
@@ -19,7 +19,6 @@ u8 func_00914930(s32 arg0) {
     s32 temp_s0;
     s32 var_s3;
     s32 var_s3_2;
-    u8 var_s2;
 
     var_s2 = 0;
     temp_s0 = arg0 & 0xFF;

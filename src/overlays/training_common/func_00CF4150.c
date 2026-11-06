@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 s32 func_0013E280();                                /* extern */
@@ -34,9 +33,6 @@ void func_00CF4150(void) {
     (*(s32 *)D_00CFFF4C) = 1;
     temp_v0 = func_002631D0(1);
     switch (temp_v0) {                              /* irregular */
-    case 6:
-    case 5:
-        break;
     case 8:
         func_00CDC7C0(0);
         break;
@@ -50,6 +46,9 @@ void func_00CF4150(void) {
         func_00CF59C0();
         func_00CF5900();
         func_00CF5D80();
+        break;
+    case 5:
+    case 6:
         break;
     }
     func_009E1D30(1, 0);

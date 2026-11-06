@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 extern s32 D_003E7E28;
@@ -7,11 +6,11 @@ extern char D_00CFF8C0[];
 extern char D_00CFF940[];
 
 void func_00CE89A0(void) {
-    M2C_UNK *var_a1;
-    M2C_UNK *var_v1;
-    s32 temp_a5;
-    s32 var_a0;
     s32 var_a2;
+    u8 *var_a1;
+    s32 var_a0;
+    u8 *var_v1;
+    s32 temp_a5;
 
     var_a2 = 0;
     var_a1 = ((void *)D_00CFF940);

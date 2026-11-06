@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_00AFBD50(void);
@@ -16,10 +15,10 @@ M2C_UNK func_00B2F9C0();                            /* extern */
 M2C_UNK func_00B619A0();                            /* extern */
 
 void func_00AFC460(void) {
-    s32 var_s0;
     s32 var_s1;
-    s32 var_s2;
+    s32 var_s0;
     s32 var_s3;
+    s32 var_s2;
     void *temp_v0;
     void *temp_v0_2;
 
