@@ -1,5 +1,4 @@
 /* compiler: ee-gcc-2.9 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -17,9 +16,9 @@ s32 func_00135048(s32 *arg0) {
     do {
         temp_v0 = *var_a0;
         var_v1 -= 1;
-        var_a0 += 4;
+        var_a0 += 1;
         *var_a1 = temp_v0;
-        var_a1 += 4;
+        var_a1 += 1;
     } while (var_v1 >= 0);
     return 0;
 }

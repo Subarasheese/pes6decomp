@@ -1,5 +1,4 @@
 /* compiler: ee-gcc-2.9 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -11,7 +10,8 @@ void func_00134238(void) {
     s8 *var_v0;
 
     var_v1 = 0xFF;
-    var_v0 = ((void *)D_011D6E00) + 0xFF;
+    var_v0 = (s8 *)D_011D6E00;
+    var_v0 += var_v1;
     do {
         *var_v0 = 0;
         var_v1 -= 1;
