@@ -1,9 +1,7 @@
 /* compiler: ee-gcc-2.9 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-
-M2C_UNK func_00106F08(M2C_UNK);                     /* extern */
+extern void func_00106F08(s32);
 extern s32 D_006020A0;
 extern s32 D_006020A4;
 
