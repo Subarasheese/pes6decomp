@@ -6379,21 +6379,6 @@
   },
   {
    "image": "main",
-   "address": "002332F0",
-   "symbol": "func_002332F0",
-   "source": "nonmatching/main/func_002332F0.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "1ec696253b029636aea8d5e58f6fc1769e22112769f817ed83618a0807551720",
-   "original_sha256": "e49f1000f78c2488bbedbe79fd4887f2fbf642fc87a613bf258615fb17a6e4bb",
-   "minimum_similarity": 50,
-   "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review."
-   ]
-  },
-  {
-   "image": "main",
    "address": "00237B20",
    "symbol": "func_00237B20",
    "source": "nonmatching/main/func_00237B20.c",
