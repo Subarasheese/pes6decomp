@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_00186550(M2C_UNK, s32, s32, M2C_UNK);  /* extern */
@@ -17,21 +16,20 @@ void func_00186260(void) {
     s32 temp_a1;
     s32 temp_a2;
     s32 var_s0;
-    s32 var_s0_2;
 
     var_s0 = 0xD1;
     if (func_00188A30() == 1) {
-        var_s0 = 0xD1 | 0x20;
+        var_s0 |= 0x20;
     }
     if (func_001889E0() == 1) {
         var_s0 |= 0x10000;
     }
-    if (func_001888F0() != 1) {
-        var_s0_2 = var_s0 | 0x200;
+    if (func_001888F0() == 1) {
+        var_s0 |= 0x100;
     } else {
-        var_s0_2 = var_s0 | 0x100;
+        var_s0 |= 0x200;
     }
-    func_001867C0(var_s0_2);
+    func_001867C0(var_s0);
     temp_a2 = (*(s32 *)D_0051FFD0) | 0x10361;
     temp_a1 = (*(s32 *)D_0051FFD8);
     (*(s32 *)D_0051FFD0) = temp_a2;
