@@ -6304,21 +6304,6 @@
   },
   {
    "image": "main",
-   "address": "001F87E0",
-   "symbol": "func_001F87E0",
-   "source": "nonmatching/main/func_001F87E0.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "4316687c067df53253cbe0cca1c6ebd240fcf2c8be9a8ab3bc86fcf463ac90d5",
-   "original_sha256": "19b80f9833cb06aeb1d13fa184e71dd6d1088a42e78b4aaa43755784b2287def",
-   "minimum_similarity": 50,
-   "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review."
-   ]
-  },
-  {
-   "image": "main",
    "address": "001FCD30",
    "symbol": "func_001FCD30",
    "source": "nonmatching/main/func_001FCD30.c",
@@ -124368,22 +124353,6 @@
   },
   {
    "image": "main",
-   "address": "00101E98",
-   "symbol": "func_00101E98",
-   "original_sha256": "159ede1641de3e80a285d6ab4ce3c7023e2e273a558621553eb7d1eeccbd7f45",
-   "source": "nonmatching/main/func_00101E98.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "65468cbca8cbe688f9dcfc96fda9b34b35dff9afadf4e3e60d2d9b55b83b6eed",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
    "address": "00102228",
    "symbol": "func_00102228",
    "original_sha256": "52c83151caf270562bc24678a82e0985af8c9352bc1b310de70719223f4b2595",
@@ -124454,38 +124423,6 @@
    "source": "nonmatching/main/func_00102448.c",
    "compiler": "ee-gcc-2.9",
    "source_sha256": "624a7c4830d42445d06e381628552db820c1f2e2103248927791ec5f8267141d",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "001024C8",
-   "symbol": "func_001024C8",
-   "original_sha256": "79c5a1274ac3b3e76a53371244add5c3f54dd1782ae480b54ee263504141e72a",
-   "source": "nonmatching/main/func_001024C8.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "748510491518f08bd54e8739eb9115ea1e260f8c9b805b75fabbc947dde1e9cc",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "00102500",
-   "symbol": "func_00102500",
-   "original_sha256": "e9a19054ef0c037009f5258b36df85b71ad5185f59212d5c6a91dd0514198154",
-   "source": "nonmatching/main/func_00102500.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "a40e8c230f2423955dcfc52754911d00bd86f7f0a47550f0cad3f26054e4c174",
    "minimum_similarity": 0,
    "confidence": "provisional",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
@@ -124640,22 +124577,6 @@
   },
   {
    "image": "main",
-   "address": "00111EA0",
-   "symbol": "func_00111EA0",
-   "original_sha256": "5c9ae0a9db6ab0ebfd11fe0396b69f48a179a1a81cacb1785cce089d784eb0c8",
-   "source": "nonmatching/main/func_00111EA0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "ce28a5fc077f0777a680e98b12a5013e18fafb4837971f16cf48eb07db0ec8f6",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
    "address": "00112020",
    "symbol": "func_00112020",
    "original_sha256": "f648ad0e31c171daec294b0faf123044017b9262ed825336fef5017ddc19054b",
@@ -124684,22 +124605,6 @@
    "known_issues": [
     "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
     "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "00112D50",
-   "symbol": "func_00112D50",
-   "original_sha256": "471ceb421955ff24568eb968021094c16f8b6bdcbc00fa27d62a9bcf130d2af4",
-   "source": "nonmatching/main/func_00112D50.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "36ed23879d8ad157692fd92bfa0a69390940c2afa25ebb8b002b0ca5f6c2d851",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
    ]
   },
   {
@@ -134496,22 +134401,6 @@
   },
   {
    "image": "main",
-   "address": "001B5350",
-   "symbol": "func_001B5350",
-   "original_sha256": "1b29da63f7bc4e9d779c849ddd1d3acd731a9d095239882953be2588cd0b7af2",
-   "source": "nonmatching/main/func_001B5350.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "348215c0dddc64ede09c37e597ac849f80cfbe041a1fcb01786f4abf17e85c5d",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
    "address": "001B6070",
    "symbol": "func_001B6070",
    "original_sha256": "22b3f796af42ebd942ad6d1ab95aaa0c80e9f1235c61855e9414e8d1ff228fe2",
@@ -134748,22 +134637,6 @@
    "known_issues": [
     "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
     "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "001B8DC0",
-   "symbol": "func_001B8DC0",
-   "original_sha256": "38373b3f64877e7c88d5ea9a6333cbd257bb079ca87ba5cad0640ea5ae4375cd",
-   "source": "nonmatching/main/func_001B8DC0.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "b38e7c65bcf03e60939093f94db79e91664f299d9c787bbda0e8ba6bae6f89d8",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
    ]
   },
   {
@@ -135008,22 +134881,6 @@
   },
   {
    "image": "main",
-   "address": "001BB080",
-   "symbol": "func_001BB080",
-   "original_sha256": "6072895ccaf4109320a6a9544af81c787dbda2544272b576dee6d80b5c40607e",
-   "source": "nonmatching/main/func_001BB080.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "50d5d69e0728c0525fbcf377990ff29cf191b9b58c7803d351a0365934eca86a",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
    "address": "001BB130",
    "symbol": "func_001BB130",
    "original_sha256": "cb10e3730c9d03b30047a6af1de4ea1da2f71893002714655493624d2e155f94",
@@ -135126,22 +134983,6 @@
    "source": "nonmatching/main/func_001BBA60.c",
    "compiler": "ee-gcc-2.9",
    "source_sha256": "ed459b34d73b60c1892bc6c4e49e622eafa5f9d3607c1a673e7d3baf6d5b23f8",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "001BBFD0",
-   "symbol": "func_001BBFD0",
-   "original_sha256": "ac64a9672dfd448d7f9aa398cad2880088d7f639800e10a13c8ceae4a0818886",
-   "source": "nonmatching/main/func_001BBFD0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "173a2cbe342bc908ce09adf7053d914f58307cf559e278ca04d68c0a32ac0ced",
    "minimum_similarity": 0,
    "confidence": "low",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
@@ -135696,22 +135537,6 @@
   },
   {
    "image": "main",
-   "address": "001CEAB0",
-   "symbol": "func_001CEAB0",
-   "original_sha256": "d2d0b4717fde9473cb14fbbbcab5c85d56df20941e785dc53f55400a3ab034e8",
-   "source": "nonmatching/main/func_001CEAB0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "6871b4ccca6adb9e2e788290bd544f4ae1a1967be5951deac326be020e0e31c2",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
    "address": "001CECC0",
    "symbol": "func_001CECC0",
    "original_sha256": "3f188245e82fdf474979aea5197ed34bd45addf282c82f621c24d8c550541531",
@@ -135734,22 +135559,6 @@
    "source": "nonmatching/main/func_001CED30.c",
    "compiler": "mwcc-3.0.1b210",
    "source_sha256": "2acf609d16d09b9c7f08f89a04687b979de32443cb220328b3ce71fede6c44a1",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "001D2F90",
-   "symbol": "func_001D2F90",
-   "original_sha256": "3c5b2ebc8cdc698fbe9b004ea35bc27ac8555d3851ea03521a697571aa114476",
-   "source": "nonmatching/main/func_001D2F90.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "f16bef7040c351b2f1cac87f90eb539c32c2459a05559684fb8e3dee09f1de9b",
    "minimum_similarity": 0,
    "confidence": "low",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
@@ -136150,38 +135959,6 @@
    "source": "nonmatching/main/func_001DA210.c",
    "compiler": "ee-gcc-2.9",
    "source_sha256": "d66eea9348b2cecd78c85364b12c783de210189139a480e3527616d32bfe5725",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "001DA380",
-   "symbol": "func_001DA380",
-   "original_sha256": "46c4c2b6fc82e21e61be51d082a71123ed7acb33855c7f51c4d1316048471195",
-   "source": "nonmatching/main/func_001DA380.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "ab559869738b944148374d19739539dd5ff8fa1ccf60c89b59c0f983ffa15284",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "001DA3F0",
-   "symbol": "func_001DA3F0",
-   "original_sha256": "9703f715a9760d6be4684a8ddaa21871b7f53c8fe7afa1edcc7d9f8a5621e616",
-   "source": "nonmatching/main/func_001DA3F0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "eef4376be9c6b727ba56267db3472686645b5839a13ed33b3115fe2bffea4ebf",
    "minimum_similarity": 0,
    "confidence": "low",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
@@ -136624,22 +136401,6 @@
   },
   {
    "image": "main",
-   "address": "001DF7B0",
-   "symbol": "func_001DF7B0",
-   "original_sha256": "95819b0bc76911573464e98c53b8caed2e396d0922b48e6d718f53468767a4a7",
-   "source": "nonmatching/main/func_001DF7B0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "2fb6a6c5260ac7c01da231dc414cd2d21361478d8d0d788242bf5cf21f18646b",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
    "address": "001E0540",
    "symbol": "func_001E0540",
    "original_sha256": "3d748b507df4a359b762eab4f6501c462b030cfe58084d587067403473ac3958",
@@ -137078,22 +136839,6 @@
    "source": "nonmatching/main/func_001E60F0.c",
    "compiler": "ee-gcc-2.9",
    "source_sha256": "589a2d752bcb89fb97b0c371cbc0ca28a977bc28b6d51117026d733f4ed9e25a",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "001E6360",
-   "symbol": "func_001E6360",
-   "original_sha256": "ae23c5fe13b59520b4153edf2af962b50009fb06ba070786d45f29973bfffbd7",
-   "source": "nonmatching/main/func_001E6360.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "455426cb9930d32470eadd5b78e2d9596f82323512f193b3275f7a05330b430b",
    "minimum_similarity": 0,
    "confidence": "low",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
@@ -148336,22 +148081,6 @@
   },
   {
    "image": "main",
-   "address": "002C7B30",
-   "symbol": "func_002C7B30",
-   "original_sha256": "c049dbcca5e8b5d0edb460705dbaf8afd76d1846db61e5ad5c3d1839f4a7c53a",
-   "source": "nonmatching/main/func_002C7B30.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "0e723da0379d4ad1b62df7c2ced46df3220f364836538c2051c4f0025fd54c27",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
    "address": "002C7DA0",
    "symbol": "func_002C7DA0",
    "original_sha256": "8eefc029c3181ff57e0c4f3c2f569eefca5cb7fa00efda5342e132bf8aebb8ad",
@@ -149056,22 +148785,6 @@
   },
   {
    "image": "main",
-   "address": "002D9D28",
-   "symbol": "func_002D9D28",
-   "original_sha256": "cbcee2b36595c0795de7447b233a25e38eafe3758f2177333faf00b136045434",
-   "source": "nonmatching/main/func_002D9D28.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "635d8f1085ae0579a90b6927f49c5d4baad70d094675c914bbbecd9447c2d264",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
    "address": "002D9D68",
    "symbol": "func_002D9D68",
    "original_sha256": "29ddec1d3a196558c0d674b4a31b49eeaf943ed42005886525f4e81d1c65420f",
@@ -149334,22 +149047,6 @@
    "source": "nonmatching/main/func_002DAAE8.c",
    "compiler": "ee-gcc-2.9",
    "source_sha256": "1f13fcecc971b4d117f166a88f6884d0c292a8986ca7c5c41c6b0f7d7ef565e5",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "002DAFD0",
-   "symbol": "func_002DAFD0",
-   "original_sha256": "8b2f0abf8f6ee8b19d4796214d03119d7ce487e498487650899e6ce94b041053",
-   "source": "nonmatching/main/func_002DAFD0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "56307b9d8778909b1ae9dc9df62ae390983399ad816643a365186c1a65978989",
    "minimum_similarity": 0,
    "confidence": "provisional",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
@@ -150326,38 +150023,6 @@
    "source": "nonmatching/main/func_002DF050.c",
    "compiler": "mwcc-3.0.1b210",
    "source_sha256": "243ec057c8e4098360ecaa0ebbcc54dc22746e72bf8643296cf15657077f9c13",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "002DF8E0",
-   "symbol": "func_002DF8E0",
-   "original_sha256": "847db19144792443c8ee5fcfc76ba43a8ffd475643e2b4f9deb9cdbe3453aea2",
-   "source": "nonmatching/main/func_002DF8E0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "204e1b4c5857aa90827886b034d925545e9cec835f519e7c94ecd6600a527796",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "002DF960",
-   "symbol": "func_002DF960",
-   "original_sha256": "7b9fe2916973bf3a90b3b09a80b7ca2ebf0bcd122417f5945c279f6690cae29f",
-   "source": "nonmatching/main/func_002DF960.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "11777543a7956cef9014b79d6cb31baacd019ec117555feb0451a6bde4b91562",
    "minimum_similarity": 0,
    "confidence": "low",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
