@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 s32 func_008F6C70();                                /* extern */
@@ -17,14 +16,14 @@ s32 func_008F86F0(s32 arg0) {
         return func_008F77A0((*(s32 *)D_009083B8));
     }
     switch (arg0) {                                 /* irregular */
-    case 0x1000:
     case 0x40:
+    case 0x1000:
         return func_008F7660((*(s32 *)D_009083B8));
     case 0x80:
         return func_008F75A0();
-    case 0x400:
-    case 0x200:
     case 0x100:
+    case 0x200:
+    case 0x400:
         return func_008F7440((*(s32 *)D_009083B8));
     case 0x2000:
         return func_008F72A0();

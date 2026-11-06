@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern s32 func_002F7970(void);
@@ -34,8 +33,8 @@ void func_008FC480(void) {
                 func_0084F7A0();
                 func_0084A620(1);
             }
-            var_s0 = 1;
             (*(s8 *)D_00592703) = temp_s2 + (temp_s1 * 2);
+            var_s0 = 1;
         }
         if (var_s0 != 0) {
             func_00BFFE80();

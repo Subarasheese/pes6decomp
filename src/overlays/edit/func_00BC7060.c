@@ -1,11 +1,10 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 s32 func_001C4698(M2C_UNK *, M2C_UNK *, M2C_UNK);   /* extern */
 M2C_UNK *func_00220AD0(s32, M2C_UNK);               /* extern */
 M2C_UNK func_00220D00(s32, M2C_UNK, M2C_UNK *, M2C_UNK); /* extern */
-M2C_UNK *func_00220EF0(M2C_UNK);                    /* extern */
+M2C_UNK *func_00220EF0(s32, M2C_UNK);                    /* extern */
 M2C_UNK func_002D5020();                            /* extern */
 M2C_UNK func_002D5060();                            /* extern */
 s32 func_00BC4450(M2C_UNK *);                       /* extern */
@@ -23,16 +22,16 @@ extern s32 D_003EAFA0;
 extern char D_00CE4ED0[];
 
 s32 func_00BC7060(s32 arg0) {
-    M2C_UNK *temp_s2;
     M2C_UNK *temp_s3;
+    M2C_UNK *temp_s2;
     M2C_UNK var_s1;
     s32 temp_v0;
     s32 var_s0;
 
     var_s1 = 1;
     var_s0 = 0;
-    temp_s3 = func_00220EF0(1);
-    temp_s2 = func_00220AD0(arg0, 1);
+    temp_s3 = func_00220EF0(arg0, var_s1);
+    temp_s2 = func_00220AD0(arg0, var_s1);
     switch (D_003EAFA0) {                           /* switch 1; irregular */
     case 0:                                         /* switch 1 */
         func_002D5060();

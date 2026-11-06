@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 s32 func_0017F900();                                /* extern */
@@ -24,11 +23,11 @@ s32 func_009654A0(void) {
     switch (temp_v1) {                              /* irregular */
     case 0:
         if (func_001BE5B0(0) != 0) {
-            if (func_00236DC0() != 1) {
-                func_0094C790(2);
-            } else {
+            if (func_00236DC0() == 1) {
                 func_00986CC0();
                 func_0094C790(1);
+            } else {
+                func_0094C790(2);
             }
         }
         break;

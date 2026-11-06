@@ -1,6 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
+
+typedef struct { u32 x:3; u32 y:3; u32 z:2; } F;
 
 void func_00BCFFF0(void *arg0, void *arg1) {
     M2C_FIELD(arg0, u8 *, 2) = (u8) ((M2C_FIELD(arg0, u8 *, 2) & ~0x7F) | (M2C_FIELD(arg1, u8 *, 2) & 0x7F));
@@ -29,7 +30,7 @@ void func_00BCFFF0(void *arg0, void *arg1) {
     M2C_FIELD(arg0, u8 *, 0x1A) = (u8) ((M2C_FIELD(arg0, u8 *, 0x1A) & ~0x7F) | (M2C_FIELD(arg1, u8 *, 0x1A) & 0x7F));
     M2C_FIELD(arg0, u8 *, 0x1B) = (u8) ((M2C_FIELD(arg0, u8 *, 0x1B) & ~0x7F) | (M2C_FIELD(arg1, u8 *, 0x1B) & 0x7F));
     M2C_FIELD(arg0, u8 *, 0x17) = (u8) ((M2C_FIELD(arg0, u8 *, 0x17) & ~0x7F) | (M2C_FIELD(arg1, u8 *, 0x17) & 0x7F));
-    M2C_FIELD(arg0, u8 *, 0x1D) = (u8) ((M2C_FIELD(arg0, u8 *, 0x1D) & ~7) | (M2C_FIELD(arg1, u8 *, 0x1D) & 7));
-    M2C_FIELD(arg0, u8 *, 0x1D) = (u8) ((M2C_FIELD(arg0, u8 *, 0x1D) & ~0x38) | ((((u64) ((s64) M2C_FIELD(arg1, u8 *, 0x1D) << 0x3A) >> 0x3D) & 7) * 8));
-    M2C_FIELD(arg0, u8 *, 0x1C) = (u8) ((M2C_FIELD(arg0, u8 *, 0x1C) & ~0x38) | ((((u64) ((s64) M2C_FIELD(arg1, u8 *, 0x1C) << 0x3A) >> 0x3D) & 7) * 8));
+    ((F *) ((u8 *) arg0 + 0x1D))->x = ((F *) ((u8 *) arg1 + 0x1D))->x;
+    ((F *) ((u8 *) arg0 + 0x1D))->y = ((F *) ((u8 *) arg1 + 0x1D))->y;
+    ((F *) ((u8 *) arg0 + 0x1C))->y = ((F *) ((u8 *) arg1 + 0x1C))->y;
 }
