@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_001BBFD0(s32);                         /* extern */
@@ -34,10 +33,10 @@ extern char D_008DC288[];
 extern char D_008DC28C[];
 
 void func_008B34C0(void) {
-    s32 *var_s1;
-    s32 *var_s2;
     s32 var_s0;
     s32 var_s3;
+    u8 *var_s2;
+    u8 *var_s1;
 
     if (D_003EA3F8 == 1) {
         var_s0 = 0;
@@ -46,9 +45,9 @@ void func_008B34C0(void) {
             var_s3 = 0;
             var_s1 = var_s2;
 loop_3:
-            func_001BC360(*var_s1);
+            func_001BC360(*(s32 *)var_s1);
             var_s3 += 1;
-            *var_s1 = 0;
+            *(s32 *)var_s1 = 0;
             var_s1 += 4;
             if (var_s3 < 0x17) {
                 goto loop_3;

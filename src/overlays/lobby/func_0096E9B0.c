@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_0026E840(M2C_UNK);                     /* extern */
@@ -20,7 +19,7 @@ M2C_UNK func_0099C760();                            /* extern */
 M2C_UNK func_009B40A0(M2C_UNK);                     /* extern */
 M2C_UNK func_009E0400();                            /* extern */
 M2C_UNK func_009E0430(s32, s32, M2C_UNK *, M2C_UNK); /* extern */
-extern M2C_UNK func_009B1840;
+extern M2C_UNK func_009B1840[];
 
 s32 func_0096E9B0(void) {
     s32 temp_s1_2;
@@ -41,12 +40,12 @@ s32 func_0096E9B0(void) {
         M2C_FIELD(temp_s1, s32 *, 0x18) = 0;
         func_009B40A0(0);
         temp_s1_2 = func_0093C740();
-        func_009E0430(temp_s1_2, func_00950BA0() - 1, &func_009B1840, 0);
-        if (func_0093C740() == 0) {
+        func_009E0430(temp_s1_2, func_00950BA0() - 1, func_009B1840, 0);
+        if (func_0093C740() != 0) {
+            func_009717C0(1);
+        } else {
             func_0026E840(0x8C008005);
             func_009717C0(2);
-        } else {
-            func_009717C0(1);
         }
         break;
     case 1:
