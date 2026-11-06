@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_00181C70(M2C_UNK, M2C_UNK);            /* extern */
@@ -28,7 +27,15 @@ void func_002109F0(void) {
         func_00181F20(0x15, 7, 0);
         func_00181F20(7, 2, 0);
     }
-    if (!(func_001A5100() < 0.0f)) {
+    if (func_001A5100() < 0.0f) {
+        func_00181FE0(8, 0);
+        func_00181FE0(0x17, 0);
+        func_00181F20(1, 1, 0);
+        func_00181F20(0x15, 1, 0);
+        func_00181F20(0x15, 2, 0);
+        func_00181F20(0x15, 0, 0);
+        func_00181F20(7, 0, 0);
+    } else {
         func_00181FE0(9, 0);
         func_00181FE0(0x18, 0);
         func_00181F20(1, 2, 0);
@@ -36,13 +43,5 @@ void func_002109F0(void) {
         func_00181F20(0x15, 5, 0);
         func_00181F20(0x15, 3, 0);
         func_00181F20(7, 1, 0);
-        return;
     }
-    func_00181FE0(8, 0);
-    func_00181FE0(0x17, 0);
-    func_00181F20(1, 1, 0);
-    func_00181F20(0x15, 1, 0);
-    func_00181F20(0x15, 2, 0);
-    func_00181F20(0x15, 0, 0);
-    func_00181F20(7, 0, 0);
 }
