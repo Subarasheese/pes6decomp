@@ -1,0 +1,10 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+M2C_UNK func_00839170();                            /* extern */
+
+s32 func_00842070(void) {
+    func_00839170();
+    return 1;
+}

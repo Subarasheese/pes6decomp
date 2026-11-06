@@ -1,0 +1,10 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+extern char D_005E24B8[];
+extern char D_005E24BC[];
+
+f32 func_00BBCB90(void) {
+    return (*(f32 *)D_005E24BC) / (*(f32 *)D_005E24B8);
+}

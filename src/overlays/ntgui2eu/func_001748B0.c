@@ -1,0 +1,9 @@
+/* compiler: ee-gcc-2.9 */
+#include "pes6/m2c.h"
+
+
+void func_001748B0(void *arg0, s32 arg1) {
+    if (M2C_FIELD(arg0, s32 *, 0x92C) != arg1) {
+        M2C_FIELD(arg0, s32 *, 0x92C) = arg1;
+    }
+}

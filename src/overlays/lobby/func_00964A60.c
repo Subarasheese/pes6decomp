@@ -1,0 +1,9 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+s32 func_0083F620();                                /* extern */
+
+s32 func_00964A60(void) {
+    return (func_0083F620() & 0xFF) == 0;
+}

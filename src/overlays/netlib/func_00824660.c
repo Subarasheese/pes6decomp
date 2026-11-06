@@ -1,0 +1,7 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+s32 func_00824660(s32 arg0, M2C_UNK arg1, s32 arg2) {
+    return (arg0 + arg2) >= 1;
+}

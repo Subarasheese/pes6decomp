@@ -1,0 +1,9 @@
+/* compiler: ee-gcc-2.9 */
+#include "pes6/m2c.h"
+
+
+extern s32 D_006025C8;
+
+void func_001044C0(void) {
+    D_006025C8 = 0xA;
+}

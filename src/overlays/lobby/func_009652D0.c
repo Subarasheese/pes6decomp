@@ -1,0 +1,7 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+extern s32 func_00950BF0(u32);
+void func_009652D0(u32 arg0) {
+    func_00950BF0(arg0);
+}

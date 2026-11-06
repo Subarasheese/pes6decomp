@@ -1,0 +1,7 @@
+/* compiler: ee-gcc-2.9 */
+#include "pes6/m2c.h"
+
+
+void func_0016B230(s32 *arg0, s32 *arg1) {
+    *arg0 = *arg1 * 0x10;
+}

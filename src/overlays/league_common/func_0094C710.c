@@ -1,0 +1,11 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+extern void *D_003E7B0C;
+
+void func_0094C710(s8 arg0) {
+    if (D_003E7B0C != NULL) {
+        M2C_FIELD(D_003E7B0C, s8 *, 2) = arg0;
+    }
+}

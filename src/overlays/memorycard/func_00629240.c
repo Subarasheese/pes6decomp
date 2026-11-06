@@ -1,0 +1,15 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+extern char D_0065C2E0[];
+extern char D_0065C2E2[];
+extern char D_0065C2E3[];
+extern char D_0065C2FC[];
+
+void func_00629240(void) {
+    (*(s8 *)D_0065C2E3) = 1;
+    (*(s8 *)D_0065C2E2) = 1;
+    (*(s8 *)D_0065C2E0) = 1;
+    (*(s8 *)D_0065C2FC) = 1;
+}

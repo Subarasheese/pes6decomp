@@ -1,0 +1,12 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+M2C_UNK func_00C13B60(M2C_UNK *);                   /* extern */
+extern s32 D_003EA7C8;
+extern char D_00CCAD64[];
+
+void func_00C150A0(void) {
+    func_00C13B60(((void *)D_00CCAD64));
+    D_003EA7C8 = 0;
+}

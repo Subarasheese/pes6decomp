@@ -1,0 +1,12 @@
+/* compiler: ee-gcc-2.9 */
+#include "pes6/m2c.h"
+
+
+M2C_UNK func_00130498();                            /* extern */
+s32 func_00154300();                                /* extern */
+
+void func_0012FE18(void) {
+    if (func_00154300() != 0) {
+        func_00130498();
+    }
+}

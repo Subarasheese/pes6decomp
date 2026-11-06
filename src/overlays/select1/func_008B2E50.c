@@ -1,0 +1,9 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+extern void func_001DF4F0(void *, s8);
+void func_008B2E50(void *arg0, s8 arg1) {
+    if (arg0 != NULL) {
+        func_001DF4F0(M2C_FIELD(arg0, void **, 0xC), arg1);
+    }
+}

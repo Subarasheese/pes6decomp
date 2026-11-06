@@ -1,0 +1,9 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+extern void func_00153FA0(void *);
+void func_0099C7C0(void *arg0) {
+    if (arg0 != NULL) {
+        func_00153FA0(arg0);
+    }
+}

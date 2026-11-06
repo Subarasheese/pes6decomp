@@ -1,0 +1,11 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+M2C_UNK func_00CEDC90();                            /* extern */
+M2C_UNK func_00CEDD30();                            /* extern */
+
+void func_00CDEEB0(void) {
+    func_00CEDC90();
+    func_00CEDD30();
+}

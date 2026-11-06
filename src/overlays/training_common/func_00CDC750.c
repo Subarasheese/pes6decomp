@@ -1,0 +1,10 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+extern void func_00CE4650(void);
+M2C_UNK func_00CCE360();                            /* extern */
+
+void func_00CDC750(void) {
+    func_00CE4650();
+    func_00CCE360();
+}

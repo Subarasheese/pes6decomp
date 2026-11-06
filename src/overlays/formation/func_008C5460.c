@@ -1,0 +1,7 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+s32 func_008C5460(s32 *arg0, s32 *arg1) {
+    return *arg0 - *arg1;
+}

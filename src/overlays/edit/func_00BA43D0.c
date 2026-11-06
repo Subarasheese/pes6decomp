@@ -1,0 +1,9 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+s8 *func_002F7F80();                                /* extern */
+
+s32 func_00BA43D0(void) {
+    return *func_002F7F80() != 0;
+}

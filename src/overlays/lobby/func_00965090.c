@@ -1,0 +1,10 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+extern s32 D_003EAC90;
+
+s32 func_00965090(s32 arg0) {
+    D_003EAC90 = arg0;
+    return 1;
+}

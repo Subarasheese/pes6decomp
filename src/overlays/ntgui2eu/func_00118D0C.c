@@ -1,0 +1,9 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+extern void *D_006024F0;
+
+s32 func_00118D0C(void) {
+    return M2C_FIELD(D_006024F0, s32 *, 4);
+}

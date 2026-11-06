@@ -1,0 +1,9 @@
+/* compiler: ee-gcc-2.9 */
+#include "pes6/m2c.h"
+
+
+extern char D_011E6B50[];
+
+s32 func_0015D568(void) {
+    return (*(s32 *)D_011E6B50) & 4;
+}
