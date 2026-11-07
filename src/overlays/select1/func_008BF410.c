@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -10,14 +9,14 @@ extern char D_008E49B0[];
 extern char D_008E49BC[];
 
 void func_008BF410(void) {
-    M2C_UNK *var_a5;
+    u8 *var_a5;
+    s8 *var_a4;
     s16 temp_a0;
     s16 temp_a1;
     s16 temp_a2;
     s32 var_a2;
     s32 var_a3;
     s8 *var_a1;
-    s8 *var_a4;
 
     func_001C48E8(((void *)D_008E49B0), 0, 0x2CD0);
     var_a2 = 0;
@@ -52,9 +51,9 @@ void func_008BF410(void) {
         var_a5 += 0x1A8;
         var_a4 += 0x1A8;
     } while (var_a3 < 0xA);
-    if ((*(s32 *)D_00510FD0) != 4) {
-        (*(s16 *)D_008E49BC) = 1;
+    if ((*(s32 *)D_00510FD0) == 4) {
+        (*(s16 *)D_008E49BC) = 0;
         return;
     }
-    (*(s16 *)D_008E49BC) = 0;
+    (*(s16 *)D_008E49BC) = 1;
 }
