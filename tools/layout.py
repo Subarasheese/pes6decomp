@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Where a function's source lives: src/<subsystem>/<unit>/<Name>.<ext>.
+"""Where a function's source lives.
 
-Subsystems are the address ranges of config/subsystems.txt (knowledge/architecture.md), units the
-translation units of config/units.txt (tools/units.py: RTTI class clusters, `unit_ADDR` for the
-code between them) and Name the function's canonical symbol (tools/symbols.py: the script-engine
-or RTTI name, else func_ADDR). tools/organize.py moves sources to these paths; project.source_for
-finds them there (or still flat in src/, where the solving tools write new matches).
+    resident executable, libraries  src/<category>/<library>/<Name>.<ext>
+    resident executable, game code  src/game/<domain>/<unit>/<Name>.<ext>
+    overlay or auxiliary image      src/overlays/<image>[/<domain>]/<Name>.<ext>
+
+Units are the translation units of config/units.txt (tools/units.py), domains the address ranges of
+domains.txt in the target's config directory (docs/source_layout.md) and Name the function's
+canonical symbol (tools/symbols.py, else func_ADDR). tools/organize.py moves sources to these paths;
+project.source_for finds them there (or still flat in src/, where the solving tools write new matches).
 
     layout.py ADDR...      print the planned path of each function
 """
@@ -33,15 +36,15 @@ def _ranges(path):
     return sorted(out)
 
 
-def subsystems():
-    if "subsystems" not in _cache:
-        _cache["subsystems"] = _ranges(os.path.join(ROOT, "config", "subsystems.txt"))
-    return _cache["subsystems"]
+def domains():
+    if "domains" not in _cache:
+        _cache["domains"] = _ranges(os.path.join(project.CONFIG_ROOT, "domains.txt"))
+    return _cache["domains"]
 
 
 def units():
     if "units" not in _cache:
-        _cache["units"] = _ranges(os.path.join(ROOT, "config", "units.txt"))
+        _cache["units"] = _ranges(os.path.join(project.CONFIG_ROOT, "units.txt"))
     return _cache["units"]
 
 
@@ -56,13 +59,13 @@ def unit_of(addr):
     return _owner(units(), addr) or f"unit_{addr:08X}"
 
 
-def subsystem_of(addr):
-    """The subsystem folder of a function: the one its unit starts in."""
+def domain_of(addr):
+    """The domain of a function, or None. A unit goes wholly to the domain it starts in."""
     ranges = units()
     keys = [r[0] for r in ranges]
     i = bisect.bisect_right(keys, addr) - 1
     start = ranges[i][0] if i >= 0 else addr
-    return _owner(subsystems(), start) or "other"
+    return _owner(domains(), start)
 
 
 def _collisions():
@@ -97,10 +100,15 @@ def path_for(addr, ext=".cpp"):
     """The planned path of a function's source, relative to the repository root, with / separators."""
     source_layout = project.CONFIG["game"].get("source_layout", "organized")
     if source_layout == "flat":
-        return "/".join((os.path.relpath(project.SRC, ROOT).replace(os.sep, "/"), stem(addr) + ext))
+        # An image without units: the image is the domain, with optional domains inside it.
+        src = os.path.relpath(project.SRC, ROOT).replace(os.sep, "/")
+        return "/".join(filter(None, (src, _owner(domains(), addr), stem(addr) + ext)))
     if source_layout != "organized":
         raise ValueError(f"unknown source_layout: {source_layout!r}")
-    return "/".join(("src", subsystem_of(addr), unit_of(addr), stem(addr) + ext))
+    unit = unit_of(addr)
+    if unit.startswith("game/"):
+        unit = "/".join(("game", domain_of(addr) or "unclassified", unit.split("/", 1)[1]))
+    return "/".join(("src", unit, stem(addr) + ext))
 
 
 def main():

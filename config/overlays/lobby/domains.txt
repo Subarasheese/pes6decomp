@@ -1,0 +1,9 @@
+# Domains inside this image, as in config/domains.txt. Sources live in src/overlays/<image>/<domain>/.
+00930080 sections              # str OnSectHandoverLeader_Sub_END, OnSectAddGroupMember_Sub_END
+00969820 group                 # str groupMenuInit, groupTerminate
+00981320 multiplay             # str multiplay_lobby_match_cup_wait, multiplay_lobby_gomatch_cup_match
+0098c5e0 competition           # str onExecCompeInit, compeLobbyTerminate, ON_View_Convention_*
+009c9660 lobby_main            # str OnExecLobbyMainEnd, OnExecRoomMainEnd
+009ca6d0 match_setup           # str OnExecMatchPsetStepInit1, OnSectMatchEnvInit
+009e8a20 ranking               # str onRankCmnSelectHelp
+009f2cf0 quick_match           # str OnSectLobbyQuickMainStepMatch

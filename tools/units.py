@@ -49,14 +49,60 @@ LIBRARIES = [
     (0x00111C90, "sdk/libpad"),         # scePad*
     (0x00112E30, "sdk/libsdr"),         # sceSd*
     (0x001132C8, "sdk/libcdvd"),        # sceCd*
-    (0x0011C750, "runtime/libgcc"),     # copysign, __muldi3, soft-float
+    (0x0011B7F8, "runtime/libm"),       # __kernel_cosf, copysign, isinf
+    (0x0011D6A0, "runtime/libgcc"),     # __muldi3, soft-float
     (0x00120240, None),
-    (0x00155A30, "middleware/cri"),     # CRI ADX / SVM
+    (0x00121800, "middleware/zlib"),    # inflate's messages; version 1.1.4 at 0x14AD60
+    (0x001297E0, None),
+    (0x00154CB8, "sdk/libmtap"),        # sceMtap*, mtapman.irx
+    (0x00155A00, None),
+    # CRI's objects, each from its first function with a known origin. The names are CRI's source
+    # files (see the provenance comments in src/middleware/cri); they link in alphabetical order.
+    (0x00155A30, "middleware/cri/adx_amp"),
+    (0x00156630, "middleware/cri/adx_bahx"),
+    (0x00156720, "middleware/cri/adx_baif"),
+    (0x00157398, "middleware/cri/adx_bau"),
+    (0x00158020, "middleware/cri/adx_bsc"),
+    (0x00159560, "middleware/cri/adx_bsps"),
+    (0x0015A150, "middleware/cri/adx_dcd"),
+    (0x0015B3E0, "middleware/cri/adx_errs"),
+    (0x0015DDC0, "middleware/cri/adx_fs"),
+    (0x0015E9D0, "middleware/cri/adx_lsc"),
+    (0x0015F208, "middleware/cri/adx_mps2"),
+    (0x00161440, "middleware/cri/adx_rnap"),
+    (0x001619F0, "middleware/cri/adx_sjd"),
+    (0x00163258, "middleware/cri/adx_stmc"),
+    (0x00164870, "middleware/cri/adx_sudv"),
+    (0x00164C40, "middleware/cri/adx_suht"),
+    (0x001652C0, "middleware/cri/adx_tlk"),
+    (0x00169960, "middleware/cri/adx_tsvr"),
+    (0x00169EB8, "middleware/cri/adx_xpnd"),
+    (0x0016A520, "middleware/cri/cri_cvfs"),
+    (0x0016C660, "middleware/cri/cri_srd"),
+    (0x0016DEB8, "middleware/cri/dtr"),
+    (0x0016E1C0, "middleware/cri/dtx"),
+    (0x0016E9B0, "middleware/cri/dvci"),
+    (0x00171180, "middleware/cri/htci"),
+    (0x00171ED8, "middleware/cri/lsc"),
+    (0x00172DF8, "middleware/cri/mfci"),
+    (0x00173740, "middleware/cri/pl2enc"),
+    (0x001741D0, "middleware/cri/ps2_rna"),
+    (0x001764D8, "middleware/cri/sj_mem"),
+    (0x00177268, "middleware/cri/sj_rbf"),
+    (0x00177AF8, "middleware/cri/sj_uni"),
+    (0x00178860, "middleware/cri/sj_utl"),
+    (0x00178C18, "middleware/cri/sjr_clt"),
+    (0x00178F98, "middleware/cri/sjx"),
+    (0x001794C0, "middleware/cri/svm"),
     (0x0017A780, None),
     (0x001C02D8, "runtime/newlib"),     # _malloc_r, stdio, mprec, strtol...
-    (0x001CD5A0, None),
+    (0x001CD6B0, None),                 # after __swsetup
     (0x002D9590, "sdk/netcnfif"),       # SceNetcnfif*
     (0x002DB160, None),
+    (0x002DC430, "sdk/bsdsock"),        # bsdsock.c, AVE-TCP: AT_init
+    (0x002DEBC0, None),
+    (0x002FAA70, "sdk/libusbpspcm"),    # sceUsbPspcm*, usbpspcm ERROR
+    (0x002FBF50, None),
 ]
 
 

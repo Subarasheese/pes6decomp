@@ -20,7 +20,7 @@ Some AFS entries have additional zero archive padding, which is not loaded.
 NTGUI uses its own ELF program/section headers and its own register-info GP.
 
 Several images share addresses. A target is therefore `(image, address)`, not
-just an address. Sources live in `src/overlays/<image>/`; generated images,
+just an address. Sources live in `src/overlays/<image>/` (docs/source_layout.md); generated images,
 disassembly, objects and build proofs live in `build/targets/<image>/`. The
 resident source scan excludes that subtree. NTGUI does not import resident
 symbol names, since its code occupies the same address range as SLES.

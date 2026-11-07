@@ -1,0 +1,18 @@
+# Domains inside this image, as in config/domains.txt. Sources live in src/overlays/<image>/<domain>/.
+# Boundaries are the first function referencing each string; earlier functions of a real file stay
+# in the previous domain. File names skb.c, skb_core.c, libsoftkb.c, fontwrap.c, tim2wrap.c and
+# textField.c are the original program's.
+00100000 app                   # str dev9x:, cdrom0:\IOP\*.IRX
+00103a70 softkb                # str changeInputMode, closeSoftKB, SoftKB_Open, skb_list.c
+00119370 font                  # str Font_PutsPacket, scePFontAttachData
+00122360 widgets               # str gBtnPrev, BG::Alpha1, List::gScrollBarShell, TextField, SoftKB::*
+0013c040 netconfig             # str IfcUsrName, DevName, EnvFileName, InputIp::Allow
+00190bc0 sdk/libcdvd           # str SceCdCallbackThread, Libcdvd bind err
+00193100 sdk/libdma            # str <D2_CHCR=
+001942b0 sdk/libpad            # str libpad: Module version mismatch
+00195970 sdk/libmc             # str libmc: too old release of mcman.irx
+00197898 sdk/libusbkb          # str libusbkb : bind errr
+0019c4a8 sdk/tty               # str TTY: receive error
+0019ee30 sdk/sif               # str SceSifrpcCall
+0019f560 sdk/stdio             # str SceStdio*Sema
+001a4790 sdk/libkernel         # str SceKernelLibc, TLB over flow

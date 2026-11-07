@@ -1,0 +1,4 @@
+# Domains inside this image, as in config/domains.txt. Sources live in src/overlays/<image>/<domain>/.
+008f6080 app                   # no strings: functions before the MPEG library
+008f7448 sdk/libmpeg           # str sceMpegGetPicture, macroblock errors, libipu
+008fce00 app                   # str weFileMoviePS2Play

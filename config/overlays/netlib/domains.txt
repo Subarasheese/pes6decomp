@@ -1,0 +1,7 @@
+# Domains inside this image, as in config/domains.txt. Sources live in src/overlays/<image>/<domain>/.
+00802880 lobby_events          # str OnStealthAdd*, OnSectAdd*, on_stealth_lobbyevent_init, OnMatchWaitInit
+0082c130 lobby_client          # str PS2LobbyClient_Init, On_weskbdTerminate
+00843e10 netconfig             # str ktNetCnfAllocWork, sceNetcnfif*
+0085ade0 connection            # str pppoe connect, dhcp connect, AvepppError*
+0085d1e0 protocol              # str receive old pk data, WE DISCOVERY REQUEST
+0087f000 ingame_ui             # str KTSelCreateWindow, PauseChatStart, LiveChatControl

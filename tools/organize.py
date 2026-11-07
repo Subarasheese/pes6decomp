@@ -11,8 +11,9 @@ else the RTTI name) when there is one. The judge and the build resolve both spel
 renamed source matches exactly as before; tools/build.py is the proof after a run (it recompiles
 every changed source and compares the image).
 
-Files: src/<subsystem>/<unit>/<Name>.<ext> (tools/layout.py). New matches written flat as
+Files: the paths of tools/layout.py (docs/source_layout.md). New matches written flat as
 src/func_ADDR.* by the solving tools are picked up by the next run, so this is safe to repeat.
+config/asm_allowed.txt follows the sources it lists.
 """
 import os
 import sys
@@ -47,10 +48,24 @@ def prune(root):
                 pass
 
 
+def follow_moves(moves):
+    """Keep config/asm_allowed.txt on the moved sources: its paths are relative to the root."""
+    allowed = os.path.join(ROOT, "config", "asm_allowed.txt")
+    if not moves or not os.path.exists(allowed):
+        return
+    lines = open(allowed, encoding="utf-8").read().split("\n")
+    for i, line in enumerate(lines):
+        path = line.split("#")[0].strip()
+        if path in moves:
+            lines[i] = line.replace(path, moves[path], 1)
+    open(allowed, "w", encoding="utf-8", newline="\n").write("\n".join(lines))
+
+
 def main():
     check = "--check" in sys.argv
     names_only = "--names" in sys.argv
     renamed, moved = 0, 0
+    moves = {}
     for addr, path, planned, text, new in plan():
         if new != text:
             renamed += 1
@@ -69,7 +84,10 @@ def main():
                 sys.exit(f"{planned} exists already (two sources for 0x{addr:08x}?)")
             os.makedirs(os.path.dirname(planned), exist_ok=True)
             os.replace(path, planned)
+            rel = lambda p: os.path.relpath(p, ROOT).replace(os.sep, "/")
+            moves[rel(path)] = rel(planned)
     if not check:
+        follow_moves(moves)
         prune(project.SRC)
     total = len(project.sources(refresh=True))
     named = sum(1 for a in project.sources() if symbols.name_of(a))

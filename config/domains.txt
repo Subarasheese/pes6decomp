@@ -1,0 +1,73 @@
+# Game domains of the resident executable: "START_ADDRESS DOMAIN  # evidence". A domain runs up to
+# the next entry; a translation unit (config/units.txt) goes wholly to the domain its first
+# function falls in. Sources live in src/game/<domain>/<unit>/.
+#
+# The executable has no symbols or file names, so this is an estimate of the original tree, not a
+# recovery of it. Evidence is, strongest first: "str" a string the code references (often an
+# original function name), "lib" the libraries it calls directly, "call" the units it calls or is
+# called by. Move an entry when better evidence is found, then run tools/organize.py.
+00120240 system                # str dev9, DNAS300.IMG; lib loadfile, iopheap, sif
+001297e0 graphics              # lib libgraph, libvifpk; DMAC and GS handlers
+0012dda0 input/keyboard        # lib sif "bind errr"; only caller is mn_KeyboardInit's unit
+0012f250 graphics              # lib libvifpk
+00134330 movie                 # str "pts buffer overflow"; lib libsdr, libcdvd, libgraph
+00138a40 graphics              # call texture and packet code
+00140f40 graphics/texture      # str TexResidence*, TexAdd, TexDel
+0014a6a0 graphics              # str zlib version 1.1.4, calls inflate; call texture code (165 calls)
+00153cd0 input                 # lib libpad
+00155a00 system                # call file code only
+0017a780 graphics              # lib libvifpk; call texture code
+0017e110 filesystem            # str host0:ovl/release/filelist.ovl, HST:%s/%s; lib CRI, fileio
+001817c0 graphics/model        # call packet code (127 calls), texture code
+001a58e0 system                # call pad and flow code
+001a6b00 ui                    # str mnEasyHelpInitMain, mnHeaderSetBasis, mnNowLoading*, mnPadEvInit
+001c0290 system                # call graphics only; no strings
+001cd6b0 system                # lib loadfile; small helpers called from everywhere
+001ce690 graphics              # lib libvifpk (29 calls)
+001d4d90 ui                    # call Pes6Sprite_SetPositionZ; called by the menu units
+001f7fa0 app                   # call into almost every domain
+001fc730 match                 # call match objects, ball
+00209420 menu                  # call menu and data units
+0020c4b0 ui                    # call ui widgets only
+0020db50 graphics/model        # call model code (64 calls)
+00210df0 ui                    # str mnSubMenuSetWork
+00214720 filesystem/disc       # lib libcdvd; no callers from game code
+0021df90 data                  # call Pes6Player_*, Pes6Team_*
+0023ae40 menu/options          # str opt_keyconfig_*, Plsl_PadIn
+0024e920 audio                 # lib CRI ADX (21 calls); called with SD_call/SD_stop from flow code
+00255e40 menu                  # call data, ui, audio
+002684e0 app                   # str Pausesetup, PauseEvSet, Resultsetup, SD_stop
+0026ed70 match                 # call match objects
+0027a880 match/ball            # names Pes6Ball_* (docs/ball_physics.md)
+0028bd40 match                 # call match objects; Pes6MatchObj28_*
+002ca8c0 ui                    # call pad and ui code
+002cbe20 system                # weak: few callers, no strings
+002cd170 filesystem            # str hdd%d:, pfs:, dev9x:; lib libcdvd, fileio
+002ce1c0 menu                  # call ui widgets (102 calls)
+002d0b20 ui                    # call the mn* unit (44 calls)
+002d2230 match                 # call match objects
+002d32a0 menu                  # call flow and ui code
+002d4840 app                   # call keyboard, flow; called by the presentation units
+002d5930 menu                  # call the menu at 002d32a0
+002d6ac0 graphics/model        # call model code
+002d7b20 match                 # weak: no callers, calls match code
+002d8bd0 menu                  # str init_obj; call packet code, ui
+002db160 ui                    # call ui widgets
+002debc0 ui                    # str mnCmncsrSetSub
+002e3de0 menu                  # call ui widgets (116 calls)
+002e8490 memorycard            # str MC_Ctrl_MemoryCard, Mn_Ts_Init
+002ed990 menu                  # call data
+002f6900 app                   # call into many domains; called by flow code
+002f7a90 data                  # call Pes6Player_*
+002f8bf0 menu                  # call ui widgets
+002fa660 ui                    # call ui widgets
+002fbf50 match/presentation    # call flow, ui; called by Pausesetup's unit
+00308310 match                 # call match code, data
+0030c1c0 menu                  # call ui, data
+0030d230 match/ai              # names Pes6MatchPlayer_*, Pes6Ball_*, Pes6BitSet_*; dense call cluster
+00359f40 menu                  # call ui widgets
+00360930 app                   # call into many domains; lib CRI
+00361a10 input/keyboard        # str mn_KeyboardInit
+00363cc0 ui                    # str Mn_MeterInit
+00366290 menu                  # call data, ui
+00367e20 match/ai              # call the AI cluster

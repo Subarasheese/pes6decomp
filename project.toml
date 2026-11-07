@@ -8,8 +8,8 @@
 name = "Pro Evolution Soccer 6 (PAL, SLES-542.03)"
 serial = "SLES-542.03"
 basename = "pes6"
-# This project keeps address-named functions flat until units are identified.
-source_layout = "flat"
+# Sources are organized by library and game domain (tools/layout.py, docs/source_layout.md).
+source_layout = "organized"
 executable = "orig/SLES_542.03"
 # The executable is already a plain ELF, so it doubles as the "converted" ELF.
 elf = "orig/SLES_542.03"

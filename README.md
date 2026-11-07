@@ -38,7 +38,8 @@ address ranges, extraction, verification, and the verified overlay and auxiliary
 
 ## Contents
 
-- `src/`: one verified function per file; address names remain until behavior is established.
+- `src/`: one verified function per file, organized by library and game domain (see
+  [source layout](docs/source_layout.md)); address names remain until behavior is established.
 - `nonmatching/`: compiler-checked C reconstructions with per-function similarity and known issues.
 - `include/pes6/`: partial, evidence-based structure views with unknown fields left explicit;
   `m2c.h` provides `M2C_FIELD` and placeholder types for sources whose fields are not yet named.
@@ -155,7 +156,7 @@ prefix of its name. Edit `config/units.txt` when a real file boundary is found.
 
 ```sh
 ./run.sh python tools/match.py asm 00313AF0
-./run.sh python tools/match.py check 00313AF0 src/Pes6BitSet_Lookup.c
+./run.sh python tools/match.py check 00313AF0 src/game/match/ai/unit_003139A0/Pes6BitSet_Lookup.c
 ./run.sh python tools/organize.py --check
 ```
 

@@ -60,7 +60,7 @@ void Pes6Ball_Update(void) {
 
 ### Matching status
 
-Matched as `src/Pes6Ball_Update.c`. It needs the 2005 compiler build
+Matched as `src/game/match/ball/unit_0027A880/Pes6Ball_Update.c`. It needs the 2005 compiler build
 `mwcps2-3.0.1b151-050317` (profile `mwcc-3.0.1b151`; b145 gives the same code) plus
 `#pragma opt_propagation off`.
 

@@ -27,7 +27,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x00103840",
-      "source": "src/overlays/ntgui2eu/func_00103840.c",
+      "source": "src/overlays/ntgui2eu/app/func_00103840.c",
       "compiler": "ee-gcc-2.96",
       "code_bytes": 48,
       "upstream": {
@@ -47,7 +47,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x00165B60",
-      "source": "src/overlays/ntgui2eu/func_00165B60.c",
+      "source": "src/overlays/ntgui2eu/netconfig/func_00165B60.c",
       "compiler": "ee-gcc-2.96",
       "code_bytes": 8,
       "original_span_bytes": 8,
@@ -62,7 +62,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x0018B898",
-      "source": "src/overlays/ntgui2eu/func_0018B898.c",
+      "source": "src/overlays/ntgui2eu/netconfig/func_0018B898.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 268,
       "original_span_bytes": 272,
@@ -77,7 +77,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x0018B9A8",
-      "source": "src/overlays/ntgui2eu/func_0018B9A8.c",
+      "source": "src/overlays/ntgui2eu/netconfig/func_0018B9A8.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 144,
       "original_span_bytes": 144,
@@ -92,7 +92,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x00191048",
-      "source": "src/overlays/ntgui2eu/func_00191048.c",
+      "source": "src/overlays/ntgui2eu/sdk/libcdvd/func_00191048.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 120,
       "upstream": {
@@ -115,7 +115,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001924B0",
-      "source": "src/overlays/ntgui2eu/func_001924B0.c",
+      "source": "src/overlays/ntgui2eu/sdk/libcdvd/func_001924B0.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 160,
       "upstream": {
@@ -137,7 +137,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x00192C88",
-      "source": "src/overlays/ntgui2eu/func_00192C88.c",
+      "source": "src/overlays/ntgui2eu/sdk/libcdvd/func_00192C88.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 232,
       "upstream": {
@@ -156,7 +156,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x00194978",
-      "source": "src/overlays/ntgui2eu/func_00194978.c",
+      "source": "src/overlays/ntgui2eu/sdk/libpad/func_00194978.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 344,
       "upstream": {
@@ -177,7 +177,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x00194D98",
-      "source": "src/overlays/ntgui2eu/func_00194D98.c",
+      "source": "src/overlays/ntgui2eu/sdk/libpad/func_00194D98.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 280,
       "upstream": {
@@ -196,7 +196,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001951B8",
-      "source": "src/overlays/ntgui2eu/func_001951B8.c",
+      "source": "src/overlays/ntgui2eu/sdk/libpad/func_001951B8.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 200,
       "upstream": {
@@ -216,7 +216,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x00195280",
-      "source": "src/overlays/ntgui2eu/func_00195280.c",
+      "source": "src/overlays/ntgui2eu/sdk/libpad/func_00195280.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 216,
       "upstream": {
@@ -237,7 +237,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x00195408",
-      "source": "src/overlays/ntgui2eu/func_00195408.c",
+      "source": "src/overlays/ntgui2eu/sdk/libpad/func_00195408.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 176,
       "upstream": {
@@ -258,7 +258,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x0019A5A0",
-      "source": "src/overlays/ntgui2eu/func_0019A5A0.c",
+      "source": "src/overlays/ntgui2eu/sdk/libusbkb/func_0019A5A0.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 40,
       "original_span_bytes": 40,
@@ -273,7 +273,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x0019C428",
-      "source": "src/overlays/ntgui2eu/func_0019C428.c",
+      "source": "src/overlays/ntgui2eu/sdk/libusbkb/func_0019C428.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 60,
       "original_span_bytes": 64,
@@ -288,7 +288,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x0019C468",
-      "source": "src/overlays/ntgui2eu/func_0019C468.c",
+      "source": "src/overlays/ntgui2eu/sdk/libusbkb/func_0019C468.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 60,
       "original_span_bytes": 64,
@@ -303,7 +303,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x0019E738",
-      "source": "src/overlays/ntgui2eu/func_0019E738.c",
+      "source": "src/overlays/ntgui2eu/sdk/tty/func_0019E738.c",
       "compiler": "ee-gcc-2.96",
       "code_bytes": 48,
       "original_span_bytes": 48,
@@ -318,7 +318,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x0019F560",
-      "source": "src/overlays/ntgui2eu/func_0019F560.c",
+      "source": "src/overlays/ntgui2eu/sdk/stdio/func_0019F560.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 112,
       "upstream": {
@@ -340,7 +340,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A3878",
-      "source": "src/overlays/ntgui2eu/func_001A3878.c",
+      "source": "src/overlays/ntgui2eu/sdk/stdio/func_001A3878.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 56,
       "upstream": {
@@ -360,7 +360,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A45C8",
-      "source": "src/overlays/ntgui2eu/func_001A45C8.c",
+      "source": "src/overlays/ntgui2eu/sdk/stdio/func_001A45C8.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 80,
       "upstream": {
@@ -380,7 +380,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A4790",
-      "source": "src/overlays/ntgui2eu/func_001A4790.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A4790.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 96,
       "upstream": {
@@ -402,7 +402,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A4810",
-      "source": "src/overlays/ntgui2eu/func_001A4810.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A4810.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 56,
       "original_span_bytes": 56,
@@ -417,7 +417,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A4848",
-      "source": "src/overlays/ntgui2eu/func_001A4848.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A4848.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 64,
       "original_span_bytes": 64,
@@ -432,7 +432,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A4A58",
-      "source": "src/overlays/ntgui2eu/func_001A4A58.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A4A58.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 56,
       "original_span_bytes": 56,
@@ -447,7 +447,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A4AA0",
-      "source": "src/overlays/ntgui2eu/func_001A4AA0.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A4AA0.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 104,
       "upstream": {
@@ -466,7 +466,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A4BC8",
-      "source": "src/overlays/ntgui2eu/func_001A4BC8.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A4BC8.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 48,
       "original_span_bytes": 48,
@@ -481,7 +481,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A4E78",
-      "source": "src/overlays/ntgui2eu/func_001A4E78.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A4E78.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 56,
       "original_span_bytes": 56,
@@ -496,7 +496,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A55A0",
-      "source": "src/overlays/ntgui2eu/func_001A55A0.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A55A0.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 56,
       "upstream": {
@@ -514,7 +514,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A5950",
-      "source": "src/overlays/ntgui2eu/func_001A5950.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A5950.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 112,
       "upstream": {
@@ -532,7 +532,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A69C8",
-      "source": "src/overlays/ntgui2eu/func_001A69C8.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A69C8.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 48,
       "upstream": {
@@ -550,7 +550,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001A6C88",
-      "source": "src/overlays/ntgui2eu/func_001A6C88.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001A6C88.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 56,
       "original_span_bytes": 56,
@@ -565,7 +565,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001AD430",
-      "source": "src/overlays/ntgui2eu/func_001AD430.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001AD430.c",
       "compiler": "ee-gcc-2.96",
       "code_bytes": 288,
       "original_span_bytes": 288,
@@ -580,7 +580,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001B39D8",
-      "source": "src/overlays/ntgui2eu/func_001B39D8.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001B39D8.c",
       "compiler": "ee-gcc-2.96",
       "code_bytes": 52,
       "original_span_bytes": 52,
@@ -595,7 +595,7 @@
     {
       "image": "ntgui2eu",
       "address": "0x001B84A8",
-      "source": "src/overlays/ntgui2eu/func_001B84A8.c",
+      "source": "src/overlays/ntgui2eu/sdk/libkernel/func_001B84A8.c",
       "compiler": "ee-gcc-2.96",
       "code_bytes": 44,
       "original_span_bytes": 48,
@@ -610,7 +610,7 @@
     {
       "image": "title",
       "address": "0x008F6910",
-      "source": "src/overlays/title/func_008F6910.c",
+      "source": "src/overlays/title/app/func_008F6910.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 592,
       "upstream": {
@@ -631,7 +631,7 @@
     {
       "image": "title",
       "address": "0x008F7208",
-      "source": "src/overlays/title/func_008F7208.c",
+      "source": "src/overlays/title/app/func_008F7208.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 576,
       "upstream": {
@@ -656,7 +656,7 @@
     {
       "image": "title",
       "address": "0x008F7778",
-      "source": "src/overlays/title/func_008F7778.c",
+      "source": "src/overlays/title/sdk/libmpeg/func_008F7778.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 1064,
       "upstream": {
@@ -676,7 +676,7 @@
     {
       "image": "title",
       "address": "0x008F7D40",
-      "source": "src/overlays/title/func_008F7D40.c",
+      "source": "src/overlays/title/sdk/libmpeg/func_008F7D40.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 1368,
       "upstream": {
@@ -702,7 +702,7 @@
     {
       "image": "title",
       "address": "0x008F8298",
-      "source": "src/overlays/title/func_008F8298.c",
+      "source": "src/overlays/title/sdk/libmpeg/func_008F8298.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 376,
       "upstream": {
@@ -725,7 +725,7 @@
     {
       "image": "title",
       "address": "0x008F8410",
-      "source": "src/overlays/title/func_008F8410.c",
+      "source": "src/overlays/title/sdk/libmpeg/func_008F8410.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 360,
       "upstream": {
@@ -744,7 +744,7 @@
     {
       "image": "title",
       "address": "0x008F8578",
-      "source": "src/overlays/title/func_008F8578.c",
+      "source": "src/overlays/title/sdk/libmpeg/func_008F8578.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 384,
       "upstream": {
@@ -763,7 +763,7 @@
     {
       "image": "title",
       "address": "0x008F86F8",
-      "source": "src/overlays/title/func_008F86F8.c",
+      "source": "src/overlays/title/sdk/libmpeg/func_008F86F8.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 232,
       "upstream": {
@@ -782,7 +782,7 @@
     {
       "image": "title",
       "address": "0x008F8908",
-      "source": "src/overlays/title/func_008F8908.c",
+      "source": "src/overlays/title/sdk/libmpeg/func_008F8908.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 52,
       "upstream": {
@@ -800,7 +800,7 @@
     {
       "image": "title",
       "address": "0x008FAA38",
-      "source": "src/overlays/title/func_008FAA38.c",
+      "source": "src/overlays/title/sdk/libmpeg/func_008FAA38.c",
       "compiler": "ee-gcc-2.9",
       "code_bytes": 52,
       "upstream": {
