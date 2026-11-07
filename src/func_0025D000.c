@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_00153FA0(s32);                         /* extern */
@@ -11,24 +10,24 @@ extern char D_0058D12C[];
 extern char D_0058D130[];
 
 void func_0025D000(void) {
+    s32 var_s1;
     s32 *var_s0;
     s32 *var_s1_2;
     s32 var_s0_2;
-    s32 var_s1;
 
     var_s1 = 0;
     var_s0 = ((void *)D_0058CFE0);
     do {
         func_001E5F20(*var_s0);
         var_s1 += 1;
-        var_s0 += 4;
+        var_s0 += 1;
     } while (var_s1 < 4);
     var_s0_2 = 0;
     var_s1_2 = ((void *)D_0058CFE0);
     do {
-        func_001EDD90(M2C_FIELD(var_s1_2, s32 *, 0x10));
+        func_001EDD90(var_s1_2[4]);
         var_s0_2 += 1;
-        var_s1_2 += 4;
+        var_s1_2 += 1;
     } while (var_s0_2 < 3);
     func_00153FA0((*(s32 *)D_0058D12C));
     func_00153FA0((*(s32 *)D_0058D130));
