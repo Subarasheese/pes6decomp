@@ -1,5 +1,4 @@
 /* compiler: ee-gcc-2.9 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -24,7 +23,7 @@ void func_00167F90(void *arg0) {
     temp_a0 = arg0 + 0x9B4;
     M2C_FIELD(arg0, s32 *, 0x990) = 1;
     M2C_FIELD(arg0, s32 *, 0x994) = 2;
+    M2C_FIELD(arg0, void **, 0x9B8) = temp_a0;
     M2C_FIELD(arg0, void **, 0x9B4) = temp_a0;
     M2C_FIELD(arg0, s32 *, 0x9BC) = 0;
-    M2C_FIELD(arg0, void **, 0x9B8) = temp_a0;
 }

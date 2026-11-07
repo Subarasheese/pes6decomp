@@ -1,5 +1,4 @@
 /* compiler: ee-gcc-2.9 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -8,12 +7,12 @@ extern char D_005CABFC[];
 extern char D_01204B40[];
 extern char D_01204B80[];
 
-s32 func_001A3498(void) {
+u32 func_001A3508(void) {
     if ((*(s32 *)D_005CABFC) < 0) {
         return 0;
     }
-    if (func_0019EE30(((void *)D_01204B40), 5, 0, 0, 0, ((void *)D_01204B80), 4, 0, 0) >= 0) {
-        return (*(s32 *)D_01204B80);
+    if (func_0019EE30(((void *)D_01204B40), 6, 0, 0, 0, ((void *)D_01204B80), 4, 0, 0) < 0) {
+        return 0xFFFFFFFFU;
     }
-    return 0xFFFFFFFF;
+    return (*(s32 *)D_01204B80);
 }

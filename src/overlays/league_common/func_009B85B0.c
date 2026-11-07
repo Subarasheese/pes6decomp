@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -16,9 +15,10 @@ void func_009B85B0(s8 arg0) {
             D_003EA9BC = temp_v0;
             func_001C48E8(temp_v0, 0, 0x40);
         }
-        if (D_003EA9BC != NULL) {
-            M2C_FIELD(D_003EA9BC, s8 *, 0x28) = 0;
-            M2C_FIELD(D_003EA9BC, s8 *, 0x29) = arg0;
+        temp_v0 = D_003EA9BC;
+        if (temp_v0 != NULL) {
+            M2C_FIELD(temp_v0, s8 *, 0x28) = 0;
+            M2C_FIELD(temp_v0, s8 *, 0x29) = arg0;
         }
     }
 }
