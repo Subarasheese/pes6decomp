@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 extern void *Pes6Ball_Current;
@@ -19,7 +18,7 @@ void func_00284A20(void *arg0) {
     (*(u8 *)D_00591E4C) = temp_a3;
     (*(u8 *)Pes6MatchState_Current) = temp_a3;
     M2C_FIELD(Pes6Ball_Current, s8 *, 0x62) = 3;
-    if (M2C_FIELD(D_003E7A08, s32 *, 0) == 0) {
-        M2C_FIELD(D_003E7A08, s32 *, 0) = 0x10;
+    if (M2C_FIELD(D_003E7A08, s32 *, 0x284) == 0) {
+        M2C_FIELD(D_003E7A08, s32 *, 0x284) = 0x10;
     }
 }

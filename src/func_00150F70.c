@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_00145380(s32);                         /* extern */
@@ -14,11 +13,11 @@ void func_00150F70(s32 arg0, s32 arg1) {
 
     temp_v0 = func_00145490();
     switch (temp_v0) {                              /* irregular */
-    case 19:
-        var_s0 = 0x400;
-        break;
     case 20:
         var_s0 = 0x40;
+        break;
+    case 19:
+        var_s0 = 0x400;
         break;
     default:
         var_s0 = 0;
