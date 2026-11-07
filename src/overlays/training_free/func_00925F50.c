@@ -1,5 +1,4 @@
-/* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: mwcc-3.0.1b151 */
 #include "pes6/m2c.h"
 
 extern void Pes6Ball_Update(void);
@@ -24,7 +23,7 @@ void func_00925F50(s32 arg0) {
     func_0099DC70();
     func_0099DC90();
     var_s3 = 0;
-    if (arg0 > 0) {
+    if (var_s3 < arg0) {
         do {
             (*(s32 *)D_00591E14) = 0;
             (*(s32 *)D_00591DC4) += 1;

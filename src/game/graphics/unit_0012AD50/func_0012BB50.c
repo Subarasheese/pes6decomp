@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -14,7 +13,8 @@ void func_0012BB50(void *arg0, s32 arg1, f32 fparg0) {
     f32 temp_f20;
     f32 temp_f20_2;
 
-    temp_f20 = fparg0 / 2.0f;
+    temp_f20 = fparg0;
+    temp_f20 /= 2.0f;
     temp_f20_2 = func_0011D138(temp_f20);
     func_00103DF0(arg0, arg1, func_0011D468(temp_f20));
     M2C_FIELD(arg0, f32 *, 0xC) = temp_f20_2;

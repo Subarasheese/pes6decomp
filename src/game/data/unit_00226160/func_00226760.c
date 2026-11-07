@@ -1,10 +1,9 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern int func_00231240(void);
 extern void * func_0022F150(void);
-void func_00226760(s8 arg0) {
+void func_00226760(u8 arg0) {
     s32 temp_v1;
     void *temp_s0;
     void *temp_s0_2;
@@ -17,7 +16,7 @@ void func_00226760(s8 arg0) {
 
     temp_s0 = func_0022F150();
     if ((func_00231240() != 1) && (temp_s0 != NULL)) {
-        temp_v1 = arg0 & 0xFF;
+        temp_v1 = arg0;
         M2C_FIELD(temp_s0, s8 *, 2) = arg0;
         switch (temp_v1) {                          /* irregular */
         case 15:
