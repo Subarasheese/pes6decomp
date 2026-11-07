@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -9,7 +8,7 @@ M2C_UNK func_00BE6A70(u16);                         /* extern */
 M2C_UNK func_00BF72C0();                            /* extern */
 M2C_UNK func_00C04330();                            /* extern */
 M2C_UNK func_00C1B380(M2C_UNK);                     /* extern */
-extern M2C_UNK func_00BE6B70;
+extern char func_00BE6B70[];
 
 s32 func_00BE5D50(void *arg0) {
     s32 temp_v0;
@@ -24,7 +23,7 @@ s32 func_00BE5D50(void *arg0) {
         /* fallthrough */
     case 2:
         func_00BF72C0();
-        M2C_FIELD(arg0, M2C_UNK **, 4) = &func_00BE6B70;
+        M2C_FIELD(arg0, char **, 4) = func_00BE6B70;
         break;
     }
     return 0;

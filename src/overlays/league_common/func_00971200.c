@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -9,12 +8,13 @@ extern char D_00591C09[];
 s32 func_00971200(void) {
     func_001D5F80(0x1029F);
     switch ((*(u8 *)D_00591C09)) {                           /* irregular */
-    case 14:
-    case 2:
     case 1:
+    case 2:
         break;
     case 4:
         func_001D5F80(0x1032B);
+        break;
+    case 14:
         break;
     }
     func_001D5F80(0x1003C);

@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -8,8 +7,8 @@ M2C_UNK func_009F0650(s32);                         /* extern */
 
 void func_009EF370(s32 *arg0, s32 arg1, s32 arg2) {
     M2C_UNK (*var_s0)(s32);
-    s32 *var_s1;
     s32 var_s2;
+    s32 *var_s1;
 
     if (arg2 != 0) {
         var_s0 = func_009F0610;
@@ -22,7 +21,7 @@ void func_009EF370(s32 *arg0, s32 arg1, s32 arg2) {
         do {
             var_s0(*var_s1);
             var_s2 += 1;
-            var_s1 += 4;
+            var_s1 += 1;
         } while (var_s2 < arg1);
     }
 }
