@@ -1,0 +1,12 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+M2C_UNK func_0096DA00();                            /* extern */
+extern s32 D_003EAF08;
+
+void func_00B76FC0(void) {
+    if (D_003EAF08 != 0) {
+        func_0096DA00();
+    }
+}

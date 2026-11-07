@@ -1,0 +1,10 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+extern s32 D_003EA298;
+
+s32 func_00846360(void) {
+    D_003EA298 = -1;
+    return 0;
+}

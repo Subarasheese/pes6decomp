@@ -1,0 +1,9 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+extern s32 D_003EA284;
+
+s32 func_00841DA0(void) {
+    return D_003EA284 >= 0x4B0;
+}

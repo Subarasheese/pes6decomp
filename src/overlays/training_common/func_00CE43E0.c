@@ -1,0 +1,9 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+extern s32 D_003EB2B4;
+
+void func_00CE43E0(void) {
+    D_003EB2B4 = 0;
+}

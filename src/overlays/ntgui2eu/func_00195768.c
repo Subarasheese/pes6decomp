@@ -1,0 +1,14 @@
+/* compiler: ee-gcc-2.9 */
+#include "pes6/m2c.h"
+s32 func_0019EE30(M2C_UNK *, M2C_UNK, M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK, s32);
+extern char D_011FD4C0[];
+extern char D_011FD700[];
+s32 func_00195768(void) {
+    s32 r;
+    M2C_FIELD(((void *)D_011FD700), s32 *, 0) = 0x12;
+    r = func_0019EE30(((void *)D_011FD4C0), 1, 0, ((void *)D_011FD700), 0x80, ((void *)D_011FD700), 0x80, 0, 0);
+    if (r < 0) {
+        return 0;
+    }
+    return M2C_FIELD(((void *)D_011FD700), s32 *, 0xC);
+}

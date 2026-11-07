@@ -1,0 +1,9 @@
+/* compiler: ee-gcc-2.9 */
+#include "pes6/m2c.h"
+
+
+extern char D_011E4A00[];
+
+void func_00158A60(void) {
+    (*(s32 *)D_011E4A00) = -1;
+}

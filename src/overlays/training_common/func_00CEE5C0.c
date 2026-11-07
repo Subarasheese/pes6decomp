@@ -1,0 +1,11 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+extern void func_00264790(void *, u8);
+s32 func_00CD4EF0();                                /* extern */
+
+void func_00CEE5C0(void *arg0) {
+    if (func_00CD4EF0() != 0) {
+        func_00264790(arg0, 8U);
+    }
+}

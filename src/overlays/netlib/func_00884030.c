@@ -1,0 +1,9 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+extern char D_008B2528[];
+
+s32 func_00884030(void) {
+    return (*(s32 *)D_008B2528) != 0;
+}

@@ -1,0 +1,11 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+M2C_UNK func_00B79DA0();                            /* extern */
+extern char D_00591DB4[];
+
+void func_00BF06C0(void) {
+    func_00B79DA0();
+    (*(s8 *)D_00591DB4) = 1;
+}

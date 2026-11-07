@@ -1,0 +1,8 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+extern u32 func_00B3D3D0(void);
+s32 func_00B3C640(void) {
+    func_00B3D3D0();
+    return 0;
+}

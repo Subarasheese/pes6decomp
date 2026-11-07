@@ -1,0 +1,7 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+extern void func_001760D8(void *);
+void func_001760D0(void *arg0) {
+    func_001760D8(arg0);
+}

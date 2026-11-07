@@ -1,0 +1,7 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+void func_008C2EF0(M2C_UNK arg0, void *arg1) {
+    M2C_FIELD(arg1, s8 *, 5) = 1;
+}

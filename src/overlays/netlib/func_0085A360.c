@@ -1,0 +1,11 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+
+M2C_UNK func_0085A410(M2C_UNK *);                   /* extern */
+extern char D_008B22C0[];
+
+s32 func_0085A360(void) {
+    func_0085A410(((void *)D_008B22C0));
+    return 0;
+}
