@@ -1,13 +1,12 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_00147ED0(s32);
 extern char D_00521680[];
 
 void func_001A6FC0(void) {
-    M2C_UNK *var_s0;
     s32 var_s1;
+    u8 *var_s0;
 
     var_s1 = 0;
     var_s0 = ((void *)D_00521680);
