@@ -1,5 +1,4 @@
-/* compiler: ee-gcc-2.9 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.96 */
 #include "pes6/m2c.h"
 
 extern int func_001634B0(int, int);
@@ -54,8 +53,8 @@ void func_00163CB8(void *arg0) {
                 if (temp_v0 == 0) {
                     func_0015B4D0(((void *)D_003C8808), M2C_FIELD(arg0, void **, 0x50));
                     M2C_FIELD(arg0, s8 *, 1) = 4;
-                    M2C_FIELD(arg0, s8 *, 0x45) = 0;
                     M2C_FIELD(arg0, s8 *, 0x49) = 0;
+                    M2C_FIELD(arg0, s8 *, 0x45) = 0;
                     return;
                 }
                 func_0016B0B0(temp_v0, 0, 2);

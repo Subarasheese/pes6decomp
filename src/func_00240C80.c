@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_001B8DC0();                            /* extern */
@@ -27,41 +26,41 @@ s32 func_00240C80(void) {
     s32 temp_a0;
     s32 var_v1;
 
-    if (D_003E9AB4 != 0) {
-        switch (D_003E9ABC) {                       /* irregular */
-        case 0:
-            func_009344F0();
-            D_003E9ABC += 1;
-block_31:
-        default:
-            return 0;
-        case 1:
-            if (func_00934400() == 1) {
-                func_0023F3A0();
-                func_008B34C0();
-                func_001B8DC0();
-                func_0023EA10(0);
-                func_0023E0E0(0x1F);
-                if (((*(u8 *)D_00591C09) != 0) && ((*(u8 *)D_00591C09) != 0xC)) {
-                    goto block_15;
-                }
-                if (D_003E9A8C != 9) {
-                    var_v1 = 0;
-                } else {
-block_15:
+    if (D_003E9AB4 == 0) {
+        return 1;
+    }
+    switch (D_003E9ABC) {
+    case 0:
+        func_009344F0();
+        D_003E9ABC += 1;
+        break;
+    case 1:
+        if (func_00934400() == 1) {
+            func_0023F3A0();
+            func_008B34C0();
+            func_001B8DC0();
+            func_0023EA10(0);
+            func_0023E0E0(0x1F);
+            if (((*(u8 *)D_00591C09) != 0) && ((*(u8 *)D_00591C09) != 0xC)) {
+                var_v1 = 1;
+            } else {
+                if (D_003E9A8C == 9) {
                     var_v1 = 1;
+                } else {
+                    var_v1 = 0;
                 }
-                if (var_v1 == 1) {
-                    var_s0 = ((void *)D_003D8B30);
+            }
+            if (var_v1 == 1) {
+                var_s0 = (s32 *)D_003D8B30;
 loop_18:
-                    temp_a0 = *var_s0;
-                    if (temp_a0 != -1) {
-                        func_001DA4B0(temp_a0);
-                        var_s0 += 4;
-                        goto loop_18;
-                    }
+                temp_a0 = *var_s0;
+                if (temp_a0 != -1) {
+                    func_001DA4B0(temp_a0);
+                    var_s0 += 1;
+                    goto loop_18;
                 }
-                if (((*(u8 *)D_00591C09) == 6) || ((*(u8 *)D_00591C09) == 0) || ((*(u8 *)D_00591C09) == 5) || ((*(u8 *)D_00591C09) == 7)) {
+            }
+            if (((*(u8 *)D_00591C09) == 6) || ((*(u8 *)D_00591C09) == 0) || ((*(u8 *)D_00591C09) == 5) || ((*(u8 *)D_00591C09) == 7)) {
                     func_001DD560(1);
                 }
                 if ((*(u8 *)D_00591C09) != 0xC) {
@@ -87,9 +86,7 @@ loop_18:
                 D_003E9ABC = 0;
                 return 1;
             }
-            goto block_31;
-        }
-    } else {
-        return 1;
+        break;
     }
+    return 0;
 }
