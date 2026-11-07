@@ -1,9 +1,8 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_00153FA0(void *);
-extern void func_001FC780(void);
+extern void func_001FC780(int);
 M2C_UNK func_001DD560(s32);                         /* extern */
 M2C_UNK func_00220240(M2C_UNK, M2C_UNK);            /* extern */
 M2C_UNK func_002CE4B0(s32);                         /* extern */
@@ -14,9 +13,9 @@ extern char D_00CBEE10[];
 extern char D_00CEBA20[];
 
 void func_00C00150(s32 arg0) {
-    s32 *var_s0;
-    s32 *var_s1;
     u32 var_s2;
+    s32 *var_s1;
+    s32 *var_s0;
 
     if (arg0 == 0) {
         func_00B9F890(0xC);
@@ -37,9 +36,9 @@ void func_00C00150(s32 arg0) {
             *var_s1 = 0;
         }
         var_s2 += 1;
-        var_s1 += 4;
-        var_s0 += 4;
+        var_s1 += 1;
+        var_s0 += 1;
     } while (var_s2 < 8U);
     func_002CE4B0(func_00C1B460(0));
-    func_001FC780();
+    func_001FC780(0xB);
 }
