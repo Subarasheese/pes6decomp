@@ -1,0 +1,9 @@
+/* compiler: ee-gcc-2.9-Os-G0 */
+#include "pes6/m2c.h"
+
+
+extern s32 *D_00CCBBEC;
+
+s32 func_00C6E6F0(void) {
+    return *D_00CCBBEC;
+}

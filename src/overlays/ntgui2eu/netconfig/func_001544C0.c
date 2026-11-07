@@ -1,0 +1,11 @@
+/* compiler: ee-gcc-2.9-Os-G0 */
+#include "pes6/m2c.h"
+
+
+extern M2C_UNK (*D_011E0D28)();
+
+void func_001544C0(void) {
+    if (D_011E0D28 != NULL) {
+        D_011E0D28();
+    }
+}
