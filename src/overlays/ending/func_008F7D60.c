@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
@@ -15,7 +14,8 @@ s32 func_008F7D60(void) {
     s32 temp_v1;
     s32 var_s0;
 
-    var_s0 = 0 | 0x1E000;
+    var_s0 = 0;
+    var_s0 |= 0x1E000;
     if ((var_s0 & 0x8000) && (func_008FCE70(1) == 0)) {
         var_s0 &= 0xFFFF7FFF;
     }
