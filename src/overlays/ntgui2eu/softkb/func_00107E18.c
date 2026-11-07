@@ -1,0 +1,11 @@
+/* compiler: ee-gcc-2.96-Os-G0 */
+#include "pes6/m2c.h"
+
+
+M2C_UNK func_0019DBD0(M2C_UNK *);                   /* extern */
+extern char D_005F7678[];
+
+s32 func_00107E18(void) {
+    func_0019DBD0(((void *)D_005F7678));
+    return 1;
+}
