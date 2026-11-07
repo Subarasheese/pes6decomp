@@ -1,9 +1,9 @@
 {
- "generated": "2026-11-07T06:24:04Z",
- "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+ "generated": "2026-11-07T07:22:05Z",
+ "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
  "dirty": false,
  "build": {
-  "generated": "2026-11-07T06:22:57Z",
+  "generated": "2026-11-07T07:20:47Z",
   "partial": false,
   "text_matches": true,
   "data_matches": true,
@@ -20,7 +20,7 @@
  "images": {
   "bootset": {
    "target": "bootset",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "5dd540f7e23f277c8c8e87917f530ef5318bc112",
    "data_sha1": "fc6d57c5fb8f8e5b171acf42889a6b29ab740e1e",
@@ -30,7 +30,7 @@
   },
   "connect": {
    "target": "connect",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "6eb4388146e596464a7cef68caeebee3b4f694b4",
    "data_sha1": "2f3c261a077435ee10c65f4c6c13371e2a686483",
@@ -40,7 +40,7 @@
   },
   "defaultdataset": {
    "target": "defaultdataset",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "8668fcee68285cf698eea50cdf5dcc13b752e585",
    "data_sha1": "e25d6044cc3454ec2dabfc753ef889ad6e8092c2",
@@ -50,7 +50,7 @@
   },
   "edit": {
    "target": "edit",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "dd48e31e8a76a9396a83cc2a7353055aa86f7754",
    "data_sha1": "c4d39bcce9b4ffb585aa15df26f54267886d00bd",
@@ -60,7 +60,7 @@
   },
   "ending": {
    "target": "ending",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "45e42b140d12abc8359eff2b17e62be25493cce8",
    "data_sha1": "d0dfe92679c5397a403b134932d7ab6afb879761",
@@ -70,7 +70,7 @@
   },
   "enter": {
    "target": "enter",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "f0645bfac3c8922115972d959afc639ed6e5d5c7",
    "data_sha1": "91fc4d94c17599ff48e554a99eb86d9eca52f010",
@@ -80,7 +80,7 @@
   },
   "formation": {
    "target": "formation",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "deaeb520dadd227007aa618d4bfa9770a5705d27",
    "data_sha1": "495a8d0bbfea18c64167fc4a88195322ef958103",
@@ -90,7 +90,7 @@
   },
   "game": {
    "target": "game",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "ec02eb87ce19027a1e38d39963b1cffb13e3ebaf",
    "data_sha1": "9c045de7524a6a81828a106a78dc1f1c586cd9b1",
@@ -100,7 +100,7 @@
   },
   "https": {
    "target": "https",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "f698c323820e57421768a3dc9f5d4e68eff7655d",
    "data_sha1": "e6fe6b23f0ec48f0bbe47fcf584f3bee17d4e9cf",
@@ -110,7 +110,7 @@
   },
   "ime": {
    "target": "ime",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "81c298ca7c3a0c54157fbd4141e184054f3c0aa7",
    "data_sha1": "5b056d2c9ee4f48c961e9b50a4c16950b6d36769",
@@ -120,7 +120,7 @@
   },
   "league_common": {
    "target": "league_common",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "94fa24a1a43d1692127a1a304e0fc8612cb46ace",
    "data_sha1": "04a74a4b31bacc55297df503ad1955ba98568085",
@@ -130,7 +130,7 @@
   },
   "leaguecup": {
    "target": "leaguecup",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "e5a3b4089088d1db90735bf7991ee25ddf60e2b0",
    "data_sha1": "380ab127897418ac0493e46e12b7ceccf4201171",
@@ -140,7 +140,7 @@
   },
   "lobby": {
    "target": "lobby",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "fc8b1bfcb249b2ea2f4f0f65b4dd7d958c8b865e",
    "data_sha1": "f90af6be4522de91ada49cf0723c42660706bed6",
@@ -150,7 +150,7 @@
   },
   "masterleague": {
    "target": "masterleague",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "d077e950b37dfda33825efadb16f0f17288e57c9",
    "data_sha1": "cf6116529607f2e255b903cccf9a8f5cdf10e1bb",
@@ -160,7 +160,7 @@
   },
   "mc_conv": {
    "target": "mc_conv",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "710d3351bc522a1aea05288c4fe5cec751e96d9d",
    "data_sha1": "4233e36fd7610390246a0e87cff7fc4b11e29f7e",
@@ -170,7 +170,7 @@
   },
   "memorycard": {
    "target": "memorycard",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "d42b22aecc2b3df3069d2c6db2fe5ef60fec7073",
    "data_sha1": "6549c30827cb3b11722dfe4c3031d8ede34cd4c4",
@@ -180,7 +180,7 @@
   },
   "netlib": {
    "target": "netlib",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "f5089751220a38c570c4efe3528919278874b3f1",
    "data_sha1": "651126efe592472a1c46649b101b3c033cc5092c",
@@ -190,7 +190,7 @@
   },
   "result": {
    "target": "result",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "7215e6c1dc9ea63215a3fb4694ced0c0e49be0eb",
    "data_sha1": "4ea251afe5c785fa45f2dafc0ded61d81e15c78e",
@@ -200,7 +200,7 @@
   },
   "select": {
    "target": "select",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "a6dadb0ac84fe58a7290d6b21b6c9ba2b6ffc07e",
    "data_sha1": "f588d5581a58cec8648024c3fb1d6365e503c561",
@@ -210,7 +210,7 @@
   },
   "select1": {
    "target": "select1",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "492575f7fed6911455e2a18dc0d56d6a213e7282",
    "data_sha1": "d4d98c666f8717f662af0a49b9cee90a34204d80",
@@ -220,7 +220,7 @@
   },
   "title": {
    "target": "title",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "284ad0c0e7ee331cc83c10267d5af7ac4de65170",
    "data_sha1": "34447a82c40cd509231138d413b712afe38083a3",
@@ -230,7 +230,7 @@
   },
   "training_challenge": {
    "target": "training_challenge",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "fdfe17d4ebeca35eea2cb49da4d384523c689bec",
    "data_sha1": "385bd88054153695fd0118bfd6fce8f95ca24a67",
@@ -240,7 +240,7 @@
   },
   "training_common": {
    "target": "training_common",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "78d8ecd6673b8e65a79df04037fda9ec8ba890a1",
    "data_sha1": "1bfadd7467ae90c138996244cc637f9f0e0517d7",
@@ -250,7 +250,7 @@
   },
   "training_explanation": {
    "target": "training_explanation",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "7c7d3993d98f2bdca69f0217f9a5839c5d54d20b",
    "data_sha1": "eb6ab320563761874063e35d3649a63fdd06046e",
@@ -260,7 +260,7 @@
   },
   "training_free": {
    "target": "training_free",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "6ecad18a3427ce255f7591232485e373286a5de6",
    "data_sha1": "4bc0dee223edc616c34b53400b4a5f02abf8dbcd",
@@ -270,7 +270,7 @@
   },
   "training_situation": {
    "target": "training_situation",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "2fa389a8abd96f0b4ddb7b495f03639077a516eb",
    "data_sha1": "e4cf6f8c0b75aaf9bd66f44eac9e01f9ba9289a7",
@@ -280,7 +280,7 @@
   },
   "ntgui2eu": {
    "target": "ntgui2eu",
-   "commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
+   "commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
    "dirty": false,
    "text_sha1": "74d7f1f426be27c3b30ceb93672eb65db21688a0",
    "data_sha1": "5b3527653d8ecba631de7e119f83410991a394e0",
@@ -291,8 +291,8 @@
  },
  "scope": "resident + 37 MWo3 members + NTGUI2EU",
  "reconstruction": {
-  "source_commit": "fc3c3eff943eccc07f7dabcd7eb4518f32f93222",
-  "fingerprint": "eded23934a3de5d056d291f5df54ae8dbbe3e3efd7adccb5447c07feecc928a7",
+  "source_commit": "a95fcf39d6371ceef0a02cbd3c62aaa6c9397fb9",
+  "fingerprint": "49184f546254095c88326d2f5509212255fc8e9078ce208109105300aa951814",
   "exact_functions": 10334,
   "nonmatching_functions": 11738,
   "reconstructed_functions": 22072,
@@ -305,5 +305,5 @@
   "instruction_similarity_percent": 14.0586,
   "limitations": "Reconstructed C coverage is not proof of semantic equivalence or a runnable C build. Exact-match coverage is unchanged."
  },
- "published": "2026-11-07T06:24:05Z"
+ "published": "2026-11-07T07:22:07Z"
 }
