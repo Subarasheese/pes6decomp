@@ -1,11 +1,10 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_00186220(void);
 extern void func_00270580(int);
 extern void func_0027A7B0(s32);
-extern void func_001A58E0(void *, signed char);
+extern void func_001A58E0(void *, s32);
 M2C_UNK func_00B25F80(M2C_UNK);                     /* extern */
 M2C_UNK func_00B25FD0();                            /* extern */
 M2C_UNK func_00BA1620();                            /* extern */
@@ -16,9 +15,11 @@ extern char Pes6MatchPlayers[];
 extern char D_00CBD312[];
 
 void func_00BCAC10(void) {
-    M2C_UNK *var_s0;
     s32 var_s1;
+    u8 *var_s0;
     void *temp_v0;
+    void *tmp_a0;
+    void *ball;
 
     func_00B25F80(0);
     func_00B25FD0();
@@ -26,14 +27,15 @@ void func_00BCAC10(void) {
     func_00186220();
     func_0027A7B0(1);
     func_00BA1620();
+    ball = Pes6Ball_Current;
     (*(s8 *)D_00CBD312) = 0;
     var_s1 = 0;
     var_s0 = ((void *)Pes6MatchPlayers);
-    M2C_FIELD(Pes6Ball_Current, s8 *, 0xC) = 0;
+    M2C_FIELD(ball, s8 *, 0xC) = 0;
     do {
-        M2C_FIELD(M2C_FIELD(var_s0, void **, 4), u8 *, 0x2C) = 0U;
-        temp_v0 = M2C_FIELD(var_s0, void **, 4);
-        func_001A58E0(M2C_FIELD(temp_v0, void **, 0), (s8) M2C_FIELD(temp_v0, u8 *, 0x2C));
+        M2C_FIELD(*(void **)(var_s0 + 4), u8 *, 0x2C) = 0U;
+        temp_v0 = *(void **)(var_s0 + 4);
+        func_001A58E0(*(void **)temp_v0, *((u8 *)temp_v0 + 0x2C));
         var_s1 = (var_s1 + 1) & 0xFF;
         var_s0 += 0x240;
     } while (var_s1 < 0x17);

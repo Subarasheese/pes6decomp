@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_001A58E0(void *, signed char);
@@ -10,11 +9,14 @@ s32 func_00BA9430(s32);                             /* extern */
 extern char D_0092F0D0[];
 
 void func_00909E60(void) {
-    s32 temp_s0;
-    s32 temp_s1;
     s32 var_s2;
+    s32 temp_s1;
+    s32 temp_s0;
 
-    if (!((*(s32 *)D_0092F0D0) & 0x80)) {
+    if (((*(s32 *)D_0092F0D0) & 0x80)) {
+        return;
+    }
+    {
         var_s2 = 0;
         do {
             temp_s0 = var_s2 & 0xFF;

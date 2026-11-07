@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern u8 func_00225820(void);
@@ -23,8 +22,8 @@ s32 func_00B57010(void) {
     if (var_v0 < 0) {
         var_v0 = 0;
     }
-    if (var_v0 >= 0x11) {
-        return 0;
+    if (var_v0 < 0x11) {
+        return 1;
     }
-    return 1;
+    return 0;
 }
