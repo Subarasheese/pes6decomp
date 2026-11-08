@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern s32 func_0017F900(void);
@@ -21,23 +20,25 @@ void func_00BDEA70(void **arg0) {
     temp_v0 = *arg0;
     func_00BD3CF0(M2C_FIELD(temp_v0, f32 *, 0x6C), M2C_FIELD(temp_v0, f32 *, 0x70));
     temp_a0 = *arg0;
-    temp_a0_2 = M2C_FIELD(*arg0, u8 *, 0x4E);
     temp_s0 = func_009B33A0(temp_a0, (s32) M2C_FIELD(temp_a0, f32 *, 0x6C), (s32) M2C_FIELD(temp_a0, f32 *, 0x70));
-    switch (temp_a0_2) {                            /* irregular */
-    case 2:
-        break;
+    switch (M2C_FIELD(*arg0, u8 *, 0x4E)) {
     case 0:
         if ((func_002727B0() & 0xFF) == 0x13) {
             temp_v1 = *arg0;
             M2C_FIELD(temp_v1, u8 *, 0x4E) = (u8) (M2C_FIELD(temp_v1, u8 *, 0x4E) + 1);
-        case 1:
-            if (func_0017F900() == 0) {
-                M2C_FIELD(*arg0, u8 *, 0x4E) = 2U;
-            } else {
-                func_00BA9850((*(s32 *)D_00CBCB1C), 0, arg0);
-                M2C_FIELD(*arg0, u8 *, 0x4E) = 3U;
-            }
+            goto c1;
         }
+        break;
+    case 1:
+c1:
+        if (func_0017F900() == 0) {
+            M2C_FIELD(*arg0, u8 *, 0x4E) = 2U;
+        } else {
+            func_00BA9850((*(s32 *)D_00CBCB1C), 0, arg0);
+            M2C_FIELD(*arg0, u8 *, 0x4E) = 3U;
+        }
+        break;
+    case 2:
         break;
     case 3:
         func_00BA9800((*(s32 *)D_00CBCB1C), arg0);
