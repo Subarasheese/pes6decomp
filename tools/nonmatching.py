@@ -22,6 +22,7 @@ import tomllib
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "config/nonmatching.json"
 PROOF = ROOT / "build/nonmatching/verification.json"
+NOP = 0
 FORBIDDEN = re.compile(
     r"\b(?:saved_reg_\w+|INCLUDE_ASM|__asm__|__asm|asm|"
     r"M2C_(?:ERROR|TRAP_IF|BREAK|SYNC|DCACHE_\w+|ICACHE_\w+|PREFETCH\w*|"
@@ -129,6 +130,10 @@ def referenced_addresses(words, gp):
 
 
 def compare(original, compiled, address):
+    # As in match.py check: nops left in the original after the compiled function's last
+    # instruction are alignment padding, not missing instructions.
+    if len(original) > len(compiled) and all(w == NOP for w in original[len(compiled):]):
+        original = original[:len(compiled)]
     end = address + len(original) * 4
     external = lambda words: {a for a in call_targets(words) if not address <= a < end}
     if external(original) != external(compiled):
@@ -211,6 +216,8 @@ def inspect(records, jobs=2):
             if row.get("original_sha256", original_hash) != original_hash:
                 raise ValueError("original image/body differs from reviewed target")
             result = compare(original, match.trim_padding(linked), address)
+            if result["instruction_similarity"] >= 100:
+                raise ValueError("matches the original exactly; promote it to src/ instead of keeping a draft")
             if result["instruction_similarity"] < row.get("minimum_similarity", 0):
                 raise ValueError(f"similarity below reviewed threshold: {result['instruction_similarity']}")
             results.append({**row, **result, "original_sha256": original_hash,

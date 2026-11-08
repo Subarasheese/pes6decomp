@@ -27,6 +27,16 @@ class ComparisonTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "indirect"):
             nonmatching.compare([0x0040F809, 0, 1, 2], [0, 0, 1, 2], 0x200000)
 
+    def test_trailing_alignment_nops_are_not_missing_instructions(self):
+        # jr ra; addiu sp,sp,0x30 (delay slot); nop padding to the next function
+        body = [0x03E00008, 0x27BD0030]
+        r = nonmatching.compare(body + [0], body, 0x200000)
+        self.assertEqual(r["instruction_similarity"], 100)
+        self.assertEqual(r["original_code_bytes"], 8)
+        # A leftover that is not all nops is still counted against the draft.
+        r = nonmatching.compare(body + [0, 0x24020001], body, 0x200000)
+        self.assertEqual(r["instruction_similarity"], 50)
+
     def test_low_similarity_keeps_its_actual_score(self):
         r = nonmatching.compare([1, 2, 3, 4], [1, 5, 6, 7], 0x200000)
         self.assertEqual(r["instruction_similarity"], 25)

@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b198 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 s32 func_0017F900();                                /* extern */
