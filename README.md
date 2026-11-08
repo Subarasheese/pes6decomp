@@ -10,15 +10,15 @@ PlayStation 2, PAL executable **SLES-542.03**.
 Coverage includes the resident executable, all **26 executable overlays** in
 `OVER.AFS`, its 11 data/reservation members, and the auxiliary `NTGUI2EU.ELF`.
 The combined inventory has **34,901 function targets**;
-**10,334 match (29.61%)**, covering
-**684,956 of 12,952,472 inventoried code bytes (5.29%)**. Function boundaries are
+**10,930 match (31.32%)**, covering
+**744,088 of 12,951,184 inventoried code bytes (5.75%)**. Function boundaries are
 estimated from disassembly. The larger denominator includes previously omitted
 images; existing resident matches are retained.
 
-Including **11,738 non-matching reconstructions**, C is available for
+Including **11,142 non-matching reconstructions**, C is available for
 **22,072 targets (63.24%)**, covering
-**3,470,844 code bytes (26.80%)**.
-Whole-project instruction similarity is **14.06%**.
+**3,469,556 code bytes (26.79%)**.
+Whole-project instruction similarity is **14.15%**.
 The reconstructions' types, layouts and call contracts remain provisional.
 
 The full-inventory sweep attempted all **27,657** remaining targets,
