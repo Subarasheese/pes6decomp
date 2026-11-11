@@ -1,5 +1,4 @@
 /* compiler: ee-gcc-2.9 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern s32 func_002D9D28(void);
@@ -14,5 +13,7 @@ s32 func_002D9E30(s32 arg0) {
     func_002DAC08(arg0);
     func_002D9D28();
     temp_v0 = sceSifCallRpc(((void *)D_005E5F00), 0xF, 0U, ((void *)D_005E5F40), 0x1000, ((void *)D_005E5F40), 0x1000, NULL, NULL);
-    return (temp_v0 > -1) ? 0 : temp_v0;
+    if (temp_v0 < 0)
+        return temp_v0;
+    return 0;
 }

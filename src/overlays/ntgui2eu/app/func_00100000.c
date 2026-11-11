@@ -1,7 +1,5 @@
-/* compiler: ee-gcc-2.9 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.96 */
 #include "pes6/m2c.h"
-
 
 extern void *D_00602580;
 
