@@ -3,7 +3,7 @@
 
 typedef struct { u8 p[0x14]; s32 n; } P;
 typedef struct { u8 p[0x3C]; P *q; } O;
-void func_00338930(O *);
+void Pes6Job_SetDone(O *);
 
 s32 func_0032A010(O *o) {
     P *q = o->q;
@@ -11,6 +11,6 @@ s32 func_0032A010(O *o) {
         q->n--;
         return 0;
     }
-    func_00338930(o);
+    Pes6Job_SetDone(o);
     return 1;
 }

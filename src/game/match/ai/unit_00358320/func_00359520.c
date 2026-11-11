@@ -4,7 +4,7 @@
 void Pes6BitSet_Initialize(void *, s32, void *);
 void func_003139F0(void *, s32);
 void Pes6BitSet_Write(void *, s32, s32);
-s32 func_00333440(s32, void *, s32);
+s32 Pes6Job_SendMessage(s32, void *, s32);
 extern u8 D_0061C71E[];
 
 typedef struct {
@@ -18,6 +18,6 @@ s32 func_00359520(void *arg0) {
     func_003139F0(buf, M2C_FIELD(arg0, u8 *, 0x30));
     Pes6BitSet_Write(buf, 1, ((Bits *)D_0061C71E)->b1);
     Pes6BitSet_Write(buf, 2, ((Bits *)D_0061C71E)->b2);
-    func_00333440(0x51, buf, 1);
+    Pes6Job_SendMessage(0x51, buf, 1);
     return 1;
 }

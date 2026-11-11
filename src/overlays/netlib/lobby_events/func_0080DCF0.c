@@ -1,11 +1,11 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-s16 func_002371A0(u16);                             /* extern */
+s16 Pes6Team_ResolveSpecialId(u16);                             /* extern */
 M2C_UNK func_003710E0(u8, u8, u8, u8, u8);          /* extern */
 extern u8 D_003E9E88;
 extern u8 D_003E9E89;
-extern char D_00591BB0[];
+extern char Pes6MatchContext[];
 extern char D_00591BB2[];
 extern char D_00591BB4[];
 extern char D_00591BB6[];
@@ -37,8 +37,8 @@ void func_0080DCF0(void *arg0, s32 arg1) {
     u8 temp_a3;
     u8 temp_a4;
 
-    (*(s16 *)D_00591BB0) = func_002371A0(M2C_FIELD(arg0, u16 *, 4));
-    (*(s16 *)D_00591BB2) = func_002371A0(M2C_FIELD(arg0, u16 *, 6));
+    (*(s16 *)Pes6MatchContext) = Pes6Team_ResolveSpecialId(M2C_FIELD(arg0, u16 *, 4));
+    (*(s16 *)D_00591BB2) = Pes6Team_ResolveSpecialId(M2C_FIELD(arg0, u16 *, 6));
     D_003E9E88 = M2C_FIELD(arg0, u8 *, 8);
     D_003E9E89 = M2C_FIELD(arg0, u8 *, 9);
     temp_a4 = M2C_FIELD(arg0, u8 *, 0xA);

@@ -16,7 +16,7 @@ typedef struct DrawNode {
 /* The four lists' head nodes (only next is used). */
 extern DrawNode D_005E5EC0[4];
 
-void func_00153FA0(void *p);
+void Pes6Heap_Free(void *p);
 
 /* Unlink item's node from its list and free it. */
 void func_002D8E10(DrawItem *item)
@@ -36,6 +36,6 @@ void func_002D8E10(DrawItem *item)
         } else {
             n->prev->next = 0;
         }
-        func_00153FA0(n);
+        Pes6Heap_Free(n);
     }
 }

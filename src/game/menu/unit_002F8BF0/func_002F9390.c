@@ -1,6 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
-s32 *func_00154060(M2C_UNK, M2C_UNK);               /* extern */
+s32 *Pes6Heap_Alloc(M2C_UNK, M2C_UNK);               /* extern */
 s32 func_001D5A10(s32);                             /* extern */
 M2C_UNK func_001D7C20(s32, M2C_UNK);                /* extern */
 M2C_UNK func_001D7D60(s32, M2C_UNK);                /* extern */
@@ -13,7 +13,7 @@ s32 *func_002F9390(s32 arg0, s32 arg1) {
     s32 temp_v0;
     s32 var_s0;
 
-    temp_s1 = func_00154060(1, 0x10);
+    temp_s1 = Pes6Heap_Alloc(1, 0x10);
     var_s0 = 0;
     temp_v0 = func_001D5A10(arg0);
     if (temp_v0 != 0) {

@@ -10,10 +10,10 @@ typedef struct {
     Entry18 entries[8];
 } Table;
 
-Table *func_00223BE0(void);
+Table *Pes6OptionData_GetBase(void);
 
 Entry18 *func_00221230(s32 index) {
-    Table *table = func_00223BE0();
+    Table *table = Pes6OptionData_GetBase();
 
     if (index >= 8) {
         return &table->entries[0];

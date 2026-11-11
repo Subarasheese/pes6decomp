@@ -3,7 +3,7 @@
 
 typedef struct S { u8 pad[0x144]; u8 a; u8 pad2[0xB]; s32 cnt; } S;
 extern S *func_00B68690(void);
-M2C_UNK func_0026E840(M2C_UNK);
+M2C_UNK SD_call(M2C_UNK);
 M2C_UNK func_00B67530(u8);
 
 s32 func_00B67D10(void) {
@@ -19,6 +19,6 @@ s32 func_00B67D10(void) {
         temp_v0->cnt = 5;
     }
     func_00B67530(temp_v0->a);
-    func_0026E840(0x8400F803);
+    SD_call(0x8400F803);
     return 0;
 }

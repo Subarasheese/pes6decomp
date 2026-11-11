@@ -9,7 +9,7 @@ typedef struct Node {
 
 extern Node *D_0052B148[];
 extern Node *D_0052B14C[];
-void func_00153FA0(Node *);
+void Pes6Heap_Free(Node *);
 
 void func_001EB170(Node *node) {
     Node *prev;
@@ -30,5 +30,5 @@ void func_001EB170(Node *node) {
     } else {
         D_0052B14C[0] = prev;
     }
-    func_00153FA0(node);
+    Pes6Heap_Free(node);
 }

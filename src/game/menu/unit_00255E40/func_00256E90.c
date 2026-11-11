@@ -9,7 +9,7 @@ typedef struct {
 } Pair10;
 
 void func_001BB710(s32);
-void func_00153FA0(void *);
+void Pes6Heap_Free(void *);
 
 void func_00256E90(Pair10 *pair) {
     if (pair == NULL) {
@@ -18,7 +18,7 @@ void func_00256E90(Pair10 *pair) {
     func_001BB710(pair->a);
     func_001BB710(pair->b);
     if (pair->flags & 1) {
-        func_00153FA0(pair);
+        Pes6Heap_Free(pair);
     } else {
         pair->c = 0;
         pair->a = 0;

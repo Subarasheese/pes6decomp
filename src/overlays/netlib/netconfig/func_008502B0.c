@@ -2,9 +2,9 @@
 #include "pes6/m2c.h"
 
 
-extern char D_00591DC4[];
+extern char Pes6MatchContext_FrameCounter[];
 
 s32 func_008502B0(void) {
-    (*(s32 *)D_00591DC4) += 1;
+    (*(s32 *)Pes6MatchContext_FrameCounter) += 1;
     return 0;
 }

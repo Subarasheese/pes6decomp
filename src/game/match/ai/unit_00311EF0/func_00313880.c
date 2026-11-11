@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern int func_0030F240(void *);
-extern int func_003387D0(void *, void *, void *);
+extern int Pes6Job_SetField4(void *, void *, void *);
 extern int func_00333600(int);
 extern int func_0030F380(void);
 M2C_UNK func_00313720(s32, s32, u8);                /* extern */
@@ -18,7 +18,7 @@ s32 func_00313880(void *arg0) {
         }
         if (func_0030F380() == 0) {
             func_00313720(M2C_FIELD(arg0, s32 *, 0x3C), M2C_FIELD(arg0, s32 *, 0x44), sp2F);
-            func_003387D0(arg0, func_00313100, D_003E1500);
+            Pes6Job_SetField4(arg0, func_00313100, D_003E1500);
             return 1;
         }
         return 0;

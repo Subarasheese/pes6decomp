@@ -14,7 +14,7 @@ typedef struct {
 extern SB1D *func_00B1DE00(void);
 extern void func_00B1C960(s32);
 void func_00225C00(s32, s32);
-void func_0026E840(s32);
+void SD_call(s32);
 void func_00B1CAE0(void);
 s32 func_00B1DD50(void);
 
@@ -35,6 +35,6 @@ s32 func_00B1D920(void) {
         p->x90 = 1;
         p->x91 = 4;
     }
-    func_0026E840(0x84028400);
+    SD_call(0x84028400);
     return 0;
 }

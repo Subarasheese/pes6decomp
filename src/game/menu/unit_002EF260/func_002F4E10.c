@@ -12,7 +12,7 @@ typedef struct {
 extern void func_001B5440(void);
 extern void func_002DF960(void *);
 extern void func_002F0160(void *);
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 
 void func_002F4E10(Obj *o) {
     s32 i;
@@ -25,6 +25,6 @@ void func_002F4E10(Obj *o) {
             func_002DF960(o->recs[i].h);
         }
         func_002F0160((u8 *)o + 0xC);
-        func_00153FA0(o);
+        Pes6Heap_Free(o);
     }
 }

@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern void func_001EC520(s32);
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 M2C_UNK func_001F3F20(void *);                      /* extern */
 
 void func_001F4080(void *arg0) {
@@ -17,6 +17,6 @@ void func_001F4080(void *arg0) {
         if (M2C_FIELD(arg0, s32 *, 0x28) != 0) {
             func_001F3F20(arg0);
         }
-        func_00153FA0(arg0);
+        Pes6Heap_Free(arg0);
     }
 }

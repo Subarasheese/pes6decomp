@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-M2C_UNK func_0026E840(M2C_UNK);                     /* extern */
+M2C_UNK SD_call(M2C_UNK);                     /* extern */
 M2C_UNK func_008187D0();                            /* extern */
 s32 func_008193E0(M2C_UNK, M2C_UNK);                /* extern */
 s32 func_0093C740();                                /* extern */
@@ -44,7 +44,7 @@ s32 func_0096E9B0(void) {
         if (func_0093C740() != 0) {
             func_009717C0(1);
         } else {
-            func_0026E840(0x8C008005);
+            SD_call(0x8C008005);
             func_009717C0(2);
         }
         break;

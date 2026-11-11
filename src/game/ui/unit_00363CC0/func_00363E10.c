@@ -12,7 +12,7 @@ typedef struct {
 void func_001D7F10(s32);
 void func_001BC040(s32);
 void func_001BBFD0(s32);
-void func_00153FA0(Obj *);
+void Pes6Heap_Free(Obj *);
 
 void func_00363E10(Obj *obj) {
     func_001D7F10(obj->a);
@@ -20,5 +20,5 @@ void func_00363E10(Obj *obj) {
     func_001D7F10(obj->c);
     func_001BC040(obj->d);
     func_001BBFD0(obj->d);
-    func_00153FA0(obj);
+    Pes6Heap_Free(obj);
 }

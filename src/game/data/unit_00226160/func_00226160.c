@@ -7,10 +7,10 @@ typedef struct {
     u8 flag : 1;
 } Rec;
 
-Rec *func_0022F150(void);
+Rec *Pes6SaveData_GetHeaderBlock(void);
 
 s32 func_00226160(void) {
-    Rec *rec = func_0022F150();
+    Rec *rec = Pes6SaveData_GetHeaderBlock();
 
     if (rec == NULL) {
         return 0;

@@ -16,7 +16,7 @@ s32 func_00140460();                                /* extern */
 s32 func_00140470();                                /* extern */
 s32 func_00140540();                                /* extern */
 M2C_UNK func_00146C70(M2C_UNK *, M2C_UNK *, s32);   /* extern */
-M2C_UNK func_00153FA0(s32);                         /* extern */
+M2C_UNK Pes6Heap_Free(s32);                         /* extern */
 s32 func_00153FC0(M2C_UNK, M2C_UNK, s32);           /* extern */
 M2C_UNK func_00155A30();                            /* extern */
 M2C_UNK func_00155A60();                            /* extern */
@@ -55,7 +55,7 @@ void func_00901580(void) {
     func_00136DB0(0x2A1C);
     func_00135C40(0);
     func_00135E90(0);
-    func_00153FA0(temp_v0_2);
+    Pes6Heap_Free(temp_v0_2);
     func_002CAE80();
     func_00155A60();
     func_0017FE20();

@@ -1,9 +1,9 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern s32 func_001BBC60(s32);
+extern s32 Pes6Process_Start(s32);
 extern void func_00C87790(void);
-s32 func_001BBEC0(M2C_UNK, char *, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK *); /* extern */
+s32 Pes6Process_Create(M2C_UNK, char *, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK *); /* extern */
 M2C_UNK func_001C48E8(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK func_00C89FE0();                            /* extern */
 M2C_UNK func_00C8AC90(M2C_UNK);                     /* extern */
@@ -23,8 +23,8 @@ void func_00C8A3D0(void) {
     func_00C8AC90(1);
     var_s0 = (*(s32 *)D_00CCD084);
     if (var_s0 == 0) {
-        var_s0 = func_001BBEC0(0, func_00C8AFD0, 0, 0, 0, ((void *)D_00CB4F30));
-        func_001BBC60(var_s0);
+        var_s0 = Pes6Process_Create(0, func_00C8AFD0, 0, 0, 0, ((void *)D_00CB4F30));
+        Pes6Process_Start(var_s0);
     }
     (*(s32 *)D_00CCD084) = var_s0;
 }

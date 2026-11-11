@@ -1,8 +1,8 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
-extern u8 *func_00221210(s32, s32, s32, s32);
+extern u8 *Pes6OptionData_GetBlock2CC(s32, s32, s32, s32);
 void func_009316D0(s32 a0, s32 a1, s32 a2, s32 a3) {
-    u8 *p = func_00221210(a0, a1, a2, a3);
+    u8 *p = Pes6OptionData_GetBlock2CC(a0, a1, a2, a3);
     p[0] = 1; p[1] = 2; p[2] = 1; p[3] = 0; p[4] = 0; p[5] = 3; p[6] = 1; p[7] = 1;
     p[8] = 2; p[9] = 2; p[10] = 3; p[11] = 3; p[12] = 3; p[13] = 0x24; p[14] = 0; p[15] = 1;
     p[16] = 10; p[19] = 0; p[20] = 0; p[21] = 0;

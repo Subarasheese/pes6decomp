@@ -1,15 +1,15 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern u8 *D_003E77AC;
-s32 func_00231240(void);
+extern u8 *Pes6SaveData_Current;
+s32 Pes6SaveData_IsUnavailable(void);
 
 static inline u8 *get_block(void) {
-    if (func_00231240() == 1) {
+    if (Pes6SaveData_IsUnavailable() == 1) {
         return NULL;
     }
-    if (D_003E77AC != NULL) {
-        return D_003E77AC + 0x7980;
+    if (Pes6SaveData_Current != NULL) {
+        return Pes6SaveData_Current + 0x7980;
     }
     return NULL;
 }
@@ -17,7 +17,7 @@ static inline u8 *get_block(void) {
 u8 *func_00229380(void) {
     u8 *p = get_block();
 
-    if (func_00231240() == 1) {
+    if (Pes6SaveData_IsUnavailable() == 1) {
         return NULL;
     }
     if (p == NULL) {

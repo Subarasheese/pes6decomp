@@ -2,10 +2,10 @@
 #include "pes6/m2c.h"
 
 
-extern void *D_003E77AC;
+extern void *Pes6SaveData_Current;
 
 void func_0094C790(s32 arg0) {
-    if (D_003E77AC != NULL) {
-        M2C_FIELD(D_003E77AC, s32 *, 4) = arg0;
+    if (Pes6SaveData_Current != NULL) {
+        M2C_FIELD(Pes6SaveData_Current, s32 *, 4) = arg0;
     }
 }

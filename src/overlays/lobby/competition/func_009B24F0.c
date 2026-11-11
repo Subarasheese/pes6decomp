@@ -3,7 +3,7 @@
 
 extern s32 func_002DB2C0(void *, s32, s32, s32);
 extern s32 func_002DB830(void *);
-void func_0026E840(s32);
+void SD_call(s32);
 extern void *D_003EAD14;
 
 void func_009B24F0(s32 arg0, s32 arg1) {
@@ -13,6 +13,6 @@ void func_009B24F0(s32 arg0, s32 arg1) {
     p = D_003EAD14;
     v = func_002DB830(M2C_FIELD(p, void **, 0xB0));
     if (v != func_002DB2C0(M2C_FIELD(p, void **, 0xB0), v, arg0, arg1)) {
-        func_0026E840(0x8400F802);
+        SD_call(0x8400F802);
     }
 }

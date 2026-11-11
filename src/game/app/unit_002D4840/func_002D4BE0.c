@@ -4,11 +4,11 @@ struct EntryTable {
     void *entries[];
 };
 extern struct EntryTable *func_00256140(void);
-extern void func_0026E560(void *);
+extern void SD_stop(void *);
 extern int func_009B45F0(void);
 extern int func_009B4650(void);
 void func_002D4BE0(int index) {
     if (func_009B45F0() == 0 || (func_009B4650() & 0xFF) != 4) {
-        func_0026E560(func_00256140()->entries[index]);
+        SD_stop(func_00256140()->entries[index]);
     }
 }

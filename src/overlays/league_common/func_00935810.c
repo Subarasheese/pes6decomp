@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern void * func_0022F150(void);
+extern void * Pes6SaveData_GetHeaderBlock(void);
 extern void func_00210E50(void);
 extern void func_00241640(void);
 extern void *D_003E77B0;
@@ -9,7 +9,7 @@ extern void *D_003E77B0;
 void func_00935810(void) {
     void *temp_v0;
 
-    temp_v0 = func_0022F150();
+    temp_v0 = Pes6SaveData_GetHeaderBlock();
     if (temp_v0 != NULL) {
         M2C_FIELD(temp_v0, u16 *, 0x5FC) = 0xFFFF;
     }

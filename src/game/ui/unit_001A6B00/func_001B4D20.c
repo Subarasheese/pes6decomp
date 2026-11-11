@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 void func_001E5F20(s32);
-void func_00153FA0(s32 *);
+void Pes6Heap_Free(s32 *);
 
 void func_001B4D20(s32 *items) {
     u32 i;
@@ -13,5 +13,5 @@ void func_001B4D20(s32 *items) {
     for (i = 0; i < 2; i++) {
         func_001E5F20(items[i]);
     }
-    func_00153FA0(items);
+    Pes6Heap_Free(items);
 }

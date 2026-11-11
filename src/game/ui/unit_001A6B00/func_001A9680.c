@@ -9,7 +9,7 @@ typedef struct {
 } Obj;
 
 void func_00145590(s32);
-void func_00153FA0(s32);
+void Pes6Heap_Free(s32);
 
 void func_001A9680(s32 a, s32 b, Obj **ref) {
     Obj *obj = *ref;
@@ -18,7 +18,7 @@ void func_001A9680(s32 a, s32 b, Obj **ref) {
         return;
     }
     func_00145590(obj->handle);
-    func_00153FA0(obj->handle);
+    Pes6Heap_Free(obj->handle);
     obj->handle = 0;
     obj->state = 3;
 }

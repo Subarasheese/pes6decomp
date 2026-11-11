@@ -12,10 +12,10 @@ typedef struct {
     Sub sub;
 } Cfg;
 
-Cfg *func_00223BE0(void);
+Cfg *Pes6OptionData_GetBase(void);
 
 void func_002207E0(s32 side, s32 v) {
-    Sub *sub = &func_00223BE0()->sub;
+    Sub *sub = &Pes6OptionData_GetBase()->sub;
     u8 on = v == 1;
 
     if (side == 0) {

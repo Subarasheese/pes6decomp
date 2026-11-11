@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-M2C_UNK func_00153FA0(s32);                         /* extern */
+M2C_UNK Pes6Heap_Free(s32);                         /* extern */
 M2C_UNK func_001C48E8(s32 *, M2C_UNK, M2C_UNK);     /* extern */
 M2C_UNK func_001E5F20(s32);                         /* extern */
 M2C_UNK func_001EDD90(s32);                         /* extern */
@@ -29,7 +29,7 @@ void func_0025D000(void) {
         var_s0_2 += 1;
         var_s1_2 += 1;
     } while (var_s0_2 < 3);
-    func_00153FA0((*(s32 *)D_0058D12C));
-    func_00153FA0((*(s32 *)D_0058D130));
+    Pes6Heap_Free((*(s32 *)D_0058D12C));
+    Pes6Heap_Free((*(s32 *)D_0058D130));
     func_001C48E8(((void *)D_0058CFE0), 0, 0x16C);
 }

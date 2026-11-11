@@ -11,13 +11,13 @@ typedef struct {
 } Obj;
 
 extern s32 D_003E992C;
-Obj *func_001BC060(s32);
+Obj *Pes6Process_GetWork(s32);
 
 void func_001BDB10(void) {
     Obj *obj;
 
     if (D_003E992C != 0) {
-        obj = func_001BC060(D_003E992C);
+        obj = Pes6Process_GetWork(D_003E992C);
         if (obj != NULL) {
             obj->b0 = 1;
         }

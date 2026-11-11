@@ -3,7 +3,7 @@
 
 
 s32 func_00151EA0(M2C_UNK);                         /* extern */
-M2C_UNK func_0026E840(M2C_UNK);                     /* extern */
+M2C_UNK SD_call(M2C_UNK);                     /* extern */
 
 void func_00C6C590(void) {
     M2C_UNK var_a0;
@@ -13,5 +13,5 @@ void func_00C6C590(void) {
     } else {
         var_a0 = 0x8C040035;
     }
-    func_0026E840(var_a0);
+    SD_call(var_a0);
 }

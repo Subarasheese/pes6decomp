@@ -4,7 +4,7 @@
 s32 func_0017F900();                                /* extern */
 s32 func_0023B380(M2C_UNK);                         /* extern */
 M2C_UNK func_0023B3B0(M2C_UNK, M2C_UNK);            /* extern */
-s32 func_00309420();                                /* extern */
+s32 Pes6SaveData_GetUnavailableFlag();                                /* extern */
 M2C_UNK func_008C4F30();                            /* extern */
 M2C_UNK func_008C5AA0();                            /* extern */
 M2C_UNK func_008C5D00();                            /* extern */
@@ -31,7 +31,7 @@ void func_008C8FB0(void) {
         func_008C5AA0();
         func_008C4F30();
     }
-    if (func_00309420() != 0) {
+    if (Pes6SaveData_GetUnavailableFlag() != 0) {
         if (D_003EA4BC == 2) {
             func_008C6C40();
             func_008C6440();

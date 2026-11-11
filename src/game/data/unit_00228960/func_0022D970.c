@@ -2,10 +2,10 @@
 #include "pes6/m2c.h"
 
 extern u8 D_0053A810[];
-s32 func_00309420(void);
+s32 Pes6SaveData_GetUnavailableFlag(void);
 
 static inline s32 is_busy(void) {
-    return func_00309420() != 0;
+    return Pes6SaveData_GetUnavailableFlag() != 0;
 }
 
 u8 *func_0022D970(void) {

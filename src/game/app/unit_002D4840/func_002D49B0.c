@@ -5,7 +5,7 @@ extern int func_00256140(void);
 extern s32 func_00263070(void);
 extern void func_002D33D0(s32, s32);
 extern void func_0026DA30(s32);
-M2C_UNK func_0026E840(s32);                         /* extern */
+M2C_UNK SD_call(s32);                         /* extern */
 s32 func_009B45F0();                                /* extern */
 s32 func_009B4650();                                /* extern */
 M2C_UNK func_00B29C50();                            /* extern */
@@ -29,7 +29,7 @@ void func_002D49B0(s32 arg0) {
         temp_v0->b = arg0;
         if (arg0 == 0) {
             func_0026DA30(1);
-            func_0026E840(0x82000117);
+            SD_call(0x82000117);
             func_002D33D0(3, 0x42);
             return;
         }
@@ -39,14 +39,14 @@ void func_002D49B0(s32 arg0) {
             func_00B29C50();
         }
         if (((func_009B45F0() == 0) || ((func_009B4650() & 0xFF) != 4)) && (M2C_FIELD(temp_s0, u8 *, 1) != 0)) {
-            func_0026E840(M2C_FIELD(temp_s0, s32 *, 0x568));
+            SD_call(M2C_FIELD(temp_s0, s32 *, 0x568));
         }
         temp_s0_2 = func_00256140();
         if (func_00263070() != 0) {
             func_00B29C50();
         }
         if (((func_009B45F0() == 0) || ((func_009B4650() & 0xFF) != 4)) && (M2C_FIELD(temp_s0_2, u8 *, 1) != 0)) {
-            func_0026E840(M2C_FIELD(temp_s0_2, s32 *, 0x56C));
+            SD_call(M2C_FIELD(temp_s0_2, s32 *, 0x56C));
         }
     }
     }

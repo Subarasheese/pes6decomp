@@ -12,10 +12,10 @@ typedef struct {
     PairEntry items[16];
 } PairQueue;
 
-extern PairQueue D_005F1CC0;
+extern PairQueue Pes6JobManager;
 
 s32 func_00338640(s32 first, s32 second) {
-    PairQueue *queue = &D_005F1CC0;
+    PairQueue *queue = &Pes6JobManager;
 
     if (queue->count >= 16) {
         return 0;

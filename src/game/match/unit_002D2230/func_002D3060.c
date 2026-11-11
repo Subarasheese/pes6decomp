@@ -1,20 +1,20 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-s32 func_002371A0(u16);                             /* extern */
+s32 Pes6Team_ResolveSpecialId(u16);                             /* extern */
 M2C_UNK func_002561E0(M2C_UNK *);                   /* extern */
 M2C_UNK func_002562F0(s32, M2C_UNK, M2C_UNK *);     /* extern */
 M2C_UNK func_00256310(M2C_UNK *);                   /* extern */
 M2C_UNK func_0026DA00(s32);                         /* extern */
 M2C_UNK func_0026DA30(M2C_UNK);                     /* extern */
-M2C_UNK func_0026E840(M2C_UNK);                     /* extern */
+M2C_UNK SD_call(M2C_UNK);                     /* extern */
 M2C_UNK func_002D6440();                            /* extern */
 s32 func_002FC720(s32);                             /* extern */
 M2C_UNK func_002FE330();                            /* extern */
 M2C_UNK func_00342780();                            /* extern */
 extern char D_003B2040[];
 extern u8 D_003E9D6C;
-extern char D_00591BB0[];
+extern char Pes6MatchContext[];
 extern char D_00C6C590[];
 extern char D_00C6C5D0[];
 extern char D_00C6C610[];
@@ -29,7 +29,7 @@ void func_002D3060(void) {
     s32 var_s1;
     u16 *var_s0;
 
-    func_0026E840(0x22000101);
+    SD_call(0x22000101);
     func_00342780();
     func_002FE330();
     func_002561E0(((void *)D_00CA9200));
@@ -40,9 +40,9 @@ void func_002D3060(void) {
     }
     var_s2 = 1;
     var_s1 = 0;
-    var_s0 = ((void *)D_00591BB0);
+    var_s0 = ((void *)Pes6MatchContext);
     do {
-        temp_v1 = func_002371A0(*var_s0) & 0xFFFF;
+        temp_v1 = Pes6Team_ResolveSpecialId(*var_s0) & 0xFFFF;
         if (((temp_v1 >= 0x34) && (temp_v1 <= 0x37)) || ((temp_v1 >= 0xD5) && (temp_v1 < 0xDD))) {
             var_s2 &= 1;
         } else {

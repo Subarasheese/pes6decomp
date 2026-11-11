@@ -8,13 +8,13 @@ typedef struct {
     u8 hi : 1;
 } Rec;
 
-Rec *func_0022F150(void);
-s32 func_00231240(void);
+Rec *Pes6SaveData_GetHeaderBlock(void);
+s32 Pes6SaveData_IsUnavailable(void);
 
 u8 func_00228190(void) {
-    Rec *rec = func_0022F150();
+    Rec *rec = Pes6SaveData_GetHeaderBlock();
 
-    if (func_00231240() == 1) {
+    if (Pes6SaveData_IsUnavailable() == 1) {
         return 0;
     }
     if (rec == NULL) {

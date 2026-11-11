@@ -3,7 +3,7 @@
 
 void Pes6BitSet_Initialize(void *, s32, s32 *);
 void Pes6BitSet_Write(void *, s32, s32);
-void func_00333440(s32, void *, s32);
+void Pes6Job_SendMessage(s32, void *, s32);
 
 void func_00333320(s32 value) {
     u8 buf[0x1C];
@@ -11,5 +11,5 @@ void func_00333320(s32 value) {
 
     Pes6BitSet_Initialize(buf, 1, &out);
     Pes6BitSet_Write(buf, 0, value);
-    func_00333440(0, buf, 1);
+    Pes6Job_SendMessage(0, buf, 1);
 }

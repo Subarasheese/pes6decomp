@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 
-M2C_UNK func_0026E840(M2C_UNK);                     /* extern */
+M2C_UNK SD_call(M2C_UNK);                     /* extern */
 
 s32 func_009B8E30(void *arg0) {
     if (arg0 != NULL) {
@@ -12,7 +12,7 @@ s32 func_009B8E30(void *arg0) {
             }
             M2C_FIELD(arg0, s32 *, 0) = 3;
         }
-        func_0026E840(0x84028400);
+        SD_call(0x84028400);
     }
     return 0;
 }

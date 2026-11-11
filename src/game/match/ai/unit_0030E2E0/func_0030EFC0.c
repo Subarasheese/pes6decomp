@@ -8,8 +8,8 @@ typedef struct LookupResult {
 } LookupResult;
 
 extern u8 D_00591F12[];
-extern int D_00591E0C[];
-extern s16 D_00591E10[];
+extern int Pes6MatchClock_Remaining[];
+extern s16 Pes6MatchClock_Extra[];
 extern u8 D_00591F24[];
 
 void func_002C42A0(LookupResult *result, u8 a, u8 b);
@@ -25,7 +25,7 @@ int func_0030EFC0(u8 a, int b)
         return 0;
     }
     ok = D_00591F12[0];
-    if (!ok && D_00591E0C[0] == 0 && D_00591E10[0] == 0 && D_00591F24[0] == 0) {
+    if (!ok && Pes6MatchClock_Remaining[0] == 0 && Pes6MatchClock_Extra[0] == 0 && D_00591F24[0] == 0) {
         ok = 1;
     }
     if (!ok) {

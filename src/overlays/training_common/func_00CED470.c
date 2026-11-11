@@ -8,7 +8,7 @@ typedef struct {
     s32 x10;
 } ST;
 
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 void func_001C48E8(void *, s32, s32);
 void func_001DF7B0(s32);
 void func_001EDD90(s32);
@@ -22,7 +22,7 @@ s32 func_00CED470(ST *arg0) {
     if (arg0->x0 == NULL) {
         return 0;
     }
-    func_00153FA0(arg0->x0);
+    Pes6Heap_Free(arg0->x0);
     func_001C48E8(arg0, 0, 0x1C);
     return 1;
 }

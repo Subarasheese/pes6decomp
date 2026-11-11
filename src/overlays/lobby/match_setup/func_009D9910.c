@@ -4,7 +4,7 @@
 extern f32 func_002DB850(void *);
 extern void func_002DF640(void *, f32, f32);
 extern s32 func_002DB870(void *);
-M2C_UNK func_0026E840(M2C_UNK);                     /* extern */
+M2C_UNK SD_call(M2C_UNK);                     /* extern */
 M2C_UNK func_002DF050(void *, f32 *);               /* extern */
 M2C_UNK func_009D9540(void *, s32);                 /* extern */
 
@@ -18,6 +18,6 @@ void func_009D9910(void *arg0, void *arg1) {
     func_002DF640(temp_s0, v[0], v[1]);
     func_009D9540(arg1, func_002DB870(arg0));
     if (M2C_FIELD(arg1, u8 *, 0x297) == 0) {
-        func_0026E840(0x8400F802);
+        SD_call(0x8400F802);
     }
 }

@@ -2,7 +2,7 @@
 #include "pes6/match_player.h"
 
 extern u8 D_00592370[];
-extern int D_00591E0C[];
+extern int Pes6MatchClock_Remaining[];
 extern u8 D_00591C09[];
 
 int func_00BD9AF0(void);
@@ -20,7 +20,7 @@ int func_0030F080(int a)
         }
     } else if (func_00333600(0x16)) {
         r = 2;
-    } else if (r != 0xFF && D_00591E0C[0] != 0 && D_00591C09[0] != 7 && !func_00333600(0x16)) {
+    } else if (r != 0xFF && Pes6MatchClock_Remaining[0] != 0 && D_00591C09[0] != 7 && !func_00333600(0x16)) {
         r = 0;
     }
     return r;

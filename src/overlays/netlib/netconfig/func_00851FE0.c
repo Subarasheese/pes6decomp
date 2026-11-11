@@ -2,11 +2,11 @@
 #include "pes6/m2c.h"
 
 extern void *Pes6Ball_Current;
-extern char D_00591DC4[];
+extern char Pes6MatchContext_FrameCounter[];
 extern char Pes6MatchState_Current[];
 
 void func_00851FE0(void *arg0, s32 arg1, s16 (*arg2)(f32)) {
-    M2C_FIELD(arg0, s32 *, 0) = (s32) (*(s32 *)D_00591DC4);
+    M2C_FIELD(arg0, s32 *, 0) = (s32) (*(s32 *)Pes6MatchContext_FrameCounter);
     M2C_FIELD(arg0, s16 *, 0xC) = arg2(M2C_FIELD(Pes6Ball_Current, f32 *, 0x10));
     M2C_FIELD(arg0, s16 *, 0xE) = arg2(M2C_FIELD(Pes6Ball_Current, f32 *, 0x14));
     M2C_FIELD(arg0, s16 *, 0x10) = arg2(M2C_FIELD(Pes6Ball_Current, f32 *, 0x18));

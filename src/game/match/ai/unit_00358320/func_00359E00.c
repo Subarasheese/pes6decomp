@@ -4,7 +4,7 @@
 s32 func_003395B0(s32);
 s32 func_00340C80(f32);
 s32 func_003336F0(void *);
-s32 func_00338930(void *);
+s32 Pes6Job_SetDone(void *);
 
 s32 func_00359E00(void *arg0) {
     s32 s0;
@@ -22,6 +22,6 @@ s32 func_00359E00(void *arg0) {
     if (func_003336F0(s1) != 0) {
         *((u8 *)s1 + 0x44) = 1;
     }
-    func_00338930(arg0);
+    Pes6Job_SetDone(arg0);
     return 1;
 }

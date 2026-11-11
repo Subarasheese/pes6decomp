@@ -2,12 +2,12 @@
 #include "pes6/m2c.h"
 
 u8 *func_00229460(void);
-s32 func_00231240(void);
+s32 Pes6SaveData_IsUnavailable(void);
 
 s32 func_00235B60(void) {
     u8 *info = func_00229460();
 
-    if (func_00231240() == 1) {
+    if (Pes6SaveData_IsUnavailable() == 1) {
         return 0;
     }
     if (info == NULL) {

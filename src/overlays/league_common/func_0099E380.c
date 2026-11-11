@@ -9,7 +9,7 @@ extern u8 func_0022BC60(s32);
 void *func_0022BFF0(u8, s32);                       /* extern */
 M2C_UNK func_0094C620(s32, s32);                    /* extern */
 extern void *D_003E77B0;
-extern char D_00591BB0[];
+extern char Pes6MatchContext[];
 extern char D_00591BB2[];
 
 void func_0099E380(void) {
@@ -33,11 +33,11 @@ void func_0099E380(void) {
             var_s1 = M2C_FIELD(temp_v0, u8 *, 5);
             var_s0 = M2C_FIELD(temp_v0, u8 *, 6);
         }
-        (*(u16 *)D_00591BB0) = func_0022BAC0((s32) var_s1);
+        (*(u16 *)Pes6MatchContext) = func_0022BAC0((s32) var_s1);
         (*(u16 *)D_00591BB2) = func_0022BAC0((s32) var_s0);
         M2C_FIELD(D_003E77B0, u8 *, 0x2C) = func_0022BC60((s32) var_s1);
         M2C_FIELD(D_003E77B0, u8 *, 0x2D) = func_0022BC60((s32) var_s0);
-        M2C_FIELD(D_003E77B0, u16 *, 0x1C) = (u16) (*(u16 *)D_00591BB0);
+        M2C_FIELD(D_003E77B0, u16 *, 0x1C) = (u16) (*(u16 *)Pes6MatchContext);
         M2C_FIELD(D_003E77B0, u16 *, 0x1E) = (u16) (*(u16 *)D_00591BB2);
         M2C_FIELD(D_003E77B0, u8 *, 0x2E) = (u8) M2C_FIELD(D_003E77B0, u8 *, 0x2C);
         M2C_FIELD(D_003E77B0, u8 *, 0x2F) = (u8) M2C_FIELD(D_003E77B0, u8 *, 0x2D);

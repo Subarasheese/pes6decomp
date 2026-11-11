@@ -7,10 +7,10 @@ typedef struct {
 } Ctx;
 
 extern Ctx *D_003E77B0;
-s32 func_00231240(void);
+s32 Pes6SaveData_IsUnavailable(void);
 
 s32 func_002291C0(void) {
-    if (func_00231240() == 1) {
+    if (Pes6SaveData_IsUnavailable() == 1) {
         return 0;
     }
     return (u64)D_003E77B0->flags & 0x2000000;

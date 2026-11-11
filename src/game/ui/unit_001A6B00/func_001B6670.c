@@ -10,10 +10,10 @@ typedef struct {
 extern s32 D_00522938[];
 extern s32 D_0052293C[];
 extern Flags D_0052294C[];
-void func_00153FA0(s32);
+void Pes6Heap_Free(s32);
 
 void func_001B6670(void) {
-    func_00153FA0(D_00522938[0]);
+    Pes6Heap_Free(D_00522938[0]);
     D_00522938[0] = 0;
     D_0052293C[0] = 0;
     D_0052294C[0].f = 1;

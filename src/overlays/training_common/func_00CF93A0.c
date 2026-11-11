@@ -1,8 +1,8 @@
 #include "types.h"
 
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 
 void func_00CF93A0(void * a0)
 {
-    func_00153FA0(a0);
+    Pes6Heap_Free(a0);
 }

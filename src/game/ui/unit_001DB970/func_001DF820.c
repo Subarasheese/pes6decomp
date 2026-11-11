@@ -13,7 +13,7 @@ typedef struct Obj {
 } Obj;
 
 extern s32 func_001C7E10(void *);
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 extern void func_001E50C0(Obj *);
 extern void func_001DFF50(Obj *, s32);
 extern void func_001E5120(Obj *);
@@ -22,13 +22,13 @@ void func_001DF820(Obj *o, s32 a) {
     if (o == NULL || a == 0) return;
     if (o->f6C != 0) return;
     if (func_001C7E10(o->f18) == 0) return;
-    func_00153FA0(o->f18);
+    Pes6Heap_Free(o->f18);
     o->f18 = NULL;
     func_001E50C0(o);
     func_001DFF50(o, a);
     func_001E5120(o);
     if (o->f3C != NULL) {
-        func_00153FA0(o->f3C);
+        Pes6Heap_Free(o->f3C);
         o->f3C = NULL;
     }
     o->f74 = 0xFF;

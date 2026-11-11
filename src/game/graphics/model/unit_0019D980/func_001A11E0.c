@@ -4,7 +4,7 @@
 M2C_UNK func_00145590(s32);                         /* extern */
 M2C_UNK func_00145750(s32);                         /* extern */
 s32 func_001515E0(M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
-M2C_UNK func_00153FA0(s32);                         /* extern */
+M2C_UNK Pes6Heap_Free(s32);                         /* extern */
 s32 func_0017F9A0(s32, M2C_UNK *, s32 *, M2C_UNK, M2C_UNK *); /* extern */
 s32 func_0017FA00(M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK func_00183050();                            /* extern */
@@ -43,7 +43,7 @@ void func_001A11E0(void) {
         temp_a0 = *var_s0;
         if (temp_a0 != 0) {
             func_00145590(temp_a0);
-            func_00153FA0(*var_s0);
+            Pes6Heap_Free(*var_s0);
             *var_s0 = 0;
         }
         var_s1 += 1;
@@ -53,31 +53,31 @@ void func_001A11E0(void) {
     func_001830B0();
     func_00183050();
     if ((*(s32 *)D_0051FF80) != 0) {
-        func_00153FA0((*(s32 *)D_0051FF80));
+        Pes6Heap_Free((*(s32 *)D_0051FF80));
         (*(s32 *)D_0051FF80) = 0;
     }
     if ((*(s32 *)D_0051FF84) != 0) {
-        func_00153FA0((*(s32 *)D_0051FF84));
+        Pes6Heap_Free((*(s32 *)D_0051FF84));
         (*(s32 *)D_0051FF84) = 0;
     }
     if ((*(s32 *)D_0051FF88) != 0) {
-        func_00153FA0((*(s32 *)D_0051FF88));
+        Pes6Heap_Free((*(s32 *)D_0051FF88));
         (*(s32 *)D_0051FF88) = 0;
     }
     if ((*(s32 *)D_0051FF8C) != 0) {
-        func_00153FA0((*(s32 *)D_0051FF8C));
+        Pes6Heap_Free((*(s32 *)D_0051FF8C));
         (*(s32 *)D_0051FF8C) = 0;
     }
     if ((*(s32 *)D_0051FF90) != 0) {
-        func_00153FA0((*(s32 *)D_0051FF90));
+        Pes6Heap_Free((*(s32 *)D_0051FF90));
         (*(s32 *)D_0051FF90) = 0;
     }
     if ((*(s32 *)D_0051FF94) != 0) {
-        func_00153FA0((*(s32 *)D_0051FF94));
+        Pes6Heap_Free((*(s32 *)D_0051FF94));
         (*(s32 *)D_0051FF94) = 0;
     }
     if ((*(s32 *)D_0051FF98) != 0) {
-        func_00153FA0((*(s32 *)D_0051FF98));
+        Pes6Heap_Free((*(s32 *)D_0051FF98));
         (*(s32 *)D_0051FF98) = 0;
     }
     temp_v0 = func_001515E0(0, 0x4266, 2, 0x40, 0x30);

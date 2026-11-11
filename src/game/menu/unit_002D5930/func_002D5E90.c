@@ -13,7 +13,7 @@ void func_002D5E90(void) {
     case 8:
     case 9:
 
-    func_0026E840(0x22000100U);
+    SD_call(0x22000100U);
     callback = D_003E7614->update;
     if ((callback != NULL) && (func_002D5E90 == callback)) {
         D_003E7614->update = NULL;

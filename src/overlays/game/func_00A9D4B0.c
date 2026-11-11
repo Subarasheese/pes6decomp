@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern s32 func_00BF6280(void);
-extern void func_00284A20(void *);
+extern void Pes6Ball_AttachToPlayer(void *);
 M2C_UNK func_0027D4E0(u8, u8);                      /* extern */
 s32 func_009E1C90(M2C_UNK);                         /* extern */
 extern char Pes6MatchState_Current[];
@@ -19,6 +19,6 @@ block_3:
         func_0027D4E0(*arg0, (*(u8 *)D_00591F24));
         (*(u8 *)D_00591E57) = *arg0;
         (*(u8 *)Pes6MatchState_Current) = *arg0;
-        func_00284A20(arg0);
+        Pes6Ball_AttachToPlayer(arg0);
     }
 }

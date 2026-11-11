@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern void func_002F4E10(void *);
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 M2C_UNK func_002F2ED0(void *);                      /* extern */
 s32 func_002F3850(void *);                          /* extern */
 M2C_UNK func_00AECBE0(void **);                     /* extern */
@@ -21,8 +21,8 @@ s32 func_00AED310(void *arg0) {
             temp_s0 = M2C_FIELD(arg0, void ***, 0);
             if (temp_s0 != NULL) {
                 func_002F4E10(M2C_FIELD(temp_s0, void **, 0));
-                func_00153FA0(M2C_FIELD(temp_s0, void **, 4));
-                func_00153FA0(temp_s0);
+                Pes6Heap_Free(M2C_FIELD(temp_s0, void **, 4));
+                Pes6Heap_Free(temp_s0);
             }
             M2C_FIELD(arg0, void ***, 0) = NULL;
             temp_v1_2 = M2C_FIELD(arg0, s32 **, 4);

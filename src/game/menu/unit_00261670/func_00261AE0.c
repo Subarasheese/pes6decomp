@@ -4,13 +4,13 @@
 extern s32 D_0058D3A4[];
 extern s32 D_0058D3A8[];
 extern s32 D_0058D3AC[];
-void func_00153FA0(s32);
+void Pes6Heap_Free(s32);
 
 void func_00261AE0(void) {
     if (D_0058D3A4[0] == 0) {
         return;
     }
-    func_00153FA0(D_0058D3A4[0]);
+    Pes6Heap_Free(D_0058D3A4[0]);
     D_0058D3A4[0] = 0;
     D_0058D3A8[0] = 0;
     D_0058D3AC[0] = 0;

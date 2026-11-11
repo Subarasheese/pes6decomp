@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern void func_001D4E00(void *);
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 M2C_UNK func_001EDD90(s32);                         /* extern */
 
 void func_008CA7A0(void **arg0) {
@@ -18,6 +18,6 @@ void func_008CA7A0(void **arg0) {
             var_s0 += 1;
         } while (var_s1 < 2);
         func_001D4E00(*arg0);
-        func_00153FA0(arg0);
+        Pes6Heap_Free(arg0);
     }
 }

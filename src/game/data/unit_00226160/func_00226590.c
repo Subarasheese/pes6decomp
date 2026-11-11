@@ -5,15 +5,15 @@ typedef struct {
     u8 pad0[2]; u16 a : 7; u16 f : 4;
 } Blk;
 
-extern u8 *D_003E77AC;
-s32 func_00231240(void);
+extern u8 *Pes6SaveData_Current;
+s32 Pes6SaveData_IsUnavailable(void);
 
 static inline Blk *get_block(void) {
-    if (func_00231240() == 1) {
+    if (Pes6SaveData_IsUnavailable() == 1) {
         return NULL;
     }
-    if (D_003E77AC != NULL) {
-        return (Blk *)(D_003E77AC + 0x4770);
+    if (Pes6SaveData_Current != NULL) {
+        return (Blk *)(Pes6SaveData_Current + 0x4770);
     }
     return NULL;
 }
@@ -21,7 +21,7 @@ static inline Blk *get_block(void) {
 void func_00226590(s32 v) {
     Blk *p = get_block();
 
-    if (func_00231240() == 1) {
+    if (Pes6SaveData_IsUnavailable() == 1) {
         return;
     }
     if (p != NULL) {

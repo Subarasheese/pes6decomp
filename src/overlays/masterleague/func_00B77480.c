@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern u32 func_00B772F0(void);
-extern void func_0026E840(s32, u8);
+extern void SD_call(s32, u8);
 
 s32 func_00B77480(void) {
     u32 temp_v0;
@@ -14,6 +14,6 @@ s32 func_00B77480(void) {
     }
     temp_a1 = M2C_FIELD(temp_v0, u8 *, 0x40);
     M2C_FIELD(temp_v0, s32 *, 0x44) = (s32) (temp_a1 + 2);
-    func_0026E840(0x84028400, temp_a1);
+    SD_call(0x84028400, temp_a1);
     return 0;
 }

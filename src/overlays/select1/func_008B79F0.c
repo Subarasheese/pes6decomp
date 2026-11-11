@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern int func_002DCA30(void);
-extern int func_00309420(void);
+extern int Pes6SaveData_GetUnavailableFlag(void);
 M2C_UNK func_002E4400(s32, M2C_UNK);                /* extern */
 s32 func_008B3410(s32);                             /* extern */
 extern s32 D_003EA438;
@@ -14,7 +14,7 @@ void func_008B79F0(void) {
     var_s1 = 0;
     var_s0 = 0;
     do {
-        if ((func_00309420() != 0) && (var_s0 != 0)) {
+        if ((Pes6SaveData_GetUnavailableFlag() != 0) && (var_s0 != 0)) {
             if (var_s0 == 1) {
                 goto block_5;
             }

@@ -2,7 +2,7 @@
 #include "types.h"
 extern char D_005E92A0[];
 extern char D_005E92A4[];
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 void func_002ED9C0(void) {
     s32 index;
     s32 offset;
@@ -10,10 +10,10 @@ void func_002ED9C0(void) {
     if (*(s32 *)D_005E92A0 > 0) {
         offset = 0;
         do {
-            func_00153FA0(*(void **)(*(u8 **)D_005E92A4 + offset));
+            Pes6Heap_Free(*(void **)(*(u8 **)D_005E92A4 + offset));
             index += 1;
             offset += 4;
         } while (index < *(s32 *)D_005E92A0);
     }
-    func_00153FA0(*(void **)D_005E92A4);
+    Pes6Heap_Free(*(void **)D_005E92A4);
 }

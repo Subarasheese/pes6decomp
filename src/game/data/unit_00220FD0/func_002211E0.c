@@ -1,2 +1,2 @@
-extern void func_00223BE0();
-void func_002211E0(void) { func_00223BE0(); }
+extern void Pes6OptionData_GetBase();
+void func_002211E0(void) { Pes6OptionData_GetBase(); }

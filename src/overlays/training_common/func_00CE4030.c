@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-s32 *func_00154060(M2C_UNK, s32);                   /* extern */
+s32 *Pes6Heap_Alloc(M2C_UNK, s32);                   /* extern */
 M2C_UNK func_001C4730(s32 *, s32 *, s32);           /* extern */
 M2C_UNK func_001D7840(s32, M2C_UNK);                /* extern */
 M2C_UNK func_001D7C20(s32, M2C_UNK);                /* extern */
@@ -21,8 +21,8 @@ void func_00CE4030(s32 arg0, void *arg1, s32 arg2, s32 *arg3, s32 arg4) {
     if (arg2 <= 0) {
         var_s1 = NULL;
     } else {
-        var_s1 = func_00154060(4, arg2);
-        temp_v0 = func_00154060(4, arg2);
+        var_s1 = Pes6Heap_Alloc(4, arg2);
+        temp_v0 = Pes6Heap_Alloc(4, arg2);
         M2C_FIELD(arg1, s32 **, 4) = temp_v0;
         func_001C4730(temp_v0, var_s3, arg2 * 4);
         M2C_FIELD(arg1, s32 **, 0) = var_s1;

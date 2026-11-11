@@ -9,7 +9,7 @@ typedef struct {
 extern Ent D_003D2D38[];
 extern Ent D_00530720[];
 s32 func_001FAE00(s32);
-s32 func_002371A0(u16);
+s32 Pes6Team_ResolveSpecialId(u16);
 
 u8 func_001FAA00(s32 id) {
     Ent *ent;
@@ -17,7 +17,7 @@ u8 func_001FAA00(s32 id) {
     if (func_001FAE00(id) != 0) {
         ent = D_003D2D38;
     } else {
-        ent = &D_00530720[(u16)func_002371A0(id)];
+        ent = &D_00530720[(u16)Pes6Team_ResolveSpecialId(id)];
     }
     return ent->value;
 }

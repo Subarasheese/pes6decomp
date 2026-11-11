@@ -1,6 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
-M2C_UNK func_00153FA0(void *);                      /* extern */
+M2C_UNK Pes6Heap_Free(void *);                      /* extern */
 void *func_001BB370(s32);                           /* extern */
 s32 func_001BB3E0(s32);                             /* extern */
 s32 func_001BB4D0(s32);                             /* extern */
@@ -28,7 +28,7 @@ void func_00265730(void *arg0) {
             }
         }
         func_00256E90(M2C_FIELD(arg0, s32 *, 0));
-        func_00153FA0(M2C_FIELD(arg0, void **, 4));
-        func_00153FA0(arg0);
+        Pes6Heap_Free(M2C_FIELD(arg0, void **, 4));
+        Pes6Heap_Free(arg0);
     }
 }

@@ -16,13 +16,13 @@ typedef struct {
     s32 data;
 } Obj;
 
-void func_00153FA0(s32);
+void Pes6Heap_Free(s32);
 
 void func_001B0570(Obj *obj) {
     Sub *sub = obj->sub;
 
     if (sub->handle != 0) {
-        func_00153FA0(obj->data);
+        Pes6Heap_Free(obj->data);
     } else {
         sub->value = obj->data;
     }

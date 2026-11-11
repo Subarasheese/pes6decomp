@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern s32 func_00226940(void);
+extern s32 Pes6Settings_Get_B05_b3_w3(void);
 s32 func_0094C7B0();                                /* extern */
 extern void *D_003EADF0;
 
@@ -12,7 +12,7 @@ s32 func_00B13FF0(void) {
     if (temp_s0 == NULL) {
         return 0;
     }
-    if (func_00226940() >= 4) {
+    if (Pes6Settings_Get_B05_b3_w3() >= 4) {
         return 0;
     }
     if (M2C_FIELD(temp_s0, s32 *, 0xC34) == 3) {

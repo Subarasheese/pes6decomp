@@ -11,14 +11,14 @@ M2C_UNK func_00975C00();                            /* extern */
 M2C_UNK func_00976560(M2C_UNK);                     /* extern */
 M2C_UNK func_0098E6A0();                            /* extern */
 M2C_UNK func_00AFDDF0();                            /* extern */
-extern void *D_003E77AC;
+extern void *Pes6SaveData_Current;
 extern void *D_003E77B0;
 
 s32 func_009670B0(void) {
     s32 temp_v1;
     s32 var_s0;
 
-    temp_v1 = M2C_FIELD(D_003E77AC, s32 *, 4);
+    temp_v1 = M2C_FIELD(Pes6SaveData_Current, s32 *, 4);
     var_s0 = -1;
     switch (temp_v1) {                              /* irregular */
     case 0:

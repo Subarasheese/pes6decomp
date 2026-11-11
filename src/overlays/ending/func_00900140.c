@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern void func_00153FA0(s32);
+extern void Pes6Heap_Free(s32);
 extern int func_0023A3D0(void);
 extern void func_001B9630(s32, s32);
 M2C_UNK func_001C48E8(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
@@ -26,8 +26,8 @@ void func_00900140(void) {
     if ((D_003EA6A8 != NULL) && (D_003EA6A8 != NULL)) {
         func_009004A0();
         func_001B9630(D_003EA6A8[2], D_003EA6A8[3]);
-        func_00153FA0(D_003EA6A8[2]);
-        func_00153FA0(D_003EA6A8[4]);
+        Pes6Heap_Free(D_003EA6A8[2]);
+        Pes6Heap_Free(D_003EA6A8[4]);
         D_003EA6A8[2] = 0;
         D_003EA6A8[4] = 0;
         D_003EA6A8 = NULL;

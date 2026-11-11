@@ -7,13 +7,13 @@ typedef struct {
     u32 flags;
 } Obj;
 
-void func_00153FA0(s32);
+void Pes6Heap_Free(s32);
 
 void func_0021DAF0(Obj *obj) {
     u32 flags = obj->flags;
 
     if (flags & 1) {
-        func_00153FA0(obj->handle);
+        Pes6Heap_Free(obj->handle);
         obj->flags = flags ^ 1;
     }
 }

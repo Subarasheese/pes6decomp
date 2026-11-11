@@ -15,29 +15,29 @@ extern FadeState *D_003E9DB8;
 
 extern u8 D_003DBFD8[];
 
-void *func_00154060(s32 n, s32 size);
+void *Pes6Heap_Alloc(s32 n, s32 size);
 void func_002D9400(FadeState *s, s32 a);
 void *func_001B4D80(f32 a, f32 b);
 void func_001B4B90(void *camera, s32 a);
-void *func_001BBEC0(s32 a, void (*fn)(void), s32 b, s32 c, s32 d, void *e);
-void func_001BBC60(void *task);
-void func_002D93E0(void);
+void *Pes6Process_Create(s32 a, void (*fn)(void), s32 b, s32 c, s32 d, void *e);
+void Pes6Process_Start(void *task);
+void init_obj(void);
 
-/* Create the state: its object, a camera and the task that runs func_002D93E0. */
+/* Create the state: its object, a camera and the task that runs init_obj. */
 void func_002D9280(void)
 {
     FadeState *s;
     void *task;
 
-    D_003E9DB8 = func_00154060(1, sizeof(FadeState));
+    D_003E9DB8 = Pes6Heap_Alloc(1, sizeof(FadeState));
     if (D_003E9DB8 != 0) {
         func_002D9400(D_003E9DB8, 1);
         s = D_003E9DB8;
         s->camera = func_001B4D80(3001.0f, 2999.0f);
         func_001B4B90(s->camera, 1);
         s = D_003E9DB8;
-        task = func_001BBEC0(0, func_002D93E0, 0, 0, 0, D_003DBFD8);
-        func_001BBC60(task);
+        task = Pes6Process_Create(0, init_obj, 0, 0, 0, D_003DBFD8);
+        Pes6Process_Start(task);
         s->task = task;
     }
 }

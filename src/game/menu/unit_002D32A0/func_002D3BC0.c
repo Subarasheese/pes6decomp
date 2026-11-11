@@ -7,7 +7,7 @@ extern u32 *D_003E9D8C;
 extern u8 *D_003E9D84;
 void func_001EDD90(void);
 void func_001D7F10(u32 a);
-void func_00153FA0(void *p);
+void Pes6Heap_Free(void *p);
 void func_001B4D20(void *p);
 void func_002D3BC0(void) {
     s32 n; /* left unset when D_003E9D88 is 0, as in the original code */
@@ -29,7 +29,7 @@ void func_002D3BC0(void) {
         for (i = 0; i < n; i++) {
             func_001D7F10(D_003E9D8C[i]);
         }
-        func_00153FA0(D_003E9D8C);
+        Pes6Heap_Free(D_003E9D8C);
         D_003E9D8C = 0;
     }
     if (D_003E9D84 != 0) {

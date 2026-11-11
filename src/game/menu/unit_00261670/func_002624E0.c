@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
-void *func_00221210();                              /* extern */
+void *Pes6OptionData_GetBlock2CC();                              /* extern */
 
 u8 func_002624E0(void) {
-    return M2C_FIELD(func_00221210(), u8 *, 1);
+    return M2C_FIELD(Pes6OptionData_GetBlock2CC(), u8 *, 1);
 }

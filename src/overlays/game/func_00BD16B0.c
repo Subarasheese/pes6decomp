@@ -14,7 +14,7 @@ extern s32 D_003EA730;
 extern f32 D_003EA744;
 extern char D_00591C09[];
 extern char D_00591DB4[];
-extern char D_00591DC4[];
+extern char Pes6MatchContext_FrameCounter[];
 extern char D_00591F12[];
 extern char D_005922F6[];
 extern char D_00592710[];
@@ -23,7 +23,7 @@ extern char D_00CBAA02[];
 
 s32 func_00BD16B0(void) {
     s32 t = D_003EA730;
-    (*(s32 *)D_00591DC4) = t;
+    (*(s32 *)Pes6MatchContext_FrameCounter) = t;
     if ((*(u8 *)D_00591C09) != 5) {
         (*(s8 *)D_00591F12) = 1;
     }

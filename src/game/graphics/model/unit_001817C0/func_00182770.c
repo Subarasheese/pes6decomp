@@ -7,9 +7,9 @@ typedef struct {
 } Slot;
 
 void func_00140FE0(s32, s32);
-void func_00153FA0(s32);
+void Pes6Heap_Free(s32);
 
 void func_00182770(Slot *slot) {
     func_00140FE0(slot->id, slot->handle);
-    func_00153FA0(slot->handle);
+    Pes6Heap_Free(slot->handle);
 }

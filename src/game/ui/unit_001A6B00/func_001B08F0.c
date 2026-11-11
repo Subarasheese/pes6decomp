@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 extern u8 *D_003E98E0;
 void func_0017F880(s32 a);
-void func_00153FA0(void *p);
+void Pes6Heap_Free(void *p);
 void func_001B08F0(void) {
     s32 i;
     if (D_003E98E0 == 0) {
@@ -14,8 +14,8 @@ void func_001B08F0(void) {
         }
     }
     for (i = 0; i < 8; i++) {
-        func_00153FA0((void *)*(s32 *)(D_003E98E0 + i * 0x10 + 0xC));
+        Pes6Heap_Free((void *)*(s32 *)(D_003E98E0 + i * 0x10 + 0xC));
     }
-    func_00153FA0(D_003E98E0);
+    Pes6Heap_Free(D_003E98E0);
     D_003E98E0 = 0;
 }

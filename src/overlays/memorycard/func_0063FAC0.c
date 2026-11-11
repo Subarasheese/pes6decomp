@@ -3,7 +3,7 @@
 
 extern void func_001B7B80(s32);
 extern void func_00656310(void);
-extern int func_00309420(void);
+extern int Pes6SaveData_GetUnavailableFlag(void);
 extern void func_001B7A60(s32);
 M2C_UNK func_002D3820(M2C_UNK);                     /* extern */
 M2C_UNK func_002D39A0(s32);                         /* extern */
@@ -25,7 +25,7 @@ s32 func_0063FAC0(void) {
     func_00656310();
     func_00627710();
     if (func_0063A830() == 1) {
-        if (func_00309420() != 0) {
+        if (Pes6SaveData_GetUnavailableFlag() != 0) {
             func_00D0C5F0(0xC);
             func_00D0CB50();
         } else {

@@ -1,4 +1,4 @@
-extern char D_005A24B0[];
+extern char Pes6Wind_Vector[];
 int func_00295530() {
-    return (int)D_005A24B0;
+    return (int)Pes6Wind_Vector;
 }

@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern u8 func_00227DA0(void);
+extern u8 Pes6Settings_Get_B01_b4_w1(void);
 extern char D_00591C09[];
 
 void func_008BFC00(void *arg0) {
@@ -9,5 +9,5 @@ void func_008BFC00(void *arg0) {
         M2C_FIELD(arg0, u8 *, 0x73B) = 0U;
         return;
     }
-    M2C_FIELD(arg0, u8 *, 0x73B) = func_00227DA0();
+    M2C_FIELD(arg0, u8 *, 0x73B) = Pes6Settings_Get_B01_b4_w1();
 }

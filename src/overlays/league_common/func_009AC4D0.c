@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern u8 *func_00229280(s32);
+extern u8 *Pes6SaveData_GetEntry7980(s32);
 s32 func_00225B20(u8);                              /* extern */
 s32 func_00229010(s32);                             /* extern */
 M2C_UNK func_002290D0(s32);                         /* extern */
@@ -14,7 +14,7 @@ s32 func_009AC4D0(s32 arg0) {
     s32 var_s1;
     u8 temp_s3;
 
-    temp_v0 = func_00229280(arg0 & 0xFF);
+    temp_v0 = Pes6SaveData_GetEntry7980(arg0 & 0xFF);
     if (temp_v0 == 0) {
         return 0xFF;
     }

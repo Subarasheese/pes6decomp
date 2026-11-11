@@ -3,10 +3,10 @@
 
 
 extern char D_00591BB6[];
-extern char D_00591DCD[];
+extern char Pes6MatchContext_Half[];
 
 void func_0090E510(s32 arg0, s32 *arg1, s32 *arg2) {
-    *arg1 = (s32) (*(u8 *)D_00591DCD);
+    *arg1 = (s32) (*(u8 *)Pes6MatchContext_Half);
     if ((*(u8 *)D_00591BB6) == 1) {
         *arg2 = 0;
         if (arg0 == 0) {

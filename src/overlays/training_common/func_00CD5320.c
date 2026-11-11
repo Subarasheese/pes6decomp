@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern void func_00264790(void *, u8);
-extern void func_0026BFA0(void);
+extern void Pes6Pausesetup_Start(void);
 extern void func_002648E0(int);
 extern int func_002646D0(int);
 extern void func_002648F0(int);
@@ -32,7 +32,7 @@ s32 func_00CD5320(s32 arg0) {
         if (func_00C86770() == 1) {
             func_002646E0(arg0);
         case 2:
-            func_0026BFA0();
+            Pes6Pausesetup_Start();
             func_00C8AA10(0);
             func_002646E0(arg0);
         case 3:

@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 M2C_UNK func_001010F8(M2C_UNK);                     /* extern */
-M2C_UNK func_00153FA0(s32);                         /* extern */
+M2C_UNK Pes6Heap_Free(s32);                         /* extern */
 M2C_UNK func_00155A90();                            /* extern */
 s32 func_00181290(s32);                             /* extern */
 extern char D_0051FEA0[];
@@ -31,8 +31,8 @@ loop_3:
             goto loop_2;
         }
 block_6:
-        func_00153FA0((*(s32 *)D_0051FEA8));
-        func_00153FA0((*(s32 *)D_0051FEA0));
+        Pes6Heap_Free((*(s32 *)D_0051FEA8));
+        Pes6Heap_Free((*(s32 *)D_0051FEA0));
         (*(s32 *)D_0051FEA8) = 0;
         (*(s32 *)D_0051FEA0) = 0;
         (*(u8 *)D_0051FEAC) = 0;

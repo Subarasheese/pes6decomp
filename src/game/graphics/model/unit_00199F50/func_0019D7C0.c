@@ -2,11 +2,11 @@
 #include "pes6/m2c.h"
 
 extern void *D_005202D8[];
-void func_00153FA0(void *);
+void Pes6Heap_Free(void *);
 
 void func_0019D7C0(void) {
     if (D_005202D8[0] != NULL) {
-        func_00153FA0(D_005202D8[0]);
+        Pes6Heap_Free(D_005202D8[0]);
         D_005202D8[0] = NULL;
     }
 }

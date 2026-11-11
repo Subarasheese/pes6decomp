@@ -1,2 +1,2 @@
-extern void func_00153FA0();
-void func_00364060(void) { func_00153FA0(); }
+extern void Pes6Heap_Free();
+void func_00364060(void) { Pes6Heap_Free(); }

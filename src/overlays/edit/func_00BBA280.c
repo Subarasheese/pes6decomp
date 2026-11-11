@@ -4,7 +4,7 @@
 extern s32 func_00BCF390(void);
 void func_0025E150(s32, s32);
 void func_0025F3B0(s32);
-void func_0026E840(s32);
+void SD_call(s32);
 void func_00BB76A0(void *);
 void func_00BBC050(void);
 
@@ -18,6 +18,6 @@ s32 func_00BBA280(void *arg0) {
     func_0025E150(0, 1);
     func_0025F3B0(3);
     func_00BBC050();
-    func_0026E840(0x84008401);
+    SD_call(0x84008401);
     return 1;
 }

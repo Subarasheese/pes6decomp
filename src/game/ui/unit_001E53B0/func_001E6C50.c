@@ -13,7 +13,7 @@ typedef struct Node {
 extern Node *D_0052B130[];
 extern Node *D_0052B134[];
 extern void func_00145590(void *);
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 
 s32 func_001E6C50(Node *n) {
     Node *prev;
@@ -33,7 +33,7 @@ s32 func_001E6C50(Node *n) {
         D_0052B134[0] = prev;
     }
     if (n->type != 2) func_00145590(n->data);
-    func_00153FA0(n->data);
-    func_00153FA0(n);
+    Pes6Heap_Free(n->data);
+    Pes6Heap_Free(n);
     return 1;
 }

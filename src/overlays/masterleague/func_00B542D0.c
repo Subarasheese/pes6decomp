@@ -1,11 +1,11 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern void * func_0022F150(void);
+extern void * Pes6SaveData_GetHeaderBlock(void);
 u8 func_00B542D0(void) {
     void *temp_v0;
 
-    temp_v0 = func_0022F150();
+    temp_v0 = Pes6SaveData_GetHeaderBlock();
     if (temp_v0 == 0) {
         return 0U;
     }

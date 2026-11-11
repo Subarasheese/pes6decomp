@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 void *func_0022C140(s32);                           /* extern */
 s32 func_0022C1E0();                                /* extern */
-s32 func_00231240();                                /* extern */
+s32 Pes6SaveData_IsUnavailable();                                /* extern */
 
 void func_00239F50(s32 arg0, s32 arg1, s8 arg2) {
     s32 temp_s0;
@@ -10,7 +10,7 @@ void func_00239F50(s32 arg0, s32 arg1, s8 arg2) {
     void *temp_v0;
 
     temp_s0 = func_0022C1E0();
-    if (func_00231240() != 1) {
+    if (Pes6SaveData_IsUnavailable() != 1) {
         temp_v0 = func_0022C140(arg0);
         if ((temp_s0 != 0) && (temp_v0 != NULL)) {
             temp_v1 = (M2C_FIELD(temp_v0, u8 *, 8) + (arg1 & 0xFF)) & 0xFF;

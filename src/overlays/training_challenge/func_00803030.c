@@ -1,12 +1,12 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 extern void *D_003EA3C8;
 
 void func_00803030(void) {
     if (D_003EA3C8 != NULL) {
-        func_00153FA0(D_003EA3C8);
+        Pes6Heap_Free(D_003EA3C8);
         D_003EA3C8 = NULL;
     }
 }

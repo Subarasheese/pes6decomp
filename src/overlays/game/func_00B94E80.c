@@ -3,7 +3,7 @@
 
 
 extern void *Pes6Ball_Current;
-extern char D_00591E0C[];
+extern char Pes6MatchClock_Remaining[];
 extern char D_00591E19[];
 extern char D_00591E58[];
 extern char D_00591E5C[];
@@ -32,5 +32,5 @@ void func_00B94E80(void *arg0, s32 arg1) {
     M2C_FIELD(arg0, s8 *, 0x17) = 0;
     M2C_FIELD(arg0, s8 *, 0x18) = 0;
     M2C_FIELD(arg0, s32 *, 0x1C) = arg1;
-    M2C_FIELD(arg0, s32 *, 0x30) = (s32) (*(s32 *)D_00591E0C);
+    M2C_FIELD(arg0, s32 *, 0x30) = (s32) (*(s32 *)Pes6MatchClock_Remaining);
 }

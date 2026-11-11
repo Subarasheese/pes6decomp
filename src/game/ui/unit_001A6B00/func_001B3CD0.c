@@ -3,7 +3,7 @@
 extern u8 *D_003E98F4;
 void func_001CDAD0(void *p);
 void func_001B3E10(s32 i);
-void func_00153FA0(void *p);
+void Pes6Heap_Free(void *p);
 void func_001B3CD0(u8 *arg0) {
     u8 *p;
     s32 i;
@@ -14,7 +14,7 @@ void func_001B3CD0(u8 *arg0) {
         func_001B3E10(i);
     }
     if (D_003E98F4 != 0) {
-        func_00153FA0(D_003E98F4);
+        Pes6Heap_Free(D_003E98F4);
         D_003E98F4 = 0;
     }
 }

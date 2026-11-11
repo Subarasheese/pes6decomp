@@ -8,7 +8,7 @@ typedef struct {
 } Rec240;
 
 extern Rec240 Pes6MatchPlayers[];
-void func_00153FA0(void *);
+void Pes6Heap_Free(void *);
 
 void func_002B8690(void) {
     s32 i;
@@ -16,7 +16,7 @@ void func_002B8690(void) {
 
     for (i = 0, rec = Pes6MatchPlayers; i < 23; i++) {
         if (rec->handle != NULL) {
-            func_00153FA0(rec->handle);
+            Pes6Heap_Free(rec->handle);
             rec->handle = NULL;
         }
         rec++;

@@ -8,7 +8,7 @@ typedef struct Rec {
 
 extern Rec *D_0052ABAC[];
 extern s32 D_0052AB90[];
-extern void func_00153FA0(void *);
+extern void Pes6Heap_Free(void *);
 
 static inline Rec *get_rec(s32 idx) {
     Rec *r = NULL;
@@ -27,6 +27,6 @@ static inline Rec *get_live(s32 idx) {
 void func_001DA4B0(s32 idx) {
     Rec *r = get_live(idx);
     if (r == NULL) return;
-    func_00153FA0(r->data);
+    Pes6Heap_Free(r->data);
     r->data = NULL;
 }

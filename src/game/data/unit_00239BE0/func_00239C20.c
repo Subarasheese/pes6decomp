@@ -6,13 +6,13 @@ typedef struct {
     u8 value;
 } Rec;
 
-s32 func_00231240(void);
+s32 Pes6SaveData_IsUnavailable(void);
 Rec *func_0022C140(s32);
 
 u8 func_00239C20(s32 id) {
     Rec *rec;
 
-    if (func_00231240() == 1) {
+    if (Pes6SaveData_IsUnavailable() == 1) {
         return 0xFF;
     }
     rec = func_0022C140(id);

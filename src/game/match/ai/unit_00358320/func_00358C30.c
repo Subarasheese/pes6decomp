@@ -7,8 +7,8 @@ void Pes6BitSet_Write(void *, s32, s32);
 void func_003414D0(void *, s32, s32);
 s32 Pes6MatchPlayer_GetSquadIndex(s32);
 s32 func_00333710(s32, s32);
-s32 func_00335370(void);
-s32 func_00333440(s32, void *, s32);
+s32 Pes6Job_GetManager(void);
+s32 Pes6Job_SendMessage(s32, void *, s32);
 extern u8 D_00591E19[];
 
 s32 func_00358C30(void *arg0) {
@@ -30,7 +30,7 @@ s32 func_00358C30(void *arg0) {
     s0 = s2 == b[0x1F];
     Pes6BitSet_Write(b, 1, s0 && (s2 == *(s32 *)(p + 0x30)) && !s1);
     Pes6BitSet_Write(b, 2, s0 && (s2 != *(s32 *)(p + 0x30)) && s1);
-    *(s32 *)((u8 *)func_00335370() + 0x1020) = s2;
-    func_00333440(0x9D, b, 1);
+    *(s32 *)((u8 *)Pes6Job_GetManager() + 0x1020) = s2;
+    Pes6Job_SendMessage(0x9D, b, 1);
     return 1;
 }

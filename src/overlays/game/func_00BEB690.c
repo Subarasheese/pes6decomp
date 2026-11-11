@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern void func_001AAF40(void *, signed char);
-extern void func_0027A880(int);
+extern void Pes6Ball_SetByte0(int);
 extern int func_002DCA30(void);
 extern void func_00BBB960(u32);
 extern u8 func_00BF6270(void);
@@ -32,7 +32,7 @@ void func_00BEB690(void) {
     func_001AAF40(*M2C_FIELD(*temp_v0, void ***, 4), 1);
     func_00B27010(0);
     func_00B25380(*temp_v0);
-    func_0027A880(0);
+    Pes6Ball_SetByte0(0);
     temp_a0 = *temp_v0;
     temp_f1 = M2C_FIELD(temp_a0, f32 *, 0xE0);
     if (temp_f1 > 12185.0f) {
