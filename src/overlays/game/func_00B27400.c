@@ -1,0 +1,8 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+extern char D_00591E4F[];
+
+u8 func_00B27400(s32 arg0) {
+    return *(((u8 *)D_00591E4F) + (arg0 * 2));
+}
