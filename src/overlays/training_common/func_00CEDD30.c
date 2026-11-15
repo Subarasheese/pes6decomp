@@ -5,7 +5,7 @@ extern u16 func_00CEAD10(void);
 extern s32 func_00263030(void);
 extern void func_002D2FF0(void);
 M2C_UNK func_001FA5A0();                            /* extern */
-M2C_UNK func_001FAF40(M2C_UNK, u16);                /* extern */
+M2C_UNK Pes6MatchSide_SetupTeam(M2C_UNK, u16);                /* extern */
 M2C_UNK func_0023EA80();                            /* extern */
 M2C_UNK func_00244E30();                            /* extern */
 M2C_UNK func_00CEA430();                            /* extern */
@@ -21,8 +21,8 @@ void func_00CEDD30(void) {
         func_00CEA430();
     }
     func_001FA5A0();
-    func_001FAF40(0, (*(u16 *)Pes6MatchContext));
-    func_001FAF40(1, (*(u16 *)D_00591BB2));
+    Pes6MatchSide_SetupTeam(0, (*(u16 *)Pes6MatchContext));
+    Pes6MatchSide_SetupTeam(1, (*(u16 *)D_00591BB2));
     D_003E9E88 = 0;
     D_003E9E89 = 0x3F;
     func_00244E30();

@@ -4,7 +4,7 @@
 extern void func_001F7F90(void);
 extern s32 func_001BB730(void);
 extern int func_002DCA30(void);
-extern u32 func_0017A670(s32);
+extern u32 Pes6Scene_Get(s32);
 M2C_UNK func_0087B6B0();                            /* extern */
 M2C_UNK func_00C6E170();                            /* extern */
 M2C_UNK func_00C6F4C0();                            /* extern */
@@ -51,7 +51,7 @@ extern char D_00591DEE[];
 extern char D_00CCD088[];
 
 void func_00C8ADF0(void) {
-    if (func_0017A670(0) == 0xC) return;
+    if (Pes6Scene_Get(0) == 0xC) return;
     {
         (*(s32 *)D_00CCD088) = func_001BB730();
         func_001F7F90();

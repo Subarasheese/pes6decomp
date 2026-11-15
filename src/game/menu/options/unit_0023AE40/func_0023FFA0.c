@@ -1,6 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
-M2C_UNK func_0017A700(M2C_UNK, M2C_UNK);            /* extern */
+M2C_UNK Pes6Scene_Set(M2C_UNK, M2C_UNK);            /* extern */
 s32 func_0017F900();                                /* extern */
 M2C_UNK func_001B8380(M2C_UNK);                     /* extern */
 M2C_UNK func_001B9030(M2C_UNK, M2C_UNK, M2C_UNK);   /* extern */
@@ -80,8 +80,8 @@ void func_0023FFA0(void) {
         func_00241620(1);
         func_002FC740(0, 0);
         func_002FC740(1, 0);
-        func_0017A700(1, 0);
-        func_0017A700(2, 0);
+        Pes6Scene_Set(1, 0);
+        Pes6Scene_Set(2, 0);
         (*(s16 *)D_0053C300) = 2;
     }
 }

@@ -8,7 +8,7 @@ M2C_UNK func_001E75A0(s32, void *);
 M2C_UNK func_001F0210(s32);
 M2C_UNK func_001F04F0(s32, void *);
 M2C_UNK func_001F87E0(M2C_UNK, M2C_UNK);
-M2C_UNK func_001FC840(M2C_UNK);
+M2C_UNK Pes6Module_Load(M2C_UNK);
 M2C_UNK func_0020B660(M2C_UNK);
 M2C_UNK func_00240C30();
 s32 func_009005A0();
@@ -38,7 +38,7 @@ s32 func_002D65F0(void) {
         ready = 0;
         switch (D_005E5E10[0]) {
         case 0:
-            func_001FC840(8);
+            Pes6Module_Load(8);
             D_005E5E10[0] += 1;
             break;
         case 1:

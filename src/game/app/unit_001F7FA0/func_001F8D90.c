@@ -1,4 +1,4 @@
-extern int D_003E9988;
+extern int Pes6MatchScene_Phase;
 void func_001F8D90() {
-    D_003E9988 = 0;
+    Pes6MatchScene_Phase = 0;
 }

@@ -2,10 +2,10 @@
 #include "pes6/m2c.h"
 
 extern s32 D_003EA87C;
-extern char D_00510FD0[];
+extern char Pes6SceneStack[];
 
 void func_00C82290(void) {
-    switch (*(s32 *)D_00510FD0) {
+    switch (*(s32 *)Pes6SceneStack) {
     case 8:
     case 14:
     case 15:

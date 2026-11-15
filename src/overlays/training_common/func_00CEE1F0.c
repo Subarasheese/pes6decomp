@@ -3,7 +3,7 @@
 
 extern void func_00264790(void *, u8);
 extern u8 func_002645A0(void *, s32);
-M2C_UNK func_001FAF40(M2C_UNK, u16);                /* extern */
+M2C_UNK Pes6MatchSide_SetupTeam(M2C_UNK, u16);                /* extern */
 M2C_UNK func_00CD5DE0();                            /* extern */
 M2C_UNK func_00CEF8D0();                            /* extern */
 M2C_UNK func_00CEFC30();                            /* extern */
@@ -12,8 +12,8 @@ extern char Pes6MatchContext[];
 extern char D_00591BB2[];
 
 void func_00CEE1F0(void *arg0) {
-    func_001FAF40(0, (*(u16 *)Pes6MatchContext));
-    func_001FAF40(1, (*(u16 *)D_00591BB2));
+    Pes6MatchSide_SetupTeam(0, (*(u16 *)Pes6MatchContext));
+    Pes6MatchSide_SetupTeam(1, (*(u16 *)D_00591BB2));
     func_00CD5DE0();
     if (func_00CEFEB0() == 8) {
         func_00CEFC30();

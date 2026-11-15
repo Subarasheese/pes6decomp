@@ -5,10 +5,10 @@ s32 func_00270570();                                /* extern */
 M2C_UNK func_00C952F0();                            /* extern */
 M2C_UNK func_00C95440();                            /* extern */
 extern u8 D_003E9FD4;
-extern char D_00510FD0[];
+extern char Pes6SceneStack[];
 
 s32 func_002D48E0(void) {
-    if ((*(s32 *)D_00510FD0) == 0xC) {
+    if ((*(s32 *)Pes6SceneStack) == 0xC) {
         switch (D_003E9FD4) {                       /* irregular */
         case 0:
             break;

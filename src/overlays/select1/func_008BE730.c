@@ -5,7 +5,7 @@
 M2C_UNK func_001C48E8(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK func_008BDC90();                            /* extern */
 M2C_UNK func_008BDF10(s8, s32, u8 *, u8 *, s32); /* extern */
-extern char D_00510FD0[];
+extern char Pes6SceneStack[];
 extern char D_008D63A0[];
 extern char D_008E1CE0[];
 extern char D_008E1CE9[];
@@ -46,7 +46,7 @@ void func_008BE730(void) {
     } while (var_a4 < 0x14);
     func_008BDF10(temp_a0_2, temp_a1_2, var_a2, var_a3, var_a4);
     func_008BDC90();
-    if ((*(s32 *)D_00510FD0) == 4) {
+    if ((*(s32 *)Pes6SceneStack) == 4) {
         (*(s16 *)D_008E1CEE) = 0;
     } else {
         (*(s16 *)D_008E1CEE) = 1;

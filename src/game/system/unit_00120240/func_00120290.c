@@ -18,7 +18,7 @@ M2C_UNK func_00153DD0();                            /* extern */
 M2C_UNK func_00154120();                            /* extern */
 M2C_UNK func_00155A20();                            /* extern */
 M2C_UNK func_0017A390();                            /* extern */
-M2C_UNK func_0017A760();                            /* extern */
+M2C_UNK Pes6Scene_Reset();                            /* extern */
 M2C_UNK func_001814E0();                            /* extern */
 M2C_UNK func_001817C0();                            /* extern */
 M2C_UNK func_00183230();                            /* extern */
@@ -55,7 +55,7 @@ void func_00120290(s32 arg0, s32 arg1) {
     func_00120B20();
     func_00120450();
     func_00153DD0();
-    func_0017A760();
+    Pes6Scene_Reset();
     func_00154120();
     func_002E9380();
     func_00120DA0();

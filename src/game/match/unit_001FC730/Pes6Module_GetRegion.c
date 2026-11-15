@@ -3,7 +3,7 @@
 
 void *func_001FCCE0(void);
 
-s32 func_001FC800(void) {
+s32 Pes6Module_GetRegion(void) {
     void *entry = func_001FCCE0();
 
     if (entry == NULL) {

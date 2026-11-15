@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b198 */
 #include "pes6/m2c.h"
 
-extern u32 func_0017A670(s32);
+extern u32 Pes6Scene_Get(s32);
 M2C_UNK func_00C706F0(s32);                         /* extern */
 M2C_UNK func_00C70720(s32);                         /* extern */
 M2C_UNK func_00C721E0(s32);                         /* extern */
@@ -25,7 +25,7 @@ extern char D_00CCD074[];
 void func_00C8A6E0(void) {
     func_00C72290(0, 0);
     func_00C72290(1, 0);
-    if ((func_0017A670(0) != 0xC) && ((*(u8 *)D_00CCD074) & 1)) {
+    if ((Pes6Scene_Get(0) != 0xC) && ((*(u8 *)D_00CCD074) & 1)) {
         if (func_00C99810() != 0) {
             func_00C91680(1, (s32) ((*(u16 *)D_00591DEE) & 0x80) >> 7);
         } else {
@@ -36,7 +36,7 @@ void func_00C8A6E0(void) {
         func_00C92560();
     }
     if ((*(u8 *)D_00591F11) == 1) {
-        if ((func_0017A670(0) != 0xC) && (D_003EA890 != 0)) {
+        if ((Pes6Scene_Get(0) != 0xC) && (D_003EA890 != 0)) {
             if (D_003EA890 < 0x3F) {
                 do {
                     func_00C8AB20();
@@ -50,7 +50,7 @@ void func_00C8A6E0(void) {
         func_00C721E0((s32) ((*(u16 *)D_00591DEE) & 0x200) >> 9);
         func_00C706F0((s32) ((*(u16 *)D_00591DEE) & 8) >> 3);
         func_00C70720((s32) ((*(u16 *)D_00591DEE) & 0x10) >> 4);
-        if ((func_0017A670(0) != 0xC) && (D_003EA890 != 0)) {
+        if ((Pes6Scene_Get(0) != 0xC) && (D_003EA890 != 0)) {
             if (D_003EA890 < 0x3F) {
                 do {
                     func_00C8AB20();

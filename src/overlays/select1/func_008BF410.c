@@ -3,7 +3,7 @@
 
 
 M2C_UNK func_001C48E8(s8 *, M2C_UNK, M2C_UNK);      /* extern */
-extern char D_00510FD0[];
+extern char Pes6SceneStack[];
 extern char D_008D8C00[];
 extern char D_008E49B0[];
 extern char D_008E49BC[];
@@ -51,7 +51,7 @@ void func_008BF410(void) {
         var_a5 += 0x1A8;
         var_a4 += 0x1A8;
     } while (var_a3 < 0xA);
-    if ((*(s32 *)D_00510FD0) == 4) {
+    if ((*(s32 *)Pes6SceneStack) == 4) {
         (*(s16 *)D_008E49BC) = 0;
         return;
     }

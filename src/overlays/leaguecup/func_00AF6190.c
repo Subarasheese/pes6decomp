@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern void func_001FC840(s32);
+extern void Pes6Module_Load(s32);
 extern void func_001FC780(s32);
 extern void func_002CADA0(void);
 M2C_UNK func_001C48E8(s32, M2C_UNK, M2C_UNK);       /* extern */
@@ -15,7 +15,7 @@ void func_00AF6190(void) {
     if (D_003EAD50 == 0) {
         func_001FC780(0xB);
         func_002CADA0();
-        func_001FC840(0x23);
+        Pes6Module_Load(0x23);
         if (D_003EAD50 == 0) {
             temp_v0 = func_0096DB90(4);
             D_003EAD50 = temp_v0;

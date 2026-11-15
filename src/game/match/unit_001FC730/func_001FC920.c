@@ -2,12 +2,12 @@
 #include "pes6/m2c.h"
 
 
-extern char D_00533030[];
-extern char D_00533034[];
+extern char Pes6MemRegion_Count[];
+extern char Pes6MemRegion_Table[];
 
 s32 func_001FC920(s32 arg0) {
-    if (arg0 >= (*(s32 *)D_00533030)) {
+    if (arg0 >= (*(s32 *)Pes6MemRegion_Count)) {
         return 0;
     }
-    return (*(s32 *)D_00533034) + (arg0 * 0x10);
+    return (*(s32 *)Pes6MemRegion_Table) + (arg0 * 0x10);
 }

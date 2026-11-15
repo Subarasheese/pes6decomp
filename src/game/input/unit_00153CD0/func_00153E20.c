@@ -9,7 +9,7 @@ extern void func_001CDBC0(void);
 extern void func_00154110(void);
 extern void func_002D7590(s32);
 extern void func_0026E950(void);
-extern u32 func_0017A670(s32);
+extern u32 Pes6Scene_Get(s32);
 M2C_UNK func_0021D3D0();                            /* extern */
 s32 func_009E1C90(M2C_UNK);                         /* extern */
 extern s32 D_003E744C;
@@ -17,7 +17,7 @@ extern s32 D_003E744C;
 void func_00153E20(void) {
     s32 temp_s0;
 
-    if (func_0017A670(0) != 8) {
+    if (Pes6Scene_Get(0) != 8) {
         func_00145BB0(1);
         func_002D7590(0);
     } else {

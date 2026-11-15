@@ -11,7 +11,7 @@ s32 func_008223F0();                                /* extern */
 M2C_UNK func_008B33F0(M2C_UNK);                     /* extern */
 M2C_UNK func_008B34C0();                            /* extern */
 extern s32 D_003E9A40;
-extern char D_00510FD0[];
+extern char Pes6SceneStack[];
 
 s32 func_0023C720(void) {
     if (func_0017F900() == 1) {
@@ -28,7 +28,7 @@ s32 func_0023C720(void) {
         } else {
             func_008B33F0(0x1038A);
         }
-        if (((*(s32 *)D_00510FD0) != 0xF) || (func_008223F0() != 1)) {
+        if (((*(s32 *)Pes6SceneStack) != 0xF) || (func_008223F0() != 1)) {
             func_008B33F0(0x1003F);
         }
         return 1;

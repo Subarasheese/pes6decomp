@@ -3,7 +3,7 @@
 
 s32 func_00221A60();                                /* extern */
 s32 func_00221D10(s32, s32, s32);                   /* extern */
-extern char D_00510FD0[];
+extern char Pes6SceneStack[];
 
 s32 func_00BC5FA0(s32 arg0) {
     s32 temp_s1;
@@ -31,7 +31,7 @@ loop_3:
         }
         if (var_v1 != 3) {
             var_v0 = 0;
-        } else if ((*(s32 *)D_00510FD0) == 6) {
+        } else if ((*(s32 *)Pes6SceneStack) == 6) {
             var_v0 = 1;
         } else {
             var_v0 = 0;

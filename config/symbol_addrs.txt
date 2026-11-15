@@ -209,7 +209,7 @@ D_004FD170 = 0x004FD170; // type:data
 D_003FBBC0 = 0x003FBBC0; // type:data
 D_003FBB70 = 0x003FBB70; // type:data
 D_004FE080 = 0x004FE080; // type:data
-D_00510FD0 = 0x00510FD0; // type:data
+Pes6SceneStack = 0x00510FD0; // type:data
 D_0051FE90 = 0x0051FE90; // type:data
 D_0051FEB0 = 0x0051FEB0; // type:data
 D_0052AB90 = 0x0052AB90; // type:data
@@ -581,3 +581,104 @@ Pes6Settings_Set_B01_b4_w1 = 0x00227E20; // type:func
 Pes6Settings_Get_B01_b3_w1 = 0x00227EB0; // type:func
 Pes6Settings_Set_B01_b3_w1 = 0x00227F30; // type:func
 Pes6Settings_Set_B01_b0_w3 = 0x00228030; // type:func
+
+// Scene and module management (established from code and runtime state; descriptive, not original symbols).
+// Pes6SceneStack holds three {scene id, frame count} levels; level 0 picks the top-level handler:
+// 4 = menus (Pes6Scene_Menu), 8 = match (Pes6Scene_Match).
+Pes6Scene_Dispatch = 0x0017A3C0; // type:func
+Pes6Scene_Get = 0x0017A670; // type:func
+Pes6Scene_Advance = 0x0017A690; // type:func
+Pes6Scene_Set = 0x0017A700; // type:func
+Pes6Scene_Reset = 0x0017A760; // type:func
+Pes6Scene_Menu = 0x002404C0; // type:func
+Pes6Scene_Match = 0x001F8860; // type:func
+Pes6MatchScene_Phase = 0x003E9988; // type:data
+// Module table: per module id {OVER.AFS file id (0x40000 | member), memory region}; module 17 = game.ovl.
+Pes6ModuleTable = 0x003A88A0; // type:data
+Pes6Module_GetRegion = 0x001FC800; // type:func
+// Memory regions: 14 entries of {base, size, loaded module id, state (2 = resident)}.
+Pes6MemRegion_Count = 0x00533030; // type:data
+Pes6MemRegion_Table = 0x00533034; // type:data
+Pes6MemRegion_Release = 0x001FC790; // type:func
+Pes6MemRegion_ClearState = 0x001FC8F0; // type:func
+// Copies a lobby match-setup packet (team ids, settings bytes) into Pes6MatchContext.
+Pes6MatchContext_ApplyLobbyPacket = 0x0080DCF0; // type:func
+// Developer scene-select menu left in the retail build (scene 100). Item labels are the game's own
+// strings at Pes6DebugMenu_ItemNames: GAME, DEMO, ENTER, ENDING, ML, CUP, TRAINING, SELECT, EDIT,
+// NETWORK, MEMORYCARD, MOVIE, BOOT, BOOTSET, USER. GAME switches straight to the match scene.
+Pes6Scene_DebugMenu = 0x0017AC60; // type:func
+Pes6DebugMenu_Select = 0x0017ACD0; // type:func
+Pes6DebugMenu_Update = 0x0017AEA0; // type:func
+Pes6DebugMenu_ItemNames = 0x00396F00; // type:data
+Pes6DebugMenu_State = 0x00510FE8; // type:data
+Pes6DebugMenu_Cursor = 0x00510FEC; // type:data
+// Scene handlers named after the debug-menu item that selects them.
+Pes6Scene_Boot = 0x0017AA60; // type:func
+Pes6Scene_User = 0x0017AFE0; // type:func
+Pes6Scene_Enter = 0x00237E90; // type:func
+Pes6Scene_Competition = 0x00210E70; // type:func
+Pes6Scene_Ending = 0x0023A910; // type:func
+Pes6EndingScene_Phase = 0x003E9A2C; // type:data
+// Stores its argument in the match context byte at 0x591C08 (meaning not established).
+Pes6MatchContext_SetByteC08 = 0x0029A0B0; // type:func
+// Switch tables of the scene handlers above (one code address per state or item).
+Pes6Scene_Match_PhaseTable = 0x003D2C10; // type:data
+Pes6Scene_Ending_PhaseTable = 0x003D8870; // type:data
+Pes6DebugMenu_ItemTable = 0x003CC970; // type:data
+// Scene 5: requests its module, runs a selection UI (func_002F6DD0) and, when that returns 3,
+// clears match-context byte 0x591C08 and switches to the match scene (8); 2 -> scene 9, 1 -> scene 4.
+Pes6Scene_MatchSelect = 0x002F79A0; // type:func
+// Requests that a module be loaded into its region; nonzero once it is resident.
+Pes6Module_Load = 0x001FC840; // type:func
+// Per-frame update of the scene 5 selection flow: a 7-step machine; returns the result
+// Pes6Scene_MatchSelect acts on (3 = start the match, 2 = scene 9, 1 = scene 4).
+Pes6MatchSelect_Update = 0x002F6DD0; // type:func
+Pes6MatchSelect_Step = 0x005E92B0; // type:data
+Pes6MatchSelect_StepTable = 0x003DC930; // type:data
+// Team setup when an exhibition's teams are confirmed. Pes6MatchSetup_PrepareTeams reads both team
+// ids from Pes6MatchContext and (except in game modes 1, 2 and 4) applies the team-pair lookup and
+// fills both per-side records with Pes6MatchSide_SetupTeam(side, team).
+Pes6MatchSetup_PrepareTeams = 0x00241320; // type:func
+Pes6MatchSide_SetupTeam = 0x001FAF40; // type:func
+Pes6MatchSides = 0x005A2020; // type:data
+// 16 bytes per team id: fifteen small values (1-4) and a terminator, copied into the side record.
+Pes6TeamLevels = 0x003D2D40; // type:data
+// Looks the two team ids up (either order) in a {team, team, value} table and applies the value
+// through func_002918C0 (0 when the pair is not listed).
+Pes6TeamPair_Apply = 0x0023D8A0; // type:func
+// Scene 9: loads module 7 (enter.ovl), runs it from Pes6EnterOverlay_Start, then switches to the match.
+Pes6Scene_Enter_StepTable = 0x003D8840; // type:data
+// select1.ovl: confirms the chosen teams - prepares both sides (Pes6MatchSetup_PrepareTeams), loads both
+// crests and releases region 6. Its address is a function start only in select1.
+Pes6TeamSelect_Confirm = 0x008C9A60; // type:func
+// enter.ovl: per-frame update that Pes6Scene_Enter step 5 calls until the context byte at 0x591F2D
+// reaches 6 (address unique to enter).
+Pes6EnterOverlay_Update = 0x0090F620; // type:func
+// Step 4 of the scene 5 selection flow: a 9-step sub-flow (step in Pes6MatchSelect_FlowStep, frame
+// delay in Pes6MatchSelect_FlowDelay). Step 2 waits on the pre-match menu (func_002F77D0); steps 6-8
+// load game.ovl (module 17) and call func_001A5E00(2) and (3). Done once the step reaches 7.
+Pes6MatchSelect_Flow = 0x002F69C0; // type:func
+Pes6MatchSelect_FlowStep = 0x005E92B4; // type:data
+Pes6MatchSelect_FlowDelay = 0x005E92B8; // type:data
+Pes6MatchSelect_FlowStepTable = 0x003DC8E0; // type:data
+// Pes6MatchSelect_Flow step 2: a 5-state loading sequence (state in Pes6MatchSelect_LoadSequenceState):
+// requests resource ids 0x4266/0x4267 (func_001A1B00), waits for file I/O, then runs func_001A1820 and
+// func_001A17A0. Not a menu: it completes without input.
+Pes6MatchSelect_LoadSequence = 0x002F77D0; // type:func
+Pes6MatchSelect_LoadSequenceState = 0x005E92D0; // type:data
+// Pes6MatchSelect_Flow step 4: for each of the 23 match players (index Pes6MatchSelect_LoadPlayerIndex)
+// passes the player's model block (Pes6MatchPlayers +0x04) through load stages 1-4
+// (Pes6MatchSelect_LoadPlayerStage); returns done after stage 5. Takes most of the pre-match load time.
+Pes6MatchSelect_LoadPlayerModels = 0x002F74A0; // type:func
+Pes6MatchSelect_LoadPlayerIndex = 0x005E92CC; // type:data
+Pes6MatchSelect_LoadPlayerStage = 0x005E92CE; // type:data
+// Pes6MatchSelect_Flow step 0: preload whose progress counter (Pes6MatchSelect_PreloadProgress) must
+// reach 5 before the pre-match menu may close.
+Pes6MatchSelect_Preload = 0x002F6C20; // type:func
+Pes6MatchSelect_PreloadProgress = 0x005E92BC; // type:data
+// State (0-2) of the pre-match formation menu run by Pes6MatchSelect_Update step 3.
+Pes6MatchSelect_MenuState = 0x005E92C0; // type:data
+// formation.ovl: per-frame menu update (nonzero once the player leaves the menu) and the close call
+// made on exit. Both addresses are function starts only in formation.
+Pes6FormationMenu_Update = 0x008B96D0; // type:func
+Pes6FormationMenu_Close = 0x008B77A0; // type:func

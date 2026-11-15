@@ -3,7 +3,7 @@
 s32 func_0017F900(void);
 M2C_UNK func_001E7140(s32);
 M2C_UNK func_001E75A0(s32, void *);
-M2C_UNK func_001FC840(M2C_UNK);
+M2C_UNK Pes6Module_Load(M2C_UNK);
 s32 func_00901320(void);
 M2C_UNK func_009013F0(void);
 M2C_UNK func_00901440(void);
@@ -24,7 +24,7 @@ s32 func_002D6860(void) {
         ready = 0;
         switch (D_005E5E10[0]) {
         case 0:
-            func_001FC840(8);
+            Pes6Module_Load(8);
             D_005E5E10[0] += 1;
             break;
         case 1:

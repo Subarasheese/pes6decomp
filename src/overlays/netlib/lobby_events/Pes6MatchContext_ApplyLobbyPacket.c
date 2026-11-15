@@ -31,7 +31,7 @@ extern char D_00591BCB[];
 extern char D_00591BCE[];
 extern char D_00591DED[];
 
-void func_0080DCF0(void *arg0, s32 arg1) {
+void Pes6MatchContext_ApplyLobbyPacket(void *arg0, s32 arg1) {
     u8 temp_a1;
     u8 temp_a2;
     u8 temp_a3;

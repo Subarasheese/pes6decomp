@@ -3,7 +3,7 @@
 
 extern s32 func_0021E000(u32);
 extern void func_001FC780(s32);
-extern void func_001FC840(s32);
+extern void Pes6Module_Load(s32);
 M2C_UNK func_001D5EE0(M2C_UNK, M2C_UNK *);          /* extern */
 M2C_UNK func_001DA550(M2C_UNK, M2C_UNK *);          /* extern */
 M2C_UNK func_001DD680(M2C_UNK, M2C_UNK *);          /* extern */
@@ -13,7 +13,7 @@ extern char D_0091F2C0[];
 
 void func_0090BB60(void) {
     func_001FC780(4);
-    func_001FC840(3);
+    Pes6Module_Load(3);
     func_001DD680(1, ((void *)D_0091F2B8));
     func_001D5EE0(0x10344, ((void *)D_0091F2B8));
     func_001DA550(2, ((void *)D_0091F2C0));
