@@ -92,3 +92,14 @@ license file), [mk-deception](https://github.com/ShulkMaster/mk-deception) (CC0-
 GameCube decompilations whose CRI ADX code is platform-independent C. They were found by
 compiling those sources with the PES6 compiler profiles and comparing normalized code, and each
 adapted file names its origin in its first comment.
+
+## R5900 simulator
+
+`tools/r5900sim.py` is an Emotion Engine interpreter written for behaviour checks of decompiled C.
+Its float arithmetic, `tools/ee_float.py`, is a Python port of `pcsx2/PS2Float.cpp` from
+[PCSX2](https://github.com/PCSX2/pcsx2) pull request #12001 ("Core/EE: Implements Soft-Floats for
+the interpreters", GPL-3.0+); the file carries a provenance comment. The simulator is checked against
+real PS2 results recorded by
+[ps2autotests](https://github.com/unknownbrackets/ps2autotests) (ISC licence) with
+`tools/ee_float_check.py` and `tools/r5900_check.py`; those results are read from a local copy and
+are not included here.
