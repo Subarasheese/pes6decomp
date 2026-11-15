@@ -18,7 +18,7 @@ extern u16 func_00833490(s32);
 extern s32 func_00833540(s32);
 extern u8 func_00833DD0(s32);
 extern u8 func_00833E80(s32);
-M2C_UNK func_00256440();                            /* extern */
+M2C_UNK Pes6MatchSetup_FillSquads();                            /* extern */
 M2C_UNK func_00256D50(M2C_UNK, s32, s32);           /* extern */
 u8 func_00276FD0(void *, s32, s32);                 /* extern */
 s32 func_002779F0(void *);                          /* extern */
@@ -129,7 +129,7 @@ void func_0080CA80(void) {
             M2C_FIELD((((void *)Pes6MatchSquads) + ((temp_v0_2 - temp_a0_2) * 8)), s8 *, 0x6910) = temp_s0_4;
         } while (var_s1_4 < 0x20);
     }
-    func_00256440();
+    Pes6MatchSetup_FillSquads();
     if (func_00825610() == 6) {
         var_s5 = 0;
         temp_s1 = ((void *)Pes6MatchSquads) + (((*(s8 *)D_008B144E) & 1) * 0x6900);

@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 
 u16 func_00917800(u16 *arg0, u8 *arg1) {
     s32 temp_v0;
@@ -19,7 +19,7 @@ u16 func_00917800(u16 *arg0, u8 *arg1) {
     var_s2 = arg0;
     var_s1 = arg1;
     var_s0 = 0;
-    temp_v0 = ((s32) (func_00151EA0(0x3E8) & 0xFFFF) % 100) & 0xFF;
+    temp_v0 = ((s32) (Pes6Random_Below(0x3E8) & 0xFFFF) % 100) & 0xFF;
     if (var_s2 != NULL) {
         var_a1 = *var_s1;
         var_a3 = 0;

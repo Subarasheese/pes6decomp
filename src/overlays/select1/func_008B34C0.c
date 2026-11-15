@@ -1,8 +1,8 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-M2C_UNK func_001BBFD0(s32);                         /* extern */
-M2C_UNK func_001BC040(s32);                         /* extern */
+M2C_UNK Pes6Process_Destroy(s32);                         /* extern */
+M2C_UNK Pes6Process_Unlink(s32);                         /* extern */
 M2C_UNK func_001BC360(s32);                         /* extern */
 extern s32 D_003EA3F8;
 extern s32 D_003EA3FC;
@@ -55,8 +55,8 @@ loop_3:
             var_s0 += 1;
             var_s2 += 0x5C;
         } while (var_s0 < 8);
-        func_001BC040(D_003EA3FC);
-        func_001BBFD0(D_003EA3FC);
+        Pes6Process_Unlink(D_003EA3FC);
+        Pes6Process_Destroy(D_003EA3FC);
         (*(s32 *)D_008DC230) = 0;
         (*(s32 *)D_008DC250) = 0;
         (*(s32 *)D_008DC270) = 0;

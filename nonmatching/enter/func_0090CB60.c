@@ -4,7 +4,7 @@
 
 extern void func_00288570(void);
 extern s32 func_001A5BB0(s32);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 M2C_UNK func_001A5E00(M2C_UNK);                     /* extern */
 extern char D_0092F042[];
 
@@ -51,7 +51,7 @@ block_36:
         }
         break;
     case 2:                                         /* switch 1 */
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             var_v1 = (*(u8 *)D_0092F042) + 1;
             goto block_40;
         }

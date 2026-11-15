@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern s32 func_00247460(s32);
-extern char D_003AA200[];
+extern char Pes6PadAssign[];
 extern char D_0053CB40[];
 
 void func_00247880(s32 arg0, void *arg1) {
@@ -50,7 +50,7 @@ loop_5:
             var_a4 = 0;
             var_a7 = arg1;
             var_a6 = ((void *)D_0053CB40);
-            var_a5 = ((void *)D_003AA200);
+            var_a5 = ((void *)Pes6PadAssign);
             do {
                 if (M2C_FIELD(var_a7, s8 *, 1) == (var_s0 * 0xB)) {
                     M2C_FIELD(var_a7, s8 *, 1) = 0xA;

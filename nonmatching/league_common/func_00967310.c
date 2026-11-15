@@ -13,7 +13,7 @@ extern s32 func_002307F0(void);
 extern s32 func_00210DF0(void);
 extern void func_0094C790(s32);
 extern void func_0094C750(s8);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern void func_00939730(void);
 M2C_UNK func_00939470();                            /* extern */
 M2C_UNK func_009398F0();                            /* extern */
@@ -121,7 +121,7 @@ s32 func_00967310(void) {
         func_0094C790(1);
         break;
     case 1:                                         /* switch 1 */
-        if (func_0017F900() == 1) {
+        if (Pes6File_AllChannelsIdle() == 1) {
             func_00957C70();
             if (func_00210DF0() == 2) {
                 if ((func_0022F8D0() & 0xFF) == 2) {

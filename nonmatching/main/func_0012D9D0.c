@@ -8,7 +8,7 @@ extern int func_0012D640(void);
 extern s32 func_0012AD50(s32);
 extern s32 func_0012ADE0(s32);
 extern s32 func_0012D540(s32, u32);
-s32 func_0012C020(s32, s32, s32);                   /* extern */
+s32 Pes6Mem_Calloc(s32, s32, s32);                   /* extern */
 extern s32 D_003E7410;
 extern s32 D_003E9794;
 
@@ -25,7 +25,7 @@ loop_1:
         if (var_s0 != var_s2) {
             if (func_0012D540(var_s0, arg0 * arg1) != 0) {
                 func_0012AD50(D_003E7410);
-                temp_s1 = func_0012C020(var_s0, arg0, arg1);
+                temp_s1 = Pes6Mem_Calloc(var_s0, arg0, arg1);
                 func_0012ADE0(D_003E7410);
                 if (temp_s1 != 0) {
                     func_0012D4F0(var_s0, temp_s1);
@@ -46,7 +46,7 @@ block_14:
     if (func_0012D380(var_s2) == 0) {
         var_s2 = func_0012D640();
     }
-    temp_s0 = func_0012C020(var_s2, arg0, arg1);
+    temp_s0 = Pes6Mem_Calloc(var_s2, arg0, arg1);
     func_0012ADE0(D_003E7410);
     if (temp_s0 != 0) {
         func_0012D4F0(var_s2, temp_s0);

@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-s32 func_00151EA0(u16);                             /* extern */
+s32 Pes6Random_Below(u16);                             /* extern */
 extern u16 *D_0051FF7C;
 extern char D_00520338[];
 extern char D_0052033A[];
@@ -15,7 +15,7 @@ void func_0019FBE0(void) {
     u16 *temp_s0;
 
     temp_s0 = D_0051FF7C;
-    var_a2 = func_00151EA0(*temp_s0) & 0xFFFF;
+    var_a2 = Pes6Random_Below(*temp_s0) & 0xFFFF;
     switch ((*(s8 *)D_00520342)) {                           /* irregular */
     case 2:
         (*(s16 *)D_00520340) = 2;

@@ -9,8 +9,8 @@ M2C_UNK func_002CAA60();                            /* extern */
 s32 func_002E8C60(s32);                             /* extern */
 M2C_UNK func_002E8CB0(M2C_UNK, M2C_UNK);            /* extern */
 s32 func_002E9310();                                /* extern */
-M2C_UNK func_00363BD0(s32);                         /* extern */
-M2C_UNK func_00363C40(s32);                         /* extern */
+M2C_UNK Pes6Keyboard_Release(s32);                         /* extern */
+M2C_UNK Pes6Keyboard_Acquire(s32);                         /* extern */
 M2C_UNK func_0099C730(M2C_UNK);                     /* extern */
 M2C_UNK func_0099C760();                            /* extern */
 extern char D_00A7DBD0[];
@@ -27,7 +27,7 @@ void func_009ACC10(void) {
         (*(s32 *)D_00A7DBD8) = 2;
         return;
     case 0:                                         /* switch 1 */
-        func_00363BD0((*(s32 *)D_00A7DBD8));
+        Pes6Keyboard_Release((*(s32 *)D_00A7DBD8));
         (*(s32 *)D_00A7DBD8) = 1;
         return;
     case 2:                                         /* switch 1 */
@@ -43,7 +43,7 @@ void func_009ACC10(void) {
         }
         return;
     case 3:                                         /* switch 1 */
-        func_00363C40((*(s32 *)D_00A7DBD8));
+        Pes6Keyboard_Acquire((*(s32 *)D_00A7DBD8));
         (*(s32 *)D_00A7DBD8) = 4;
         /* fallthrough */
     case 4:                                         /* switch 1 */

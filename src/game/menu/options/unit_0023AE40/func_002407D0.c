@@ -16,7 +16,7 @@ extern char D_003AA339[];
 extern char D_003AA33A[];
 extern char D_003AA36D[];
 extern char D_003AA36E[];
-extern char D_0053C398[];
+extern char Pes6MatchSelect_PrevPadSide[];
 extern char D_0053C399[];
 extern char D_0053C39A[];
 extern char D_0053C39B[];
@@ -35,7 +35,7 @@ extern char D_0053C3A7[];
 
 void func_002407D0(void) {
     (*(s8 *)D_0053C3A0) = (*(s8 *)D_003AA202);
-    (*(s8 *)D_0053C398) = (*(s8 *)D_003AA201);
+    (*(s8 *)Pes6MatchSelect_PrevPadSide) = (*(s8 *)D_003AA201);
     (*(s8 *)D_0053C3A1) = (*(s8 *)D_003AA236);
     (*(s8 *)D_0053C399) = (*(s8 *)D_003AA235);
     (*(s8 *)D_0053C3A2) = (*(s8 *)D_003AA26A);

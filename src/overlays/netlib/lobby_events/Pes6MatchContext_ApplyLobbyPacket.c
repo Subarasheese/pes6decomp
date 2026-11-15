@@ -7,7 +7,7 @@ extern u8 D_003E9E88;
 extern u8 D_003E9E89;
 extern char Pes6MatchContext[];
 extern char D_00591BB2[];
-extern char D_00591BB4[];
+extern char Pes6MatchContext_Stadium[];
 extern char D_00591BB6[];
 extern char D_00591BB7[];
 extern char D_00591BB8[];
@@ -42,7 +42,7 @@ void Pes6MatchContext_ApplyLobbyPacket(void *arg0, s32 arg1) {
     D_003E9E88 = M2C_FIELD(arg0, u8 *, 8);
     D_003E9E89 = M2C_FIELD(arg0, u8 *, 9);
     temp_a4 = M2C_FIELD(arg0, u8 *, 0xA);
-    (*(u8 *)D_00591BB4) = temp_a4;
+    (*(u8 *)Pes6MatchContext_Stadium) = temp_a4;
     temp_a3 = M2C_FIELD(arg0, u8 *, 0xB);
     (*(u8 *)D_00591BB6) = temp_a3;
     temp_a2 = M2C_FIELD(arg0, u8 *, 0xC);

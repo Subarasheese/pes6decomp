@@ -5,7 +5,7 @@
 extern s32 func_0021E000(u32);
 extern void func_001DA4B0(s32);
 extern s32 func_0021DF90(s32);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 M2C_UNK func_001B8DC0();                            /* extern */
 M2C_UNK func_001D5C40(M2C_UNK);                     /* extern */
 M2C_UNK func_001DD560(M2C_UNK);                     /* extern */
@@ -18,7 +18,7 @@ M2C_UNK func_0084A620(M2C_UNK);                     /* extern */
 M2C_UNK func_008804D0();                            /* extern */
 M2C_UNK func_008B34C0();                            /* extern */
 M2C_UNK func_008B36F0();                            /* extern */
-s32 func_008C94A0();                                /* extern */
+s32 Pes6StripSelect_Update();                                /* extern */
 extern s32 D_003E9A4C;
 extern s32 D_003E9A50;
 extern s32 D_003E9A60;
@@ -56,7 +56,7 @@ block_13:
     default:
         return 0;
     case 1:
-        if (func_0017F900() == 1) {
+        if (Pes6File_AllChannelsIdle() == 1) {
             func_00825610();
             (*(s32 *)D_008E7878) = 0;
             (*(s32 *)D_008E7868) = 0;
@@ -64,7 +64,7 @@ block_13:
         }
         goto block_13;
     case 2:
-        if (func_008C94A0() == 2) {
+        if (Pes6StripSelect_Update() == 2) {
             D_003E9A4C += 1;
         }
         goto block_13;

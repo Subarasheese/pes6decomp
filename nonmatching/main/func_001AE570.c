@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern s32 func_00145460(s32);
+extern s32 Pes6Texture_GetPixels(s32);
 extern s32 func_001454C0(s32);
 extern unsigned short func_001454B0(void *);
 extern void func_001453E0(s32);
@@ -35,7 +35,7 @@ void func_001AE570(s32 arg0, s8 *arg1, s32 arg2) {
     temp_v0 = func_001454C0(arg0);
     temp_s0 = func_001454B0(temp_v0);
     func_001454A0(temp_v0);
-    func_00145460((s32) temp_v0);
+    Pes6Texture_GetPixels((s32) temp_v0);
     temp_v0_2 = temp_s0 - func_001AF920(0, arg1, 0);
     var_s1 = temp_v0_2 >> 1;
     if (temp_v0_2 < 0) {

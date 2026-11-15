@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 M2C_UNK func_001C48E8(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
 extern M2C_UNK *D_003EA7B8;
 extern char D_00CBD8E0[];
@@ -23,7 +23,7 @@ void func_00C10BF0(void) {
         var_s0 = var_s1;
 loop_2:
         var_s2 += 1;
-        M2C_FIELD(var_s0, f32 *, 0x48) = (f32) (0x80 - (func_00151EA0(0x100) & 0xFFFF));
+        M2C_FIELD(var_s0, f32 *, 0x48) = (f32) (0x80 - (Pes6Random_Below(0x100) & 0xFFFF));
         var_s0 += 0x28;
         if (var_s2 < 0x12) {
             goto loop_2;

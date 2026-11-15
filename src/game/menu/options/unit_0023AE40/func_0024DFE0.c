@@ -1,12 +1,12 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
-M2C_UNK func_00240720();                            /* extern */
+M2C_UNK Pes6MatchSelect_CheckPadChanges();                            /* extern */
 M2C_UNK func_002407D0(M2C_UNK);                     /* extern */
 M2C_UNK func_002472F0(M2C_UNK *);                   /* extern */
 M2C_UNK func_0024DA90();                            /* extern */
 extern char D_003AA1F0[];
 extern char D_003AA1F1[];
-extern char D_003AA200[];
+extern char Pes6PadAssign[];
 extern char D_003AA201[];
 extern char D_003AA235[];
 extern char D_003AA269[];
@@ -33,8 +33,8 @@ void func_0024DFE0(void) {
     (*(s8 *)D_003AA201) = -1;
     (*(s8 *)D_003AA235) = 1;
     func_0024DA90();
-    func_002472F0(((void *)D_003AA200));
-    func_00240720();
+    func_002472F0(((void *)Pes6PadAssign));
+    Pes6MatchSelect_CheckPadChanges();
     D_003E7504 = 0;
     D_003E7505 = 1;
 }

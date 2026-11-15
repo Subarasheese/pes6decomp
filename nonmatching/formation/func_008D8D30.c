@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern void func_00363BD0(void);
+extern void Pes6Keyboard_Release(void);
 extern void func_001BC2B0(void);
 extern void func_001BA3C0(void);
 extern char D_008F5880[];
@@ -18,7 +18,7 @@ void func_008D8D30(void) {
     s32 var_s0;
     s32 var_s3;
 
-    func_00363BD0();
+    Pes6Keyboard_Release();
     (*(s32 *)D_008F5880) = 0;
     (*(s32 *)D_008F5884) = 0;
     (*(s32 *)D_008F5888) = 0;

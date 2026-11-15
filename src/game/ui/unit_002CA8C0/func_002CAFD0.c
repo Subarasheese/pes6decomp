@@ -3,7 +3,7 @@
 M2C_UNK func_002CBAF0(M2C_UNK);                     /* extern */
 s32 func_002CBB90(M2C_UNK);                         /* extern */
 s32 func_002CBC80(M2C_UNK);                         /* extern */
-M2C_UNK func_002CBD20(M2C_UNK, s32, s32);           /* extern */
+M2C_UNK Pes6HeapZone_SetRange(M2C_UNK, s32, s32);           /* extern */
 
 void func_002CAFD0(s32 arg0) {
     s32 temp_s1;
@@ -12,9 +12,9 @@ void func_002CAFD0(s32 arg0) {
     if (arg0 == 1) {
         temp_s1 = func_002CBC80(0xB);
         temp_v0 = func_002CBB90(0xB);
-        func_002CBD20(0xB, temp_s1 + 0x80000, temp_v0 + 0xFFF80000);
+        Pes6HeapZone_SetRange(0xB, temp_s1 + 0x80000, temp_v0 + 0xFFF80000);
         func_002CBAF0(0xB);
-        func_002CBD20(0xB, temp_s1, temp_v0);
+        Pes6HeapZone_SetRange(0xB, temp_s1, temp_v0);
         return;
     }
     func_002CBAF0(0xB);

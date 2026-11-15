@@ -6,7 +6,7 @@ extern void * func_00221230(s32);
 extern void * func_00225160(s32);
 extern void func_002250C0(s32, s32);
 s32 func_00225940(u8);                              /* extern */
-extern char D_003AA200[];
+extern char Pes6PadAssign[];
 extern s32 D_003E77B0;
 extern char D_0053CB60[];
 extern char D_0053CBB2[];
@@ -36,7 +36,7 @@ void func_0024CF50(void *arg0) {
     var_a4 = 0;
     if ((u32) ((*(u8 *)D_00591C09) - 1) < 2U) {
         var_s2 = 0;
-        var_s1 = ((void *)D_003AA200);
+        var_s1 = ((void *)Pes6PadAssign);
         do {
             temp_s0 = var_s2 % 2;
             if (func_00225940(M2C_FIELD((D_003E77B0 + temp_s0), u8 *, 0x2C)) & 0xFF) {

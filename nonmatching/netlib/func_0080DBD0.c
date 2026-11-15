@@ -7,7 +7,7 @@ extern void func_001F8DA0(void);
 M2C_UNK func_002726D0();                            /* extern */
 M2C_UNK func_00287C00();                            /* extern */
 M2C_UNK func_002BDA20(M2C_UNK);                     /* extern */
-M2C_UNK func_00342780();                            /* extern */
+M2C_UNK Pes6MatchSession_Init();                            /* extern */
 s16 *func_008472D0();                               /* extern */
 s32 func_008481D0();                                /* extern */
 M2C_UNK func_00852750(M2C_UNK);                     /* extern */
@@ -48,7 +48,7 @@ s32 func_0080DBD0(void) {
         }
         func_00287C00();
         func_009E1DA0();
-        func_00342780();
+        Pes6MatchSession_Init();
         func_001F8DA0();
     }
     return 1;

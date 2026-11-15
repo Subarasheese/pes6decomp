@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern s32 func_00145440(s32);
+extern s32 Pes6Texture_GetClut(s32);
 s32 func_001454C0(s32);                             /* extern */
 
 void func_001AF120(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
@@ -20,7 +20,7 @@ void func_001AF120(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     u8 temp_t0;
     void *temp_a0;
 
-    func_00145440(func_001454C0(arg1));
+    Pes6Texture_GetClut(func_001454C0(arg1));
     var_a5 = 0;
     if (arg4 > 0) {
         var_a4 = 0;

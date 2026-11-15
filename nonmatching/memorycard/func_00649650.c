@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
-s32 func_0017F900();                                /* extern */
+s32 Pes6File_AllChannelsIdle();                                /* extern */
 M2C_UNK func_002CD170(M2C_UNK);                     /* extern */
 s32 func_002E8BD0();                                /* extern */
 M2C_UNK func_00654F30();                            /* extern */
@@ -40,7 +40,7 @@ s32 func_00649650(void) {
         if (func_00655660() != 0) {
             D_003EA1C4 = 2;
         case 2:                                     /* switch 1 */
-            if (func_0017F900() != 0) {
+            if (Pes6File_AllChannelsIdle() != 0) {
                 D_003EA1C4 = 4;
             }
         }

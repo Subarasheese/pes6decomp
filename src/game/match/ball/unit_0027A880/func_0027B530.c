@@ -15,7 +15,7 @@ typedef struct {
 extern Team Pes6MatchPlayers[];
 void func_00209A00(Sub *, s32, s32);
 void func_001A5BE0(s32);
-void func_002CB9B0(s32);
+void Pes6HeapZone_Open(s32);
 void func_001B05D0(s32);
 
 void func_0027B530(void) {
@@ -28,6 +28,6 @@ void func_0027B530(void) {
         }
     }
     func_001A5BE0(4);
-    func_002CB9B0(8);
+    Pes6HeapZone_Open(8);
     func_001B05D0(8);
 }

@@ -17,14 +17,14 @@ typedef struct {
 } SW;
 
 extern void func_0017FD00(s32);
-extern SW *func_0017ECA0(s32);
+extern SW *Pes6File_GetChannelBusy(s32);
 void func_0017EDD0(SW *, s32);
 
 void func_001812D0(void) {
     SW *p;
 
     while (1) {
-        if ((p = func_0017ECA0(4)) != NULL) {
+        if ((p = Pes6File_GetChannelBusy(4)) != NULL) {
             if (p->x80 != NULL) {
                 p->x48 = p->x54;
                 p->x4C = p->x64;

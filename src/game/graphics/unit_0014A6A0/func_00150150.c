@@ -1,10 +1,10 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-s32 func_00145490(s32);
+s32 Pes6Texture_GetPsm(s32);
 
 s32 func_00150150(s32 id) {
-    s32 kind = func_00145490(id);
+    s32 kind = Pes6Texture_GetPsm(id);
 
     switch (kind) {
     case 0x14:

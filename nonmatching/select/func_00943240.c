@@ -12,7 +12,7 @@ extern s16 D_003E7B88;
 extern s16 D_003E7B8C;
 extern s32 D_003E7B90;
 extern s32 D_003E9A5C;
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 extern char D_0053C388[];
 extern char D_00591C09[];
 extern M2C_UNK func_009429D0;
@@ -32,5 +32,5 @@ void func_00943240(void) {
         D_003E7B88 = -1;
         D_003E7B90 = -1;
     }
-    func_0023EC10(((void *)D_0053C300) + 0x10, 0x40);
+    func_0023EC10(((void *)Pes6Scene_Menu_State) + 0x10, 0x40);
 }

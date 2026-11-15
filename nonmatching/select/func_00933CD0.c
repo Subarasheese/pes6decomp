@@ -13,7 +13,7 @@ extern s32 D_003EAA0C;
 extern s32 D_003EAA10;
 extern s32 D_003EAA20;
 extern s32 D_003EAA40;
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 
 s32 func_00933CD0(void) {
     switch (D_003EAA20) {                           /* switch 1; irregular */
@@ -21,19 +21,19 @@ s32 func_00933CD0(void) {
         switch (D_003EAA40) {                       /* switch 2; irregular */
         case 0:                                     /* switch 2 */
             if (func_00932AB0(1) == 1) {
-                M2C_FIELD(((void *)D_0053C300), s16 *, 6) = 0;
+                M2C_FIELD(((void *)Pes6Scene_Menu_State), s16 *, 6) = 0;
                 D_003EAA20 = 1;
             }
             break;
         case 1:                                     /* switch 2 */
             if (func_00932420(1) == 1) {
-                M2C_FIELD(((void *)D_0053C300), s16 *, 6) = 1;
+                M2C_FIELD(((void *)Pes6Scene_Menu_State), s16 *, 6) = 1;
                 D_003EAA20 = 1;
             }
             break;
         case 2:                                     /* switch 2 */
             if (func_00932420(1) == 1) {
-                M2C_FIELD(((void *)D_0053C300), s16 *, 6) = 2;
+                M2C_FIELD(((void *)Pes6Scene_Menu_State), s16 *, 6) = 2;
                 D_003EAA40 = 2;
                 func_00932560();
                 D_003EAA20 = 1;

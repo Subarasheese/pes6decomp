@@ -6,7 +6,7 @@ s32 func_00934440(M2C_UNK);                         /* extern */
 M2C_UNK func_00934540(M2C_UNK);                     /* extern */
 M2C_UNK func_00954F60(M2C_UNK, M2C_UNK);            /* extern */
 M2C_UNK func_0095ACB0();                            /* extern */
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 extern char D_00591BB0[];
 extern char D_00591BB2[];
 extern char D_00591F2C[];
@@ -40,7 +40,7 @@ s32 func_0095BF00(void) {
     if (func_00934440(0x10390) != 1) {
         return 0;
     }
-    if (M2C_FIELD(((void *)D_0053C300), s8 *, 9) != 2) {
+    if (M2C_FIELD(((void *)Pes6Scene_Menu_State), s8 *, 9) != 2) {
         (*(s32 *)D_0096CFF0) = 4;
         (*(s32 *)D_0096CFF4) = 4;
     } else {

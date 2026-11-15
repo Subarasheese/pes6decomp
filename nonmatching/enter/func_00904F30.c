@@ -6,7 +6,7 @@ extern int func_0027A780(void);
 extern void func_0027A7B0(s32);
 extern void func_0027A790(int);
 extern int func_0027A7A0(void);
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 void *func_009177C0(s32);                           /* extern */
 extern s8 D_003EA524;
 extern s8 D_003EA528;
@@ -30,7 +30,7 @@ void func_00904F30(s32 arg0) {
         temp_v0 = func_009177C0(temp_s0);
         M2C_FIELD(M2C_FIELD(temp_v0, void **, 4), s32 *, 0x20) = 0;
         M2C_FIELD(M2C_FIELD(temp_v0, void **, 4), s32 *, 0x24) = 0;
-        temp_v1 = func_00151EA0(0x32) & 0xFF;
+        temp_v1 = Pes6Random_Below(0x32) & 0xFF;
         if (temp_v1 < 0x15) {
             if (temp_v1 < 0xB) {
                 var_a2 = 2;

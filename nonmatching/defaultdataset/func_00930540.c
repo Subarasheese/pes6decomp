@@ -5,7 +5,7 @@
 extern s32 func_0021DF90(s32);
 extern void func_00930D50(void);
 extern s32 func_0017F8A0(s32);
-M2C_UNK func_00151EA0(M2C_UNK);                     /* extern */
+M2C_UNK Pes6Random_Below(M2C_UNK);                     /* extern */
 s32 func_0021FDC0();                                /* extern */
 M2C_UNK func_00930630();                            /* extern */
 s32 func_00931220();                                /* extern */
@@ -38,7 +38,7 @@ block_12:
             func_00930630();
             D_003EAC70 = 3;
         } else {
-            func_00151EA0(0xFFFF);
+            Pes6Random_Below(0xFFFF);
         }
         break;
     case 3:

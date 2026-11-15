@@ -10,7 +10,7 @@ s32 func_0021E4C0(s32, s32, M2C_UNK, M2C_UNK);      /* extern */
 M2C_UNK func_0021EA40(s32, s32, M2C_UNK);           /* extern */
 s32 func_0021EB50(s32, M2C_UNK, u8, u8);            /* extern */
 M2C_UNK func_0021ED50(s32, s32);                    /* extern */
-s32 func_0021EE40(s32, M2C_UNK);                    /* extern */
+s32 Pes6Team_GetHomeStadium(s32, M2C_UNK);                    /* extern */
 void *func_0021F440(s32, s32);                      /* extern */
 M2C_UNK func_0021F660(s32, s32);                    /* extern */
 s32 func_0021F710(s32);                             /* extern */
@@ -70,7 +70,7 @@ void func_00954F60(s32 arg0, s32 arg1) {
         M2C_FIELD(temp_v0, u8 *, 3) = (u8) M2C_FIELD(temp_s0_2, u8 *, 3);
     } while (var_s1 < 2);
     func_0021EA40(arg1, func_0021EB50(arg0, 0, temp_a2, temp_a3) & 0xFF, 0);
-    func_0021ED50(arg1, func_0021EE40(arg0, 0) & 0xFF);
+    func_0021ED50(arg1, Pes6Team_GetHomeStadium(arg0, 0) & 0xFF);
     func_0021E250(arg1, arg0);
     temp_s6 = arg1 & 0xFFFF;
     temp_s0_3 = func_002F8880(arg0 & 0xFFFF);

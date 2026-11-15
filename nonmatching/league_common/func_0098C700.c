@@ -12,7 +12,7 @@ M2C_UNK func_0098C5E0(u8);                          /* extern */
 extern void *D_003E77B0;
 extern void *D_003E77B4;
 extern u8 *D_003E7B0C;
-extern char D_00591BB4[];
+extern char Pes6MatchContext_Stadium[];
 
 void func_0098C700(void) {
     s32 temp_a0_2;
@@ -43,7 +43,7 @@ block_35:
             M2C_FIELD(D_003E77B0, s32 *, 0x20) = (s32) (M2C_FIELD(D_003E77B0, s32 *, 0x20) | 0x4000);
             M2C_FIELD(D_003E77B0, s32 *, 0x20) = (s32) (M2C_FIELD(D_003E77B0, s32 *, 0x20) | 0x80000);
             if (temp_s0 != NULL) {
-                M2C_FIELD(temp_s0, u8 *, 0x13) = (u8) (*(u8 *)D_00591BB4);
+                M2C_FIELD(temp_s0, u8 *, 0x13) = (u8) (*(u8 *)Pes6MatchContext_Stadium);
                 return;
             }
             return;

@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern u16 Pes6Team_GetPlayerId(s32, s32, s32);
-extern s32 func_00151EA0(s32);
+extern s32 Pes6Random_Below(s32);
 extern u16 func_00224BC0(s32, s32);
 extern u8 func_00225820(void);
 extern u8 func_00226E70(void);
@@ -176,7 +176,7 @@ block_50:
                                 if (temp_s0 >= 0x2E) {
                                     var_s0_2 = 0xFF & 0xFF;
                                 }
-                                if ((func_00151EA0(0x64) & 0xFFFF) < (var_s0_2 & 0xFF)) {
+                                if ((Pes6Random_Below(0x64) & 0xFFFF) < (var_s0_2 & 0xFF)) {
                                     temp_v0_3 = func_00223E00(var_s1);
                                     if (temp_v0_3 != NULL) {
                                         M2C_FIELD(temp_v0_3, u8 *, 6) = (u8) ((M2C_FIELD(temp_v0_3, u8 *, 6) & ~0x3F) | 3);
@@ -283,7 +283,7 @@ loop_82:
                             } else {
                                 var_s4_5 = ((temp_s4 - 0x23) * 0x14) & 0xFF;
                             }
-                            if ((temp_s3 > 0) && ((func_00151EA0(0x64) & 0xFFFF) < (var_s4_5 & 0xFF))) {
+                            if ((temp_s3 > 0) && ((Pes6Random_Below(0x64) & 0xFFFF) < (var_s4_5 & 0xFF))) {
                                 func_00B1A210(temp_s0_2);
                                 var_s1_3 = (s64) ((var_s1_3 - 1) << 0x38) >> 0x38;
                                 M2C_FIELD(temp_v0_7, u8 *, 6) = (u8) ((M2C_FIELD(temp_v0_7, u8 *, 6) & ~0x3F) | 3);

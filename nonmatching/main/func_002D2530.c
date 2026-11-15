@@ -7,7 +7,7 @@ M2C_UNK func_001A34D0(u8, u8);                      /* extern */
 M2C_UNK func_001A3500(u8, M2C_UNK, s32, s32);       /* extern */
 s32 func_0021EB50(M2C_UNK, M2C_UNK);                /* extern */
 s32 func_00295290();                                /* extern */
-extern char D_00591BB4[];
+extern char Pes6MatchContext_Stadium[];
 extern char D_00591BB6[];
 extern char D_00591BB7[];
 extern char D_00591BC4[];
@@ -19,7 +19,7 @@ void func_002D2530(void) {
     s32 temp_s1;
     u8 temp_s0;
 
-    temp_s0 = (*(u8 *)D_00591BB4);
+    temp_s0 = (*(u8 *)Pes6MatchContext_Stadium);
     if ((*(u8 *)D_00591BB7) != 0) {
         var_s2 = 2;
         if ((*(u8 *)D_00591BB7) != 2) {

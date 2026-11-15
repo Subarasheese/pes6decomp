@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern u8 func_00226A50(void);
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 M2C_UNK func_001C48E8(void *, M2C_UNK, M2C_UNK);    /* extern */
 void *func_00223E00(u16);                           /* extern */
 s32 func_00937F90(u16);                             /* extern */
@@ -77,7 +77,7 @@ void func_00B1FF50(s32 arg0, void *arg1) {
                     if (func_00226A50() == 2) {
                         var_s0 = (var_s0 - 0x14) & 0xFF;
                     }
-                    if ((var_s0 & 0xFF) >= (func_00151EA0(0x64) & 0xFFFF)) {
+                    if ((var_s0 & 0xFF) >= (Pes6Random_Below(0x64) & 0xFFFF)) {
                         goto block_44;
                     }
                 } else {

@@ -4,7 +4,7 @@
 s32 Pes6Scene_Get(M2C_UNK);                         /* extern */
 M2C_UNK Pes6Scene_Advance(M2C_UNK);                     /* extern */
 M2C_UNK Pes6Scene_Set(M2C_UNK, M2C_UNK);            /* extern */
-s32 func_0017F900();                                /* extern */
+s32 Pes6File_AllChannelsIdle();                                /* extern */
 M2C_UNK func_001FC780(M2C_UNK);                     /* extern */
 M2C_UNK Pes6Module_Load(M2C_UNK);                     /* extern */
 M2C_UNK Pes6MatchContext_SetByteC08(M2C_UNK);                     /* extern */
@@ -22,7 +22,7 @@ void Pes6Scene_MatchSelect(void) {
         Pes6Scene_Advance(1);
         return;
     case 1:                                         /* switch 1 */
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             func_002F7160();
             Pes6Scene_Advance(1);
         case 2:                                     /* switch 1 */

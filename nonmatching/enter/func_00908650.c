@@ -8,7 +8,7 @@ M2C_UNK func_00237C40(s32 *);                       /* extern */
 s64 func_0090F520();                                /* extern */
 extern u8 D_003E9A24;
 extern char D_0051FF48[];
-extern char D_00591BB4[];
+extern char Pes6MatchContext_Stadium[];
 extern char D_0092F0D0[];
 
 void func_00908650(void) {
@@ -40,7 +40,7 @@ block_14:
         var_v1 = (*(s32 *)D_0092F0D0) & ~0x800;
         goto block_14;
     }
-    if ((*(u8 *)D_00591BB4) == 0) {
+    if ((*(u8 *)Pes6MatchContext_Stadium) == 0) {
         (*(s32 *)D_0092F0D0) = (*(s32 *)D_0092F0D0) | 0x400 | 0x400000;
     }
     if (func_001A3330() != 0) {

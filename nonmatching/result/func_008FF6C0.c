@@ -6,7 +6,7 @@ M2C_UNK func_001540B0(s32, M2C_UNK);                /* extern */
 M2C_UNK func_00182AE0(M2C_UNK);                     /* extern */
 M2C_UNK func_0022DA50();                            /* extern */
 s32 func_0026C760();                                /* extern */
-M2C_UNK func_002CBA60(M2C_UNK);                     /* extern */
+M2C_UNK Pes6HeapZone_Close(M2C_UNK);                     /* extern */
 s32 func_00366290();                                /* extern */
 s32 func_00814FC0(M2C_UNK *);                       /* extern */
 M2C_UNK func_0081D240(M2C_UNK);                     /* extern */
@@ -56,6 +56,6 @@ block_11:
         func_00182AE0(1);
     }
     func_008FF570();
-    func_002CBA60(0xB);
+    Pes6HeapZone_Close(0xB);
     return 1;
 }

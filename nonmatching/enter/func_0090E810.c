@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 s32 func_001540E0(M2C_UNK);                         /* extern */
-s32 func_0017F900();                                /* extern */
+s32 Pes6File_AllChannelsIdle();                                /* extern */
 M2C_UNK func_001A58E0(s32, M2C_UNK);                /* extern */
 s32 func_001A5BB0(M2C_UNK);                         /* extern */
 M2C_UNK func_001A5E00(M2C_UNK);                     /* extern */
@@ -12,7 +12,7 @@ s32 func_00237BD0();                                /* extern */
 M2C_UNK func_0027CD00(M2C_UNK);                     /* extern */
 M2C_UNK func_0027CD10(M2C_UNK);                     /* extern */
 M2C_UNK func_00288350();                            /* extern */
-M2C_UNK func_002CBA60(M2C_UNK);                     /* extern */
+M2C_UNK Pes6HeapZone_Close(M2C_UNK);                     /* extern */
 M2C_UNK func_0099D5E0(M2C_UNK);                     /* extern */
 extern char D_00510FD0[];
 extern char Pes6MatchPlayers[];
@@ -26,7 +26,7 @@ s32 func_0090E810(void) {
     switch ((*(u8 *)D_00591F2E)) {                           /* irregular */
     case 0:
         if (func_001540E0(0xA) == 1) {
-            func_002CBA60(0xA);
+            Pes6HeapZone_Close(0xA);
         }
         func_0027CD10(1);
         func_0027CD00(0xC);
@@ -59,7 +59,7 @@ block_20:
         (*(u8 *)D_00591F2E) = 0;
         return 1;
     case 2:
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             (*(u8 *)D_00591F2E) = 0;
             return 1;
         }

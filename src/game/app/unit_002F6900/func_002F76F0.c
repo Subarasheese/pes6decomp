@@ -2,7 +2,7 @@
 #pragma no_branch_likely on
 #include "pes6/m2c.h"
 
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern void func_001A1750(void);
 extern s32 func_001A31D0(void);
 M2C_UNK func_001A1A50();                            /* extern */
@@ -11,7 +11,7 @@ extern char D_0058D7A4[];
 extern char Pes6MatchSelect_LoadSequenceState[];
 
 s32 func_002F76F0(void) {
-    if (func_0017F900() == 0) {
+    if (Pes6File_AllChannelsIdle() == 0) {
         return 0;
     }
     if ((*(s8 *)D_0058D7A4) != 0) {

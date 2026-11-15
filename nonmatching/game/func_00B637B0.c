@@ -10,7 +10,7 @@ extern void func_0027B200(void *, s32, s32);
 extern s32 func_00152130(s32, s8);
 extern void func_001AC550(void *);
 extern void func_001A58E0(void *, signed char);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 M2C_UNK func_001A7250(void *);                      /* extern */
 M2C_UNK func_001A9970(void *);                      /* extern */
 M2C_UNK func_001AB650(void *);                      /* extern */
@@ -62,7 +62,7 @@ void func_00B637B0(void) {
             D_003EA75C = 3;
             return;
         case 3:
-            if (func_0017F900() != 0) {
+            if (Pes6File_AllChannelsIdle() != 0) {
                 D_003EA75C = 4;
             }
             break;

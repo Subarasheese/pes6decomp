@@ -3,11 +3,11 @@
 #include "pes6/m2c.h"
 
 M2C_UNK func_001BE670(M2C_UNK);                     /* extern */
-s32 func_001BE760(M2C_UNK);                         /* extern */
+s32 Pes6NowLoading_IsNotClosing(M2C_UNK);                         /* extern */
 s32 func_001DA3F0(M2C_UNK);                         /* extern */
 M2C_UNK func_0020B660(M2C_UNK);                     /* extern */
-s32 func_0020BA50();                                /* extern */
-M2C_UNK func_0020BC40();                            /* extern */
+s32 Pes6TeamAssets_Poll();                                /* extern */
+M2C_UNK Pes6TeamAssets_Reset();                            /* extern */
 M2C_UNK func_0020C240();                            /* extern */
 s32 func_0020C2C0(M2C_UNK);                         /* extern */
 M2C_UNK func_0020C370();                            /* extern */
@@ -22,8 +22,8 @@ s32 func_001BD970(void) {
     var_s0 = 0;
     switch (D_003E9924) {                           /* irregular */
     case 0:
-        if (func_001BE760(2) != 0) {
-            func_0020BC40();
+        if (Pes6NowLoading_IsNotClosing(2) != 0) {
+            Pes6TeamAssets_Reset();
             func_002CAE20();
             func_002667C0();
             func_0020B660(0);
@@ -37,7 +37,7 @@ s32 func_001BD970(void) {
         }
         break;
     case 2:
-        if ((func_0020C2C0(2) != 0) && (func_0020BA50() != 0)) {
+        if ((func_0020C2C0(2) != 0) && (Pes6TeamAssets_Poll() != 0)) {
             func_00266430();
             func_0020C240();
             func_001BE670(0);

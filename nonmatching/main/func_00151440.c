@@ -2,8 +2,8 @@
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-s32 func_00145440();                                /* extern */
-s32 func_00145490(s32);                             /* extern */
+s32 Pes6Texture_GetClut();                                /* extern */
+s32 Pes6Texture_GetPsm(s32);                             /* extern */
 extern char D_00376A50[];
 
 s32 func_00151440(s32 arg0, s32 arg1) {
@@ -11,8 +11,8 @@ s32 func_00151440(s32 arg0, s32 arg1) {
     s32 temp_v0;
     s32 var_v0;
 
-    temp_s0 = func_00145440();
-    temp_v0 = func_00145490(arg0);
+    temp_s0 = Pes6Texture_GetClut();
+    temp_v0 = Pes6Texture_GetPsm(arg0);
     switch (temp_v0) {                              /* irregular */
     case 20:
         var_v0 = arg1 * 4;

@@ -9,7 +9,7 @@ extern M2C_UNK *D_00511624;
 extern char D_005116A8[];
 extern char D_00519D10[];
 extern M2C_UNK *D_00519D98;
-extern M2C_UNK *D_00519E20;
+extern M2C_UNK *Pes6File_Channels;
 extern M2C_UNK **D_00519E24;
 
 void func_0017F070(void) {
@@ -30,7 +30,7 @@ void func_0017F070(void) {
     void *temp_a6_2;
     void *temp_v1;
 
-    func_001C48E8(&D_00519E20, 0, 0x28);
+    func_001C48E8(&Pes6File_Channels, 0, 0x28);
     func_001C48E8(&D_00511620, 0, 0x8800);
     var_v1 = ((void *)D_005116A8);
     D_00511624 = ((void *)D_005116A8);
@@ -83,6 +83,6 @@ void func_0017F070(void) {
     M2C_FIELD(temp_a0, void **, 0x2A8) = temp_a5_5;
     M2C_FIELD(temp_v1, void **, 0x2A8) = (void *) (&D_00511620 + ((var_a2 + 6) * 0x88));
     D_00519D98 = ((void *)D_00519D10);
-    D_00519E20 = &D_00511620;
+    Pes6File_Channels = &D_00511620;
     D_00519E24 = &D_00519D98;
 }

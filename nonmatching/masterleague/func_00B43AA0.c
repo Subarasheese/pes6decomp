@@ -3,12 +3,12 @@
 #include "pes6/m2c.h"
 
 
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 extern s32 D_003EAE6C;
 
 s32 func_00B43AA0(void) {
     if (D_003EAE6C != 0) {
-        return ((func_00151EA0(0x8C) & 0xFFFF) + 0x40) & 0xFFFF;
+        return ((Pes6Random_Below(0x8C) & 0xFFFF) + 0x40) & 0xFFFF;
     }
     return 0;
 }

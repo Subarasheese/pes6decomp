@@ -5,7 +5,7 @@
 extern s32 func_0012AD50(s32);
 extern s32 func_0012ADE0(s32);
 extern void func_00149DB0(s32);
-M2C_UNK func_00145CF0(s32);                         /* extern */
+M2C_UNK Pes6TextureCache_InvalidateUnlocked(s32);                         /* extern */
 M2C_UNK func_00146C70(M2C_UNK *, void *);           /* extern */
 extern char D_003C69D0[];
 extern s32 D_003E7448;
@@ -33,7 +33,7 @@ s32 func_00145590(void *arg0) {
         if (D_003E7448 != 0) {
             func_0012AD50((*(s32 *)D_00507A8C));
         }
-        func_00145CF0(temp_s2);
+        Pes6TextureCache_InvalidateUnlocked(temp_s2);
         if (D_003E7448 != 0) {
             func_0012ADE0((*(s32 *)D_00507A8C));
         }

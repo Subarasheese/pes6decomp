@@ -6,7 +6,7 @@ u8 *func_00221230(s32);                             /* extern */
 M2C_UNK func_002472F0(M2C_UNK *);                   /* extern */
 extern char D_003AA1F0[];
 extern char D_003AA1F1[];
-extern char D_003AA200[];
+extern char Pes6PadAssign[];
 extern char D_003AA201[];
 extern char D_003AA235[];
 extern char D_003AA269[];
@@ -33,7 +33,7 @@ void func_0024E090(s64 arg0) {
         (*(s8 *)D_003AA1F0) = 1;
     }
     var_s2 = 0;
-    var_s1 = ((void *)D_003AA200);
+    var_s1 = ((void *)Pes6PadAssign);
     do {
         temp_v0 = func_00221230(var_s2);
         temp_a0 = M2C_FIELD(temp_v0, s8 *, 2);
@@ -56,7 +56,7 @@ void func_0024E090(s64 arg0) {
         (*(s8 *)D_003AA201) = -1;
         (*(s8 *)D_003AA235) = 1;
     }
-    func_002472F0(((void *)D_003AA200));
+    func_002472F0(((void *)Pes6PadAssign));
     if (temp_s0 != 0) {
         D_003E7504 = 0;
         D_003E7505 = 1;

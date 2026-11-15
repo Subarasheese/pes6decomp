@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-M2C_UNK func_0017A780(s32);                         /* extern */
+M2C_UNK Pes6Scene_Title(s32);                         /* extern */
 M2C_UNK Pes6Scene_Boot(s32);                         /* extern */
 M2C_UNK Pes6Scene_DebugMenu(s32);                         /* extern */
 M2C_UNK Pes6Scene_User(s32);                         /* extern */
@@ -19,7 +19,7 @@ s32 func_002CBE20(s32);                             /* extern */
 M2C_UNK func_002D4D00(s32);                         /* extern */
 M2C_UNK Pes6Scene_MatchSelect(s32);                         /* extern */
 M2C_UNK func_00308410(s32);                         /* extern */
-M2C_UNK func_003618F0(s32);                         /* extern */
+M2C_UNK Pes6Scene_Demo(s32);                         /* extern */
 extern char Pes6SceneStack[];
 extern char D_00510FD4[];
 extern char D_00510FD8[];
@@ -46,7 +46,7 @@ void Pes6Scene_Dispatch(void) {
         Pes6Scene_Boot((*(s32 *)Pes6SceneStack));
         break;
     case 0x3:
-        func_0017A780((*(s32 *)Pes6SceneStack));
+        Pes6Scene_Title((*(s32 *)Pes6SceneStack));
         break;
     case 0x4:
         Pes6Scene_Menu((*(s32 *)Pes6SceneStack));
@@ -70,7 +70,7 @@ void Pes6Scene_Dispatch(void) {
         Pes6Scene_Ending((*(s32 *)Pes6SceneStack));
         break;
     case 0xC:
-        func_003618F0((*(s32 *)Pes6SceneStack));
+        Pes6Scene_Demo((*(s32 *)Pes6SceneStack));
         break;
     case 0x6:
         func_002D4D00((*(s32 *)Pes6SceneStack));

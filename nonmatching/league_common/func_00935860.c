@@ -4,7 +4,7 @@
 
 extern void func_0022F110(void);
 extern s32 func_0022F0E0(void);
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 s16 func_00225680(u8);                              /* extern */
 s32 func_00225B20(u8);                              /* extern */
 s32 func_002307F0();                                /* extern */
@@ -59,7 +59,7 @@ s32 func_00935860(void) {
         var_s2 = 0;
         var_v0 = (*temp_s0 & ~0xC) | ((1 & 3) * 4);
     } else {
-        var_s2 = func_00151EA0(2) & 0xFF;
+        var_s2 = Pes6Random_Below(2) & 0xFF;
         var_v0 = (*temp_s0 & ~0xC) | (((1 - var_s2) & 3) * 4);
     }
     *temp_s0 = var_v0;

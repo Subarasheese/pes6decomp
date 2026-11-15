@@ -4,7 +4,7 @@
 
 extern void func_001AC550(void *);
 extern void func_001AC470(void);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 M2C_UNK func_001A6630(void *);                      /* extern */
 M2C_UNK func_001A7250(void *);                      /* extern */
 M2C_UNK func_001A9970(void *);                      /* extern */
@@ -135,7 +135,7 @@ block_43:
         var_v1 = (*(u8 *)D_009083B2) + 1;
         goto block_59;
     case 2:
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             var_s1_5 = 0;
             var_s0_5 = ((void *)Pes6MatchPlayers);
             do {

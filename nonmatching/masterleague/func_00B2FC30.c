@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 s32 func_002D4E10(M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, void *, void *); /* extern */
 M2C_UNK func_0094C6A0();                            /* extern */
 M2C_UNK func_00B2FB80();                            /* extern */
@@ -25,7 +25,7 @@ s32 func_00B2FC30(void) {
         M2C_FIELD(temp_s0, s32 *, 0x54) = 1;
         /* fallthrough */
     case 1:                                         /* switch 1 */
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             func_00B2FB80();
             M2C_FIELD(temp_s0, s32 *, 0x54) = 2;
         }

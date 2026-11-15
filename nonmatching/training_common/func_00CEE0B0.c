@@ -4,11 +4,11 @@
 
 extern void func_00154080(void);
 s32 func_002631B0();                                /* extern */
-M2C_UNK func_002CBA60(M2C_UNK);                     /* extern */
+M2C_UNK Pes6HeapZone_Close(M2C_UNK);                     /* extern */
 
 void func_00CEE0B0(void) {
     if (func_002631B0() != 9) {
-        func_002CBA60(0xA);
+        Pes6HeapZone_Close(0xA);
     }
     func_00154080();
 }

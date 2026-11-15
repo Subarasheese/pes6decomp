@@ -7,19 +7,19 @@ typedef struct {
     u8 pad[0x34 - 2];
 } Rec;
 
-extern Rec D_003AA200[];
+extern Rec Pes6PadAssign[];
 
 s32 func_00247460(s32 a0) {
     s32 i;
     for (i = 0; i < 8; i++) {
         if (a0 == 0) {
-            switch (D_003AA200[i].v) {
+            switch (Pes6PadAssign[i].v) {
             case -1:
             case -2:
                 return 1;
             }
         } else {
-            switch (D_003AA200[i].v) {
+            switch (Pes6PadAssign[i].v) {
             case 1:
             case 2:
                 return 1;

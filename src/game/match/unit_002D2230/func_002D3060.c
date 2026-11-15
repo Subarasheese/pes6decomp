@@ -11,7 +11,7 @@ M2C_UNK SD_call(M2C_UNK);                     /* extern */
 M2C_UNK func_002D6440();                            /* extern */
 s32 func_002FC720(s32);                             /* extern */
 M2C_UNK func_002FE330();                            /* extern */
-M2C_UNK func_00342780();                            /* extern */
+M2C_UNK Pes6MatchSession_Init();                            /* extern */
 extern char D_003B2040[];
 extern u8 D_003E9D6C;
 extern char Pes6MatchContext[];
@@ -30,7 +30,7 @@ void func_002D3060(void) {
     u16 *var_s0;
 
     SD_call(0x22000101);
-    func_00342780();
+    Pes6MatchSession_Init();
     func_002FE330();
     func_002561E0(((void *)D_00CA9200));
     func_002D6440();

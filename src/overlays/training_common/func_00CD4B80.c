@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-s32 func_0017F900();                                /* extern */
+s32 Pes6File_AllChannelsIdle();                                /* extern */
 s32 func_00188A50();                                /* extern */
 M2C_UNK func_001AA620(s32);                         /* extern */
 M2C_UNK func_0020B600(u8);                          /* extern */
@@ -14,7 +14,7 @@ M2C_UNK func_00271EC0();                            /* extern */
 M2C_UNK func_00271FB0();                            /* extern */
 M2C_UNK func_00272170();                            /* extern */
 s32 func_00351E90(u8);                              /* extern */
-extern char D_00591BB4[];
+extern char Pes6MatchContext_Stadium[];
 extern char D_00591BB7[];
 extern char D_00591BCA[];
 
@@ -31,7 +31,7 @@ s32 func_00CD4B80(s32 arg0) {
         /* fallthrough */
     case 0:
         func_001AA620(func_00188A50());
-        if (((*(u8 *)D_00591BB7) == 2) && (func_00351E90((*(u8 *)D_00591BB4)) == 1)) {
+        if (((*(u8 *)D_00591BB7) == 2) && (func_00351E90((*(u8 *)Pes6MatchContext_Stadium)) == 1)) {
             (*(u8 *)D_00591BCA) = 1;
         }
         func_0020B600((*(u8 *)D_00591BCA));
@@ -39,7 +39,7 @@ s32 func_00CD4B80(s32 arg0) {
         func_002646E0(arg0);
         /* fallthrough */
     case 1:
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             func_002646E0(arg0);
         case 2:
             func_00271FB0();

@@ -23,7 +23,7 @@ if (func_0090F1F0() != 0) {
                 D_003E7614->update = func_002D6090;
             }
             if (D_003E7614->enabled != 0) {
-                func_002D33E0(D_003E7614->entries[func_00151EA0(3) & 0xFFFF], 1, 0, 0);
+                func_002D33E0(D_003E7614->entries[Pes6Random_Below(3) & 0xFFFF], 1, 0, 0);
             }
             D_003E7614->counter = 0;
         }

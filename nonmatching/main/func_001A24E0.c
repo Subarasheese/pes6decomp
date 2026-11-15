@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern void func_001453E0(s32);
-extern void func_00145380(s32);
+extern void Pes6TextureCache_Invalidate(s32);
 extern void func_00153FA0(void *);
 s32 func_001454C0(s32);                             /* extern */
 M2C_UNK func_00145590(void *);                      /* extern */
@@ -42,7 +42,7 @@ void func_001A24E0(s32 arg0) {
             temp_v0_2 = func_0014AEE0(temp_s4, temp_s0);
             func_00145750(temp_v0_2);
             func_001453E0(temp_s0);
-            func_00145380(temp_s0);
+            Pes6TextureCache_Invalidate(temp_s0);
             *temp_s3 = temp_v0_2;
             break;
         }

@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-u16 func_00151EA0(M2C_UNK, u8, u8, u8, u8, u8, u8, u8); /* extern */
+u16 Pes6Random_Below(M2C_UNK, u8, u8, u8, u8, u8, u8, u8); /* extern */
 M2C_UNK func_001C48E8(void *, M2C_UNK, M2C_UNK);    /* extern */
 M2C_UNK func_00851E70(void *);                      /* extern */
 M2C_UNK func_00853240(void *, s32);                 /* extern */
@@ -61,7 +61,7 @@ s32 func_009B0C20(void) {
         M2C_FIELD(temp_s0, u8 *, 0x322) = (u8) (*(u8 *)D_00591F40);
         M2C_FIELD(temp_s0, s32 *, 0x330) = (s32) (*(s32 *)D_00591E0C);
         (*(s32 *)D_008B14F4) = M2C_FIELD(temp_s0, s32 *, 0x330);
-        M2C_FIELD(temp_s0, u16 *, 0x338) = func_00151EA0(0xFFFF, (*(u8 *)D_00591F40), (*(u8 *)D_00591E79), (*(u8 *)D_00591E4D), (*(u8 *)D_00592370), (*(u8 *)D_00591F10), (*(u8 *)D_005924B8), (*(u8 *)D_00592701));
+        M2C_FIELD(temp_s0, u16 *, 0x338) = Pes6Random_Below(0xFFFF, (*(u8 *)D_00591F40), (*(u8 *)D_00591E79), (*(u8 *)D_00591E4D), (*(u8 *)D_00592370), (*(u8 *)D_00591F10), (*(u8 *)D_005924B8), (*(u8 *)D_00592701));
         var_a3 = 1;
         var_a5 = 0;
         var_a4 = &sp2C;

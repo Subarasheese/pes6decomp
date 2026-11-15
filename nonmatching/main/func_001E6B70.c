@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern void func_00153FA0(void *);
-extern int func_00145480(void *);
+extern int Pes6Texture_GetCacheKey(void *);
 M2C_UNK func_00145590(void *);                      /* extern */
 extern void **D_0052B130;
 extern void *D_0052B134;
@@ -18,7 +18,7 @@ s32 func_001E6B70(s32 arg0) {
     var_s0 = D_0052B130;
     if (var_s0 != NULL) {
 loop_1:
-        if (arg0 != func_00145480(M2C_FIELD(var_s0, void **, 8))) {
+        if (arg0 != Pes6Texture_GetCacheKey(M2C_FIELD(var_s0, void **, 8))) {
             var_s0 = M2C_FIELD(var_s0, void ***, 4);
             if (var_s0 != NULL) {
                 goto loop_1;

@@ -4,7 +4,7 @@
 
 s32 func_00153FC0(M2C_UNK, M2C_UNK, s32);           /* extern */
 s32 func_0017F850(M2C_UNK);                         /* extern */
-s32 func_0017F900();                                /* extern */
+s32 Pes6File_AllChannelsIdle();                                /* extern */
 M2C_UNK func_0017F9A0(M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, s32 *); /* extern */
 M2C_UNK func_001C48E8(s32, M2C_UNK, s32);           /* extern */
 s32 func_0026DA40(M2C_UNK);                         /* extern */
@@ -35,7 +35,7 @@ s32 func_008F99F0(void) {
         D_003EA6E0 += 1;
         break;
     case 1:
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             D_003EA6E0 += 1;
         }
         break;

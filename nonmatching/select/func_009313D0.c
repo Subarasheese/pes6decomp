@@ -9,7 +9,7 @@ extern s32 func_0023F330(void);
 extern s32 func_00240C80(void);
 extern s32 func_001E6C50(void *);
 extern s32 func_002DEE20(s32, s32, s32);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern void func_001FC840(void);
 extern void func_0023FC70(void);
 extern void func_0023FCA0(int);
@@ -22,8 +22,8 @@ M2C_UNK func_00225C00(s32, s32);                    /* extern */
 M2C_UNK func_0023F510(M2C_UNK);                     /* extern */
 s32 func_00240EC0(s32, M2C_UNK);                    /* extern */
 s32 func_0024A380(s16, M2C_UNK);                    /* extern */
-M2C_UNK func_002CB9B0(M2C_UNK);                     /* extern */
-M2C_UNK func_002CBA60(M2C_UNK);                     /* extern */
+M2C_UNK Pes6HeapZone_Open(M2C_UNK);                     /* extern */
+M2C_UNK Pes6HeapZone_Close(M2C_UNK);                     /* extern */
 M2C_UNK func_008B36F0();                            /* extern */
 s32 func_008C36D0(M2C_UNK, M2C_UNK);                /* extern */
 s32 func_00C012F0(s32, M2C_UNK);                    /* extern */
@@ -57,7 +57,7 @@ void func_009313D0(void) {
             return;
         case 1:                                     /* switch 4 */
             if (func_00240C80() == 1) {
-                func_002CBA60(0x17);
+                Pes6HeapZone_Close(0x17);
                 func_001FC780();
                 func_001FC840();
                 D_003EA9D4 += 1;
@@ -65,7 +65,7 @@ void func_009313D0(void) {
             }
             return;
         case 2:                                     /* switch 4 */
-            if (func_0017F900() != 0) {
+            if (Pes6File_AllChannelsIdle() != 0) {
                 (*(s8 *)D_00591C09) = 4;
                 D_003EA9D4 = D_003EA9D4;
                 return;
@@ -86,7 +86,7 @@ void func_009313D0(void) {
                     func_001DA4B0(1);
                     func_001DA4B0(2);
                 }
-                func_002CB9B0(0x17);
+                Pes6HeapZone_Open(0x17);
                 return;
             }
             break;

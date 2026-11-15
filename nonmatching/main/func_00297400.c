@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern void func_0027CB30(void);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern void func_0027CB00(void);
 extern int func_0027B5C0(int);
 M2C_UNK func_0027C230(s32, M2C_UNK);                /* extern */
@@ -31,7 +31,7 @@ block_14:
         var_v0 = D_003E9CD4 + 1;
         goto block_13;
     case 1:
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             var_v0 = D_003E9CD4 + 1;
             goto block_13;
         }

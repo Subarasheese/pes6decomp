@@ -4,7 +4,7 @@
 
 extern s32 func_001DE450(s32, s32, s32);
 extern void func_001D7D80(void *, s16);
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 void *func_00858B20(M2C_UNK *, s32);                /* extern */
 M2C_UNK func_008864F0(void **, s32, s32, s8 *);     /* extern */
 extern char D_008B144F[];
@@ -121,7 +121,7 @@ block_41:
         } else {
             if (((s32) (*(u16 *)D_008B2550) >> 5) & 1) {
                 if (((s32) (*(u16 *)D_008B2550) >> 7) & 1) {
-                    if (func_00151EA0(2) == 0) {
+                    if (Pes6Random_Below(2) == 0) {
                         var_a0_2 = 7;
                     } else {
                         var_a0_2 = 5;

@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern void func_001FC840(void);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern void func_001FC780(void);
 s32 func_008F7360();                                /* extern */
 extern s32 D_003E9D5C;
@@ -26,7 +26,7 @@ s32 func_002CBE20(void) {
         D_003E9D5C += 1;
         break;
     case 2:
-        if (func_0017F900() == 1) {
+        if (Pes6File_AllChannelsIdle() == 1) {
             D_003E9D5C += 1;
         }
         break;

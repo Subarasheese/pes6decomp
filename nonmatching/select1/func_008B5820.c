@@ -13,7 +13,7 @@ M2C_UNK func_008B5380();                            /* extern */
 extern s32 D_003EA400;
 extern s8 D_003EA41C;
 extern char D_00510FD0[];
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 extern char D_0053C310[];
 
 s32 func_008B5820(void) {
@@ -35,10 +35,10 @@ block_28:
             func_0023B3B0(0, 1);
         }
         if (func_0023B380(1) != 0) {
-            M2C_FIELD(((void *)D_0053C300), s32 *, 0x10) = 0;
+            M2C_FIELD(((void *)Pes6Scene_Menu_State), s32 *, 0x10) = 0;
         } else {
             func_0023B3B0(1, 0);
-            M2C_FIELD(((void *)D_0053C300), s32 *, 0x10) = 0;
+            M2C_FIELD(((void *)Pes6Scene_Menu_State), s32 *, 0x10) = 0;
         }
         goto block_28;
     case 2:
@@ -52,7 +52,7 @@ block_28:
         if (func_0023B380(1) == 0) {
             func_0023B3B0(1, 0);
         }
-        M2C_FIELD(((void *)D_0053C300), s32 *, 0x10) = 0;
+        M2C_FIELD(((void *)Pes6Scene_Menu_State), s32 *, 0x10) = 0;
         if ((u32) (D_003EA41C - 1) < 2U) {
             D_003EA400 += 1;
         }

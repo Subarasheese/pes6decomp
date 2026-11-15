@@ -4,7 +4,7 @@
 
 extern u32 func_0025E0E0(s32);
 extern void func_001453E0(s32);
-extern void func_00145380(s32);
+extern void Pes6TextureCache_Invalidate(s32);
 M2C_UNK func_0014D780(void *, s32);                 /* extern */
 M2C_UNK func_00151080(void *, s32);                 /* extern */
 M2C_UNK func_0025E080(M2C_UNK);                     /* extern */
@@ -29,7 +29,7 @@ void func_0025F180(void) {
                 temp_a1_2 = M2C_FIELD(var_s0, s32 *, 0xC);
                 if (temp_a1_2 != 0) {
                     func_0014D780(M2C_FIELD(M2C_FIELD(var_s0, void **, 4), void **, 8), temp_a1_2);
-                    func_00145380(M2C_FIELD(M2C_FIELD(M2C_FIELD(var_s0, void **, 4), void **, 8), s32 *, 0xC));
+                    Pes6TextureCache_Invalidate(M2C_FIELD(M2C_FIELD(M2C_FIELD(var_s0, void **, 4), void **, 8), s32 *, 0xC));
                 }
                 M2C_FIELD(var_s0, u8 *, 0x14) = 0U;
             }

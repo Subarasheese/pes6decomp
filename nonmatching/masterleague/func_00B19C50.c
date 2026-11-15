@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern u8 func_00225820(void);
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 s32 func_00938040(u16, u8, M2C_UNK, u16);           /* extern */
 s32 func_00970870(u16);                             /* extern */
 void *func_00994C60(s32, s32);                      /* extern */
@@ -69,7 +69,7 @@ s32 func_00B19C50(s32 arg0, s32 arg1, u16 arg2) {
                 M2C_FIELD(temp_s1, u16 *, 8) = (u16) (var_v1 & 0xFFFF);
                 var_v0 = 5;
             } else if ((func_00B04420(arg0, arg2) & 0xFF) >= 2) {
-                temp_v0_2 = func_00151EA0(0x1E);
+                temp_v0_2 = Pes6Random_Below(0x1E);
                 if (temp_v0_2 < 0) {
                     var_f1 = 2.0f * (f32) (((u32) temp_v0_2 >> 1) | (temp_v0_2 & 1));
                 } else {
@@ -87,7 +87,7 @@ s32 func_00B19C50(s32 arg0, s32 arg1, u16 arg2) {
                     var_v1_2 = (s32) temp_f1_2;
                 }
                 M2C_FIELD(temp_s1, u16 *, 8) = (u16) (var_v1_2 & 0xFFFF);
-                var_v0 = (func_00151EA0(3) & 0xFFFF) + 1;
+                var_v0 = (Pes6Random_Below(3) & 0xFFFF) + 1;
             } else {
                 if (temp_s0 < 0) {
                     var_f0_3 = 2.0f * (f32) (((u32) temp_s0 >> 1) | (temp_s0 & 1));
@@ -101,7 +101,7 @@ s32 func_00B19C50(s32 arg0, s32 arg1, u16 arg2) {
                     var_v1_3 = (s32) temp_f1_3;
                 }
                 M2C_FIELD(temp_s1, u16 *, 8) = (u16) (var_v1_3 & 0xFFFF);
-                var_v0 = (func_00151EA0(3) & 0xFFFF) + 2;
+                var_v0 = (Pes6Random_Below(3) & 0xFFFF) + 2;
             }
             M2C_FIELD(temp_s1, u8 *, 0xE) = var_v0;
             if (M2C_FIELD(temp_s1, u16 *, 8) == 0) {

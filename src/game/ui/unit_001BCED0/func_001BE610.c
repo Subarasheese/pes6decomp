@@ -9,11 +9,11 @@ typedef struct {
     s32 ok;
 } Obj;
 
-extern Obj D_00398660;
+extern Obj Pes6NowLoading;
 s32 func_001E6E10(s32);
 
 s32 func_001BE610(void) {
-    Obj *obj = &D_00398660;
+    Obj *obj = &Pes6NowLoading;
 
     if (obj == NULL) {
         return 0;

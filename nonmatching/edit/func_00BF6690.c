@@ -5,7 +5,7 @@
 
 s32 func_00BC44D0(u8);                              /* extern */
 s32 func_00BF3870(u8);                              /* extern */
-extern char D_003A9C60[];
+extern char Pes6StadiumTable[];
 extern char D_00CEB700[];
 extern char D_00CEB704[];
 extern char D_00CEB708[];
@@ -20,7 +20,7 @@ void func_00BF6690(s32 arg0) {
 
     var_s3 = 0;
     var_s2 = 0;
-    var_s0 = ((void *)D_003A9C60);
+    var_s0 = ((void *)Pes6StadiumTable);
 loop_1:
     temp_s1 = M2C_FIELD(var_s0, u8 *, 1);
     temp_s5 = (*(s32 *)D_00CEB700);

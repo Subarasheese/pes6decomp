@@ -2,7 +2,7 @@
 #pragma no_branch_likely on
 #include "pes6/m2c.h"
 
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 M2C_UNK func_001C48E8(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK func_001D5F80(M2C_UNK);                     /* extern */
 extern char D_008B24E0[];
@@ -26,7 +26,7 @@ s32 func_00884650(s32 arg0) {
             (*(u8 *)D_008B2518) = 6;
             return 1;
         }
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             (*(u8 *)D_008B2518) = 2;
             return 1;
         }

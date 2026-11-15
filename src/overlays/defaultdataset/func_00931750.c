@@ -26,7 +26,7 @@ extern void func_001C7F58(void *, void *);
 extern s32 func_002D7930(s32);
 extern S4 *func_0021F500(s32);
 extern u8 func_0021EB50(s32, s32);
-extern u8 func_0021EE40(s32, s32);
+extern u8 Pes6Team_GetHomeStadium(s32, s32);
 extern void func_001C4730(s32, void *, s32);
 extern Ent D_009E0AD0[];
 extern char D_009F6040[];
@@ -59,7 +59,7 @@ void func_00931750(void) {
         p->c4C = *src;
         p->c48 = p->c4C;
         p->b50 = func_0021EB50(id, 1);
-        p->b51 = func_0021EE40(id, 1);
+        p->b51 = Pes6Team_GetHomeStadium(id, 1);
         p->b53 = 0;
         p->b52 = 0;
     }

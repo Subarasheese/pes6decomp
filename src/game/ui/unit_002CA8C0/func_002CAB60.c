@@ -1,4 +1,4 @@
-extern void func_002CBA60();
+extern void Pes6HeapZone_Close();
 void func_002CAB60(int a0) {
-    func_002CBA60(16);
+    Pes6HeapZone_Close(16);
 }

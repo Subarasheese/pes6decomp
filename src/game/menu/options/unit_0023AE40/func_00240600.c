@@ -1,4 +1,4 @@
-extern signed char D_003E9AAC;
+extern signed char Pes6FormationMenu_HumanPresent;
 void func_00240600() {
-    D_003E9AAC = 0;
+    Pes6FormationMenu_HumanPresent = 0;
 }

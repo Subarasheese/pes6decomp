@@ -13,7 +13,7 @@ M2C_UNK func_002F4CE0(s32, s32);                    /* extern */
 M2C_UNK func_002F4D80(s32, M2C_UNK);                /* extern */
 M2C_UNK func_002F4DA0(s32, M2C_UNK);                /* extern */
 s32 func_002F4E90(M2C_UNK);                         /* extern */
-M2C_UNK func_00363C40();                            /* extern */
+M2C_UNK Pes6Keyboard_Acquire();                            /* extern */
 extern char D_00CFEF80[];
 extern char D_00CFEF84[];
 extern char D_00CFEF88[];
@@ -48,7 +48,7 @@ void func_00CE3630(void *arg0) {
             func_002F4D80(temp_v0, 1);
             func_002F38E0(temp_v0, arg0 + 4);
             func_001BC300();
-            func_00363C40();
+            Pes6Keyboard_Acquire();
             (*(s32 *)D_00CFEF80) = func_001BC370(0, 0, 1, &func_00CE3950, arg0);
             (*(s32 *)D_00CFEF84) = func_001BC370(0, 1, 1, &func_00CE3900, arg0);
             (*(s32 *)D_00CFEF88) = func_001BC370(0, 5, 0, &func_00CE38B0, arg0);

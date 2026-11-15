@@ -4,9 +4,9 @@
 
 extern void func_001F1EA0(void *);
 extern void * func_002E1540(void *, void *);
-extern void func_001BC040(s32);
+extern void Pes6Process_Unlink(s32);
 extern s32 func_001F3D10(s32, u8);
-M2C_UNK func_001BBFD0(s32);                         /* extern */
+M2C_UNK Pes6Process_Destroy(s32);                         /* extern */
 M2C_UNK func_00212570(void *, f32 *);               /* extern */
 M2C_UNK func_002DF960(s32);                         /* extern */
 
@@ -47,8 +47,8 @@ void *func_00214290(void *arg0) {
             func_002DF960(M2C_FIELD(var_s1, s32 *, 0x5A0));
             func_001F1EA0(M2C_FIELD(var_s1, void **, 0x590));
             temp_s0_2 = M2C_FIELD(var_s1, void ***, 4);
-            func_001BC040(M2C_FIELD(var_s1, s32 *, 0x5A4));
-            func_001BBFD0(M2C_FIELD(var_s1, s32 *, 0x5A4));
+            Pes6Process_Unlink(M2C_FIELD(var_s1, s32 *, 0x5A4));
+            Pes6Process_Destroy(M2C_FIELD(var_s1, s32 *, 0x5A4));
             var_s1 = temp_s0_2;
         } while (temp_s0_2 != NULL);
     }
@@ -115,8 +115,8 @@ void *func_00214290(void *arg0) {
             }
             func_002DF960(M2C_FIELD(arg0, s32 *, 0x5A0));
             func_001F1EA0(M2C_FIELD(arg0, void **, 0x590));
-            func_001BC040(M2C_FIELD(arg0, s32 *, 0x5A4));
-            func_001BBFD0(M2C_FIELD(arg0, s32 *, 0x5A4));
+            Pes6Process_Unlink(M2C_FIELD(arg0, s32 *, 0x5A4));
+            Pes6Process_Destroy(M2C_FIELD(arg0, s32 *, 0x5A4));
         } else {
             M2C_FIELD(arg0, u8 *, 9) = 7U;
         }
@@ -131,8 +131,8 @@ void *func_00214290(void *arg0) {
     }
     func_002DF960(M2C_FIELD(arg0, s32 *, 0x5A0));
     func_001F1EA0(M2C_FIELD(arg0, void **, 0x590));
-    func_001BC040(M2C_FIELD(arg0, s32 *, 0x5A4));
-    func_001BBFD0(M2C_FIELD(arg0, s32 *, 0x5A4));
+    Pes6Process_Unlink(M2C_FIELD(arg0, s32 *, 0x5A4));
+    Pes6Process_Destroy(M2C_FIELD(arg0, s32 *, 0x5A4));
 block_45:
     return NULL;
 }

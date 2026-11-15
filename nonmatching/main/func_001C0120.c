@@ -4,10 +4,10 @@
 
 
 M2C_UNK func_001C48E8(void *, M2C_UNK, M2C_UNK);    /* extern */
-extern char D_00398660[];
+extern char Pes6NowLoading[];
 
 s32 func_001C0120(void) {
-    M2C_FIELD(((void *)D_00398660), s32 *, 0x30) = -1;
-    func_001C48E8(((void *)D_00398660) + 0x34, 0, 0x10);
+    M2C_FIELD(((void *)Pes6NowLoading), s32 *, 0x30) = -1;
+    func_001C48E8(((void *)Pes6NowLoading) + 0x34, 0, 0x10);
     return 1;
 }

@@ -18,7 +18,7 @@ s32 func_0093D740();                                /* extern */
 extern s32 D_003EA470;
 extern s32 D_003EA474;
 extern char D_00510FD0[];
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 
 s8 func_008C36D0(void) {
     s32 temp_v0;
@@ -50,14 +50,14 @@ block_33:
                 var_v0 = 1;
                 D_003EA474 = 0;
             }
-            M2C_FIELD(((void *)D_0053C300), s8 *, 9) = var_v0;
+            M2C_FIELD(((void *)Pes6Scene_Menu_State), s8 *, 9) = var_v0;
             D_003EA470 += 1;
         }
         goto block_33;
     case 3:
         func_0023EA10(0);
         if ((*(s32 *)D_00510FD0) == 4) {
-            if (M2C_FIELD(((void *)D_0053C300), s8 *, 9) == 1) {
+            if (M2C_FIELD(((void *)Pes6Scene_Menu_State), s8 *, 9) == 1) {
                 if (func_001B6A30(func_0023F330()) == 0) {
                     var_v0_2 = 0;
                 } else {
@@ -79,7 +79,7 @@ block_30:
         if (var_v0_2 != 0) {
             func_008CC950();
             D_003EA470 = 0;
-            return M2C_FIELD(((void *)D_0053C300), s8 *, 9);
+            return M2C_FIELD(((void *)Pes6Scene_Menu_State), s8 *, 9);
         }
         goto block_33;
     }

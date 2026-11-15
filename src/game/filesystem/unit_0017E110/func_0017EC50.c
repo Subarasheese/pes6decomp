@@ -13,10 +13,10 @@ typedef struct {
     s32 count;
 } UnitList;
 
-extern UnitList D_00519E20[];
+extern UnitList Pes6File_Channels[];
 
 Unit *func_0017EC50(s32 team, s32 id) {
-    Unit *unit = D_00519E20[team].head;
+    Unit *unit = Pes6File_Channels[team].head;
 
     if (unit == NULL) {
         return NULL;

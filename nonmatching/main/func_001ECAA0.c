@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern s32 func_001ECBF0(void *);
-extern int func_00145480(void *);
+extern int Pes6Texture_GetCacheKey(void *);
 extern void func_001E6310(s32, s32);
 M2C_UNK func_00103538(s32, M2C_UNK);                /* extern */
 s64 func_00138C10(s32, s32);                        /* extern */
@@ -35,7 +35,7 @@ block_5:
                         temp_v1_2 = M2C_FIELD(temp_s0, u8 *, 0x19);
                         if ((temp_v1_2 != 1) && (temp_v1_2 != 2) && (var_s1 != temp_s0)) {
                             var_s1 = temp_s0;
-                            M2C_FIELD(temp_s0, s64 *, 0x10) = func_00138C10(temp_s3, func_00145480(M2C_FIELD(temp_s0, void **, 8)));
+                            M2C_FIELD(temp_s0, s64 *, 0x10) = func_00138C10(temp_s3, Pes6Texture_GetCacheKey(M2C_FIELD(temp_s0, void **, 8)));
                         }
                     }
                     var_s2 = M2C_FIELD(var_s2, void **, 8);

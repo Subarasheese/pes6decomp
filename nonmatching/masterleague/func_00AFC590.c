@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
-s32 func_00151EA0(u64);                             /* extern */
+s32 Pes6Random_Below(u64);                             /* extern */
 void *func_00223C10(s32, s32);                      /* extern */
 s32 func_002243B0(s32, s32);                        /* extern */
 s32 func_00224BC0(s32, s32);                        /* extern */
@@ -113,17 +113,17 @@ loop_17:
                     if (temp_v1 >= 0x23) {
                         var_s1_3 = 1;
                     } else if (temp_v1 >= 0x1F) {
-                        var_s1_3 = ((func_00151EA0((0x24 - temp_v1) & 0xFF) & 0xFFFF) + 1) & 0xFF;
+                        var_s1_3 = ((Pes6Random_Below((0x24 - temp_v1) & 0xFF) & 0xFFFF) + 1) & 0xFF;
                     } else {
-                        var_s1_3 = ((func_00151EA0(5U) & 0xFFFF) + 1) & 0xFF;
+                        var_s1_3 = ((Pes6Random_Below(5U) & 0xFFFF) + 1) & 0xFF;
                     }
                 } else {
-                    var_s1_3 = ((func_00151EA0(5U) & 0xFFFF) + 1) & 0xFF;
+                    var_s1_3 = ((Pes6Random_Below(5U) & 0xFFFF) + 1) & 0xFF;
                 }
                 func_00938E60(var_s5 & 0xFF, var_s4 & 0xFF, 2, var_s1_3, func_00B05280(temp_s2) & 0xFFFF);
                 temp_v0_3 = func_00223C10(var_s5 & 0xFF, temp_s3);
                 if (temp_v0_3 != NULL) {
-                    M2C_FIELD(temp_v0_3, u8 *, 1) = (u8) ((M2C_FIELD(temp_v0_3, u8 *, 1) & ~0xFC) | ((((func_00151EA0((u64) ((s64) M2C_FIELD(temp_v0_3, u16 *, 0) << 0x36) >> 0x3A) & 0xFFFF) + 1) & 0x3F) * 4));
+                    M2C_FIELD(temp_v0_3, u8 *, 1) = (u8) ((M2C_FIELD(temp_v0_3, u8 *, 1) & ~0xFC) | ((((Pes6Random_Below((u64) ((s64) M2C_FIELD(temp_v0_3, u16 *, 0) << 0x36) >> 0x3A) & 0xFFFF) + 1) & 0x3F) * 4));
                 }
             }
             var_s4 += 1;

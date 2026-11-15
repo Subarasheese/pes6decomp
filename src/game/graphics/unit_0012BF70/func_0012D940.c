@@ -4,7 +4,7 @@
 
 M2C_UNK func_0012AD50(s32);                         /* extern */
 M2C_UNK func_0012ADE0(s32);                         /* extern */
-s32 func_0012C020(s32, s32, s32);                   /* extern */
+s32 Pes6Mem_Calloc(s32, s32, s32);                   /* extern */
 s32 func_0012D380(s32);                             /* extern */
 M2C_UNK func_0012D4F0(s32, s32);                    /* extern */
 s32 func_0012D640();                                /* extern */
@@ -19,7 +19,7 @@ s32 func_0012D940(s32 arg0, s32 arg1, s32 arg2) {
     if (func_0012D380(var_s2) == 0) {
         var_s2 = func_0012D640();
     }
-    temp_s0 = func_0012C020(var_s2, arg1, arg2);
+    temp_s0 = Pes6Mem_Calloc(var_s2, arg1, arg2);
     func_0012ADE0(D_003E7410);
     if (temp_s0 != 0) {
         func_0012D4F0(var_s2, temp_s0);

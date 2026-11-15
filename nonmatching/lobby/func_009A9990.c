@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-s8 func_00151EA0(M2C_UNK);                          /* extern */
+s8 Pes6Random_Below(M2C_UNK);                          /* extern */
 void *func_0099C7E0(M2C_UNK);                       /* extern */
 
 void *func_009A9990(s32 arg0, s32 *arg1) {
@@ -20,6 +20,6 @@ void *func_009A9990(s32 arg0, s32 *arg1) {
     M2C_FIELD(temp_v0, s32 *, 0x380) = 0;
     M2C_FIELD(temp_v0, s32 *, 0x3A0) = -1;
     M2C_FIELD(temp_v0, s32 *, 0x3A4) = -1;
-    M2C_FIELD(temp_v0, s8 *, 0x3AC) = func_00151EA0(0x3B);
+    M2C_FIELD(temp_v0, s8 *, 0x3AC) = Pes6Random_Below(0x3B);
     return temp_v0;
 }

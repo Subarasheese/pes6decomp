@@ -2,8 +2,8 @@
 #include "pes6/m2c.h"
 extern void func_00152130(s32, s32);
 extern void func_001BE4D0(s32);
-extern s32 func_001BE790(void);
-extern void func_001BE800(void);
+extern s32 Pes6NowLoading_IsActive(void);
+extern void Pes6NowLoading_IsShown(void);
 
 void func_001F87E0(s32 a0, s32 a1) {
     switch (a0) {
@@ -12,8 +12,8 @@ void func_001F87E0(s32 a0, s32 a1) {
         return;
     default:
     case 1:
-        if (func_001BE790() != 0) {
-            func_001BE800();
+        if (Pes6NowLoading_IsActive() != 0) {
+            Pes6NowLoading_IsShown();
         } else {
             func_00152130(a0, a1);
         }

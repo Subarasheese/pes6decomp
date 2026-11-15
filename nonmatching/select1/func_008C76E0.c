@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
-s32 func_0017F900();                                /* extern */
+s32 Pes6File_AllChannelsIdle();                                /* extern */
 M2C_UNK func_001B0B00();                            /* extern */
 M2C_UNK func_001B8DC0();                            /* extern */
 M2C_UNK func_0023F3A0();                            /* extern */
@@ -27,7 +27,7 @@ extern s32 D_003E9A4C;
 extern s32 D_003E9A58;
 extern s32 D_003EA488;
 extern s32 D_003EA48C;
-extern s32 D_003EA490;
+extern s32 Pes6StripSelect_State;
 extern s32 D_003EA498;
 extern s32 D_003EA4B0;
 extern char D_008DA9E0[];
@@ -39,7 +39,7 @@ extern char D_008E785C[];
 s32 func_008C76E0(void) {
     switch (D_003EA498) {                           /* irregular */
     case 0:
-        if ((func_0017F900() == 1) && (func_00814FC0(((void *)D_008DA9E0)) == 1)) {
+        if ((Pes6File_AllChannelsIdle() == 1) && (func_00814FC0(((void *)D_008DA9E0)) == 1)) {
             func_008C7850();
             if (func_00825610() != 6) {
                 func_009435B0();
@@ -74,7 +74,7 @@ s32 func_008C76E0(void) {
         (*(s32 *)D_008E7854) = 0;
         D_003E9A4C = 0;
         (*(s32 *)D_008E7858) = 0;
-        D_003EA490 = 0;
+        Pes6StripSelect_State = 0;
         (*(s32 *)D_008E785C) = 0;
         D_003EA4B0 = 0;
         return 1;

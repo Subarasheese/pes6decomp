@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern void func_00145380(s32);
+extern void Pes6TextureCache_Invalidate(s32);
 M2C_UNK func_0014E810(s32, s32, M2C_UNK, M2C_UNK, s32); /* extern */
 extern char D_005202E8[];
 extern char D_005202EC[];
@@ -71,6 +71,6 @@ void func_0019E670(f32 fparg0, f32 fparg1) {
             var_a4 = var_a4_2 & 0xFF;
         }
         func_0014E810((*(s32 *)D_005202EC), temp_s3, 0xA, 5, var_a4);
-        func_00145380(0x2724);
+        Pes6TextureCache_Invalidate(0x2724);
     }
 }

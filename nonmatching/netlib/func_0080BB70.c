@@ -4,7 +4,7 @@
 
 s64 func_00154080(M2C_UNK);                         /* extern */
 M2C_UNK func_001540B0(M2C_UNK, M2C_UNK);            /* extern */
-s32 func_0017F900();                                /* extern */
+s32 Pes6File_AllChannelsIdle();                                /* extern */
 M2C_UNK func_001FAF40(M2C_UNK, s32);                /* extern */
 M2C_UNK func_001FC780(M2C_UNK);                     /* extern */
 M2C_UNK func_001FC840(M2C_UNK);                     /* extern */
@@ -61,7 +61,7 @@ s8 func_0080BB70(void) {
         func_00309460(3, func_00309440(3) + 1);
         break;
     case 1:                                         /* switch 1 */
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             temp_v0_2 = func_00802900();
             switch (temp_v0_2) {                    /* switch 2; irregular */
             case 2:                                 /* switch 2 */

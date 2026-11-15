@@ -682,3 +682,158 @@ Pes6MatchSelect_MenuState = 0x005E92C0; // type:data
 // made on exit. Both addresses are function starts only in formation.
 Pes6FormationMenu_Update = 0x008B96D0; // type:func
 Pes6FormationMenu_Close = 0x008B77A0; // type:func
+// Stadium selection. Pes6StadiumTable has 36 entries of 20 bytes in menu order: +0 nonzero = not
+// selectable, +1 stadium id, +8 capacity, +0xC year built, +0x10 area (entry 0: id 6, 67000, 1910).
+// Pes6MatchSetup_ResolveRandomSettings (game modes 0, 5, 7) draws a random value for every setting whose
+// bit is set in Pes6MatchSettings_RandomFlags: bit 0 picks the stadium into Pes6MatchContext_Stadium,
+// bit 1 the byte at 0x591BB6, bit 2 the next one. With bit 0 clear the stadium already stored is used.
+Pes6StadiumTable = 0x003A9C60; // type:data
+Pes6MatchContext_Stadium = 0x00591BB4; // type:data
+Pes6MatchSettings_RandomFlags = 0x003E9A7C; // type:data
+Pes6MatchSetup_ResolveRandomSettings = 0x0023DA40; // type:func
+// Xorshift generator (state Pes6Random_State); returns a value below its argument.
+Pes6Random_Below = 0x00151EA0; // type:func
+Pes6Random_State = 0x00376A98; // type:data
+// Copies the match-settings bytes into Pes6MatchContext (stadium, 0x591BB6-BB8, BCA, BCB, BCE); the
+// stadium getter only returns a value in game mode 5, otherwise 0.
+Pes6MatchSetup_ApplySettings = 0x00263DC0; // type:func
+Pes6MatchSettings_GetStadium = 0x002624B0; // type:func
+// Home stadium of a team id; 255 for teams without one (national teams).
+Pes6Team_GetHomeStadium = 0x0021EE40; // type:func
+// Line-ups: Pes6MatchLineups holds u16 player ids [side][32]. Pes6MatchSetup_BuildLineups fills them with
+// Pes6Team_GetPlayerId(team id from Pes6MatchContext, slot, kind 2 in scene 12 else 0) for both sides and
+// calls Pes6MatchSetup_FillSquads, which builds each side's Pes6MatchSquads records from those ids.
+Pes6MatchLineups = 0x0058CE10; // type:data
+Pes6MatchSetup_BuildLineups = 0x00256330; // type:func
+Pes6MatchSetup_FillSquads = 0x00256440; // type:func
+// Match session block at 0x5F1E10, initialised by Pes6MatchSession_Init (Pes6MatchSelect_Update step 0).
+// Pes6MatchPlayerState (+4) holds per side (0x400 each) 32 entries of 0x20 bytes from +0xC8, keyed by player
+// id; Pes6MatchPlayerState_Sync matches them against the player ids (+0x46) of the Pes6MatchSquads records.
+Pes6MatchSession = 0x005F1E10; // type:data
+Pes6MatchPlayerState = 0x005F1E14; // type:data
+Pes6MatchSession_Init = 0x00342780; // type:func
+Pes6MatchPlayerState_Sync = 0x00328190; // type:func
+// Title / attract demo: Pes6Scene_Title (scene 3) counts Pes6Title_AttractCounter and, on idle, enters scene 12,
+// Pes6Scene_Demo, which picks a driver from Pes6Demo_Cycle; Pes6Demo_RunMatch plays a CPU match built by
+// Pes6Demo_SetupMatch (loads select1, picks teams, calls Pes6TeamSelect_Confirm).
+Pes6Scene_Title = 0x0017A780; // type:func
+Pes6Scene_Demo = 0x003618F0; // type:func
+Pes6Demo_SetupMatch = 0x00360C70; // type:func
+Pes6Demo_SetupMatch_StepTable = 0x003E6DB0; // type:data
+Pes6Demo_RunMatch = 0x00361630; // type:func
+Pes6Demo_RunKind1 = 0x003612D0; // type:func
+Pes6Demo_RunKind2 = 0x00360DE0; // type:func
+Pes6Demo_RunKind2_StepTable = 0x003E6DD0; // type:data
+Pes6Title_AttractCounter = 0x003E983C; // type:data
+Pes6Demo_Kind = 0x003E9FD4; // type:data
+Pes6Demo_MatchCount = 0x003E9FD8; // type:data
+Pes6Demo_Cycle = 0x003E9FDC; // type:data
+Pes6Demo_RunStep = 0x003E9FE4; // type:data
+Pes6Demo_SetupStep = 0x003E9FE8; // type:data
+// Heap zones: Pes6HeapZone_Ranges holds {base, size} per zone id (8 bytes each), set by Pes6HeapZone_SetRange;
+// Pes6HeapZone_Open builds a heap over that range (Pes6Heap_Create) and marks Pes6HeapZone_IsOpen;
+// Pes6HeapZone_Close destroys it. Pes6Menu_ResetHeapZones runs when the main menu exits.
+Pes6HeapZone_Ranges = 0x005E3BA0; // type:data
+Pes6HeapZone_IsOpen = 0x005E3C80; // type:data
+Pes6HeapZone_SetRange = 0x002CBD20; // type:func
+Pes6HeapZone_Open = 0x002CB9B0; // type:func
+Pes6HeapZone_Close = 0x002CBA60; // type:func
+Pes6Menu_ResetHeapZones = 0x002CABE0; // type:func
+Pes6Heap_Create = 0x00154100; // type:func
+Pes6Heap_CreateImpl = 0x0012D3D0; // type:func
+// Main menu shell (run by Pes6Scene_Menu): state machine on Pes6Scene_Menu_State; returns 1 when it set the next scene.
+Pes6Scene_Menu_Update = 0x00240140; // type:func
+Pes6Scene_Menu_State = 0x0053C300; // type:data
+Pes6Scene_Menu_StateTable = 0x003D8AE0; // type:data
+// USB keyboard: ref-counted "mn_KeyboardInit" process.
+Pes6Keyboard_Acquire = 0x00363C40; // type:func
+Pes6Keyboard_Release = 0x00363BD0; // type:func
+Pes6Keyboard_Process = 0x003EA030; // type:data
+Pes6Keyboard_RefCount = 0x003EA034; // type:data
+Pes6Process_Unlink = 0x001BC040; // type:func
+Pes6Process_Destroy = 0x001BBFD0; // type:func
+// Main menu "start match" exit (menu-shell state 7): step 0 runs the mode setup, Pes6MatchSetup_PrepareTeams and the
+// crest loads; step 1 releases the menu regions and sets scene 5 (exhibition) or 14/10/11 for modes 5/7/10.
+Pes6Scene_Menu_StartMatch = 0x0023FCB0; // type:func
+Pes6Scene_Menu_StartMatchStep = 0x003E9A9C; // type:data
+// Texture header accessors: +0xC cache key, +0x10/+0x12 u16 offsets to pixels/CLUT, +0x19 pixel format (GS PSM).
+// Pes6TextureCache_Invalidate (locked) / _InvalidateUnlocked clear the cache entry with that key in the list at
+// Pes6TextureCache_List and move it to the front. Pes6Texture_SetClut copies a palette (0x400 bytes PSMT8, 0x40 PSMT4).
+Pes6Texture_GetCacheKey = 0x00145480; // type:func
+Pes6Texture_GetClut = 0x00145440; // type:func
+Pes6Texture_GetPixels = 0x00145460; // type:func
+Pes6Texture_GetPsm = 0x00145490; // type:func
+Pes6TextureCache_Invalidate = 0x00145380; // type:func
+Pes6TextureCache_InvalidateUnlocked = 0x00145CF0; // type:func
+Pes6TextureCache_List = 0x00507A90; // type:data
+Pes6Texture_SetClut = 0x00150F70; // type:func
+// Pad side assignment: 8 entries of 0x34 bytes; +1 side (+-1/+-2), +2 nonzero when not usable.
+Pes6PadAssign = 0x003AA200; // type:data
+// Pes6MatchSelect_AnyPadAssigned: when Pes6MatchSelect_PadCheckRequest is 1, returns whether a usable pad is on a side.
+Pes6MatchSelect_AnyPadAssigned = 0x00240690; // type:func
+Pes6MatchSelect_PadCheckRequest = 0x003E9AA8; // type:data
+// Pes6FormationMenu_Run: loads the formation overlay (module 4), opens it, runs Pes6FormationMenu_Update until done,
+// closes it, restores module 3 outside scene 5 and copies per-pad settings back; returns 1 when finished.
+Pes6FormationMenu_Run = 0x002408E0; // type:func
+Pes6FormationMenu_RunStep = 0x003E9AA4; // type:data
+Pes6FormationMenu_RunStepTable = 0x003D8B10; // type:data
+Pes6FormationMenu_HumanPresent = 0x003E9AAC; // type:data
+// Pes6MatchSelect_CheckPadChanges sets Pes6MatchSelect_PadCheckRequest when a usable pad on a side is flagged or
+// its side differs from Pes6MatchSelect_PrevPadSide (8 bytes, one per pad).
+Pes6MatchSelect_CheckPadChanges = 0x00240720; // type:func
+Pes6MatchSelect_PrevPadSide = 0x0053C398; // type:data
+// "Now Loading" screen state (Pes6NowLoading, phase at +0x20, next phase at +0x24, request bits at +0x88).
+// Phases: 0 init, 1 idle (bit0 = open request), 2 setup, 3 fade in, 4 shown (bit1 = close request), 5 loading
+// animation, 6 close, 7 teardown -> 1. Pes6NowLoading_Request(1) requests open, (0) requests close.
+Pes6NowLoading = 0x00398660; // type:data
+Pes6NowLoading_PhaseTable = 0x003D1930; // type:data
+Pes6NowLoading_IsNotClosing = 0x001BE760; // type:func
+Pes6NowLoading_IsActive = 0x001BE790; // type:func
+Pes6NowLoading_IsIdle = 0x001BE7C0; // type:func
+Pes6NowLoading_IsShown = 0x001BE800; // type:func
+Pes6NowLoading_Request = 0x001BE850; // type:func
+Pes6NowLoading_PhaseFadeIn = 0x001BECD0; // type:func
+Pes6NowLoading_PhaseShown = 0x001BEA90; // type:func
+Pes6NowLoading_PhaseClose = 0x001BEF50; // type:func
+// Team asset loader for the two match teams (Pes6MatchContext team ids), staged on Pes6TeamAssets_State
+// (0 = reset by Pes6TeamAssets_Reset, 3 = done); Pes6TeamAssets_Poll (thunk to _PollImpl) returns 1 when done.
+Pes6TeamAssets_Poll = 0x0020BA50; // type:func
+Pes6TeamAssets_PollImpl = 0x0020BA60; // type:func
+Pes6TeamAssets_Reset = 0x0020BC40; // type:func
+Pes6TeamAssets_State = 0x00537AD8; // type:data
+// File channels: Pes6File_Channels holds 8-byte entries per channel; word +0 is nonzero while the channel is busy.
+Pes6File_Channels = 0x00519E20; // type:data
+Pes6File_GetChannelBusy = 0x0017ECA0; // type:func
+Pes6File_AllChannelsIdle = 0x0017F900; // type:func
+// Staged loader (state 0x00..0x50 at +0, handles at +4/+8); returns 1 once finished (state 0x50).
+// Pes6MatchSelect_UpdateLoader runs it on Pes6MatchSelect_Loader and gates Pes6MatchSelect_Flow.
+Pes6StagedLoader_Update = 0x0020D3F0; // type:func
+Pes6MatchSelect_UpdateLoader = 0x0020D6C0; // type:func
+Pes6MatchSelect_Loader = 0x00537B10; // type:data
+// Game allocator (separate from newlib _malloc_r/_calloc_r): Pes6Mem_Calloc(ctx, n, size) = Pes6Mem_Malloc(ctx, n*size) + zero fill by chunk size (ptr-4).
+Pes6Mem_Calloc = 0x0012C020; // type:func
+Pes6Mem_Malloc = 0x0012C8A0; // type:func
+// select overlay (main menu screens): Pes6SelectMenu_Update dispatches on Pes6SelectMenu_Screen (15 screens,
+// Pes6SelectMenu_ScreenTable); screen 3 returns 2 = start the match (menu shell -> Pes6Scene_Menu_StartMatch).
+// Screen 5 = Pes6SelectMenu_ExhibitionSetup: exhibition pre-match flow on Pes6SelectMenu_ExhibitionStep (0 sides,
+// 1 teams, 4 Pes6StripSelect_Update, 5 Pes6GeneralSettings_Update, 6 line-ups); sets screen 3 when settings are confirmed.
+Pes6SelectMenu_Update = 0x00931A70; // type:func
+Pes6SelectMenu_Screen = 0x0053C302; // type:data
+Pes6SelectMenu_ScreenTable = 0x00966370; // type:data
+Pes6SelectMenu_ExhibitionSetup = 0x00930CB0; // type:func
+Pes6SelectMenu_ExhibitionStep = 0x003EA9E4; // type:data
+Pes6SelectMenu_ExhibitionStepTable = 0x009662F0; // type:data
+// select1 "General Settings" screen (match time, weather, stadium...): state on Pes6GeneralSettings_State
+// (0 setup, 1 wait, 2 interactive, 3 rebuild player models, 4 exit). "Strip Selection" screen: Pes6StripSelect_Update.
+Pes6GeneralSettings_Update = 0x008B7540; // type:func
+Pes6GeneralSettings_State = 0x003EA424; // type:data
+// Pes6MatchSelect_ReloadPlayerModels: while Pes6MatchSelect_ReloadPending is set, rebuilds one player model per call
+// (records at 0x58E5B0 + (index % 23) * 0x240, via Pes6MatchSelect_LoadPlayerIndex/Stage); returns 1 when done.
+// Called by Pes6GeneralSettings_Update when the settings are confirmed.
+Pes6MatchSelect_ReloadPlayerModels = 0x002F7170; // type:func
+Pes6MatchSelect_ReloadPending = 0x005E92C8; // type:data
+Pes6StripSelect_Update = 0x008C94A0; // type:func
+Pes6StripSelect_State = 0x003EA490; // type:data
+// Formation overlay menu state (byte): 0 init, 1 wait, 2 load, 3 setup, 4 pre-match page, 5/6 after confirm
+// (5 when bit 0x80 of its flags is set), 7 close, 8 done -> Pes6FormationMenu_Update returns 1.
+Pes6FormationMenu_State = 0x003EA4EC; // type:data

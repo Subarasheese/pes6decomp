@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
-extern char D_00376A98[];
+extern char Pes6Random_State[];
 
 void func_00151FF0(s32 arg0) {
     s32 *var_a2;
@@ -10,7 +10,7 @@ void func_00151FF0(s32 arg0) {
     s32 var_v1;
 
     var_a3 = 0;
-    var_a2 = ((void *)D_00376A98);
+    var_a2 = ((void *)Pes6Random_State);
     do {
         var_v1 = arg0;
         if (arg0 == 0) {

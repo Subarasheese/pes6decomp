@@ -4,7 +4,7 @@
 
 extern void func_002E92B0(int);
 extern void func_00656A70(void);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern s32 func_00649CD0(void);
 extern s32 func_0063FB90(void);
 s32 func_0061F950(M2C_UNK);                         /* extern */
@@ -164,7 +164,7 @@ block_61:
         }
         break;
     case 0x4:                                       /* switch 1 */
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             func_006278E0();
             func_002E92B0(1);
             func_00656A70();

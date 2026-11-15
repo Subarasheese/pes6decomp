@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-s32 func_0017F900();                                /* extern */
+s32 Pes6File_AllChannelsIdle();                                /* extern */
 s32 func_00230380();                                /* extern */
 s32 func_00230410();                                /* extern */
 s32 func_0093D740();                                /* extern */
@@ -40,7 +40,7 @@ s32 func_009670B0(void) {
         func_0094C790(2);
         break;
     case 2:
-        if (func_0017F900() == 1) {
+        if (Pes6File_AllChannelsIdle() == 1) {
             func_00949540();
             var_s0 = 0x1A;
         }

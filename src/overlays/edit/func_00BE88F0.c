@@ -5,7 +5,7 @@ extern void func_002FC740(u8, u8);
 extern int func_00363C30(void);
 extern void func_00C1B3B0(u32);
 M2C_UNK func_001C48E8(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
-M2C_UNK func_00363C40();                            /* extern */
+M2C_UNK Pes6Keyboard_Acquire();                            /* extern */
 M2C_UNK func_008C9720();                            /* extern */
 M2C_UNK func_00B91260();                            /* extern */
 M2C_UNK func_00B915B0();                            /* extern */
@@ -48,7 +48,7 @@ s32 func_00BE88F0(void) {
     func_00BFE470();
     func_00BC66B0();
     if (func_00363C30() == 0) {
-        func_00363C40();
+        Pes6Keyboard_Acquire();
         func_00C1B3B0(1U);
     }
     return 1;

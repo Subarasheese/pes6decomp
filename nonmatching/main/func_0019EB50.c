@@ -2,9 +2,9 @@
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
-M2C_UNK func_00145380(M2C_UNK);                     /* extern */
+M2C_UNK Pes6TextureCache_Invalidate(M2C_UNK);                     /* extern */
 M2C_UNK func_001453E0(M2C_UNK);                     /* extern */
-s32 func_00145440(s32);                             /* extern */
+s32 Pes6Texture_GetClut(s32);                             /* extern */
 s32 func_001454C0(M2C_UNK);                         /* extern */
 M2C_UNK func_00145590(s32);                         /* extern */
 M2C_UNK func_00145750(s32);                         /* extern */
@@ -36,12 +36,12 @@ void func_0019EB50(s32 arg0) {
     (*(s32 *)D_00520318) = 0;
     func_00147010(arg0, 0x2751);
     func_00145750(arg0);
-    (*(s32 *)D_00520314) = func_00145440(arg0);
+    (*(s32 *)D_00520314) = Pes6Texture_GetClut(arg0);
     (*(s16 *)D_0052031C) = func_00150110(arg0);
     (*(u16 *)D_0052031E) = func_00150150(arg0);
     temp_v0_2 = func_00153FE0((*(s16 *)D_0051FFB2), (*(u16 *)D_0052031E));
     (*(s32 *)D_00520318) = temp_v0_2;
     func_001C4730(temp_v0_2, (*(s32 *)D_00520314), (*(u16 *)D_0052031E));
     func_001453E0(0x2751);
-    func_00145380(0x2751);
+    Pes6TextureCache_Invalidate(0x2751);
 }

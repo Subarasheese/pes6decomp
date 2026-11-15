@@ -7,7 +7,7 @@ extern int func_0030C2D0(void);
 extern s32 func_002631D0(void);
 extern s32 func_0023E090(void);
 s32 func_002259E0();                                /* extern */
-extern char D_003AA200[];
+extern char Pes6PadAssign[];
 extern s32 D_003EAA0C;
 extern char D_00510FD0[];
 extern char D_00591C09[];
@@ -55,7 +55,7 @@ void func_0024B240(s8 *arg0) {
         }
         var_s2 = 0;
         var_s1 = var_s3;
-        var_s0_2 = ((void *)D_003AA200);
+        var_s0_2 = ((void *)Pes6PadAssign);
         do {
             if (*var_s1 == 1) {
                 if (var_s2 == 0) {

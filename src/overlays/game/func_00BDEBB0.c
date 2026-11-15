@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b151 */
 #include "pes6/m2c.h"
 
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern int func_002727B0(void);
 u32 func_009B33A0(void *, s32, s32);                /* extern */
 M2C_UNK func_00BA9800(s32, void *);                 /* extern */
@@ -29,7 +29,7 @@ void func_00BDEBB0(void *arg0) {
             temp_v1 = M2C_FIELD(arg0, void **, 0);
             M2C_FIELD(temp_v1, u8 *, 0x4E) = (u8) (M2C_FIELD(temp_v1, u8 *, 0x4E) + 1);
         case 1:
-            if (func_0017F900() == 0) {
+            if (Pes6File_AllChannelsIdle() == 0) {
                 M2C_FIELD(M2C_FIELD(arg0, void **, 0), u8 *, 0x4E) = 2U;
             } else {
                 func_00BA9850((*(s32 *)D_00CBCB1C), 0, arg0);

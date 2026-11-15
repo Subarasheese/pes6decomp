@@ -28,7 +28,7 @@ extern char D_003B7630[];
 extern char D_003B76D0[];
 extern char D_003B76E0[];
 extern u8 D_003E9F54;
-extern char D_005F1E14[];
+extern char Pes6MatchPlayerState[];
 extern char D_005F2A84[];
 
 s32 func_00342250(void) {
@@ -43,7 +43,7 @@ s32 func_00342250(void) {
         func_00344DA0(((void *)D_003B75C8));
         func_00313950(((void *)D_003B75E8));
         func_0031A3D0(((void *)D_003B7630));
-        func_0031A750(((void *)D_005F1E14));
+        func_0031A750(((void *)Pes6MatchPlayerState));
         func_00344D60();
         func_00357040(((void *)D_003B76D0));
         func_0034A8D0(((void *)D_003B7610));

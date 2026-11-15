@@ -11,7 +11,7 @@ s32 func_008BF5E0();                                /* extern */
 M2C_UNK func_008BF6B0();                            /* extern */
 M2C_UNK func_008C05B0(M2C_UNK *, M2C_UNK *);        /* extern */
 extern s32 D_003EA448;
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 extern char D_008D9C90[];
 extern char D_008E49B0[];
 
@@ -44,14 +44,14 @@ block_27:
         temp_v0 = func_008BF5E0();
         switch (temp_v0) {                          /* switch 2; irregular */
         case 1:                                     /* switch 2 */
-            M2C_FIELD(((void *)D_0053C300), s8 *, 9) = 1;
+            M2C_FIELD(((void *)Pes6Scene_Menu_State), s8 *, 9) = 1;
             var_v0 = D_003EA448 + 1;
 block_23:
             D_003EA448 = var_v0;
             break;
         case 2:                                     /* switch 2 */
             var_v0 = 3;
-            M2C_FIELD(((void *)D_0053C300), s8 *, 9) = 2;
+            M2C_FIELD(((void *)Pes6Scene_Menu_State), s8 *, 9) = 2;
             goto block_23;
         }
         func_008BF6B0();
@@ -59,7 +59,7 @@ block_23:
     case 3:                                         /* switch 1 */
         if (func_008BF500() != 0) {
             D_003EA448 = 0;
-            return M2C_FIELD(((void *)D_0053C300), s8 *, 9);
+            return M2C_FIELD(((void *)Pes6Scene_Menu_State), s8 *, 9);
         }
         goto block_27;
     }

@@ -1,4 +1,4 @@
-extern void func_002CB9B0();
+extern void Pes6HeapZone_Open();
 void func_002CAAA0(int a0) {
-    func_002CB9B0(22);
+    Pes6HeapZone_Open(22);
 }

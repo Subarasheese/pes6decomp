@@ -3,12 +3,12 @@
 #include "pes6/m2c.h"
 
 extern void func_002873B0(void);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern void func_001ABA10(void);
 extern void func_002CD320(s32);
 M2C_UNK func_001FAF40(M2C_UNK, u16);                /* extern */
 s32 func_0021FBC0(u16);                             /* extern */
-M2C_UNK func_00256330(s32);                         /* extern */
+M2C_UNK Pes6MatchSetup_BuildLineups(s32);                         /* extern */
 M2C_UNK func_0026EDE0();                            /* extern */
 M2C_UNK func_00361EF0(M2C_UNK, s32, M2C_UNK);       /* extern */
 extern char D_00510FD0[];
@@ -16,7 +16,7 @@ extern char Pes6MatchPlayers[];
 extern char D_00591A90[];
 extern char D_00591BB0[];
 extern char D_00591BB2[];
-extern char D_005E92C8[];
+extern char Pes6MatchSelect_ReloadPending[];
 extern char D_005E92CC[];
 extern char D_005E92CE[];
 
@@ -28,7 +28,7 @@ s32 func_002F72F0(void) {
     s32 var_a4;
     void *temp_t3;
 
-    if (func_0017F900() == 0) {
+    if (Pes6File_AllChannelsIdle() == 0) {
         return 0;
     }
     func_001FAF40(0, (*(u16 *)D_00591BB0));
@@ -58,13 +58,13 @@ s32 func_002F72F0(void) {
     func_002CD320(0);
     func_002CD320(1);
     if (((*(s32 *)D_00510FD0) == 4) || ((*(s32 *)D_00510FD0) == 0xF)) {
-        func_00256330((*(s32 *)D_00510FD0));
+        Pes6MatchSetup_BuildLineups((*(s32 *)D_00510FD0));
     }
     func_002873B0();
     func_0026EDE0();
     func_001ABA10();
     (*(s16 *)D_005E92CC) = 1;
     (*(s16 *)D_005E92CE) = 0;
-    (*(s32 *)D_005E92C8) = 1;
+    (*(s32 *)Pes6MatchSelect_ReloadPending) = 1;
     return 1;
 }

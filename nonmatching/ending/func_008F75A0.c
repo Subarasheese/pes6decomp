@@ -4,7 +4,7 @@
 
 extern void func_0027A880(int);
 extern void func_00271EC0(void);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 M2C_UNK func_00271FB0();                            /* extern */
 M2C_UNK func_00272170(u8);                          /* extern */
 extern char D_009083B2[];
@@ -27,7 +27,7 @@ block_12:
     default:
         return 0;
     case 2:
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             func_00271FB0();
             func_0027A880(0);
             func_00271EC0();

@@ -4,12 +4,12 @@ s32 *func_00255E60();                               /* extern */
 s32 func_00270570();                                /* extern */
 M2C_UNK func_00C952F0();                            /* extern */
 M2C_UNK func_00C95440();                            /* extern */
-extern u8 D_003E9FD4;
+extern u8 Pes6Demo_Kind;
 extern char Pes6SceneStack[];
 
 s32 func_002D48E0(void) {
     if ((*(s32 *)Pes6SceneStack) == 0xC) {
-        switch (D_003E9FD4) {                       /* irregular */
+        switch (Pes6Demo_Kind) {                       /* irregular */
         case 0:
             break;
         case 1:

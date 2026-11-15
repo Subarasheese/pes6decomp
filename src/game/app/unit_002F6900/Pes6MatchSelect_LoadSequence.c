@@ -1,6 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
-s32 func_0017F900();                                /* extern */
+s32 Pes6File_AllChannelsIdle();                                /* extern */
 M2C_UNK func_001A17A0();                            /* extern */
 M2C_UNK func_001A1820();                            /* extern */
 s32 func_001A1B00();                                /* extern */
@@ -25,7 +25,7 @@ s32 Pes6MatchSelect_LoadSequence(s32 arg0) {
         }
         break;
     case 2:
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             (*(s32 *)Pes6MatchSelect_LoadSequenceState) += 1;
         case 3:
             func_001A1820();

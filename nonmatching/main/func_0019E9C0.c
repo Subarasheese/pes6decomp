@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
-s32 func_00145440(s32);                             /* extern */
+s32 Pes6Texture_GetClut(s32);                             /* extern */
 s32 func_001454C0(M2C_UNK);                         /* extern */
 s16 func_00150110(s32);                             /* extern */
 u16 func_00150150(s32);                             /* extern */
@@ -24,7 +24,7 @@ void func_0019E9C0(void) {
     (*(u16 *)D_00520302) = 0;
     temp_v0 = func_001454C0(0x2752);
     if (temp_v0 != 0) {
-        (*(s32 *)D_005202F8) = func_00145440(temp_v0);
+        (*(s32 *)D_005202F8) = Pes6Texture_GetClut(temp_v0);
         (*(s16 *)D_00520300) = func_00150110(temp_v0);
         (*(u16 *)D_00520302) = func_00150150(temp_v0);
         temp_v0_2 = func_00153FE0((*(s16 *)D_0051FFB2), (*(u16 *)D_00520302));

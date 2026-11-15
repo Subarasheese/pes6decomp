@@ -17,7 +17,7 @@ extern char D_003AA980[];
 extern char D_003C54C0[];
 extern M2C_UNK *D_003E758C;
 extern char D_00591A90[];
-extern char D_00591BB4[];
+extern char Pes6MatchContext_Stadium[];
 extern char D_00591BB6[];
 extern char D_00591BB7[];
 extern char D_00591BE0[];
@@ -159,7 +159,7 @@ loop_6:
     (*(s8 *)D_005928C8) = 0xFF;
     (*(s8 *)D_0059291B) = 4;
     (*(s8 *)D_00592918) = 0xFF;
-    (*(s8 *)D_00591BB4) = 0;
+    (*(s8 *)Pes6MatchContext_Stadium) = 0;
     (*(s8 *)D_005928F0) = 0xFF;
     (*(s32 *)D_00CBD390) = 0;
     (*(s32 *)D_00CBD370) = 0;

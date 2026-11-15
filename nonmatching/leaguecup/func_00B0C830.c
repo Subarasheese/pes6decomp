@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern s32 func_00151EA0(s32);
+extern s32 Pes6Random_Below(s32);
 extern void *D_003EAD68;
 
 void func_00B0C830(u16 *arg0, s32 arg1, s32 arg2) {
@@ -34,7 +34,7 @@ void func_00B0C830(u16 *arg0, s32 arg1, s32 arg2) {
         var_s4 = 0;
         if (arg1 > 0) {
 loop_7:
-            var_a0 = func_00151EA0(arg1 & 0xFFFF) & 0xFFFF;
+            var_a0 = Pes6Random_Below(arg1 & 0xFFFF) & 0xFFFF;
             var_a1_2 = 0;
             var_s5 = *(arg0 + (var_a0 * 2));
             do {
@@ -46,7 +46,7 @@ loop_7:
                     var_a1_2 += 1;
                 }
             } while (var_a1_2 < 0x20);
-            var_a2_2 = func_00151EA0((s32) M2C_FIELD(temp_s3, u8 *, 0xE05)) & 0xFFFF;
+            var_a2_2 = Pes6Random_Below((s32) M2C_FIELD(temp_s3, u8 *, 0xE05)) & 0xFFFF;
             var_a3 = var_a2_2 * 2;
             if (M2C_FIELD((temp_s3 + var_a3), u16 *, 0x1380) != 0xFFFF) {
                 do {

@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern s32 func_00BF6B50(void);
-s32 func_0021EE40(s32, M2C_UNK);                    /* extern */
+s32 Pes6Team_GetHomeStadium(s32, M2C_UNK);                    /* extern */
 M2C_UNK func_0026E840(M2C_UNK);                     /* extern */
 M2C_UNK func_00BC3FB0(M2C_UNK);                     /* extern */
 s32 func_00BCF3A0(M2C_UNK);                         /* extern */
@@ -30,7 +30,7 @@ s32 func_00C04150(s32 arg0, s8 *arg1) {
         break;
     case 2:
         temp_s0 = func_00BF6790(func_00BF6B50());
-        if (temp_s0 == (func_0021EE40(arg0, 0) & 0xFF)) {
+        if (temp_s0 == (Pes6Team_GetHomeStadium(arg0, 0) & 0xFF)) {
             var_s0 = 2;
         } else {
             var_s0 = 4;

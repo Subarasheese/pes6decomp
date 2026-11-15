@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-s32 func_00151EA0(u16);                             /* extern */
+s32 Pes6Random_Below(u16);                             /* extern */
 extern char D_00520130[];
 
 void func_0018C090(void) {
@@ -16,7 +16,7 @@ void func_0018C090(void) {
         do {
             M2C_FIELD(var_s0, s8 *, 2) = 0;
             if (M2C_FIELD(var_s0, u8 *, 3) != 0) {
-                if (!(func_00151EA0(M2C_FIELD(var_s0, u16 *, 0)) & 0xFFFF)) {
+                if (!(Pes6Random_Below(M2C_FIELD(var_s0, u16 *, 0)) & 0xFFFF)) {
                     M2C_FIELD(var_s0, s8 *, 2) = 1;
                 }
             }

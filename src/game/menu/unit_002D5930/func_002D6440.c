@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 #include "pes6/unit_002d5930.h"
 extern s32 D_003B25D0[];
-extern u8 D_00591BB4[];
+extern u8 Pes6MatchContext_Stadium[];
 extern void *func_001C48E8(void *, s32, u32);
 extern u32 func_00351ED0(u8);
 typedef struct { UpdateCallback values[3]; } CallbackWords;
@@ -29,7 +29,7 @@ void func_002D6440(void) {
     if (D_003E7614->initialized == 0) {
         func_001C48E8(D_003E7614, 0, 0x60);
         D_003E7614->initialized = 1;
-        switch (func_00351ED0(D_00591BB4[0])) {
+        switch (func_00351ED0(Pes6MatchContext_Stadium[0])) {
         case 0:
             presetGroup = 0;
             D_003E7614->enabled = 1;

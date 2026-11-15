@@ -14,7 +14,7 @@ M2C_UNK func_008C2A80(s8 *);                        /* extern */
 M2C_UNK func_008C2BF0(s8 *);                        /* extern */
 M2C_UNK func_008C2EB0(M2C_UNK *, s8 *);             /* extern */
 M2C_UNK func_008C2FD0(M2C_UNK *, s8 *);             /* extern */
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 extern char D_0053C310[];
 extern char D_008D1D60[];
 extern char D_008D2C50[];
@@ -40,7 +40,7 @@ void func_008B70A0(void) {
         }
         func_008C0EE0(((void *)D_008D1D60), ((void *)D_008DC310));
     }
-    if ((M2C_FIELD(((void *)D_0053C300), s32 *, 0x10) & 4) == 4) {
+    if ((M2C_FIELD(((void *)Pes6Scene_Menu_State), s32 *, 0x10) & 4) == 4) {
         func_008B59F0();
         func_008C2BF0(((void *)D_008DC310));
         func_008C2A80(((void *)D_008DC310));
@@ -61,7 +61,7 @@ void func_008B70A0(void) {
         }
         func_008C0EE0(((void *)D_008D1D60), ((void *)D_008DC310));
     }
-    if ((M2C_FIELD(((void *)D_0053C300), s32 *, 0x10) & 1) == 1) {
+    if ((M2C_FIELD(((void *)Pes6Scene_Menu_State), s32 *, 0x10) & 1) == 1) {
         func_008C2EB0(((void *)D_008D2C50), ((void *)D_008DC310));
         func_008B59F0();
         func_008C2FD0(((void *)D_008D1D60), ((void *)D_008DC310));
@@ -91,5 +91,5 @@ void func_008B70A0(void) {
     if (func_0023B380(1) == 0) {
         func_0023B3B0(1, 0);
     }
-    M2C_FIELD(((void *)D_0053C300), s32 *, 0x10) = 0;
+    M2C_FIELD(((void *)Pes6Scene_Menu_State), s32 *, 0x10) = 0;
 }

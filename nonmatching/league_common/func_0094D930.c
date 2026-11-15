@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
-s32 func_00151EA0(s32);                             /* extern */
+s32 Pes6Random_Below(s32);                             /* extern */
 void *func_00224520();                              /* extern */
 s32 func_00227DA0();                                /* extern */
 
@@ -25,21 +25,21 @@ void func_0094D930(s32 arg0, s32 arg1) {
                 if (((s32) temp_v1 >= 0) && ((s32) temp_v1 < 5)) {
                     var_a1 = 0x64;
                 } else if (((s32) temp_v1 >= 5) && ((s32) temp_v1 < 0xA)) {
-                    var_a1 = (func_00151EA0((0xA - temp_v1) & 0xFFFF) & 0xFFFF) + 0x5A;
+                    var_a1 = (Pes6Random_Below((0xA - temp_v1) & 0xFFFF) & 0xFFFF) + 0x5A;
                 } else if (((s32) temp_v1 >= 0xA) && ((s32) temp_v1 < 0x14)) {
-                    temp_a1 = func_00151EA0((0x14 - temp_v1) & 0xFFFF) & 0xFFFF;
+                    temp_a1 = Pes6Random_Below((0x14 - temp_v1) & 0xFFFF) & 0xFFFF;
                     var_a1 = ((temp_a1 * 0x1E) / 20) + ((u32) (temp_a1 * 0x1E) >> 0x1F) + 0x46;
                 } else if (((s32) temp_v1 >= 0x14) && ((s32) temp_v1 < 0x28)) {
-                    temp_a1_2 = func_00151EA0((0x28 - temp_v1) & 0xFFFF) & 0xFFFF;
+                    temp_a1_2 = Pes6Random_Below((0x28 - temp_v1) & 0xFFFF) & 0xFFFF;
                     var_a1 = ((temp_a1_2 * 0x1E) / 20) + ((u32) (temp_a1_2 * 0x1E) >> 0x1F) + 0x32;
                 } else if (((s32) temp_v1 >= 0x28) && ((s32) temp_v1 < 0x3C)) {
-                    temp_a1_3 = func_00151EA0((0x3C - temp_v1) & 0xFFFF) & 0xFFFF;
+                    temp_a1_3 = Pes6Random_Below((0x3C - temp_v1) & 0xFFFF) & 0xFFFF;
                     var_a1 = ((temp_a1_3 * 0x1E) / 20) + ((u32) (temp_a1_3 * 0x1E) >> 0x1F) + 0x1E;
                 } else if (((s32) temp_v1 >= 0x3C) && ((s32) temp_v1 < 0x50)) {
-                    temp_a1_4 = func_00151EA0((0x50 - temp_v1) & 0xFFFF) & 0xFFFF;
+                    temp_a1_4 = Pes6Random_Below((0x50 - temp_v1) & 0xFFFF) & 0xFFFF;
                     var_a1 = ((temp_a1_4 * 0x1E) / 20) + ((u32) (temp_a1_4 * 0x1E) >> 0x1F) + 0xA;
                 } else {
-                    temp_a1_5 = func_00151EA0((0x64 - temp_v1) & 0xFFFF) & 0xFFFF;
+                    temp_a1_5 = Pes6Random_Below((0x64 - temp_v1) & 0xFFFF) & 0xFFFF;
                     var_a1 = ((temp_a1_5 * 0x1E) / 20) + ((u32) (temp_a1_5 * 0x1E) >> 0x1F) + 1;
                 }
                 if (var_a1 >= 0x65) {

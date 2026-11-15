@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern void func_001D7D80(void *, s16);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern void func_002F4D80(s32);
 extern void func_001D7D60(void *, s8);
 extern void func_001BC300(void);
@@ -26,12 +26,12 @@ extern void *D_00921DE8;
 extern void *D_00923FC8;
 
 s32 func_0090B140(void) {
-    if (func_0017F900() == 0) {
+    if (Pes6File_AllChannelsIdle() == 0) {
         return 0;
     }
     func_0090B030(M2C_FIELD(D_00923FC8, u16 *, 8));
     func_0090B030(M2C_FIELD(D_00923FC8, u16 *, 0xA));
-    if (func_0017F900() == 0) {
+    if (Pes6File_AllChannelsIdle() == 0) {
         return 0;
     }
     func_001C4730(D_00923FC8 + 0xE18, ((void *)Pes6MatchSquads), 0xD200);

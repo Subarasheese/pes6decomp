@@ -4,8 +4,8 @@
 
 extern void func_00153FA0(void *);
 M2C_UNK func_00220240(M2C_UNK, M2C_UNK);            /* extern */
-M2C_UNK func_002CB9B0(M2C_UNK);                     /* extern */
-M2C_UNK func_002CBA60(M2C_UNK);                     /* extern */
+M2C_UNK Pes6HeapZone_Open(M2C_UNK);                     /* extern */
+M2C_UNK Pes6HeapZone_Close(M2C_UNK);                     /* extern */
 extern void *D_008E78D0;
 extern void *D_008E78D4;
 extern void *D_008E78D8;
@@ -28,6 +28,6 @@ void func_008C9760(void) {
     D_008E78DC = NULL;
     func_00153FA0(D_008E78E0);
     D_008E78E0 = NULL;
-    func_002CBA60(5);
-    func_002CB9B0(5);
+    Pes6HeapZone_Close(5);
+    Pes6HeapZone_Open(5);
 }

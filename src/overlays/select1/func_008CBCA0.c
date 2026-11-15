@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 void func_008CBCA0(void) {
-    func_0017F900();
+    Pes6File_AllChannelsIdle();
 }

@@ -6,11 +6,11 @@ extern u8 func_0021FC40(u32);
 extern void func_00295610(void);
 extern s32 func_002371A0(s32);
 extern u8 func_00351EB0(s32);
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 s32 func_0022F470();                                /* extern */
 M2C_UNK func_00295650(s8 *, s8 *);                  /* extern */
 extern char D_00591BB0[];
-extern char D_00591BB4[];
+extern char Pes6MatchContext_Stadium[];
 extern char D_00591BB6[];
 extern char D_00591BB8[];
 extern char D_00591C09[];
@@ -42,12 +42,12 @@ void func_003520A0(s8 arg0, s8 arg1, s8 arg2) {
     sp6F = 0;
     if (!(var_s2 & 0xFF)) {
         do {
-            var_s2 = func_00151EA0(0xFF) & 0xFF;
+            var_s2 = Pes6Random_Below(0xFF) & 0xFF;
         } while (var_s2 == 0);
     }
     temp_v1 = temp_s1 & 0xFF;
     if ((temp_v1 == 0) || (temp_v1 == 7)) {
-        var_s1 = func_00351EB0((s32) (*(u8 *)D_00591BB4)) & 0xFF;
+        var_s1 = func_00351EB0((s32) (*(u8 *)Pes6MatchContext_Stadium)) & 0xFF;
         if ((*(u8 *)D_00591BB8) != 0) {
             var_v0_2 = 2;
         } else {

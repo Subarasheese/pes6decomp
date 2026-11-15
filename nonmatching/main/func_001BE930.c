@@ -9,7 +9,7 @@ extern int func_001BC060(int);
 M2C_UNK func_001BF780(void *);                      /* extern */
 M2C_UNK func_001C48E8(void *, M2C_UNK, M2C_UNK);    /* extern */
 M2C_UNK func_001EDD90(s32);                         /* extern */
-extern char D_00398660[];
+extern char Pes6NowLoading[];
 extern s32 D_003E9934;
 
 void func_001BE930(void) {
@@ -23,8 +23,8 @@ void func_001BE930(void) {
     temp_s1 = D_003E9934;
     if (temp_s1 != 0) {
         func_001BC060(temp_s1);
-        temp_s4 = ((void *)D_00398660) + 0x2C;
-        if (M2C_FIELD(((void *)D_00398660), s32 *, 0x34) != 0) {
+        temp_s4 = ((void *)Pes6NowLoading) + 0x2C;
+        if (M2C_FIELD(((void *)Pes6NowLoading), s32 *, 0x34) != 0) {
             temp_a0 = M2C_FIELD(temp_s4, void **, 0x18);
             if (temp_a0 != NULL) {
                 func_001D6E40(temp_a0);
@@ -45,7 +45,7 @@ void func_001BE930(void) {
                 M2C_FIELD(temp_s4, s32 *, 0x30) = 0;
             }
         }
-        func_001BF780(((void *)D_00398660) + 0x64);
+        func_001BF780(((void *)Pes6NowLoading) + 0x64);
         D_003E9934 = 0;
         func_001BBC20(temp_s1);
         D_003E9934 = 0;

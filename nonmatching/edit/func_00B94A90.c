@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-u8 func_0021EE40(M2C_UNK);                          /* extern */
+u8 Pes6Team_GetHomeStadium(M2C_UNK);                          /* extern */
 extern char D_00CE35B0[];
 
 s32 func_00B94A90(s32 arg0) {
@@ -17,7 +17,7 @@ s32 func_00B94A90(s32 arg0) {
         var_a1 = (*(s32 *)D_00CE35B0) + (((temp_v1 - 0x40) & 0xFFFF) * 0x58) + 0xB6364;
     }
     if (var_a1 == NULL) {
-        var_v0 = func_0021EE40(0);
+        var_v0 = Pes6Team_GetHomeStadium(0);
     } else {
         var_v0 = M2C_FIELD(var_a1, u8 *, 0x51);
     }

@@ -1,6 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
-extern s32 func_00151EA0(s32);
+extern s32 Pes6Random_Below(s32);
 extern void func_002209A0(void *);
 extern u8 *func_00221180(void);
 extern void func_002D9C38(void *);
@@ -20,15 +20,15 @@ s32 func_00931220(void) {
     p->f = 4;
     p->g = 3;
     p->h = 0;
-    func_00151EA0(0xFFFF);
+    Pes6Random_Below(0xFFFF);
     if (func_00114E20(p) == 0) {
         D_003EAC6C = D_003EAC6C + 1;
         if (D_003EAC6C < 0x14) return 0;
         D_003EAC6C = 0;
     }
     func_002D9C38(p);
-    for (i = 0; i < p->n; i++) func_00151EA0(0x10);
-    p->w = func_00151EA0(0xFFFF) & 0xFFFF;
+    for (i = 0; i < p->n; i++) Pes6Random_Below(0x10);
+    p->w = Pes6Random_Below(0xFFFF) & 0xFFFF;
     func_002209A0(D_009CA828);
     return 1;
 }

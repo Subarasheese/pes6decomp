@@ -18,7 +18,7 @@ extern f32 D_003FB110[];
 
 void func_001EDAE0(void *obj, s32 on);
 void func_001ED8F0(void *obj, u8 level);
-s32 func_001BE790(void);
+s32 Pes6NowLoading_IsActive(void);
 void func_001B4CB0(void *camera, f32 a, f32 b);
 void func_001ED880(void *obj, f32 a);
 
@@ -53,7 +53,7 @@ void func_002D90A0(void)
             FadeState_Show(s, 1);
             FadeState_SetLevel(s, 0);
         }
-        if (func_001BE790()) {
+        if (Pes6NowLoading_IsActive()) {
             s->target = 0;
         } else {
             s->target = 0x99;

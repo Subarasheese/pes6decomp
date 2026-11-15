@@ -5,7 +5,7 @@
 extern s32 func_001FC800(void);
 extern void func_00182B30(int);
 extern void func_0017E120(int);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern void func_001FC790(void);
 extern void func_001FC840(void);
 M2C_UNK func_003626D0(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
@@ -27,7 +27,7 @@ s32 func_001F8DE0(void) {
         D_003E998C += 1;
         /* fallthrough */
     case 1:
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             func_008B7960(1, -1);
             D_003E998C += 1;
         case 2:

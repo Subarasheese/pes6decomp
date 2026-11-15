@@ -4,7 +4,7 @@
 
 extern unsigned short func_001454A0(void *);
 extern unsigned short func_001454B0(void *);
-extern s32 func_00145460(s32);
+extern s32 Pes6Texture_GetPixels(s32);
 s32 func_00151600(M2C_UNK, s32, M2C_UNK, u16, u16, M2C_UNK, M2C_UNK); /* extern */
 
 s32 func_0014C500(void *arg0, s32 arg1) {
@@ -19,9 +19,9 @@ s32 func_0014C500(void *arg0, s32 arg1) {
 
     temp_s3 = func_001454B0(arg0);
     temp_s2 = func_001454A0(arg0);
-    var_s1 = func_00145460((s32) arg0);
+    var_s1 = Pes6Texture_GetPixels((s32) arg0);
     temp_v0 = func_00151600(0, arg1, 3, temp_s3, temp_s2, 0, 1);
-    var_v0 = func_00145460(temp_v0);
+    var_v0 = Pes6Texture_GetPixels(temp_v0);
     var_a1 = 0;
     if ((s32) temp_s2 > 0) {
         do {

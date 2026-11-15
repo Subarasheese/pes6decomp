@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern s32 func_002631D0(void);
-u8 func_00151EA0(s32);                              /* extern */
+u8 Pes6Random_Below(s32);                              /* extern */
 s64 func_001F9920(s32);                             /* extern */
 s32 func_00292BD0(void *, M2C_UNK *, s32);          /* extern */
 extern char D_00591A90[];
@@ -235,29 +235,29 @@ void func_001F9CD0(void) {
         var_s1 = ((void *)Pes6MatchSquads);
 loop_6:
         if (temp_fp == 0) {
-            temp_v0 = func_00151EA0(5);
+            temp_v0 = Pes6Random_Below(5);
             temp_a0_2 = temp_v0 & 0xFF;
             M2C_FIELD(var_s2, u8 *, 0x15) = temp_v0;
             switch (temp_a0_2) {                    /* irregular */
             case 0:
-                if (func_00151EA0(3) == 0) {
+                if (Pes6Random_Below(3) == 0) {
 block_15:
                     M2C_FIELD(var_s2, u8 *, 0x15) = 2U;
                 }
                 break;
             case 4:
-                if (func_00151EA0(3) != 0) {
+                if (Pes6Random_Below(3) != 0) {
                     goto block_15;
                 }
                 break;
             }
-            if ((*var_s6 != 0) && (M2C_FIELD(var_s2, u8 *, 0x15) != 4) && ((func_00151EA0(0x64) & 0xFFFF) < 0x32)) {
+            if ((*var_s6 != 0) && (M2C_FIELD(var_s2, u8 *, 0x15) != 4) && ((Pes6Random_Below(0x64) & 0xFFFF) < 0x32)) {
                 M2C_FIELD(var_s2, u8 *, 0x15) = (u8) (M2C_FIELD(var_s2, u8 *, 0x15) + 1);
             }
             temp_a0_3 = M2C_FIELD(var_s2, u8 *, 0x15);
             if ((temp_a0_3 != 4) && (temp_a0_3 != 3)) {
 
-            } else if ((func_00151EA0(((M2C_FIELD(var_s2, u8 *, 0x85) & 7) * 0xA) & 0xFFFF) & 0xFFFF) >= 0x19) {
+            } else if ((Pes6Random_Below(((M2C_FIELD(var_s2, u8 *, 0x85) & 7) * 0xA) & 0xFFFF) & 0xFFFF) >= 0x19) {
                 M2C_FIELD(var_s2, u8 *, 0x15) = (u8) (M2C_FIELD(var_s2, u8 *, 0x15) - 1);
             }
             if ((*(u8 *)D_00591C09) == 5) {

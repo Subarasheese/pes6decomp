@@ -14,7 +14,7 @@ M2C_UNK func_008C4B50();                            /* extern */
 extern s32 D_003EA478;
 extern s32 D_003EA484;
 extern char D_00510FD0[];
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 extern char D_008DA930[];
 
 s8 func_008C4D80(void) {
@@ -59,7 +59,7 @@ block_13:
         if ((var_s1 != 1) && (var_s1 != 2)) {
 
         } else {
-            M2C_FIELD(((void *)D_0053C300), s8 *, 9) = var_s1;
+            M2C_FIELD(((void *)Pes6Scene_Menu_State), s8 *, 9) = var_s1;
             D_003EA478 = 4;
             var_s1 = 0;
         }

@@ -1,6 +1,6 @@
 /* compiler: mwcc-3.0.1b198 */
 #include "pes6/m2c.h"
-s32 func_0017F900(void);
+s32 Pes6File_AllChannelsIdle(void);
 M2C_UNK func_001E7140(s32);
 M2C_UNK func_001E75A0(s32, void *);
 M2C_UNK Pes6Module_Load(M2C_UNK);
@@ -28,7 +28,7 @@ s32 func_002D6860(void) {
             D_005E5E10[0] += 1;
             break;
         case 1:
-            if (func_0017F900() == 1) {
+            if (Pes6File_AllChannelsIdle() == 1) {
                 D_005E5E10[0] += 1;
             default:
                 ready = 1;
@@ -43,7 +43,7 @@ s32 func_002D6860(void) {
         }
         break;
     case 1:
-        if (func_0017F900() == 1) {
+        if (Pes6File_AllChannelsIdle() == 1) {
             state += 1;
         case 2:
             func_00901440();

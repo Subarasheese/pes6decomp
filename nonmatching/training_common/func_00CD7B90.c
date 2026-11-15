@@ -6,7 +6,7 @@ extern u16 Pes6Team_GetPlayerId(s32, s32, s32);
 M2C_UNK func_001FA5A0();                            /* extern */
 M2C_UNK func_001FAF40(M2C_UNK, u16);                /* extern */
 M2C_UNK func_00244E30();                            /* extern */
-M2C_UNK func_00256440();                            /* extern */
+M2C_UNK Pes6MatchSetup_FillSquads();                            /* extern */
 M2C_UNK func_00256D50(s32, s32, s32);               /* extern */
 M2C_UNK func_00288350();                            /* extern */
 M2C_UNK func_0028CD80(s8, s32, M2C_UNK *);          /* extern */
@@ -50,7 +50,7 @@ loop_2:
         var_s2 += 1;
         var_s0 += 2;
     } while (var_s2 < 2);
-    func_00256440();
+    Pes6MatchSetup_FillSquads();
     var_a1 = 0;
     var_a2_2 = ((void *)D_00591A90);
     do {

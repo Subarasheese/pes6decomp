@@ -8,7 +8,7 @@ extern s32 func_00987E10(void);
 extern s32 func_00987B90(s32);
 extern s32 func_009317C0(s32, s32);
 extern s32 func_0099C590(void);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern s32 func_00981280(void);
 M2C_UNK func_0081CA90();                            /* extern */
 s32 func_0081CAD0();                                /* extern */
@@ -126,7 +126,7 @@ s32 func_00991B40(void) {
             }
             break;
         case 1:                                     /* switch 2 */
-            if (func_0017F900() != 0) {
+            if (Pes6File_AllChannelsIdle() != 0) {
                 var_a0_4 = 3;
                 (*(s16 *)D_008A5F74) += 1;
                 if (3 < 5) {
@@ -159,7 +159,7 @@ s32 func_00991B40(void) {
         }
         break;
     case 1:                                         /* switch 1 */
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             var_a0_6 = 2;
             (*(s16 *)D_008A5F72) += 1;
             if (2 < 5) {

@@ -5,7 +5,7 @@
 extern void func_0022F110(void);
 extern void * func_0022F150(void);
 extern s32 func_0022F0E0(void);
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 M2C_UNK func_009364A0();                            /* extern */
 u8 *func_009614F0();                                /* extern */
 extern void *D_003E77B0;
@@ -34,7 +34,7 @@ void func_00934A10(void) {
             var_s1 = 0;
             break;
         default:                                    /* switch 1 */
-            var_s1 = func_00151EA0(2) & 0xFF;
+            var_s1 = Pes6Random_Below(2) & 0xFF;
             break;
         }
         func_0022F110();

@@ -16,7 +16,7 @@ s32 func_0021E000(M2C_UNK);                         /* extern */
 s32 func_0026C760();                                /* extern */
 M2C_UNK func_002CA9A0(M2C_UNK, s32);                /* extern */
 s64 func_002CBBE0(s32);                             /* extern */
-M2C_UNK func_00363BD0();                            /* extern */
+M2C_UNK Pes6Keyboard_Release();                            /* extern */
 M2C_UNK func_0090BA70(M2C_UNK);                     /* extern */
 M2C_UNK func_00BC5BE0();                            /* extern */
 extern char D_0058D7AA[];
@@ -28,7 +28,7 @@ void func_008FF570(void) {
     M2C_UNK var_a0_2;
     s32 var_s0;
 
-    func_00363BD0();
+    Pes6Keyboard_Release();
     if ((*(s8 *)D_0058D7AA) == 0) {
         var_a0 = 0x10250;
     } else {

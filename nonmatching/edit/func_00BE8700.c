@@ -5,7 +5,7 @@
 extern void func_00C1B3C0(u32);
 extern s32 func_00BC57E0(s32, s32, s32);
 extern void * Pes6Player_GetRecord(int, int);
-s32 func_00151EA0(s32);                             /* extern */
+s32 Pes6Random_Below(s32);                             /* extern */
 M2C_UNK func_001B6460(M2C_UNK);                     /* extern */
 M2C_UNK func_001C4730(s32, void *, M2C_UNK);        /* extern */
 M2C_UNK func_00BC3FB0(M2C_UNK);                     /* extern */
@@ -37,7 +37,7 @@ void func_00BE8700(u32 arg0) {
     func_00BC7390(0);
     func_00C1B3C0(arg0);
     do {
-        temp_s3 = ((func_00151EA0(0x8C) & 0xFFFF) + 0x40) & 0xFFFF;
+        temp_s3 = ((Pes6Random_Below(0x8C) & 0xFFFF) + 0x40) & 0xFFFF;
     } while ((M2C_FIELD((((void *)D_003DF3A0) + (temp_s3 * 0x10)), u16 *, 0xE) & 1) != 1);
     func_00C1B440(0, temp_s3);
     temp_s0 = func_00BC6100(temp_s3, 0) & 0xFF;
@@ -51,10 +51,10 @@ void func_00BE8700(u32 arg0) {
         } while (var_s2 < temp_s0);
     }
     if (var_s1 == 0) {
-        var_s0 = func_00151EA0(temp_s0 & 0xFF) & 0xFF;
+        var_s0 = Pes6Random_Below(temp_s0 & 0xFF) & 0xFF;
     } else {
         do {
-            var_s0 = func_00151EA0(temp_s0 & 0xFF) & 0xFF;
+            var_s0 = Pes6Random_Below(temp_s0 & 0xFF) & 0xFF;
         } while ((M2C_FIELD(func_00BC5AA0(temp_s3, var_s0, 0), u8 *, 0x32) & 3) != 1);
     }
     temp_s1 = func_00BC5DF0(temp_s3, var_s0, 0) & 0xFFFF;

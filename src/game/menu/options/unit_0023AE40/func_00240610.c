@@ -10,18 +10,18 @@ typedef struct {
     u8 pad[0x34 - 3];
 } Rec;
 
-extern Rec D_003AA200[];
-extern u8 D_003E9AAC;
+extern Rec Pes6PadAssign[];
+extern u8 Pes6FormationMenu_HumanPresent;
 
 void func_00240610(void) {
     s32 i;
     Rec *p;
-    D_003E9AAC = 0;
-    for (i = 0, p = D_003AA200; i < 8; i++, p++) {
+    Pes6FormationMenu_HumanPresent = 0;
+    for (i = 0, p = Pes6PadAssign; i < 8; i++, p++) {
         s32 a = p->v;
         if (ABS(a) == 1 || ABS(a) == 2) {
             if (p->w == 0) {
-                D_003E9AAC = 1;
+                Pes6FormationMenu_HumanPresent = 1;
             }
         }
     }

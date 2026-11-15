@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern s32 func_001A5BB0(s32);
 extern void func_00288570(void);
 M2C_UNK func_001A5E00(M2C_UNK);                     /* extern */
@@ -51,7 +51,7 @@ block_36:
         }
         break;
     case 2:                                         /* switch 1 */
-        if (func_0017F900() != 0) {
+        if (Pes6File_AllChannelsIdle() != 0) {
             var_v1 = (*(u8 *)D_009083B2) + 1;
             goto block_40;
         }

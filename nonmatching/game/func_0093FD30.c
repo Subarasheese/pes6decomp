@@ -4,7 +4,7 @@
 
 extern void func_001AC470(void);
 extern void func_001AFBF0(s32, s32);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 M2C_UNK func_001AB5E0();                            /* extern */
 M2C_UNK func_001AC5A0();                            /* extern */
 M2C_UNK func_001B43B0(s32, s32);                    /* extern */
@@ -20,7 +20,7 @@ s32 func_0093FD30(void) {
     if (D_003EA6FC == 0) {
         goto block_7;
     }
-    if (func_0017F900() == 0) {
+    if (Pes6File_AllChannelsIdle() == 0) {
         return 1;
     }
     func_001AB5E0();

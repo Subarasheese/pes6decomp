@@ -16,7 +16,7 @@ extern void *D_003EAAE4;
 extern s16 D_003EAAEC;
 extern s16 D_003EAAF0;
 extern s32 D_003EAAF4;
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 
 s32 func_00939730(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s16 temp_a0;
@@ -44,7 +44,7 @@ block_13:
     default:
         return 0;
     case 0:
-        if (M2C_FIELD(((void *)D_0053C300), s8 *, 9) == 2) {
+        if (M2C_FIELD(((void *)Pes6Scene_Menu_State), s8 *, 9) == 2) {
             M2C_FIELD(temp_s0, s16 *, 0x10) = (s16) D_003EAAF0;
             M2C_FIELD(temp_s0, s16 *, 0x12) = (s16) D_003EAAEC;
         }

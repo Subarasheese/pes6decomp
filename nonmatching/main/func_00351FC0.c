@@ -4,9 +4,9 @@
 
 extern u8 func_00351EB0(s32);
 extern void func_00295610(void);
-s32 func_00151EA0(M2C_UNK);                         /* extern */
+s32 Pes6Random_Below(M2C_UNK);                         /* extern */
 M2C_UNK func_00295650(u8 *, s8 *);                  /* extern */
-extern char D_00591BB4[];
+extern char Pes6MatchContext_Stadium[];
 extern char D_00591BB6[];
 extern char D_00591BB8[];
 
@@ -27,10 +27,10 @@ void func_00351FC0(s8 arg0, s8 arg1, s8 arg2, s8 arg3) {
     sp5F = 0;
     if (!(var_s1 & 0xFF)) {
         do {
-            var_s1 = func_00151EA0(0xFF) & 0xFF;
+            var_s1 = Pes6Random_Below(0xFF) & 0xFF;
         } while (var_s1 == 0);
     }
-    sp58 = func_00351EB0((s32) (*(u8 *)D_00591BB4));
+    sp58 = func_00351EB0((s32) (*(u8 *)Pes6MatchContext_Stadium));
     sp59 = arg0;
     sp5A = arg1;
     if ((*(u8 *)D_00591BB8) == 0) {

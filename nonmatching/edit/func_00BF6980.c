@@ -5,7 +5,7 @@
 s32 func_00BC44D0(u8);                              /* extern */
 s32 func_00BF3870(u8);                              /* extern */
 s32 func_00BF38D0(s32);                             /* extern */
-extern char D_003A9C60[];
+extern char Pes6StadiumTable[];
 extern char D_00CEB700[];
 extern char D_00CEB704[];
 extern char D_00CEB708[];
@@ -30,7 +30,7 @@ void func_00BF6980(s32 arg0, s32 arg1) {
     }
     M2C_FIELD(((void *)D_00CEB700), s32 *, 0xC) = 0;
     var_s4 = 0;
-    var_s2 = ((void *)D_003A9C60);
+    var_s2 = ((void *)Pes6StadiumTable);
     do {
         temp_s3 = M2C_FIELD(var_s2, u8 *, 1);
         if (temp_s3 == 0) {
@@ -50,7 +50,7 @@ void func_00BF6980(s32 arg0, s32 arg1) {
     } while (var_s4 < 0x24);
     var_s4_2 = 0;
     var_s3 = 0;
-    var_s1 = ((void *)D_003A9C60);
+    var_s1 = ((void *)Pes6StadiumTable);
 loop_19:
     temp_s2 = M2C_FIELD(var_s1, u8 *, 1);
     temp_s5 = M2C_FIELD(((void *)D_00CEB700), s32 *, 0);

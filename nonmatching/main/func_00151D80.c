@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-extern char D_00376A98[];
+extern char Pes6Random_State[];
 
 s32 func_00151D80(s32 arg0, s32 arg1) {
     f32 temp_f1;
@@ -19,7 +19,7 @@ s32 func_00151D80(s32 arg0, s32 arg1) {
 
     temp_a2 = arg1 & 0xFFFF;
     if (temp_a2 != 0) {
-        temp_a0 = ((void *)D_00376A98) + (arg0 * 4);
+        temp_a0 = ((void *)Pes6Random_State) + (arg0 * 4);
         temp_v1 = *temp_a0;
         temp_v1_2 = temp_v1 ^ (temp_v1 << 0x11);
         *temp_a0 = temp_v1_2 ^ (temp_v1_2 >> 0xF);

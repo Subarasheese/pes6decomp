@@ -4,7 +4,7 @@
 
 extern s32 func_0021FBC0(u16);
 s32 func_0021EB50(u16, M2C_UNK);                    /* extern */
-s32 func_0021EE40(u16, M2C_UNK);                    /* extern */
+s32 Pes6Team_GetHomeStadium(u16, M2C_UNK);                    /* extern */
 s32 func_00B94720(u16, M2C_UNK, s32);               /* extern */
 s32 func_00B94A90(u16);                             /* extern */
 s32 func_00B94B10(u16);                             /* extern */
@@ -54,7 +54,7 @@ void func_00B9F590(s32 arg0) {
     M2C_FIELD(((void *)D_00CE3680), s16 *, 0x28) = (s16) (func_00B94B10(M2C_FIELD(((void *)D_00CE3680), u16 *, 4)) & 0xFF);
     M2C_FIELD(((void *)D_00CE3680), s16 *, 0x2A) = (s16) (func_0021EB50(M2C_FIELD(((void *)D_00CE3680), u16 *, 4), 0) & 0xFF);
     M2C_FIELD(((void *)D_00CE3680), s16 *, 0x2C) = (s16) (func_00B94A90(M2C_FIELD(((void *)D_00CE3680), u16 *, 4)) & 0xFF);
-    M2C_FIELD(((void *)D_00CE3680), s16 *, 0x2E) = (s16) (func_0021EE40(M2C_FIELD(((void *)D_00CE3680), u16 *, 4), 0) & 0xFF);
+    M2C_FIELD(((void *)D_00CE3680), s16 *, 0x2E) = (s16) (Pes6Team_GetHomeStadium(M2C_FIELD(((void *)D_00CE3680), u16 *, 4), 0) & 0xFF);
     M2C_FIELD(((void *)D_00CE3680), s16 *, 0x30) = 0;
     M2C_FIELD(((void *)D_00CE3680), s16 *, 0x32) = 0;
     M2C_FIELD(((void *)D_00CE3680), s32 *, 0x40) = func_00B95060(M2C_FIELD(((void *)D_00CE3680), u16 *, 4));

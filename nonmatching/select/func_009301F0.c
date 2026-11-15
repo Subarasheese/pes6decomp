@@ -11,7 +11,7 @@ M2C_UNK func_00263450(s32);                         /* extern */
 extern s32 D_003EA9F4;
 extern s32 D_003EA9FC;
 extern s32 D_003EAA0C;
-extern char D_0053C302[];
+extern char Pes6SelectMenu_Screen[];
 extern char D_0053C318[];
 extern char D_00591C09[];
 
@@ -43,7 +43,7 @@ void func_009301F0(void) {
             case 5:                                 /* switch 3 */
                 var_a0 = 0xD;
 block_29:
-                (*(s16 *)D_0053C302) = var_a0;
+                (*(s16 *)Pes6SelectMenu_Screen) = var_a0;
                 break;
             case 2:                                 /* switch 3 */
                 switch (D_003EAA0C) {               /* switch 4; irregular */

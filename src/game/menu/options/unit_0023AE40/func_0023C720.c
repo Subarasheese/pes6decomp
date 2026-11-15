@@ -3,7 +3,7 @@
 
 extern s32 func_0021E000(u32);
 extern int Pes6SaveData_GetUnavailableFlag(void);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 extern s32 func_0021DF90(s32);
 M2C_UNK func_001E7140(s32);                         /* extern */
 M2C_UNK func_001F0210(s32);                         /* extern */
@@ -14,7 +14,7 @@ extern s32 D_003E9A40;
 extern char Pes6SceneStack[];
 
 s32 func_0023C720(void) {
-    if (func_0017F900() == 1) {
+    if (Pes6File_AllChannelsIdle() == 1) {
         D_003E9A40 = 0;
         func_008B34C0();
         if ((Pes6SaveData_GetUnavailableFlag() == 1) && (func_008223F0() == 1)) {

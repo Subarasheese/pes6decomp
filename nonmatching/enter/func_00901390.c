@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern void func_001A58E0(void *, signed char);
-s32 func_00151EA0(M2C_UNK, void *);                 /* extern */
+s32 Pes6Random_Below(M2C_UNK, void *);                 /* extern */
 M2C_UNK func_00209A00(void *, M2C_UNK, M2C_UNK);    /* extern */
 M2C_UNK func_0027A600(M2C_UNK *, M2C_UNK);          /* extern */
 M2C_UNK func_00910F30(M2C_UNK *);                   /* extern */
@@ -31,7 +31,7 @@ void func_00901390(void) {
         M2C_FIELD(((void *)Pes6MatchPlayers), s32 *, 0x94) = 0;
         M2C_FIELD(((void *)Pes6MatchPlayers), s32 *, 0xE0) = 0;
         M2C_FIELD(((void *)Pes6MatchPlayers), s32 *, 0xE4) = 0;
-        temp_hi = (s32) (func_00151EA0(0x3E8, M2C_FIELD(((void *)Pes6MatchPlayers), void **, 4)) & 0xFFFF) % 3;
+        temp_hi = (s32) (Pes6Random_Below(0x3E8, M2C_FIELD(((void *)Pes6MatchPlayers), void **, 4)) & 0xFFFF) % 3;
         switch (temp_hi) {                          /* irregular */
         case 2:
             func_00209A00(M2C_FIELD(((void *)Pes6MatchPlayers), void **, 4), 0x59C, 0);

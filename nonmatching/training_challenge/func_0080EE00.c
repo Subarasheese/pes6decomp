@@ -6,10 +6,10 @@ extern void func_00264790(void *, u8);
 extern int func_002646D0(int);
 extern s32 func_00154490(s32, s32);
 extern void func_0020B3C0(void);
-extern void func_00145380(s32);
+extern void Pes6TextureCache_Invalidate(s32);
 extern void func_002648F0(int);
 extern void func_002648E0(int);
-extern s32 func_00145440(s32);
+extern s32 Pes6Texture_GetClut(s32);
 extern void func_0020B3A0(void);
 extern void func_001AFD20(void);
 s32 func_001454C0(s32);                             /* extern */
@@ -88,7 +88,7 @@ s32 func_0080EE00(s32 *arg0, s32 arg1) {
         sp64 = (*(f32 *)D_0082818C);
         sp68 = (*(f32 *)D_00828190);
         do {
-            var_v0 = func_00145440(func_001454C0(*var_s1_2));
+            var_v0 = Pes6Texture_GetClut(func_001454C0(*var_s1_2));
             var_a1 = 0;
 loop_8:
             M2C_FIELD(var_v0, s8 *, 3) = 0x40;
@@ -104,7 +104,7 @@ loop_8:
             if (var_a1 < 0x10) {
                 goto loop_8;
             }
-            func_00145380(*var_s1_2);
+            Pes6TextureCache_Invalidate(*var_s1_2);
             var_s2 += 1;
             var_s1_2 += 4;
         } while (var_s2 < 3U);

@@ -6,7 +6,7 @@ extern void func_0023EC10(void *, s32);
 M2C_UNK func_0026E840(M2C_UNK);                     /* extern */
 extern s8 D_003EAB90;
 extern s8 D_003EAB94;
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 extern char D_008DC230[];
 extern char D_00967A98[];
 
@@ -44,5 +44,5 @@ block_23:
         }
         break;
     }
-    func_0023EC10(((void *)D_0053C300) + 0x10, 1);
+    func_0023EC10(((void *)Pes6Scene_Menu_State) + 0x10, 1);
 }

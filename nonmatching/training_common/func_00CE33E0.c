@@ -4,7 +4,7 @@
 
 extern void func_001BC2B0(void);
 extern void func_001BC360(void);
-extern void func_00363BD0(void);
+extern void Pes6Keyboard_Release(void);
 extern void func_002F4E10(void *);
 void func_00CE33E0(void *arg0) {
     s32 temp_a0;
@@ -15,7 +15,7 @@ void func_00CE33E0(void *arg0) {
     func_001BC360();
     func_001BC360();
     func_001BC360();
-    func_00363BD0();
+    Pes6Keyboard_Release();
     temp_a0 = M2C_FIELD(arg0, s32 *, 0x114);
     switch (temp_a0) {                              /* irregular */
     case 1:

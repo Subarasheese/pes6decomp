@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern void func_00363BD0(void);
+extern void Pes6Keyboard_Release(void);
 M2C_UNK func_001BC270(u8);                          /* extern */
 M2C_UNK func_0064E870(s32, s32);                    /* extern */
 extern u8 D_003E9E20;
@@ -16,7 +16,7 @@ void func_0064E6B0(void) {
     s32 var_a1;
 
     if ((*(u8 *)D_0065DE38) == 1) {
-        func_00363BD0();
+        Pes6Keyboard_Release();
         (*(u8 *)D_0065DE38) = 0;
     }
     var_a0 = 0;

@@ -4,7 +4,7 @@
 
 extern int func_00363C30(void);
 extern s32 func_00362BB0(void);
-extern void func_00363BD0(void);
+extern void Pes6Keyboard_Release(void);
 M2C_UNK func_001B79C0();                            /* extern */
 M2C_UNK func_00363330(M2C_UNK);                     /* extern */
 M2C_UNK func_00D141E0(M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
@@ -29,7 +29,7 @@ void func_00BAA890(void *arg0) {
     if (func_00363C30() == 0) {
         D_003EAF74 = 0;
     } else {
-        func_00363BD0();
+        Pes6Keyboard_Release();
         D_003EAF74 = 1;
     }
     func_00362BB0();

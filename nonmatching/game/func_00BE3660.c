@@ -4,7 +4,7 @@
 
 extern void func_00B364D0(u32);
 extern u8 func_00BF6270(void);
-extern s32 func_0017F900(void);
+extern s32 Pes6File_AllChannelsIdle(void);
 M2C_UNK func_00207390(void *, M2C_UNK);             /* extern */
 M2C_UNK func_00209A00(void *, M2C_UNK, M2C_UNK);    /* extern */
 s32 func_009B3070(u16, u16);                        /* extern */
@@ -49,7 +49,7 @@ void func_00BE3660(void *arg0) {
     if (M2C_FIELD(M2C_FIELD(arg0, void **, 0), u8 *, 0x4E) != 0) {
         goto block_1;
     }
-    if (func_0017F900() != 0) {
+    if (Pes6File_AllChannelsIdle() != 0) {
         func_00BA9850((*(s32 *)D_00CBCB1C), 0, arg0);
         M2C_FIELD(M2C_FIELD(arg0, void **, 0), u8 *, 0x4E) = 1U;
     } else {

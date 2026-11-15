@@ -3,7 +3,7 @@
 
 M2C_UNK func_0012AD50(s32);                         /* extern */
 M2C_UNK func_0012ADE0(s32);                         /* extern */
-s32 func_0012C8A0(s32, s32);                        /* extern */
+s32 Pes6Mem_Malloc(s32, s32);                        /* extern */
 s32 func_0012D380(s32);                             /* extern */
 M2C_UNK func_0012D4F0(s32, s32);                    /* extern */
 s32 func_0012D640();                                /* extern */
@@ -18,7 +18,7 @@ s32 func_0012DB20(s32 arg0, s32 arg1) {
     if (func_0012D380(var_s1) == 0) {
         var_s1 = func_0012D640();
     }
-    temp_s0 = func_0012C8A0(var_s1, arg1);
+    temp_s0 = Pes6Mem_Malloc(var_s1, arg1);
     func_0012ADE0(D_003E7410);
     func_0012D4F0(var_s1, temp_s0);
     return temp_s0;

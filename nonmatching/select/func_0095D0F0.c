@@ -12,7 +12,7 @@ M2C_UNK func_008C2A80(s8 *);                        /* extern */
 M2C_UNK func_008C2BF0(s8 *);                        /* extern */
 M2C_UNK func_008C2FD0(M2C_UNK *, s8 *);             /* extern */
 M2C_UNK func_0095C1B0();                            /* extern */
-extern char D_0053C300[];
+extern char Pes6Scene_Menu_State[];
 extern char D_0053C310[];
 extern char D_00966230[];
 extern char D_0096D2D0[];
@@ -34,7 +34,7 @@ void func_0095D0F0(void) {
         func_008C0EE0(((void *)D_00966230), ((void *)D_0096D2D0));
         func_008C0ED0(((void *)D_0096D2D0));
     }
-    if ((M2C_FIELD(((void *)D_0053C300), s32 *, 0x10) & 4) == 4) {
+    if ((M2C_FIELD(((void *)Pes6Scene_Menu_State), s32 *, 0x10) & 4) == 4) {
         func_0095C1B0();
         func_008C2BF0(((void *)D_0096D2D0));
         func_008C2A80(((void *)D_0096D2D0));
@@ -57,5 +57,5 @@ void func_0095D0F0(void) {
     if (func_0023B380(1) == 0) {
         func_0023B3B0(1, 0);
     }
-    M2C_FIELD(((void *)D_0053C300), s32 *, 0x10) = 0;
+    M2C_FIELD(((void *)Pes6Scene_Menu_State), s32 *, 0x10) = 0;
 }

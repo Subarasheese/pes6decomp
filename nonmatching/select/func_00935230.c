@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
-s32 func_0017F900();                                /* extern */
+s32 Pes6File_AllChannelsIdle();                                /* extern */
 M2C_UNK func_001D5EE0(M2C_UNK, f32 *);              /* extern */
 M2C_UNK func_001E7370(s32, f32 *);                  /* extern */
 M2C_UNK func_001F0590(s32);                         /* extern */
@@ -41,13 +41,13 @@ block_15:
         D_003EAA64 += 1;
         goto block_15;
     case 2:
-        if (func_0017F900() == 1) {
+        if (Pes6File_AllChannelsIdle() == 1) {
             func_001D5EE0(0x10388, &sp18);
             D_003EAA64 += 1;
         }
         goto block_15;
     case 3:
-        if (func_0017F900() == 1) {
+        if (Pes6File_AllChannelsIdle() == 1) {
             D_003EAA64 = 0;
             return 1;
         }

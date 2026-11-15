@@ -7,7 +7,7 @@ extern s32 func_0012D540(s32, u32);
 extern int func_0012D640(void);
 extern s32 func_0012AD50(s32);
 extern s32 func_0012ADE0(s32);
-s32 func_0012C8A0(s32, u32);                        /* extern */
+s32 Pes6Mem_Malloc(s32, u32);                        /* extern */
 extern s32 D_003E7410;
 extern s32 D_003E9794;
 
@@ -24,7 +24,7 @@ loop_1:
         if (var_s0 != var_s1) {
             if (func_0012D540(var_s0, arg0) != 0) {
                 func_0012AD50(D_003E7410);
-                temp_s3 = func_0012C8A0(var_s0, arg0);
+                temp_s3 = Pes6Mem_Malloc(var_s0, arg0);
                 func_0012ADE0(D_003E7410);
                 if (temp_s3 != 0) {
                     func_0012D4F0(var_s0, temp_s3);
@@ -45,7 +45,7 @@ block_12:
     if (func_0012D380(var_s1) == 0) {
         var_s1 = func_0012D640();
     }
-    temp_s0 = func_0012C8A0(var_s1, arg0);
+    temp_s0 = Pes6Mem_Malloc(var_s1, arg0);
     func_0012ADE0(D_003E7410);
     func_0012D4F0(var_s1, temp_s0);
     return temp_s0;
