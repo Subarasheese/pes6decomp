@@ -19,8 +19,9 @@ How a function is judged (the Power Stone decomp's method, on tools/r5900sim.py)
     chosen greedily by the original instructions they reach that the chosen ones did not (up to
     DEV_CASES), and HOLDOUT more are kept apart.
   * The compiled C runs every chosen and holdout case. They must agree on: the calls out, in order
-    (target, and the arguments the callee's prototype in the draft declares: int arguments a0-a3/t0-t3,
-    float arguments f12-f19; a callee without a prototype is compared by target only; an argument
+    (target, and the arguments: those the draft's prototype declares plus every argument register the
+    original callee reads before writing it, found from the callee's own code, so a missing or
+    weakened prototype hides nothing; int arguments a0-a3/t0-t3, float arguments f12-f19; an argument
     pointing into the function's own stack frame counts as "the stack", since where a local lives
     is the compiler's choice, and what it points at is not compared); the final value
     of every byte written outside the function's own stack frame; the return value as the draft's
@@ -88,7 +89,9 @@ def runtime_starts():
             env = {k: v for k, v in os.environ.items() if k != "PES6_TARGET"}
             out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=env, check=True).stdout
             os.makedirs(RESULTS, exist_ok=True)
-            open(path, "w").write(out.strip().splitlines()[-1])
+            tmp = f"{path}.{os.getpid()}"           # parallel workers: write whole, then rename
+            open(tmp, "w").write(out.strip().splitlines()[-1])
+            os.replace(tmp, path)
         data = json.load(open(path))
         _RUNTIME = {x[0] if isinstance(x, list) else x for x in data}
     return _RUNTIME
@@ -233,6 +236,92 @@ def fill_buffer(seed):
     return b"".join(struct.pack("<I", pools.word() & M32) for _ in range(BUFSZ // 4))
 
 
+# ---- what a callee really takes -------------------------------------------------------------------
+
+_STARTS = {}
+_INPUTS = {}
+INT_ARGS = (4, 5, 6, 7, 8, 9, 10, 11)
+FLOAT_ARGS = tuple(range(12, 20))
+
+
+def function_starts(image):
+    if image not in _STARTS:
+        import csv
+        s = {int(r["address"], 16) for r in csv.DictReader(open(os.path.join(ROOT, "build", "functions.csv")))}
+        if image != "main":
+            for _, _, files in os.walk(os.path.join(ROOT, "build", "targets", image, "splat", "asm")):
+                for f in files:
+                    m = re.match(r"func_([0-9A-F]{8})\.s$", f)
+                    if m:
+                        s.add(int(m.group(1), 16))
+        _STARTS[image] = sorted(s)
+    return _STARTS[image]
+
+
+def callee_inputs(target, mem, image, depth=0):
+    """(int argument registers, float argument registers) the original callee reads before writing them:
+    the arguments it really takes, whatever a draft's prototype says. Linear scan of its code; a call it
+    makes passes on what that callee takes (a few levels deep); an indirect jump assumes a0-a3."""
+    import bisect
+    import rabbitizer as R
+    key = (image, target)
+    if key in _INPUTS:
+        return _INPUTS[key]
+    starts = function_starts(image)
+    i = bisect.bisect_left(starts, target)
+    if i >= len(starts) or starts[i] != target or depth > 3:
+        return (set(INT_ARGS[:4]), set())          # unknown code: a0-a3, as for any call
+    end = starts[i + 1] if i + 1 < len(starts) else target + 0x4000
+    end = min(end, target + 0x8000)
+    written, ints, flts = set(), set(), set()
+    _INPUTS[key] = (set(INT_ARGS[:4]), set())       # recursion guard
+    for a in range(target, end, 4):
+        if a + 4 > len(mem):
+            break
+        w = struct.unpack_from("<I", mem, a)[0]
+        ins = R.Instruction(w, a, R.InstrCategory.R5900)
+        op = w >> 26
+        if op in (2, 3):
+            t = ((a + 4) & 0xF0000000) | ((w & 0x3FFFFFF) << 2)
+            si, sf = callee_inputs(t, mem, image, depth + 1)
+            ints |= si - written
+            flts |= sf - written
+        elif op == 0 and (w & 0x3F) in (8, 9) and ((w >> 21) & 31) != 31:
+            ints |= set(INT_ARGS[:4]) - written
+        for reads, field in ((ins.readsRs, "rs"), (ins.readsRt, "rt"), (ins.readsRd, "rd")):
+            try:
+                if reads():
+                    r = getattr(ins, field).value
+                    if r in INT_ARGS and r not in written:
+                        ints.add(r)
+            except (AttributeError, ValueError):
+                pass
+        if op == 17:
+            for reads, field in ((ins.readsFs, "fs"), (ins.readsFt, "ft"), (ins.readsFd, "fd")):
+                try:
+                    if reads():
+                        r = getattr(ins, field).value
+                        if r in FLOAT_ARGS and r not in written:
+                            flts.add(r)
+                except (AttributeError, ValueError):
+                    pass
+        for mods, field in ((ins.modifiesRs, "rs"), (ins.modifiesRt, "rt"), (ins.modifiesRd, "rd")):
+            try:
+                if mods():
+                    written.add(getattr(ins, field).value)
+            except (AttributeError, ValueError):
+                pass
+        if op == 17:
+            for mods, field in ((ins.modifiesFs, "fs"), (ins.modifiesFt, "ft"), (ins.modifiesFd, "fd")):
+                try:
+                    if mods():
+                        written.add(getattr(ins, field).value)
+                except (AttributeError, ValueError):
+                    pass
+    _INPUTS[key] = (ints, flts)
+    return _INPUTS[key]
+
+
 # ---- running -------------------------------------------------------------------------------------
 
 _BUFFERS = {}
@@ -245,9 +334,10 @@ def buffer_for(seed):
 
 
 class Run:
-    def __init__(self, base_mem):
+    def __init__(self, base_mem, image="main"):
         self.m = S.Machine()
         self.base = base_mem
+        self.image = image
         self.dirty = None              # (address, size) touched by the last case, restored before the next
 
     def prepare(self, case):
@@ -293,18 +383,18 @@ class Run:
         idx = [0]
 
         def answer(target):
+            # compared arguments: those the draft's prototype declares, plus every register the original
+            # callee really reads (callee_inputs), so a missing or weakened prototype hides nothing
             proto = protos_by_addr.get(target, "?")
-            if proto is None or proto == "?":
-                args = ()
-            else:
-                ni, nf = proto
-                # a pointer into the function's own stack frame is compared as "the stack": where a
-                # local lives is the compiler's choice, so its address may differ between original and C
-                ints = tuple("stack" if STACK_TOP - FRAME <= m.g32(r) < STACK_TOP else m.g32(r)
-                             for r in (4, 5, 6, 7, 8, 9, 10, 11)[:ni])
-                flts = tuple(m.fpr[12 + k] for k in range(nf))
-                args = ints + flts
-            calls.append((target, args))
+            ni, nf = (0, 0) if proto is None or proto == "?" else proto
+            ri, rf = callee_inputs(target, self.base, self.image)
+            iregs = sorted(set(INT_ARGS[:ni]) | ri)
+            fregs = sorted(set(FLOAT_ARGS[:nf]) | rf)
+            # a pointer into the function's own stack frame is compared as "the stack": where a
+            # local lives is the compiler's choice, so its address may differ between original and C
+            ints = tuple("stack" if STACK_TOP - FRAME <= m.g32(r) < STACK_TOP else m.g32(r) for r in iregs)
+            flts = tuple(m.fpr[r] for r in fregs)
+            calls.append((target, ints + flts))
             v, f = responses[idx[0] % len(responses)]
             idx[0] += 1
             m.gpr[2] = S.sx64(v)
@@ -506,7 +596,7 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
 
     if base_mem is None:
         base_mem = build_memory(image)
-    o_run, c_run = Run(base_mem), Run(base_mem)
+    o_run, c_run = Run(base_mem, image), Run(base_mem, image)
     code = [(0x00100000, 0x00372AE0)]
     if image != "main":
         tl, tt = match.load_text()
@@ -734,7 +824,9 @@ def batch(list_path, jobs, limit):
 
 def report():
     found = {}
-    for fn in sorted(os.listdir(RESULTS)) if os.path.isdir(RESULTS) else []:
+    # results-*.json (whole batches) first, then partial-*.jsonl (one line per function, newest last): later wins
+    names = sorted(os.listdir(RESULTS)) if os.path.isdir(RESULTS) else []
+    for fn in sorted(names, key=lambda n: (not n.startswith("results-"), n)):
         m = re.match(r"partial-(\w+)\.jsonl$", fn)
         if m:
             for line in open(os.path.join(RESULTS, fn)):
