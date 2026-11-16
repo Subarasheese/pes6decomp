@@ -690,17 +690,37 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
             if why:
                 return {"verdict": "DIFFERS", "detail": f"{kind} case: {why}", "cases": len(chosen) + len(holdout),
                         "coverage": coverage, "key": key}
-    res = {"verdict": "EQUIVALENT", "cases": len(chosen), "holdout": len(holdout), "coverage": coverage,
+    res = {"verdict": "EQUIVALENT", "memory": memory_label(), "cases": len(chosen), "holdout": len(holdout), "coverage": coverage,
            "returns": ret, "key": key, "seconds": round(time.time() - t0, 1)}
     if cache is not None:
         cache[key] = res
     return res
 
 
-def ram_dump():
-    """A RAM snapshot of the running game to start every case from, if one is configured:
-    PES6_EQUIV_RAM = a raw 32 MB EE memory dump or a PCSX2 savestate (.p2s). Local only, never committed."""
+DEFAULT_RAM = os.path.join(ROOT, "build", "equiv", "ram-match.bin")
+
+
+def memory_source():
+    """What cases start from: PES6_EQUIV_RAM if set ("image" forces the executable's initial memory),
+    else build/equiv/ram-match.bin when it exists, else the executable's initial memory. Every result
+    records it, so a verdict judged without a snapshot is visible."""
     p = os.environ.get("PES6_EQUIV_RAM")
+    if p == "image":
+        return None
+    if p:
+        return p
+    return DEFAULT_RAM if os.path.exists(DEFAULT_RAM) else None
+
+
+def memory_label():
+    p = memory_source()
+    return f"ram:{os.path.basename(p)}" if p else "image"
+
+
+def ram_dump():
+    """A RAM snapshot of the running game to start every case from (memory_source): a raw 32 MB EE
+    memory dump or a PCSX2 savestate (.p2s). Local only, never committed."""
+    p = memory_source()
     if not p:
         return None
     if p.endswith(".p2s"):
@@ -876,9 +896,13 @@ def report():
              "and what is compared. Coverage is the share of the original function's instructions the cases",
              "ran; a branch no case reached is not checked.", "",
              "Checked: " + ", ".join(f"{k.lower()} {v}" for k, v in sorted(counts.items())) + ".", "",
-             "| image | address | symbol | cases | holdout | coverage |", "|---|---|---|---:|---:|---:|"]
+             "Cases start from the memory each row names: `ram:...` is a RAM snapshot of the running game",
+             "(PES6_EQUIV_RAM, or build/equiv/ram-match.bin), `image` the executable's initial memory.", "",
+             "| image | address | symbol | cases | holdout | coverage | memory |", "|---|---|---|---:|---:|---:|---|"]
     for image, a, r in sorted(eq):
-        lines.append(f"| {image} | `{a}` | `{r.get('symbol', '')}` | {r.get('cases')} | {r.get('holdout')} | {r.get('coverage')}% |")
+        # results recorded before the memory field existed were all judged from the in-match snapshot
+        mem = r.get("memory", "ram:ram-match.bin")
+        lines.append(f"| {image} | `{a}` | `{r.get('symbol', '')}` | {r.get('cases')} | {r.get('holdout')} | {r.get('coverage')}% | {mem} |")
     open(os.path.join(ROOT, "docs", "equivalent.md"), "w").write("\n".join(lines) + "\n")
     print(f"docs/equivalent.md: {len(eq)} equivalent of {len(rows)} checked")
 
