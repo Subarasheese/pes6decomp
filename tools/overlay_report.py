@@ -15,6 +15,15 @@ def valid_proof(target, proof, whole_image=True):
             and not proof.get('orphan_sources') and not proof.get('duplicate_sources'))
 
 
+def _source_key(path):
+    """The build-proof key (8 lowercase hex digits) of the function a source file is for. Named files
+    (Pes6TeamSelect_Confirm.c) resolve through tools/project.py like the build does; the address
+    suffix of func_ADDR files is the fallback."""
+    import project
+    address = project.source_address(str(path))
+    return f'{address:08x}' if address is not None else path.stem[-8:].lower()
+
+
 def publication_errors(head):
     path = ROOT/'config/overlays.json'
     if not path.exists():
@@ -35,7 +44,7 @@ def publication_errors(head):
         proof = json.loads(path.read_text()) if path.exists() else {}
         if not valid_proof(target, proof) or proof.get('commit') != head or proof.get('dirty'):
             errors.append(f'{name}: requires a clean, current, matching overlay build')
-        elif any(proof.get('functions', {}).get(s.stem[-8:].lower()) != 'linked' for s in sources):
+        elif any(proof.get('functions', {}).get(_source_key(s)) != 'linked' for s in sources):
             errors.append(f'{name}: a recovered source did not link')
     return errors
 
