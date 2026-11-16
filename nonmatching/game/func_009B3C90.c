@@ -7,7 +7,7 @@ extern void func_0027A550(void *, s16, s16);
 extern void func_0027A520(int, int);
 extern void func_0027A5B0(void *, s8);
 extern void func_0027A4A0(int, int);
-M2C_UNK func_0027A600(M2C_UNK *, u8);               /* extern */
+M2C_UNK func_0027A600(void *, u8);
 extern void **Pes6Ball_Current;
 extern char Pes6MatchPlayers[];
 extern char D_00591F38[];
@@ -19,7 +19,7 @@ extern char D_00CBAA38[];
 extern char D_00CBAA3C[];
 
 void func_009B3C90(void) {
-    M2C_UNK *var_s2;
+    char *var_s2;
     s32 var_s3;
     void *temp_s0;
     void *temp_s1;
@@ -27,7 +27,7 @@ void func_009B3C90(void) {
     void *temp_v1;
 
     var_s3 = 0;
-    var_s2 = ((void *)Pes6MatchPlayers);
+    var_s2 = Pes6MatchPlayers;
     (*(s32 *)D_00591F38) = (*(s32 *)D_00CBAA10);
     temp_v0 = *Pes6Ball_Current;
     M2C_FIELD(temp_v0, f32 *, 0x40) = (f32) (*(f32 *)D_00CBAA30);

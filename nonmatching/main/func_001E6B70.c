@@ -1,12 +1,11 @@
-/* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
 extern void func_00153FA0(void *);
-extern int Pes6Texture_GetCacheKey(void *);
-M2C_UNK func_00145590(void *);                      /* extern */
-extern void **D_0052B130;
-extern void *D_0052B134;
+extern s32 func_00145480(void *);
+extern void func_00145590(void *);                      /* extern */
+extern void **D_0052B130[];
+extern void *D_0052B134[];
 
 s32 func_001E6B70(s32 arg0) {
     s32 var_v0;
@@ -15,10 +14,10 @@ s32 func_001E6B70(s32 arg0) {
     void **var_s0;
     void *temp_a0;
 
-    var_s0 = D_0052B130;
+    var_s0 = D_0052B130[0];
     if (var_s0 != NULL) {
 loop_1:
-        if (arg0 != Pes6Texture_GetCacheKey(M2C_FIELD(var_s0, void **, 8))) {
+        if (arg0 != func_00145480(M2C_FIELD(var_s0, void **, 8))) {
             var_s0 = M2C_FIELD(var_s0, void ***, 4);
             if (var_s0 != NULL) {
                 goto loop_1;
@@ -40,12 +39,12 @@ loop_1:
             if (temp_a0 != NULL) {
                 M2C_FIELD(temp_a0, void ***, 4) = temp_v1;
             } else {
-                D_0052B130 = temp_v1;
+                D_0052B130[0] = temp_v1;
             }
             if (temp_v1 != NULL) {
                 *temp_v1 = temp_a0;
             } else {
-                D_0052B134 = temp_a0;
+                D_0052B134[0] = temp_a0;
             }
             if (M2C_FIELD(var_s0, u8 *, 0x19) != 2) {
                 func_00145590(M2C_FIELD(var_s0, void **, 8));

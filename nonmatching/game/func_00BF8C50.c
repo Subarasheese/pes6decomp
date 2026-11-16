@@ -1,16 +1,15 @@
-/* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
 #include "pes6/m2c.h"
 
 extern void func_0027B2E0(void *);
-extern void **D_00CBD7B0;
+extern u8 **D_00CBD7B0;
 
 void func_00BF8C50(void) {
-    void *temp_s0;
+    u8 *p;
 
-    temp_s0 = *D_00CBD7B0;
-    func_0027B2E0(temp_s0);
-    *M2C_FIELD(temp_s0, s8 **, 0x10) = 0;
-    M2C_FIELD(temp_s0, s8 *, 3) = 0;
-    M2C_FIELD(temp_s0, s8 *, 4) = 1;
+    p = *D_00CBD7B0;
+    func_0027B2E0(p);
+    **(u8 **)(p + 0x10) = 0;
+    p[3] = 0;
+    p[4] = 1;
 }

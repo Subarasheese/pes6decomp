@@ -1,13 +1,12 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_001F3B90(void *, s32);
 extern s32 func_001F3D10(s32, u8);
 extern void * func_001F4140(void *, s8, s32);
-M2C_UNK func_001F3C00(void *, M2C_UNK *);           /* extern */
-M2C_UNK func_001F3D80(void *, f32 *, void *);       /* extern */
-s32 func_001F5140(M2C_UNK, M2C_UNK, M2C_UNK);       /* extern */
+extern void func_001F3C00(void *, void *);
+extern void func_001F3D80(void *, f32 *, void *);
+extern s32 func_001F5140(s32, s32, s32);
 extern char D_00399430[];
 extern char D_00399434[];
 extern char D_00399438[];
@@ -17,9 +16,9 @@ extern u8 D_003E74BC;
 extern u8 D_003E74BD;
 extern u8 D_003E74BE;
 extern u8 D_003E74BF;
-extern M2C_UNK func_001F0A80;
-extern M2C_UNK func_001F0C50;
-extern M2C_UNK func_001F0ED0;
+extern void func_001F0A80(void);
+extern void func_001F0C50(void);
+extern void func_001F0ED0(void);
 
 void *func_001F0AF0(void *arg0) {
     f32 sp20;
@@ -55,9 +54,9 @@ void *func_001F0AF0(void *arg0) {
             M2C_FIELD(temp_v0, u8 *, 0x55) = sp3E;
             M2C_FIELD(temp_v0, u8 *, 0x56) = sp3F;
         }
-        M2C_FIELD(temp_v0, M2C_UNK **, 0x3C) = &func_001F0ED0;
-        M2C_FIELD(temp_v0, M2C_UNK **, 0x40) = &func_001F0C50;
-        M2C_FIELD(temp_v0, M2C_UNK **, 0x44) = &func_001F0A80;
+        M2C_FIELD(temp_v0, void **, 0x3C) = &func_001F0ED0;
+        M2C_FIELD(temp_v0, void **, 0x40) = &func_001F0C50;
+        M2C_FIELD(temp_v0, void **, 0x44) = &func_001F0A80;
         M2C_FIELD(temp_v0, s8 *, 1) = 0xFF;
         return temp_v0;
     }

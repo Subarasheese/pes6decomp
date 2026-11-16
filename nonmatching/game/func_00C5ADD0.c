@@ -4,10 +4,10 @@
 
 extern u8 func_00C132B0(void *);
 s32 func_002C4B50(void *, s32);                     /* extern */
-void *func_00C13110(M2C_UNK *);                     /* extern */
+void *func_00C13110(s32, s32, void *, void *);
 void *func_00C13280(void *);                        /* extern */
 void *func_00C136E0(void *, M2C_UNK);               /* extern */
-extern M2C_UNK func_00C12860;
+extern void func_00C12860(void);
 
 /* Warning: Gap in callee-saved word stack region.
  * Saved: [0x0, 0x10, 0x14, 0x18, 0x1c, 0x20, 0x24, 0x28, 0x2c, 0x30, 0x34, 0x38, 0x3c, 0x40, 0x44, 0x48, 0x4c, 0x50, 0x54, 0x58, 0x5c, 0x60, 0x64, 0x68, 0x6c, 0x70, 0x74], gap at: 0x8. */
@@ -29,7 +29,7 @@ s32 func_00C5ADD0(s32 arg0, s32 arg1, s32 arg2, s32 (*arg3)(f32 *, u32, u16)) {
     var_s3 = (void *)-1;
     temp_s0 = arg2 & 0xFF;
     if ((arg0 != -1) && (arg1 != -1)) {
-        temp_v0 = func_00C13110(&func_00C12860);
+        temp_v0 = func_00C13110(arg0, arg1, (void *)func_00C12860, (void *)arg3);
         if ((temp_v0 != (void *)-1) && ((temp_v1 = M2C_FIELD(func_00C13280(temp_v0), u8 *, 5) & 3, (temp_v1 == 3)) || (temp_v1 == 1))) {
             var_s3 = func_00C136E0(temp_v0, 7);
         }

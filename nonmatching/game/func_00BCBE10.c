@@ -27,13 +27,13 @@ extern s32 D_003EA780;
 extern s32 D_003EA784;
 extern s32 D_003EA794;
 extern s32 D_003EA79C;
-extern char Pes6MatchPlayers[];
+extern u8 Pes6MatchPlayers[];
 extern char D_00591DB4[];
 extern char D_00CBD311[];
 extern char D_00CBD390[];
 
 void func_00BCBE10(void) {
-    M2C_UNK *var_s0;
+    u8 *var_s0;
     s32 var_s1;
     s32 var_v1;
     u8 temp_v0;
@@ -46,7 +46,7 @@ void func_00BCBE10(void) {
             temp_v0 = func_00C00630();
             if ((temp_v0 != 0x28) && (temp_v0 != 0x26) && (temp_v0 != 0x24)) {
                 var_s1 = 0;
-                var_s0 = ((void *)Pes6MatchPlayers);
+                var_s0 = (u8 *)Pes6MatchPlayers;
                 M2C_FIELD(Pes6Ball_Current, s8 *, 0xC) = 0;
                 do {
                     func_00209A00(M2C_FIELD(var_s0, void **, 4), 0, 0);

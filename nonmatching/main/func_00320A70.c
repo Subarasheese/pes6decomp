@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern s32 func_0030EEB0(void);
+extern s32 func_0030EEB0(void *, void *, void *, void *);
 extern int func_003387D0(void *, int);
 extern u32 func_00333620(s32, u8);
 extern s32 func_003386D0(s32, s32);
@@ -13,12 +13,16 @@ extern s32 func_003389F0(void *, s32, s32);
 void *func_00338AD0(s32, s32, s32, M2C_UNK *);      /* extern */
 s32 func_00356E00(s32, s32 *, s32 *);               /* extern */
 extern char D_003E15C8[];
-extern M2C_UNK func_00320B60;
+extern void func_00320B60(void);
 
-s32 func_00320A70(void *arg0) {
+s32 func_00320A70(void *arg0, s32 arg1, s32 arg2, void *arg3) {
     s32 sp38;
     s32 sp3C;
     void *temp_v0;
+    void *c0 = arg0 + 0x38;
+    void *c1 = &sp38;
+    void *c2 = &sp3C;
+    void *c3 = arg3;
 
     if (func_00356E00(arg0 + 0x38, &sp38, &sp3C) != 0) {
         temp_v0 = func_00338AD0(sp38, sp3C, M2C_FIELD(arg0, s32 *, 8), ((void *)D_003E15C8));
@@ -26,8 +30,12 @@ s32 func_00320A70(void *arg0) {
         func_00338A20(temp_v0, (s32) (arg0 + 0x38), 3);
         func_003389F0(temp_v0, 0, 5);
         func_003389F0(arg0, 1, 1);
+        c0 = arg0;
+        c1 = (void *)1;
+        c2 = (void *)1;
+        c3 = (void *)D_003E15C8;
     }
-    if (func_0030EEB0() != 0) {
+    if (func_0030EEB0(c0, c1, c2, c3) != 0) {
         return 0;
     }
     func_00333620(3, 0U);
@@ -35,6 +43,6 @@ s32 func_00320A70(void *arg0) {
     M2C_FIELD(arg0, s32 *, 0x38) = 0;
     func_00342250();
     func_003386D0(0x1C, 0x78);
-    func_003387D0(arg0, (s32) &func_00320B60);
+    func_003387D0(arg0, (s32) func_00320B60);
     return 1;
 }

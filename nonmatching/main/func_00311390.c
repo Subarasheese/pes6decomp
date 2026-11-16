@@ -24,7 +24,7 @@ s32 func_00311390(s32 arg0) {
             var_a0 = temp_v1 % 23;
         }
         temp_v0 = ((char *)Pes6MatchPlayers) + (var_a0 * 0x240);
-        return ~*((M2C_FIELD(temp_v0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (M2C_FIELD(temp_v0, u8 *, 0x12) * 0x6900))) != 0;
+        return ~*(s32 *)((M2C_FIELD(temp_v0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (M2C_FIELD(temp_v0, u8 *, 0x12) * 0x6900))) != 0;
     }
     return 0;
 }

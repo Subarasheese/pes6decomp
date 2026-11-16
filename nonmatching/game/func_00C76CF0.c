@@ -50,7 +50,7 @@ s32 func_00C76CF0(s32 arg0) {
         }
         if (var_v1 == 1) {
             M2C_FIELD(((char *)D_00CCBDE0), s32 *, 0) = arg0;
-            M2C_FIELD(((char *)D_00CCBDE0), s32 *, 4) = (s32) *(((char *)D_00592800) + temp_s0);
+            M2C_FIELD(((char *)D_00CCBDE0), s32 *, 4) = (s32) *(((u8 *)D_00592800) + temp_s0);
             return 1;
         }
         goto block_18;

@@ -1,49 +1,46 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
+extern char D_00CCCDA8[];
+extern char D_00CCCDAC[];
 
-extern void *D_00CCCDA8;
-extern void *D_00CCCDAC;
+void func_00C85CA0(char *arg0) {
+    char *p;
+    char *prev;
+    char *head;
+    char *tail;
 
-void func_00C85CA0(void *arg0) {
-    s32 var_v1;
-    void *var_a4;
-
-    M2C_FIELD(arg0, void **, 0x138) = NULL;
-    M2C_FIELD(arg0, void **, 0x13C) = NULL;
-    if (D_00CCCDA8 == NULL) {
-        D_00CCCDA8 = arg0;
-        D_00CCCDAC = arg0;
+    *(char **)(arg0 + 0x138) = NULL;
+    *(char **)(arg0 + 0x13C) = NULL;
+    head = *(char **)D_00CCCDA8;
+    if (head == NULL) {
+        *(char **)D_00CCCDA8 = arg0;
+        *(char **)D_00CCCDAC = arg0;
         return;
     }
-    var_a4 = D_00CCCDA8;
-loop_3:
-    var_v1 = 1;
-    if (!(M2C_FIELD(var_a4, f32 *, 0x7C) <= M2C_FIELD(arg0, f32 *, 0x7C))) {
-        var_v1 = 0;
-    }
-    if ((var_v1 ^ 1) == 0) {
-        if (var_a4 != D_00CCCDA8) {
-            M2C_FIELD(M2C_FIELD(var_a4, void **, 0x138), void **, 0x13C) = arg0;
-            M2C_FIELD(arg0, void **, 0x138) = (void *) M2C_FIELD(var_a4, void **, 0x138);
-            M2C_FIELD(arg0, void **, 0x13C) = var_a4;
-            M2C_FIELD(var_a4, void **, 0x138) = arg0;
+    p = head;
+    tail = *(char **)D_00CCCDAC;
+    do {
+        if (*(f32 *)(p + 0x7C) <= *(f32 *)(arg0 + 0x7C)) {
+            if (p == head) {
+                *(char **)(p + 0x138) = arg0;
+                *(char **)(arg0 + 0x13C) = p;
+                *(char **)D_00CCCDA8 = arg0;
+            } else {
+                prev = *(char **)(p + 0x138);
+                *(char **)(prev + 0x13C) = arg0;
+                *(char **)(arg0 + 0x138) = *(char **)(p + 0x138);
+                *(char **)(arg0 + 0x13C) = p;
+                *(char **)(p + 0x138) = arg0;
+            }
             return;
         }
-        M2C_FIELD(var_a4, void **, 0x138) = arg0;
-        M2C_FIELD(arg0, void **, 0x13C) = var_a4;
-        D_00CCCDA8 = arg0;
-        return;
-    }
-    if (var_a4 != D_00CCCDAC) {
-        var_a4 = M2C_FIELD(var_a4, void **, 0x13C);
-        if (var_a4 == NULL) {
+        if (p == tail) {
+            *(char **)(p + 0x13C) = arg0;
+            *(char **)(arg0 + 0x138) = p;
+            *(char **)D_00CCCDAC = arg0;
             return;
         }
-        goto loop_3;
-    }
-    M2C_FIELD(var_a4, void **, 0x13C) = arg0;
-    M2C_FIELD(arg0, void **, 0x138) = var_a4;
-    D_00CCCDAC = arg0;
+        p = *(char **)(p + 0x13C);
+    } while (p != NULL);
 }

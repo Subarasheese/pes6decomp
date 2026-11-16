@@ -5,12 +5,12 @@
 
 s32 func_00A14EC0(void *, void *);                  /* extern */
 M2C_UNK func_00A15540(void *, void *, void *, void *); /* extern */
-M2C_UNK func_00AABA00(void *, s32, M2C_UNK);        /* extern */
+M2C_UNK func_00AABA00(void *, s32, s32, s32, s32, s32);
 extern void *Pes6Ball_Current;
 extern char D_005926E0[];
 extern char Pes6MatchSquads[];
 
-void func_00AABED0(void *arg0) {
+void func_00AABED0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5) {
     s32 temp_a0_2;
     u64 temp_v1;
     void *temp_a0;
@@ -32,6 +32,6 @@ void func_00AABED0(void *arg0) {
 block_6:
     if (func_00A14EC0(arg0, arg0) == 0) {
         temp_a0_2 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
-        func_00AABA00(arg0, ((temp_a0_2 * -0x1A4) / 183) + ((u32) (temp_a0_2 * -0x1A4) >> 0x1F), 1);
+        func_00AABA00(arg0, (temp_a0_2 * -0x1A4) / 183, 1, arg3, arg4, arg5);
     }
 }

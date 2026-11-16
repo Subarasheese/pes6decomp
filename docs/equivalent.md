@@ -7,13 +7,14 @@ behavioural evidence, not byte identity, and not a proof. `tools/equiv.py` expla
 and what is compared. Coverage is the share of the original function's instructions the cases
 ran; a branch no case reached is not checked.
 
-Checked: differs 955, equivalent 2027, untestable 11.
+Checked: differs 849, equivalent 2133, untestable 11.
 
 Cases start from the memory each row names: `ram:...` is a RAM snapshot of the running game
 (PES6_EQUIV_RAM, or build/equiv/ram-match.bin), `image` the executable's initial memory.
 
 | image | address | symbol | cases | holdout | coverage | memory |
 |---|---|---|---:|---:|---:|---|
+| game | `0093FB30` | `func_0093FB30` | 4 | 596 | 98.9% | ram:ram-match.bin |
 | game | `0093FD30` | `func_0093FD30` | 4 | 413 | 97.9% | ram:ram-match.bin |
 | game | `00940C30` | `func_00940C30` | 5 | 364 | 100.0% | ram:ram-match.bin |
 | game | `00941E90` | `func_00941E90` | 5 | 357 | 65.9% | ram:ram-match.bin |
@@ -41,6 +42,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00963450` | `func_00963450` | 4 | 586 | 100.0% | ram:ram-match.bin |
 | game | `009634B0` | `func_009634B0` | 4 | 584 | 100.0% | ram:ram-match.bin |
 | game | `00963510` | `func_00963510` | 7 | 349 | 99.0% | ram:ram-match.bin |
+| game | `009637C0` | `func_009637C0` | 4 | 565 | 98.6% | ram:ram-match.bin |
 | game | `00964DA0` | `func_00964DA0` | 4 | 512 | 96.7% | ram:ram-match.bin |
 | game | `00967560` | `func_00967560` | 4 | 596 | 47.9% | ram:ram-match.bin |
 | game | `00967690` | `func_00967690` | 4 | 593 | 90.0% | ram:ram-match.bin |
@@ -54,6 +56,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `0097C490` | `func_0097C490` | 6 | 248 | 32.8% | ram:ram-match.bin |
 | game | `0097CC00` | `func_0097CC00` | 4 | 229 | 45.0% | ram:ram-match.bin |
 | game | `0097CD90` | `func_0097CD90` | 10 | 350 | 99.0% | ram:ram-match.bin |
+| game | `00983260` | `func_00983260` | 4 | 596 | 93.3% | ram:ram-match.bin |
 | game | `00983660` | `func_00983660` | 4 | 596 | 97.4% | ram:ram-match.bin |
 | game | `009840C0` | `func_009840C0` | 4 | 595 | 33.3% | ram:ram-match.bin |
 | game | `00984160` | `func_00984160` | 4 | 595 | 13.3% | ram:ram-match.bin |
@@ -106,6 +109,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009945C0` | `func_009945C0` | 6 | 531 | 89.3% | ram:ram-match.bin |
 | game | `00994CC0` | `func_00994CC0` | 4 | 354 | 51.4% | ram:ram-match.bin |
 | game | `00994F80` | `func_00994F80` | 4 | 592 | 100.0% | ram:ram-match.bin |
+| game | `00995AF0` | `func_00995AF0` | 4 | 538 | 97.4% | ram:ram-match.bin |
 | game | `00996060` | `func_00996060` | 4 | 596 | 95.5% | ram:ram-match.bin |
 | game | `009960C0` | `func_009960C0` | 4 | 532 | 100.0% | ram:ram-match.bin |
 | game | `00996160` | `func_00996160` | 4 | 596 | 83.3% | ram:ram-match.bin |
@@ -115,8 +119,10 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00997840` | `func_00997840` | 4 | 596 | 96.7% | ram:ram-match.bin |
 | game | `00997940` | `func_00997940` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00997CC0` | `func_00997CC0` | 4 | 596 | 94.6% | ram:ram-match.bin |
+| game | `00997E10` | `func_00997E10` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `0099C460` | `func_0099C460` | 4 | 596 | 84.3% | ram:ram-match.bin |
 | game | `0099C680` | `func_0099C680` | 4 | 596 | 97.0% | ram:ram-match.bin |
+| game | `0099D520` | `func_0099D520` | 4 | 596 | 97.9% | ram:ram-match.bin |
 | game | `0099E3C0` | `func_0099E3C0` | 4 | 596 | 96.3% | ram:ram-match.bin |
 | game | `0099E430` | `func_0099E430` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `0099F400` | `func_0099F400` | 4 | 596 | 100.0% | ram:ram-match.bin |
@@ -134,6 +140,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009A3580` | `func_009A3580` | 4 | 160 | 98.0% | ram:ram-match.bin |
 | game | `009A69A0` | `func_009A69A0` | 4 | 530 | 97.7% | ram:ram-match.bin |
 | game | `009A6D50` | `func_009A6D50` | 5 | 595 | 96.4% | ram:ram-match.bin |
+| game | `009A7550` | `func_009A7550` | 4 | 329 | 100.0% | ram:ram-match.bin |
 | game | `009A9420` | `func_009A9420` | 4 | 270 | 96.4% | ram:ram-match.bin |
 | game | `009A9730` | `func_009A9730` | 4 | 240 | 97.7% | ram:ram-match.bin |
 | game | `009A99F0` | `func_009A99F0` | 4 | 91 | 97.5% | ram:ram-match.bin |
@@ -163,6 +170,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009B3560` | `func_009B3560` | 4 | 575 | 98.9% | ram:ram-match.bin |
 | game | `009B36C0` | `func_009B36C0` | 4 | 203 | 100.0% | ram:ram-match.bin |
 | game | `009B37F0` | `func_009B37F0` | 5 | 291 | 87.8% | ram:ram-match.bin |
+| game | `009B3C90` | `func_009B3C90` | 1 | 0 | 98.9% | ram:ram-match.bin |
 | game | `009B4010` | `func_009B4010` | 4 | 371 | 90.9% | ram:ram-match.bin |
 | game | `009B4460` | `func_009B4460` | 4 | 548 | 100.0% | ram:ram-match.bin |
 | game | `009B4700` | `func_009B4700` | 6 | 594 | 90.9% | ram:ram-match.bin |
@@ -204,8 +212,11 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009D9B50` | `func_009D9B50` | 4 | 521 | 100.0% | ram:ram-match.bin |
 | game | `009DFF20` | `func_009DFF20` | 16 | 352 | 89.7% | ram:ram-match.bin |
 | game | `009E1C90` | `func_009E1C90` | 4 | 596 | 83.3% | ram:ram-match.bin |
+| game | `009E1CB0` | `func_009E1CB0` | 4 | 593 | 96.7% | ram:ram-match.bin |
 | game | `009E3090` | `func_009E3090` | 8 | 571 | 94.5% | ram:ram-match.bin |
+| game | `009E5C20` | `func_009E5C20` | 4 | 592 | 96.8% | ram:ram-match.bin |
 | game | `009E5D20` | `func_009E5D20` | 4 | 530 | 98.8% | ram:ram-match.bin |
+| game | `009E5F80` | `func_009E5F80` | 4 | 596 | 99.1% | ram:ram-match.bin |
 | game | `009E62D0` | `func_009E62D0` | 7 | 595 | 94.7% | ram:ram-match.bin |
 | game | `009ECDE0` | `func_009ECDE0` | 7 | 340 | 98.6% | ram:ram-match.bin |
 | game | `009ECF00` | `func_009ECF00` | 7 | 379 | 74.0% | ram:ram-match.bin |
@@ -220,6 +231,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009F4E50` | `func_009F4E50` | 4 | 405 | 100.0% | ram:ram-match.bin |
 | game | `009F8310` | `func_009F8310` | 4 | 525 | 96.2% | ram:ram-match.bin |
 | game | `00A008A0` | `func_00A008A0` | 4 | 392 | 97.9% | ram:ram-match.bin |
+| game | `00A009E0` | `func_00A009E0` | 16 | 299 | 89.8% | ram:ram-match.bin |
 | game | `00A011A0` | `func_00A011A0` | 8 | 273 | 80.4% | ram:ram-match.bin |
 | game | `00A02030` | `func_00A02030` | 4 | 404 | 79.5% | ram:ram-match.bin |
 | game | `00A07850` | `func_00A07850` | 5 | 348 | 98.5% | ram:ram-match.bin |
@@ -255,6 +267,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A0F9C0` | `func_00A0F9C0` | 5 | 235 | 71.2% | ram:ram-match.bin |
 | game | `00A0FB60` | `func_00A0FB60` | 4 | 338 | 98.2% | ram:ram-match.bin |
 | game | `00A0FC40` | `func_00A0FC40` | 12 | 186 | 72.6% | ram:ram-match.bin |
+| game | `00A10160` | `func_00A10160` | 4 | 250 | 93.3% | ram:ram-match.bin |
 | game | `00A10780` | `func_00A10780` | 4 | 534 | 96.9% | ram:ram-match.bin |
 | game | `00A10A70` | `func_00A10A70` | 4 | 358 | 97.4% | ram:ram-match.bin |
 | game | `00A10B10` | `func_00A10B10` | 5 | 595 | 98.7% | ram:ram-match.bin |
@@ -295,6 +308,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A5C750` | `func_00A5C750` | 8 | 414 | 99.4% | ram:ram-match.bin |
 | game | `00A5DA00` | `func_00A5DA00` | 6 | 186 | 99.4% | ram:ram-match.bin |
 | game | `00A5DFC0` | `func_00A5DFC0` | 18 | 582 | 99.2% | ram:ram-match.bin |
+| game | `00A5E1C0` | `func_00A5E1C0` | 5 | 373 | 99.2% | ram:ram-match.bin |
 | game | `00A5ED90` | `func_00A5ED90` | 6 | 212 | 82.6% | ram:ram-match.bin |
 | game | `00A64700` | `func_00A64700` | 6 | 355 | 98.8% | ram:ram-match.bin |
 | game | `00A64BF0` | `func_00A64BF0` | 4 | 558 | 72.0% | ram:ram-match.bin |
@@ -312,6 +326,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A97C60` | `func_00A97C60` | 4 | 371 | 95.8% | ram:ram-match.bin |
 | game | `00A98CB0` | `func_00A98CB0` | 4 | 596 | 63.9% | ram:ram-match.bin |
 | game | `00A99200` | `func_00A99200` | 4 | 334 | 98.0% | ram:ram-match.bin |
+| game | `00A99360` | `func_00A99360` | 6 | 559 | 99.3% | ram:ram-match.bin |
 | game | `00A99580` | `func_00A99580` | 4 | 349 | 89.8% | ram:ram-match.bin |
 | game | `00A99730` | `func_00A99730` | 5 | 225 | 97.0% | ram:ram-match.bin |
 | game | `00A9B100` | `func_00A9B100` | 12 | 242 | 88.0% | ram:ram-match.bin |
@@ -325,9 +340,11 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A9EE60` | `func_00A9EE60` | 4 | 368 | 100.0% | ram:ram-match.bin |
 | game | `00AA0060` | `func_00AA0060` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00AA0780` | `func_00AA0780` | 6 | 342 | 41.7% | ram:ram-match.bin |
+| game | `00AA2AC0` | `func_00AA2AC0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00AA3210` | `func_00AA3210` | 4 | 596 | 97.7% | ram:ram-match.bin |
 | game | `00AA32C0` | `func_00AA32C0` | 4 | 350 | 100.0% | ram:ram-match.bin |
 | game | `00AA3540` | `func_00AA3540` | 4 | 353 | 72.1% | ram:ram-match.bin |
+| game | `00AABED0` | `func_00AABED0` | 4 | 239 | 98.0% | ram:ram-match.bin |
 | game | `00AADAD0` | `func_00AADAD0` | 4 | 596 | 87.5% | ram:ram-match.bin |
 | game | `00AB3140` | `func_00AB3140` | 4 | 252 | 10.2% | ram:ram-match.bin |
 | game | `00AB33D0` | `func_00AB33D0` | 10 | 590 | 82.7% | ram:ram-match.bin |
@@ -540,6 +557,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B29DE0` | `func_00B29DE0` | 4 | 596 | 93.3% | ram:ram-match.bin |
 | game | `00B29E20` | `func_00B29E20` | 4 | 596 | 90.9% | ram:ram-match.bin |
 | game | `00B29E50` | `func_00B29E50` | 4 | 597 | 100.0% | ram:ram-match.bin |
+| game | `00B2A1E0` | `func_00B2A1E0` | 4 | 362 | 81.0% | ram:ram-match.bin |
 | game | `00B2A420` | `func_00B2A420` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00B2ABD0` | `func_00B2ABD0` | 4 | 9 | 97.2% | ram:ram-match.bin |
 | game | `00B340A0` | `func_00B340A0` | 4 | 264 | 72.0% | ram:ram-match.bin |
@@ -554,6 +572,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B35F90` | `func_00B35F90` | 5 | 170 | 100.0% | ram:ram-match.bin |
 | game | `00B36000` | `func_00B36000` | 4 | 263 | 99.2% | ram:ram-match.bin |
 | game | `00B36400` | `func_00B36400` | 4 | 596 | 100.0% | ram:ram-match.bin |
+| game | `00B37370` | `func_00B37370` | 4 | 596 | 98.7% | ram:ram-match.bin |
 | game | `00B397F0` | `func_00B397F0` | 4 | 455 | 30.7% | ram:ram-match.bin |
 | game | `00B39A20` | `func_00B39A20` | 7 | 475 | 65.3% | ram:ram-match.bin |
 | game | `00B39ED0` | `func_00B39ED0` | 4 | 53 | 26.5% | ram:ram-match.bin |
@@ -616,6 +635,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B719E0` | `func_00B719E0` | 8 | 181 | 42.0% | ram:ram-match.bin |
 | game | `00B77510` | `func_00B77510` | 6 | 573 | 75.0% | ram:ram-match.bin |
 | game | `00B789F0` | `func_00B789F0` | 7 | 594 | 72.5% | ram:ram-match.bin |
+| game | `00B78BA0` | `func_00B78BA0` | 6 | 594 | 99.2% | ram:ram-match.bin |
 | game | `00B790E0` | `func_00B790E0` | 8 | 516 | 93.3% | ram:ram-match.bin |
 | game | `00B79210` | `func_00B79210` | 4 | 597 | 98.9% | ram:ram-match.bin |
 | game | `00B79550` | `func_00B79550` | 4 | 228 | 100.0% | ram:ram-match.bin |
@@ -682,6 +702,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B9EA10` | `func_00B9EA10` | 4 | 152 | 12.2% | ram:ram-match.bin |
 | game | `00B9ECE0` | `func_00B9ECE0` | 4 | 109 | 76.5% | ram:ram-match.bin |
 | game | `00B9EE40` | `func_00B9EE40` | 4 | 596 | 83.1% | ram:ram-match.bin |
+| game | `00BA1840` | `func_00BA1840` | 4 | 52 | 97.1% | ram:ram-match.bin |
 | game | `00BA1B00` | `func_00BA1B00` | 4 | 206 | 97.7% | ram:ram-match.bin |
 | game | `00BA1BB0` | `func_00BA1BB0` | 5 | 480 | 53.4% | ram:ram-match.bin |
 | game | `00BA1D50` | `func_00BA1D50` | 4 | 596 | 18.4% | ram:ram-match.bin |
@@ -705,6 +726,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BA9460` | `func_00BA9460` | 4 | 596 | 90.0% | ram:ram-match.bin |
 | game | `00BA9490` | `func_00BA9490` | 6 | 594 | 93.7% | ram:ram-match.bin |
 | game | `00BA9920` | `func_00BA9920` | 4 | 596 | 97.7% | ram:ram-match.bin |
+| game | `00BA99D0` | `func_00BA99D0` | 4 | 230 | 93.1% | ram:ram-match.bin |
 | game | `00BAB6B0` | `func_00BAB6B0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00BAB950` | `func_00BAB950` | 4 | 596 | 74.0% | ram:ram-match.bin |
 | game | `00BB4220` | `func_00BB4220` | 19 | 581 | 100.0% | ram:ram-match.bin |
@@ -787,6 +809,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BC98E0` | `func_00BC98E0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00BCA610` | `func_00BCA610` | 4 | 465 | 100.0% | ram:ram-match.bin |
 | game | `00BCAB40` | `func_00BCAB40` | 7 | 593 | 100.0% | ram:ram-match.bin |
+| game | `00BCBE10` | `func_00BCBE10` | 6 | 132 | 99.0% | ram:ram-match.bin |
 | game | `00BCC4E0` | `func_00BCC4E0` | 4 | 596 | 88.9% | ram:ram-match.bin |
 | game | `00BCC980` | `func_00BCC980` | 5 | 595 | 96.7% | ram:ram-match.bin |
 | game | `00BCCA00` | `func_00BCCA00` | 5 | 595 | 100.0% | ram:ram-match.bin |
@@ -798,15 +821,18 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BCFA20` | `func_00BCFA20` | 7 | 595 | 94.0% | ram:ram-match.bin |
 | game | `00BCFBB0` | `func_00BCFBB0` | 5 | 596 | 98.9% | ram:ram-match.bin |
 | game | `00BCFD30` | `func_00BCFD30` | 7 | 595 | 86.4% | ram:ram-match.bin |
+| game | `00BD07E0` | `func_00BD07E0` | 5 | 595 | 98.1% | ram:ram-match.bin |
 | game | `00BD08B0` | `func_00BD08B0` | 4 | 596 | 97.4% | ram:ram-match.bin |
 | game | `00BD1120` | `func_00BD1120` | 6 | 594 | 79.7% | ram:ram-match.bin |
 | game | `00BD35F0` | `func_00BD35F0` | 4 | 232 | 68.7% | ram:ram-match.bin |
 | game | `00BD3800` | `func_00BD3800` | 24 | 306 | 86.6% | ram:ram-match.bin |
+| game | `00BD3BE0` | `func_00BD3BE0` | 5 | 113 | 97.0% | ram:ram-match.bin |
 | game | `00BD4040` | `func_00BD4040` | 4 | 240 | 95.8% | ram:ram-match.bin |
 | game | `00BD40A0` | `func_00BD40A0` | 4 | 147 | 66.3% | ram:ram-match.bin |
 | game | `00BD4730` | `func_00BD4730` | 4 | 206 | 100.0% | ram:ram-match.bin |
 | game | `00BD6290` | `func_00BD6290` | 5 | 214 | 76.8% | ram:ram-match.bin |
 | game | `00BD70F0` | `func_00BD70F0` | 4 | 161 | 51.1% | ram:ram-match.bin |
+| game | `00BD86F0` | `func_00BD86F0` | 4 | 141 | 98.5% | ram:ram-match.bin |
 | game | `00BD92A0` | `func_00BD92A0` | 4 | 503 | 100.0% | ram:ram-match.bin |
 | game | `00BD92F0` | `func_00BD92F0` | 4 | 266 | 96.1% | ram:ram-match.bin |
 | game | `00BD94C0` | `func_00BD94C0` | 5 | 183 | 100.0% | ram:ram-match.bin |
@@ -849,6 +875,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BEC610` | `func_00BEC610` | 4 | 596 | 63.6% | ram:ram-match.bin |
 | game | `00BED790` | `func_00BED790` | 5 | 181 | 61.8% | ram:ram-match.bin |
 | game | `00BEE8D0` | `func_00BEE8D0` | 4 | 595 | 61.3% | ram:ram-match.bin |
+| game | `00BEEA30` | `func_00BEEA30` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00BEF070` | `func_00BEF070` | 5 | 594 | 70.1% | ram:ram-match.bin |
 | game | `00BF04E0` | `func_00BF04E0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00BF0580` | `func_00BF0580` | 5 | 595 | 86.2% | ram:ram-match.bin |
@@ -860,6 +887,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BF3EA0` | `func_00BF3EA0` | 6 | 321 | 80.0% | ram:ram-match.bin |
 | game | `00BF42A0` | `func_00BF42A0` | 5 | 594 | 65.8% | ram:ram-match.bin |
 | game | `00BF5C40` | `func_00BF5C40` | 8 | 593 | 11.6% | ram:ram-match.bin |
+| game | `00BF6240` | `func_00BF6240` | 4 | 596 | 87.5% | ram:ram-match.bin |
 | game | `00BF6310` | `func_00BF6310` | 4 | 596 | 16.7% | ram:ram-match.bin |
 | game | `00BF65B0` | `func_00BF65B0` | 4 | 596 | 42.6% | ram:ram-match.bin |
 | game | `00BF66C0` | `func_00BF66C0` | 5 | 596 | 64.5% | ram:ram-match.bin |
@@ -868,6 +896,8 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BF6CE0` | `func_00BF6CE0` | 5 | 596 | 36.5% | ram:ram-match.bin |
 | game | `00BF6F80` | `func_00BF6F80` | 5 | 392 | 48.5% | ram:ram-match.bin |
 | game | `00BF7290` | `func_00BF7290` | 4 | 596 | 27.3% | ram:ram-match.bin |
+| game | `00BF82A0` | `func_00BF82A0` | 6 | 594 | 100.0% | ram:ram-match.bin |
+| game | `00BF8C50` | `func_00BF8C50` | 4 | 243 | 94.4% | ram:ram-match.bin |
 | game | `00BF8D60` | `func_00BF8D60` | 4 | 596 | 95.0% | ram:ram-match.bin |
 | game | `00BFA810` | `func_00BFA810` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00BFAB60` | `func_00BFAB60` | 4 | 596 | 15.2% | ram:ram-match.bin |
@@ -879,6 +909,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C01090` | `func_00C01090` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C010E0` | `func_00C010E0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C01D00` | `func_00C01D00` | 4 | 331 | 82.8% | ram:ram-match.bin |
+| game | `00C02BF0` | `func_00C02BF0` | 4 | 389 | 94.4% | ram:ram-match.bin |
 | game | `00C036F0` | `func_00C036F0` | 4 | 327 | 31.7% | ram:ram-match.bin |
 | game | `00C038E0` | `func_00C038E0` | 4 | 323 | 60.3% | ram:ram-match.bin |
 | game | `00C05660` | `func_00C05660` | 4 | 437 | 81.2% | ram:ram-match.bin |
@@ -896,6 +927,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C0A2E0` | `func_00C0A2E0` | 5 | 388 | 99.1% | ram:ram-match.bin |
 | game | `00C0CA80` | `func_00C0CA80` | 4 | 345 | 97.2% | ram:ram-match.bin |
 | game | `00C0CBF0` | `func_00C0CBF0` | 5 | 589 | 83.1% | ram:ram-match.bin |
+| game | `00C0DB40` | `func_00C0DB40` | 7 | 202 | 99.1% | ram:ram-match.bin |
 | game | `00C0FB30` | `func_00C0FB30` | 4 | 593 | 98.7% | ram:ram-match.bin |
 | game | `00C101E0` | `func_00C101E0` | 4 | 70 | 97.6% | ram:ram-match.bin |
 | game | `00C10290` | `func_00C10290` | 4 | 596 | 93.8% | ram:ram-match.bin |
@@ -956,6 +988,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C13310` | `func_00C13310` | 5 | 236 | 100.0% | ram:ram-match.bin |
 | game | `00C13390` | `func_00C13390` | 4 | 556 | 96.2% | ram:ram-match.bin |
 | game | `00C13400` | `func_00C13400` | 4 | 596 | 100.0% | ram:ram-match.bin |
+| game | `00C136E0` | `func_00C136E0` | 4 | 501 | 100.0% | ram:ram-match.bin |
 | game | `00C137D0` | `func_00C137D0` | 4 | 596 | 83.3% | ram:ram-match.bin |
 | game | `00C137F0` | `func_00C137F0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C13810` | `func_00C13810` | 4 | 596 | 100.0% | ram:ram-match.bin |
@@ -972,11 +1005,14 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C162F0` | `func_00C162F0` | 4 | 326 | 100.0% | ram:ram-match.bin |
 | game | `00C16E20` | `func_00C16E20` | 4 | 596 | 93.8% | ram:ram-match.bin |
 | game | `00C17080` | `func_00C17080` | 4 | 596 | 100.0% | ram:ram-match.bin |
+| game | `00C17160` | `func_00C17160` | 4 | 362 | 97.4% | ram:ram-match.bin |
 | game | `00C17220` | `func_00C17220` | 4 | 596 | 98.3% | ram:ram-match.bin |
 | game | `00C17340` | `func_00C17340` | 4 | 596 | 98.9% | ram:ram-match.bin |
 | game | `00C174C0` | `func_00C174C0` | 4 | 347 | 99.2% | ram:ram-match.bin |
 | game | `00C176D0` | `func_00C176D0` | 4 | 596 | 97.4% | ram:ram-match.bin |
+| game | `00C17800` | `func_00C17800` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C179C0` | `func_00C179C0` | 4 | 596 | 100.0% | ram:ram-match.bin |
+| game | `00C17C50` | `func_00C17C50` | 4 | 596 | 93.8% | ram:ram-match.bin |
 | game | `00C17CF0` | `func_00C17CF0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C17D70` | `func_00C17D70` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C17DC0` | `func_00C17DC0` | 4 | 596 | 100.0% | ram:ram-match.bin |
@@ -1007,8 +1043,11 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C22860` | `func_00C22860` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C22890` | `func_00C22890` | 4 | 542 | 100.0% | ram:ram-match.bin |
 | game | `00C228C0` | `func_00C228C0` | 4 | 596 | 100.0% | ram:ram-match.bin |
+| game | `00C22930` | `func_00C22930` | 4 | 548 | 100.0% | ram:ram-match.bin |
+| game | `00C23280` | `func_00C23280` | 4 | 334 | 95.2% | ram:ram-match.bin |
 | game | `00C2B780` | `func_00C2B780` | 6 | 594 | 99.2% | ram:ram-match.bin |
 | game | `00C2CBD0` | `func_00C2CBD0` | 4 | 596 | 100.0% | ram:ram-match.bin |
+| game | `00C31B90` | `func_00C31B90` | 4 | 362 | 97.9% | ram:ram-match.bin |
 | game | `00C32210` | `func_00C32210` | 4 | 596 | 95.8% | ram:ram-match.bin |
 | game | `00C32330` | `func_00C32330` | 4 | 582 | 95.5% | ram:ram-match.bin |
 | game | `00C32430` | `func_00C32430` | 4 | 302 | 97.8% | ram:ram-match.bin |
@@ -1027,6 +1066,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C379B0` | `func_00C379B0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C37C40` | `func_00C37C40` | 8 | 48 | 99.5% | ram:ram-match.bin |
 | game | `00C37F30` | `func_00C37F30` | 4 | 128 | 97.9% | ram:ram-match.bin |
+| game | `00C37FF0` | `func_00C37FF0` | 4 | 102 | 100.0% | ram:ram-match.bin |
 | game | `00C380E0` | `func_00C380E0` | 5 | 157 | 98.6% | ram:ram-match.bin |
 | game | `00C390E0` | `func_00C390E0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C3B900` | `func_00C3B900` | 4 | 595 | 47.6% | ram:ram-match.bin |
@@ -1040,6 +1080,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C4D8F0` | `func_00C4D8F0` | 5 | 306 | 95.6% | ram:ram-match.bin |
 | game | `00C4FE30` | `func_00C4FE30` | 5 | 595 | 98.8% | ram:ram-match.bin |
 | game | `00C4FF80` | `func_00C4FF80` | 4 | 596 | 100.0% | ram:ram-match.bin |
+| game | `00C54950` | `func_00C54950` | 4 | 596 | 93.8% | ram:ram-match.bin |
 | game | `00C58970` | `func_00C58970` | 4 | 354 | 92.9% | ram:ram-match.bin |
 | game | `00C595D0` | `func_00C595D0` | 9 | 592 | 99.3% | ram:ram-match.bin |
 | game | `00C59B70` | `func_00C59B70` | 4 | 597 | 98.5% | ram:ram-match.bin |
@@ -1049,8 +1090,10 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C59F70` | `func_00C59F70` | 4 | 596 | 97.2% | ram:ram-match.bin |
 | game | `00C5A000` | `func_00C5A000` | 4 | 596 | 97.6% | ram:ram-match.bin |
 | game | `00C5A7D0` | `func_00C5A7D0` | 7 | 361 | 93.7% | ram:ram-match.bin |
+| game | `00C5ADD0` | `func_00C5ADD0` | 6 | 593 | 99.1% | ram:ram-match.bin |
 | game | `00C5AF80` | `func_00C5AF80` | 8 | 546 | 99.4% | ram:ram-match.bin |
 | game | `00C5B3C0` | `func_00C5B3C0` | 9 | 591 | 98.9% | ram:ram-match.bin |
+| game | `00C5B730` | `func_00C5B730` | 6 | 594 | 98.4% | ram:ram-match.bin |
 | game | `00C5B9F0` | `func_00C5B9F0` | 4 | 596 | 97.9% | ram:ram-match.bin |
 | game | `00C5BF80` | `func_00C5BF80` | 5 | 580 | 98.3% | ram:ram-match.bin |
 | game | `00C5C070` | `func_00C5C070` | 6 | 591 | 44.1% | ram:ram-match.bin |
@@ -1084,6 +1127,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C706F0` | `func_00C706F0` | 4 | 596 | 90.0% | ram:ram-match.bin |
 | game | `00C70720` | `func_00C70720` | 4 | 596 | 90.0% | ram:ram-match.bin |
 | game | `00C719E0` | `func_00C719E0` | 4 | 596 | 98.0% | ram:ram-match.bin |
+| game | `00C72100` | `func_00C72100` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C72290` | `func_00C72290` | 4 | 562 | 90.0% | ram:ram-match.bin |
 | game | `00C74810` | `func_00C74810` | 4 | 596 | 96.9% | ram:ram-match.bin |
 | game | `00C74890` | `func_00C74890` | 8 | 592 | 98.4% | ram:ram-match.bin |
@@ -1095,6 +1139,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C76B40` | `func_00C76B40` | 5 | 595 | 100.0% | ram:ram-match.bin |
 | game | `00C76BC0` | `func_00C76BC0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C76C10` | `func_00C76C10` | 5 | 595 | 96.6% | ram:ram-match.bin |
+| game | `00C76CF0` | `func_00C76CF0` | 4 | 594 | 94.4% | ram:ram-match.bin |
 | game | `00C76F60` | `func_00C76F60` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C770F0` | `func_00C770F0` | 4 | 591 | 100.0% | ram:ram-match.bin |
 | game | `00C77120` | `func_00C77120` | 4 | 593 | 55.4% | ram:ram-match.bin |
@@ -1102,8 +1147,10 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C79EB0` | `func_00C79EB0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C79F10` | `func_00C79F10` | 5 | 595 | 98.5% | ram:ram-match.bin |
 | game | `00C7A020` | `func_00C7A020` | 4 | 596 | 95.5% | ram:ram-match.bin |
+| game | `00C7A260` | `func_00C7A260` | 4 | 596 | 97.2% | ram:ram-match.bin |
 | game | `00C7B820` | `func_00C7B820` | 4 | 596 | 95.5% | ram:ram-match.bin |
 | game | `00C7B8C0` | `func_00C7B8C0` | 4 | 596 | 100.0% | ram:ram-match.bin |
+| game | `00C7B920` | `func_00C7B920` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C7BEC0` | `func_00C7BEC0` | 4 | 596 | 97.5% | ram:ram-match.bin |
 | game | `00C7BF90` | `func_00C7BF90` | 4 | 596 | 95.5% | ram:ram-match.bin |
 | game | `00C7C830` | `func_00C7C830` | 4 | 323 | 98.5% | ram:ram-match.bin |
@@ -1120,6 +1167,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C80410` | `func_00C80410` | 4 | 596 | 95.8% | ram:ram-match.bin |
 | game | `00C80470` | `func_00C80470` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | game | `00C822E0` | `func_00C822E0` | 4 | 596 | 83.3% | ram:ram-match.bin |
+| game | `00C85CA0` | `func_00C85CA0` | 4 | 272 | 89.6% | ram:ram-match.bin |
 | game | `00C85D60` | `func_00C85D60` | 4 | 239 | 88.6% | ram:ram-match.bin |
 | game | `00C85ED0` | `func_00C85ED0` | 4 | 77 | 100.0% | ram:ram-match.bin |
 | game | `00C85FE0` | `func_00C85FE0` | 4 | 383 | 100.0% | ram:ram-match.bin |
@@ -1152,11 +1200,13 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C89780` | `func_00C89780` | 4 | 596 | 92.9% | ram:ram-match.bin |
 | game | `00C897C0` | `func_00C897C0` | 4 | 596 | 92.9% | ram:ram-match.bin |
 | game | `00C89850` | `func_00C89850` | 4 | 596 | 95.0% | ram:ram-match.bin |
+| game | `00C8AA10` | `func_00C8AA10` | 4 | 596 | 83.6% | ram:ram-match.bin |
 | game | `00C8AB20` | `func_00C8AB20` | 4 | 596 | 58.1% | ram:ram-match.bin |
 | game | `00C8AFD0` | `func_00C8AFD0` | 4 | 596 | 97.8% | ram:ram-match.bin |
 | game | `00C8B160` | `func_00C8B160` | 4 | 596 | 90.9% | ram:ram-match.bin |
 | game | `00C8B210` | `func_00C8B210` | 4 | 596 | 85.7% | ram:ram-match.bin |
 | game | `00C8B230` | `func_00C8B230` | 4 | 596 | 90.0% | ram:ram-match.bin |
+| game | `00C8B370` | `func_00C8B370` | 6 | 594 | 96.0% | ram:ram-match.bin |
 | game | `00C8C510` | `func_00C8C510` | 4 | 292 | 99.1% | ram:ram-match.bin |
 | game | `00C8C970` | `func_00C8C970` | 4 | 596 | 91.7% | ram:ram-match.bin |
 | game | `00C8E1C0` | `func_00C8E1C0` | 4 | 224 | 46.4% | ram:ram-match.bin |
@@ -1184,6 +1234,8 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C952F0` | `func_00C952F0` | 6 | 594 | 98.4% | ram:ram-match.bin |
 | game | `00C95440` | `func_00C95440` | 10 | 520 | 89.8% | ram:ram-match.bin |
 | game | `00C95770` | `func_00C95770` | 6 | 582 | 80.8% | ram:ram-match.bin |
+| game | `00C95BB0` | `func_00C95BB0` | 4 | 596 | 97.9% | ram:ram-match.bin |
+| game | `00C95C70` | `func_00C95C70` | 7 | 592 | 90.4% | ram:ram-match.bin |
 | game | `00C95F80` | `func_00C95F80` | 4 | 596 | 60.0% | ram:ram-match.bin |
 | game | `00C97580` | `func_00C97580` | 24 | 578 | 100.0% | ram:ram-match.bin |
 | game | `00C97D60` | `func_00C97D60` | 4 | 596 | 83.0% | ram:ram-match.bin |
@@ -1200,6 +1252,8 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `0012D650` | `func_0012D650` | 4 | 548 | 100.0% | ram:ram-match.bin |
 | main | `0012D9D0` | `func_0012D9D0` | 4 | 596 | 98.8% | ram:ram-match.bin |
 | main | `0012FC30` | `func_0012FC30` | 4 | 236 | 98.5% | ram:ram-match.bin |
+| main | `0012FD60` | `func_0012FD60` | 4 | 228 | 96.2% | ram:ram-match.bin |
+| main | `00130750` | `func_00130750` | 4 | 295 | 99.3% | ram:ram-match.bin |
 | main | `00130D80` | `func_00130D80` | 4 | 216 | 100.0% | ram:ram-match.bin |
 | main | `00130EE0` | `func_00130EE0` | 4 | 257 | 98.5% | ram:ram-match.bin |
 | main | `00130FF0` | `func_00130FF0` | 4 | 226 | 100.0% | ram:ram-match.bin |
@@ -1223,14 +1277,18 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00149260` | `func_00149260` | 4 | 507 | 31.3% | ram:ram-match.bin |
 | main | `001493F0` | `func_001493F0` | 4 | 353 | 78.1% | ram:ram-match.bin |
 | main | `00149E10` | `func_00149E10` | 4 | 596 | 100.0% | ram:ram-match.bin |
+| main | `0014A380` | `func_0014A380` | 4 | 346 | 100.0% | ram:ram-match.bin |
 | main | `0014AAB0` | `func_0014AAB0` | 4 | 14 | 89.1% | ram:ram-match.bin |
 | main | `0014AB90` | `func_0014AB90` | 4 | 12 | 97.9% | ram:ram-match.bin |
 | main | `0014AC50` | `func_0014AC50` | 4 | 17 | 97.9% | ram:ram-match.bin |
+| main | `0014AEE0` | `func_0014AEE0` | 5 | 534 | 97.8% | ram:ram-match.bin |
+| main | `0014D720` | `func_0014D720` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `0014E2F0` | `func_0014E2F0` | 4 | 58 | 100.0% | ram:ram-match.bin |
 | main | `0014E580` | `func_0014E580` | 4 | 44 | 99.4% | ram:ram-match.bin |
 | main | `0014E980` | `func_0014E980` | 4 | 34 | 98.8% | ram:ram-match.bin |
 | main | `00150340` | `func_00150340` | 4 | 596 | 97.8% | ram:ram-match.bin |
 | main | `00150FF0` | `func_00150FF0` | 4 | 596 | 97.1% | ram:ram-match.bin |
+| main | `00151080` | `func_00151080` | 4 | 68 | 96.2% | ram:ram-match.bin |
 | main | `00151AB0` | `func_00151AB0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `00151B10` | `func_00151B10` | 4 | 46 | 97.1% | ram:ram-match.bin |
 | main | `00152030` | `func_00152030` | 5 | 595 | 100.0% | ram:ram-match.bin |
@@ -1255,11 +1313,14 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `0017F710` | `func_0017F710` | 5 | 595 | 98.0% | ram:ram-match.bin |
 | main | `0017FA00` | `func_0017FA00` | 4 | 596 | 94.4% | ram:ram-match.bin |
 | main | `0017FA50` | `func_0017FA50` | 5 | 20 | 99.2% | ram:ram-match.bin |
+| main | `00180040` | `func_00180040` | 4 | 41 | 69.2% | ram:ram-match.bin |
 | main | `00180C90` | `func_00180C90` | 4 | 596 | 97.8% | ram:ram-match.bin |
+| main | `00180F50` | `func_00180F50` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `001820F0` | `func_001820F0` | 4 | 30 | 98.1% | ram:ram-match.bin |
 | main | `00182350` | `func_00182350` | 4 | 163 | 97.7% | ram:ram-match.bin |
 | main | `001825A0` | `func_001825A0` | 4 | 374 | 100.0% | ram:ram-match.bin |
 | main | `001857B0` | `func_001857B0` | 4 | 551 | 100.0% | ram:ram-match.bin |
+| main | `001861E0` | `func_001861E0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `00186FE0` | `func_00186FE0` | 4 | 237 | 100.0% | ram:ram-match.bin |
 | main | `001889E0` | `func_001889E0` | 4 | 597 | 100.0% | ram:ram-match.bin |
 | main | `00188BC0` | `func_00188BC0` | 4 | 596 | 100.0% | ram:ram-match.bin |
@@ -1268,8 +1329,10 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `001893A0` | `func_001893A0` | 4 | 227 | 98.4% | ram:ram-match.bin |
 | main | `0018C1B0` | `func_0018C1B0` | 4 | 569 | 100.0% | ram:ram-match.bin |
 | main | `0018C250` | `func_0018C250` | 4 | 589 | 96.7% | ram:ram-match.bin |
+| main | `001901C0` | `func_001901C0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `00190820` | `func_00190820` | 4 | 421 | 96.4% | ram:ram-match.bin |
 | main | `0019DFC0` | `func_0019DFC0` | 4 | 412 | 98.8% | ram:ram-match.bin |
+| main | `0019E100` | `func_0019E100` | 4 | 596 | 96.4% | ram:ram-match.bin |
 | main | `0019E5C0` | `func_0019E5C0` | 4 | 596 | 97.7% | ram:ram-match.bin |
 | main | `0019ED60` | `func_0019ED60` | 4 | 591 | 95.8% | ram:ram-match.bin |
 | main | `0019EDC0` | `func_0019EDC0` | 4 | 159 | 98.0% | ram:ram-match.bin |
@@ -1294,10 +1357,14 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `001A9450` | `func_001A9450` | 4 | 354 | 97.9% | ram:ram-match.bin |
 | main | `001A9970` | `func_001A9970` | 4 | 592 | 97.4% | ram:ram-match.bin |
 | main | `001AB820` | `func_001AB820` | 4 | 348 | 100.0% | ram:ram-match.bin |
+| main | `001ABF00` | `func_001ABF00` | 4 | 238 | 98.4% | ram:ram-match.bin |
+| main | `001AC380` | `func_001AC380` | 4 | 40 | 97.1% | ram:ram-match.bin |
 | main | `001AC470` | `func_001AC470` | 4 | 596 | 97.2% | ram:ram-match.bin |
 | main | `001B0400` | `func_001B0400` | 5 | 258 | 98.9% | ram:ram-match.bin |
 | main | `001B0C30` | `func_001B0C30` | 4 | 596 | 69.5% | ram:ram-match.bin |
+| main | `001B0D20` | `func_001B0D20` | 4 | 596 | 87.3% | ram:ram-match.bin |
 | main | `001B10C0` | `func_001B10C0` | 5 | 332 | 97.7% | ram:ram-match.bin |
+| main | `001B2760` | `func_001B2760` | 4 | 101 | 81.6% | ram:ram-match.bin |
 | main | `001B2890` | `func_001B2890` | 4 | 202 | 96.3% | ram:ram-match.bin |
 | main | `001B2970` | `func_001B2970` | 4 | 204 | 100.0% | ram:ram-match.bin |
 | main | `001B29C0` | `func_001B29C0` | 4 | 165 | 97.1% | ram:ram-match.bin |
@@ -1356,6 +1423,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `001D5C40` | `func_001D5C40` | 6 | 253 | 93.7% | ram:ram-match.bin |
 | main | `001D6270` | `func_001D6270` | 4 | 195 | 75.0% | ram:ram-match.bin |
 | main | `001D6370` | `func_001D6370` | 4 | 181 | 96.4% | ram:ram-match.bin |
+| main | `001D6640` | `func_001D6640` | 4 | 294 | 97.7% | ram:ram-match.bin |
 | main | `001D66F0` | `func_001D66F0` | 4 | 356 | 97.7% | ram:ram-match.bin |
 | main | `001D8340` | `func_001D8340` | 4 | 59 | 97.4% | ram:ram-match.bin |
 | main | `001D8750` | `func_001D8750` | 4 | 200 | 98.9% | ram:ram-match.bin |
@@ -1394,6 +1462,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `001E2E50` | `func_001E2E50` | 4 | 152 | 98.1% | ram:ram-match.bin |
 | main | `001E31D0` | `func_001E31D0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `001E41C0` | `func_001E41C0` | 4 | 15 | 80.6% | ram:ram-match.bin |
+| main | `001E43B0` | `func_001E43B0` | 7 | 549 | 100.0% | ram:ram-match.bin |
 | main | `001E44A0` | `func_001E44A0` | 5 | 220 | 100.0% | ram:ram-match.bin |
 | main | `001E4640` | `func_001E4640` | 4 | 196 | 100.0% | ram:ram-match.bin |
 | main | `001E4E60` | `func_001E4E60` | 4 | 350 | 98.0% | ram:ram-match.bin |
@@ -1404,12 +1473,14 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `001E6660` | `func_001E6660` | 5 | 409 | 98.5% | ram:ram-match.bin |
 | main | `001E6870` | `func_001E6870` | 5 | 310 | 97.4% | ram:ram-match.bin |
 | main | `001E6AD0` | `func_001E6AD0` | 4 | 251 | 97.5% | ram:ram-match.bin |
+| main | `001E6B70` | `func_001E6B70` | 5 | 263 | 94.6% | ram:ram-match.bin |
 | main | `001E6D00` | `func_001E6D00` | 4 | 103 | 98.5% | ram:ram-match.bin |
 | main | `001E7980` | `func_001E7980` | 4 | 138 | 96.9% | ram:ram-match.bin |
 | main | `001E7C30` | `func_001E7C30` | 4 | 222 | 100.0% | ram:ram-match.bin |
 | main | `001E7FE0` | `func_001E7FE0` | 9 | 547 | 98.2% | ram:ram-match.bin |
 | main | `001E8200` | `func_001E8200` | 9 | 541 | 91.5% | ram:ram-match.bin |
 | main | `001E9090` | `func_001E9090` | 4 | 596 | 100.0% | ram:ram-match.bin |
+| main | `001EB0D0` | `func_001EB0D0` | 5 | 326 | 100.0% | ram:ram-match.bin |
 | main | `001EB1D0` | `func_001EB1D0` | 4 | 275 | 97.7% | ram:ram-match.bin |
 | main | `001EC390` | `func_001EC390` | 4 | 353 | 95.6% | ram:ram-match.bin |
 | main | `001ECAA0` | `func_001ECAA0` | 7 | 213 | 72.6% | ram:ram-match.bin |
@@ -1423,22 +1494,28 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `001EF1E0` | `func_001EF1E0` | 7 | 224 | 100.0% | ram:ram-match.bin |
 | main | `001EFBE0` | `func_001EFBE0` | 4 | 457 | 67.7% | ram:ram-match.bin |
 | main | `001EFDD0` | `func_001EFDD0` | 4 | 358 | 100.0% | ram:ram-match.bin |
+| main | `001F0AF0` | `func_001F0AF0` | 4 | 273 | 98.8% | ram:ram-match.bin |
 | main | `001F0C50` | `func_001F0C50` | 4 | 150 | 97.6% | ram:ram-match.bin |
 | main | `001F1490` | `func_001F1490` | 4 | 270 | 100.0% | ram:ram-match.bin |
 | main | `001F1530` | `func_001F1530` | 4 | 104 | 55.0% | ram:ram-match.bin |
 | main | `001F1C30` | `func_001F1C30` | 4 | 420 | 100.0% | ram:ram-match.bin |
+| main | `001F1C80` | `func_001F1C80` | 4 | 200 | 98.6% | ram:ram-match.bin |
+| main | `001F2050` | `func_001F2050` | 4 | 262 | 97.9% | ram:ram-match.bin |
+| main | `001F2180` | `func_001F2180` | 4 | 341 | 100.0% | ram:ram-match.bin |
 | main | `001F2770` | `func_001F2770` | 4 | 358 | 100.0% | ram:ram-match.bin |
 | main | `001F27D0` | `func_001F27D0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `001F3BB0` | `func_001F3BB0` | 4 | 518 | 94.4% | ram:ram-match.bin |
 | main | `001F3C00` | `func_001F3C00` | 4 | 358 | 93.8% | ram:ram-match.bin |
 | main | `001F3F20` | `func_001F3F20` | 4 | 140 | 58.8% | ram:ram-match.bin |
 | main | `001F3FB0` | `func_001F3FB0` | 6 | 308 | 100.0% | ram:ram-match.bin |
+| main | `001F4CD0` | `func_001F4CD0` | 8 | 338 | 88.7% | ram:ram-match.bin |
 | main | `001F51A0` | `func_001F51A0` | 5 | 269 | 52.7% | ram:ram-match.bin |
 | main | `001F62E0` | `func_001F62E0` | 4 | 535 | 99.3% | ram:ram-match.bin |
 | main | `001F6500` | `func_001F6500` | 4 | 546 | 98.1% | ram:ram-match.bin |
 | main | `001F7880` | `func_001F7880` | 7 | 39 | 86.5% | ram:ram-match.bin |
 | main | `001F7B70` | `func_001F7B70` | 5 | 338 | 93.1% | ram:ram-match.bin |
 | main | `001F7E10` | `func_001F7E10` | 4 | 102 | 98.4% | ram:ram-match.bin |
+| main | `001FAC50` | `func_001FAC50` | 8 | 592 | 91.7% | ram:ram-match.bin |
 | main | `001FC850` | `func_001FC850` | 4 | 421 | 97.4% | ram:ram-match.bin |
 | main | `001FCCE0` | `func_001FCCE0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `001FCEE0` | `func_001FCEE0` | 4 | 55 | 96.7% | ram:ram-match.bin |
@@ -1539,6 +1616,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00245190` | `func_00245190` | 4 | 596 | 36.7% | ram:ram-match.bin |
 | main | `00246550` | `func_00246550` | 9 | 271 | 98.1% | ram:ram-match.bin |
 | main | `0024DC40` | `func_0024DC40` | 4 | 596 | 26.1% | ram:ram-match.bin |
+| main | `0024E770` | `func_0024E770` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `0024E920` | `func_0024E920` | 7 | 320 | 96.4% | ram:ram-match.bin |
 | main | `0024ECA0` | `func_0024ECA0` | 4 | 596 | 94.4% | ram:ram-match.bin |
 | main | `0024ED10` | `func_0024ED10` | 4 | 596 | 100.0% | ram:ram-match.bin |
@@ -1572,6 +1650,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00271BA0` | `func_00271BA0` | 8 | 592 | 90.1% | ram:ram-match.bin |
 | main | `00271FB0` | `func_00271FB0` | 4 | 518 | 91.8% | ram:ram-match.bin |
 | main | `00272270` | `func_00272270` | 5 | 595 | 53.1% | ram:ram-match.bin |
+| main | `00273E70` | `func_00273E70` | 4 | 596 | 95.0% | ram:ram-match.bin |
 | main | `00273EC0` | `func_00273EC0` | 9 | 245 | 60.6% | ram:ram-match.bin |
 | main | `00277C40` | `func_00277C40` | 4 | 596 | 97.8% | ram:ram-match.bin |
 | main | `00278240` | `func_00278240` | 4 | 596 | 93.3% | ram:ram-match.bin |
@@ -1623,11 +1702,13 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00292F00` | `func_00292F00` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `00293840` | `func_00293840` | 4 | 190 | 98.6% | ram:ram-match.bin |
 | main | `00293DE0` | `func_00293DE0` | 6 | 594 | 92.5% | ram:ram-match.bin |
+| main | `00295170` | `func_00295170` | 4 | 596 | 89.2% | ram:ram-match.bin |
 | main | `00295330` | `func_00295330` | 4 | 596 | 82.5% | ram:ram-match.bin |
 | main | `002953D0` | `func_002953D0` | 4 | 596 | 95.7% | ram:ram-match.bin |
 | main | `002955A0` | `func_002955A0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `00295650` | `func_00295650` | 4 | 596 | 98.1% | ram:ram-match.bin |
 | main | `00297400` | `func_00297400` | 6 | 435 | 87.9% | ram:ram-match.bin |
+| main | `00297C40` | `func_00297C40` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `0029A020` | `func_0029A020` | 4 | 596 | 96.8% | ram:ram-match.bin |
 | main | `002A0E20` | `func_002A0E20` | 5 | 586 | 97.6% | ram:ram-match.bin |
 | main | `002A0ED0` | `func_002A0ED0` | 5 | 355 | 89.4% | ram:ram-match.bin |
@@ -1655,6 +1736,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `002B9930` | `func_002B9930` | 4 | 363 | 100.0% | ram:ram-match.bin |
 | main | `002B9990` | `func_002B9990` | 4 | 596 | 96.9% | ram:ram-match.bin |
 | main | `002B9A10` | `func_002B9A10` | 4 | 596 | 95.0% | ram:ram-match.bin |
+| main | `002B9A60` | `func_002B9A60` | 4 | 350 | 100.0% | ram:ram-match.bin |
 | main | `002B9AD0` | `func_002B9AD0` | 4 | 329 | 100.0% | ram:ram-match.bin |
 | main | `002B9B70` | `func_002B9B70` | 4 | 349 | 100.0% | ram:ram-match.bin |
 | main | `002B9BE0` | `func_002B9BE0` | 4 | 365 | 100.0% | ram:ram-match.bin |
@@ -1723,7 +1805,9 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `002C19F0` | `func_002C19F0` | 4 | 597 | 94.9% | ram:ram-match.bin |
 | main | `002C1BF0` | `func_002C1BF0` | 4 | 596 | 77.3% | ram:ram-match.bin |
 | main | `002C1DD0` | `func_002C1DD0` | 5 | 596 | 94.9% | ram:ram-match.bin |
+| main | `002C1FD0` | `func_002C1FD0` | 5 | 596 | 94.7% | ram:ram-match.bin |
 | main | `002C2A90` | `func_002C2A90` | 9 | 161 | 100.0% | ram:ram-match.bin |
+| main | `002C2EF0` | `func_002C2EF0` | 4 | 596 | 97.6% | ram:ram-match.bin |
 | main | `002C3130` | `func_002C3130` | 4 | 338 | 100.0% | ram:ram-match.bin |
 | main | `002C31F0` | `func_002C31F0` | 4 | 326 | 100.0% | ram:ram-match.bin |
 | main | `002C3B60` | `func_002C3B60` | 5 | 595 | 97.1% | ram:ram-match.bin |
@@ -1764,12 +1848,15 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `002CA080` | `func_002CA080` | 4 | 596 | 96.2% | ram:ram-match.bin |
 | main | `002CA140` | `func_002CA140` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `002CA200` | `func_002CA200` | 4 | 218 | 99.1% | ram:ram-match.bin |
+| main | `002CA520` | `func_002CA520` | 4 | 72 | 100.0% | ram:ram-match.bin |
 | main | `002CA620` | `func_002CA620` | 4 | 595 | 96.4% | ram:ram-match.bin |
 | main | `002CA7A0` | `func_002CA7A0` | 4 | 598 | 93.1% | ram:ram-match.bin |
 | main | `002CB140` | `func_002CB140` | 4 | 596 | 96.3% | ram:ram-match.bin |
 | main | `002CB1C0` | `func_002CB1C0` | 4 | 596 | 97.2% | ram:ram-match.bin |
 | main | `002CB4D0` | `func_002CB4D0` | 6 | 594 | 100.0% | ram:ram-match.bin |
 | main | `002CBC80` | `func_002CBC80` | 5 | 595 | 97.4% | ram:ram-match.bin |
+| main | `002CD000` | `func_002CD000` | 4 | 596 | 98.7% | ram:ram-match.bin |
+| main | `002CD590` | `func_002CD590` | 4 | 170 | 98.9% | ram:ram-match.bin |
 | main | `002CD700` | `func_002CD700` | 4 | 404 | 99.1% | ram:ram-match.bin |
 | main | `002D2530` | `func_002D2530` | 4 | 596 | 97.8% | ram:ram-match.bin |
 | main | `002D2F90` | `func_002D2F90` | 7 | 593 | 100.0% | ram:ram-match.bin |
@@ -1782,6 +1869,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `002DED00` | `func_002DED00` | 4 | 422 | 89.3% | ram:ram-match.bin |
 | main | `002DED70` | `func_002DED70` | 4 | 426 | 39.5% | ram:ram-match.bin |
 | main | `002E0DC0` | `func_002E0DC0` | 6 | 350 | 100.0% | ram:ram-match.bin |
+| main | `002E1EB0` | `func_002E1EB0` | 7 | 359 | 93.8% | ram:ram-match.bin |
 | main | `002EE260` | `func_002EE260` | 11 | 586 | 86.3% | ram:ram-match.bin |
 | main | `002F7920` | `func_002F7920` | 4 | 596 | 94.7% | ram:ram-match.bin |
 | main | `002F7F80` | `func_002F7F80` | 4 | 576 | 94.1% | ram:ram-match.bin |
@@ -1795,6 +1883,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `002F99A0` | `func_002F99A0` | 4 | 45 | 97.6% | ram:ram-match.bin |
 | main | `002F9AF0` | `func_002F9AF0` | 4 | 54 | 97.2% | ram:ram-match.bin |
 | main | `002F9F20` | `func_002F9F20` | 4 | 596 | 92.9% | ram:ram-match.bin |
+| main | `002FA4E0` | `func_002FA4E0` | 4 | 242 | 96.9% | ram:ram-match.bin |
 | main | `002FA560` | `func_002FA560` | 4 | 210 | 96.9% | ram:ram-match.bin |
 | main | `002FA660` | `func_002FA660` | 4 | 66 | 96.1% | ram:ram-match.bin |
 | main | `002FA790` | `func_002FA790` | 4 | 76 | 100.0% | ram:ram-match.bin |
@@ -1818,6 +1907,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `003008E0` | `func_003008E0` | 4 | 316 | 100.0% | ram:ram-match.bin |
 | main | `00300DE0` | `func_00300DE0` | 4 | 248 | 97.1% | ram:ram-match.bin |
 | main | `00300E70` | `func_00300E70` | 5 | 245 | 98.0% | ram:ram-match.bin |
+| main | `00301380` | `func_00301380` | 4 | 367 | 90.0% | ram:ram-match.bin |
 | main | `003015C0` | `func_003015C0` | 4 | 225 | 95.2% | ram:ram-match.bin |
 | main | `00301850` | `func_00301850` | 4 | 232 | 92.0% | ram:ram-match.bin |
 | main | `00301BA0` | `func_00301BA0` | 4 | 597 | 71.9% | ram:ram-match.bin |
@@ -1832,12 +1922,14 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00303E10` | `func_00303E10` | 4 | 596 | 93.3% | ram:ram-match.bin |
 | main | `00303E50` | `func_00303E50` | 4 | 352 | 100.0% | ram:ram-match.bin |
 | main | `00303E80` | `func_00303E80` | 5 | 595 | 97.6% | ram:ram-match.bin |
+| main | `00303F90` | `func_00303F90` | 4 | 358 | 100.0% | ram:ram-match.bin |
 | main | `00304160` | `func_00304160` | 5 | 542 | 97.6% | ram:ram-match.bin |
 | main | `00304210` | `func_00304210` | 5 | 588 | 97.1% | ram:ram-match.bin |
 | main | `00304310` | `func_00304310` | 5 | 329 | 65.5% | ram:ram-match.bin |
 | main | `00304930` | `func_00304930` | 4 | 555 | 88.0% | ram:ram-match.bin |
 | main | `00304A00` | `func_00304A00` | 4 | 427 | 84.4% | ram:ram-match.bin |
 | main | `00304C00` | `func_00304C00` | 4 | 596 | 34.5% | ram:ram-match.bin |
+| main | `003061C0` | `func_003061C0` | 4 | 596 | 99.2% | ram:ram-match.bin |
 | main | `0030D4E0` | `func_0030D4E0` | 4 | 596 | 95.9% | ram:ram-match.bin |
 | main | `0030D710` | `func_0030D710` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `0030D990` | `func_0030D990` | 4 | 596 | 95.8% | ram:ram-match.bin |
@@ -1849,6 +1941,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `0030FF30` | `func_0030FF30` | 4 | 382 | 98.0% | ram:ram-match.bin |
 | main | `00310A50` | `func_00310A50` | 6 | 594 | 97.9% | ram:ram-match.bin |
 | main | `00310D50` | `func_00310D50` | 4 | 322 | 82.9% | ram:ram-match.bin |
+| main | `00311390` | `func_00311390` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `00311C50` | `func_00311C50` | 5 | 595 | 100.0% | ram:ram-match.bin |
 | main | `00311EF0` | `func_00311EF0` | 4 | 596 | 95.7% | ram:ram-match.bin |
 | main | `00312000` | `func_00312000` | 5 | 357 | 96.2% | ram:ram-match.bin |
@@ -1856,6 +1949,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00312420` | `func_00312420` | 5 | 595 | 92.1% | ram:ram-match.bin |
 | main | `00312E00` | `func_00312E00` | 4 | 239 | 96.4% | ram:ram-match.bin |
 | main | `00312FE0` | `func_00312FE0` | 4 | 234 | 92.9% | ram:ram-match.bin |
+| main | `00313720` | `func_00313720` | 4 | 323 | 79.5% | ram:ram-match.bin |
 | main | `00313D80` | `func_00313D80` | 6 | 332 | 100.0% | ram:ram-match.bin |
 | main | `00314C10` | `func_00314C10` | 4 | 242 | 100.0% | ram:ram-match.bin |
 | main | `003152B0` | `func_003152B0` | 4 | 355 | 100.0% | ram:ram-match.bin |
@@ -1863,10 +1957,12 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00319010` | `func_00319010` | 4 | 266 | 99.2% | ram:ram-match.bin |
 | main | `00319240` | `func_00319240` | 4 | 591 | 99.0% | ram:ram-match.bin |
 | main | `00319D50` | `func_00319D50` | 4 | 309 | 29.3% | ram:ram-match.bin |
+| main | `0031A310` | `func_0031A310` | 4 | 325 | 97.8% | ram:ram-match.bin |
 | main | `0031A420` | `func_0031A420` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `0031A660` | `func_0031A660` | 4 | 575 | 98.3% | ram:ram-match.bin |
 | main | `0031AD60` | `func_0031AD60` | 5 | 335 | 100.0% | ram:ram-match.bin |
 | main | `0031AEB0` | `func_0031AEB0` | 4 | 286 | 34.4% | ram:ram-match.bin |
+| main | `0031B1A0` | `func_0031B1A0` | 4 | 400 | 100.0% | ram:ram-match.bin |
 | main | `0031B5D0` | `func_0031B5D0` | 4 | 335 | 99.1% | ram:ram-match.bin |
 | main | `0031BC70` | `func_0031BC70` | 4 | 586 | 98.1% | ram:ram-match.bin |
 | main | `0031BE20` | `func_0031BE20` | 8 | 592 | 100.0% | ram:ram-match.bin |
@@ -1878,6 +1974,8 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `0031EBF0` | `func_0031EBF0` | 4 | 321 | 47.0% | ram:ram-match.bin |
 | main | `00320030` | `func_00320030` | 4 | 366 | 100.0% | ram:ram-match.bin |
 | main | `003200D0` | `func_003200D0` | 4 | 374 | 98.4% | ram:ram-match.bin |
+| main | `00320A70` | `func_00320A70` | 4 | 376 | 100.0% | ram:ram-match.bin |
+| main | `00320B60` | `func_00320B60` | 4 | 395 | 98.8% | ram:ram-match.bin |
 | main | `00323430` | `func_00323430` | 6 | 339 | 96.2% | ram:ram-match.bin |
 | main | `00323570` | `func_00323570` | 4 | 337 | 23.2% | ram:ram-match.bin |
 | main | `00323900` | `func_00323900` | 4 | 349 | 97.5% | ram:ram-match.bin |
@@ -1903,6 +2001,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `0032C830` | `func_0032C830` | 5 | 395 | 97.7% | ram:ram-match.bin |
 | main | `0032CAA0` | `func_0032CAA0` | 4 | 216 | 98.6% | ram:ram-match.bin |
 | main | `0032CFF0` | `func_0032CFF0` | 6 | 367 | 98.3% | ram:ram-match.bin |
+| main | `0032D0E0` | `func_0032D0E0` | 6 | 393 | 98.2% | ram:ram-match.bin |
 | main | `0032E030` | `func_0032E030` | 5 | 201 | 100.0% | ram:ram-match.bin |
 | main | `0032E190` | `func_0032E190` | 6 | 385 | 96.1% | ram:ram-match.bin |
 | main | `0032E980` | `func_0032E980` | 4 | 526 | 97.7% | ram:ram-match.bin |
@@ -1928,6 +2027,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `003369B0` | `func_003369B0` | 4 | 598 | 82.7% | ram:ram-match.bin |
 | main | `00336A80` | `func_00336A80` | 5 | 257 | 92.1% | ram:ram-match.bin |
 | main | `00336D10` | `func_00336D10` | 4 | 596 | 71.4% | ram:ram-match.bin |
+| main | `00337480` | `func_00337480` | 4 | 283 | 76.4% | ram:ram-match.bin |
 | main | `00337BE0` | `func_00337BE0` | 4 | 339 | 62.7% | ram:ram-match.bin |
 | main | `003384E0` | `func_003384E0` | 4 | 237 | 88.2% | ram:ram-match.bin |
 | main | `003385B0` | `func_003385B0` | 4 | 596 | 94.4% | ram:ram-match.bin |
@@ -1967,8 +2067,10 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00341790` | `func_00341790` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `003417D0` | `func_003417D0` | 4 | 596 | 93.3% | ram:ram-match.bin |
 | main | `00341880` | `func_00341880` | 4 | 528 | 100.0% | ram:ram-match.bin |
+| main | `00341910` | `func_00341910` | 4 | 269 | 95.5% | ram:ram-match.bin |
 | main | `00342170` | `func_00342170` | 4 | 596 | 93.8% | ram:ram-match.bin |
 | main | `003425A0` | `func_003425A0` | 4 | 596 | 99.2% | ram:ram-match.bin |
+| main | `00342BD0` | `func_00342BD0` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `00342C40` | `func_00342C40` | 4 | 596 | 100.0% | ram:ram-match.bin |
 | main | `00342E30` | `func_00342E30` | 4 | 596 | 98.8% | ram:ram-match.bin |
 | main | `00343880` | `func_00343880` | 4 | 596 | 97.4% | ram:ram-match.bin |
@@ -1992,7 +2094,9 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00349770` | `func_00349770` | 4 | 584 | 99.0% | ram:ram-match.bin |
 | main | `00349930` | `func_00349930` | 4 | 336 | 96.3% | ram:ram-match.bin |
 | main | `003499A0` | `func_003499A0` | 4 | 229 | 96.9% | ram:ram-match.bin |
+| main | `0034A710` | `func_0034A710` | 4 | 238 | 79.0% | ram:ram-match.bin |
 | main | `0034FE60` | `func_0034FE60` | 8 | 469 | 85.9% | ram:ram-match.bin |
+| main | `00350180` | `func_00350180` | 7 | 593 | 100.0% | ram:ram-match.bin |
 | main | `00350250` | `func_00350250` | 4 | 596 | 95.5% | ram:ram-match.bin |
 | main | `003502B0` | `func_003502B0` | 4 | 596 | 98.8% | ram:ram-match.bin |
 | main | `00350DF0` | `func_00350DF0` | 4 | 322 | 86.7% | ram:ram-match.bin |
@@ -2015,6 +2119,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00364A40` | `func_00364A40` | 4 | 351 | 96.4% | ram:ram-match.bin |
 | main | `00364AB0` | `func_00364AB0` | 4 | 356 | 96.4% | ram:ram-match.bin |
 | main | `00364B20` | `func_00364B20` | 4 | 358 | 96.4% | ram:ram-match.bin |
+| main | `00367E20` | `func_00367E20` | 5 | 355 | 100.0% | ram:ram-match.bin |
 | main | `003680B0` | `func_003680B0` | 5 | 339 | 100.0% | ram:ram-match.bin |
 | main | `003687A0` | `func_003687A0` | 6 | 330 | 97.6% | ram:ram-match.bin |
 | main | `00368AD0` | `func_00368AD0` | 10 | 301 | 98.6% | ram:ram-match.bin |
@@ -2040,4 +2145,5 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `003701D0` | `func_003701D0` | 4 | 362 | 100.0% | ram:ram-match.bin |
 | main | `003702E0` | `func_003702E0` | 4 | 379 | 92.9% | ram:ram-match.bin |
 | main | `00370320` | `func_00370320` | 4 | 394 | 100.0% | ram:ram-match.bin |
+| main | `00370D10` | `func_00370D10` | 4 | 82 | 87.8% | ram:ram-match.bin |
 | main | `003710E0` | `func_003710E0` | 4 | 596 | 94.4% | ram:ram-match.bin |

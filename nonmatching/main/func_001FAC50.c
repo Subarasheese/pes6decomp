@@ -14,8 +14,8 @@ extern char D_00530640[];
 extern char D_005306B0[];
 extern char D_005306E4[];
 
-M2C_UNK *func_001FAC50(s32 arg0, s32 arg1) {
-    M2C_UNK *var_v0;
+char *func_001FAC50(s32 arg0, s32 arg1) {
+    char *var_v0;
     s32 var_a1;
     s32 var_v1;
     u16 *var_a0;
@@ -27,7 +27,7 @@ M2C_UNK *func_001FAC50(s32 arg0, s32 arg1) {
             var_a0 = ((void *)D_003D2CC8);
 loop_3:
             if (arg0 != *var_a0) {
-                var_a0 += 2;
+                var_a0 += 1;
                 var_a1 += 1;
                 if (*var_a0 == 0xFFFF) {
                     goto block_8;

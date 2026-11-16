@@ -1,98 +1,59 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
+extern char *D_0052B348[];
 
-extern void *D_0052B348;
-
-s32 func_001F4CD0(s32 arg0, u32 arg1) {
-    s32 var_a3;
-    s32 var_a3_2;
-    s32 var_v0;
-    void *var_a0;
-    void *var_a0_2;
-    void *var_a2;
-    void *var_a2_2;
+u8 func_001F4CD0(s32 arg0, u32 arg1) {
+    u8 var_v0;
+    u8 var_a3;
+    char *n;
+    char *e;
 
     var_v0 = 0;
     if (arg0 != -1) {
-        var_a2 = D_0052B348;
-        var_a3_2 = 0;
-        if (var_a2 != NULL) {
-loop_2:
-            if (M2C_FIELD(var_a2, s32 *, 0x10) != arg0) {
-                var_a2 = M2C_FIELD(var_a2, void **, 4);
-                if (var_a2 == NULL) {
-                    goto block_7;
-                }
-                goto loop_2;
-            }
-        } else {
-block_7:
-            var_a2 = NULL;
+        var_a3 = 0;
+        n = D_0052B348[0];
+        while (n != NULL && M2C_FIELD(n, s32 *, 0x10) != arg0) {
+            n = M2C_FIELD(n, char **, 4);
         }
-        if (var_a2 != NULL) {
-            var_a0 = M2C_FIELD(var_a2, void **, 8);
-            if (var_a0 != NULL) {
-                if ((arg1 >= (u32) M2C_FIELD(var_a0, u32 *, 8)) && ((u32) M2C_FIELD(M2C_FIELD(var_a2, void **, 0xC), u32 *, 8) >= arg1)) {
-loop_12:
-                    if (M2C_FIELD(var_a0, s32 *, 8) != arg1) {
-                        var_a0 = M2C_FIELD(var_a0, void **, 4);
-                        if (var_a0 == NULL) {
-                            goto block_17;
-                        }
-                        goto loop_12;
-                    }
+        if (n != NULL) {
+            e = M2C_FIELD(n, char **, 8);
+            if (e != NULL) {
+                if (arg1 < M2C_FIELD(e, u32 *, 8) || M2C_FIELD(M2C_FIELD(n, char **, 0xC), u32 *, 8) < arg1) {
+                    e = NULL;
                 } else {
-                    goto block_17;
-                }
-            } else {
-block_17:
-                var_a0 = NULL;
-            }
-            if (var_a0 != NULL) {
-                var_a3_2 = (0 | M2C_FIELD(var_a0, u8 *, 0xC)) & 0xFF;
-            }
-        }
-        var_v0 = (0 | var_a3_2) & 0xFF;
-    }
-    var_a2_2 = D_0052B348;
-    var_a3 = 0;
-    if (var_a2_2 != NULL) {
-loop_23:
-        if (M2C_FIELD(var_a2_2, s32 *, 0x10) != -1) {
-            var_a2_2 = M2C_FIELD(var_a2_2, void **, 4);
-            if (var_a2_2 == NULL) {
-                goto block_28;
-            }
-            goto loop_23;
-        }
-    } else {
-block_28:
-        var_a2_2 = NULL;
-    }
-    if (var_a2_2 != NULL) {
-        var_a0_2 = M2C_FIELD(var_a2_2, void **, 8);
-        if (var_a0_2 != NULL) {
-            if ((arg1 >= (u32) M2C_FIELD(var_a0_2, u32 *, 8)) && ((u32) M2C_FIELD(M2C_FIELD(var_a2_2, void **, 0xC), u32 *, 8) >= arg1)) {
-loop_33:
-                if (M2C_FIELD(var_a0_2, s32 *, 8) != arg1) {
-                    var_a0_2 = M2C_FIELD(var_a0_2, void **, 4);
-                    if (var_a0_2 == NULL) {
-                        goto block_38;
+                    while (e != NULL && M2C_FIELD(e, u32 *, 8) != arg1) {
+                        e = M2C_FIELD(e, char **, 4);
                     }
-                    goto loop_33;
                 }
-            } else {
-                goto block_38;
             }
-        } else {
-block_38:
-            var_a0_2 = NULL;
+            if (e != NULL) {
+                var_a3 = var_a3 | M2C_FIELD(e, u8 *, 0xC);
+            }
         }
-        if (var_a0_2 != NULL) {
-            var_a3 = (0 | M2C_FIELD(var_a0_2, u8 *, 0xC)) & 0xFF;
-        }
+        var_v0 = var_v0 | var_a3;
     }
-    return (var_v0 | var_a3) & 0xFF;
+    {
+        u8 b = 0;
+        n = D_0052B348[0];
+        while (n != NULL && M2C_FIELD(n, s32 *, 0x10) != -1) {
+            n = M2C_FIELD(n, char **, 4);
+        }
+        if (n != NULL) {
+            e = M2C_FIELD(n, char **, 8);
+            if (e != NULL) {
+                if (arg1 < M2C_FIELD(e, u32 *, 8) || M2C_FIELD(M2C_FIELD(n, char **, 0xC), u32 *, 8) < arg1) {
+                    e = NULL;
+                } else {
+                    while (e != NULL && M2C_FIELD(e, u32 *, 8) != arg1) {
+                        e = M2C_FIELD(e, char **, 4);
+                    }
+                }
+            }
+            if (e != NULL) {
+                b = b | M2C_FIELD(e, u8 *, 0xC);
+            }
+        }
+        return var_v0 | b;
+    }
 }

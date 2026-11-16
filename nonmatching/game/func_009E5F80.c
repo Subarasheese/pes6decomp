@@ -1,5 +1,4 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern int func_002DCA30(void);
@@ -7,7 +6,7 @@ M2C_UNK func_00849DA0();                            /* extern */
 M2C_UNK func_0099B4F0();                            /* extern */
 M2C_UNK func_009E1D30(M2C_UNK, M2C_UNK);            /* extern */
 M2C_UNK func_009E3990();                            /* extern */
-s32 func_00BBB8C0(M2C_UNK, M2C_UNK *, u8, s32, s32, s32); /* extern */
+s32 func_00BBB8C0(s32, u8 *, u8, s32, s32, s32); /* extern */
 M2C_UNK func_00BF4000(M2C_UNK);                     /* extern */
 extern char D_00591A90[];
 extern char D_00591E14[];
@@ -32,8 +31,8 @@ extern char D_00CBBE09[];
 extern char D_00CBCDE8[];
 
 void func_009E5F80(void) {
-    M2C_UNK *var_a0;
-    M2C_UNK *var_a1;
+    u8 *var_a0;
+    u8 *var_a1;
     s32 var_a3;
     s32 var_a4;
     s32 var_a5;
@@ -50,9 +49,9 @@ void func_009E5F80(void) {
     (*(s8 *)D_00CBBDF6) = 0;
     (*(s8 *)D_00CBBDF7) = 0;
     (*(s8 *)D_00CBBE00) = 0xFF;
-    var_a1 = ((void *)Pes6MatchSquads);
+    var_a1 = (u8 *)Pes6MatchSquads;
     (*(s8 *)D_00CBBDFB) = 0;
-    var_a0 = ((void *)D_00591A90);
+    var_a0 = (u8 *)D_00591A90;
     (*(s8 *)D_00CBBDFC) = 0;
     (*(s8 *)D_00CBBDF3) = 0;
     (*(s8 *)D_00CBBDF4) = 0;

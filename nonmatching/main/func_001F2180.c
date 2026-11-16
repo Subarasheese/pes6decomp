@@ -1,4 +1,4 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -36,7 +36,7 @@ s32 func_001F2180(void *arg0, void *arg1) {
     if (var_s2 != NULL) {
         do {
             M2C_FIELD(var_s2, u8 *, 1) = (u8) (M2C_FIELD(var_s2, u8 *, 1) | M2C_FIELD(arg0, u8 *, 1));
-            temp_v0 = M2C_FIELD(var_s2, s32 (**)(void *, void *), 0x3C)(var_s2, arg0 + 0x50);
+            temp_v0 = M2C_FIELD(var_s2, s32 (**)(void *, void *), 0x3C)(var_s2, (char *)arg0 + 0x50);
             var_s2 = M2C_FIELD(var_s2, void **, 0x38);
             var_s1 += temp_v0;
         } while (var_s2 != NULL);

@@ -53,7 +53,7 @@ loop_11:
             if (temp_v0_2 != 0xFFFF) {
                 var_a3 += 1;
                 temp_v1 = ((void *)D_00CB7730) + (temp_v0_2 << 5);
-                var_a2 += 2;
+                var_a2 += 1;
                 M2C_FIELD(temp_v1, s8 *, 0x8D) = 0;
                 M2C_FIELD(temp_v1, s32 *, 0x80) = 0;
                 M2C_FIELD(temp_v1, s32 *, 0x84) = 0;

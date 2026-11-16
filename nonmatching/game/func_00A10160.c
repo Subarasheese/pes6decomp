@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-s32 func_0099DFF0(s32, s32, s32, u8);               /* extern */
+s32 func_0099DFF0(void *, s32, s32, s32);
 extern char D_00591E7C[];
 extern char Pes6MatchSquads[];
 
@@ -24,7 +24,7 @@ void func_00A10160(void *arg0) {
         temp_a1 = (M2C_FIELD(arg0, u16 *, 0x30) - temp_a2_2) & 0xFFFF;
         if ((*(s32 *)D_00591E7C) == 0) {
 
-        } else if ((temp_a1 & 0xFFFF) == (func_0099DFF0(temp_a1, temp_a2_2, temp_a3, temp_a4) & 0xFFFF)) {
+        } else if ((temp_a1 & 0xFFFF) == (func_0099DFF0(arg0, temp_a1, temp_a2_2, temp_a3) & 0xFFFF)) {
             M2C_FIELD(arg0, u8 *, 0x50) = (u8) (M2C_FIELD(arg0, u8 *, 0x50) | 2);
         }
     }

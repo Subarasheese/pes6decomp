@@ -1,25 +1,24 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_00153FA0(void *);
-M2C_UNK func_0017F9A0(s32, M2C_UNK *, void *, s32, s32); /* extern */
+extern void func_0017F9A0(s32, void *, void *, s32, s32);
 extern s32 D_003E98EC;
 extern char D_00522270[];
-extern M2C_UNK func_001B2890;
-extern M2C_UNK func_001B2970;
-extern M2C_UNK func_001B29C0;
-extern M2C_UNK func_001B2A50;
-extern M2C_UNK func_001B2AD0;
-extern M2C_UNK func_001B2B00;
-extern M2C_UNK func_001B2BE0;
-extern M2C_UNK func_001B2C50;
-extern M2C_UNK func_001B3090;
-extern M2C_UNK func_001B30C0;
+extern void func_001B2890(void);
+extern void func_001B2970(void);
+extern void func_001B29C0(void);
+extern void func_001B2A50(void);
+extern void func_001B2AD0(void);
+extern void func_001B2B00(void);
+extern void func_001B2BE0(void);
+extern void func_001B2C50(void);
+extern void func_001B3090(void);
+extern void func_001B30C0(void);
 
 void func_001B2760(void *arg0) {
-    M2C_UNK *var_a1;
-    M2C_UNK *var_s0;
+    void (*var_a1)(void);
+    char *var_s0;
     s32 temp_a0;
     s32 var_s1;
 
@@ -29,9 +28,9 @@ void func_001B2760(void *arg0) {
     temp_a0 = D_003E98EC;
     var_s1 = 0;
     if (temp_a0 > 0) {
-        var_s0 = ((void *)D_00522270);
+        var_s0 = D_00522270;
         do {
-            var_a1 = M2C_FIELD(var_s0, M2C_UNK **, 4);
+            var_a1 = M2C_FIELD(var_s0, void (**)(void), 4);
             if (var_s1 == (temp_a0 - 1)) {
                 if (var_a1 == &func_001B30C0) {
                     var_a1 = &func_001B3090;

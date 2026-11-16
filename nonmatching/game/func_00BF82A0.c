@@ -11,7 +11,7 @@ extern char Pes6MatchSquads[];
 s32 func_00BF82A0(void *arg0) {
     s32 var_v0;
     u8 temp_a2;
-    u8 var_v0_2;
+    s32 var_v0_2;
     void *temp_s0;
 
     temp_a2 = M2C_FIELD(arg0, u8 *, 0x12);

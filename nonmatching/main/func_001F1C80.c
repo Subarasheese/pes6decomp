@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern int func_001E62C0(void);
-extern void func_001DF4F0(void *, s8);
+extern void func_001DF4F0(void *, u8);
 extern void func_001DF330(void *, s32);
 extern void func_001DF370(void *, s32);
 extern void func_001DF750(void *, f32, f32);
@@ -23,7 +23,7 @@ s32 func_001F1C80(void *arg0, void *arg1) {
 
     temp_s0 = M2C_FIELD(arg0, void **, 0x54);
     if ((func_001E62C0() & 2) == 2) {
-        func_001DF4F0(temp_s0, (s8) M2C_FIELD(arg0, u8 *, 2));
+        func_001DF4F0(temp_s0, M2C_FIELD(arg0, u8 *, 2));
         if (M2C_FIELD(arg0, u8 *, 1) & 1) {
             temp_f5 = M2C_FIELD(arg0, f32 *, 8);
             temp_f4 = M2C_FIELD(arg0, f32 *, 0xC);
