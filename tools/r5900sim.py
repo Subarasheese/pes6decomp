@@ -66,6 +66,8 @@ class Machine:
         self.calls = []             # (target, args snapshot) of every call that left the code under test
         self.covered = set()        # addresses of executed instructions
         self.record_writes = True
+        self.readonly = []           # (lo, hi) ranges a store must not touch, e.g. code
+        self.reads = None            # a set to collect word addresses of every load (None: off)
         self.mirrors = True          # False: no mirrors, past RAM faults; "kseg": only kseg0/kseg1 mirror RAM
         self._dec = {}
 
@@ -121,6 +123,8 @@ class Machine:
     def read(self, addr, size):
         if addr & (size - 1) and size in (2, 4, 8, 16):
             raise Fault(f"unaligned {size}-byte read at {addr:08x} (pc {self.cur:08x})")
+        if self.reads is not None:
+            self.reads.add(addr & ~3 & M32)
         buf, o = self._where(addr, size)
         if buf is None:
             if self.io_read:
@@ -133,6 +137,10 @@ class Machine:
             raise Fault(f"unaligned {size}-byte write at {addr:08x} (pc {self.cur:08x})")
         value &= (1 << (8 * size)) - 1
         buf, o = self._where(addr, size)
+        if buf is self.mem:
+            for lo, hi in self.readonly:          # checked on the physical address: mirrors included
+                if lo <= o + size - 1 and o < hi:
+                    raise Fault(f"write into read-only memory at {addr & M32:08x} (pc {self.cur:08x})")
         if buf is None:
             if self.io_write:
                 self.io_write(addr & M32, size, value)
@@ -146,6 +154,14 @@ class Machine:
         if buf is self.mem and self._dec:
             for k in range(o & ~3, o + size, 4):
                 self._dec.pop(k, None)
+
+    def _fetch(self, pc):
+        """An instruction fetch: not a data read, so not in `reads`."""
+        reads, self.reads = self.reads, None
+        try:
+            return self.read(pc, 4)
+        finally:
+            self.reads = reads
 
     def r32(self, a):
         return self.read(a, 4)
@@ -194,7 +210,7 @@ class Machine:
         self.covered.add(pc)
         ins = self._dec.get(pc)
         if ins is None:
-            ins = self.r32(pc)
+            ins = self._fetch(pc)
             self._dec[pc] = ins
         npc = self.npc
         self.pc, self.npc = npc, npc + 4
@@ -220,7 +236,7 @@ class Machine:
             self.covered.add(slot)
             ins = self._dec.get(slot)
             if ins is None:
-                ins = self.r32(slot)
+                ins = self._fetch(slot)
                 self._dec[slot] = ins
             self.pc, self.npc = slot + 4, slot + 8
             self.exec(ins, slot)

@@ -1,132 +1,729 @@
 #!/usr/bin/env python3
-"""Differential equivalence: run the original bytes and the compiled C and compare behaviour.
+"""Behaviour check: does a draft's compiled C do what the original does?
 
-Usage: equiv.py ADDR SRC [ADDR SRC ...]   (PES6_TARGET selects an overlay image)
+    equiv.py ADDR SRC [ADDR SRC ...]              one or more functions of the image PES6_TARGET selects
+    equiv.py --batch LIST [--jobs N] [--limit N]  every row "image,address" of LIST (a CSV with those
+                                                  columns, e.g. native_port/docs/exhibition_functions.csv)
+                                                  that has a non-matching draft in config/nonmatching.json
+    equiv.py --report                             write docs/equivalent.md from the stored results
 
-Same calls (jal targets, stubbed), same final v0/v1, same memory writes -> EQUIVALENT.
-This is behavioural evidence, not a proof; byte equality remains the stronger result.
+How a function is judged (the Power Stone decomp's method, on tools/r5900sim.py):
+
+  * The draft is compiled with the compiler its first line names and linked at a scratch address; the
+    original runs at its own address. Both run in the game's memory image (the resident executable,
+    plus the overlay for an overlay function), so globals start at their real initial values.
+  * Candidate cases: argument registers from pools (pointers into a filled buffer, small integers, the
+    constants the function compares against, float values for f12-f19), the globals the original
+    reads set to pool values, and every call out answered with a pool value (v0 and f0).
+  * The original runs every candidate; cases where it faults or does not return are dropped. Cases are
+    chosen greedily by the original instructions they reach that the chosen ones did not (up to
+    DEV_CASES), and HOLDOUT more are kept apart.
+  * The compiled C runs every chosen and holdout case. They must agree on: the calls out, in order
+    (target, and the arguments the callee's prototype in the draft declares: int arguments a0-a3/t0-t3,
+    float arguments f12-f19; a callee without a prototype is compared by target only; an argument
+    pointing into the function's own stack frame counts as "the stack", since where a local lives
+    is the compiler's choice, and what it points at is not compared); the final value
+    of every byte written outside the function's own stack frame; the return value as the draft's
+    definition types it (none for void, f0 for float, 64 bits for 64-bit types, else the low 32 bits);
+    and s0-s7, fp, sp and gp restored.
+  * EQUIVALENT: every case agrees. The evidence is the number of cases and the share of the original's
+    instructions they ran (coverage); a branch no case reaches is not proven. DIFFERS: a case
+    disagrees (the first difference is reported). UNTESTABLE: no case could run (the original faults
+    or loops on every candidate), or an instruction the simulator does not model (VU0 micro programs).
+
+This is behavioural evidence on generated cases, not a proof; byte equality remains the stronger
+result. Results are cached in build/equiv/ under a key of everything the verdict depends on.
 """
+import hashlib
+import json
 import os
+import random
+import re
 import struct
 import sys
+import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
-import match  # noqa: E402
+os.chdir(ROOT)
+import r5900sim as S  # noqa: E402
 
-from unicorn import (Uc, UC_ARCH_MIPS, UC_MODE_MIPS32, UC_MODE_MIPS64, UC_MODE_LITTLE_ENDIAN, UcError,
-                     UC_HOOK_CODE, UC_HOOK_MEM_WRITE)  # noqa: E402
-from unicorn.mips_const import (UC_MIPS_REG_V0, UC_MIPS_REG_V1, UC_MIPS_REG_A0,  # noqa: E402
-                                UC_MIPS_REG_A1, UC_MIPS_REG_A2, UC_MIPS_REG_A3,
-                                UC_MIPS_REG_SP, UC_MIPS_REG_GP, UC_MIPS_REG_RA,
-                                UC_MIPS_REG_S0, UC_MIPS_REG_S1, UC_MIPS_REG_S2, UC_MIPS_REG_S3,
-                                UC_MIPS_REG_PC)
-
-BASE = 0x00000000
-SIZE = 0x02000000
-STOP = 0x01FFFFF0
-STACK = 0x003FF000
+M32, M64 = 0xFFFFFFFF, (1 << 64) - 1
+SCRATCH_CODE = 0x01D00000       # where the compiled C is linked
+BUF = 0x01C00000                # the buffer pointer arguments aim at
+BUFSZ = 0x40000
+STACK_TOP = 0x01E00000
+FRAME = 0x8000                  # bytes below the entry sp that count as the function's own frame
+CANDIDATES = 64
+DEV_CASES = 24
+HOLDOUT = 8
+MAX_STEPS = 200_000
+TIME_BUDGET = 90.0              # seconds of simulation per function for drawing cases
+FUNCTION_TIMEOUT = 300          # hard wall-clock limit per function in a batch
 GP = 0x003EF370
-JAL = 3
+RESULTS = os.path.join(ROOT, "build", "equiv")
+TOOL_FILES = ("tools/equiv.py", "tools/r5900sim.py", "tools/ee_float.py")
 
 
-def demmi(words):
-    """EE `sq`/`lq` (R5900 MMI) are not in Unicorn's MIPS core. For GPR spills they are `sd`/`ld`
-    with the same addressing: the low 64 bits carry the register and memory starts zeroed."""
+class StepLimit(Exception):
+    pass
+
+
+_RUNTIME = None
+
+
+def runtime_starts():
+    """Start addresses of the C runtime and libgcc functions (src/runtime/* per tools/layout.py). Calls to
+    them run in the simulator instead of being answered, like the Power Stone checker runs compiler
+    helpers: a draft may inline a memset or a division the original calls, and the result is what counts."""
+    global _RUNTIME
+    if _RUNTIME is None:
+        path = os.path.join(RESULTS, "runtime_functions.json")
+        if not os.path.exists(path):
+            import subprocess
+            code = ("import sys,csv,json; sys.path.insert(0,'tools'); import layout\n"
+                    "s=sorted(int(r['address'],16) for r in csv.DictReader(open('build/functions.csv')))\n"
+                    "print(json.dumps([a for a in s if 0x100000<=a<0x372AE0 and layout.path_for(a).startswith('src/runtime/')]))")
+            env = {k: v for k, v in os.environ.items() if k != "PES6_TARGET"}
+            out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, env=env, check=True).stdout
+            os.makedirs(RESULTS, exist_ok=True)
+            open(path, "w").write(out.strip().splitlines()[-1])
+        data = json.load(open(path))
+        _RUNTIME = {x[0] if isinstance(x, list) else x for x in data}
+    return _RUNTIME
+
+
+# ---- images -------------------------------------------------------------------------------------
+
+def elf_segments(path):
+    d = open(path, "rb").read()
+    phoff, = struct.unpack_from("<I", d, 28)
+    phentsize, phnum = struct.unpack_from("<HH", d, 42)
     out = []
-    for w in words:
-        op = w >> 26
-        if op == 0x1F:
-            w = (0x3F << 26) | (w & 0x03FFFFFF)
-        elif op == 0x1E:
-            w = (0x37 << 26) | (w & 0x03FFFFFF)
-        out.append(w)
+    for i in range(phnum):
+        p_type, off, vaddr, _, filesz, memsz = struct.unpack_from("<6I", d, phoff + i * phentsize)
+        if p_type == 1 and filesz:
+            out.append((vaddr, d[off:off + filesz]))
     return out
 
 
-def original(addr):
-    text_addr, text = match.load_text()
-    return match.trim_padding(match.words_at(text_addr, text, addr, match.function_span(addr)))
+def memory_image(image):
+    """[(address, bytes)] to load: the resident executable, plus the overlay for an overlay function."""
+    segs = elf_segments(os.path.join(ROOT, "orig", "SLES_542.03"))
+    if image != "main":
+        segs += elf_segments(os.path.join(ROOT, "build", "targets", image, "image.elf"))
+    return segs
 
 
-def compiled(addr, src):
-    obj = match.compile_c(src)
-    blob, srelocs, funcs = match.read_object(obj, want_symbols=True)
-    os.remove(obj)
-    if not funcs:
-        raise SystemExit("no function in the compiled object")
-    _, foff, fsize = funcs[0]
-    fsize = max(fsize, len(blob) - foff)
-    words = list(struct.unpack_from(f"<{fsize // 4}I", blob, foff))
-    words, unresolved = match.link_words(words, srelocs, foff, addr)
-    if unresolved:
-        raise SystemExit(f"unresolved relocations: {len(unresolved)}")
-    return match.trim_padding(words)
+# ---- the draft: prototypes and return type --------------------------------------------------------
+
+TYPE_INT64 = re.compile(r"\b(s64|u64|long long|M2C_UNK64)\b")
 
 
-def run(addr, words, ret_stub=0, args=(0, 0, 0, 0)):
-    uc = Uc(UC_ARCH_MIPS, UC_MODE_MIPS64 | UC_MODE_LITTLE_ENDIAN)
-    uc.mem_map(BASE, SIZE)
-    uc.mem_write(addr, b"".join(struct.pack("<I", w) for w in demmi(words)))
-    uc.mem_write(STOP, b"\x00\x00\x00\x00")
-    for reg, val in ((UC_MIPS_REG_SP, STACK), (UC_MIPS_REG_GP, GP), (UC_MIPS_REG_RA, STOP),
-                     (UC_MIPS_REG_A0, args[0]), (UC_MIPS_REG_A1, args[1]),
-                     (UC_MIPS_REG_A2, args[2]), (UC_MIPS_REG_A3, args[3])):
-        uc.reg_write(reg, val)
-    writes = []
-    calls = []
+def parse_prototypes(text, symbol):
+    """({callee name: (int args, float args)}, return kind of `symbol`): kinds none/int/int64/float."""
+    protos = {}
+    ret = "int"
+    for m in re.finditer(r"^\s*(?:extern\s+|static\s+)?([\w\s\*]+?)\s*\b(\w+)\s*\(([^;{)]*)\)\s*([;{])", text, re.M):
+        rtype, name, args, end = m.group(1).strip(), m.group(2), m.group(3).strip(), m.group(4)
+        if name in ("if", "while", "for", "switch", "return", "sizeof"):
+            continue
+        if name == symbol and end == "{":
+            ret = ("none" if rtype.split()[-1] == "void" and "*" not in rtype else
+                   "float" if re.search(r"\b(f32|float)\b", rtype) and "*" not in rtype else
+                   "int64" if TYPE_INT64.search(rtype) else "int")
+            continue
+        if end != ";":
+            continue
+        if args in ("",):
+            protos[name] = None                      # unknown arguments
+            continue
+        if args == "void":
+            protos[name] = (0, 0)
+            continue
+        ni = nf = 0
+        for a in args.split(","):
+            a = a.strip()
+            if a == "...":
+                continue
+            if re.search(r"\b(f32|float)\b", a) and "*" not in a:
+                nf += 1
+            else:
+                ni += 1
+        protos[name] = (ni, nf)
+    return protos, ret
 
-    def on_code(uc, pc, size, _):
-        if pc == STOP:
-            uc.emu_stop()
-            return
-        word = struct.unpack("<I", uc.mem_read(pc, 4))[0]
-        if word >> 26 == JAL:
-            calls.append((word & 0x03FFFFFF) << 2)
-            uc.reg_write(UC_MIPS_REG_V0, ret_stub)
-            uc.reg_write(UC_MIPS_REG_RA, pc + 8)
-            uc.reg_write(32, pc + 8)
 
-    def on_write(uc, access, a, size, value, _):
-        writes.append((a, size, value))
+# ---- cases ---------------------------------------------------------------------------------------
 
-    uc.hook_add(UC_HOOK_CODE, on_code)
-    uc.hook_add(UC_HOOK_MEM_WRITE, on_write)
+def constants_in(words):
+    """Integer and float constants the code compares against or builds (for the value pools)."""
+    ints, floats = set(), set()
+    for i, x in enumerate(words):
+        op = x >> 26
+        imm = x & 0xFFFF
+        simm = imm - 0x10000 if imm & 0x8000 else imm
+        if op in (8, 9, 10, 11, 12, 13, 14, 24, 25):
+            ints.update((simm & M32, (simm + 1) & M32, (simm - 1) & M32, imm))
+        elif op == 15:
+            ints.add((imm << 16) & M32)
+            floats.add((imm << 16) & M32)
+            if i + 1 < len(words) and (words[i + 1] >> 26) in (9, 13):
+                lo = words[i + 1] & 0xFFFF
+                v = ((imm << 16) + (lo - 0x10000 if lo & 0x8000 and words[i + 1] >> 26 == 9 else lo)) & M32
+                ints.add(v)
+                floats.add(v)
+    return sorted(ints)[:64], sorted(floats)[:32]
+
+
+FLOATS = [0x00000000, 0x3F800000, 0xBF800000, 0x3F000000, 0x40000000, 0x42C80000, 0xC2C80000,
+          0x3DCCCCCD, 0x447A0000, 0x80000000, 0x41200000, 0xC1200000]
+INTS = [0, 1, 2, 3, 4, 5, 7, 8, 15, 16, 31, 32, 0x7F, 0x80, 0xFF, 0x100, 0x7FFF, 0x8000, 0xFFFF,
+        0x10000, M32, M32 - 1, 0x7FFFFFFF, 0x80000000]
+
+
+class Pools:
+    def __init__(self, rng, words):
+        ci, cf = constants_in(words)
+        self.rng = rng
+        self.ints = INTS + ci
+        self.floats = FLOATS + cf
+
+    def pointer(self):
+        return BUF + 0x8000 + (self.rng.randrange(0, BUFSZ - 0x10000) & ~15)
+
+    def int_value(self):
+        r = self.rng.random()
+        if r < 0.35:
+            return self.pointer()
+        if r < 0.85:
+            return self.rng.choice(self.ints)
+        return self.rng.getrandbits(16)
+
+    def float_value(self):
+        if self.rng.random() < 0.8:
+            return self.rng.choice(self.floats)
+        f = self.rng.uniform(-1000, 1000)
+        return struct.unpack("<I", struct.pack("<f", f))[0]
+
+    def word(self):
+        r = self.rng.random()
+        return self.int_value() if r < 0.75 else self.float_value()
+
+
+def make_case(rng, pools, read_set):
+    """A case: argument registers, buffer contents seed, globals to set, call responses."""
+    case = {
+        "gpr": {r: S.sx64(pools.int_value()) for r in (4, 5, 6, 7, 8, 9, 10, 11)},
+        "fpr": {r: pools.float_value() for r in range(12, 20)},
+        "buf_seed": rng.randrange(8),
+        "globals": {},
+        "responses": [(pools.int_value(), pools.float_value()) for _ in range(64)],
+    }
+    for a in sorted(read_set):
+        if rng.random() < 0.5:
+            case["globals"][a] = pools.word()
+    return case
+
+
+def fill_buffer(seed):
+    rng = random.Random(seed)
+    pools = Pools(rng, [])
+    return b"".join(struct.pack("<I", pools.word() & M32) for _ in range(BUFSZ // 4))
+
+
+# ---- running -------------------------------------------------------------------------------------
+
+_BUFFERS = {}
+
+
+def buffer_for(seed):
+    if seed not in _BUFFERS:
+        _BUFFERS[seed] = fill_buffer(seed)
+    return _BUFFERS[seed]
+
+
+class Run:
+    def __init__(self, base_mem):
+        self.m = S.Machine()
+        self.base = base_mem
+        self.dirty = None              # (address, size) touched by the last case, restored before the next
+
+    def prepare(self, case):
+        m = self.m
+        if self.dirty is None:
+            m.mem[:] = self.base
+        else:
+            for a, size in self.dirty:
+                buf, o = m._where(a, size)
+                if buf is m.mem:
+                    m.mem[o:o + size] = self.base[o:o + size]
+            m.scratch[:] = bytes(len(m.scratch))
+        self.dirty = [(BUF, BUFSZ)]
+        m.mem[BUF:BUF + BUFSZ] = buffer_for(case["buf_seed"])
+        for a, v in case["globals"].items():
+            buf, o = m._where(a, 4)
+            if buf is not None:
+                buf[o:o + 4] = struct.pack("<I", v & M32)
+                self.dirty.append((a, 4))
+        m._dec.clear()
+        m.reset_regs()
+        m.writes.clear()
+        m.covered.clear()
+        for r in range(32):
+            m.gpr[r] = 0
+        for r, v in case["gpr"].items():
+            m.gpr[r] = v
+        for r, v in case["fpr"].items():
+            m.fpr[r] = v
+        for r in range(16, 24):
+            m.gpr[r] = 0x5A5A0000 + r
+        m.gpr[30] = 0x5A5A001E
+        m.gpr[28] = GP
+        m.gpr[29] = STACK_TOP
+
+    def run(self, entry, lo, hi, case, protos_by_addr, collect_reads=False):
+        """Run one function from the prepared state; returns its observable behaviour."""
+        m = self.m
+        self.prepare(case)
+        m.reads = set() if collect_reads else None
+        calls = []
+        responses = case["responses"]
+        idx = [0]
+
+        def answer(target):
+            proto = protos_by_addr.get(target, "?")
+            if proto is None or proto == "?":
+                args = ()
+            else:
+                ni, nf = proto
+                # a pointer into the function's own stack frame is compared as "the stack": where a
+                # local lives is the compiler's choice, so its address may differ between original and C
+                ints = tuple("stack" if STACK_TOP - FRAME <= m.g32(r) < STACK_TOP else m.g32(r)
+                             for r in (4, 5, 6, 7, 8, 9, 10, 11)[:ni])
+                flts = tuple(m.fpr[12 + k] for k in range(nf))
+                args = ints + flts
+            calls.append((target, args))
+            v, f = responses[idx[0] % len(responses)]
+            idx[0] += 1
+            m.gpr[2] = S.sx64(v)
+            m.gpr[3] = 0
+            m.fpr[0] = f
+
+        runtime = runtime_starts()
+        inside = []            # return addresses of runtime calls that are running in the simulator
+
+        def on_call(mm, target):
+            if target & M32 in runtime:
+                inside.append(mm.pc)            # the delay slot ran: mm.pc is the return address
+                return False
+            answer(target & M32)
+            return True
+
+        def on_syscall(mm, code):
+            answer(0xFFFF0000 | (mm.g32(3) & 0xFFFF))
+
+        m.call_hook = on_call
+        m.syscall_hook = on_syscall
+        m.io_read = lambda a, s: 0
+        m.io_write = lambda a, s, v: None
+        m.gpr[31] = S.SENTINEL
+        m.pc, m.npc = entry, entry + 4
+        steps = 0
+        try:
+            while m.pc != S.SENTINEL:
+                if inside and m.pc == inside[-1]:
+                    inside.pop()
+                if not inside and not lo <= m.pc < hi and m.npc == m.pc + 4:
+                    if m.pc in runtime:                     # a tail call into the runtime: run it, return to ra
+                        inside.append(m.g32(31))
+                        m.step()
+                        steps += 1
+                        continue
+                    # left the function by a plain jump: a tail call
+                    answer(m.pc)
+                    ra = m.g32(31)
+                    m.pc, m.npc = ra, ra + 4
+                    steps += 1                              # a bad ra could bounce here forever
+                    if steps > MAX_STEPS:
+                        raise StepLimit()
+                    continue
+                m.step()
+                steps += 1
+                if steps > MAX_STEPS:
+                    raise StepLimit()
+        finally:
+            self.dirty.extend((a, s) for a, s, _ in m.writes)   # restored before the next case, even after a fault
+        sp0 = STACK_TOP
+        mem = {}
+        for a, size, v in m.writes:
+            for k in range(size):
+                ad = (a + k) & M32
+                if sp0 - FRAME <= ad < sp0:
+                    continue
+                mem[ad] = (v >> (8 * k)) & 0xFF
+        saved = tuple(m.gpr[r] & M64 for r in (16, 17, 18, 19, 20, 21, 22, 23, 28, 29, 30))
+        return {"calls": calls, "mem": mem, "v0": m.gpr[2] & M64, "f0": m.fpr[0], "saved": saved,
+                "covered": {a for a in m.covered if lo <= a < hi}, "reads": m.reads or set()}
+
+
+def compare(o, c, ret):
+    if o["calls"] != c["calls"]:
+        n = next((i for i, (x, y) in enumerate(zip(o["calls"], c["calls"])) if x != y), min(len(o["calls"]), len(c["calls"])))
+        a = o["calls"][n] if n < len(o["calls"]) else None
+        b = c["calls"][n] if n < len(c["calls"]) else None
+        fmt = lambda x: "none" if x is None else f"{x[0]:08X}({', '.join(v if isinstance(v, str) else f'{v:x}' for v in x[1])})"
+        return f"call #{n}: original {fmt(a)}, C {fmt(b)}"
+    if o["mem"] != c["mem"]:
+        diff = sorted(a for a in set(o["mem"]) | set(c["mem"]) if o["mem"].get(a) != c["mem"].get(a))
+        return f"memory differs at {len(diff)} bytes from {diff[0]:08X}"
+    if ret == "int" and (o["v0"] & M32) != (c["v0"] & M32):
+        return f"return {o['v0'] & M32:#x} vs {c['v0'] & M32:#x}"
+    if ret == "int64" and o["v0"] != c["v0"]:
+        return f"return {o['v0']:#x} vs {c['v0']:#x}"
+    if ret == "float" and o["f0"] != c["f0"]:
+        return f"float return {o['f0']:08x} vs {c['f0']:08x}"
+    if o["saved"] != c["saved"]:
+        return "callee-saved registers differ"
+    return None
+
+
+# ---- one function --------------------------------------------------------------------------------
+
+def compile_draft(src, address, symbol, obj=None):
+    import match
+    own = obj is None
+    if own:
+        obj = match.compile_c(src)
     try:
-        uc.emu_start(addr, STOP, count=20000)
-    except UcError as e:
-        return None, None, None, f"{e} at 0x{uc.reg_read(UC_MIPS_REG_PC):08X}"
-    return (uc.reg_read(UC_MIPS_REG_V0), uc.reg_read(UC_MIPS_REG_V1)), writes, calls, None
+        blob, relocs, funcs = match.read_object(obj, want_symbols=True)
+    finally:
+        if own:
+            os.remove(obj)
+    f = [x for x in funcs if x[0] == symbol] or funcs[:1]
+    if not f:
+        raise ValueError("no function in the compiled object")
+    _, off, size = f[0]
+    words = list(struct.unpack_from(f"<{size // 4}I", blob, off))
+    linked, unresolved = match.link_words(words, relocs, off, SCRATCH_CODE)
+    if unresolved:
+        raise ValueError(f"{len(unresolved)} unresolved relocations")
+    return match.trim_padding(linked)
 
 
-def one(a, src):
-    addr = int(a, 16)
-    orig = original(addr)
-    mine = compiled(addr, src)
-    if orig == mine:
-        return f"{a} BYTE-MATCH ({len(orig)} instructions)"
-    o_res, o_wr, o_call, o_err = run(addr, orig)
-    m_res, m_wr, m_call, m_err = run(addr, mine)
-    if o_err or m_err:
-        return f"{a} UNRUNNABLE original={o_err} mine={m_err}"
-    ok = o_res == m_res and o_wr == m_wr and o_call == m_call
-    # $v1 is undefined for a 32-bit return; a v1-only difference is reported apart from a
-    # real disagreement so 64-bit returns are not silently conflated with scratch state.
-    v0_only = (not ok and o_res[0] == m_res[0] and o_wr == m_wr and o_call == m_call)
-    verdict = "EQUIVALENT" if ok else ("V0-ONLY" if v0_only else "DIFFERS")
-    return (f"{a} {verdict} v0v1={o_res} vs {m_res} "
-            f"writes={len(o_wr)}/{len(m_wr)} calls={len(o_call)}/{len(m_call)}")
+def cache_key(original, compiled, protos, ret):
+    h = hashlib.sha256()
+    h.update(struct.pack(f"<{len(original)}I", *original))
+    h.update(struct.pack(f"<{len(compiled)}I", *compiled))
+    h.update(json.dumps([sorted((k, v) for k, v in protos.items() if v is not None), ret]).encode())
+    for p in TOOL_FILES:
+        h.update(open(os.path.join(ROOT, p), "rb").read())
+    return h.hexdigest()
+
+
+def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None):
+    import match
+    import symbols
+    t0 = time.time()
+    symbol = symbol or symbols.symbol(address)
+    text_addr, text = match.load_text()
+    original = match.trim_padding(match.words_at(text_addr, text, address, match.function_span(address)))
+    source = open(src).read()
+    protos, ret = parse_prototypes(source, symbol)
+    try:
+        compiled = compile_draft(src, address, symbol, obj)
+    except (ValueError, SystemExit) as e:
+        return {"verdict": "ERROR", "detail": f"compile: {e}"}
+    protos_by_addr = {}
+    for name, p in protos.items():
+        a = symbols.address_of(name)
+        if a is not None:
+            protos_by_addr[a] = p
+    key = cache_key(original, compiled, protos, ret)
+    if cache is not None and key in cache:
+        return dict(cache[key], cached=True)
+
+    if base_mem is None:
+        base_mem = build_memory(image)
+    o_run, c_run = Run(base_mem), Run(base_mem)
+    code = [(0x00100000, 0x00372AE0)]
+    if image != "main":
+        tl, tt = match.load_text()
+        code.append((tl, tl + len(tt)))
+    o_run.m.readonly = list(code)                       # game code never writes its own text
+    c_run.m.readonly = code + [(SCRATCH_CODE, SCRATCH_CODE + 4 * len(compiled))]
+    c_mem = bytearray(base_mem)
+    blob = struct.pack(f"<{len(compiled)}I", *compiled)
+    c_mem[SCRATCH_CODE:SCRATCH_CODE + len(blob)] = blob
+    c_run.base = bytes(c_mem)
+
+    lo, hi = address, address + 4 * len(original)
+    clo, chi = SCRATCH_CODE, SCRATCH_CODE + 4 * len(compiled)
+    rng = random.Random(address)
+    pools = Pools(rng, original)
+    read_set = set()
+
+    def globals_of(reads):
+        return {a for a in reads if not (STACK_TOP - FRAME <= a < STACK_TOP) and not (BUF <= a < BUF + BUFSZ)
+                and not any(c0 <= a < c1 for c0, c1 in code) and a < 0x02000000}
+
+    candidates = []
+    try:
+        for n in range(CANDIDATES):
+            if time.time() - t0 > TIME_BUDGET / 2:
+                break
+            case = make_case(rng, pools, read_set)
+            try:
+                r = o_run.run(address, lo, hi, case, protos_by_addr, collect_reads=True)
+            except (S.Fault, StepLimit):
+                continue
+            read_set |= globals_of(r["reads"])
+            candidates.append((case, r))
+    except S.Unimplemented as e:
+        return {"verdict": "UNTESTABLE", "detail": str(e)}
+    if not candidates:
+        return {"verdict": "UNTESTABLE", "detail": "the original faults or loops on every candidate case"}
+
+    chosen, covered = [], set()
+    pool = list(candidates)
+    while pool and len(chosen) < DEV_CASES:
+        best = max(pool, key=lambda cr: len(cr[1]["covered"] - covered))
+        if not best[1]["covered"] - covered and len(chosen) >= 4:
+            break
+        chosen.append(best)
+        covered |= best[1]["covered"]
+        pool.remove(best)
+    holdout = pool[:HOLDOUT]
+    reached = covered.union(*(r["covered"] for _, r in holdout))
+    coverage = round(100.0 * len(reached) / len(original), 1) if original else 0.0
+
+    for kind, group in (("dev", chosen), ("holdout", holdout)):
+        for case, o in group:
+            try:
+                c = c_run.run(SCRATCH_CODE, clo, chi, case, protos_by_addr)
+            except S.Fault as e:
+                return {"verdict": "DIFFERS", "detail": f"C faults ({kind} case): {e}", "cases": len(chosen) + len(holdout),
+                        "coverage": coverage, "key": key}
+            except StepLimit:
+                return {"verdict": "DIFFERS", "detail": f"C does not return ({kind} case)", "cases": len(chosen) + len(holdout),
+                        "coverage": coverage, "key": key}
+            except S.Unimplemented as e:
+                return {"verdict": "UNTESTABLE", "detail": f"C: {e}"}
+            why = compare(o, c, ret)
+            if why:
+                return {"verdict": "DIFFERS", "detail": f"{kind} case: {why}", "cases": len(chosen) + len(holdout),
+                        "coverage": coverage, "key": key}
+    res = {"verdict": "EQUIVALENT", "cases": len(chosen), "holdout": len(holdout), "coverage": coverage,
+           "returns": ret, "key": key, "seconds": round(time.time() - t0, 1)}
+    if cache is not None:
+        cache[key] = res
+    return res
+
+
+def ram_dump():
+    """A RAM snapshot of the running game to start every case from, if one is configured:
+    PES6_EQUIV_RAM = a raw 32 MB EE memory dump or a PCSX2 savestate (.p2s). Local only, never committed."""
+    p = os.environ.get("PES6_EQUIV_RAM")
+    if not p:
+        return None
+    if p.endswith(".p2s"):
+        import zipfile
+        return zipfile.ZipFile(p).read("eeMemory.bin")
+    return open(p, "rb").read()
+
+
+def build_memory(image):
+    """The memory every case starts from: a RAM dump of the running game when PES6_EQUIV_RAM names one
+    (globals, heap and lists as the game left them; the overlay of the dump's moment is resident),
+    else the executable's (and overlay's) initial image."""
+    dump = ram_dump()
+    if dump is not None:
+        m = S.Machine()
+        m.mem[:len(dump)] = dump[:len(m.mem)]
+        # only code goes over the dump: its data is the live state we want to keep
+        m.load(0x00100000, elf_segments(os.path.join(ROOT, "orig", "SLES_542.03"))[0][1][:0x00372AE0 - 0x00100000])
+        if image != "main":
+            for addr, data in elf_segments(os.path.join(ROOT, "build", "targets", image, "image.elf")):
+                text_len = os.path.getsize(os.path.join(ROOT, "build", "targets", image, "full", "text.bin"))
+                m.load(addr, data[:text_len])
+        return bytes(m.mem)
+    m = S.Machine()
+    for addr, data in memory_image(image):
+        m.load(addr, data)
+    return bytes(m.mem)
+
+
+# ---- batches -------------------------------------------------------------------------------------
+
+def load_cache(image):
+    p = os.path.join(RESULTS, f"cache-{image}.json")
+    return json.load(open(p)) if os.path.exists(p) else {}
+
+
+def save(image, cache, results):
+    os.makedirs(RESULTS, exist_ok=True)
+    json.dump(cache, open(os.path.join(RESULTS, f"cache-{image}.json"), "w"))
+    p = os.path.join(RESULTS, f"results-{image}.json")
+    old = json.load(open(p)) if os.path.exists(p) else {}
+    old.update(results)
+    json.dump(old, open(p, "w"), indent=1, sort_keys=True)
+
+
+def _worker(args):
+    image, rows, jobs_seed = args
+    import match
+    base = build_memory(image)
+    cache = {}
+    objs = match.compile_many([r["source"] for r in rows], jobs=1)
+    out = {}
+    for r in rows:
+        a = int(r["address"], 16)
+        import signal
+
+        def _timeout(sig, frm):
+            raise TimeoutError()
+        signal.signal(signal.SIGALRM, _timeout)
+        signal.alarm(FUNCTION_TIMEOUT)
+        try:
+            if objs.get(r["source"]) is None:
+                res = {"verdict": "ERROR", "detail": "does not compile"}
+            else:
+                res = judge(image, a, r["source"], r["symbol"], base, objs[r["source"]], cache)
+        except TimeoutError:
+            res = {"verdict": "UNTESTABLE", "detail": f"timeout ({FUNCTION_TIMEOUT} s)"}
+        except Exception as e:                      # one bad draft must not stop the batch
+            res = {"verdict": "ERROR", "detail": f"{type(e).__name__}: {e}"}
+        finally:
+            signal.alarm(0)
+            if objs.get(r["source"]):
+                try:
+                    os.remove(objs[r["source"]])
+                except OSError:
+                    pass
+        res.update({"symbol": r["symbol"], "source": r["source"]})
+        out[r["address"]] = res
+        with open(os.path.join(RESULTS, f"partial-{image}.jsonl"), "a") as fh:     # kept even if the batch stops
+            fh.write(json.dumps({"address": r["address"], **res}) + "\n")
+        print(f"{image} {r['address']} {res['verdict']} {res.get('detail', '')}"
+              f"{' cases=%s+%s coverage=%s%%' % (res.get('cases'), res.get('holdout'), res.get('coverage')) if res['verdict'] == 'EQUIVALENT' else ''}",
+              flush=True)
+    return out, cache
+
+
+def batch(list_path, jobs, limit):
+    import csv
+    import multiprocessing
+    # fork, not the forkserver default of recent Pythons: workers must inherit this image's PES6_TARGET,
+    # and a fork server started for an earlier image would hand them the wrong one
+    Pool = multiprocessing.get_context("fork").Pool
+    man = json.load(open(os.path.join(ROOT, "config", "nonmatching.json")))
+    drafts = {(r["image"], r["address"]): r for r in man["functions"]}
+    want = []
+    for row in csv.DictReader(open(list_path)):
+        key = (row["image"], row["address"].upper().replace("0X", "").zfill(8))
+        if key in drafts:
+            want.append(drafts[key])
+    os.makedirs(RESULTS, exist_ok=True)
+    done = {}
+    for fn in os.listdir(RESULTS):
+        m = re.match(r"partial-(\w+)\.jsonl$", fn)
+        if m:
+            for line in open(os.path.join(RESULTS, fn)):
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                done[(m.group(1), r["address"])] = r
+    for fn in os.listdir(RESULTS):
+        m = re.match(r"results-(\w+)\.json$", fn)
+        if m:
+            for a, r in json.load(open(os.path.join(RESULTS, fn))).items():
+                done[(m.group(1), a)] = r
+    skipped = sum(1 for r in want if (r["image"], r["address"]) in done)
+    want = [r for r in want if (r["image"], r["address"]) not in done]
+    print(f"{skipped} already judged, {len(want)} to go", flush=True)
+    if limit:
+        want = want[:limit]
+    by_image = {}
+    for r in want:
+        by_image.setdefault(r["image"], []).append(r)
+    for image, rows in by_image.items():
+        print(f"{image}: {len(rows)} drafts", flush=True)
+        env_target = None if image == "main" else image
+        # the tools read the target image from PES6_TARGET when they are imported: one process per image
+        if env_target:
+            os.environ["PES6_TARGET"] = env_target
+        else:
+            os.environ.pop("PES6_TARGET", None)
+        chunks = [rows[i:i + 10] for i in range(0, len(rows), 10)]     # small chunks: a slow function holds back little
+        cache = load_cache(image)
+        results = {}
+        with Pool(jobs) as pool:
+            for out, c in pool.imap_unordered(_worker, [(image, ch, i) for i, ch in enumerate(chunks) if ch]):
+                results.update(out)
+                cache.update(c)
+                save(image, cache, out)
+        counts = {}
+        for r in results.values():
+            counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
+        print(f"{image}: {counts}", flush=True)
+
+
+def report():
+    found = {}
+    for fn in sorted(os.listdir(RESULTS)) if os.path.isdir(RESULTS) else []:
+        m = re.match(r"partial-(\w+)\.jsonl$", fn)
+        if m:
+            for line in open(os.path.join(RESULTS, fn)):
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                found[(m.group(1), r["address"])] = r
+        m = re.match(r"results-(\w+)\.json$", fn)
+        if m:
+            for a, r in json.load(open(os.path.join(RESULTS, fn))).items():
+                found[(m.group(1), a)] = r
+    rows = [(img, a, r) for (img, a), r in found.items()]
+    eq = [x for x in rows if x[2]["verdict"] == "EQUIVALENT"]
+    counts = {}
+    for _, _, r in rows:
+        counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
+    lines = ["# C-equivalent functions", "",
+             "Non-matching drafts whose compiled C behaves like the original on generated test cases",
+             "(`tools/equiv.py`, run on `tools/r5900sim.py`, which matches real PS2 results in",
+             "`tools/ee_float_check.py` and `tools/r5900_check.py`). They stay in `nonmatching/`: this is",
+             "behavioural evidence, not byte identity, and not a proof. `tools/equiv.py` explains the cases",
+             "and what is compared. Coverage is the share of the original function's instructions the cases",
+             "ran; a branch no case reached is not checked.", "",
+             "Checked: " + ", ".join(f"{k.lower()} {v}" for k, v in sorted(counts.items())) + ".", "",
+             "| image | address | symbol | cases | holdout | coverage |", "|---|---|---|---:|---:|---:|"]
+    for image, a, r in sorted(eq):
+        lines.append(f"| {image} | `{a}` | `{r.get('symbol', '')}` | {r.get('cases')} | {r.get('holdout')} | {r.get('coverage')}% |")
+    open(os.path.join(ROOT, "docs", "equivalent.md"), "w").write("\n".join(lines) + "\n")
+    print(f"docs/equivalent.md: {len(eq)} equivalent of {len(rows)} checked")
 
 
 def main():
-    # One bad draft must not take the rest of the batch with it.
-    for a, src in zip(sys.argv[1::2], sys.argv[2::2]):
+    args = sys.argv[1:]
+    if not args:
+        sys.exit(__doc__)
+    if args[0] == "--report":
+        return report()
+    if args[0] == "--batch":
+        jobs = int(args[args.index("--jobs") + 1]) if "--jobs" in args else 2
+        limit = int(args[args.index("--limit") + 1]) if "--limit" in args else 0
+        return batch(args[1], jobs, limit)
+    image = os.environ.get("PES6_TARGET") or "main"
+    base = build_memory(image)
+    for a, src in zip(args[0::2], args[1::2]):
+        addr = int(a, 16)
         try:
-            print(one(a, src), flush=True)
-        except SystemExit as e:
-            print(f"{a} ERROR {e}", flush=True)
+            r = judge(image, addr, src, None, base)
         except Exception as e:
-            print(f"{a} ERROR {type(e).__name__}: {e}", flush=True)
+            r = {"verdict": "ERROR", "detail": f"{type(e).__name__}: {e}"}
+        print(f"{addr:08X} {r['verdict']} " + " ".join(f"{k}={v}" for k, v in r.items() if k not in ("verdict", "key")), flush=True)
 
 
 if __name__ == "__main__":
