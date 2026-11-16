@@ -391,13 +391,51 @@ def compare(o, c, ret):
 
 # ---- one function --------------------------------------------------------------------------------
 
+SCRATCH_DATA = 0x01D80000       # where the compiled object's read-only data (.rodata, literal pools) goes
+READONLY_SECTIONS = (".rodata", ".rodata.str1.4", ".rodata.cst4", ".rodata.cst8", ".lit4", ".lit8")
+
+
+def object_rodata(path):
+    """{section name: (bytes, [(offset, reloc type, symbol name, symbol value, in .text)])} of the
+    object's read-only data sections, with the relocations inside them (jump tables)."""
+    d = open(path, "rb").read()
+    shoff, = struct.unpack_from("<I", d, 32)
+    shentsize, shnum, shstrndx = struct.unpack_from("<HHH", d, 46)
+    secs = [struct.unpack_from("<10I", d, shoff + i * shentsize) for i in range(shnum)]
+    strtab = secs[shstrndx][4]
+    name = lambda off, base: d[base + off:d.index(b"\0", base + off)].decode()
+    names = [name(s[0], strtab) for s in secs]
+    symtab = next(s for s in secs if s[1] == 2)
+    strs = secs[symtab[6]][4]
+    syms = []
+    for i in range(symtab[5] // 16):
+        st_name, value, size, info, other, shndx = struct.unpack_from("<IIIBBH", d, symtab[4] + i * 16)
+        syms.append((name(st_name, strs) or (names[shndx] if shndx < len(names) else ""), value,
+                     shndx < len(names) and names[shndx] == ".text"))
+    out = {}
+    for i, n in enumerate(names):
+        if n in READONLY_SECTIONS or n.startswith(".rodata"):
+            s = secs[i]
+            relocs = []
+            for j, r in enumerate(secs):
+                if r[1] == 9 and r[7] == i:
+                    for k in range(r[5] // 8):
+                        off, info = struct.unpack_from("<II", d, r[4] + k * 8)
+                        relocs.append((off, info & 0xFF) + syms[info >> 8])
+            out[n] = (d[s[4]:s[4] + s[5]], relocs)
+    return out
+
+
 def compile_draft(src, address, symbol, obj=None):
+    """(linked code words at SCRATCH_CODE, [(address, bytes)] of the object's read-only data)."""
     import match
+    import symbols
     own = obj is None
     if own:
         obj = match.compile_c(src)
     try:
         blob, relocs, funcs = match.read_object(obj, want_symbols=True)
+        rodata = object_rodata(obj)
     finally:
         if own:
             os.remove(obj)
@@ -406,10 +444,32 @@ def compile_draft(src, address, symbol, obj=None):
         raise ValueError("no function in the compiled object")
     _, off, size = f[0]
     words = list(struct.unpack_from(f"<{size // 4}I", blob, off))
-    linked, unresolved = match.link_words(words, relocs, off, SCRATCH_CODE)
+    # place the read-only sections and let the code's relocations find them
+    placed, blobs, at = {}, [], SCRATCH_DATA
+    for n, (data, _) in rodata.items():
+        placed[n] = at
+        at += (len(data) + 15) & ~15
+    text_base = SCRATCH_CODE - off
+    for n, (data, inner) in rodata.items():
+        buf = bytearray(data)
+        for roff, rtype, sname, svalue, in_text in inner:
+            if rtype != 2:                                  # R_MIPS_32
+                raise ValueError(f"unsupported relocation {rtype} in {n}")
+            base = text_base + svalue if in_text else placed.get(sname, symbols.address_of(sname))
+            if base is None:
+                raise ValueError(f"unresolved symbol {sname} in {n}")
+            v = (struct.unpack_from("<I", buf, roff)[0] + base) & M32
+            struct.pack_into("<I", buf, roff, v)
+        blobs.append((placed[n], bytes(buf)))
+    orig = symbols.address_of
+    symbols.address_of = lambda s: placed[s] if s in placed else orig(s)
+    try:
+        linked, unresolved = match.link_words(words, relocs, off, SCRATCH_CODE)
+    finally:
+        symbols.address_of = orig
     if unresolved:
         raise ValueError(f"{len(unresolved)} unresolved relocations")
-    return match.trim_padding(linked)
+    return match.trim_padding(linked), blobs
 
 
 def cache_key(original, compiled, protos, ret):
@@ -432,7 +492,7 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
     source = open(src).read()
     protos, ret = parse_prototypes(source, symbol)
     try:
-        compiled = compile_draft(src, address, symbol, obj)
+        compiled, rodata = compile_draft(src, address, symbol, obj)
     except (ValueError, SystemExit) as e:
         return {"verdict": "ERROR", "detail": f"compile: {e}"}
     protos_by_addr = {}
@@ -440,7 +500,7 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
         a = symbols.address_of(name)
         if a is not None:
             protos_by_addr[a] = p
-    key = cache_key(original, compiled, protos, ret)
+    key = cache_key(original, compiled + [b for _, d in rodata for b in d], protos, ret)
     if cache is not None and key in cache:
         return dict(cache[key], cached=True)
 
@@ -452,10 +512,12 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
         tl, tt = match.load_text()
         code.append((tl, tl + len(tt)))
     o_run.m.readonly = list(code)                       # game code never writes its own text
-    c_run.m.readonly = code + [(SCRATCH_CODE, SCRATCH_CODE + 4 * len(compiled))]
+    c_run.m.readonly = code + [(SCRATCH_CODE, SCRATCH_CODE + 4 * len(compiled))] + [(a, a + len(d)) for a, d in rodata]
     c_mem = bytearray(base_mem)
     blob = struct.pack(f"<{len(compiled)}I", *compiled)
     c_mem[SCRATCH_CODE:SCRATCH_CODE + len(blob)] = blob
+    for a, data in rodata:
+        c_mem[a:a + len(data)] = data
     c_run.base = bytes(c_mem)
 
     lo, hi = address, address + 4 * len(original)
