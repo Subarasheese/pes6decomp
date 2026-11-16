@@ -42,6 +42,7 @@ import random
 import re
 import struct
 import sys
+import threading
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -240,6 +241,7 @@ def fill_buffer(seed):
 
 _STARTS = {}
 _INPUTS = {}
+_INPUTS_LOCK = threading.RLock()
 INT_ARGS = (4, 5, 6, 7, 8, 9, 10, 11)
 FLOAT_ARGS = tuple(range(12, 20))
 
@@ -265,11 +267,14 @@ def callee_inputs(target, mem, image, depth=0):
     import bisect
     import rabbitizer as R
     key = (image, target)
+    if depth == 0:
+        with _INPUTS_LOCK:                          # one computation at a time: the guard below is shared
+            return callee_inputs(target, mem, image, depth=1) if key not in _INPUTS else _INPUTS[key]
     if key in _INPUTS:
         return _INPUTS[key]
     starts = function_starts(image)
     i = bisect.bisect_left(starts, target)
-    if i >= len(starts) or starts[i] != target or depth > 3:
+    if i >= len(starts) or starts[i] != target or depth > 4:
         return (set(INT_ARGS[:4]), set())          # unknown code: a0-a3, as for any call
     end = starts[i + 1] if i + 1 < len(starts) else target + 0x4000
     end = min(end, target + 0x8000)
@@ -481,6 +486,25 @@ def compare(o, c, ret):
 
 # ---- one function --------------------------------------------------------------------------------
 
+_LOCAL = threading.local()
+_RESOLVER_LOCK = threading.Lock()
+
+
+def _install_resolver(symbols):
+    """Once per process: symbols.address_of also finds the compiled object's own read-only sections,
+    placed per thread (link_words resolves through symbols.address_of)."""
+    with _RESOLVER_LOCK:
+        if getattr(symbols.address_of, "_equiv", False):
+            return
+        orig = symbols.address_of
+
+        def address_of(s):
+            placed = getattr(_LOCAL, "placed", None) or {}
+            return placed[s] if s in placed else orig(s)
+        address_of._equiv = True
+        symbols.address_of = address_of
+
+
 SCRATCH_DATA = 0x01D80000       # where the compiled object's read-only data (.rodata, literal pools) goes
 READONLY_SECTIONS = (".rodata", ".rodata.str1.4", ".rodata.cst4", ".rodata.cst8", ".lit4", ".lit8")
 
@@ -551,12 +575,12 @@ def compile_draft(src, address, symbol, obj=None):
             v = (struct.unpack_from("<I", buf, roff)[0] + base) & M32
             struct.pack_into("<I", buf, roff, v)
         blobs.append((placed[n], bytes(buf)))
-    orig = symbols.address_of
-    symbols.address_of = lambda s: placed[s] if s in placed else orig(s)
+    _install_resolver(symbols)
+    _LOCAL.placed = placed                          # per thread: callers may judge in several threads
     try:
         linked, unresolved = match.link_words(words, relocs, off, SCRATCH_CODE)
     finally:
-        symbols.address_of = orig
+        _LOCAL.placed = {}
     if unresolved:
         raise ValueError(f"{len(unresolved)} unresolved relocations")
     return match.trim_padding(linked), blobs
