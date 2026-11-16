@@ -323,18 +323,23 @@ def function_starts(image):
     return _STARTS[image]
 
 
-def callee_inputs(target, mem, image, depth=0):
+def callee_inputs(target, mem, image, depth=0, memo=None):
     """(int argument registers, float argument registers) the original callee reads before writing them:
     the arguments it really takes, whatever a draft's prototype says. Linear scan of its code; a call it
-    makes passes on what that callee takes (a few levels deep); an indirect jump assumes a0-a3."""
+    makes passes on what that callee takes (a few levels deep); an indirect jump assumes a0-a3.
+    The answer for a target never depends on what was asked before: only the top-level result is kept
+    across calls; what is worked out for the callees on the way (cut short by a call cycle or the
+    depth limit) lives in `memo` for this one computation."""
     import bisect
     import rabbitizer as R
     key = (image, target)
     if depth == 0:
-        with _INPUTS_LOCK:                          # one computation at a time: the guard below is shared
-            return callee_inputs(target, mem, image, depth=1) if key not in _INPUTS else _INPUTS[key]
-    if key in _INPUTS:
-        return _INPUTS[key]
+        with _INPUTS_LOCK:
+            if key not in _INPUTS:
+                _INPUTS[key] = callee_inputs(target, mem, image, depth=1, memo={})
+            return _INPUTS[key]
+    if key in memo:
+        return memo[key]
     starts = function_starts(image)
     i = bisect.bisect_left(starts, target)
     if i >= len(starts) or starts[i] != target or depth > 4:
@@ -342,7 +347,7 @@ def callee_inputs(target, mem, image, depth=0):
     end = starts[i + 1] if i + 1 < len(starts) else target + 0x4000
     end = min(end, target + 0x8000)
     written, ints, flts = set(), set(), set()
-    _INPUTS[key] = (set(INT_ARGS[:4]), set())       # recursion guard
+    memo[key] = (set(INT_ARGS[:4]), set())          # recursion guard
     for a in range(target, end, 4):
         if a + 4 > len(mem):
             break
@@ -351,7 +356,7 @@ def callee_inputs(target, mem, image, depth=0):
         op = w >> 26
         if op in (2, 3):
             t = ((a + 4) & 0xF0000000) | ((w & 0x3FFFFFF) << 2)
-            si, sf = callee_inputs(t, mem, image, depth + 1)
+            si, sf = callee_inputs(t, mem, image, depth + 1, memo)
             ints |= si - written
             flts |= sf - written
         elif op == 0 and (w & 0x3F) in (8, 9) and ((w >> 21) & 31) != 31:
@@ -386,8 +391,8 @@ def callee_inputs(target, mem, image, depth=0):
                         written.add(getattr(ins, field).value)
                 except (AttributeError, ValueError):
                     pass
-    _INPUTS[key] = (ints, flts)
-    return _INPUTS[key]
+    memo[key] = (ints, flts)
+    return memo[key]
 
 
 # ---- running -------------------------------------------------------------------------------------
@@ -714,7 +719,7 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
     if base_mem is None:
         base_mem = build_memory(image)
     try:
-        compiled, rodata = compile_draft(src, address, symbol, obj, base_mem, referenced(original))
+        compiled, rodata = compile_draft(src, address, symbol, obj, static_memory(image), referenced(original))
     except (ValueError, SystemExit) as e:
         return {"verdict": "ERROR", "detail": f"compile: {e}"}
     protos_by_addr = {}
@@ -746,9 +751,14 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
     pools = Pools(rng, original, base_mem)
     read_set = set()
 
+    def jump_table_word(a):
+        """A word of the original's jump table: it holds an address inside the function. Varying it
+        would send the original to garbage while the C, whose table is its own, would not follow."""
+        return a + 4 <= len(base_mem) and lo <= struct.unpack_from("<I", base_mem, a)[0] < hi
+
     def globals_of(reads):
         return {a for a in reads if not (STACK_TOP - FRAME <= a < STACK_TOP) and not (BUF <= a < BUF + BUFSZ)
-                and not any(c0 <= a < c1 for c0, c1 in code) and a < 0x02000000}
+                and not any(c0 <= a < c1 for c0, c1 in code) and a < 0x02000000 and not jump_table_word(a)}
 
     candidates = []
     try:
@@ -877,6 +887,20 @@ def ram_dump():
         import zipfile
         return zipfile.ZipFile(p).read("eeMemory.bin")
     return open(p, "rb").read()
+
+
+_STATIC = {}
+
+
+def static_memory(image):
+    """The executable's (and overlay's) memory as loaded from the files, before the game ever ran:
+    what a constant table of the source holds. The RAM snapshot has live data, which differs."""
+    if image not in _STATIC:
+        m = S.Machine()
+        for addr, data in memory_image(image):
+            m.load(addr, data)
+        _STATIC[image] = bytes(m.mem)
+    return _STATIC[image]
 
 
 def build_memory(image):

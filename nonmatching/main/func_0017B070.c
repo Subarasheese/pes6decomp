@@ -1,7 +1,5 @@
-/* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
 #include "pes6/m2c.h"
-
 
 extern char D_00510FF0[];
 
@@ -23,7 +21,7 @@ void func_0017B070(void *arg0) {
         }
         M2C_FIELD(var_a2, s32 *, 0x130) = (s32) M2C_FIELD(arg0, s32 *, 0x130);
     } else {
-        *temp_a1 = ((void *)D_00510FF0);
+        *temp_a1 = (M2C_UNK *) M2C_FIELD(arg0, s32 *, 0x130);
     }
     M2C_FIELD(arg0, s32 *, 0x130) = 0;
 }

@@ -7,7 +7,7 @@ extern char Pes6MatchPlayers[];
 extern char D_00592800[];
 extern char D_00592810[];
 
-void func_0099C460(s8 arg0) {
+void func_0099C460(s32 arg0) {
     s32 temp_a2;
     s32 temp_a2_2;
     s32 temp_t1;
@@ -21,7 +21,7 @@ void func_0099C460(s8 arg0) {
     void *temp_a7;
 
     if (arg0 < 0x17) {
-        if (arg0 != -1) {
+        if (arg0 != 0xFF) {
             var_a1 = arg0 % 23;
         } else {
             var_a1 = 1;

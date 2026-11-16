@@ -1,10 +1,10 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
 s32 func_002C19F0(s32, s32, s32, M2C_UNK, s32);     /* extern */
-s32 func_002C1BF0(s32, M2C_UNK);                    /* extern */
+s32 func_002C1BF0(s32, s32, s32, M2C_UNK);                    /* extern */
 s32 func_002C4B50(s32, s32);                        /* extern */
 s32 func_002C6130(s32);                             /* extern */
 void *func_00C13280(s32);                           /* extern */
@@ -34,7 +34,7 @@ s32 func_00C5A7D0(s32 arg0, s32 arg1, s32 arg2, s32 (*arg3)(f32 *, s32, u32, u16
     var_s1 = 0;
     temp_s0 = ((((s32) (arg2 & 0xFF) >> 5) & 1) ^ 1) & 0xFF;
     if ((arg0 != -1) && (arg1 != -1)) {
-        temp_v0 = func_002C19F0(arg0, arg1, temp_s0, 6, func_002C1BF0(temp_s0, 6));
+        temp_v0 = func_002C19F0(arg0, arg1, temp_s0, 6, func_002C1BF0(arg0, arg1, temp_s0, 6));
         if ((temp_v0 != -1) && (func_002C6130(temp_v0) != -1)) {
             temp_f20 = (f32) func_002C4B50(temp_v0, temp_s0);
             temp_v0_2 = func_00C13280(temp_v0);

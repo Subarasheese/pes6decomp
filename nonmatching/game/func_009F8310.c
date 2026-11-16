@@ -45,7 +45,7 @@ s32 func_009F8310(char *arg0) {
                 if (func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (temp_a2 * 0x6900))), u8 *, 0x72) & 0x7F, 0x28, temp_a2 * 0x69) >= 0x47) {
                     temp_a2_2 = M2C_FIELD(arg0, u8 *, 0x12);
                     temp_v0_2 = func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (temp_a2_2 * 0x6900))), u8 *, 0x72) & 0x7F, 0x28, temp_a2_2 * 0x69);
-                    var_v0 = ((temp_v0_2 - 0x46) / 7) + ((u32) (temp_v0_2 - 0x46) >> 0x1F);
+                    var_v0 = (temp_v0_2 - 0x46) / 7;
                 } else {
                     var_v0 = 0;
                 }

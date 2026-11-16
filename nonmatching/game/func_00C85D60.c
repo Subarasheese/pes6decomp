@@ -1,4 +1,4 @@
-/* compiler: mwcc-3.0.1b210 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 

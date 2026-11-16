@@ -1,4 +1,4 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -22,8 +22,8 @@ void func_001B2B00(void *arg0) {
     }
     if (M2C_FIELD(temp_s2, u8 *, 3) == 0) {
         temp_s0 = (M2C_FIELD(temp_s2, u8 *, 0x35) + 1) * 4;
-        if (*(M2C_FIELD(temp_s3, s32 **, 4) + temp_s0) != 0) {
-            func_00150FF0(func_001454C0(M2C_FIELD(temp_s2, u8 *, 0x66) + 0xFAF), *(M2C_FIELD(temp_s3, s32 **, 4) + temp_s0));
+        if (M2C_FIELD(M2C_FIELD(temp_s3, void **, 4), s32 *, temp_s0) != 0) {
+            func_00150FF0(func_001454C0(M2C_FIELD(temp_s2, u8 *, 0x66) + 0xFAF), M2C_FIELD(M2C_FIELD(temp_s3, void **, 4), s32 *, temp_s0));
         }
     }
     func_001ADDA0((s32) M2C_FIELD(temp_s2, u8 *, 0x66));

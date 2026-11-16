@@ -1,4 +1,4 @@
-/* compiler: mwcc-3.0.1b210 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -8,11 +8,11 @@ extern void func_002727C0(s32);
 extern void func_001A58E0(void *, signed char);
 extern void func_0017E120(int);
 M2C_UNK func_00209830(s32);                         /* extern */
-M2C_UNK func_009B37F0(M2C_UNK *);                   /* extern */
+M2C_UNK func_009B37F0(void *);                   /* extern */
 M2C_UNK func_009E1D30(M2C_UNK, M2C_UNK);            /* extern */
 M2C_UNK func_009E37F0();                            /* extern */
 M2C_UNK func_00B24790(M2C_UNK);                     /* extern */
-M2C_UNK func_00B6CE80(M2C_UNK *);                   /* extern */
+M2C_UNK func_00B6CE80(void *);                   /* extern */
 extern void *D_0058E5B4;
 extern char D_0058E7F0[];
 extern char D_00591BE4[];
@@ -23,7 +23,7 @@ extern char D_00591F12[];
 extern char D_00CBBDF8[];
 
 void func_009E5D20(void) {
-    M2C_UNK *var_s2;
+    char *var_s2;
     s32 var_s0;
     s32 var_s1;
 
@@ -42,7 +42,7 @@ void func_009E5D20(void) {
         var_s1 = 0;
         if (((*(u8 *)D_00591BE4) * 0x1E) > 0) {
             do {
-                var_s2 = ((void *)D_0058E7F0);
+                var_s2 = D_0058E7F0;
                 var_s0 = 0;
                 (*(s32 *)D_00591E14) += 1;
 loop_3:

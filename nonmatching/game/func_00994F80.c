@@ -4,14 +4,14 @@
 
 
 s32 func_00905270(s32);                             /* extern */
-s32 func_009909D0(s32, M2C_UNK);                    /* extern */
-s32 func_009946A0(M2C_UNK);                         /* extern */
+s32 func_009909D0(s32, s32);                    /* extern */
+s32 func_009946A0(s32, s32);
 extern void *D_003E7A08;
 
 void func_00994F80(s32 arg0, s8 arg1) {
     s8 var_a0;
 
-    if (func_009946A0(0) == 0) {
+    if (func_009946A0(arg0, 0) == 0) {
         M2C_FIELD(D_003E7A08, s8 *, 0x28B) = 0;
         M2C_FIELD(D_003E7A08, s32 *, 0x284) = 5;
         M2C_FIELD(D_003E7A08, s8 *, 0x2A4) = arg1;

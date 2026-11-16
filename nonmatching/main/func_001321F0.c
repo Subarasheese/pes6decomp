@@ -10,6 +10,8 @@ M2C_UNK func_0012BBD0(s32, void *, s128, s128);     /* extern */
 
 void func_001321F0(void *arg0, void *arg1) {
     s128 temp_a2;
+    s128 temp_v1;
+    s128 temp_v0;
     s128 temp_a3;
     void *var_s0;
     void *var_s1;
@@ -20,10 +22,12 @@ void func_001321F0(void *arg0, void *arg1) {
         do {
             temp_a3 = M2C_FIELD(var_s0, s128 *, 0);
             temp_a2 = M2C_FIELD(var_s0, s128 *, 0x10);
+            temp_v1 = M2C_FIELD(var_s0, s128 *, 0x20);
+            temp_v0 = M2C_FIELD(var_s0, s128 *, 0x30);
             M2C_FIELD(var_s1, s128 *, 0) = temp_a3;
             M2C_FIELD(var_s1, s128 *, 0x10) = temp_a2;
-            M2C_FIELD(var_s1, s128 *, 0x20) = (s128) M2C_FIELD(var_s0, s128 *, 0x20);
-            M2C_FIELD(var_s1, s128 *, 0x30) = (s128) M2C_FIELD(var_s0, s128 *, 0x30);
+            M2C_FIELD(var_s1, s128 *, 0x20) = temp_v1;
+            M2C_FIELD(var_s1, s128 *, 0x30) = temp_v0;
             func_0012BBD0(var_s1 + 0x60, var_s1, temp_a2, temp_a3);
             var_s1 = M2C_FIELD(var_s1, void **, 0x104);
             var_s0 += 0x40;

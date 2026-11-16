@@ -1,4 +1,4 @@
-/* compiler: mwcc-3.0.1b210 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 

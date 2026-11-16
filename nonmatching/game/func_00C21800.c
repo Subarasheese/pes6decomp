@@ -1,4 +1,4 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -10,7 +10,7 @@ extern char D_00CCAF80[];
 /* Warning: Gap in callee-saved word stack region.
  * Saved: [0x0, 0x10, 0x14, 0x18, 0x1c, 0x20, 0x24, 0x28, 0x2c, 0x30, 0x34, 0x38, 0x3c, 0x40, 0x44, 0x48, 0x4c, 0x50, 0x54], gap at: 0x8. */
 void func_00C21800(void *arg0) {
-    M2C_UNK *var_a0;
+    char *var_a0;
     f32 *temp_v0;
     f32 temp_f0;
     f32 temp_f1;
@@ -41,7 +41,7 @@ void func_00C21800(void *arg0) {
         } while (var_s2 < (s32) temp_s0);
     }
     var_v1 = 0;
-    var_a0 = ((void *)D_00CCAF80);
+    var_a0 = D_00CCAF80;
     do {
         var_v1 += 6;
         temp_f3 = M2C_FIELD(var_a0, f32 *, 0x10);

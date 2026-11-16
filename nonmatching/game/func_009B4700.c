@@ -11,7 +11,7 @@ extern char D_00CBAA07[];
 extern char D_00CBAA09[];
 
 s8 func_009B4700(void) {
-    M2C_UNK *var_a3;
+    u8 *var_a3;
     s32 temp_a0_2;
     s32 var_a4;
     s32 var_v1;

@@ -1,14 +1,13 @@
-/* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
 #include "pes6/m2c.h"
 
-
-extern void *D_0051FFB8;
+extern s16 *D_0051FFB8;
 
 void func_001857B0(void) {
-    if (D_0051FFB8 != NULL) {
-        if (M2C_FIELD(D_0051FFB8, s16 *, 6) >= 8) {
-            M2C_FIELD(D_0051FFB8, s16 *, 6) = 7;
+    s16 *p = D_0051FFB8;
+    if (p != NULL) {
+        if (p[3] >= 8) {
+            p[3] = 7;
         }
     }
 }

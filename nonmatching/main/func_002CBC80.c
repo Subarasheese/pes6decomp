@@ -17,10 +17,10 @@ s32 func_002CBC80(s64 arg0) {
             goto block_8;
         }
         temp_v1 = temp_s0 * 8;
-        if (*(((char *)D_005E3BA4) + temp_v1) == 0) {
+        if (*(s32 *)(((char *)D_005E3BA4) + temp_v1) == 0) {
             var_v0 = 0;
         } else {
-            var_v0 = *(((char *)Pes6HeapZone_Ranges) + temp_v1);
+            var_v0 = *(s32 *)(((char *)Pes6HeapZone_Ranges) + temp_v1);
         }
         return var_v0;
     }

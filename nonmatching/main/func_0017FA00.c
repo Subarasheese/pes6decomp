@@ -1,23 +1,19 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
+extern void func_0017FA50(s32 a0, s32 a1, s32 a2, s32 a3, void *a4);
 
-M2C_UNK func_0017FA50(s8 *);                        /* extern */
+void func_0017FA00(s32 a0, s32 a1, s32 a2, s32 a3) {
+    s8 sp10[20];
+    s32 i;
+    s8 *p;
 
-void func_0017FA00(void) {
-    s8 sp10;
-    s32 var_v0;
-    s8 *var_v1;
-
-    var_v0 = 0x14;
-    var_v1 = &sp10;
-    if (var_v1 != NULL) {
-        do {
-            *var_v1 = 0;
-            var_v0 -= 1;
-            var_v1 += 1;
-        } while (var_v0 != 0);
-    }
-    func_0017FA50(&sp10);
+    i = 20;
+    p = sp10;
+    do {
+        *p = 0;
+        i -= 1;
+        p += 1;
+    } while (i != 0);
+    func_0017FA50(a0, a1, a2, a3, sp10);
 }

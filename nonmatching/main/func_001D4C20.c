@@ -50,7 +50,7 @@ loop_2:
             }
             var_a7 += 1;
             var_a1 += 0x10;
-            var_a2 += 4;
+            var_a2 += 1;
             if (var_a7 >= arg0) {
                 goto block_19;
             }

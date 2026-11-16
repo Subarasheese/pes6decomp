@@ -1,5 +1,4 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern int func_001BB430(int);
@@ -8,7 +7,7 @@ extern s32 D_003E9918;
 extern char D_005247D0[];
 extern char D_00524A50[];
 
-void func_001BAE40(s16 arg0) {
+void func_001BAE40(s32 arg0) {
     s16 *temp_a0;
     void *temp_s2;
     void *var_s0;

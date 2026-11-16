@@ -1,9 +1,7 @@
 /* compiler: ee-gcc-2.9 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-
-void *func_001A72F0(u8);                            /* extern */
+void *func_001A72F0(u8 *, s32);                            /* extern */
 extern char D_005215F0[];
 
 void func_001A7250(u8 *arg0) {
@@ -24,7 +22,7 @@ void func_001A7250(u8 *arg0) {
             M2C_FIELD(temp_v1, u8 *, 2) = 0U;
         }
     }
-    temp_v0_2 = func_001A72F0(temp_a1);
+    temp_v0_2 = func_001A72F0(arg0, temp_a1);
     M2C_FIELD(temp_v0_2, u8 *, 2) = (u8) (M2C_FIELD(temp_v0_2, u8 *, 2) + 1);
     *temp_s0 = temp_v0_2;
 }

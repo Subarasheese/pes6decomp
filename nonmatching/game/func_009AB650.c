@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern u8 func_00188790(void);
+extern s32 func_00188790(void);
 M2C_UNK func_001C48E8(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK func_009AB6D0(M2C_UNK *, M2C_UNK *);        /* extern */
 M2C_UNK func_009AB9D0(M2C_UNK *);                   /* extern */

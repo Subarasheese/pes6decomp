@@ -22,7 +22,7 @@ u32 func_0032E980(u32 arg0) {
     }
     if (arg0 != 0) {
         temp_a1 = M2C_FIELD(((void *)D_005EFFA0), u32 **, 0x9CC);
-        M2C_FIELD(((void *)D_005EFFA0), u32 **, 0x9CC) = (u32 *) (temp_a1 + 4);
+        M2C_FIELD(((void *)D_005EFFA0), u32 **, 0x9CC) = (u32 *) (temp_a1 + 1);
         temp_a1_2 = *temp_a1;
         temp_a1_3 = temp_a1_2 ^ (temp_a1_2 >> 0xB);
         temp_a0 = temp_a1_3 ^ ((temp_a1_3 << 7) & 0x9D2C5680);

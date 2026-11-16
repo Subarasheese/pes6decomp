@@ -12,7 +12,7 @@ M2C_UNK func_009E1CB0(M2C_UNK);                     /* extern */
 M2C_UNK func_00B25C50(M2C_UNK);                     /* extern */
 M2C_UNK func_00B27010(M2C_UNK);                     /* extern */
 void **func_00B2A420(M2C_UNK);                      /* extern */
-M2C_UNK func_00B619E0(void **, s32);                /* extern */
+M2C_UNK func_00B619E0(void **);                /* extern */
 s32 func_00BBB8C0(M2C_UNK);                         /* extern */
 M2C_UNK func_00BD4040(void **, M2C_UNK);            /* extern */
 s32 func_00C01090(M2C_UNK);                         /* extern */
@@ -51,7 +51,7 @@ void func_00BDCF40(void) {
             temp_a1 = M2C_FIELD(temp_v0, u8 *, 0x12);
             temp_v1 = (M2C_FIELD(temp_v0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (temp_a1 * 0x6900));
             if ((M2C_FIELD(temp_v1, u8 *, 0xF8) == 0) && (M2C_FIELD(temp_v1, u8 *, 0xD4) != 0)) {
-                func_00B619E0(var_s1, temp_a1 * 0x69);
+                func_00B619E0(var_s1);
                 temp_a0 = *var_s1;
                 M2C_FIELD(*var_s1, s16 *, 0x2C) = func_009B3480(temp_a0, M2C_FIELD(temp_a0, f32 *, 0x6C), M2C_FIELD(temp_a0, f32 *, 0x70));
                 func_00BD4040(var_s1, 1);
@@ -61,23 +61,20 @@ void func_00BDCF40(void) {
             }
         }
         var_s0 += 1;
-        var_s1 += 8;
+        var_s1 += 2;
     } while (var_s0 < 0x16);
     if ((func_00C01090(0x18) == 0) && (func_00C01090(0x19) == 0)) {
         D_003EA7A9 = 0;
     } else {
         temp_v0_2 = func_00BBB8C0(3);
-        switch (temp_v0_2) {                        /* irregular */
-        case 1:
-            D_003EA7A9 = 2;
-            break;
-        case 0:
-            D_003EA7A9 = 1;
-            break;
-        default:
-        case 2:
+        if (temp_v0_2 == 2) {
             D_003EA7A9 = 3;
-            break;
+        } else if (temp_v0_2 == 1) {
+            D_003EA7A9 = 2;
+        } else if (temp_v0_2 == 0) {
+            D_003EA7A9 = 1;
+        } else {
+            D_003EA7A9 = 3;
         }
     }
     func_00B27010(0);

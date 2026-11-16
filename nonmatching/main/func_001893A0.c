@@ -1,9 +1,9 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: ee-gcc-2.9 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
-f32 func_00151CF0(M2C_UNK);                         /* extern */
+f32 func_00151CF0(f32);                         /* extern */
 
 /* Warning: Gap in callee-saved word stack region.
  * Saved: [0x0, 0x10, 0x14, 0x18, 0x1c, 0x20, 0x24, 0x28, 0x2c, 0x30, 0x34], gap at: 0x8. */
@@ -20,8 +20,8 @@ void func_001893A0(void *arg0, void *arg1) {
     f32 temp_f8_2;
     f32 temp_f9;
 
-    temp_f20 = func_00151CF0(0x3F800000);
-    temp_f0 = func_00151CF0(0x3F800000);
+    temp_f20 = func_00151CF0(1.0f);
+    temp_f0 = func_00151CF0(1.0f);
     temp_f8 = M2C_FIELD(arg1, f32 *, 0);
     temp_f5 = M2C_FIELD(arg1, f32 *, 4);
     temp_f3 = M2C_FIELD(arg1, f32 *, 8);

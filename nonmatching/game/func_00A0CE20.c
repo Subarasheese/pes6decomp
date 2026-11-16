@@ -22,7 +22,7 @@ s32 func_00A0CE20(void *arg0) {
     }
     if (var_v1 < 0xBC1) {
         temp_a1 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
-        if (!(M2C_FIELD(Pes6Ball_Current, f32 *, 0x7FC) < (f32) (((temp_a1 * -0x90) / 183) + ((u32) (temp_a1 * -0x90) >> 0x1F)))) {
+        if (!(M2C_FIELD(Pes6Ball_Current, f32 *, 0x7FC) < (f32) (((temp_a1 * -0x90) / 183)))) {
             goto block_7;
         }
     }

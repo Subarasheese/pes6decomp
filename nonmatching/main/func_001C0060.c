@@ -1,5 +1,4 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_001D6E40(void *);
@@ -11,7 +10,7 @@ extern char Pes6NowLoading[];
 extern s32 D_003E9934;
 
 s32 func_001C0060(void) {
-    M2C_UNK *var_s1;
+    s32 *var_s1;
     u32 var_s2;
 
     if (M2C_FIELD(((void *)Pes6NowLoading), s32 *, 0x34) != 0) {
@@ -20,11 +19,11 @@ s32 func_001C0060(void) {
             M2C_FIELD(((void *)Pes6NowLoading), void **, 0x44) = NULL;
         }
         var_s2 = 0;
-        var_s1 = ((void *)Pes6NowLoading);
+        var_s1 = (s32 *)Pes6NowLoading;
         do {
-            func_001D7F10(M2C_FIELD(var_s1, void **, 0x34));
+            func_001D7F10((void *)M2C_FIELD(var_s1, s32 *, 0x34));
             var_s2 += 1;
-            var_s1 += 4;
+            var_s1 += 1;
         } while (var_s2 < 4U);
         M2C_FIELD(((void *)Pes6NowLoading), s32 *, 0x30) = -1;
         func_001C48E8(((void *)Pes6NowLoading) + 0x34, 0, 0x10);

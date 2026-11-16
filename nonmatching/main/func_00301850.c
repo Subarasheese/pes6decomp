@@ -7,14 +7,14 @@ M2C_UNK func_002D4C40(s32);                         /* extern */
 s32 func_00305C60(char *, s32);                     /* extern */
 M2C_UNK func_00305E60(char *, M2C_UNK *);           /* extern */
 s32 func_009E1C90(M2C_UNK);                         /* extern */
-s32 func_00BD9F80();                                /* extern */
+s32 func_00BD9F80(s32, s32, s32, s32);                              /* extern */
 extern char D_003B4F10[];
 extern char *Pes6Ball_Current;
 extern char D_0058E7F0[];
 extern char D_005900B0[];
 extern M2C_UNK func_003017E0;
 
-s32 func_00301850(char *arg0) {
+s32 func_00301850(char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     M2C_UNK *var_s1;
     s32 var_v0;
     s32 var_v1;
@@ -39,7 +39,7 @@ s32 func_00301850(char *arg0) {
         if (var_v0 == var_v1_2) {
             var_s1 = ((char *)D_005900B0);
         }
-        if (func_00BD9F80() != 1) {
+        if (func_00BD9F80(0, arg1, arg2, arg3) != 1) {
             var_v1 = 0xFF;
         } else if (func_00255E70(M2C_FIELD(var_s1, u8 *, 0x12)) == 0) {
             var_v1 = 1;
@@ -49,9 +49,9 @@ s32 func_00301850(char *arg0) {
     }
     M2C_FIELD(temp_s0, s32 *, 0x24) = var_v1;
     if (var_v1 != 0xFF) {
-        if (func_00305C60(arg0, *(((char *)D_003B4F10) + (var_v1 * 4))) != 1) {
-            func_002D4C40(*(((char *)D_003B4F10) + (M2C_FIELD(temp_s0, s32 *, 0x24) * 4)));
-            M2C_FIELD(temp_s0, s32 *, 0x28) = (s32) *(((char *)D_003B4F10) + (M2C_FIELD(temp_s0, s32 *, 0x24) * 4));
+        if (func_00305C60(arg0, *(s32 *)(D_003B4F10 + (var_v1 * 4))) != 1) {
+            func_002D4C40(*(s32 *)(D_003B4F10 + (M2C_FIELD(temp_s0, s32 *, 0x24) * 4)));
+            M2C_FIELD(temp_s0, s32 *, 0x28) = *(s32 *)(D_003B4F10 + (M2C_FIELD(temp_s0, s32 *, 0x24) * 4));
             func_00305E60(arg0, &func_003017E0);
             return 1;
         }

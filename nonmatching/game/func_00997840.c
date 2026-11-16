@@ -8,8 +8,8 @@ extern char D_00592803[];
 extern char D_00592940[];
 
 void func_00997840(char *arg0) {
-    M2C_UNK *var_a2;
-    M2C_UNK *var_a2_2;
+    char *var_a2;
+    char *var_a2_2;
     s32 temp_a1_2;
     s32 temp_a3;
     s32 var_a3;
