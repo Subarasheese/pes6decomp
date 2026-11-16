@@ -57,7 +57,8 @@ BUF = 0x01C00000                # the buffer pointer arguments aim at
 BUFSZ = 0x40000
 STACK_TOP = 0x01E00000
 FRAME = 0x8000                  # bytes below the entry sp that count as the function's own frame
-CANDIDATES = 64
+FUZZ = 1500                     # coverage-guided children tried per function
+CANDIDATES = 600                # cases drawn per function (all of them are judged)
 DEV_CASES = 24
 HOLDOUT = 8
 MAX_STEPS = 200_000
@@ -100,15 +101,16 @@ def runtime_starts():
 
 # ---- images -------------------------------------------------------------------------------------
 
-def elf_segments(path):
+def elf_segments(path, bss=False):
+    """[(address, bytes)] of the loadable segments; bss=True pads each to its memory size with zeros."""
     d = open(path, "rb").read()
     phoff, = struct.unpack_from("<I", d, 28)
     phentsize, phnum = struct.unpack_from("<HH", d, 42)
     out = []
     for i in range(phnum):
         p_type, off, vaddr, _, filesz, memsz = struct.unpack_from("<6I", d, phoff + i * phentsize)
-        if p_type == 1 and filesz:
-            out.append((vaddr, d[off:off + filesz]))
+        if p_type == 1 and (filesz or (bss and memsz)):
+            out.append((vaddr, d[off:off + filesz] + (bytes(memsz - filesz) if bss and memsz > filesz else b"")))
     return out
 
 
@@ -161,13 +163,18 @@ def parse_prototypes(text, symbol):
 
 # ---- cases ---------------------------------------------------------------------------------------
 
-def constants_in(words):
-    """Integer and float constants the code compares against or builds (for the value pools)."""
+def constants_in(words, mem=None):
+    """Integer and float constants the code compares against or builds (for the value pools); with the
+    memory image, also the floats it loads relative to gp (lwc1 ft, off($gp))."""
     ints, floats = set(), set()
     for i, x in enumerate(words):
         op = x >> 26
         imm = x & 0xFFFF
         simm = imm - 0x10000 if imm & 0x8000 else imm
+        if op == 49 and (x >> 21) & 31 == 28 and mem is not None:
+            a = (GP + simm) & M32
+            if a + 4 <= len(mem):
+                floats.add(struct.unpack_from("<I", mem, a)[0])
         if op in (8, 9, 10, 11, 12, 13, 14, 24, 25):
             ints.update((simm & M32, (simm + 1) & M32, (simm - 1) & M32, imm))
         elif op == 15:
@@ -181,6 +188,34 @@ def constants_in(words):
     return sorted(ints)[:64], sorted(floats)[:32]
 
 
+def _f(bits):
+    return struct.unpack("<f", struct.pack("<I", bits & M32))[0]
+
+
+def _bits(f):
+    try:
+        return struct.unpack("<I", struct.pack("<f", f))[0]
+    except (OverflowError, struct.error):
+        return None
+
+
+def float_neighbours(consts):
+    """Values around the code's float constants: each one's adjacent floats (a strict and a non-strict
+    comparison differ only at the constant itself), its negation, and the midpoints between consecutive
+    constants (a range test needs a value strictly inside the range)."""
+    out = set()
+    finite = sorted({_f(c) for c in consts if (c >> 23) & 0xFF not in (0, 0xFF)})
+    for c in consts:
+        if (c >> 23) & 0xFF in (0, 0xFF):
+            continue
+        out.update(((c + 1) & M32, (c - 1) & M32, c ^ 0x80000000))
+    for x, y in zip(finite, finite[1:]):
+        b = _bits((x + y) / 2)
+        if b is not None:
+            out.add(b)
+    return sorted(out)
+
+
 FLOATS = [0x00000000, 0x3F800000, 0xBF800000, 0x3F000000, 0x40000000, 0x42C80000, 0xC2C80000,
           0x3DCCCCCD, 0x447A0000, 0x80000000, 0x41200000, 0xC1200000]
 INTS = [0, 1, 2, 3, 4, 5, 7, 8, 15, 16, 31, 32, 0x7F, 0x80, 0xFF, 0x100, 0x7FFF, 0x8000, 0xFFFF,
@@ -188,11 +223,12 @@ INTS = [0, 1, 2, 3, 4, 5, 7, 8, 15, 16, 31, 32, 0x7F, 0x80, 0xFF, 0x100, 0x7FFF,
 
 
 class Pools:
-    def __init__(self, rng, words):
-        ci, cf = constants_in(words)
+    def __init__(self, rng, words, mem=None):
+        ci, cf = constants_in(words, mem)
         self.rng = rng
         self.ints = INTS + ci
-        self.floats = FLOATS + cf
+        self.floats = FLOATS + cf + float_neighbours(cf)
+        self.key = hashlib.sha256(json.dumps([self.ints, self.floats]).encode()).hexdigest()
 
     def pointer(self):
         return BUF + 0x8000 + (self.rng.randrange(0, BUFSZ - 0x10000) & ~15)
@@ -215,25 +251,52 @@ class Pools:
         r = self.rng.random()
         return self.int_value() if r < 0.75 else self.float_value()
 
+    def global_value(self, current):
+        """A new value for a global the function reads: a pointer where the game keeps a pointer (or
+        NULL) there, so the paths behind it can run, else a constant of the code or a float."""
+        if current == 0 or 0x00100000 <= current < 0x02000000:
+            if self.rng.random() < 0.6:
+                return self.pointer()
+        return self.response() if self.rng.random() < 0.75 else self.float_value()
 
-def make_case(rng, pools, read_set):
+    def response(self):
+        """A stubbed callee's return value: mostly the code's own constants, which is what callers
+        compare results against, and fewer pointers than an argument gets."""
+        r = self.rng.random()
+        if r < 0.3:
+            return self.rng.choice((0, 0, 1, 1, M32))       # booleans, NULL and -1 dominate return values
+        if r < 0.42:
+            return self.pointer()
+        if r < 0.92:
+            return self.rng.choice(self.ints)
+        return self.rng.getrandbits(16)
+
+
+def make_case(rng, pools, read_set, mem=None):
     """A case: argument registers, buffer contents seed, globals to set, call responses."""
     case = {
         "gpr": {r: S.sx64(pools.int_value()) for r in (4, 5, 6, 7, 8, 9, 10, 11)},
         "fpr": {r: pools.float_value() for r in range(12, 20)},
-        "buf_seed": rng.randrange(8),
+        "buf_seed": rng.randrange(6),
+        "buf_pools": pools,
         "globals": {},
-        "responses": [(pools.int_value(), pools.float_value()) for _ in range(64)],
+        "responses": [(pools.response(), pools.float_value()) for _ in range(64)],
+        # what a stubbed callee writes through a pointer argument (an output parameter), per call
+        "outputs": [pools.response() if rng.random() < 0.75 else pools.float_value() for _ in range(64)],
     }
     for a in sorted(read_set):
         if rng.random() < 0.5:
-            case["globals"][a] = pools.word()
+            case["globals"][a] = pools.global_value(struct.unpack_from("<I", mem, a)[0] if mem and a + 4 <= len(mem) else 1)
     return case
 
 
-def fill_buffer(seed):
+def fill_buffer(seed, like=None):
+    """The memory pointer arguments aim at: words drawn like arguments, from the function's own value
+    pools (its constants) when `like` gives them, so fields behind a pointer take meaningful values."""
     rng = random.Random(seed)
     pools = Pools(rng, [])
+    if like is not None:
+        pools.ints, pools.floats = like.ints, like.floats
     return b"".join(struct.pack("<I", pools.word() & M32) for _ in range(BUFSZ // 4))
 
 
@@ -332,10 +395,13 @@ def callee_inputs(target, mem, image, depth=0):
 _BUFFERS = {}
 
 
-def buffer_for(seed):
-    if seed not in _BUFFERS:
-        _BUFFERS[seed] = fill_buffer(seed)
-    return _BUFFERS[seed]
+def buffer_for(seed, pools=None):
+    key = (seed, pools.key if pools is not None else None)
+    if key not in _BUFFERS:
+        for k in [k for k in _BUFFERS if k[1] != key[1]]:     # keep only the current function's buffers
+            del _BUFFERS[k]
+        _BUFFERS[key] = fill_buffer(seed, pools)
+    return _BUFFERS[key]
 
 
 class Run:
@@ -356,7 +422,7 @@ class Run:
                     m.mem[o:o + size] = self.base[o:o + size]
             m.scratch[:] = bytes(len(m.scratch))
         self.dirty = [(BUF, BUFSZ)]
-        m.mem[BUF:BUF + BUFSZ] = buffer_for(case["buf_seed"])
+        m.mem[BUF:BUF + BUFSZ] = buffer_for(case["buf_seed"], case.get("buf_pools"))
         for a, v in case["globals"].items():
             buf, o = m._where(a, 4)
             if buf is not None:
@@ -400,6 +466,14 @@ class Run:
             ints = tuple("stack" if STACK_TOP - FRAME <= m.g32(r) < STACK_TOP else m.g32(r) for r in iregs)
             flts = tuple(m.fpr[r] for r in fregs)
             calls.append((target, ints + flts))
+            # the stub fills an output parameter: one word through each word-aligned pointer argument
+            # into the stack or the buffer, the same for original and C (the call itself was compared)
+            out = case["outputs"][idx[0] % len(case["outputs"])]
+            for r in iregs:
+                a = m.g32(r)
+                if not a & 3 and (STACK_TOP - FRAME <= a < STACK_TOP or BUF <= a < BUF + BUFSZ - 4):
+                    m.mem[a:a + 4] = struct.pack("<I", out & M32)
+                    self.dirty.append((a, 4))
             v, f = responses[idx[0] % len(responses)]
             idx[0] += 1
             m.gpr[2] = S.sx64(v)
@@ -426,6 +500,7 @@ class Run:
         m.gpr[31] = S.SENTINEL
         m.pc, m.npc = entry, entry + 4
         steps = 0
+        edges = set()
         try:
             while m.pc != S.SENTINEL:
                 if inside and m.pc == inside[-1]:
@@ -444,7 +519,10 @@ class Run:
                     if steps > MAX_STEPS:
                         raise StepLimit()
                     continue
+                p = m.pc
                 m.step()
+                if lo <= p < hi:
+                    edges.add((p, m.pc))            # which way control went: branch outcomes, not just pcs
                 steps += 1
                 if steps > MAX_STEPS:
                     raise StepLimit()
@@ -460,7 +538,7 @@ class Run:
                 mem[ad] = (v >> (8 * k)) & 0xFF
         saved = tuple(m.gpr[r] & M64 for r in (16, 17, 18, 19, 20, 21, 22, 23, 28, 29, 30))
         return {"calls": calls, "mem": mem, "v0": m.gpr[2] & M64, "f0": m.fpr[0], "saved": saved,
-                "covered": {a for a in m.covered if lo <= a < hi}, "reads": m.reads or set()}
+                "covered": {a for a in m.covered if lo <= a < hi}, "edges": edges, "reads": m.reads or set()}
 
 
 def compare(o, c, ret):
@@ -540,8 +618,12 @@ def object_rodata(path):
     return out
 
 
-def compile_draft(src, address, symbol, obj=None):
-    """(linked code words at SCRATCH_CODE, [(address, bytes)] of the object's read-only data)."""
+def compile_draft(src, address, symbol, obj=None, mem=None, refs=()):
+    """(linked code words at SCRATCH_CODE, [(address, bytes)] of the object's read-only data).
+
+    A read-only section without relocations whose bytes equal the original's memory at an address the
+    original code references (refs) is linked to that address instead of a private copy: the draft then
+    reads the same table as the original, so a case that varies the table varies it for both."""
     import match
     import symbols
     own = obj is None
@@ -560,7 +642,13 @@ def compile_draft(src, address, symbol, obj=None):
     words = list(struct.unpack_from(f"<{size // 4}I", blob, off))
     # place the read-only sections and let the code's relocations find them
     placed, blobs, at = {}, [], SCRATCH_DATA
-    for n, (data, _) in rodata.items():
+    shared = set()
+    for n, (data, inner) in rodata.items():
+        same = [a for a in refs if not inner and data and mem is not None and mem[a:a + len(data)] == data]
+        if len(same) == 1:
+            placed[n] = same[0]
+            shared.add(n)
+            continue
         placed[n] = at
         at += (len(data) + 15) & ~15
     text_base = SCRATCH_CODE - off
@@ -574,7 +662,8 @@ def compile_draft(src, address, symbol, obj=None):
                 raise ValueError(f"unresolved symbol {sname} in {n}")
             v = (struct.unpack_from("<I", buf, roff)[0] + base) & M32
             struct.pack_into("<I", buf, roff, v)
-        blobs.append((placed[n], bytes(buf)))
+        if n not in shared:
+            blobs.append((placed[n], bytes(buf)))
     _install_resolver(symbols)
     _LOCAL.placed = placed                          # per thread: callers may judge in several threads
     try:
@@ -584,6 +673,23 @@ def compile_draft(src, address, symbol, obj=None):
     if unresolved:
         raise ValueError(f"{len(unresolved)} unresolved relocations")
     return match.trim_padding(linked), blobs
+
+
+def referenced(words):
+    """Data addresses the code builds (lui + addiu/ori/load offset) or loads relative to gp."""
+    out = set()
+    for i, x in enumerate(words):
+        op = x >> 26
+        if op == 15:
+            rt, hi = (x >> 16) & 31, (x & 0xFFFF) << 16
+            for y in words[i + 1:i + 8]:
+                if (y >> 21) & 31 == rt and (y >> 26) in (9, 13, 32, 33, 35, 36, 37, 49, 53, 55):
+                    lo = y & 0xFFFF
+                    out.add((hi + (lo - 0x10000 if lo & 0x8000 and (y >> 26) != 13 else lo)) & M32)
+        elif (x >> 21) & 31 == 28 and op in (9, 32, 33, 35, 36, 37, 49, 53, 55):
+            lo = x & 0xFFFF
+            out.add((GP + (lo - 0x10000 if lo & 0x8000 else lo)) & M32)
+    return sorted(a for a in out if 0x00100000 <= a < 0x02000000)
 
 
 def cache_key(original, compiled, protos, ret):
@@ -605,8 +711,10 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
     original = match.trim_padding(match.words_at(text_addr, text, address, match.function_span(address)))
     source = open(src).read()
     protos, ret = parse_prototypes(source, symbol)
+    if base_mem is None:
+        base_mem = build_memory(image)
     try:
-        compiled, rodata = compile_draft(src, address, symbol, obj)
+        compiled, rodata = compile_draft(src, address, symbol, obj, base_mem, referenced(original))
     except (ValueError, SystemExit) as e:
         return {"verdict": "ERROR", "detail": f"compile: {e}"}
     protos_by_addr = {}
@@ -618,8 +726,6 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
     if cache is not None and key in cache:
         return dict(cache[key], cached=True)
 
-    if base_mem is None:
-        base_mem = build_memory(image)
     o_run, c_run = Run(base_mem, image), Run(base_mem, image)
     code = [(0x00100000, 0x00372AE0)]
     if image != "main":
@@ -637,7 +743,7 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
     lo, hi = address, address + 4 * len(original)
     clo, chi = SCRATCH_CODE, SCRATCH_CODE + 4 * len(compiled)
     rng = random.Random(address)
-    pools = Pools(rng, original)
+    pools = Pools(rng, original, base_mem)
     read_set = set()
 
     def globals_of(reads):
@@ -649,29 +755,68 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
         for n in range(CANDIDATES):
             if time.time() - t0 > TIME_BUDGET / 2:
                 break
-            case = make_case(rng, pools, read_set)
+            case = make_case(rng, pools, read_set, base_mem)
             try:
                 r = o_run.run(address, lo, hi, case, protos_by_addr, collect_reads=True)
             except (S.Fault, StepLimit):
+                # a run that faults still shows which globals lead there (a NULL pointer to vary)
+                read_set |= globals_of(o_run.m.reads or set())
                 continue
             read_set |= globals_of(r["reads"])
             candidates.append((case, r))
+        # coverage-guided search: change one or two inputs of a case already found (an argument, a
+        # global, a callee's return value or output) and keep the child when it takes a branch
+        # direction no case took yet; this reaches branches that need several values at once
+        seen = set().union(*(r["edges"] for _, r in candidates)) if candidates else set()
+        for n in range(FUZZ):
+            if not candidates or time.time() - t0 > TIME_BUDGET * 0.7:
+                break
+            parent, pr = rng.choice(candidates)
+            child = dict(parent, gpr=dict(parent["gpr"]), fpr=dict(parent["fpr"]), globals=dict(parent["globals"]),
+                         responses=list(parent["responses"]), outputs=list(parent["outputs"]))
+            for _ in range(rng.choice((1, 1, 2, 3))):
+                k = rng.random()
+                ncalls = max(1, min(len(pr["calls"]), 64))
+                if k < 0.3:
+                    i = rng.randrange(ncalls)
+                    child["responses"][i] = (pools.response(), pools.float_value())
+                elif k < 0.45:
+                    child["outputs"][rng.randrange(ncalls)] = pools.response() if rng.random() < 0.75 else pools.float_value()
+                elif k < 0.7 and read_set:
+                    a = rng.choice(sorted(read_set))
+                    child["globals"][a] = pools.global_value(struct.unpack_from("<I", base_mem, a)[0] if a + 4 <= len(base_mem) else 1)
+                elif k < 0.9:
+                    child["gpr"][rng.choice(INT_ARGS)] = S.sx64(pools.int_value())
+                else:
+                    child["fpr"][rng.choice(FLOAT_ARGS)] = pools.float_value()
+            try:
+                r = o_run.run(address, lo, hi, child, protos_by_addr, collect_reads=True)
+            except (S.Fault, StepLimit):
+                read_set |= globals_of(o_run.m.reads or set())
+                continue
+            if r["edges"] - seen:
+                seen |= r["edges"]
+                read_set |= globals_of(r["reads"])
+                candidates.append((child, r))
     except S.Unimplemented as e:
         return {"verdict": "UNTESTABLE", "detail": str(e)}
     if not candidates:
         return {"verdict": "UNTESTABLE", "detail": "the original faults or loops on every candidate case"}
 
+    # dev cases: a greedy cover of the control-flow edges (which way every branch went) the candidates
+    # reach, judged first; every other candidate is then judged too (holdout). Selecting by edges, not
+    # instructions, keeps cases that differ only in which comparison sent them to a shared body.
     chosen, covered = [], set()
     pool = list(candidates)
     while pool and len(chosen) < DEV_CASES:
-        best = max(pool, key=lambda cr: len(cr[1]["covered"] - covered))
-        if not best[1]["covered"] - covered and len(chosen) >= 4:
+        best = max(pool, key=lambda cr: len(cr[1]["edges"] - covered))
+        if not best[1]["edges"] - covered and len(chosen) >= 4:
             break
         chosen.append(best)
-        covered |= best[1]["covered"]
+        covered |= best[1]["edges"]
         pool.remove(best)
-    holdout = pool[:HOLDOUT]
-    reached = covered.union(*(r["covered"] for _, r in holdout))
+    holdout = pool
+    reached = set().union(*(r["covered"] for _, r in candidates))
     coverage = round(100.0 * len(reached) / len(original), 1) if original else 0.0
 
     for kind, group in (("dev", chosen), ("holdout", holdout)):
@@ -698,6 +843,8 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
 
 
 DEFAULT_RAM = os.path.join(ROOT, "build", "equiv", "ram-match.bin")
+# the overlay resident when the snapshot was taken (an in-match savestate)
+DUMP_OVERLAY = "game"
 
 
 def memory_source():
@@ -714,7 +861,10 @@ def memory_source():
 
 def memory_label():
     p = memory_source()
-    return f"ram:{os.path.basename(p)}" if p else "image"
+    if not p:
+        return "image"
+    image = os.environ.get("PES6_TARGET") or "main"
+    return f"ram:{os.path.basename(p)}" + ("" if image in ("main", DUMP_OVERLAY) else f"+{image} as loaded")
 
 
 def ram_dump():
@@ -739,10 +889,16 @@ def build_memory(image):
         m.mem[:len(dump)] = dump[:len(m.mem)]
         # only code goes over the dump: its data is the live state we want to keep
         m.load(0x00100000, elf_segments(os.path.join(ROOT, "orig", "SLES_542.03"))[0][1][:0x00372AE0 - 0x00100000])
-        if image != "main":
+        if image == DUMP_OVERLAY:
             for addr, data in elf_segments(os.path.join(ROOT, "build", "targets", image, "image.elf")):
                 text_len = os.path.getsize(os.path.join(ROOT, "build", "targets", image, "full", "text.bin"))
                 m.load(addr, data[:text_len])
+        elif image != "main":
+            # Overlays share one address range and the dump's is DUMP_OVERLAY's: another overlay starts
+            # as the game loads it, its whole image over the dump and its .bss cleared, with the
+            # resident executable's live state kept.
+            for addr, data in elf_segments(os.path.join(ROOT, "build", "targets", image, "image.elf"), bss=True):
+                m.load(addr, data)
         return bytes(m.mem)
     m = S.Machine()
     for addr, data in memory_image(image):
