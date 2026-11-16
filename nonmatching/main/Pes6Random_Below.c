@@ -1,44 +1,24 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
-
 
 extern char Pes6Random_State[];
 
-s32 Pes6Random_Below(s32 arg0) {
-    f32 temp_f1;
-    f32 var_f0;
-    f32 var_f2;
-    s32 temp_a2;
-    s32 var_v1;
-    s32 var_v1_2;
-    u32 temp_a1;
+u16 Pes6Random_Below(u32 arg0) {
+    u16 n;
+    u16 r;
+    u32 s;
 
-    temp_a2 = arg0 & 0xFFFF;
-    if (temp_a2 == 0) {
+    n = arg0;
+    if (n == 0) {
         return 0;
     }
-    temp_a1 = (*(s32 *)Pes6Random_State) ^ ((*(s32 *)Pes6Random_State) << 0x11);
-    (*(s32 *)Pes6Random_State) = temp_a1 ^ (temp_a1 >> 0xF);
-    if (arg0 >= 0) {
-        var_f2 = (f32) arg0;
-    } else {
-        var_f2 = 2.0f * (f32) (((u32) arg0 >> 1) | (arg0 & 1));
+    s = *(u32 *)Pes6Random_State;
+    s ^= s << 17;
+    s ^= s >> 15;
+    *(u32 *)Pes6Random_State = s;
+    r = (u16)(u32)((f32)arg0 * (2.3283064e-10f * (f32)*(u32 *)Pes6Random_State));
+    if (r >= n) {
+        r = n - 1;
     }
-    if ((*(s32 *)Pes6Random_State) < 0) {
-        var_f0 = 2.0f * (f32) (((u32) (*(s32 *)Pes6Random_State) >> 1) | ((*(s32 *)Pes6Random_State) & 1));
-    } else {
-        var_f0 = (f32) (*(s32 *)Pes6Random_State);
-    }
-    temp_f1 = var_f2 * (2.3283064e-10f * var_f0);
-    if (temp_f1 >= 2.1474836e9f) {
-        var_v1_2 = (s32) (temp_f1 - 2.1474836e9f) | 0x80000000;
-    } else {
-        var_v1_2 = (s32) temp_f1;
-    }
-    var_v1 = var_v1_2 & 0xFFFF & 0xFFFF;
-    if (var_v1 >= temp_a2) {
-        var_v1 = (temp_a2 - 1) & 0xFFFF;
-    }
-    return var_v1 & 0xFFFF;
+    return r;
 }

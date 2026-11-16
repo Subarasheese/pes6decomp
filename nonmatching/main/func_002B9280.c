@@ -28,7 +28,7 @@ loop_4:
                     var_v0 |= 1 << *var_a4;
                 }
                 var_a6 += 1;
-                var_a5 += 4;
+                var_a5 += 1;
                 var_a4 += 1;
                 if (var_a6 < 8) {
                     goto loop_4;

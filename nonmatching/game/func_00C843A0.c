@@ -73,7 +73,7 @@ loop_15:
         goto loop_15;
     }
 block_17:
-    *(((char *)D_00CCC228) + (M2C_FIELD(temp_s1, u8 *, 0x18) * 0x140)) = 0;
+    M2C_FIELD((((char *)D_00CCC228) + (M2C_FIELD(temp_s1, u8 *, 0x18) * 0x140)), s32 *, 0) = 0;
 block_18:
     (*(u8 *)D_00CCCC00) = (*(u8 *)D_00591DCC);
     return;

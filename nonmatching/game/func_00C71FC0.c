@@ -15,7 +15,7 @@ extern char D_00CCBD9F[];
 extern char D_00CCBDA2[];
 
 void func_00C71FC0(s32 arg0) {
-    M2C_UNK *var_s1;
+    u8 *var_s1;
     s32 var_s0;
     s32 var_s2;
     s32 var_s3;
@@ -41,7 +41,7 @@ void func_00C71FC0(s32 arg0) {
     (*(s8 *)D_00CCBDA2) = var_a1;
     var_s3 = 0;
     D_003EA820 = 1;
-    var_s1 = ((void *)D_00CCBD30);
+    var_s1 = (u8 *)D_00CCBD30;
     do {
         var_s2 = 1;
         if (func_00C76460(var_s3 ^ (*(u8 *)D_00591DCC)) == 0) {

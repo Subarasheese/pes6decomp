@@ -1,9 +1,8 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern s32 func_002079F0(void *);
-M2C_UNK func_00BD3CF0(void *, f32, f32);            /* extern */
+extern s32 func_002079F0(void *, s32);
+M2C_UNK func_00BD3CF0(void *, void *, f32, f32);
 M2C_UNK func_00BD4040(void *, M2C_UNK);             /* extern */
 extern char D_00591BE4[];
 
@@ -13,7 +12,7 @@ void func_00B9DBD0(void *arg0) {
 
     temp_a1 = M2C_FIELD(arg0, void **, 0);
     if ((M2C_FIELD(temp_a1, u8 *, 0x4F) == 0) && (M2C_FIELD(temp_a1, u8 *, 0x50) == 0)) {
-        if ((M2C_FIELD(M2C_FIELD(arg0, void **, 4), u8 *, 0x12) == 4) && (func_002079F0(M2C_FIELD(temp_a1, void **, 4)) != 0)) {
+        if ((M2C_FIELD(M2C_FIELD(arg0, void **, 4), u8 *, 0x12) == 4) && (func_002079F0(M2C_FIELD(temp_a1, void **, 4), 0x25E9) != 0)) {
             func_00BD4040(arg0, 2);
             M2C_FIELD(M2C_FIELD(arg0, void **, 0), s16 *, 0x18) = 0xC0;
         }
@@ -24,5 +23,5 @@ void func_00B9DBD0(void *arg0) {
         M2C_FIELD(M2C_FIELD(arg0, void **, 0), s8 *, 0x50) = (s8) ((*(u8 *)D_00591BE4) - 1);
     }
     temp_v0 = M2C_FIELD(arg0, void **, 0);
-    func_00BD3CF0(arg0, M2C_FIELD(temp_v0, f32 *, 0x6C), M2C_FIELD(temp_v0, f32 *, 0x70));
+    func_00BD3CF0(arg0, temp_a1, M2C_FIELD(temp_v0, f32 *, 0x6C), M2C_FIELD(temp_v0, f32 *, 0x70));
 }

@@ -1,5 +1,4 @@
-/* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types and call contracts remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
 #include "pes6/m2c.h"
 
 M2C_UNK func_002A7D00(M2C_UNK, u8);                 /* extern */

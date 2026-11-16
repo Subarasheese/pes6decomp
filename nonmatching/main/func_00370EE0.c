@@ -4,13 +4,14 @@
 
 extern int func_003258F0(int, int);
 extern int func_00335370(void);
-extern int func_003387D0(void *, int);
+extern int func_003387D0(void *, int, void *);
+extern char D_003E7290[];
 s32 func_008FFAA0();                                /* extern */
 extern char D_003BD4B0[];
-extern M2C_UNK func_00370D10;
+extern char func_00370D10[];
 
 s32 func_00370EE0(void *arg0) {
-    M2C_UNK *var_v1;
+    u8 *var_v1;
     s32 temp_s0_2;
     s32 temp_s1;
     s32 var_a0;
@@ -32,6 +33,6 @@ s32 func_00370EE0(void *arg0) {
     }
     temp_s0_2 = M2C_FIELD(temp_s0, s32 *, 0) != func_003258F0(temp_s1, 0);
     M2C_FIELD(func_00335370(), s32 *, 0x1008) = temp_s0_2;
-    func_003387D0(arg0, (s32) &func_00370D10);
+    func_003387D0(arg0, (s32) func_00370D10, D_003E7290);
     return 1;
 }

@@ -1,23 +1,21 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-
-s32 func_00320D90(s16 *arg0) {
-    s16 *var_a1_2;
-    s16 *var_a2;
+s32 func_00320D90(u8 *arg0) {
+    u8 *var_a1_2;
+    u8 *var_a2;
     s16 temp_a1;
     s16 var_a3;
     s16 var_a4;
     s32 var_a1;
     s32 var_a5;
     s32 var_a6;
-    void *var_t0;
+    u8 *var_t0;
 
     var_a3 = 0;
     var_a6 = 0;
     var_a4 = 0;
-    if (*arg0 > 0) {
+    if (*(s16 *)arg0 > 0) {
         var_a2 = arg0;
         do {
             if (var_a6 != 0) {
@@ -65,7 +63,7 @@ s32 func_00320D90(s16 *arg0) {
             var_a6 += 1;
             M2C_FIELD(var_a2, s8 *, 0x10) = (s8) (var_a3 - M2C_FIELD(var_a2, s16 *, 6));
             var_a2 += 0x10;
-        } while (var_a6 < *arg0);
+        } while (var_a6 < *(s16 *)arg0);
     }
     return 1;
 }

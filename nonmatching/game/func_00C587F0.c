@@ -1,16 +1,16 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* Repaired: the byte helpers return full registers the original masks itself; the local buffer is 8 bytes. */
 #include "pes6/m2c.h"
 
 extern u32 func_00C137C0(u32);
-extern u8 func_00C132C0(void *);
-extern u8 func_00C132B0(void *);
+extern s32 func_00C132C0(void *);
+extern s32 func_00C132B0(void *);
 s32 func_00C12900(s32);                             /* extern */
 M2C_UNK func_00C22390(s32, s8 *);                   /* extern */
 M2C_UNK func_00C58970(s8 *, void *, u32, void *);   /* extern */
 
 u32 func_00C587F0(s32 arg0, void *arg1, void *arg2) {
-    s8 sp88;
+    s8 sp88[8];
     s32 temp_s0;
     s32 temp_s0_2;
     s32 temp_v1;
@@ -22,7 +22,7 @@ u32 func_00C587F0(s32 arg0, void *arg1, void *arg2) {
 
     temp_s0 = func_00C132B0(arg1) & 0xFF;
     func_00C132B0(arg2);
-    var_v1 = &sp88;
+    var_v1 = sp88;
     var_v0 = 8;
     if (var_v1 != NULL) {
         do {
@@ -62,7 +62,7 @@ block_13:
             }
         }
     }
-    func_00C58970(&sp88, arg1, func_00C137C0((u32) var_s2), arg2);
-    func_00C22390(arg0, &sp88);
+    func_00C58970(sp88, arg1, func_00C137C0((u32) var_s2), arg2);
+    func_00C22390(arg0, sp88);
     return (u32) var_s2;
 }

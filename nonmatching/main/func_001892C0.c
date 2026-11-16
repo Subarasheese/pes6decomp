@@ -1,47 +1,45 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-
-extern void *D_00520090;
+extern char D_00520090[];
 extern char D_005200B0[];
-extern s32 *D_005200C0;
+extern char D_005200C0[];
 extern char D_005200C4[];
 extern char D_005200C8[];
 extern char D_005200CC[];
 
 void func_001892C0(void) {
-    s32 **var_a7;
-    s32 *temp_a0;
-    s32 *var_a3;
-    s32 var_a1;
-    s32 var_a5;
-    s8 *var_a6;
-    s8 var_a2;
+    s32 **tbl;
+    s32 *src;
+    u8 *out;
+    s32 i;
+    s32 j;
+    s32 *ent;
+    u8 *p;
+    u8 acc;
 
-    var_a7 = &D_005200C0;
-    var_a6 = ((void *)D_005200B0);
-    var_a5 = 0;
-    (*(s32 *)D_005200C4) = M2C_FIELD(D_00520090, s32 *, 0);
-    (*(s32 *)D_005200CC) = M2C_FIELD(D_00520090, s32 *, 4);
-    (*(s32 *)D_005200C8) = M2C_FIELD(D_00520090, s32 *, 8);
-    D_005200C0 = M2C_FIELD(D_00520090, s32 **, 0xC);
+    tbl = (s32 **)D_005200C0;
+    out = (u8 *)D_005200B0;
+    src = *(s32 **)D_00520090;
+    *(s32 *)D_005200C4 = src[0];
+    *(s32 *)D_005200CC = src[1];
+    *(s32 *)D_005200C8 = src[2];
+    *(s32 *)D_005200C0 = src[3];
+    i = 0;
     do {
-        temp_a0 = *var_a7;
-        var_a2 = 0;
-        var_a1 = 0;
-        var_a3 = temp_a0 + 4;
-        if (*temp_a0 > 0) {
+        ent = tbl[i];
+        acc = 0;
+        j = 0;
+        p = (u8 *)ent + 4;
+        if (*ent > 0) {
             do {
-                var_a1 += 1;
-                M2C_FIELD(var_a3, s16 *, 0x3E) = 0;
-                var_a2 = (var_a2 | M2C_FIELD(var_a3, u8 *, 0x3C)) & 0xFF;
-                var_a3 += 0x40;
-            } while (var_a1 < *temp_a0);
+                j++;
+                *(s16 *)(p + 0x3E) = 0;
+                acc = (acc | p[0x3C]) & 0xFF;
+                p += 0x40;
+            } while (j < *ent);
         }
-        var_a5 += 1;
-        *var_a6 = var_a2;
-        var_a7 += 4;
-        var_a6 += 1;
-    } while (var_a5 < 4);
+        out[i] = acc;
+        i++;
+    } while (i < 4);
 }

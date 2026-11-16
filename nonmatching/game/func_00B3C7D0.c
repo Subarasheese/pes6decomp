@@ -1,4 +1,4 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -8,9 +8,8 @@ M2C_UNK func_00209A00(void *, M2C_UNK, M2C_UNK);    /* extern */
 M2C_UNK func_00BA97D0();                            /* extern */
 s32 func_00BDB8B0(void *);                          /* extern */
 extern char Pes6MatchPlayers[];
-extern void *D_0058E5B4;
+extern char D_0058E5B4[];
 extern char D_0058E5C6[];
-extern char D_0058E5C8[];
 
 void func_00B3C7D0(void) {
     s32 var_a0;
@@ -18,17 +17,17 @@ void func_00B3C7D0(void) {
     void *temp_s1;
 
     (*(s8 *)D_0058E5C6) = 0xE0;
-    (*(s16 *)D_0058E5C8) = 0;
-    func_00209A00(D_0058E5B4, 0x1BF, 0);
+    M2C_FIELD(D_0058E5C6, s16 *, 2) = 0;
+    func_00209A00(*(void **)D_0058E5B4, 0x1BF, 0);
     var_s0 = 1;
-    M2C_FIELD(D_0058E5B4, s8 *, 0x50) = 0;
+    M2C_FIELD(*(void **)D_0058E5B4, s8 *, 0x50) = 0;
     do {
         if (var_s0 == 0xFF) {
             var_a0 = 1;
         } else {
             var_a0 = var_s0 % 23;
         }
-        temp_s1 = ((void *)Pes6MatchPlayers) + (var_a0 * 0x240);
+        temp_s1 = ((u8 *)Pes6MatchPlayers) + (var_a0 * 0x240);
         if (func_00BDB8B0(temp_s1) != 0) {
             M2C_FIELD(temp_s1, s8 *, 0x16) = 0xFD;
             M2C_FIELD(temp_s1, s16 *, 0x18) = 0;

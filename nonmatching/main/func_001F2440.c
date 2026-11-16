@@ -5,7 +5,7 @@
 extern int func_001E62C0(void);
 extern void func_001EDA50(void *, void *);
 extern void func_001EDA30(void *, s32);
-extern void func_001EDAE0(void *, s8);
+extern void func_001EDAE0(void *, u8);
 extern void func_001ED880(void *, f32);
 extern void func_001EFB50(void *);
 /* Warning: Gap in callee-saved word stack region.
@@ -26,7 +26,7 @@ s32 func_001F2440(void *arg0, void *arg1) {
 
     temp_s0 = M2C_FIELD(arg0, void **, 0x48);
     if ((func_001E62C0() & 2) == 2) {
-        func_001EDAE0(temp_s0, (s8) M2C_FIELD(arg0, u8 *, 2));
+        func_001EDAE0(temp_s0, M2C_FIELD(arg0, u8 *, 2));
         func_001EDA30(temp_s0, M2C_FIELD(arg0, s32 *, 0x4C));
         temp_f20 = M2C_FIELD(arg1, f32 *, 8);
         func_001ED880(temp_s0, temp_f20);

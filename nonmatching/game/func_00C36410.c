@@ -4,7 +4,7 @@
 
 extern int func_002DCA30(void);
 extern void func_00BBB960(u32);
-M2C_UNK func_00849420(void *, M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
+void func_00849420(void *, char *, s32, s32); /* extern */
 M2C_UNK func_00973EC0(void *, M2C_UNK);             /* extern */
 s32 func_00C01090(M2C_UNK);                         /* extern */
 extern char Pes6MatchPlayers[];
@@ -14,7 +14,7 @@ extern char D_008B145C[];
 extern char D_008B14F2[];
 
 void func_00C36410(void) {
-    M2C_UNK *var_s0;
+    char *var_s0;
     s32 var_a0;
     s32 var_a0_2;
     s32 var_s0_2;
@@ -23,7 +23,7 @@ void func_00C36410(void) {
     if ((func_00C01090(0x2A) == 0) && (func_002DCA30() != 0)) {
         func_00BBB960((*(u32 *)D_008B145C));
         var_s1 = 0;
-        var_s0 = ((void *)D_008B1180);
+        var_s0 = D_008B1180;
         (*(f32 *)D_005926D8) = (f32) (*(s16 *)D_008B14F2);
         do {
             if (var_s1 == 0xFF) {

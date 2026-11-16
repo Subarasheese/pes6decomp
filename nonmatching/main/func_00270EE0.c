@@ -8,8 +8,8 @@ extern char D_00591BE4[];
 extern char Pes6MatchSquads[];
 
 void func_00270EE0(void) {
-    M2C_UNK *var_s3;
-    M2C_UNK *var_s6;
+    u8 *var_s3;
+    u8 *var_s6;
     s32 temp_a2;
     s32 temp_s1;
     s32 temp_s2;
@@ -19,7 +19,7 @@ void func_00270EE0(void) {
     u32 temp_s0;
 
     var_s5 = 0;
-    var_s6 = ((void *)Pes6MatchSquads);
+    var_s6 = (u8 *)Pes6MatchSquads;
     temp_s2 = ((*(u8 *)D_00591BC0) + 1) & 0xFF;
     do {
         var_s4 = 0;

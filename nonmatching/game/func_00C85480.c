@@ -19,17 +19,17 @@ void func_00C85480(void) {
     f32 sp54;
     s32 sp58;
     s32 sp5C;
-    M2C_UNK *var_s1;
+    u8 *var_s1;
     s32 temp_a1;
     s32 temp_s2;
     s32 temp_s2_2;
     s32 var_s3;
     s32 var_v0;
     s32 var_v0_2;
-    void *temp_s0;
+    u8 *temp_s0;
 
     var_s3 = 0;
-    var_s1 = ((void *)D_00CCC200);
+    var_s1 = (u8 *)D_00CCC200;
     do {
         temp_s2 = var_s3 + 0x66;
         temp_s0 = var_s1 + 0xA0;

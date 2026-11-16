@@ -1,42 +1,33 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern u16 Pes6Team_GetPlayerId(s32, s32, s32);
-M2C_UNK Pes6MatchSetup_FillSquads(s32, s16);                    /* extern */
+extern s32 Pes6Team_GetPlayerId(s32, s32, s32);
+extern void Pes6MatchSetup_FillSquads(s32, u16);
 extern char D_00510FD0[];
 extern char Pes6MatchLineups[];
-extern char D_00591BB0[];
+extern u16 D_00591BB0[];
 
 void Pes6MatchSetup_BuildLineups(void) {
-    s16 *var_v0;
-    s16 var_a1;
+    u16 *var_v0;
+    u16 var_a1;
     s32 var_a0;
     s32 var_s1;
     s32 var_s2;
     u16 *var_s0;
 
-    var_s2 = 0;
-    var_s0 = ((void *)D_00591BB0);
-    do {
-        var_s1 = 0;
-loop_2:
-        if ((*(s32 *)D_00510FD0) == 0xC) {
-            var_a1 = Pes6Team_GetPlayerId((s32) *var_s0, var_s1 & 0xFF, 2) & 0xFFFF;
+    var_s0 = D_00591BB0;
+    for (var_s2 = 0; var_s2 < 2; var_s2++) {
+        for (var_s1 = 0; var_s1 < 0x20; var_s1++) {
+            if ((*(s32 *)D_00510FD0) == 0xC) {
+                var_a1 = Pes6Team_GetPlayerId((s32) *var_s0, var_s1 & 0xFF, 2) & 0xFFFF;
+            } else {
+                var_a1 = Pes6Team_GetPlayerId((s32) *var_s0, var_s1 & 0xFF, 0) & 0xFFFF;
+            }
             var_a0 = (var_s2 & 1) << 6;
-            var_v0 = ((var_s1 % 32) * 2) + (((void *)Pes6MatchLineups) + var_a0);
-        } else {
-            var_a1 = Pes6Team_GetPlayerId((s32) *var_s0, var_s1 & 0xFF, 0) & 0xFFFF;
-            var_a0 = (var_s2 & 1) << 6;
-            var_v0 = ((var_s1 % 32) * 2) + (((void *)Pes6MatchLineups) + var_a0);
+            var_v0 = ((var_s1 % 32) * 2) + (((char *)Pes6MatchLineups) + var_a0);
+            *var_v0 = var_a1;
         }
-        *var_v0 = var_a1;
-        var_s1 += 1;
-        if (var_s1 < 0x20) {
-            goto loop_2;
-        }
-        var_s2 += 1;
-        var_s0 += 2;
-    } while (var_s2 < 2);
+        var_s0 += 1;
+    }
     Pes6MatchSetup_FillSquads(var_a0, var_a1);
 }

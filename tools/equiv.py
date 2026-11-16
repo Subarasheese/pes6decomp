@@ -744,6 +744,9 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
     for a, data in rodata:
         c_mem[a:a + len(data)] = data
     c_run.base = bytes(c_mem)
+    # the original sees the same bytes there (it never runs them): a wild pointer of a case then reads
+    # the same memory in both runs instead of the C's code in one and the snapshot's data in the other
+    o_run.base = c_run.base
 
     lo, hi = address, address + 4 * len(original)
     clo, chi = SCRATCH_CODE, SCRATCH_CODE + 4 * len(compiled)
@@ -758,7 +761,8 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
 
     def globals_of(reads):
         return {a for a in reads if not (STACK_TOP - FRAME <= a < STACK_TOP) and not (BUF <= a < BUF + BUFSZ)
-                and not any(c0 <= a < c1 for c0, c1 in code) and a < 0x02000000 and not jump_table_word(a)}
+                and not any(c0 <= a < c1 for c0, c1 in code) and a < 0x02000000 and not jump_table_word(a)
+                and not SCRATCH_CODE <= a < STACK_TOP - FRAME}     # the C's code and data live there
 
     candidates = []
     try:

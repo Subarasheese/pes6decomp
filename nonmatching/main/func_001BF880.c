@@ -8,7 +8,7 @@ extern void func_001ED880(void *, f32);
 extern void func_001EDAE0(void *, s8);
 extern void func_001ED840(void *, s8);
 extern void func_001B4F10(void *, f32);
-void *func_001B5350(f32 *, M2C_UNK, void *, s32, M2C_UNK, M2C_UNK); /* extern */
+void *func_001B5350(f32 *, s32, void *, s32, f32, f32);
 s32 func_001E6E10(s32);                             /* extern */
 M2C_UNK func_001EDD90(void *);                      /* extern */
 void *func_001EE0D0(s16);                           /* extern */
@@ -40,7 +40,7 @@ s32 func_001BF880(void *arg0, s32 arg1) {
         func_001EDAE0(temp_v0, 1);
         func_001ED880(temp_v0, 0.0f);
         func_001ED840(temp_v0, 1);
-        var_s0 = func_001B5350(&sp50, 0, temp_v0, func_001E6E10(arg1), 0, 0);
+        var_s0 = func_001B5350(&sp50, 0, temp_v0, func_001E6E10(arg1), 0.0f, 0.0f);
         func_001B4F10(var_s0, 0.0f);
     }
     temp_a0 = M2C_FIELD(arg0, void **, 0);

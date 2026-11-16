@@ -46,10 +46,10 @@ void func_00AD1360(void *arg0, s32 arg1, s32 arg2) {
             var_a0 = (s32) (temp_v0 + 3) >> 2;
         }
         temp_v1 = 0x64 - func_00BBB8C0(var_a0);
-        temp_v1_2 = ((var_s0_2 * temp_v1) / 100) + ((u32) (var_s0_2 * temp_v1) >> 0x1F) + 0x2A00;
+        temp_v1_2 = ((var_s0_2 * temp_v1) / 100) + 0x2A00;
         temp_a0 = M2C_FIELD(Pes6Ball_Current, u16 *, 0x6A);
         var_v1 = arg2 - 0x34;
-        M2C_FIELD(Pes6Ball_Current, u16 *, 0x6A) = (u16) (((temp_a0 * temp_v1_2) / 10752) + ((u32) (temp_a0 * temp_v1_2) >> 0x1F));
+        M2C_FIELD(Pes6Ball_Current, u16 *, 0x6A) = (u16) (((temp_a0 * temp_v1_2) / 10752));
         if (var_v1 > 0) {
 
         } else {

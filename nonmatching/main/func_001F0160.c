@@ -1,41 +1,23 @@
-/* compiler: mwcc-3.0.1b151 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
 #include "pes6/m2c.h"
-
 
 extern void *D_0052B220;
 
 void *func_001F0160(s32 arg0) {
-    s32 temp_a0;
-    s32 var_a3;
-    void **var_a2;
-    void *var_v0;
+    void *node;
+    s32 count;
+    s32 i;
+    u8 *p;
 
-    var_v0 = D_0052B220;
-    if (var_v0 != NULL) {
-loop_2:
-        temp_a0 = M2C_FIELD(var_v0, s32 *, 4);
-        var_a3 = 0;
-        if (temp_a0 > 0) {
-            var_a2 = M2C_FIELD(var_v0, void ***, 8);
-loop_4:
-            if (((arg0 >> 0x10) & 0xFFFF & 0xFFFF) != M2C_FIELD(M2C_FIELD(*var_a2, void **, 4), u16 *, 4)) {
-                var_a3 += 1;
-                var_a2 += 4;
-                if (var_a3 >= temp_a0) {
-                    goto block_9;
-                }
-                goto loop_4;
+    for (node = D_0052B220; node != NULL; node = M2C_FIELD(node, void **, 0x10)) {
+        count = M2C_FIELD(node, s32 *, 4);
+        p = M2C_FIELD(node, u8 **, 8);
+        for (i = 0; i < count; i++) {
+            if (((arg0 >> 0x10) & 0xFFFF) == M2C_FIELD(M2C_FIELD(*(void **)p, void **, 4), u16 *, 4)) {
+                return node;
             }
-            return var_v0;
+            p += 4;
         }
-block_9:
-        var_v0 = M2C_FIELD(var_v0, void **, 0x10);
-        if (var_v0 == NULL) {
-            goto block_10;
-        }
-        goto loop_2;
     }
-block_10:
     return NULL;
 }
