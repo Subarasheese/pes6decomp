@@ -26,7 +26,7 @@ typedef struct Pes6MatchPlayer {
     u8 slot;          /* 0x11: squad slot */
     u8 team;          /* 0x12: squad (0 or 1) */
     u8 side;          /* 0x13 */
-    s16 x14;          /* 0x14 */
+    s16 goalDirection; /* 0x14: signed team-relative direction; see docs/pc_gameplay.md */
     u8 role;          /* 0x16 */
     u8 pad17[0x13];
     u16 angle;        /* 0x2A */

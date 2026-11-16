@@ -1,0 +1,357 @@
+{
+  "schema": 1,
+  "contributor": "AndreRoehrig, wollitz3 PC decompilation",
+  "reviewed_ps2_base_commit": "fc8801d1bc3612683dfdd99717fa2faaba79fef6",
+  "pc_reference": {
+    "description": "PES6 PC 1.00-layout PLAY runtime snapshot from a modified/protected installation with Kitserver; not proven pristine retail.",
+    "image_base": "0x00400000",
+    "sha256": "391d841a22af72100004f4d33e7b9f7eec098aa58d81fed18c5a851797bdefc1"
+  },
+  "pc_compiler": {
+    "name": "Microsoft Visual C++ Toolkit 2003 / MSVC 7.1",
+    "version": "13.10.3052.0",
+    "cl_exe_sha256": "9e45887874de83876ada2adc9943daa9094d1c1f1f9c3d93eac5ad57a1cbee2a"
+  },
+  "verification": {
+    "method": "Fresh MSVC compilation at trial and final source paths, followed by the normal full-function PC byte/reference comparator. Current source, object, compiler and verifier bindings were checked before export.",
+    "functions": 7,
+    "native_code_bytes": 268,
+    "ps2_native_reverification": false,
+    "ps2_matching_credit": 0,
+    "object_hash_scope": "Hashes identify inspected COFF objects; metadata can differ across paths or rebuilds."
+  },
+  "support_headers": [
+    {
+      "path": "include/engine/pes6_match_views.h",
+      "sha256": "98def635186aeee3b482d66ba125002c5e585437981c0d778447efdc417b2f3a",
+      "text": "#ifndef WOLLITZ3_PES6_MATCH_VIEWS_H\n#define WOLLITZ3_PES6_MATCH_VIEWS_H\n\n#include <stddef.h>\n\n/* PC layouts corroborated by Subarasheese/pes6decomp, revision\n * 6c3035b3e36ec844d0c8232df655c3638a26d364, include/pes6/match_player.h\n * and docs/ball_physics.md. See research/pes6decomp/crosswalk.json.\n * Names are descriptive; no original debug symbols are claimed.\n * Unknown bytes remain explicit. These are PC views, not a shared PS2 ABI.\n */\nstruct Pes6PcMatchPlayer {\n    unsigned char unknown00[0x11];\n    unsigned char squad_slot;       /* +0x11 */\n    unsigned char squad;            /* +0x12 */\n    unsigned char side;             /* +0x13 */\n    short goal_direction;           /* +0x14; observed +1/-1 */\n    unsigned char role;             /* +0x16 */\n    unsigned char unknown17[5];\n    int speed;                     /* +0x1c */\n    unsigned char unknown20[10];\n    unsigned short angle_2a;       /* +0x2a; added to ball direction by 00a2c7f0 */\n    unsigned char unknown2c[0x240 - 0x2c];\n};\n\n/* Prefix only: the original ball has more fields beyond this view. */\nstruct Pes6PcBallMotion {\n    unsigned char unknown00[0x10];\n    float position[3];             /* +0x10; negative Y points up */\n    unsigned char unknown1c[4];\n    float previous_position[3];    /* +0x20 */\n    unsigned char unknown2c[4];\n    float vertical_velocity;       /* +0x30 */\n    unsigned char unknown34[0x1c];\n    int horizontal_speed;          /* +0x50 */\n    unsigned char unknown54[4];\n    unsigned short direction;      /* +0x58; 65536 is one turn */\n    unsigned short previous_direction;\n    unsigned char unknown5c[6];\n    unsigned char state;           /* +0x62 */\n    unsigned char previous_state;\n    unsigned char unknown64[6];\n    unsigned short curl_counter;   /* +0x6a */\n    unsigned char curl_direction;   /* +0x6c */\n    unsigned char unknown6d[7];\n    int spin;                      /* +0x74 */\n};\n\n/* Supported by both MSVC 7.1 and Clang; fail compilation if a view drifts. */\ntypedef char Pes6PlayerStride[(sizeof(Pes6PcMatchPlayer) == 0x240) ? 1 : -1];\ntypedef char Pes6PlayerSquadOffset[(offsetof(Pes6PcMatchPlayer, squad) == 0x12) ? 1 : -1];\ntypedef char Pes6PlayerSideOffset[(offsetof(Pes6PcMatchPlayer, side) == 0x13) ? 1 : -1];\ntypedef char Pes6PlayerDirectionOffset[(offsetof(Pes6PcMatchPlayer, goal_direction) == 0x14) ? 1 : -1];\ntypedef char Pes6PlayerSpeedOffset[(offsetof(Pes6PcMatchPlayer, speed) == 0x1c) ? 1 : -1];\ntypedef char Pes6PlayerAngleOffset[(offsetof(Pes6PcMatchPlayer, angle_2a) == 0x2a) ? 1 : -1];\ntypedef char Pes6BallPositionOffset[(offsetof(Pes6PcBallMotion, position) == 0x10) ? 1 : -1];\ntypedef char Pes6BallVelocityOffset[(offsetof(Pes6PcBallMotion, vertical_velocity) == 0x30) ? 1 : -1];\ntypedef char Pes6BallSpeedOffset[(offsetof(Pes6PcBallMotion, horizontal_speed) == 0x50) ? 1 : -1];\ntypedef char Pes6BallDirectionOffset[(offsetof(Pes6PcBallMotion, direction) == 0x58) ? 1 : -1];\ntypedef char Pes6BallStateOffset[(offsetof(Pes6PcBallMotion, state) == 0x62) ? 1 : -1];\ntypedef char Pes6BallCurlOffset[(offsetof(Pes6PcBallMotion, curl_counter) == 0x6a) ? 1 : -1];\ntypedef char Pes6BallCurlDirectionOffset[(offsetof(Pes6PcBallMotion, curl_direction) == 0x6c) ? 1 : -1];\ntypedef char Pes6BallSpinOffset[(offsetof(Pes6PcBallMotion, spin) == 0x74) ? 1 : -1];\n\n#endif\n"
+    }
+  ],
+  "functions": [
+    {
+      "ps2": {
+        "image": "main",
+        "address": "0x0030e6c0",
+        "symbol": "Pes6MatchPlayer_GetSquadIndex",
+        "source_before_pr": "src/game/match/ai/unit_0030E2E0/Pes6MatchPlayer_GetSquadIndex.c",
+        "source_before_pr_sha256": "8866e022ae87961718451b05ece52f8b3cda5a6df0f05e24e366a3a8c912141c"
+      },
+      "pc": {
+        "address": "0xa2c8d0",
+        "symbol": "pes6_match_player_get_squad_index",
+        "source": {
+          "path": "src/engine/actor_state/00a2c8d0_match_player_get_squad_index.cpp",
+          "sha256": "3cb44daf37d6ad4d7192a9d5858c73af3e5a7da57da870dcc3406b2b53a50e83",
+          "text": "/* Adapted using Subarasheese/pes6decomp at 6c3035b3e36ec844d0c8232df655c3638a26d364.\n * PC native instructions are the authority; PS2 matching credit does not transfer. */\n#include \"engine/pes6_match_views.h\"\n\n/* PC 0x00a2c8d0; PS2 0x0030e6c0: src/game/match/ai/unit_0030E2E0/Pes6MatchPlayer_GetSquadIndex.c. */\nextern \"C\" {\nextern Pes6PcMatchPlayer pes6_match_players_03bdc980[];\nunsigned int __cdecl pes6_match_player_get_squad_index(unsigned char player_id)\n{\n    if (player_id == 255)\n        return 255;\n    return pes6_match_players_03bdc980[(int)player_id % 23].squad;\n}\n}\n"
+        },
+        "flags": [
+          "/O2",
+          "/Ob0",
+          "/Oy",
+          "/GS-",
+          "/Gy",
+          "/Oi"
+        ],
+        "original_code_bytes": 39,
+        "original_code_sha256": "dd4d1561801efe885387206788e3f03f5f4c2a4265ae854430415378c124445f",
+        "compiled_object_sha256": "d47fe24258a13e0552fd5d95259398681c41be392b709c7c92c4eceacf8b2d85",
+        "matched_bytes_without_relocations": 35,
+        "relocation_bytes": 4,
+        "verified_references": [
+          {
+            "addend": 18,
+            "expected_address": "0x3bdc992",
+            "offset": 34,
+            "original_address": "0x3bdc992",
+            "symbol": "_pes6_match_players_03bdc980",
+            "type": 6,
+            "verified": true
+          }
+        ],
+        "complete_byte_and_reference_match": true
+      }
+    },
+    {
+      "ps2": {
+        "image": "main",
+        "address": "0x0030e710",
+        "symbol": "Pes6MatchPlayer_GetSide",
+        "source_before_pr": "src/game/match/ai/unit_0030E2E0/Pes6MatchPlayer_GetSide.c",
+        "source_before_pr_sha256": "c0f5cb5fc42e9544e93a8fc57049cd4b0d359c42dc82543b4ff5b58f00477e81"
+      },
+      "pc": {
+        "address": "0xa2c890",
+        "symbol": "pes6_match_player_get_side",
+        "source": {
+          "path": "src/engine/actor_state/00a2c890_match_player_get_side.cpp",
+          "sha256": "f40a57a9d9f6a23f8133fd0621a484956812e55181e848fcfc65b9c7b7c29070",
+          "text": "/* Adapted using Subarasheese/pes6decomp at 6c3035b3e36ec844d0c8232df655c3638a26d364.\n * PC native instructions are the authority; PS2 matching credit does not transfer. */\n#include \"engine/pes6_match_views.h\"\n\n/* PC 0x00a2c890; PS2 0x0030e710: src/game/match/ai/unit_0030E2E0/Pes6MatchPlayer_GetSide.c. */\nextern \"C\" {\nextern Pes6PcMatchPlayer pes6_match_players_03bdc980[];\nunsigned int __cdecl pes6_match_player_get_side(unsigned char player_id)\n{\n    int index;\n    if (player_id != 255)\n        index = (int)player_id % 23;\n    else\n        index = 1;\n    return pes6_match_players_03bdc980[index].side;\n}\n}\n"
+        },
+        "flags": [
+          "/O2",
+          "/Ob0",
+          "/Oy",
+          "/GS-",
+          "/Gy",
+          "/Oi"
+        ],
+        "original_code_bytes": 52,
+        "original_code_sha256": "8fe7cfd351cef6b763ac374d3c82bb55675f47798d200942e812f7400fa1f580",
+        "compiled_object_sha256": "8958f59b5fe1e94b42bf49a3aa2383589e0adcc99d0d9b5710d705f3d4f7ed6d",
+        "matched_bytes_without_relocations": 44,
+        "relocation_bytes": 8,
+        "verified_references": [
+          {
+            "addend": 19,
+            "expected_address": "0x3bdc993",
+            "offset": 28,
+            "original_address": "0x3bdc993",
+            "symbol": "_pes6_match_players_03bdc980",
+            "type": 6,
+            "verified": true
+          },
+          {
+            "addend": 19,
+            "expected_address": "0x3bdc993",
+            "offset": 47,
+            "original_address": "0x3bdc993",
+            "symbol": "_pes6_match_players_03bdc980",
+            "type": 6,
+            "verified": true
+          }
+        ],
+        "complete_byte_and_reference_match": true
+      }
+    },
+    {
+      "ps2": {
+        "image": "main",
+        "address": "0x00311250",
+        "symbol": "Pes6Ball_GetCurlCounter",
+        "source_before_pr": "src/game/match/ai/unit_00310500/Pes6Ball_GetCurlCounter.c",
+        "source_before_pr_sha256": "87a3c9d52ea5a6e20578133f86e896144239d090094fcd2a89d4462530fb7f5e"
+      },
+      "pc": {
+        "address": "0xa2b230",
+        "symbol": "pes6_ball_get_curl_counter",
+        "source": {
+          "path": "src/engine/ball/00a2b230_ball_get_curl_counter.cpp",
+          "sha256": "b2cdee92206dc209ed32aee3f928ec854c883da5c1a39d1c80de1c36c9d31e82",
+          "text": "/* Adapted using Subarasheese/pes6decomp at 6c3035b3e36ec844d0c8232df655c3638a26d364.\n * PC native instructions are the authority; PS2 matching credit does not transfer. */\n#include \"engine/pes6_match_views.h\"\n\n/* PC 0x00a2b230; PS2 0x00311250: src/game/match/ai/unit_00310500/Pes6Ball_GetCurlCounter.c. */\nextern \"C\" {\nextern Pes6PcBallMotion *pes6_current_ball_00bcce94;\nunsigned int __cdecl pes6_ball_get_curl_counter(void)\n{\n    return pes6_current_ball_00bcce94->curl_counter;\n}\n}\n"
+        },
+        "flags": [
+          "/O2",
+          "/Ob0",
+          "/Oy",
+          "/GS-",
+          "/Gy",
+          "/Oi"
+        ],
+        "original_code_bytes": 10,
+        "original_code_sha256": "f7115ea9271c57fdf16d396807c9993f9994a483fed3a0e2e7a78b95a00c314f",
+        "compiled_object_sha256": "cdbd5ee236f43d8b656e21c339e5985fc627730a5c62e95c1eae54081180f458",
+        "matched_bytes_without_relocations": 6,
+        "relocation_bytes": 4,
+        "verified_references": [
+          {
+            "addend": 0,
+            "expected_address": "0xbcce94",
+            "offset": 1,
+            "original_address": "0xbcce94",
+            "symbol": "_pes6_current_ball_00bcce94",
+            "type": 6,
+            "verified": true
+          }
+        ],
+        "complete_byte_and_reference_match": true
+      }
+    },
+    {
+      "ps2": {
+        "image": "main",
+        "address": "0x00311310",
+        "symbol": "Pes6Ball_GetCurlDirection",
+        "source_before_pr": "src/game/match/ai/unit_00310500/Pes6Ball_GetCurlDirection.c",
+        "source_before_pr_sha256": "a926dbeb296cc07b8624975be4032e97fafcba4ff01182eef75c1d0ef4df9dd8"
+      },
+      "pc": {
+        "address": "0xa2b170",
+        "symbol": "pes6_ball_get_curl_direction",
+        "source": {
+          "path": "src/engine/ball/00a2b170_ball_get_curl_direction.cpp",
+          "sha256": "af277db104510c59c0e59c8ec03245467e73aafe215faf001389ad07b0fe59ab",
+          "text": "/* Adapted using Subarasheese/pes6decomp at 6c3035b3e36ec844d0c8232df655c3638a26d364.\n * PC native instructions are the authority; PS2 matching credit does not transfer. */\n#include \"engine/pes6_match_views.h\"\n\n/* PC 0x00a2b170; PS2 0x00311310: src/game/match/ai/unit_00310500/Pes6Ball_GetCurlDirection.c. */\nextern \"C\" {\nextern Pes6PcBallMotion *pes6_current_ball_00bcce94;\nunsigned int __cdecl pes6_ball_get_curl_direction(void)\n{\n    return pes6_current_ball_00bcce94->curl_direction;\n}\n}\n"
+        },
+        "flags": [
+          "/O2",
+          "/Ob0",
+          "/Oy",
+          "/GS-",
+          "/Gy",
+          "/Oi"
+        ],
+        "original_code_bytes": 10,
+        "original_code_sha256": "058d3b8395343b2ac38559c616027b8a546fe6cf049795bed1c19c4031bfbe7a",
+        "compiled_object_sha256": "05ac388ae8b8c2a51220f574c1a025c4245d6e4baba04f1b0a259b4916af18c9",
+        "matched_bytes_without_relocations": 6,
+        "relocation_bytes": 4,
+        "verified_references": [
+          {
+            "addend": 0,
+            "expected_address": "0xbcce94",
+            "offset": 1,
+            "original_address": "0xbcce94",
+            "symbol": "_pes6_current_ball_00bcce94",
+            "type": 6,
+            "verified": true
+          }
+        ],
+        "complete_byte_and_reference_match": true
+      }
+    },
+    {
+      "ps2": {
+        "image": "main",
+        "address": "0x0030fc10",
+        "symbol": "Pes6MatchPlayer_GetSpeed",
+        "source_before_pr": "src/game/match/ai/unit_0030F470/Pes6MatchPlayer_GetSpeed.c",
+        "source_before_pr_sha256": "66e934abf9e2e481c7821fdffadef4b9d383e04f7080f54d6f5ff817c44ed26c"
+      },
+      "pc": {
+        "address": "0xa2be20",
+        "symbol": "pes6_match_player_get_speed",
+        "source": {
+          "path": "src/engine/actor_state/00a2be20_match_player_get_speed.cpp",
+          "sha256": "abaa654e97feb11e42e0c34e6ed81651660a8c0258729d7db267c8ad442d7d90",
+          "text": "/* PES6 PC 0x00a2be20; adapted using PS2 0x0030fc10, src/game/match/ai/unit_0030F470/Pes6MatchPlayer_GetSpeed.c\n * Subarasheese/pes6decomp at 6c3035b3e36ec844d0c8232df655c3638a26d364.\n * PC instruction widths, ABI and arithmetic remain authoritative. */\n#include \"engine/pes6_match_views.h\"\n\nextern \"C\" {\nextern Pes6PcMatchPlayer pes6_match_players_03bdc980[];\nint __cdecl pes6_match_player_get_speed(unsigned char player_id)\n{\n    int index;\n    if (player_id != 255)\n        index = (int)player_id % 23;\n    else\n        index = 1;\n    return pes6_match_players_03bdc980[index].speed;\n}\n}\n"
+        },
+        "flags": [
+          "/O2",
+          "/Ob0",
+          "/Oy",
+          "/GS-",
+          "/Gy",
+          "/Oi"
+        ],
+        "original_code_bytes": 50,
+        "original_code_sha256": "c028600ac009c42409ffabd5b5097fa991a358767f8aaa490a38a67f971e6a1d",
+        "compiled_object_sha256": "3e1a2252d1c40bdda66f8e69392609b58f96fd66e7bcc70a31e139324fe7dc43",
+        "matched_bytes_without_relocations": 42,
+        "relocation_bytes": 8,
+        "verified_references": [
+          {
+            "addend": 28,
+            "expected_address": "0x3bdc99c",
+            "offset": 27,
+            "original_address": "0x3bdc99c",
+            "symbol": "_pes6_match_players_03bdc980",
+            "type": 6,
+            "verified": true
+          },
+          {
+            "addend": 28,
+            "expected_address": "0x3bdc99c",
+            "offset": 45,
+            "original_address": "0x3bdc99c",
+            "symbol": "_pes6_match_players_03bdc980",
+            "type": 6,
+            "verified": true
+          }
+        ],
+        "complete_byte_and_reference_match": true
+      }
+    },
+    {
+      "ps2": {
+        "image": "main",
+        "address": "0x0030ebb0",
+        "symbol": "Pes6MatchPlayer_ScaleByGoalDirection",
+        "source_before_pr": "src/game/match/ai/unit_0030E2E0/func_0030EBB0.c",
+        "source_before_pr_sha256": "89ad26e987ed3a8a52684dbb25b83e55227bc2e0f8fa184682a18a6f4ddabdeb"
+      },
+      "pc": {
+        "address": "0xa2c610",
+        "symbol": "pes6_match_player_scale_goal_direction",
+        "source": {
+          "path": "src/engine/actor_state/00a2c610_match_player_scale_goal_direction.cpp",
+          "sha256": "ec12d905c2cbbe2b86c35afcf8ab7c4f8eacfc447428d936aea7e880d1af335a",
+          "text": "/* PES6 PC 0x00a2c610; adapted using PS2 0x0030ebb0, src/game/match/ai/unit_0030E2E0/func_0030EBB0.c\n * Subarasheese/pes6decomp at 6c3035b3e36ec844d0c8232df655c3638a26d364.\n * PC instruction widths, ABI and arithmetic remain authoritative. */\n#include \"engine/pes6_match_views.h\"\n\nextern \"C\" {\nextern Pes6PcMatchPlayer pes6_match_players_03bdc980[];\n/* PC argument order and x87 multiplication order follow 00a2c610. */\nfloat __cdecl pes6_match_player_scale_goal_direction(unsigned char player_id, float scale, int n)\n{\n    int index;\n    if (player_id != 255)\n        index = (int)player_id % 23;\n    else\n        index = 1;\n    return (float)pes6_match_players_03bdc980[index].goal_direction * n * scale;\n}\n}\n"
+        },
+        "flags": [
+          "/O2",
+          "/Ob0",
+          "/Oy",
+          "/GS-",
+          "/Gy",
+          "/Oi"
+        ],
+        "original_code_bytes": 56,
+        "original_code_sha256": "42c0b200cf730512375985ccd8b5002cea58078ee1db27827d388541e4830b3a",
+        "compiled_object_sha256": "97fb3343a41bcfffa75ba1266385e1c61479eb29e58b608a4efd23daa0891b95",
+        "matched_bytes_without_relocations": 52,
+        "relocation_bytes": 4,
+        "verified_references": [
+          {
+            "addend": 20,
+            "expected_address": "0x3bdc994",
+            "offset": 35,
+            "original_address": "0x3bdc994",
+            "symbol": "_pes6_match_players_03bdc980",
+            "type": 6,
+            "verified": true
+          }
+        ],
+        "complete_byte_and_reference_match": true
+      }
+    },
+    {
+      "ps2": {
+        "image": "main",
+        "address": "0x0030ea90",
+        "symbol": "Pes6MatchPlayer_HasRole",
+        "source_before_pr": "src/game/match/ai/unit_0030E2E0/Pes6MatchPlayer_HasRole.c",
+        "source_before_pr_sha256": "28c92ca9526abefa4fb18d61b4614103a4cbeaa4049bebac1d27adc8f327d579"
+      },
+      "pc": {
+        "address": "0xa2c6c0",
+        "symbol": "pes6_match_player_has_role",
+        "source": {
+          "path": "src/engine/actor_state/00a2c6c0_match_player_has_role.cpp",
+          "sha256": "67ddebe15c873b6854c2d941a2b9bfc8591528af0922888cb6ffbb0726696e72",
+          "text": "/* PES6 PC 0x00a2c6c0; adapted using PS2 0x0030ea90, src/game/match/ai/unit_0030E2E0/Pes6MatchPlayer_HasRole.c\n * Subarasheese/pes6decomp at 6c3035b3e36ec844d0c8232df655c3638a26d364.\n * PC instruction widths, ABI and arithmetic remain authoritative. */\n#include \"engine/pes6_match_views.h\"\n\nextern \"C\" {\nextern Pes6PcMatchPlayer pes6_match_players_03bdc980[];\nint __cdecl pes6_match_player_has_role(unsigned char player_id, int role)\n{\n    int index;\n    if (player_id != 255)\n        index = (int)player_id % 23;\n    else\n        index = 1;\n    if (pes6_match_players_03bdc980[index].role == role)\n        return 1;\n    return 0;\n}\n}\n"
+        },
+        "flags": [
+          "/O2",
+          "/Ob0",
+          "/Oy",
+          "/GS-",
+          "/Gy",
+          "/Oi"
+        ],
+        "original_code_bytes": 51,
+        "original_code_sha256": "aa20c2350452488e4b92195a811338c20a64a9ac0fbbbf1a5ee241a9774500a0",
+        "compiled_object_sha256": "04d4d108c3a111b359cbf35afcbda9a6495f8210c16dfbcfaf92208b06489ef4",
+        "matched_bytes_without_relocations": 47,
+        "relocation_bytes": 4,
+        "verified_references": [
+          {
+            "addend": 22,
+            "expected_address": "0x3bdc996",
+            "offset": 39,
+            "original_address": "0x3bdc996",
+            "symbol": "_pes6_match_players_03bdc980",
+            "type": 6,
+            "verified": true
+          }
+        ],
+        "complete_byte_and_reference_match": true
+      }
+    }
+  ],
+  "limits": [
+    "The PS2 image and original compiler were not available for native re-matching of this naming change.",
+    "This records PC-specific checks and is not a proof of cross-platform floating-point, ABI or whole-game equivalence.",
+    "Paths in this bundle are relative reproduction paths; no original image bytes, compiler binaries or absolute local paths are included.",
+    "The PS2 helper retains its original signature and expression order."
+  ]
+}

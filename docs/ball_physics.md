@@ -179,6 +179,7 @@ their original signatures, including integer addresses and output parameters.
 | `0x00311310` | `Pes6Ball_GetCurlDirection` | Reads the unsigned byte at +0x6C. |
 | `0x0030E6C0` | `Pes6MatchPlayer_GetSquadIndex` | Reads the match player's +0x12 squad index; preserves the 0xFF sentinel. |
 | `0x0030E710` | `Pes6MatchPlayer_GetSide` | Reads the match player's +0x13 side after the existing player-id normalization. |
+| `0x0030EBB0` | `Pes6MatchPlayer_ScaleByGoalDirection` | Scales by the signed player field at +0x14. Team-relative coordinate accessors and the goal-line calculation in `Pes6Ball_Update` support the name; see [PC comparison evidence](pc_gameplay.md). |
 | `0x003E7574` | `Pes6Ball_Current` | The ball pointer used by the update and position/curl accessors, confirmed by the runtime tracing above. |
 | `0x0058E5B0` | `Pes6MatchPlayers` | Match-player table with a 0x240-byte stride; see `include/pes6/match_player.h`. |
 | `0x00592980` | `Pes6MatchSquads` | Two squads of 32 player records, indexed by the match player's squad and slot fields. |
@@ -186,3 +187,8 @@ their original signatures, including integer addresses and output parameters.
 
 The squad index and side remain distinct fields. Unidentified player abilities,
 state flags, and object roles retain their generic names.
+
+The player field at +0x14 is named `goalDirection`: it multiplies team-relative
+coordinates and selects the signed goal-line coordinate in `Pes6Ball_Update`.
+[Independent PC evidence](pc_gameplay.md) corroborates this interpretation and
+records platform differences and physics questions that still need PS2 checks.
