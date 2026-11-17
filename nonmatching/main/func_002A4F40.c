@@ -1,20 +1,20 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
  * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
 s64 func_00299FE0(s64);
-s64 func_002A0ED0(s64, s64, s64, s64, s64);
+void func_002A0ED0(s64, s64, s64, s64, s64);
 
-s64 func_002A4F40(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, f32 fa12) {
+void func_002A4F40(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, f32 fa12) {
     s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0;
-    union { f32 f; s32 i; } f0 = { 0 };
-    union { f32 f; s32 i; } f1 = { 0 };
-    union { f32 f; s32 i; } f2 = { 0 };
-    union { f32 f; s32 i; } f3 = { 0 };
-    union { f32 f; s32 i; } f12 = { fa12 };
-    union { f32 f; s32 i; } f20 = { 0 };
-    union { f32 f; s32 i; } f21 = { 0 };
+    volatile union { f32 f; s32 i; } f0 = { 0 };
+    volatile union { f32 f; s32 i; } f1 = { 0 };
+    volatile union { f32 f; s32 i; } f2 = { 0 };
+    volatile union { f32 f; s32 i; } f3 = { 0 };
+    volatile union { f32 f; s32 i; } f12 = { fa12 };
+    volatile union { f32 f; s32 i; } f20 = { 0 };
+    volatile union { f32 f; s32 i; } f21 = { 0 };
     s64 hi = 0, lo = 0;
     s32 fcc = 0;
     f32 acc = 0;
@@ -46,7 +46,7 @@ L_002A4F9C:;
     f1.f = f0.f * f2.f;
     f0.i = (s32) v0;
     f21.f = f1.f / f0.f;
-    v0 = func_002A0ED0(a0, a1, a2, a3, a4);
+    func_002A0ED0(a0, a1, a2, a3, a4);
     f20.i = (s32) 0;
     s3 = 0;
     s2 = (s32) ((u32) sp + 0x88U);
@@ -118,7 +118,7 @@ L_002A50F8:;
     v1 = v1 & a0;
     if (v1 == 0) goto L_002A5270;
     a1 = s3 & 0xff;
-    a0 = (s32) ((u32) sp + 0x80U); v0 = func_002A0ED0(a0, a1, a2, a3, a4);
+    a0 = (s32) ((u32) sp + 0x80U); func_002A0ED0(a0, a1, a2, a3, a4);
     a1 = (s32) ((u32) sp + 0x80U);
     v1 = (s32) ((u32) sp + 0x90U);
     __asm__ volatile("lqc2 $vf4, 0(%0)" : : "r"((u32) a1) : "memory");
@@ -202,5 +202,5 @@ L_002A5270:;
     s3 = (s32) ((u32) s3 + 0x1U);
     v1 = s3 < 29;
     if (v1 != 0) goto L_002A4FF4;
-    return v0;
+    return;
 }

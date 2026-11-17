@@ -1,264 +1,98 @@
-/* compiler: ee-gcc-2.9-G0 */
-/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
- * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+/* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-s32 func_002730A0(s32, s32);
-void func_002733F0(s32);
+extern char D_00592980[];
+extern char D_0058E7F0[];
+extern char D_005900B0[];
+extern char D_003AB6D0[];
+extern char D_003AB720[];
+
+typedef struct { f32 v[31]; } SF;
+typedef struct { s16 v[6][6]; } ST;
+
+void *func_001C48E8(void *p, s32 v, s32 n);
+s32 func_002730A0(u8 *p, s32 a);
+void func_002733F0(u8 *p);
 s32 func_002DCA30(void);
-s32 func_00BBB8C0(s32, s32, s32, s32);
-void func_00BCC570(s32, s32, s32, s32);
-void memset(s32, s32, s32);
+s32 func_00BBB8C0(s32 n);
+s32 func_00BCC570(s32 t);
 
-void func_002736F0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6) {
-    s32 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0, fp = 0;
-    volatile union { f32 f; s32 i; } f0 = { 0 };
-    volatile union { f32 f; s32 i; } f1 = { 0 };
-    volatile union { f32 f; s32 i; } f2 = { 0 };
-    s32 fcc = 0;
-    s64 frame[62];
-    s32 sp = (s32) (u32) frame;
+void func_002736F0(s32 arg0, s32 arg1) {
+    s32 list2[11];
+    s32 list1[11];
+    ST tab;
+    SF fl;
+    s32 t, n2, n1, i, rem, extra, cnt, r;
+    u8 *base;
+    u8 *cur;
+    u8 *p;
+    u8 *last;
+    u8 *q;
+    s32 *w1;
+    s32 *w2;
+    s32 fp;
+    u32 v;
+    f32 f;
+    f32 x;
+    s32 cls;
 
-    v1 = a0;
-    (*(volatile u32 *) (u32) (sp + 188)) = (u32) a0;
-    { s32 c_ = v1 != 0; (*(volatile u32 *) (u32) (sp + 184)) = (u32) a1; if (c_) goto L_00273B58; }
-    s7 = (s32) 0x590000U;
-    s3 = 0;
-    s7 = (s32) ((u32) s7 + 0x2980U);
-L_00273738:;
-    a0 = (s32) ((u32) sp + 0x1c0U);
-    a1 = 0;
-    a2 = 44; memset(a0, a1, a2);
-    a0 = (s32) ((u32) sp + 0x190U);
-    a1 = 0;
-    a2 = 44; memset(a0, a1, a2);
-    v1 = (s32) 0x590000U;
-    s5 = 0;
-    v1 = (s32) ((u32) v1 + 0xffffe7f0U);
-    (*(volatile u32 *) (u32) (sp + 160)) = (u32) v1;
-    v1 = (*(volatile u8 *) (u32) (v1 + 18));
-    { s32 c_ = v1 == s3; s4 = 0; if (c_) goto L_00273780; }
-    v1 = (s32) 0x590000U;
-    v1 = (s32) ((u32) v1 + 0xb0U);
-    (*(volatile u32 *) (u32) (sp + 160)) = (u32) v1;
-L_00273780:;
-    s2 = 0;
-    s1 = (s32) ((u32) sp + 0x190U);
-    s6 = (s32) ((u32) sp + 0x1c0U);
-L_00273790:;
-    v1 = (*(volatile s32 *) (u32) (sp + 160));
-    a5 = (s32) 0x3b0000U;
-    a4 = (s32) ((u32) sp + 0x140U);
-    a5 = (s32) ((u32) a5 + 0xffffb6d0U);
-    a3 = 18;
-    fp = (*(volatile u8 *) (u32) (v1 + 17));
-    v1 = (s32) ((u32) fp << 4);
-    a0 = (s32) ((u32) v1 - (u32) fp);
-    v1 = (s32) ((u32) a0 << 3);
-    v1 = (s32) ((u32) v1 - (u32) a0);
-    v1 = (s32) ((u32) v1 << 3);
-    v1 = (s32) ((u32) s7 + (u32) v1);
-    a0 = (s32) ((u32) v1 + 0xf0U);
-    s0 = (s32) ((u32) a0 + 0x8U);
-L_002737C8:;
-    a2 = (*(volatile s16 *) (u32) a5);
-    a3 = (s32) ((u32) a3 + 0xffffffffU);
-    a1 = (*(volatile s16 *) (u32) (a5 + 2));
-    (*(volatile u16 *) (u32) a4) = (u16) a2;
-    (*(volatile u16 *) (u32) (a4 + 2)) = (u16) a1;
-    a5 = (s32) ((u32) a5 + 0x4U);
-    { s32 c_ = a3 > 0; a4 = (s32) ((u32) a4 + 0x4U); if (c_) goto L_002737C8; }
-    a4 = (s32) 0x3b0000U;
-    a3 = (s32) ((u32) sp + 0xc0U);
-    a4 = (s32) ((u32) a4 + 0xffffb720U);
-    a2 = 31;
-L_002737F8:;
-    a1 = (*(volatile s32 *) (u32) a4);
-    a2 = (s32) ((u32) a2 + 0xffffffffU);
-    (*(volatile u32 *) (u32) a3) = (u32) a1;
-    a4 = (s32) ((u32) a4 + 0x4U);
-    a3 = (s32) ((u32) a3 + 0x4U);
-    if (a2 > 0) goto L_002737F8;
-    a3 = (*(volatile u8 *) (u32) (a0 + 1));
-    a1 = (*(volatile u8 *) (u32) (a0 + 2));
-    a2 = (s32) ((u32) a3 << 1);
-    a2 = (s32) ((u32) a2 + (u32) a3);
-    a1 = (s32) ((u32) a1 << 1);
-    a2 = (s32) ((u32) a2 << 2);
-    a2 = (s32) ((u32) a2 + (u32) sp);
-    a1 = (s32) ((u32) a1 + (u32) a2);
-    a1 = (*(volatile u16 *) (u32) (a1 + 320));
-    if (a1 < 0) { a2 = (s32) ((u32) a1 >> 1); goto L_0027384C; }
-    f0.i = (s32) a1;
-    f2.f = (f32) f0.i; goto L_00273864;
-L_0027384C:;
-    a1 = a1 & 0x1;
-    a2 = a2 | a1;
-    f0.i = (s32) a2;
-    f2.f = (f32) f0.i;
-    f2.f = f2.f + f2.f;
-L_00273864:;
-    a2 = (*(volatile u8 *) (u32) a0);
-    a1 = (s32) 0x4f000000U;
-    f0.i = (s32) a1;
-    a1 = (s32) ((u32) a2 << 2);
-    a1 = (s32) ((u32) a1 + (u32) sp);
-    f1.f = (*(volatile f32 *) (u32) (a1 + 192));
-    f1.f = f1.f * f2.f;
-    fcc = f0.f <= f1.f;
-    if (fcc) { f0.f = f1.f - f0.f; goto L_0027389C; }
-    f0.i = (s32) f1.f;
-    a2 = f0.i;
-    a2 = a2 & 0xffff; goto L_002738B4;
-L_0027389C:;
-    a1 = (s32) 0x80000000U;
-    f0.i = (s32) f0.f;
-    a2 = f0.i;
-    a2 = a2 | a1;
-    a2 = a2 & 0xffff;
-L_002738B4:;
-    a1 = a2 & 0xffff;
-    if (a1 <= 0) goto L_00273A38;
-    at = a1 < 21;
-    if (at == 0) goto L_002738D8;
-    a2 = 1; goto L_002738E0;
-L_002738D8:;
-    a2 = 2;
-L_002738E0:;
-    a1 = 2;
-    if (a2 != a1) goto L_00273908;
-    a1 = (*(volatile u8 *) (u32) (v1 + 212));
-    if (a1 != 0) goto L_00273A40;
-    v1 = (*(volatile u8 *) (u32) (v1 + 248));
-    if (v1 != 0) goto L_00273A40;
-L_00273908:;
-    v1 = (*(volatile s32 *) (u32) (sp + 160));
-    s2 = (s32) ((u32) s2 + 0x1U);
-    v1 = (s32) ((u32) v1 + 0x240U);
-    (*(volatile u32 *) (u32) (sp + 160)) = (u32) v1;
-    v1 = s2 < 11;
-    if (v1 != 0) goto L_00273790;
-    v1 = (s32) ((u32) s4 + (u32) s5);
-    at = 0 < v1;
-    if (at == 0) goto L_00273B48;
-    v1 = (*(volatile s32 *) (u32) (sp + 184));
-    if (v1 != 0) goto L_00273AB0;
-L_00273940:;
-    a2 = 0;
-L_00273948:;
-    v1 = (s32) 0x590000U;
-    v1 = (s32) ((u32) v1 + 0xffffe7f0U);
-    a1 = s3 & 0xff;
-    a0 = (*(volatile u8 *) (u32) (v1 + 18));
-    if (a1 == a0) goto L_00273968;
-    v1 = (s32) 0x590000U;
-    v1 = (s32) ((u32) v1 + 0xb0U);
-L_00273968:;
-    a0 = 0;
-    a1 = 0;
-    a5 = (s32) 0x590000U;
-    a5 = (s32) ((u32) a5 + 0x2980U);
-L_00273978:;
-    a6 = (*(volatile u8 *) (u32) (v1 + 18));
-    a4 = (*(volatile u8 *) (u32) (v1 + 17));
-    a3 = (s32) ((u32) a6 << 4);
-    a6 = (s32) ((u32) a3 - (u32) a6);
-    a3 = (s32) ((u32) a4 << 4);
-    a4 = (s32) ((u32) a3 - (u32) a4);
-    a3 = (s32) ((u32) a6 << 3);
-    a6 = (s32) ((u32) a3 - (u32) a6);
-    a3 = (s32) ((u32) a4 << 3);
-    a3 = (s32) ((u32) a3 - (u32) a4);
-    a4 = (s32) ((u32) a6 << 8);
-    a3 = (s32) ((u32) a3 << 3);
-    a4 = (s32) ((u32) a5 + (u32) a4);
-    a3 = (s32) ((u32) a3 + (u32) a4);
-    a3 = (*(volatile u8 *) (u32) (a3 + 212));
-    if (a3 == 0) goto L_002739C0;
-    a0 = (s32) ((u32) a0 + 0x1U);
-L_002739C0:;
-    a1 = (s32) ((u32) a1 + 0x1U);
-    a3 = a1 < 11;
-    { s32 c_ = a3 != 0; v1 = (s32) ((u32) v1 + 0x240U); if (c_) goto L_00273978; }
-    v1 = (s32) ((u32) a2 + (u32) a0);
-    a1 = (s32) ((u32) v1 - (u32) s5);
-    a0 = 7;
-    v1 = (s32) ((u32) s4 << 2);
-    a1 = (s32) ((u32) a1 - (u32) s4);
-    v1 = (s32) ((u32) v1 + (u32) sp);
-    s2 = (s32) ((u32) a0 - (u32) a1);
-    s1 = (s32) ((u32) v1 + 0x190U);
-L_002739F0:;
-    if (s2 <= 0) goto L_00273AD0;
-    at = 0 < s4;
-    if (at == 0) goto L_00273AD0;
-    a0 = s4; v0 = func_00BBB8C0(a0, a1, a2, a3);
-    a0 = (*(volatile s32 *) (u32) (s1 + -4));
-    v1 = 1;
-    (*(volatile u8 *) (u32) (s0 + 2)) = (u8) v1;
-    s4 = (s32) ((u32) s4 + 0xffffffffU);
-    v1 = (s32) ((u32) v0 << 2);
-    s2 = (s32) ((u32) s2 + 0xffffffffU);
-    v1 = (s32) ((u32) v1 + (u32) sp);
-    (*(volatile u32 *) (u32) (v1 + 400)) = (u32) a0;
-    s1 = (s32) ((u32) s1 + 0xfffffffcU); goto L_002739F0;
-L_00273A38:;
-    a2 = 0; goto L_002738E0;
-L_00273A40:;
-    v1 = (*(volatile u8 *) (u32) s0);
-    if (v1 != 0) goto L_00273A90;
-    v1 = (*(volatile u8 *) (u32) (s0 + 1));
-    if (v1 != 0) goto L_00273A90;
-    v1 = (*(volatile u8 *) (u32) (a0 + 3));
-    if (v1 == 0) goto L_00273908;
-    goto L_00273A90;
-L_00273A70:;
-    (*(volatile u32 *) (u32) s1) = (u32) fp;
-    s1 = (s32) ((u32) s1 + 0x4U);
-    s4 = (s32) ((u32) s4 + 0x1U); goto L_00273908;
-L_00273A80:;
-    (*(volatile u32 *) (u32) s6) = (u32) fp;
-    s6 = (s32) ((u32) s6 + 0x4U);
-    s5 = (s32) ((u32) s5 + 0x1U); goto L_00273908;
-L_00273A90:;
-    a1 = (*(volatile s32 *) (u32) (sp + 188)); v0 = func_002730A0(a0, a1);
-    v1 = 3;
-    if (v0 != v1) goto L_00273A80;
-    goto L_00273A70;
-L_00273AB0:;
-    v0 = func_002DCA30();
-    if (v0 != 0) goto L_00273940;
-    a0 = s3; func_00BCC570(a0, a1, a2, a3);
-    a2 = v0; goto L_00273948;
-L_00273AD0:;
-    v1 = (s32) ((u32) s5 << 2);
-    v1 = (s32) ((u32) v1 + (u32) sp);
-    s1 = (s32) ((u32) v1 + 0x1c0U);
-L_00273AE0:;
-    if (s2 <= 0) goto L_00273B48;
-    at = 0 < s5;
-    if (at == 0) goto L_00273B48;
-    a0 = s5; v0 = func_00BBB8C0(a0, a1, a2, a3);
-    v0 = (s32) ((u32) v0 << 2);
-    v0 = (s32) ((u32) v0 + (u32) sp);
-    s0 = (s32) ((u32) v0 + 0x1c0U);
-    v1 = (*(volatile s32 *) (u32) s0);
-    v0 = (s32) ((u32) v1 << 4);
-    v1 = (s32) ((u32) v0 - (u32) v1);
-    v0 = (s32) ((u32) v1 << 3);
-    v0 = (s32) ((u32) v0 - (u32) v1);
-    v0 = (s32) ((u32) v0 << 3);
-    v0 = (s32) ((u32) s7 + (u32) v0);
-    a0 = (s32) ((u32) v0 + 0xf0U); func_002733F0(a0);
-    v1 = (*(volatile s32 *) (u32) (s1 + -4));
-    s5 = (s32) ((u32) s5 + 0xffffffffU);
-    s2 = (s32) ((u32) s2 + 0xffffffffU);
-    (*(volatile u32 *) (u32) s0) = (u32) v1;
-    s1 = (s32) ((u32) s1 + 0xfffffffcU); goto L_00273AE0;
-L_00273B48:;
-    s3 = (s32) ((u32) s3 + 0x1U);
-    v1 = s3 < 2;
-    { s32 c_ = v1 != 0; s7 = (s32) ((u32) s7 + 0x6900U); if (c_) goto L_00273738; }
-L_00273B58:;
-    return;
+    if (arg0 != 0) return;
+    base = (u8 *)D_00592980;
+    for (t = 0; t < 2; t++, base += 0x6900) {
+        func_001C48E8(list2, 0, 44);
+        func_001C48E8(list1, 0, 44);
+        n2 = 0;
+        cur = (u8 *)D_0058E7F0;
+        n1 = 0;
+        if (cur[0x12] != t) cur = (u8 *)D_005900B0;
+        w1 = list1;
+        w2 = list2;
+        for (i = 0; i < 11; i++, cur += 0x240) {
+            fp = cur[0x11];
+            q = base + fp * 840;
+            p = q + 0xF0;
+            last = p + 8;
+            tab = *(ST *)D_003AB6D0;
+            fl = *(SF *)D_003AB720;
+            x = (f32)(u32)tab.v[p[1]][p[2]];
+            f = fl.v[p[0]] * x;
+            v = (u16)f;
+            if ((s32)v > 0) {
+                if ((s32)v < 21) cls = 1;
+                else cls = 2;
+            } else cls = 0;
+            if (cls == 2) {
+                if (q[0xD4] == 0 && q[0xF8] == 0) continue;
+            } else continue;
+            if (last[0] == 0 && last[1] == 0 && p[3] == 0) continue;
+            if (func_002730A0(p, arg0) == 3) { *w1++ = fp; n1++; }
+            else { *w2++ = fp; n2++; }
+        }
+        if (n1 + n2 <= 0) continue;
+        extra = 0;
+        if (arg1 != 0) {
+            if (func_002DCA30() == 0) extra = func_00BCC570(t);
+        }
+        cur = (u8 *)D_0058E7F0;
+        if ((t & 0xFF) != cur[0x12]) cur = (u8 *)D_005900B0;
+        cnt = 0;
+        for (i = 0; i < 11; i++, cur += 0x240) {
+            if (((u8 *)D_00592980)[cur[0x12] * 0x6900 + cur[0x11] * 840 + 0xD4] != 0) cnt++;
+        }
+        rem = 7 - (extra + cnt - n2 - n1);
+        while (rem > 0 && n1 > 0) {
+            r = func_00BBB8C0(n1);
+            last[2] = 1;
+            list1[r] = list1[n1 - 1];
+            n1--;
+            rem--;
+        }
+        while (rem > 0 && n2 > 0) {
+            r = func_00BBB8C0(n2);
+            func_002733F0(base + list2[r] * 840 + 0xF0);
+            list2[r] = list2[n2 - 1];
+            n2--;
+            rem--;
+        }
+    }
 }

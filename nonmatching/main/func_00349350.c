@@ -1,233 +1,122 @@
-/* compiler: ee-gcc-2.9 */
-/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
- * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+/* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-s32 Pes6Job_CopyPayloadOut(s32, s32, s32);
-s32 Pes6Job_Create(s32, s32, s32);
-s32 Pes6Job_GetArg(s32, s32);
-s32 Pes6Job_GetManager(void);
-s32 Pes6Job_SetArg(s32, s32, s32);
-s32 Pes6Job_SetField4(s32, s32);
-s32 Pes6MatchPlayer_GetSquadIndex(s32);
-s32 Pes6MatchPlayer_GetTeamRelativeXZ(s32, s32, s32);
-s32 func_0030EA70(s32, s32, s32, s32);
-f32 func_0030EBB0(s32, s32, f32);
-s32 func_0030EE80(s32);
-s32 func_0030F330(s32, s32, s32, s32);
-s32 func_0030FAB0(s32, s32, s32, s32);
-s32 func_00310A50(s32, s32, s32, s32);
-s32 func_00310BA0(s32, s32, s32, s32);
-s32 func_0031BBE0(s32, s32, s32);
-s32 func_00333620(s32, s32);
-s32 func_003394E0(s32, s32, s32, s32);
-s32 func_003395B0(s32);
-s32 func_00340590(f32, f32);
-s32 func_003407B0(s32, s32, s32, s32, f32, f32);
-s32 func_00340880(f32, f32);
-s32 func_00340A20(f32, f32);
-s32 func_00340C80(f32);
-s32 func_003414D0(s32, s32, s32, s32);
-s32 func_003469F0(s32, s32, s32, s32, f32, f32);
-s32 func_00347C90(s32, s32, s32, s32, f32);
-s32 func_00349210(s32, s32, s32, s32);
-s32 func_00BD9C30(s32, s32, s32, s32);
+extern s32 func_0030F330(void);
+extern void func_00333620(s32 a0, s32 a1);
+extern s32 func_00BD9C30(void);
+extern void func_0031BBE0(s32 a0, s32 a1, s32 a2);
+extern void func_00310A50(u8 *a0, s32 a1);
+extern void func_0030EE80(f32 *a0);
+extern u8 *func_00335370(void);
+extern s32 func_0030E6C0(s32 a0);
+extern void func_003394E0(s32 a0, s32 a1, s32 a2, s32 a3);
+extern void func_003414D0(u8 *a0, s32 a1, s32 a2);
+extern f32 func_0030EBB0(s32 a0, s32 a1, f32 f12);
+extern s32 func_00340590(f32 a, f32 b);
+extern s32 func_003407B0(f32 a, f32 b);
+extern s32 func_00340A20(f32 a, f32 b);
+extern s32 func_0030FAB0(s32 a0);
+extern void func_0030DCC0(f32 *a0, f32 *a1, s32 a2);
+extern s32 func_00340880(f32 a, f32 b);
+extern s32 func_00310BA0(s32 a0);
+extern s32 func_0030EA70(void);
+extern s32 func_003395B0(s32 a0);
+extern s32 func_00340C80(f32 a);
+extern s32 func_00338AD0(s32 a0, s32 a1, s32 a2, s32 a3);
+extern void func_00338A60(s32 a0, s32 a1);
+extern s32 func_003469F0(char *a0, char *a1, s32 a2);
+extern void func_003389F0(s32 a0, s32 a1, s32 a2);
+extern s32 func_003389D0(s32 a0, s32 a1);
+extern void func_00349210(u8 *a0);
+extern void func_00347C90(u8 *a0, s32 a1);
+extern void func_003387D0(s32 a0, s32 a1, s32 a2);
+extern void func_00348010(void);
+extern void func_00356D60(void);
+extern void func_00348E70(void);
+extern char D_003E61B0[];
+extern char D_0058E5B0[];
+extern u8 D_003E9F90;
+extern u8 D_003E9F94;
+extern f32 D_003E9F60;
+extern f32 D_003E9F58;
+extern f32 D_003E9F5C;
 
-s32 func_00349350(s32 a0, s32 a1, s32 a2, s32 a3, f32 fa12, f32 fa13) {
-    s32 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0;
-    s32 gp = 0x3ef370;
-    union { f32 f; s32 i; } f0 = { 0 };
-    union { f32 f; s32 i; } f1 = { 0 };
-    union { f32 f; s32 i; } f12 = { fa12 };
-    union { f32 f; s32 i; } f13 = { fa13 };
-    union { f32 f; s32 i; } f20 = { 0 };
-    union { f32 f; s32 i; } f21 = { 0 };
-    s32 hi = 0, lo = 0;
-    s32 fcc = 0;
-    s64 frame[20];
-    s32 sp = (s32) (u32) frame;
+s32 func_00349350(s32 a0) {
+    s32 s5, s2, s0, s1, p, q, v;
+    u8 *s3;
+    f32 buf[8];
+    f32 f20, f21;
+    void *fn;
 
-    s4 = a0;
-    v0 = func_0030F330(a0, a1, a2, a3);
-    if (v0 != 0) { a0 = 11; goto L_00349390; }
-    v0 = 0; goto L_003496F0;
-L_00349390:;
-    a1 = 1; v0 = func_00333620(a0, a1);
-    (*(volatile u8 *) (u32) (gp + -21472)) = (u8) 0; v0 = func_00BD9C30(a0, a1, a2, a3);
-    if (v0 != 0) goto L_003496D4;
-    s5 = (*(volatile s32 *) (u32) (s4 + 60));
-    a0 = 32;
-    s3 = (*(volatile s32 *) (u32) (s4 + 76));
-    a2 = 4;
-    s2 = (*(volatile s32 *) (u32) (s4 + 80));
-    a1 = s5; v0 = func_0031BBE0(a0, a1, a2);
-    a0 = (s32) ((u32) s3 + 0x15U);
-    a1 = 1; v0 = func_00310A50(a0, a1, a2, a3);
-    a0 = (s32) ((u32) s3 + 0x16U);
-    a1 = 2; v0 = func_00310A50(a0, a1, a2, a3);
-    a0 = (s32) ((u32) sp + 0x88U); v0 = func_0030EE80(a0);
-    s0 = (*(volatile u8 *) (u32) (s3 + 21)); v0 = Pes6Job_GetManager();
-    (*(volatile u8 *) (u32) (v0 + 4144)) = (u8) s0;
-    a0 = (*(volatile u8 *) (u32) (s3 + 21)); v0 = Pes6MatchPlayer_GetSquadIndex(a0);
-    (*(volatile u8 *) (u32) (s3 + 19)) = (u8) v0;
-    a0 = s2;
-    a2 = (*(volatile u8 *) (u32) (s3 + 19));
-    a1 = 8;
-    a3 = 2; v0 = func_003394E0(a0, a1, a2, a3);
-    v0 = (*(volatile u8 *) (u32) (s3 + 19));
-    a0 = (s32) ((u32) s3 + 0x14U);
-    a1 = 3;
-    v0 = v0 ^ 0x1;
-    a2 = v0 & 0xff; v0 = func_003414D0(a0, a1, a2, a3);
-    s0 = (*(volatile u8 *) (u32) (s3 + 21));
-    f12.f = (*(volatile f32 *) (u32) (sp + 144));
-    a1 = 1;
-    a0 = s0; f0.f = func_0030EBB0(a0, a1, f12.f);
-    a0 = (*(volatile u8 *) (u32) (s3 + 21));
-    f12.f = (*(volatile f32 *) (u32) (sp + 136));
-    f21.i = f0.i;
-    a1 = 1; f0.f = func_0030EBB0(a0, a1, f12.f);
-    f20.i = f0.i;
-    f13.i = f21.i;
-    f12.i = f20.i; v0 = func_00340590(f12.f, f13.f);
-    if (v0 == 0) { a0 = s0; goto L_00349474; }
-    v0 = 5;
-    (*(volatile u32 *) (u32) (s3 + 40)) = (u32) v0; goto L_003494B4;
-L_00349474:;
-    f12.i = f20.i;
-    f13.i = f21.i; v0 = func_003407B0(a0, a1, a2, a3, f12.f, f13.f);
-    if (v0 == 0) { f12.i = f20.i; goto L_00349494; }
-    v0 = 4;
-    (*(volatile u32 *) (u32) (s3 + 40)) = (u32) v0; goto L_003494B4;
-L_00349494:;
-    f13.i = f21.i; v0 = func_00340A20(f12.f, f13.f);
-    if (v0 == 0) { v0 = 2; goto L_003494B0; }
-    v0 = 3;
-    (*(volatile u32 *) (u32) (s3 + 40)) = (u32) v0; goto L_003494B4;
-L_003494B0:;
-    (*(volatile u32 *) (u32) (s3 + 40)) = (u32) v0;
-L_003494B4:;
-    a0 = (*(volatile u8 *) (u32) (s3 + 22)); v0 = func_0030FAB0(a0, a1, a2, a3);
-    s0 = v0 & 0xff;
-    s1 = 0;
-    a0 = (s32) ((u32) sp + 0x9cU);
-L_003494C8:;
-    a1 = (s32) ((u32) sp + 0x98U);
-    a2 = s0; v0 = Pes6MatchPlayer_GetTeamRelativeXZ(a0, a1, a2);
-    f13.f = (*(volatile f32 *) (u32) (sp + 152));
-    f12.f = (*(volatile f32 *) (u32) (sp + 156)); v0 = func_00340880(f12.f, f13.f);
-    if (v0 == 0) { v0 = (s32) ((u32) s0 + 0x1U); goto L_00349524; }
-    a0 = s0; v0 = func_00310BA0(a0, a1, a2, a3);
-    f0.i = (s32) v0;
-    f1.f = (f32) f0.i;
-    v0 = (s32) 0x4a440000U;
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    if (!fcc) goto L_00349520;
-    v0 = 1;
-    (*(volatile u8 *) (u32) (s3 + 8)) = (u8) v0; goto L_0034953C;
-L_00349520:;
-    v0 = (s32) ((u32) s0 + 0x1U);
-L_00349524:;
-    s1 = (s32) ((u32) s1 + 0x1U);
-    s0 = v0 & 0xff;
-    v0 = s1 < 11;
-    if (v0 != 0) { a0 = (s32) ((u32) sp + 0x9cU); goto L_003494C8; }
-    (*(volatile u8 *) (u32) (s3 + 8)) = (u8) 0;
-L_0034953C:;
-    v0 = func_0030EA70(a0, a1, a2, a3);
-    v1 = (*(volatile u8 *) (u32) (s3 + 19));
-    a0 = s2;
-    v1 = (s32) ((u32) v1 + (u32) s3);
-    (*(volatile u8 *) (u32) (v1 + 5)) = (u8) v0; v0 = func_003395B0(a0);
-    v1 = (*(volatile s32 *) (u32) (s5 + 16));
-    f12.f = (*(volatile f32 *) (u32) (gp + -21520));
-    s0 = (s32) ((u32) v0 - (u32) v1); v0 = func_00340C80(f12.f);
-    at = v0 < s0;
-    if (at == 0) goto L_003495CC;
-    f12.f = (*(volatile f32 *) (u32) (gp + -21528)); v0 = func_00340C80(f12.f);
-    at = s0 < v0;
-    if (at == 0) goto L_003495CC;
-    v0 = (*(volatile s32 *) (u32) (s5 + 16));
-    if (v0 == 0) goto L_003495CC;
-    v0 = (*(volatile u8 *) (u32) (gp + -21468));
-    s1 = (s32) 0x350000U;
-    f12.f = (*(volatile f32 *) (u32) (gp + -21524));
-    s1 = (s32) ((u32) s1 + 0x6d60U);
-    v0 = v0 | 0x1;
-    (*(volatile u8 *) (u32) (gp + -21468)) = (u8) v0; v0 = func_00340C80(f12.f);
-    at = v0 < s0;
-    if (at == 0) { a2 = (*(volatile s32 *) (u32) (s4 + 8)); goto L_003495D8; }
-    v0 = (*(volatile u8 *) (u32) (gp + -21468));
-    v0 = v0 | 0x2;
-    (*(volatile u8 *) (u32) (gp + -21468)) = (u8) v0; goto L_003495D4;
-L_003495CC:;
-    s1 = (s32) 0x350000U;
-    s1 = (s32) ((u32) s1 + 0xffff8010U);
-L_003495D4:;
-    a2 = (*(volatile s32 *) (u32) (s4 + 8));
-L_003495D8:;
-    v0 = (s32) 0x80000000U;
-    a3 = (s32) 0x3e0000U;
-    a1 = s1;
-    a0 = v0 | 0x29;
-    a3 = (s32) ((u32) a3 + 0x61b0U); v0 = Pes6Job_Create(a0, a1, a2);
-    s0 = v0;
-    a1 = s4;
-    a0 = s0; v0 = Pes6Job_CopyPayloadOut(a0, a1, a2);
-    v1 = (*(volatile u8 *) (u32) (s3 + 22));
-    v0 = 255;
-    if (v1 == v0) { a1 = 1; goto L_0034961C; }
-    v0 = 23;
-    if ((s32) v0 != 0) { s64 q_ = (s32) ((s32) v1 / (s32) v0); hi = (s32) ((s32) v1 % (s32) v0); lo = q_; }
-    a1 = hi;
-L_0034961C:;
-    v1 = (*(volatile u8 *) (u32) (s3 + 21));
-    v0 = 255;
-    if (v1 == v0) { v1 = 1; goto L_00349638; }
-    v0 = 23;
-    if ((s32) v0 != 0) { s64 q_ = (s32) ((s32) v1 / (s32) v0); hi = (s32) ((s32) v1 % (s32) v0); lo = q_; }
-    v1 = hi;
-L_00349638:;
-    v0 = (s32) ((u32) v1 << 3);
-    a2 = s2;
-    v0 = (s32) ((u32) v0 + (u32) v1);
-    a0 = (s32) ((u32) v0 << 6);
-    v1 = (s32) 0x590000U;
-    v0 = (s32) ((u32) a1 << 3);
-    v1 = (s32) ((u32) v1 + 0xffffe5b0U);
-    v0 = (s32) ((u32) v0 + (u32) a1);
-    a0 = (s32) ((u32) v1 + (u32) a0);
-    v0 = (s32) ((u32) v0 << 6);
-    a1 = (s32) ((u32) v1 + (u32) v0); v0 = func_003469F0(a0, a1, a2, a3, f12.f, f13.f);
-    a2 = v0;
-    a0 = s0;
-    a1 = 0; v0 = Pes6Job_SetArg(a0, a1, a2);
-    a0 = s0;
-    a1 = 0; v0 = Pes6Job_GetArg(a0, a1);
-    a2 = v0;
-    a0 = s4;
-    a1 = 0; v0 = Pes6Job_SetArg(a0, a1, a2);
-    a0 = s3; v0 = func_00349210(a0, a1, a2, a3);
-    a0 = (s32) ((u32) s3 + 0x2cU);
-    a1 = s4; v0 = func_00347C90(a0, a1, a2, a3, f12.f);
-    v0 = (*(volatile s32 *) (u32) (s3 + 40));
-    v0 = v0 ^ 0x4;
-    v0 = (u64) v0 < (u64) (s64) 1;
-    if (v0 == 0) { (*(volatile u8 *) (u32) (s3 + 23)) = (u8) v0; goto L_003496D4; }
-    v0 = (*(volatile u8 *) (u32) (s3 + 19));
-    v0 = (s32) ((u32) v0 << 3);
-    v0 = (s32) ((u32) v0 + (u32) s3);
-    v0 = (*(volatile s32 *) (u32) (v0 + 24));
-    v0 = v0 < 3;
-    (*(volatile u8 *) (u32) (s3 + 23)) = (u8) v0;
-L_003496D4:;
-    a1 = (s32) 0x350000U;
-    a2 = (s32) 0x3e0000U;
-    a0 = s4;
-    a1 = (s32) ((u32) a1 + 0xffff8e70U);
-    a2 = (s32) ((u32) a2 + 0x61b0U); v0 = Pes6Job_SetField4(a0, a1);
-    v0 = 1;
-L_003496F0:;
-    return v0;
+    if (func_0030F330() == 0) return 0;
+    func_00333620(11, 1);
+    D_003E9F90 = 0;
+    if (func_00BD9C30() == 0) {
+        s5 = *(s32 *)(a0 + 0x3C);
+        s3 = *(u8 **)(a0 + 0x4C);
+        s2 = *(s32 *)(a0 + 0x50);
+        func_0031BBE0(0x20, s5, 4);
+        func_00310A50(s3 + 0x15, 1);
+        func_00310A50(s3 + 0x16, 2);
+        func_0030EE80(buf + 2);
+        s0 = s3[0x15];
+        func_00335370()[0x1030] = s0;
+        s3[0x13] = func_0030E6C0(s3[0x15]);
+        func_003394E0(s2, 8, s3[0x13], 2);
+        func_003414D0(s3 + 0x14, 3, (s3[0x13] ^ 1) & 0xFF);
+        s0 = s3[0x15];
+        f21 = func_0030EBB0(s0, 1, buf[4]);
+        f20 = func_0030EBB0(s3[0x15], 1, buf[2]);
+        if (func_00340590(f20, f21)) {
+            *(s32 *)(s3 + 0x28) = 5;
+        } else if (func_003407B0(f20, f21)) {
+            *(s32 *)(s3 + 0x28) = 4;
+        } else if (func_00340A20(f20, f21)) {
+            *(s32 *)(s3 + 0x28) = 3;
+        } else {
+            *(s32 *)(s3 + 0x28) = 2;
+        }
+        s0 = func_0030FAB0(s3[0x16]) & 0xFF;
+        s3[8] = 0;
+        for (s1 = 0; s1 < 11; s1++) {
+            func_0030DCC0(&buf[7], &buf[6], s0);
+            if (func_00340880(buf[7], buf[6])) {
+                if ((f32)func_00310BA0(s0) < 3211264.0f) {
+                    s3[8] = 1;
+                    break;
+                }
+            }
+            s0 = (s0 + 1) & 0xFF;
+        }
+        s3[s3[0x13] + 5] = func_0030EA70();
+        s0 = func_003395B0(s2) - *(s32 *)(s5 + 0x10);
+        if (func_00340C80(D_003E9F60) < s0 && s0 < func_00340C80(D_003E9F58) && *(s32 *)(s5 + 0x10) != 0) {
+            D_003E9F94 |= 1;
+            fn = func_00356D60;
+            if (func_00340C80(D_003E9F5C) < s0) {
+                D_003E9F94 |= 2;
+            }
+        } else {
+            fn = func_00348010;
+        }
+        s0 = func_00338AD0(0x80000029, (s32)fn, *(s32 *)(a0 + 8), (s32)D_003E61B0);
+        func_00338A60(s0, a0);
+        v = s3[0x16];
+        q = (v == 0xFF) ? 1 : v % 23;
+        v = s3[0x15];
+        p = (v == 0xFF) ? 1 : v % 23;
+        v = func_003469F0(D_0058E5B0 + p * 0x240, D_0058E5B0 + q * 0x240, s2);
+        func_003389F0(s0, 0, v);
+        v = func_003389D0(s0, 0);
+        func_003389F0(a0, 0, v);
+        func_00349210(s3);
+        func_00347C90(s3 + 0x2C, a0);
+        if (*(s32 *)(s3 + 0x28) == 4) {
+            s3[0x17] = *(s32 *)(s3 + (s3[0x13] << 3) + 0x18) < 3;
+        } else {
+            s3[0x17] = 0;
+        }
+    }
+    func_003387D0(a0, (s32)func_00348E70, (s32)D_003E61B0);
+    return 1;
 }

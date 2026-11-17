@@ -1,4 +1,4 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 /* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
  * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
@@ -7,10 +7,10 @@ s64 Pes6OptionData_GetBlock2CC(void);
 s64 Pes6Random_Below(s64);
 s64 func_00246550(s64);
 s64 func_00295590(void);
-s64 func_002CBF20(s64, s64, s64, s64, s64, s64, s64, s64);
-s64 func_00351FC0(s64, s64, s64, s64);
+void func_002CBF20(s64, s64, s64, s64, s64, s64, s64, s64);
+void func_00351FC0(s64, s64, s64, s64);
 
-s64 Pes6MatchSetup_ResolveRandomSettings(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
+void Pes6MatchSetup_ResolveRandomSettings(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
     s64 at = 0, v0 = 0, v1 = 0, s0 = 0;
     s64 gp = 0x3ef370;
     s64 frame[8];
@@ -82,14 +82,14 @@ L_0023DB38:;
     a1 = 0;
     a0 = (*(volatile u8 *) (u32) (v0 + 7095));
     a2 = 0;
-    a3 = 0; v0 = func_00351FC0(a0, a1, a2, a3);
+    a3 = 0; func_00351FC0(a0, a1, a2, a3);
     goto L_0023DB94;
 L_0023DB7C:;
     v0 = (s32) 0x590000U;
     a1 = 0;
     a0 = (*(volatile u8 *) (u32) (v0 + 7095));
     a2 = 0;
-    a3 = 255; v0 = func_00351FC0(a0, a1, a2, a3);
+    a3 = 255; func_00351FC0(a0, a1, a2, a3);
 L_0023DB94:;
     v0 = func_00295590();
     v1 = (s32) 0x590000U;
@@ -101,14 +101,14 @@ L_0023DBA8:;
     a1 = 255;
     a0 = (*(volatile u8 *) (u32) (v0 + 7095));
     a2 = 0;
-    a3 = 0; v0 = func_00351FC0(a0, a1, a2, a3);
+    a3 = 0; func_00351FC0(a0, a1, a2, a3);
     v1 = (*(volatile u8 *) (u32) (gp + -22772)); goto L_0023DBF0;
 L_0023DBD4:;
     v0 = (s32) 0x590000U;
     a1 = 255;
     a0 = (*(volatile u8 *) (u32) (v0 + 7095));
     a2 = 0;
-    a3 = a1; v0 = func_00351FC0(a0, a1, a2, a3);
+    a3 = a1; func_00351FC0(a0, a1, a2, a3);
 L_0023DBEC:;
     v1 = (*(volatile u8 *) (u32) (gp + -22772));
 L_0023DBF0:;
@@ -126,7 +126,7 @@ L_0023DBF0:;
     a4 = 0;
     a5 = (s32) ((u32) sp + 0x3cU);
     a6 = (s32) ((u32) sp + 0x38U);
-    a7 = (s32) ((u32) sp + 0x34U); v0 = func_002CBF20(a0, a1, a2, a3, a4, a5, a6, a7);
+    a7 = (s32) ((u32) sp + 0x34U); func_002CBF20(a0, a1, a2, a3, a4, a5, a6, a7);
     a2 = (*(volatile s32 *) (u32) (sp + 52));
     a0 = (s32) 0x590000U;
     a4 = (*(volatile s32 *) (u32) (sp + 60));
@@ -287,5 +287,5 @@ L_0023DEE8:;
     (*(volatile u8 *) (u32) (v1 + 7109)) = (u8) a0;
 L_0023DF08:;
 L_0023DF0C:;
-    return v0;
+    return;
 }

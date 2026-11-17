@@ -1,1264 +1,516 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
- * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
-void func_001A54F0(s64);
-s64 func_001A5670(f32);
-void func_001A56D0(f32, f32);
-f32 func_001CD9E0(void);
-void func_00270530(s64, s64, s64, s64);
-s64 func_00270570(void);
-void func_002871C0(s64, s64, s64, s64);
-s64 func_002A96B0(s64);
-s64 func_002AE670(s64);
-s64 func_002BE420(s64, s64, s64, s64);
-s64 func_009B45F0(s64, s64, s64, s64);
-s64 func_009E1C90(s64, s64, s64, s64);
-void func_00B798F0(s64, s64, s64, s64);
+extern void func_001A54F0(f32 *);
+extern void func_002871C0(f32 *);
+extern s32 func_002BE420(void);
+extern s32 func_009B45F0(void);
+extern s32 func_00270570(void);
+extern s32 func_009E1C90(s32);
+extern s32 func_002AE670(s32);
+extern f32 *func_002A96B0(s32);
+extern void func_00270530(void *, f32 *, s32);
+extern f32 func_001CD9E0(f32);
+extern void func_00B798F0(f32 *, f32 *, s32);
+extern void func_001A5670(void *, f32);
+extern void func_001A56D0(f32, f32);
 
-void func_00200120(s64 a0, s64 a1, s64 a2, s64 a3, f32 fa12, f32 fa13) {
-    s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0;
-    s64 gp = 0x3ef370;
-    union { f32 f; s32 i; } f0 = { 0 };
-    union { f32 f; s32 i; } f1 = { 0 };
-    union { f32 f; s32 i; } f2 = { 0 };
-    union { f32 f; s32 i; } f3 = { 0 };
-    union { f32 f; s32 i; } f4 = { 0 };
-    union { f32 f; s32 i; } f5 = { 0 };
-    union { f32 f; s32 i; } f6 = { 0 };
-    union { f32 f; s32 i; } f12 = { fa12 };
-    union { f32 f; s32 i; } f13 = { fa13 };
-    union { f32 f; s32 i; } f20 = { 0 };
-    s64 hi = 0, lo = 0;
-    s32 fcc = 0;
-    f32 acc = 0;
-    s64 frame[20];
-    s64 sp = (s32) (u32) frame;
+extern char D_003A89F0[];
+extern char D_00592743[];
+extern char D_0059274A[];
+extern char D_00591F24[];
+extern char D_00592742[];
+extern char D_00591E4C[];
+extern char D_00591E57[];
+extern char D_00591DB5[];
+extern char D_0059274C[];
+extern char D_0059273C[];
+extern char D_0058E5B0[];
+extern char D_00591E4D[];
+extern char D_00592746[];
+extern char D_00591F38[];
+extern char D_00591F30[];
+extern char D_00591F34[];
+extern u8 D_003E9994;
+extern u8 D_003E9998;
+extern u8 D_003E99B8;
+extern u8 D_003E99A0;
+extern f32 D_003E9CA0;
+extern f32 *D_003E74CC;
+extern u8 *D_003E7574;
 
-    s3 = a0;
-    s2 = a1;
-    a0 = (s32) ((u32) sp + 0x88U);
-    func_001A54F0(a0);
-    a0 = (s32) ((u32) sp + 0x78U); func_002871C0(a0, a1, a2, a3);
-    v0 = func_002BE420(a0, a1, a2, a3);
-    s0 = v0 & 0xffff;
-    a0 = (s32) 0x3b0000U;
-    v0 = (s32) 0x590000U;
-    v1 = 16384;
-    a1 = (*(volatile u8 *) (u32) (v0 + 10051));
-    a0 = (s32) ((u32) a0 + 0xffff89f0U);
-    v0 = (s32) 0x590000U;
-    (*(volatile u16 *) (u32) (v0 + 10058)) = (u16) v1;
-    v1 = (s32) ((u32) a1 << 3);
-    v0 = 7;
-    v1 = (s32) ((u32) v1 + (u32) a1);
-    v1 = (s32) ((u32) v1 << 1);
-    { s32 c_ = a1 != v0; s1 = (s32) ((u32) a0 + (u32) v1); if (c_) goto L_00200270; }
-    v0 = (s32) 0x590000U;
-    v1 = 3;
-    a0 = (*(volatile u8 *) (u32) (v0 + 7972));
-    if (a0 == v1) goto L_002001D4;
-    v0 = 6;
-    if (a0 == v0) goto L_002001D4;
-    v0 = 2;
-    if (a0 == v0) goto L_002001D4;
-    v0 = 1;
-    if (a0 == v0) goto L_002001D4;
-    v0 = (s32) 0x44f50000U; goto L_00200274;
-L_002001D4:;
-    v0 = func_009B45F0(a0, a1, a2, a3);
-    if (v0 != 0) { v0 = 0; goto L_0020023C; }
-    v0 = func_00270570();
-    if (v0 == 0) { a0 = 1; goto L_00200200; }
-    v0 = 0;
-    goto L_0020023C;
-L_00200200:;
-    v0 = func_009E1C90(a0, a1, a2, a3);
-    v1 = v0 & 0xff;
-    v0 = 14;
-    if (v1 != v0) { v0 = 0; goto L_0020023C; }
-    a0 = 2; v0 = func_009E1C90(a0, a1, a2, a3);
-    v1 = v0 & 0xff;
-    v0 = 16;
-    if (v1 != v0) goto L_00200238;
-    v0 = 1; goto L_0020023C;
-L_00200238:;
-    v0 = 0;
-L_0020023C:;
-    if (v0 == 0) goto L_00200270;
-    v0 = (s32) 0x590000U;
-    v1 = 6;
-    a0 = (*(volatile u8 *) (u32) (v0 + 10051));
-    if (a0 == v1) { (*(volatile u8 *) (u32) (gp + -22968)) = (u8) 0; goto L_00200268; }
-    v0 = 7;
-    if (a0 != v0) goto L_00200270;
-    (*(volatile u8 *) (u32) (gp + -22968)) = (u8) 0;
-L_00200268:;
-    (*(volatile u8 *) (u32) (gp + -23000)) = (u8) 0;
-    (*(volatile u8 *) (u32) (gp + -23004)) = (u8) 0;
-L_00200270:;
-    v0 = (s32) 0x44f50000U;
-L_00200274:;
-    f12.i = (s32) v0;
-    v0 = func_001A5670(f12.f);
-    v0 = (s32) 0x590000U;
-    v1 = 6;
-    v0 = (*(volatile u8 *) (u32) (v0 + 10051));
-    if (v0 != v1) { v1 = (*(volatile u8 *) (u32) (gp + -23004)); goto L_0020029C; }
-    (*(volatile u8 *) (u32) (gp + -23004)) = (u8) 0;
-    v1 = (*(volatile u8 *) (u32) (gp + -23004));
-L_0020029C:;
-    if (v1 == 0) { v1 = v1 & 0xff; goto L_002002B4; }
-    v0 = (*(volatile u8 *) (u32) (gp + -22968));
-    v0 = (s32) ((u32) v0 + 0x1U);
-    (*(volatile u8 *) (u32) (gp + -22968)) = (u8) v0;
-    v1 = v1 & 0xff;
-L_002002B4:;
-    v0 = 3;
-    if (v1 == v0) { v1 = (s32) 0x467a0000U; goto L_002002E0; }
-    v1 = (s32) 0x467a0000U;
-    v0 = (s32) 0x42480000U;
-    f20.i = (s32) v1;
-    f12.i = (s32) v0;
-    f13.i = f20.i; func_001A56D0(f12.f, f13.f);
-    f1.f = (*(volatile f32 *) (u32) (gp + -22224)); goto L_002002F8;
-L_002002E0:;
-    v0 = (s32) 0x44000000U;
-    f20.i = (s32) v1;
-    f12.i = (s32) v0;
-    f13.i = f20.i; func_001A56D0(f12.f, f13.f);
-    f1.f = (*(volatile f32 *) (u32) (gp + -22224));
-L_002002F8:;
-    v1 = (s32) 0x42700000U;
-    f0.i = (s32) v1;
-    fcc = f1.f <= f0.f;
-    if (fcc) goto L_00200314;
-    (*(volatile f32 *) (u32) (gp + -22224)) = f0.f;
-L_00200314:;
-    v1 = (s32) 0x590000U;
-    a0 = 3;
-    a1 = (*(volatile u8 *) (u32) (v1 + 10050));
-    if (a1 == a0) goto L_0020131C;
-    v1 = 1;
-    if (a1 == v1) { v1 = (*(volatile u8 *) (u32) (gp + -23004)); goto L_00201074; }
-    if (a1 == 0) goto L_00200344;
-    goto L_002017A4;
-L_00200344:;
-    v0 = (s32) 0x590000U;
-    v0 = (*(volatile u8 *) (u32) (v0 + 7756));
-    if (v0 != 0) goto L_00200358;
-    s0 = 0;
-L_00200358:;
-    v0 = (s32) 0x590000U;
-    v1 = 7;
-    v0 = (*(volatile u8 *) (u32) (v0 + 10051));
-    if (v0 != v1) { a0 = 0; goto L_002007D8; }
-    v1 = (*(volatile u8 *) (u32) (gp + -23004));
-    v0 = 4;
-    if (v1 == v0) { a0 = 100; goto L_002006A8; }
-    v0 = 3;
-    if (v1 == v0) { v0 = (s32) 0x45bd0000U; goto L_002005E8; }
-    v0 = 2;
-    if (v1 == v0) { f1.f = (*(volatile f32 *) (u32) (sp + 120)); goto L_00200574; }
-    v0 = 1;
-    if (v1 == v0) { v0 = (s32) 0x46100000U; goto L_002004F8; }
-    if (v1 == 0) goto L_002003B0;
-    (*(volatile u8 *) (u32) (gp + -23000)) = (u8) 0; goto L_002007B0;
-L_002003B0:;
-    if (v1 != 0) { v0 = (s32) 0x45990000U; goto L_002003C0; }
-    (*(volatile u8 *) (u32) (gp + -22968)) = (u8) 0;
-    v0 = (s32) 0x45990000U;
-L_002003C0:;
-    v0 = v0 | 0x4000;
-    f1.f = (*(volatile f32 *) (u32) (sp + 128));
-    f0.i = (s32) v0;
-    fcc = f1.f <= f0.f;
-    { s32 c_ = fcc; (*(volatile u8 *) (u32) (gp + -23000)) = (u8) 0; if (c_) goto L_0020049C; }
-    a0 = 60; v0 = func_002AE670(a0);
-    at = v0 < s0;
-    if (at == 0) { v0 = (s32) 0xc5990000U; goto L_002004A0; }
-    v0 = (s32) 0x46100000U;
-    v0 = v0 | 0x6400;
-    f1.f = (*(volatile f32 *) (u32) (sp + 120));
-    f0.i = (s32) v0;
-    fcc = f1.f <= f0.f;
-    if (!fcc) { v0 = (s32) 0x46100000U; goto L_00200430; }
-    v0 = (s32) 0xc6100000U;
-    v0 = v0 | 0x6400;
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    if (!fcc) { v0 = (s32) 0x45400000U; goto L_0020045C; }
-    v0 = (s32) 0x46100000U;
-L_00200430:;
-    v0 = v0 | 0x6400;
-    f0.i = (s32) v0;
-    fcc = f1.f <= f0.f;
-    if (fcc) { v0 = 4; goto L_0020044C; }
-    v0 = 6;
-L_0020044C:;
-    (*(volatile u8 *) (u32) (gp + -23000)) = (u8) v0;
-    v0 = 1;
-    (*(volatile u8 *) (u32) (gp + -23004)) = (u8) v0; goto L_002007B0;
-L_0020045C:;
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    if (!fcc) { a0 = (*(volatile u8 *) (u32) (gp + -23000)); goto L_002007B4; }
-    v0 = (s32) 0xc5400000U;
-    f0.i = (s32) v0;
-    fcc = f1.f <= f0.f;
-    if (fcc) goto L_002007B0;
-    v1 = 5;
-    v0 = 2;
-    (*(volatile u8 *) (u32) (gp + -23000)) = (u8) v1;
-    (*(volatile u8 *) (u32) (gp + -23004)) = (u8) v0; goto L_002007B0;
-L_0020049C:;
-    v0 = (s32) 0xc5990000U;
-L_002004A0:;
-    v0 = v0 | 0x4000;
-    f1.f = (*(volatile f32 *) (u32) (sp + 128));
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    if (!fcc) goto L_002007B0;
-    a0 = 100; v0 = func_002AE670(a0);
-    at = v0 < s0;
-    if (at == 0) goto L_002007B0;
-    f0.f = (*(volatile f32 *) (u32) (sp + 144));
-    v0 = (s32) 0x45bd0000U;
-    (*(volatile u8 *) (u32) (gp + -23000)) = (u8) 0;
-    v0 = v0 | 0x1000;
-    f12.i = (s32) v0;
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f; v0 = func_001A5670(f12.f);
-    v0 = 3;
-    (*(volatile u8 *) (u32) (gp + -23004)) = (u8) v0; goto L_002007B0;
-L_002004F8:;
-    v0 = v0 | 0x6400;
-    f1.f = (*(volatile f32 *) (u32) (sp + 120));
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    if (!fcc) { v0 = (s32) 0x45990000U; goto L_00200534; }
-    v0 = (s32) 0xc6100000U;
-    v0 = v0 | 0x6400;
-    f0.i = (s32) v0;
-    fcc = f1.f <= f0.f;
-    if (!fcc) { s0 = (*(volatile u8 *) (u32) (gp + -22968)); goto L_00200554; }
-    v0 = (s32) 0x45990000U;
-L_00200534:;
-    v0 = v0 | 0x4000;
-    f1.f = (*(volatile f32 *) (u32) (sp + 128));
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    if (!fcc) goto L_002007B0;
-    s0 = (*(volatile u8 *) (u32) (gp + -22968));
-L_00200554:;
-    a0 = 90; v0 = func_002AE670(a0);
-    at = v0 < s0;
-    if (at == 0) goto L_002007B0;
-    (*(volatile u8 *) (u32) (gp + -23000)) = (u8) 0;
-    (*(volatile u8 *) (u32) (gp + -23004)) = (u8) 0; goto L_002007B0;
-L_00200574:;
-    v0 = (s32) 0x45400000U;
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    if (!fcc) { s0 = (*(volatile u8 *) (u32) (gp + -22968)); goto L_002005C8; }
-    v0 = (s32) 0xc5400000U;
-    f0.i = (s32) v0;
-    fcc = f1.f <= f0.f;
-    if (fcc) goto L_002005C4;
-    v0 = (s32) 0x45990000U;
-    v0 = v0 | 0x4000;
-    f1.f = (*(volatile f32 *) (u32) (sp + 128));
-    f0.i = (s32) v0;
-    fcc = f1.f <= f0.f;
-    if (!fcc) goto L_002007B0;
-L_002005C4:;
-    s0 = (*(volatile u8 *) (u32) (gp + -22968));
-L_002005C8:;
-    a0 = 90; v0 = func_002AE670(a0);
-    at = v0 < s0;
-    if (at == 0) goto L_002007B0;
-    (*(volatile u8 *) (u32) (gp + -23000)) = (u8) 0;
-    (*(volatile u8 *) (u32) (gp + -23004)) = (u8) 0; goto L_002007B0;
-L_002005E8:;
-    v0 = v0 | 0x1000;
-    f12.i = (s32) v0;
-    v0 = func_001A5670(f12.f);
-    a0 = 100; v0 = func_002AE670(a0);
-    v0 = s0 < v0;
-    if (v0 != 0) { s0 = (*(volatile u8 *) (u32) (gp + -22968)); goto L_00200630; }
-    v0 = (s32) 0xc5990000U;
-    v0 = v0 | 0x4000;
-    f1.f = (*(volatile f32 *) (u32) (sp + 128));
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    if (fcc) goto L_002007B0;
-    s0 = (*(volatile u8 *) (u32) (gp + -22968));
-L_00200630:;
-    a0 = 90; v0 = func_002AE670(a0);
-    at = v0 < s0;
-    if (at == 0) goto L_002007B0;
-    v0 = (*(volatile s16 *) (u32) (s1 + 10));
-    f1.f = (*(volatile f32 *) (u32) (sp + 128));
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    fcc = f1.f < f0.f;
-    if (!fcc) { v0 = (*(volatile s16 *) (u32) (s1 + 12)); goto L_00200670; }
-    f0.f = (*(volatile f32 *) (u32) (sp + 144));
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f; goto L_0020068C;
-L_00200670:;
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    fcc = f1.f <= f0.f;
-    if (fcc) { (*(volatile f32 *) (u32) (s3 + 24)) = f1.f; goto L_0020068C; }
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f;
-L_0020068C:;
-    v0 = (s32) 0x44f50000U;
-    (*(volatile u8 *) (u32) (gp + -23004)) = (u8) 0;
-    f12.i = (s32) v0;
-    (*(volatile u8 *) (u32) (gp + -22968)) = (u8) 0; v0 = func_001A5670(f12.f);
-    (*(volatile u8 *) (u32) (gp + -23000)) = (u8) 0; goto L_002007B0;
-L_002006A8:;
-    v0 = func_002AE670(a0);
-    v0 = s0 < v0;
-    if (v0 != 0) { s0 = (*(volatile u8 *) (u32) (gp + -22968)); goto L_00200740; }
-    f0.f = (*(volatile f32 *) (u32) (sp + 128));
-    f0.i = (s32) f0.f;
-    v0 = f0.i;
-    if (v0 <= 0) { v0 = (s32) ((u32) 0 - (u32) v0); goto L_002006D4; }
-L_002006D4:;
-    f0.i = (s32) v0;
-    f1.f = (f32) f0.i;
-    v0 = (s32) 0x45890000U;
-    v0 = v0 | 0x4000;
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    if (!fcc) goto L_0020073C;
-    f0.f = (*(volatile f32 *) (u32) (sp + 120));
-    f0.i = (s32) f0.f;
-    v0 = f0.i;
-    if (v0 <= 0) { v0 = (s32) ((u32) 0 - (u32) v0); goto L_00200714; }
-L_00200714:;
-    f0.i = (s32) v0;
-    f1.f = (f32) f0.i;
-    v0 = (s32) 0x46100000U;
-    v0 = v0 | 0x6400;
-    f0.i = (s32) v0;
-    fcc = f1.f <= f0.f;
-    if (!fcc) goto L_002007B0;
-L_0020073C:;
-    s0 = (*(volatile u8 *) (u32) (gp + -22968));
-L_00200740:;
-    a0 = 90; v0 = func_002AE670(a0);
-    at = v0 < s0;
-    if (at == 0) goto L_002007B0;
-    v0 = (*(volatile s16 *) (u32) (s1 + 10));
-    f1.f = (*(volatile f32 *) (u32) (sp + 128));
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    fcc = f1.f < f0.f;
-    if (!fcc) { v0 = (*(volatile s16 *) (u32) (s1 + 12)); goto L_0020077C; }
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f; goto L_00200798;
-L_0020077C:;
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    fcc = f1.f <= f0.f;
-    if (fcc) { (*(volatile f32 *) (u32) (s3 + 24)) = f1.f; goto L_00200798; }
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f;
-L_00200798:;
-    v0 = (s32) 0x44f50000U;
-    (*(volatile u8 *) (u32) (gp + -23004)) = (u8) 0;
-    f12.i = (s32) v0;
-    (*(volatile u8 *) (u32) (gp + -22968)) = (u8) 0; v0 = func_001A5670(f12.f);
-    (*(volatile u8 *) (u32) (gp + -23000)) = (u8) 0;
-L_002007B0:;
-    a0 = (*(volatile u8 *) (u32) (gp + -23000));
-L_002007B4:;
-    v0 = func_002A96B0(a0);
-    f0.f = (*(volatile f32 *) (u32) v0);
-    (*(volatile f32 *) (u32) s3) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (v0 + 4));
-    (*(volatile f32 *) (u32) (s3 + 4)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (v0 + 8));
-    (*(volatile f32 *) (u32) (s3 + 8)) = f0.f; goto L_002007F8;
-L_002007D8:;
-    v0 = func_002A96B0(a0);
-    f0.f = (*(volatile f32 *) (u32) v0);
-    (*(volatile f32 *) (u32) s3) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (v0 + 4));
-    (*(volatile f32 *) (u32) (s3 + 4)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (v0 + 8));
-    (*(volatile f32 *) (u32) (s3 + 8)) = f0.f;
-L_002007F8:;
-    v1 = (s32) 0x590000U;
-    a0 = 255;
-    a1 = (*(volatile u8 *) (u32) (v1 + 7767));
-    if (a1 == a0) { a0 = 1; goto L_00200818; }
-    v1 = 23;
-    if ((s32) v1 != 0) { s64 q_ = (s32) ((s32) a1 / (s32) v1); hi = (s32) ((s32) a1 % (s32) v1); lo = q_; }
-    a0 = hi;
-L_00200818:;
-    v1 = (s32) ((u32) a0 << 3);
-    a1 = (s32) 0x590000U;
-    v1 = (s32) ((u32) v1 + (u32) a0);
-    a1 = (s32) ((u32) a1 + 0xffffe5b0U);
-    a2 = (s32) ((u32) v1 << 6);
-    a0 = (*(volatile u8 *) (u32) (gp + -23000));
-    v1 = (*(volatile u8 *) (u32) (gp + -22992));
-    { s32 c_ = v1 == a0; a1 = (s32) ((u32) a1 + (u32) a2); if (c_) goto L_0020085C; }
-    if (a0 == 0) goto L_0020085C;
-    f0.f = (*(volatile f32 *) (u32) (sp + 120));
-    v1 = (s32) 0xc3440000U;
-    (*(volatile f32 *) (u32) (s3 + 16)) = f0.f;
-    (*(volatile u32 *) (u32) (s3 + 20)) = (u32) v1;
-    f0.f = (*(volatile f32 *) (u32) (sp + 128));
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f;
-L_0020085C:;
-    v1 = (s32) 0x590000U;
-    v1 = (*(volatile s8 *) (u32) (v1 + 7605));
-    v1 = (u64) 0 < (u64) v1;
-    v1 = v1 ^ 0x1;
-    { s32 c_ = v1 == 0; (*(volatile u8 *) (u32) (gp + -22992)) = (u8) a0; if (c_) goto L_0020095C; }
-    v1 = (*(volatile u8 *) (u32) (gp + -23004));
-    if (v1 != 0) goto L_00200954;
-    v1 = (*(volatile u8 *) (u32) (a1 + 19));
-    if (v1 != 0) { v1 = (s32) 0x41c00000U; goto L_002008F0; }
-    v1 = (s32) 0x41c00000U;
-    a0 = (*(volatile s32 *) (u32) (gp + -32420));
-    f3.i = (s32) v1;
-    v1 = (s32) 0x590000U;
-    a1 = (*(volatile s16 *) (u32) (v1 + 10060));
-    f2.f = (*(volatile f32 *) (u32) a0);
-    f0.i = (s32) 0;
-    f1.i = (s32) a1;
-    v1 = (s32) 0x590000U;
-    f1.f = (f32) f1.i;
-    a0 = (*(volatile s16 *) (u32) s1);
-    acc = f0.f + f1.f;
-    f0.f = acc + f3.f * f2.f;
-    f0.i = (s32) f0.f;
-    a1 = f0.i;
-    (*(volatile u16 *) (u32) (v1 + 10060)) = (u16) a1;
-    v1 = (s64) ((u64) a1 << 48);
-    v1 = v1 >> 48;
-    v1 = v1 < a0;
-    if (v1 != 0) goto L_0020095C;
-    v1 = (s32) 0x590000U;
-    (*(volatile u16 *) (u32) (v1 + 10060)) = (u16) a0; goto L_0020095C;
-L_002008F0:;
-    a0 = (*(volatile s32 *) (u32) (gp + -32420));
-    f3.i = (s32) v1;
-    v1 = (s32) 0x590000U;
-    a1 = (*(volatile s16 *) (u32) (v1 + 10060));
-    f2.f = (*(volatile f32 *) (u32) a0);
-    f0.i = (s32) 0;
-    f1.i = (s32) a1;
-    a0 = (*(volatile s16 *) (u32) s1);
-    f1.f = (f32) f1.i;
-    v1 = (s32) 0x590000U;
-    a0 = (s32) ((u32) 0 - (u32) a0);
-    acc = f0.f + f1.f;
-    f0.f = acc - f3.f * f2.f;
-    f0.i = (s32) f0.f;
-    a1 = f0.i;
-    (*(volatile u16 *) (u32) (v1 + 10060)) = (u16) a1;
-    v1 = (s64) ((u64) a1 << 48);
-    v1 = v1 >> 48;
-    at = a0 < v1;
-    if (at != 0) goto L_0020095C;
-    v1 = (s32) 0x590000U;
-    (*(volatile u16 *) (u32) (v1 + 10060)) = (u16) a0; goto L_0020095C;
-L_00200954:;
-    v1 = (s32) 0x590000U;
-    (*(volatile u16 *) (u32) (v1 + 10060)) = (u16) 0;
-L_0020095C:;
-    v1 = (s32) 0x590000U;
-    a0 = (*(volatile u8 *) (u32) (v1 + 7756));
-    if (a0 == 0) goto L_00200B34;
-    v1 = (s32) 0x590000U;
-    v1 = (*(volatile s32 *) (u32) (v1 + 10044));
-    if (v1 != 0) goto L_00200B34;
-    v1 = a0 & 0xff;
-    v0 = 255;
-    if (v1 == v0) { a0 = 1; goto L_00200998; }
-    v0 = 23;
-    if ((s32) v0 != 0) { s64 q_ = (s32) ((s32) v1 / (s32) v0); hi = (s32) ((s32) v1 % (s32) v0); lo = q_; }
-    a0 = hi;
-L_00200998:;
-    v1 = (s32) ((u32) a0 << 3);
-    v0 = (s32) 0x590000U;
-    v1 = (s32) ((u32) v1 + (u32) a0);
-    v0 = (s32) ((u32) v0 + 0xffffe5b0U);
-    v1 = (s32) ((u32) v1 << 6);
-    a1 = (s32) ((u32) sp + 0x60U);
-    a0 = (s32) ((u32) v0 + (u32) v1); func_00270530(a0, a1, a2, a3);
-    f1.f = (*(volatile f32 *) (u32) (sp + 104));
-    f0.f = (*(volatile f32 *) (u32) (sp + 128));
-    f3.f = (*(volatile f32 *) (u32) (sp + 96));
-    f2.f = (*(volatile f32 *) (u32) (sp + 120));
-    f0.f = f1.f - f0.f;
-    f2.f = f3.f - f2.f;
-    acc = f0.f * f0.f;
-    f12.f = acc + f2.f * f2.f; f0.f = func_001CD9E0();
-    f0.i = (s32) f0.f;
-    s0 = f0.i;
-    v1 = s0 < 384;
-    if (v1 != 0) goto L_00200A14;
-    v0 = func_009B45F0(a0, a1, a2, a3);
-    if (v0 != 0) goto L_00200A14;
-    v0 = func_00270570();
-    if (v0 == 0) { at = s0 < 1153; goto L_00200A40; }
-L_00200A14:;
-    v1 = (s32) 0x590000U;
-    v1 = (*(volatile s16 *) (u32) (v1 + 10060));
-    f0.f = (*(volatile f32 *) (u32) (sp + 104));
-    f2.f = (*(volatile f32 *) (u32) (sp + 96));
-    f1.i = (s32) v1;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f;
-    f0.f = (f32) f1.i;
-    f0.f = f2.f + f0.f;
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f; goto L_00200B5C;
-L_00200A40:;
-    if (at != 0) { a0 = 1152; goto L_00200A54; }
-    f6.i = (s32) 0;
-    goto L_00200A78;
-L_00200A54:;
-    v1 = (s32) 0x42990000U;
-    a0 = (s32) ((u32) a0 - (u32) s0);
-    v1 = v1 | 0x999a;
-    f0.i = (s32) a0;
-    f1.f = (f32) f0.i;
-    f0.i = (s32) v1;
-    f6.f = f1.f / f0.f;
-L_00200A78:;
-    if (s2 == 0) goto L_00200AD8;
-    v1 = (s32) 0x41200000U;
-    f5.i = (s32) v1;
-    f4.f = f5.f - f6.f;
-    v1 = (s32) 0x590000U;
-    v1 = (*(volatile s16 *) (u32) (v1 + 10060));
-    f2.f = (*(volatile f32 *) (u32) (sp + 120));
-    f3.f = (*(volatile f32 *) (u32) (sp + 96));
-    f0.f = (*(volatile f32 *) (u32) (sp + 128));
-    acc = f2.f * f4.f;
-    f2.f = acc + f3.f * f6.f;
-    f1.f = (*(volatile f32 *) (u32) (sp + 104));
-    acc = f0.f * f4.f;
-    f0.f = acc + f1.f * f6.f;
-    f0.f = f0.f / f5.f;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f;
-    f0.i = (s32) v1;
-    f1.f = f2.f / f5.f;
-    f0.f = (f32) f0.i;
-    f0.f = f0.f + f1.f;
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f; goto L_00200B00;
-L_00200AD8:;
-    v1 = (s32) 0x590000U;
-    v1 = (*(volatile s16 *) (u32) (v1 + 10060));
-    f0.f = (*(volatile f32 *) (u32) (sp + 128));
-    f2.f = (*(volatile f32 *) (u32) (sp + 120));
-    f1.i = (s32) v1;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f;
-    f0.f = (f32) f1.i;
-    f0.f = f2.f + f0.f;
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f;
-L_00200B00:;
-    at = s0 < 641;
-    if (at != 0) goto L_00200B5C;
-    a0 = (*(volatile s32 *) (u32) (gp + -32252));
-    v1 = 5;
-    a0 = (*(volatile u16 *) (u32) (a0 + 132));
-    if (a0 != v1) goto L_00200B5C;
-    a0 = (s32) 0x42700000U;
-    v1 = (s32) 0x590000U;
-    (*(volatile u32 *) (u32) (gp + -22224)) = (u32) a0;
-    (*(volatile u8 *) (u32) (v1 + 7756)) = (u8) 0; goto L_00200B5C;
-L_00200B34:;
-    v1 = (s32) 0x590000U;
-    v1 = (*(volatile s16 *) (u32) (v1 + 10060));
-    f0.f = (*(volatile f32 *) (u32) (sp + 128));
-    f2.f = (*(volatile f32 *) (u32) (sp + 120));
-    f1.i = (s32) v1;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f;
-    f0.f = (f32) f1.i;
-    f0.f = f2.f + f0.f;
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f;
-L_00200B5C:;
-    v1 = (s32) 0x590000U;
-    a0 = 6;
-    a1 = (*(volatile u8 *) (u32) (v1 + 7972));
-    if (a1 == a0) goto L_00200B84;
-    v1 = 2;
-    if (a1 == v1) goto L_00200B84;
-    a1 = (*(volatile u8 *) (u32) (gp + -23004)); goto L_00200C0C;
-L_00200B84:;
-    v0 = func_009B45F0(a0, a1, a2, a3);
-    if (v0 != 0) { v1 = 0; goto L_00200BEC; }
-    v0 = func_00270570();
-    if (v0 == 0) { a0 = 1; goto L_00200BB0; }
-    v1 = 0;
-    goto L_00200BEC;
-L_00200BB0:;
-    v0 = func_009E1C90(a0, a1, a2, a3);
-    a0 = v0 & 0xff;
-    v1 = 14;
-    if (a0 != v1) { v1 = 0; goto L_00200BEC; }
-    a0 = 2; v0 = func_009E1C90(a0, a1, a2, a3);
-    a0 = v0 & 0xff;
-    v1 = 16;
-    if (a0 != v1) goto L_00200BE8;
-    v1 = 1; goto L_00200BEC;
-L_00200BE8:;
-    v1 = 0;
-L_00200BEC:;
-    if (v1 == 0) goto L_00200C08;
-    v0 = (s32) 0x590000U;
-    a0 = (s32) ((u32) sp + 0x9cU);
-    a2 = (*(volatile u8 *) (u32) (v0 + 7757));
-    a1 = (s32) ((u32) sp + 0x98U); func_00B798F0(a0, a1, a2, a3);
-L_00200C08:;
-    a1 = (*(volatile u8 *) (u32) (gp + -23004));
-L_00200C0C:;
-    if (a1 == 0) { v1 = (*(volatile s16 *) (u32) (s1 + 14)); goto L_00200C60; }
-    v1 = (*(volatile s16 *) (u32) (s1 + 14));
-    f1.f = (*(volatile f32 *) (u32) (sp + 156));
-    v1 = (s32) ((u32) v1 + 0x500U);
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    fcc = f0.f < f1.f;
-    if (!fcc) { v1 = (s32) ((u32) 0 - (u32) v1); goto L_00200C40; }
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f; goto L_00200CA8;
-L_00200C40:;
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    fcc = f1.f < f0.f;
-    if (!fcc) { v1 = (*(volatile s16 *) (u32) (s1 + 12)); goto L_00200CAC; }
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f; goto L_00200CA8;
-L_00200C60:;
-    f1.f = (*(volatile f32 *) (u32) (sp + 156));
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    fcc = f0.f < f1.f;
-    if (!fcc) { v1 = (s64) ((u64) v1 << 48); goto L_00200C84; }
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f; goto L_00200CA8;
-L_00200C84:;
-    v1 = v1 >> 48;
-    v1 = (s32) ((u32) 0 - (u32) v1);
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    fcc = f1.f < f0.f;
-    if (!fcc) goto L_00200CA8;
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f;
-L_00200CA8:;
-    v1 = (*(volatile s16 *) (u32) (s1 + 12));
-L_00200CAC:;
-    f1.f = (*(volatile f32 *) (u32) (sp + 152));
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    fcc = f0.f < f1.f;
-    if (!fcc) { a0 = (*(volatile s16 *) (u32) (s1 + 10)); goto L_00200CD0; }
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f; goto L_00200DCC;
-L_00200CD0:;
-    f0.i = (s32) a0;
-    f0.f = (f32) f0.i;
-    fcc = f1.f < f0.f;
-    if (!fcc) goto L_00200DCC;
-    v1 = a1 & 0xff;
-    if (v1 != 0) goto L_00200DCC;
-    f0.f = (*(volatile f32 *) (u32) (sp + 120));
-    f0.i = (s32) f0.f;
-    a1 = f0.i;
-    if (a1 <= 0) { v1 = (s32) ((u32) 0 - (u32) a1); goto L_00200D10; }
-    v1 = a1;
-L_00200D10:;
-    at = v1 < 9241;
-    if (at == 0) { f0.f = (*(volatile f32 *) (u32) (sp + 128)); goto L_00200D30; }
-    f0.i = (s32) a0;
-    f0.f = (f32) f0.i;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f; goto L_00200DCC;
-L_00200D30:;
-    f0.i = (s32) f0.f;
-    v0 = f0.i;
-    if (v0 <= 0) { v0 = (s32) ((u32) 0 - (u32) v0); goto L_00200D44; }
-L_00200D44:;
-    f0.i = (s32) v0;
-    { s32 c_ = a1 <= 0; f2.f = (f32) f0.i; if (c_) goto L_00200D58; }
-    goto L_00200D5C;
-L_00200D58:;
-    a1 = (s32) ((u32) 0 - (u32) a1);
-L_00200D5C:;
-    f0.i = (s32) a1;
-    v0 = (s32) 0x46080000U;
-    f1.f = (f32) f0.i;
-    v1 = v0 | 0x6400;
-    v0 = (s32) 0x45910000U;
-    v0 = v0 | 0x4000;
-    f0.i = (s32) v1;
-    f1.f = f0.f - f1.f;
-    f0.i = (s32) v0;
-    f0.f = f0.f - f2.f;
-    acc = f0.f * f0.f;
-    f12.f = acc + f1.f * f1.f; f0.f = func_001CD9E0();
-    f0.i = (s32) f0.f;
-    v1 = (s32) 0x3e990000U;
-    a0 = v1 | 0x999a;
-    v1 = (*(volatile s16 *) (u32) (s1 + 10));
-    f3.f = (f32) f0.i;
-    f0.i = (s32) v1;
-    f1.f = (f32) f0.i;
-    f0.i = (s32) 0;
-    f2.i = (s32) a0;
-    acc = f0.f + f1.f;
-    f0.f = acc - f2.f * f3.f;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f;
-L_00200DCC:;
-    v1 = (s32) 0x590000U;
-    v1 = (*(volatile s32 *) (u32) (v1 + 10044));
-    if (v1 == 0) { f1.f = (*(volatile f32 *) (u32) (gp + -22224)); goto L_00200E10; }
-    f1.f = (*(volatile f32 *) (u32) (gp + -22224));
-    v1 = (s32) 0x41800000U;
-    f0.i = (s32) v1;
-    fcc = f1.f <= f0.f;
-    if (fcc) { (*(volatile f32 *) (u32) (gp + -22224)) = f0.f; goto L_00200E3C; }
-    v1 = (s32) 0x3f800000U;
-    f0.i = (s32) v1;
-    f0.f = f1.f - f0.f;
-    (*(volatile f32 *) (u32) (gp + -22224)) = f0.f; goto L_00200E3C;
-L_00200E10:;
-    v1 = (s32) 0x41200000U;
-    f0.i = (s32) v1;
-    fcc = f1.f <= f0.f;
-    if (fcc) { (*(volatile f32 *) (u32) (gp + -22224)) = f0.f; goto L_00200E3C; }
-    v1 = (s32) 0x3f800000U;
-    f0.i = (s32) v1;
-    f0.f = f1.f - f0.f;
-    (*(volatile f32 *) (u32) (gp + -22224)) = f0.f;
-L_00200E3C:;
-    v1 = (*(volatile u8 *) (u32) (gp + -23004));
-    if (v1 == 0) goto L_00200F00;
-    if (s2 == 0) { f0.f = (*(volatile f32 *) (u32) (sp + 156)); goto L_00200EDC; }
-    f1.f = (*(volatile f32 *) (u32) (sp + 156));
-    v1 = (s32) 0x40000000U;
-    f2.f = (*(volatile f32 *) (u32) (sp + 136));
-    f3.i = (s32) v1;
-    f5.i = (s32) 0;
-    v1 = (s32) 0x40400000U;
-    acc = f5.f + f1.f;
-    f0.i = (s32) v1;
-    f1.f = acc + f3.f * f2.f;
-    v1 = (s32) 0x3f800000U;
-    f0.f = f1.f / f0.f;
-    (*(volatile f32 *) (u32) (s3 + 16)) = f0.f;
-    a0 = (*(volatile s16 *) (u32) (s1 + 2));
-    f2.f = (*(volatile f32 *) (u32) (gp + -22224));
-    f4.i = (s32) v1;
-    f1.f = (*(volatile f32 *) (u32) (sp + 140));
-    f0.i = (s32) a0;
-    f0.f = (f32) f0.i;
-    acc = f5.f + f0.f;
-    f0.f = f4.f + f2.f;
-    f1.f = acc + f1.f * f2.f;
-    f0.f = f1.f / f0.f;
-    (*(volatile f32 *) (u32) (s3 + 20)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (gp + -22224));
-    f1.f = (*(volatile f32 *) (u32) (sp + 152));
-    f2.f = (*(volatile f32 *) (u32) (sp + 144));
-    f0.f = f4.f + f3.f;
-    acc = f5.f + f1.f;
-    f1.f = acc + f2.f * f3.f;
-    f0.f = f1.f / f0.f;
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f; goto L_002017A0;
-L_00200EDC:;
-    (*(volatile f32 *) (u32) (s3 + 16)) = f0.f;
-    v1 = (*(volatile s16 *) (u32) (s1 + 2));
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    (*(volatile f32 *) (u32) (s3 + 20)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (sp + 152));
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f; goto L_002017A0;
-L_00200F00:;
-    if (s2 == 0) { f0.f = (*(volatile f32 *) (u32) (sp + 156)); goto L_00201050; }
-    f0.f = (*(volatile f32 *) (u32) (sp + 156));
-    v1 = (s32) 0x3f800000U;
-    f2.f = (*(volatile f32 *) (u32) (gp + -22224));
-    f4.i = (s32) 0;
-    f3.i = (s32) v1;
-    acc = f4.f + f0.f;
-    f1.f = (*(volatile f32 *) (u32) (sp + 136));
-    f0.f = f3.f + f2.f;
-    f1.f = acc + f1.f * f2.f;
-    f0.f = f1.f / f0.f;
-    (*(volatile f32 *) (u32) (s3 + 16)) = f0.f;
-    v1 = (*(volatile s16 *) (u32) (s1 + 2));
-    f2.f = (*(volatile f32 *) (u32) (gp + -22224));
-    f1.f = (*(volatile f32 *) (u32) (sp + 140));
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    acc = f4.f + f0.f;
-    f0.f = f3.f + f2.f;
-    f1.f = acc + f1.f * f2.f;
-    f0.f = f1.f / f0.f;
-    (*(volatile f32 *) (u32) (s3 + 20)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (sp + 120));
-    f0.i = (s32) f0.f;
-    v1 = f0.i;
-    if (v1 <= 0) { v1 = (s32) ((u32) 0 - (u32) v1); goto L_00200F78; }
-L_00200F78:;
-    f0.i = (s32) v1;
-    f1.f = (f32) f0.i;
-    v1 = (s32) 0x45e00000U;
-    v1 = v1 | 0xc800;
-    f0.i = (s32) v1;
-    fcc = f1.f <= f0.f;
-    if (fcc) { v1 = (s32) 0x41a00000U; goto L_0020100C; }
-    v1 = (s32) 0xc5910000U;
-    v1 = v1 | 0x4000;
-    f1.f = (*(volatile f32 *) (u32) (sp + 128));
-    f0.i = (s32) v1;
-    fcc = f1.f < f0.f;
-    if (!fcc) goto L_00201008;
-    v1 = (s32) 0x43340000U;
-    f1.i = (s32) v1;
-    v1 = (s32) 0x3f800000U;
-    f3.f = (*(volatile f32 *) (u32) (gp + -22224));
-    f0.i = (s32) v1;
-    f2.f = (*(volatile f32 *) (u32) (sp + 152));
-    f0.f = f0.f + f3.f;
-    f3.f = f1.f + f3.f;
-    f0.f = f1.f + f0.f;
-    f1.i = (s32) 0;
-    f4.f = (*(volatile f32 *) (u32) (sp + 144));
-    acc = f1.f + f2.f;
-    f1.f = acc + f4.f * f3.f;
-    f0.f = f1.f / f0.f;
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f; goto L_002017A0;
-L_00201008:;
-    v1 = (s32) 0x41a00000U;
-L_0020100C:;
-    f1.i = (s32) v1;
-    v1 = (s32) 0x3f800000U;
-    f3.f = (*(volatile f32 *) (u32) (gp + -22224));
-    f0.i = (s32) v1;
-    f2.f = (*(volatile f32 *) (u32) (sp + 152));
-    f0.f = f0.f + f3.f;
-    f3.f = f1.f + f3.f;
-    f0.f = f1.f + f0.f;
-    f1.i = (s32) 0;
-    f4.f = (*(volatile f32 *) (u32) (sp + 144));
-    acc = f1.f + f2.f;
-    f1.f = acc + f4.f * f3.f;
-    f0.f = f1.f / f0.f;
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f; goto L_002017A0;
-L_00201050:;
-    (*(volatile f32 *) (u32) (s3 + 16)) = f0.f;
-    v1 = (*(volatile s16 *) (u32) (s1 + 2));
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    (*(volatile f32 *) (u32) (s3 + 20)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (sp + 152));
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f; goto L_002017A0;
-L_00201074:;
-    { s32 c_ = v1 != a0; (*(volatile u8 *) (u32) (gp + -23000)) = (u8) 0; if (c_) goto L_00201090; }
-    v0 = (s32) 0x45bd0000U;
-    v0 = v0 | 0x1000;
-    f12.i = (s32) v0;
-    v0 = func_001A5670(f12.f);
-L_00201090:;
-    v1 = (s32) 0x590000U;
-    v1 = (*(volatile s32 *) (u32) (v1 + 10044));
-    if (v1 == 0) goto L_002010AC;
-    v1 = (s32) 0x590000U;
-    (*(volatile u16 *) (u32) (v1 + 10054)) = (u16) 0; goto L_002017A0;
-L_002010AC:;
-    v1 = (s32) 0x590000U;
-    a0 = (s32) 0x70000U;
-    a1 = (*(volatile s32 *) (u32) (v1 + 7992));
-    v1 = a0 | 0xffff;
-    if (a1 != v1) goto L_002010D0;
-    v1 = (s32) 0x590000U;
-    (*(volatile u8 *) (u32) (v1 + 10050)) = (u8) 0; goto L_002017A0;
-L_002010D0:;
-    v0 = (s32) 0x590000U;
-    a1 = (s32) 0x41200000U;
-    v1 = (*(volatile s16 *) (u32) (v0 + 10060));
-    f4.f = (*(volatile f32 *) (u32) (sp + 120));
-    f0.i = (s32) 0;
-    f3.f = (*(volatile f32 *) (u32) (sp + 128));
-    f1.i = (s32) v1;
-    v0 = (s32) 0x40e00000U;
-    f1.f = (f32) f1.i;
-    f2.i = (s32) v0;
-    v0 = (s32) 0x590000U;
-    a0 = (*(volatile s32 *) (u32) (v0 + 7984));
-    f4.f = f4.f + f1.f;
-    v1 = (s32) ((u32) a0 << 1);
-    v0 = (s32) 0x590000U;
-    a2 = (s32) ((u32) v1 + (u32) a0);
-    f1.i = (s32) a2;
-    a0 = (s32) 0x40000000U;
-    f1.f = (f32) f1.i;
-    v1 = (*(volatile s16 *) (u32) (s1 + 14));
-    acc = f0.f + f1.f;
-    f1.f = acc + f2.f * f4.f;
-    f0.i = (s32) a1;
-    f4.f = f1.f / f0.f;
-    f2.f = (*(volatile f32 *) (u32) (v0 + 7988));
-    f1.i = (s32) a0;
-    f0.i = (s32) v1;
-    f2.f = (f32) f2.i;
-    f2.f = f3.f + f2.f;
-    f1.f = f2.f / f1.f;
-    f0.f = (f32) f0.i;
-    fcc = f0.f < f4.f;
-    (*(volatile f32 *) (u32) (sp + 156)) = f4.f;
-    { s32 c_ = !fcc; (*(volatile f32 *) (u32) (sp + 152)) = f1.f; if (c_) goto L_00201168; }
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f; goto L_00201190;
-L_00201168:;
-    v0 = (s64) ((u64) v1 << 48);
-    v0 = v0 >> 48;
-    v0 = (s32) ((u32) 0 - (u32) v0);
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    fcc = f4.f < f0.f;
-    if (!fcc) { v0 = (*(volatile s16 *) (u32) (s1 + 12)); goto L_00201194; }
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f;
-L_00201190:;
-    v0 = (*(volatile s16 *) (u32) (s1 + 12));
-L_00201194:;
-    f1.f = (*(volatile f32 *) (u32) (sp + 152));
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    fcc = f0.f < f1.f;
-    if (!fcc) { v0 = (*(volatile s16 *) (u32) (s1 + 10)); goto L_002011B8; }
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f; goto L_002011E0;
-L_002011B8:;
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    fcc = f1.f < f0.f;
-    if (!fcc) goto L_002011E0;
-    v0 = (*(volatile u8 *) (u32) (gp + -23004));
-    if (v0 != 0) goto L_002011E0;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f;
-L_002011E0:;
-    if (s2 == 0) { (*(volatile u32 *) (u32) (gp + -22224)) = (u32) 0; goto L_002011F0; }
-    v0 = (s32) 0x41700000U;
-    (*(volatile u32 *) (u32) (gp + -22224)) = (u32) v0;
-L_002011F0:;
-    f0.f = (*(volatile f32 *) (u32) (sp + 156));
-    v1 = (s32) 0x3f800000U;
-    v0 = (s32) 0x41200000U;
-    f2.f = (*(volatile f32 *) (u32) (gp + -22224));
-    f0.i = (s32) f0.f;
-    f0.f = (f32) f0.i;
-    f6.i = (s32) 0;
-    f5.i = (s32) v1;
-    acc = f6.f + f0.f;
-    f1.f = (*(volatile f32 *) (u32) (sp + 136));
-    f0.f = f5.f + f2.f;
-    f1.f = acc + f1.f * f2.f;
-    f0.f = f1.f / f0.f;
-    (*(volatile f32 *) (u32) (s3 + 16)) = f0.f;
-    v1 = (*(volatile s16 *) (u32) (s1 + 2));
-    f2.f = (*(volatile f32 *) (u32) (gp + -22224));
-    f1.f = (*(volatile f32 *) (u32) (sp + 140));
-    f3.i = (s32) v0;
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    acc = f6.f + f0.f;
-    f0.f = f5.f + f2.f;
-    f1.f = acc + f1.f * f2.f;
-    f0.f = f1.f / f0.f;
-    (*(volatile f32 *) (u32) (s3 + 20)) = f0.f;
-    f1.f = (*(volatile f32 *) (u32) (sp + 152));
-    f2.f = (*(volatile f32 *) (u32) (gp + -22224));
-    f4.f = (*(volatile f32 *) (u32) (sp + 144));
-    f1.i = (s32) f1.f;
-    f0.f = f5.f + f2.f;
-    f1.f = (f32) f1.i;
-    f2.f = f3.f + f2.f;
-    acc = f6.f + f1.f;
-    f0.f = f3.f + f0.f;
-    f1.f = acc + f4.f * f2.f;
-    f0.f = f1.f / f0.f;
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f;
-    v0 = (*(volatile u8 *) (u32) (gp + -23004));
-    if (v0 == 0) { a0 = 0; goto L_002012F8; }
-    s0 = (*(volatile u8 *) (u32) (gp + -22968));
-    a0 = 60; v0 = func_002AE670(a0);
-    at = v0 < s0;
-    if (at == 0) goto L_002017A0;
-    a0 = 0; v0 = func_002A96B0(a0);
-    f0.f = (*(volatile f32 *) (u32) v0);
-    v1 = (s32) 0x44f50000U;
-    f12.i = (s32) v1;
-    (*(volatile f32 *) (u32) s3) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (v0 + 4));
-    (*(volatile f32 *) (u32) (s3 + 4)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (v0 + 8));
-    (*(volatile f32 *) (u32) (s3 + 8)) = f0.f; v0 = func_001A5670(f12.f);
-    v0 = (s32) 0x42480000U;
-    (*(volatile u8 *) (u32) (gp + -23004)) = (u8) 0;
-    f12.i = (s32) v0;
-    f13.i = f20.i; func_001A56D0(f12.f, f13.f);
-    goto L_002017A0;
-L_002012F8:;
-    v0 = func_002A96B0(a0);
-    f0.f = (*(volatile f32 *) (u32) v0);
-    (*(volatile f32 *) (u32) s3) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (v0 + 4));
-    (*(volatile f32 *) (u32) (s3 + 4)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (v0 + 8));
-    (*(volatile f32 *) (u32) (s3 + 8)) = f0.f; goto L_002017A0;
-L_0020131C:;
-    v0 = (s32) 0x590000U;
-    v1 = 7;
-    a2 = (*(volatile u8 *) (u32) (v0 + 7972));
-    if (a2 == v1) { v0 = (s32) 0x44f50000U; goto L_00201348; }
-    v0 = 2;
-    if (a2 == v0) goto L_00201344;
-    v0 = (s32) 0x590000U; goto L_00201408;
-L_00201344:;
-    v0 = (s32) 0x44f50000U;
-L_00201348:;
-    f12.i = (s32) v0;
-    v0 = func_001A5670(f12.f);
-    v0 = (s32) 0x590000U;
-    v1 = 2;
-    v0 = (*(volatile u8 *) (u32) (v0 + 7972));
-    if (v0 != v1) { f1.f = (*(volatile f32 *) (u32) (sp + 120)); goto L_002013F8; }
-    v0 = func_009B45F0(a0, a1, a2, a3);
-    if (v0 != 0) { v0 = 0; goto L_002013D0; }
-    v0 = func_00270570();
-    if (v0 == 0) { a0 = 1; goto L_00201394; }
-    v0 = 0;
-    goto L_002013D0;
-L_00201394:;
-    v0 = func_009E1C90(a0, a1, a2, a3);
-    v1 = v0 & 0xff;
-    v0 = 14;
-    if (v1 != v0) { v0 = 0; goto L_002013D0; }
-    a0 = 2; v0 = func_009E1C90(a0, a1, a2, a3);
-    v1 = v0 & 0xff;
-    v0 = 16;
-    if (v1 != v0) goto L_002013CC;
-    v0 = 1; goto L_002013D0;
-L_002013CC:;
-    v0 = 0;
-L_002013D0:;
-    if (v0 == 0) goto L_002013F4;
-    v0 = (s32) 0x590000U;
-    a0 = (s32) ((u32) sp + 0x9cU);
-    a2 = (*(volatile u8 *) (u32) (v0 + 7757));
-    a1 = (s32) ((u32) sp + 0x98U); func_00B798F0(a0, a1, a2, a3);
-    v0 = (*(volatile s16 *) (u32) (s1 + 14)); goto L_0020152C;
-L_002013F4:;
-    f1.f = (*(volatile f32 *) (u32) (sp + 120));
-L_002013F8:;
-    f0.f = (*(volatile f32 *) (u32) (sp + 128));
-    (*(volatile f32 *) (u32) (sp + 156)) = f1.f;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f; goto L_00201528;
-L_00201408:;
-    v1 = 255;
-    a0 = (*(volatile u8 *) (u32) (v0 + 7757));
-    if (a0 == v1) { a0 = 1; goto L_00201424; }
-    v0 = 23;
-    if ((s32) v0 != 0) { s64 q_ = (s32) ((s32) a0 / (s32) v0); hi = (s32) ((s32) a0 % (s32) v0); lo = q_; }
-    a0 = hi;
-L_00201424:;
-    v0 = (s32) ((u32) a0 << 3);
-    v1 = (s32) 0x590000U;
-    v0 = (s32) ((u32) v0 + (u32) a0);
-    v1 = (s32) ((u32) v1 + 0xffffe5b0U);
-    a1 = (s32) ((u32) v0 << 6);
-    a0 = (*(volatile s16 *) (u32) s1);
-    a1 = (s32) ((u32) v1 + (u32) a1);
-    v0 = (s32) 0x590000U;
-    a1 = (*(volatile s16 *) (u32) (a1 + 20));
-    v1 = 6;
-    { s64 m_ = (s64) (s32) a1 * (s64) (s32) a0; lo = (s32) m_; hi = (s32) (m_ >> 32); a0 = lo; }
-    { s32 c_ = a2 != v1; (*(volatile u16 *) (u32) (v0 + 10060)) = (u16) a0; if (c_) goto L_00201500; }
-    v0 = func_009B45F0(a0, a1, a2, a3);
-    if (v0 != 0) { v0 = 0; goto L_002014C0; }
-    v0 = func_00270570();
-    if (v0 == 0) { a0 = 1; goto L_00201484; }
-    v0 = 0;
-    goto L_002014C0;
-L_00201484:;
-    v0 = func_009E1C90(a0, a1, a2, a3);
-    v1 = v0 & 0xff;
-    v0 = 14;
-    if (v1 != v0) { v0 = 0; goto L_002014C0; }
-    a0 = 2; v0 = func_009E1C90(a0, a1, a2, a3);
-    v1 = v0 & 0xff;
-    v0 = 16;
-    if (v1 != v0) goto L_002014BC;
-    v0 = 1; goto L_002014C0;
-L_002014BC:;
-    v0 = 0;
-L_002014C0:;
-    if (v0 == 0) goto L_00201500;
-    v0 = (s32) 0x590000U;
-    a0 = (s32) ((u32) sp + 0x9cU);
-    a2 = (*(volatile u8 *) (u32) (v0 + 7757));
-    a1 = (s32) ((u32) sp + 0x98U); func_00B798F0(a0, a1, a2, a3);
-    v0 = (s32) 0x590000U;
-    v0 = (*(volatile s16 *) (u32) (v0 + 10060));
-    f1.f = (*(volatile f32 *) (u32) (sp + 156));
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    f0.f = f1.f + f0.f;
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f; goto L_00201528;
-L_00201500:;
-    v0 = (s32) 0x590000U;
-    v0 = (*(volatile s16 *) (u32) (v0 + 10060));
-    f0.f = (*(volatile f32 *) (u32) (sp + 128));
-    f2.f = (*(volatile f32 *) (u32) (sp + 120));
-    f1.i = (s32) v0;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f;
-    f0.f = (f32) f1.i;
-    f0.f = f2.f + f0.f;
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f;
-L_00201528:;
-    v0 = (*(volatile s16 *) (u32) (s1 + 14));
-L_0020152C:;
-    f1.f = (*(volatile f32 *) (u32) (sp + 156));
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    fcc = f0.f < f1.f;
-    if (!fcc) { v0 = (s64) ((u64) v0 << 48); goto L_00201550; }
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f; goto L_00201574;
-L_00201550:;
-    v0 = v0 >> 48;
-    v0 = (s32) ((u32) 0 - (u32) v0);
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    fcc = f1.f < f0.f;
-    if (!fcc) { v0 = (*(volatile s16 *) (u32) (s1 + 12)); goto L_00201578; }
-    (*(volatile f32 *) (u32) (sp + 156)) = f0.f;
-L_00201574:;
-    v0 = (*(volatile s16 *) (u32) (s1 + 12));
-L_00201578:;
-    f1.f = (*(volatile f32 *) (u32) (sp + 152));
-    f0.i = (s32) v0;
-    f0.f = (f32) f0.i;
-    fcc = f0.f < f1.f;
-    if (!fcc) { v1 = (*(volatile s16 *) (u32) (s1 + 10)); goto L_0020159C; }
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f; goto L_00201688;
-L_0020159C:;
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    fcc = f1.f < f0.f;
-    if (!fcc) { a0 = 0; goto L_0020168C; }
-    f0.f = (*(volatile f32 *) (u32) (sp + 120));
-    f0.i = (s32) f0.f;
-    a0 = f0.i;
-    if (a0 <= 0) { v0 = (s32) ((u32) 0 - (u32) a0); goto L_002015D0; }
-    v0 = a0;
-L_002015D0:;
-    v0 = (s32) ((u32) v0 + 0xffffdde7U);
-    if (v0 > 0) { f0.f = (*(volatile f32 *) (u32) (sp + 128)); goto L_002015F0; }
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f; goto L_00201688;
-L_002015F0:;
-    f0.i = (s32) f0.f;
-    v0 = f0.i;
-    if (v0 <= 0) { v0 = (s32) ((u32) 0 - (u32) v0); goto L_00201604; }
-L_00201604:;
-    f0.i = (s32) v0;
-    { s32 c_ = a0 <= 0; f2.f = (f32) f0.i; if (c_) goto L_00201618; }
-    goto L_0020161C;
-L_00201618:;
-    a0 = (s32) ((u32) 0 - (u32) a0);
-L_0020161C:;
-    f0.i = (s32) a0;
-    v0 = (s32) 0x46080000U;
-    f1.f = (f32) f0.i;
-    v1 = v0 | 0x6400;
-    v0 = (s32) 0x45910000U;
-    v0 = v0 | 0x4000;
-    f0.i = (s32) v1;
-    f1.f = f0.f - f1.f;
-    f0.i = (s32) v0;
-    f0.f = f0.f - f2.f;
-    acc = f0.f * f0.f;
-    f12.f = acc + f1.f * f1.f; f0.f = func_001CD9E0();
-    f0.i = (s32) f0.f;
-    v1 = (s32) 0x3f000000U;
-    v0 = (*(volatile s16 *) (u32) (s1 + 10));
-    f3.f = (f32) f0.i;
-    f0.i = (s32) v0;
-    f1.f = (f32) f0.i;
-    f0.i = (s32) 0;
-    f2.i = (s32) v1;
-    acc = f0.f + f1.f;
-    f0.f = acc - f2.f * f3.f;
-    (*(volatile f32 *) (u32) (sp + 152)) = f0.f;
-L_00201688:;
-    a0 = 0;
-L_0020168C:;
-    v0 = func_002A96B0(a0);
-    f0.f = (*(volatile f32 *) (u32) v0);
-    v1 = (s32) 0x590000U;
-    a0 = 7;
-    (*(volatile f32 *) (u32) s3) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (v0 + 4));
-    (*(volatile f32 *) (u32) (s3 + 4)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (v0 + 8));
-    (*(volatile f32 *) (u32) (s3 + 8)) = f0.f;
-    a1 = (*(volatile u8 *) (u32) (v1 + 7972));
-    if (a1 == a0) { f0.f = (*(volatile f32 *) (u32) (sp + 156)); goto L_002016D8; }
-    v1 = 2;
-    if (a1 == v1) goto L_002016D4;
-    goto L_002016FC;
-L_002016D4:;
-    f0.f = (*(volatile f32 *) (u32) (sp + 156));
-L_002016D8:;
-    (*(volatile f32 *) (u32) (s3 + 16)) = f0.f;
-    v1 = (*(volatile s16 *) (u32) (s1 + 2));
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    (*(volatile f32 *) (u32) (s3 + 20)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (sp + 152));
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f; goto L_00201798;
-L_002016FC:;
-    if (s2 == 0) { f0.f = (*(volatile f32 *) (u32) (sp + 156)); goto L_00201778; }
-    f0.f = (*(volatile f32 *) (u32) (sp + 156));
-    v1 = (s32) 0x40a00000U;
-    f1.f = (*(volatile f32 *) (u32) (s3 + 16));
-    f4.i = (s32) v1;
-    f3.i = (s32) 0;
-    v1 = (s32) 0x40c00000U;
-    acc = f3.f + f0.f;
-    f2.i = (s32) v1;
-    f0.f = acc + f4.f * f1.f;
-    f0.f = f0.f / f2.f;
-    (*(volatile f32 *) (u32) (s3 + 16)) = f0.f;
-    v1 = (*(volatile s16 *) (u32) (s1 + 2));
-    f1.f = (*(volatile f32 *) (u32) (s3 + 20));
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    acc = f3.f + f0.f;
-    f0.f = acc + f4.f * f1.f;
-    f0.f = f0.f / f2.f;
-    (*(volatile f32 *) (u32) (s3 + 20)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (sp + 152));
-    f1.f = (*(volatile f32 *) (u32) (s3 + 24));
-    acc = f3.f + f0.f;
-    f0.f = acc + f4.f * f1.f;
-    f0.f = f0.f / f2.f;
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f; goto L_00201798;
-L_00201778:;
-    (*(volatile f32 *) (u32) (s3 + 16)) = f0.f;
-    v1 = (*(volatile s16 *) (u32) (s1 + 2));
-    f0.i = (s32) v1;
-    f0.f = (f32) f0.i;
-    (*(volatile f32 *) (u32) (s3 + 20)) = f0.f;
-    f0.f = (*(volatile f32 *) (u32) (sp + 152));
-    (*(volatile f32 *) (u32) (s3 + 24)) = f0.f;
-L_00201798:;
-    v1 = (s32) 0x590000U;
-    (*(volatile u16 *) (u32) (v1 + 10054)) = (u16) 0;
-L_002017A0:;
-L_002017A4:;
-    return;
+void func_00200120(f32 *out, s32 flag) {
+    f32 p9c;
+    f32 p98;
+    f32 v88[3];
+    f32 v78[3];
+    f32 v60[4];
+    s32 s0;
+    s16 *s1;
+    f32 *vp;
+    s32 t;
+    s32 i;
+    s32 idx;
+    s32 lim;
+    s32 o2;
+    f32 f;
+    f32 g;
+    f32 k;
+    f32 f6;
+    s32 st;
+
+    func_001A54F0(v88);
+    func_002871C0(v78);
+    s0 = func_002BE420() & 0xffff;
+    st = *(u8 *)D_00592743;
+    *(s16 *)D_0059274A = 0x4000;
+    s1 = (s16 *)(D_003A89F0 + st * 18);
+    if (st == 7) {
+        t = *(u8 *)D_00591F24;
+        if (t == 3 || t == 6 || t == 2 || t == 1) {
+            if (func_009B45F0() == 0 && func_00270570() == 0 && (func_009E1C90(1) & 0xff) == 14
+                && (func_009E1C90(2) & 0xff) == 16) {
+                if (*(u8 *)D_00592743 == 6 || *(u8 *)D_00592743 == 7) {
+                    D_003E99B8 = 0;
+                    D_003E9998 = 0;
+                    D_003E9994 = 0;
+                }
+            }
+        }
+    }
+    func_001A5670(D_003A89F0, 1960.0f);
+    if (*(u8 *)D_00592743 == 6) {
+        D_003E9994 = 0;
+    }
+    if (D_003E9994 != 0) {
+        D_003E99B8 = D_003E99B8 + 1;
+    }
+    if (D_003E9994 == 3) {
+        func_001A56D0(512.0f, 16000.0f);
+    } else {
+        func_001A56D0(50.0f, 16000.0f);
+    }
+    if (!(D_003E9CA0 <= 60.0f)) {
+        D_003E9CA0 = 60.0f;
+    }
+
+    st = *(u8 *)D_00592742;
+    if (st == 3) {
+        t = *(u8 *)D_00591F24;
+        if (t == 7 || t == 2) {
+            func_001A5670(D_003A89F0, 1960.0f);
+            if (*(u8 *)D_00591F24 == 2 && func_009B45F0() == 0 && func_00270570() == 0
+                && (func_009E1C90(1) & 0xff) == 14 && (func_009E1C90(2) & 0xff) == 16) {
+                func_00B798F0(&p9c, &p98, *(u8 *)D_00591E4D);
+            } else {
+                p9c = v78[0];
+                p98 = v78[2];
+            }
+        } else {
+            i = *(u8 *)D_00591E4D;
+            idx = (i == 0xff) ? 1 : i % 23;
+            i = s1[0] * *(s16 *)(D_0058E5B0 + idx * 576 + 0x14);
+            *(s16 *)D_0059274C = i;
+            if (t == 6 && func_009B45F0() == 0 && func_00270570() == 0 && (func_009E1C90(1) & 0xff) == 14
+                && (func_009E1C90(2) & 0xff) == 16) {
+                func_00B798F0(&p9c, &p98, *(u8 *)D_00591E4D);
+                p9c = p9c + (f32)*(s16 *)D_0059274C;
+            } else {
+                p98 = v78[2];
+                p9c = v78[0] + (f32)*(s16 *)D_0059274C;
+            }
+        }
+        lim = s1[7];
+        f = (f32)lim;
+        if (f < p9c) {
+            p9c = f;
+        } else {
+            lim = -lim;
+            f = (f32)lim;
+            if (p9c < f) {
+                p9c = f;
+            }
+        }
+        f = (f32)s1[6];
+        if (f < p98) {
+            p98 = f;
+        } else {
+            f = (f32)s1[5];
+            if (p98 < f) {
+                i = (s32)v78[0];
+                if (i < 0) i = -i;
+                if (i - 0x2219 > 0) {
+                    lim = (s32)v78[2];
+                    if (lim < 0) lim = -lim;
+                    g = (f32)lim;
+                    i = (s32)v78[0];
+                    if (i < 0) i = -i;
+                    f = (f32)i;
+                    f = 8729.0f - f;
+                    g = 4648.0f - g;
+                    lim = (s32)func_001CD9E0(g * g + f * f);
+                    p98 = (f32)s1[5] - 0.5f * (f32)lim;
+                } else {
+                    p98 = (f32)s1[5];
+                }
+            }
+        }
+        vp = func_002A96B0(0);
+        out[0] = vp[0];
+        out[1] = vp[1];
+        out[2] = vp[2];
+        t = *(u8 *)D_00591F24;
+        if (t == 7 || t == 2) {
+            out[4] = p9c;
+            out[5] = (f32)s1[1];
+            out[6] = p98;
+        } else if (flag != 0) {
+            out[4] = (0.0f + p9c + 5.0f * out[4]) / 6.0f;
+            out[5] = (0.0f + (f32)s1[1] + 5.0f * out[5]) / 6.0f;
+            out[6] = (0.0f + p98 + 5.0f * out[6]) / 6.0f;
+        } else {
+            out[4] = p9c;
+            out[5] = (f32)s1[1];
+            out[6] = p98;
+        }
+        *(s16 *)D_00592746 = 0;
+    } else if (st == 1) {
+        if (D_003E9994 == 3) {
+            D_003E9998 = 0;
+            func_001A5670(D_003A89F0, 6050.0f);
+        } else {
+            D_003E9998 = 0;
+        }
+        if (*(s32 *)D_0059273C != 0) {
+            *(s16 *)D_00592746 = 0;
+        } else if (*(s32 *)D_00591F38 == 0x7FFFF) {
+            *(u8 *)D_00592742 = 0;
+        } else {
+            f = (f32)*(s16 *)D_0059274C;
+            f = v78[0] + f;
+            p9c = (0.0f + (f32)(3 * *(s32 *)D_00591F30) + 7.0f * f) / 10.0f;
+            p98 = (v78[2] + (f32)*(s32 *)D_00591F34) / 2.0f;
+            f = (f32)s1[7];
+            if (f < p9c) {
+                p9c = f;
+            } else {
+                lim = -(s32)s1[7];
+                g = (f32)lim;
+                if (p9c < g) {
+                    p9c = g;
+                }
+            }
+            f = (f32)s1[6];
+            if (f < p98) {
+                p98 = f;
+            } else {
+                f = (f32)s1[5];
+                if (p98 < f && D_003E9994 == 0) {
+                    p98 = f;
+                }
+            }
+            if (flag == 0) {
+                D_003E9CA0 = 0.0f;
+            } else {
+                D_003E9CA0 = 15.0f;
+            }
+            f = (f32)(s32)p9c;
+            out[4] = (0.0f + f + v88[0] * D_003E9CA0) / (1.0f + D_003E9CA0);
+            f = (f32)s1[1];
+            out[5] = (0.0f + f + v88[1] * D_003E9CA0) / (1.0f + D_003E9CA0);
+            f = (f32)(s32)p98;
+            g = 10.0f + D_003E9CA0;
+            k = 10.0f + (1.0f + D_003E9CA0);
+            out[6] = (0.0f + f + v88[2] * g) / k;
+            if (D_003E9994 != 0) {
+                s0 = D_003E99B8;
+                if (func_002AE670(60) < s0) {
+                    vp = func_002A96B0(0);
+                    out[0] = vp[0];
+                    out[1] = vp[1];
+                    out[2] = vp[2];
+                    func_001A5670(D_003A89F0, 1960.0f);
+                    D_003E9994 = 0;
+                    func_001A56D0(50.0f, 16000.0f);
+                }
+            } else {
+                vp = func_002A96B0(0);
+                out[0] = vp[0];
+                out[1] = vp[1];
+                out[2] = vp[2];
+            }
+        }
+    } else if (st == 0) {
+        if (*(u8 *)D_00591E4C == 0) {
+            s0 = 0;
+        }
+        if (*(u8 *)D_00592743 == 7) {
+            t = D_003E9994;
+            if (t == 4) {
+                if (s0 < func_002AE670(100)) {
+                    goto L740;
+                }
+                i = (s32)v78[2];
+                if (i < 0) i = -i;
+                f = (f32)i;
+                if (f < 4392.0f) {
+                    i = (s32)v78[0];
+                    if (i < 0) i = -i;
+                    f = (f32)i;
+                    if (!(f <= 9241.0f)) {
+                        goto L7B0;
+                    }
+                }
+                goto L740;
+            } else if (t == 3) {
+                func_001A5670(D_003A89F0, 6050.0f);
+                if (s0 < func_002AE670(100)) {
+                    goto L740;
+                }
+                if (v78[2] < -4904.0f) {
+                    goto L7B0;
+                }
+                goto L740;
+            } else if (t == 2) {
+                if (!(v78[0] < 3072.0f) || v78[0] <= -3072.0f || v78[2] <= 4904.0f) {
+                    goto L554;
+                }
+                goto L7B0;
+            } else if (t == 1) {
+                if ((v78[0] < 9241.0f && !(v78[0] <= -9241.0f)) || v78[2] < 4904.0f) {
+                    goto L554;
+                }
+                goto L7B0;
+            } else if (t == 0) {
+                D_003E99B8 = 0;
+                D_003E9998 = 0;
+                if (!(v78[2] <= 4904.0f) && func_002AE670(60) < s0) {
+                    f = v78[0];
+                    if (f <= 9241.0f && !(f < -9241.0f)) {
+                        if (f < 3072.0f) {
+                            if (!(f <= -3072.0f)) {
+                                D_003E9998 = 5;
+                                D_003E9994 = 2;
+                            }
+                        }
+                    } else {
+                        D_003E9998 = (f <= 9241.0f) ? 4 : 6;
+                        D_003E9994 = 1;
+                    }
+                    goto L7B0;
+                }
+                if (v78[2] < -4904.0f && !(func_002AE670(100) < s0)) {
+                    out[6] = v88[2];
+                    D_003E9998 = 0;
+                    func_001A5670(D_003A89F0, 6050.0f);
+                    D_003E9994 = 3;
+                }
+                goto L7B0;
+            } else {
+                D_003E9998 = 0;
+                goto L7B0;
+            }
+        L554:
+            s0 = D_003E99B8;
+            if (func_002AE670(90) < s0) {
+                D_003E9998 = 0;
+                D_003E9994 = 0;
+            }
+            goto L7B0;
+        L740:
+            s0 = D_003E99B8;
+            if (func_002AE670(90) < s0) {
+                f = (f32)s1[5];
+                if (v78[2] < f) {
+                    out[6] = v88[2];
+                } else {
+                    g = (f32)s1[6];
+                    if (v78[2] <= g) {
+                        out[6] = v78[2];
+                    } else {
+                        out[6] = g;
+                    }
+                }
+                D_003E9994 = 0;
+                D_003E99B8 = 0;
+                func_001A5670(D_003A89F0, 1960.0f);
+                D_003E9998 = 0;
+            }
+        L7B0:
+            vp = func_002A96B0(D_003E9998);
+        } else {
+            vp = func_002A96B0(0);
+        }
+        out[0] = vp[0];
+        out[1] = vp[1];
+        out[2] = vp[2];
+
+        /* common part */
+        i = *(u8 *)D_00591E57;
+        idx = (i == 0xff) ? 1 : i % 23;
+        vp = (f32 *)(D_0058E5B0 + idx * 576);
+        o2 = idx * 576;
+        t = D_003E9998;
+        if (D_003E99A0 != t && t != 0) {
+            out[4] = v78[0];
+            *(u32 *)&out[5] = 0xC3440000;
+            out[6] = v78[2];
+        }
+        D_003E99A0 = t;
+        if (*(s8 *)D_00591DB5 == 0) {
+            if (D_003E9994 != 0) {
+                *(s16 *)D_0059274C = 0;
+            } else if (((u8 *)vp)[0x13] == 0) {
+                f = (f32)*(s16 *)D_0059274C;
+                i = (s32)(0.0f + f + 24.0f * *D_003E74CC);
+                *(s16 *)D_0059274C = i;
+                if (!((s16)i < s1[0])) {
+                    *(s16 *)D_0059274C = s1[0];
+                }
+            } else {
+                f = (f32)*(s16 *)D_0059274C;
+                lim = -(s32)s1[0];
+                i = (s32)(0.0f + f - 24.0f * *D_003E74CC);
+                *(s16 *)D_0059274C = i;
+                if (!(lim < (s16)i)) {
+                    *(s16 *)D_0059274C = lim;
+                }
+            }
+        }
+
+        if (*(u8 *)D_00591E4C != 0 && *(s32 *)D_0059273C == 0) {
+            i = *(u8 *)D_00591E4C;
+            idx = (i == 0xff) ? 1 : i % 23;
+            func_00270530(D_0058E5B0 + idx * 576, v60, o2);
+            f = v60[2] - v78[2];
+            g = v60[0] - v78[0];
+            s0 = (s32)func_001CD9E0(f * f + g * g);
+            if (!(s0 >= 0x180 && func_009B45F0() == 0 && func_00270570() == 0)) {
+                p98 = v60[2];
+                p9c = v60[0] + (f32)*(s16 *)D_0059274C;
+            } else {
+                if (s0 < 0x481) {
+                    f6 = (f32)(0x480 - s0) / 76.8f;
+                } else {
+                    f6 = 0.0f;
+                }
+                if (flag != 0) {
+                    k = 10.0f;
+                    f = k - f6;
+                    g = v78[0] * f + v60[0] * f6;
+                    p98 = (v78[2] * f + v60[2] * f6) / k;
+                    p9c = (f32)*(s16 *)D_0059274C + g / k;
+                } else {
+                    p98 = v78[2];
+                    p9c = v78[0] + (f32)*(s16 *)D_0059274C;
+                }
+                if (s0 >= 0x281) {
+                    if (*(u16 *)(D_003E7574 + 0x84) == 5) {
+                        D_003E9CA0 = 60.0f;
+                        *(u8 *)D_00591E4C = 0;
+                    }
+                }
+            }
+        } else {
+            p98 = v78[2];
+            p9c = v78[0] + (f32)*(s16 *)D_0059274C;
+        }
+
+        t = *(u8 *)D_00591F24;
+        if (t == 6 || t == 2) {
+            if (func_009B45F0() == 0 && func_00270570() == 0 && (func_009E1C90(1) & 0xff) == 14
+                && (func_009E1C90(2) & 0xff) == 16) {
+                func_00B798F0(&p9c, &p98, *(u8 *)D_00591E4D);
+            }
+        }
+        if (D_003E9994 != 0) {
+            lim = s1[7] + 0x500;
+            f = (f32)lim;
+            if (f < p9c) {
+                p9c = f;
+            } else {
+                lim = -lim;
+                f = (f32)lim;
+                if (p9c < f) {
+                    p9c = f;
+                }
+            }
+        } else {
+            lim = s1[7];
+            f = (f32)lim;
+            if (f < p9c) {
+                p9c = f;
+            } else {
+                lim = -lim;
+                f = (f32)lim;
+                if (p9c < f) {
+                    p9c = f;
+                }
+            }
+        }
+        f = (f32)s1[6];
+        if (f < p98) {
+            p98 = f;
+        } else {
+            f = (f32)s1[5];
+            if (p98 < f && D_003E9994 == 0) {
+                i = (s32)v78[0];
+                if (i < 0) i = -i;
+                if (i < 0x2419) {
+                    p98 = (f32)s1[5];
+                } else {
+                    lim = (s32)v78[2];
+                    if (lim < 0) lim = -lim;
+                    g = (f32)lim;
+                    f = (f32)i;
+                    f = 8729.0f - f;
+                    g = 4648.0f - g;
+                    lim = (s32)func_001CD9E0(g * g + f * f);
+                    p98 = (f32)s1[5] - 0.3f * (f32)lim;
+                }
+            }
+        }
+
+        if (*(s32 *)D_0059273C != 0) {
+            if (D_003E9CA0 <= 16.0f) {
+                D_003E9CA0 = 16.0f;
+            } else {
+                D_003E9CA0 = D_003E9CA0 - 1.0f;
+            }
+        } else {
+            if (D_003E9CA0 <= 10.0f) {
+                D_003E9CA0 = 10.0f;
+            } else {
+                D_003E9CA0 = D_003E9CA0 - 1.0f;
+            }
+        }
+
+        if (D_003E9994 != 0) {
+            if (flag != 0) {
+                out[4] = (0.0f + p9c + 2.0f * v88[0]) / 3.0f;
+                out[5] = (0.0f + (f32)s1[1] + v88[1] * D_003E9CA0) / (1.0f + D_003E9CA0);
+                out[6] = (0.0f + p98 + v88[2] * D_003E9CA0) / (1.0f + D_003E9CA0);
+            } else {
+                out[4] = p9c;
+                out[5] = (f32)s1[1];
+                out[6] = p98;
+            }
+        } else if (flag != 0) {
+            out[4] = (0.0f + p9c + v88[0] * D_003E9CA0) / (1.0f + D_003E9CA0);
+            out[5] = (0.0f + (f32)s1[1] + v88[1] * D_003E9CA0) / (1.0f + D_003E9CA0);
+            i = (s32)v78[0];
+            if (i < 0) i = -i;
+            f = (f32)i;
+            if (!(f <= 7193.0f) && v78[2] < -4648.0f) {
+                k = 180.0f;
+            } else {
+                k = 20.0f;
+            }
+            out[6] = (0.0f + p98 + v88[2] * (k + D_003E9CA0)) / (k + (1.0f + D_003E9CA0));
+        } else {
+            out[4] = p9c;
+            out[5] = (f32)s1[1];
+            out[6] = p98;
+        }
+    }
 }

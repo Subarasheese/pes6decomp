@@ -1,97 +1,140 @@
-/* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
-extern u16 func_009B4390(void);
-u16 Pes6Random_Below(M2C_UNK);                         /* extern */
-M2C_UNK func_001C47E0(void *, M2C_UNK *, M2C_UNK);  /* extern */
-M2C_UNK func_001C48E8(void *, M2C_UNK, M2C_UNK);    /* extern */
-M2C_UNK func_00851E70(void *);                      /* extern */
-M2C_UNK func_00851F90(void *, f32 *, f32 *, f32 *, u8, u8, s32 *, u16); /* extern */
-M2C_UNK func_00853240(void *, s32);                 /* extern */
-void *func_00853430(M2C_UNK, s32 *, M2C_UNK);       /* extern */
-extern char Pes6MatchPlayers[];
-extern char D_00591E0C[];
-extern char D_00591E4D[];
-extern char D_00591E4E[];
-extern char D_00591E4F[];
-extern char D_00591E51[];
-extern char D_00591E5C[];
-extern char D_00591E60[];
-extern char D_00591F14[];
-extern char D_005926D8[];
-extern char D_008B1454[];
-extern char D_008B1458[];
-extern char D_008B145C[];
-extern char D_008B1460[];
-extern char D_008B1464[];
-extern char D_008B1466[];
-extern char D_008B14F2[];
-extern char D_008B14F4[];
-extern char D_00CBD260[];
-extern char D_00CBD26C[];
+s32 Pes6Random_Below(s32);
+void func_00851E70(s32, s32, s32, s32);
+void func_00851F90(s32, s32, s32, s32);
+s32 func_00853240(s32, s32, s32, s32);
+s32 func_00853430(s32, s32, s32, s32);
+s32 func_009B4390(void);
+void memmove(s32, s32, s32);
+void memset(s32, s32, s32);
 
-s32 func_00BC2410(void) {
-    s32 sp28;
-    u8 sp2C;
-    u8 sp2D;
-    s32 var_a7;
-    s32 var_v1;
-    u16 temp_a7;
-    u8 *var_a6;
-    u8 temp_v0;
-    void *temp_a0;
-    void *temp_a1;
-    void *temp_s0;
+s32 func_00BC2410(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7) {
+    s32 v0 = 0, v1 = 0, t4 = 0, s0 = 0;
+    volatile union { f32 f; s32 i; } f0 = { 0 };
+    s32 hi = 0, lo = 0;
+    s64 frame[6];
+    s32 sp = (s32) (u32) frame;
 
-    sp28 = 0;
-    temp_s0 = func_00853430(6, &sp28, 0x3C4);
-    if (sp28 == 0) {
-        func_001C48E8(temp_s0, 0, 0x3C4);
-        M2C_FIELD(temp_s0, s16 *, 0) = 0x17;
-        M2C_FIELD(temp_s0, s16 *, 2) = 4;
-        func_00851E70(temp_s0);
-        func_001C47E0(temp_s0 + 0x31C, ((void *)D_00CBD260), 0x64);
-        M2C_FIELD(temp_s0, u16 *, 0x380) = func_009B4390();
-        M2C_FIELD(temp_s0, s32 *, 0x388) = (s32) (*(s32 *)D_00591E0C);
-        (*(s32 *)D_008B14F4) = M2C_FIELD(temp_s0, s32 *, 0x388);
-        M2C_FIELD(temp_s0, u16 *, 0x382) = Pes6Random_Below(0xEFFF);
-        M2C_FIELD(temp_s0, u16 *, 0x384) = (u16) ~M2C_FIELD(temp_s0, u16 *, 0x382);
-        (*(s32 *)D_008B145C) = (s32) M2C_FIELD(temp_s0, u16 *, 0x382);
-        temp_a7 = M2C_FIELD(temp_s0, u16 *, 0x384);
-        (*(s32 *)D_008B1460) = (s32) temp_a7;
-        M2C_FIELD(temp_s0, u8 *, 0x38C) = (u8) (*(u8 *)D_00591E4D);
-        M2C_FIELD(temp_s0, u8 *, 0x38D) = (u8) (*(u8 *)D_00591E4E);
-        M2C_FIELD(temp_s0, f32 *, 0x390) = (f32) (*(f32 *)D_00CBD26C);
-        M2C_FIELD(temp_s0, f32 *, 0x394) = (f32) (*(f32 *)D_00591E5C);
-        M2C_FIELD(temp_s0, f32 *, 0x398) = (f32) (*(f32 *)D_00591E60);
-        M2C_FIELD(temp_s0, u8 *, 0x39C) = (u8) (*(u8 *)D_00591F14);
-        M2C_FIELD(temp_s0, s16 *, 0x386) = (s16) (s32) (*(f32 *)D_005926D8);
-        func_00851F90(temp_s0 + 0x3A4, ((void *)D_00591E60), ((void *)D_00591E5C), ((void *)D_00CBD26C), (*(u8 *)D_00591E4E), (*(u8 *)D_00591E4D), ((void *)D_008B1460), temp_a7);
-        var_a7 = 0;
-        var_a6 = &sp2C;
-        sp2C = (*(u8 *)D_00591E4F);
-        sp2D = (*(u8 *)D_00591E51);
-        do {
-            temp_v0 = *var_a6;
-            if (temp_v0 == 0xFF) {
-                var_v1 = 1;
-            } else {
-                var_v1 = (s32) temp_v0 % 23;
-            }
-            temp_a0 = temp_s0 + var_a7;
-            var_a7 += 1;
-            var_a6 += 1;
-            temp_a1 = ((void *)Pes6MatchPlayers) + (var_v1 * 0x240);
-            M2C_FIELD(temp_a0, s8 *, 0x39D) = (s8) M2C_FIELD(temp_a1, u16 *, 0x30);
-            M2C_FIELD(temp_a0, s8 *, 0x39F) = (s8) M2C_FIELD(temp_a1, s32 *, 0x98);
-        } while (var_a7 < 2);
-        (*(s16 *)D_008B1466) = 0;
-        (*(s32 *)D_008B1454) = (*(s32 *)D_008B145C);
-        (*(s16 *)D_008B1464) = 0;
-        (*(s32 *)D_008B1458) = (*(s32 *)D_008B1460);
-        (*(s16 *)D_008B14F2) = (s16) (s32) (*(f32 *)D_005926D8);
-    }
-    func_00853240(temp_s0, ((temp_s0 + 0x31C) - temp_s0) + 0xA8);
-    return 0;
+    a0 = 6;
+    a1 = (s32) ((u32) sp + 0x28U);
+    a2 = 964;
+    (*(volatile u32 *) (u32) (sp + 40)) = (u32) 0; v0 = func_00853430(a0, a1, a2, a3);
+    s0 = v0;
+    v0 = (*(volatile s32 *) (u32) (sp + 40));
+    if (v0 != 0) goto L_00BC25FC;
+    a0 = s0;
+    a1 = 0;
+    a2 = 964; memset(a0, a1, a2);
+    v1 = 23;
+    v0 = 4;
+    (*(volatile u16 *) (u32) s0) = (u16) v1;
+    a0 = s0;
+    (*(volatile u16 *) (u32) (s0 + 2)) = (u16) v0; func_00851E70(a0, a1, a2, a3);
+    a1 = (s32) 0xcc0000U;
+    a0 = (s32) ((u32) s0 + 0x31cU);
+    a1 = (s32) ((u32) a1 + 0xffffd260U);
+    a2 = 100; memmove(a0, a1, a2);
+    v0 = func_009B4390();
+    (*(volatile u16 *) (u32) (s0 + 896)) = (u16) v0;
+    a0 = 0xefff;
+    v0 = (s32) 0x590000U;
+    v1 = (*(volatile s32 *) (u32) (v0 + 7692));
+    (*(volatile u32 *) (u32) (s0 + 904)) = (u32) v1;
+    v0 = (s32) 0x8b0000U;
+    v1 = (*(volatile s32 *) (u32) (s0 + 904));
+    (*(volatile u32 *) (u32) (v0 + 5364)) = (u32) v1; v0 = Pes6Random_Below(a0);
+    (*(volatile u16 *) (u32) (s0 + 898)) = (u16) v0;
+    a7 = (s32) 0x8b0000U;
+    t4 = (*(volatile u16 *) (u32) (s0 + 898));
+    a5 = (s32) 0x590000U;
+    a6 = (s32) 0x8b0000U;
+    a4 = (s32) 0x590000U;
+    a3 = (s32) 0xcc0000U;
+    a2 = (s32) 0x590000U;
+    a1 = (s32) 0x590000U;
+    v1 = (s32) 0x590000U;
+    v0 = (s32) 0x590000U;
+    a0 = (s32) ((u32) s0 + 0x3a4U);
+    t4 = ~(t4 | 0);
+    (*(volatile u16 *) (u32) (s0 + 900)) = (u16) t4;
+    t4 = (*(volatile u16 *) (u32) (s0 + 898));
+    a5 = (*(volatile u8 *) (u32) (a5 + 7757));
+    (*(volatile u32 *) (u32) (a7 + 5212)) = (u32) t4;
+    a7 = (*(volatile u16 *) (u32) (s0 + 900));
+    (*(volatile u32 *) (u32) (a6 + 5216)) = (u32) a7;
+    (*(volatile u8 *) (u32) (s0 + 908)) = (u8) a5;
+    a4 = (*(volatile u8 *) (u32) (a4 + 7758));
+    (*(volatile u8 *) (u32) (s0 + 909)) = (u8) a4;
+    f0.f = (*(volatile f32 *) (u32) (a3 + -11668));
+    (*(volatile f32 *) (u32) (s0 + 912)) = f0.f;
+    f0.f = (*(volatile f32 *) (u32) (a2 + 7772));
+    (*(volatile f32 *) (u32) (s0 + 916)) = f0.f;
+    f0.f = (*(volatile f32 *) (u32) (a1 + 7776));
+    (*(volatile f32 *) (u32) (s0 + 920)) = f0.f;
+    v1 = (*(volatile u8 *) (u32) (v1 + 7956));
+    (*(volatile u8 *) (u32) (s0 + 924)) = (u8) v1;
+    f0.f = (*(volatile f32 *) (u32) (v0 + 9944));
+    f0.i = (s32) f0.f;
+    v0 = f0.i;
+    (*(volatile u16 *) (u32) (s0 + 902)) = (u16) v0; func_00851F90(a0, a1, a2, a3);
+    v1 = (s32) 0x590000U;
+    v0 = (s32) 0x590000U;
+    v1 = (*(volatile u8 *) (u32) (v1 + 7759));
+    a2 = (s32) 0x590000U;
+    v0 = (*(volatile u8 *) (u32) (v0 + 7761));
+    a7 = 0;
+    a6 = (s32) ((u32) sp + 0x2cU);
+    a3 = 1;
+    a4 = 23;
+    a2 = (s32) ((u32) a2 + 0xffffe5b0U);
+    a5 = 255;
+    (*(volatile u8 *) (u32) (sp + 44)) = (u8) v1;
+    (*(volatile u8 *) (u32) (sp + 45)) = (u8) v0;
+L_00BC2568:;
+    v0 = (*(volatile u8 *) (u32) a6);
+    if (v0 == a5) { v1 = a3; goto L_00BC257C; }
+    if ((s32) a4 != 0) { s64 q_ = (s32) ((s32) v0 / (s32) a4); hi = (s32) ((s32) v0 % (s32) a4); lo = q_; }
+    v1 = hi;
+L_00BC257C:;
+    v0 = (s32) ((u32) v1 << 3);
+    a0 = (s32) ((u32) s0 + (u32) a7);
+    v0 = (s32) ((u32) v0 + (u32) v1);
+    a7 = (s32) ((u32) a7 + 0x1U);
+    v0 = (s32) ((u32) v0 << 6);
+    a6 = (s32) ((u32) a6 + 0x1U);
+    a1 = (s32) ((u32) a2 + (u32) v0);
+    v1 = (*(volatile u16 *) (u32) (a1 + 48));
+    v0 = a7 < 2;
+    (*(volatile u8 *) (u32) (a0 + 925)) = (u8) v1;
+    v1 = (*(volatile s32 *) (u32) (a1 + 152));
+    { s32 c_ = v0 != 0; (*(volatile u8 *) (u32) (a0 + 927)) = (u8) v1; if (c_) goto L_00BC2568; }
+    v0 = (s32) 0x8b0000U;
+    v1 = (s32) 0x8b0000U;
+    a3 = (*(volatile s32 *) (u32) (v0 + 5212));
+    a1 = (s32) 0x8b0000U;
+    (*(volatile u16 *) (u32) (v1 + 5222)) = (u16) 0;
+    a0 = (s32) 0x8b0000U;
+    v0 = (s32) 0x8b0000U;
+    (*(volatile u32 *) (u32) (a1 + 5204)) = (u32) a3;
+    (*(volatile u16 *) (u32) (v0 + 5220)) = (u16) 0;
+    v0 = (s32) 0x8b0000U;
+    a2 = (*(volatile s32 *) (u32) (v0 + 5216));
+    v0 = (s32) 0x590000U;
+    (*(volatile u32 *) (u32) (a0 + 5208)) = (u32) a2;
+    f0.f = (*(volatile f32 *) (u32) (v0 + 9944));
+    f0.i = (s32) f0.f;
+    v0 = (s32) 0x8b0000U;
+    v1 = f0.i;
+    (*(volatile u16 *) (u32) (v0 + 5362)) = (u16) v1;
+L_00BC25FC:;
+    v0 = (s32) ((u32) s0 + 0x31cU);
+    a0 = s0;
+    v0 = (s32) ((u32) v0 - (u32) s0);
+    a1 = (s32) ((u32) v0 + 0xa8U); v0 = func_00853240(a0, a1, a2, a3);
+    v0 = 0;
+    return v0;
 }

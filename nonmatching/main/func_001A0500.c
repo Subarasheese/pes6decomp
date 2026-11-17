@@ -1,11 +1,11 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 /* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
  * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
-s64 func_0019FD40(s64, s64);
+void func_0019FD40(s64, s64);
 
-s64 func_001A0500(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
+void func_001A0500(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
     s64 v0 = 0, v1 = 0, t4 = 0, t5 = 0, t6 = 0, t7 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0, t8 = 0, t9 = 0, fp = 0;
     u64 qh_v1 = 0;
     u64 qh_a1 = 0;
@@ -38,7 +38,7 @@ L_001A056C:;
     (*(volatile u16 *) (u32) (sp + 254)) = (u16) v0;
 L_001A0598:;
     a1 = s1 & 0xffff;
-    a0 = (s32) ((u32) sp + 0xd0U); v0 = func_0019FD40(a0, a1);
+    a0 = (s32) ((u32) sp + 0xd0U); func_0019FD40(a0, a1);
     a0 = (*(volatile u16 *) (u32) (sp + 208));
     v1 = (*(volatile u16 *) (u32) (sp + 252));
     if (a0 != v1) goto L_001A05C8;
@@ -399,5 +399,5 @@ L_001A0920:;
     (*(volatile u16 *) (u32) s1) = (u16) a6;
     (*(volatile u16 *) (u32) (s1 + 2)) = (u16) 0;
 L_001A0B5C:;
-    return v0;
+    return;
 }

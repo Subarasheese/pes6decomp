@@ -1,32 +1,30 @@
-/* compiler: mwcc-3.0.1b210 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
 
-extern char D_00CBD5D0[];
+s32 func_00BC8D50(s32 a0, s32 a1) {
+    s32 v0 = 0, v1 = 0;
 
-void *func_00BC8D50(void) {
-    M2C_UNK *var_a0;
-    s32 var_a1;
-    void *temp_v0;
-
-    var_a1 = 0;
-    var_a0 = ((void *)D_00CBD5D0);
-loop_1:
-    temp_v0 = var_a0 + 0x14;
-    if ((temp_v0 != NULL) && (M2C_FIELD(var_a0, s32 *, 0x14) == 0)) {
-
-    } else {
-        var_a1 += 1;
-        var_a0 += 0x3C;
-        if (var_a1 >= 6) {
-
-        } else {
-            goto loop_1;
-        }
-    }
-    if (var_a1 == 6) {
-        return NULL;
-    }
-    return temp_v0;
+    a0 = (s32) 0xcc0000U;
+    a1 = 0;
+    a0 = (s32) ((u32) a0 + 0xffffd5d0U);
+L_00BC8D5C:;
+    v0 = (s32) ((u32) a0 + 0x14U);
+    if (v0 == 0) goto L_00BC8D90;
+    v1 = (*(volatile s32 *) (u32) v0);
+    if (v1 != 0) goto L_00BC8D90;
+L_00BC8D78:;
+    v1 = 6;
+    if (a1 != v1) goto L_00BC8DA8;
+    v0 = 0;
+    goto L_00BC8DA8;
+L_00BC8D90:;
+    a1 = (s32) ((u32) a1 + 0x1U);
+    v1 = a1 < 6;
+    { s32 c_ = v1 != 0; a0 = (s32) ((u32) a0 + 0x3cU); if (c_) goto L_00BC8D5C; }
+    goto L_00BC8D78;
+L_00BC8DA8:;
+    return v0;
 }

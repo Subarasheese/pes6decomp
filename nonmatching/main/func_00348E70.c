@@ -1,116 +1,201 @@
-/* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
-extern int func_003387D0(void *, int);
-extern s32 func_0030F050(void);
-extern s32 func_0030F330(void);
-extern s32 func_0030F140(void);
-extern u32 func_00333620(s32, u8);
-extern s32 func_00338720(void *, s32);
-extern void func_00338930(int);
-extern s32 func_003389D0(s32, s32);
-extern s32 func_00342250(void);
-extern s32 func_00338A20(void *, s32, s32);
-extern s32 func_00332FA0(void);
-extern int func_00333600(int);
-extern int func_003395B0(void *);
-extern s32 func_00338940(s32);
-extern s32 func_00338A60(void *, void *);
-extern s32 func_003389F0(void *, s32, s32);
-void *func_00338AD0(s32, M2C_UNK *, s32, M2C_UNK *); /* extern */
-s32 func_00341910(M2C_UNK, M2C_UNK, M2C_UNK);       /* extern */
-M2C_UNK func_00344EA0(void *, s32);                 /* extern */
-M2C_UNK func_003486C0(void *);                      /* extern */
-M2C_UNK func_00348820(void *, s32);                 /* extern */
-M2C_UNK func_00348C10(void *, s32);                 /* extern */
-s32 func_00356E00(void *, s32 *, M2C_UNK **);       /* extern */
-extern char D_003E61B0[];
-extern M2C_UNK func_00345580;
-extern M2C_UNK func_00345810;
-extern M2C_UNK func_003461A0;
-extern M2C_UNK func_00346CD0;
-extern M2C_UNK func_00349350;
+void Pes6Job_CopyPayloadOut(s32, s32, s32);
+s32 Pes6Job_Create(s32, s32, s32);
+s32 Pes6Job_GetArg(s32, s32);
+void Pes6Job_SetArg(s32, s32, s32);
+void Pes6Job_SetDone(s32);
+void Pes6Job_SetField4(s32, s32);
+void Pes6Job_SetPayloadWord(s32, s32, s32);
+s32 func_0030F050(s32, s32, s32, s32);
+s32 func_0030F140(s32, s32, s32, s32);
+s32 func_0030F330(s32, s32, s32, s32);
+s32 func_00332FA0(s32, s32, s32, s32, s32, s32, s32);
+s32 func_00333600(s32);
+void func_00333620(s32, s32);
+void func_00338720(s32, s32);
+void func_00338940(s32);
+s32 func_003395B0(s32);
+s32 func_00341910(s32, s32, s32, s32, s32, s32, s32, s32);
+void func_00342250(s32, s32, s32, s32, s32, s32, s32, s32);
+void func_00344EA0(s32, s32, s32, s32);
+s32 func_003486C0(s32, s32, s32, s32);
+void func_00348820(s32);
+void func_00348C10(s32, s32, s32, s32);
+s32 func_00356E00(s32, s32, s32, s32, s32, s32, s32, s32);
 
-s32 func_00348E70(void *arg0) {
-    s32 sp68;
-    M2C_UNK *sp6C;
-    M2C_UNK *var_a1;
-    s32 temp_s0;
-    s32 var_v0;
-    void *temp_s1;
-    void *temp_s2;
-    void *temp_v0;
-    void *temp_v0_2;
-    void *temp_v0_3;
-    void *temp_v0_4;
+s32 func_00348E70(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7) {
+    s32 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0;
+    s64 frame[14];
+    s32 sp = (s32) (u32) frame;
 
-    temp_s2 = M2C_FIELD(arg0, void **, 0x4C);
-    temp_s1 = M2C_FIELD(arg0, void **, 0x50);
-    temp_s0 = func_00332FA0();
-    func_00333620(0xE, func_0030F140() != 0);
-    if ((temp_s0 == 0) && (func_00333600(0xE) != 0) && (func_00333600(0xB) != 0) && (func_00333600(0xA) == 0) && !(M2C_FIELD(arg0, s32 *, 0x30) & 0x20)) {
-        func_003486C0(arg0);
-        temp_v0 = func_00338AD0(0x8000002C, &func_00346CD0, M2C_FIELD(arg0, s32 *, 8), ((void *)D_003E61B0));
-        func_00338A60(temp_v0, arg0);
-        func_003389F0(temp_v0, 0, func_003389D0((s32) arg0, 0));
-        M2C_FIELD(arg0, s32 *, 0x30) = (s32) (M2C_FIELD(arg0, s32 *, 0x30) | 0x20);
-    }
-    if (func_00333600(0xA) == 0) {
-        func_00348C10(temp_s2, func_003395B0(temp_s1));
-        if (func_00341910(1, 5, 0xA) == 0) {
-            func_00344EA0(arg0, temp_s0);
-        } else {
-            func_00348820(arg0, temp_s0);
-        }
-    }
-    if ((func_0030F050() != 0) && ((func_00341910(1, 5, 0xA) != 0) || (M2C_FIELD(arg0, s32 *, 0x30) & 0x200))) {
-        func_00333620(0xB, 0U);
-        func_00333620(0x16, 1U);
-        func_00338930((s32) arg0);
-        goto block_37;
-    }
-    if (func_00356E00(arg0 + 0x38, &sp68, &sp6C) == 0) {
-        if ((M2C_FIELD(arg0, s32 *, 0x34) == 0) && (temp_s0 == 0) && (M2C_FIELD(temp_s2, s32 *, 0x30) == 5)) {
-            if (M2C_FIELD(temp_s2, s32 *, 0x28) != 5) {
-                var_v0 = 0x29;
-                var_a1 = &func_003461A0;
-            } else {
-                var_v0 = 0x3A;
-                var_a1 = &func_00345580;
-            }
-            M2C_FIELD(arg0, s32 *, 0x34) = var_v0;
-            temp_v0_2 = func_00338AD0(M2C_FIELD(arg0, s32 *, 0x34), var_a1, M2C_FIELD(arg0, s32 *, 8), ((void *)D_003E61B0));
-            func_00338A60(temp_v0_2, arg0);
-            if (M2C_FIELD(arg0, s32 *, 0x34) == 0x29) {
-                func_00338720(temp_v0_2, 0xA);
-            }
-        }
-    } else {
-        temp_v0_3 = func_00338AD0(sp68, sp6C, M2C_FIELD(arg0, s32 *, 8), ((void *)D_003E61B0));
-        func_00338A60(temp_v0_3, arg0);
-        func_00338A20(temp_v0_3, (s32) (arg0 + 0x38), 3);
-        func_003389F0(temp_v0_3, 0, 4);
-        func_003389F0(arg0, 1, 5);
-    }
-    if (func_0030F330() == 0) {
-        func_00333620(0xB, 0U);
-        func_00338940(0x29);
-        if (M2C_FIELD(arg0, s32 *, 0x34) == 0x29) {
-            temp_v0_4 = func_00338AD0(0x2A, &func_00345810, M2C_FIELD(arg0, s32 *, 8), ((void *)D_003E61B0));
-            func_00338A60(temp_v0_4, arg0);
-            func_003389F0(temp_v0_4, 0, 0);
-            func_003389F0(temp_v0_4, 1, 5);
-            func_003389F0(temp_v0_4, 2, 2);
-        }
-        func_00342250();
-        M2C_FIELD(arg0, s32 *, 0x38) = 0;
-        M2C_FIELD(arg0, s32 *, 0x34) = 0;
-        func_003389F0(arg0, 1, 0);
-        M2C_FIELD(temp_s2, s32 *, 0x34) = 0;
-        func_003387D0(arg0, (s32) &func_00349350);
-block_37:
-        return 1;
-    }
-    return 0;
+    s2 = (*(volatile s32 *) (u32) (a0 + 76));
+    s1 = (*(volatile s32 *) (u32) (a0 + 80));
+    s3 = a0; v0 = func_00332FA0(a0, a1, a2, a3, a4, a5, a6);
+    s0 = v0; v0 = func_0030F140(a0, a1, a2, a3);
+    a1 = (u64) 0 < (u64) v0;
+    a0 = 14; func_00333620(a0, a1);
+    if (s0 != 0) { a0 = 10; goto L_00348F5C; }
+    a0 = 14; v0 = func_00333600(a0);
+    if (v0 == 0) goto L_00348F58;
+    a0 = 11; v0 = func_00333600(a0);
+    if (v0 == 0) goto L_00348F58;
+    a0 = 10; v0 = func_00333600(a0);
+    if (v0 != 0) goto L_00348F58;
+    v0 = (*(volatile s32 *) (u32) (s3 + 48));
+    v0 = v0 & 0x20;
+    if (v0 != 0) goto L_00348F58;
+    a0 = s3; v0 = func_003486C0(a0, a1, a2, a3);
+    a2 = (*(volatile s32 *) (u32) (s3 + 8));
+    v0 = (s32) 0x80000000U;
+    a1 = (s32) 0x340000U;
+    a3 = (s32) 0x3e0000U;
+    a1 = (s32) ((u32) a1 + 0x6cd0U);
+    a0 = v0 | 0x2c;
+    a3 = (s32) ((u32) a3 + 0x61b0U); v0 = Pes6Job_Create(a0, a1, a2);
+    s4 = v0;
+    a1 = s3;
+    a0 = s4; Pes6Job_CopyPayloadOut(a0, a1, a2);
+    a0 = s3;
+    a1 = 0; v0 = Pes6Job_GetArg(a0, a1);
+    a0 = s4;
+    a2 = v0;
+    a1 = 0; Pes6Job_SetArg(a0, a1, a2);
+    v0 = (*(volatile s32 *) (u32) (s3 + 48));
+    v0 = v0 | 0x20;
+    (*(volatile u32 *) (u32) (s3 + 48)) = (u32) v0;
+L_00348F58:;
+    a0 = 10;
+L_00348F5C:;
+    v0 = func_00333600(a0);
+    if (v0 != 0) goto L_00348FB4;
+    a0 = s1; v0 = func_003395B0(a0);
+    a1 = v0;
+    a0 = s2; func_00348C10(a0, a1, a2, a3);
+    a0 = 1;
+    a1 = 5;
+    a2 = 10; v0 = func_00341910(a0, a1, a2, a3, a4, a5, a6, a7);
+    if (v0 == 0) { a0 = s3; goto L_00348FAC; }
+    a0 = s3;
+    a1 = s0; func_00348820(a0);
+    goto L_00348FB4;
+L_00348FAC:;
+    a1 = s0; func_00344EA0(a0, a1, a2, a3);
+L_00348FB4:;
+    v0 = func_0030F050(a0, a1, a2, a3);
+    if (v0 == 0) { a0 = (s32) ((u32) s3 + 0x38U); goto L_00349018; }
+    a0 = 1;
+    a1 = 5;
+    a2 = 10; v0 = func_00341910(a0, a1, a2, a3, a4, a5, a6, a7);
+    if (v0 != 0) { a0 = 11; goto L_00348FF0; }
+    v0 = (*(volatile s32 *) (u32) (s3 + 48));
+    v0 = v0 & 0x200;
+    if (v0 == 0) goto L_00349014;
+    a0 = 11;
+L_00348FF0:;
+    a1 = 0; func_00333620(a0, a1);
+    a0 = 22;
+    a1 = 1; func_00333620(a0, a1);
+    a0 = s3; Pes6Job_SetDone(a0);
+    v0 = 1; goto L_003491EC;
+L_00349014:;
+    a0 = (s32) ((u32) s3 + 0x38U);
+L_00349018:;
+    a1 = (s32) ((u32) sp + 0x68U);
+    a2 = (s32) ((u32) sp + 0x6cU); v0 = func_00356E00(a0, a1, a2, a3, a4, a5, a6, a7);
+    if (v0 == 0) { v0 = (*(volatile s32 *) (u32) (s3 + 52)); goto L_0034908C; }
+    a0 = (*(volatile s32 *) (u32) (sp + 104));
+    a3 = (s32) 0x3e0000U;
+    a1 = (*(volatile s32 *) (u32) (sp + 108));
+    a2 = (*(volatile s32 *) (u32) (s3 + 8));
+    a3 = (s32) ((u32) a3 + 0x61b0U); v0 = Pes6Job_Create(a0, a1, a2);
+    s0 = v0;
+    a1 = s3;
+    a0 = s0; Pes6Job_CopyPayloadOut(a0, a1, a2);
+    a0 = s0;
+    a1 = (s32) ((u32) s3 + 0x38U);
+    a2 = 3; Pes6Job_SetPayloadWord(a0, a1, a2);
+    a0 = s0;
+    a1 = 0;
+    a2 = 4; Pes6Job_SetArg(a0, a1, a2);
+    a0 = s3;
+    a1 = 1;
+    a2 = 5; Pes6Job_SetArg(a0, a1, a2);
+    goto L_00349118;
+L_0034908C:;
+    if (v0 != 0) goto L_00349118;
+    if (s0 != 0) goto L_00349118;
+    v0 = (*(volatile s32 *) (u32) (s2 + 48));
+    v1 = 5;
+    if (v0 != v1) goto L_00349118;
+    v0 = (*(volatile s32 *) (u32) (s2 + 40));
+    if (v0 != v1) { v0 = 41; goto L_003490CC; }
+    v0 = 58;
+    a1 = (s32) 0x340000U;
+    a1 = (s32) ((u32) a1 + 0x5580U);
+    (*(volatile u32 *) (u32) (s3 + 52)) = (u32) v0; goto L_003490D8;
+L_003490CC:;
+    a1 = (s32) 0x340000U;
+    a1 = (s32) ((u32) a1 + 0x61a0U);
+    (*(volatile u32 *) (u32) (s3 + 52)) = (u32) v0;
+L_003490D8:;
+    a0 = (*(volatile s32 *) (u32) (s3 + 52));
+    a3 = (s32) 0x3e0000U;
+    a2 = (*(volatile s32 *) (u32) (s3 + 8));
+    a3 = (s32) ((u32) a3 + 0x61b0U); v0 = Pes6Job_Create(a0, a1, a2);
+    s0 = v0;
+    a1 = s3;
+    a0 = s0; Pes6Job_CopyPayloadOut(a0, a1, a2);
+    v1 = (*(volatile s32 *) (u32) (s3 + 52));
+    v0 = 41;
+    if (v1 != v0) goto L_00349118;
+    a0 = s0;
+    a1 = 10; func_00338720(a0, a1);
+L_00349118:;
+    v0 = func_0030F330(a0, a1, a2, a3);
+    if (v0 == 0) { a0 = 11; goto L_00349130; }
+    v0 = 0; goto L_003491EC;
+L_00349130:;
+    a1 = 0; func_00333620(a0, a1);
+    a0 = 41; func_00338940(a0);
+    v1 = (*(volatile s32 *) (u32) (s3 + 52));
+    v0 = 41;
+    if (v1 != v0) goto L_003491AC;
+    a2 = (*(volatile s32 *) (u32) (s3 + 8));
+    a1 = (s32) 0x340000U;
+    a3 = (s32) 0x3e0000U;
+    a0 = 42;
+    a1 = (s32) ((u32) a1 + 0x5810U);
+    a3 = (s32) ((u32) a3 + 0x61b0U); v0 = Pes6Job_Create(a0, a1, a2);
+    s0 = v0;
+    a1 = s3;
+    a0 = s0; Pes6Job_CopyPayloadOut(a0, a1, a2);
+    a0 = s0;
+    a1 = 0;
+    a2 = 0; Pes6Job_SetArg(a0, a1, a2);
+    a0 = s0;
+    a1 = 1;
+    a2 = 5; Pes6Job_SetArg(a0, a1, a2);
+    a1 = 2;
+    a0 = s0;
+    a2 = a1; Pes6Job_SetArg(a0, a1, a2);
+L_003491AC:;
+    func_00342250(a0, a1, a2, a3, a4, a5, a6, a7);
+    (*(volatile u32 *) (u32) (s3 + 56)) = (u32) 0;
+    a0 = s3;
+    a1 = 1;
+    a2 = 0;
+    (*(volatile u32 *) (u32) (s3 + 52)) = (u32) 0; Pes6Job_SetArg(a0, a1, a2);
+    a1 = (s32) 0x350000U;
+    a2 = (s32) 0x3e0000U;
+    a0 = s3;
+    a1 = (s32) ((u32) a1 + 0xffff9350U);
+    a2 = (s32) ((u32) a2 + 0x61b0U);
+    (*(volatile u32 *) (u32) (s2 + 52)) = (u32) 0; Pes6Job_SetField4(a0, a1);
+    v0 = 1;
+L_003491EC:;
+    return v0;
 }

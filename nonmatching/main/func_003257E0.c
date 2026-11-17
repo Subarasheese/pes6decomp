@@ -1,4 +1,4 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 /* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
  * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
@@ -6,7 +6,7 @@
 s32 func_00223EB0(s32, s32, s32, s32);
 s32 func_00311A50(s32, s32, s32);
 
-s32 func_003257E0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6) {
+void func_003257E0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6) {
     s32 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0;
     s32 gp = 0x3ef370;
     s64 frame[10];
@@ -68,5 +68,5 @@ L_003258BC:;
     (*(volatile u32 *) (u32) s2) = (u32) v0;
 L_003258D4:;
     v0 = 1;
-    return v0;
+    return;
 }

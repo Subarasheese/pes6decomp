@@ -9,7 +9,7 @@ s32 func_00BBB9C0(s32, s32);
 s32 func_00BF6270(void);
 s32 func_00BF6280(void);
 
-s32 func_00C1AB20(s32 a0, s32 a1) {
+void func_00C1AB20(s32 a0, s32 a1) {
     s32 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
     volatile union { f32 f; s32 i; } f1 = { 0 };
@@ -146,5 +146,5 @@ L_00C1AD2C:;
 L_00C1AD48:;
     v0 = 1;
 L_00C1AD4C:;
-    return v0;
+    return;
 }

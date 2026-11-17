@@ -6,10 +6,10 @@ extern char D_003D2A64[];
 void func_001EBF50(void *, void *, void *, s32, void *, void *, void *);
 
 void func_001F0FB0(u8 *arg0, f32 *arg1) {
-    f32 p[4];
-    f32 q[16];
-    f32 pos[4];
     f32 v[16];
+    f32 pos[4];
+    f32 q[16];
+    f32 p[4];
     f32 a, b, f6, f1;
     s32 i, n;
     s32 idx;

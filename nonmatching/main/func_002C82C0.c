@@ -1,36 +1,46 @@
-/* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
+void func_002C8220(s32, s32, s32, s32);
 
-M2C_UNK func_002C8220(void *, u8);                  /* extern */
+void func_002C82C0(s32 a0, s32 a1, s32 a2, s32 a3) {
+    s32 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0;
 
-void func_002C82C0(void *arg0, s32 arg1) {
-    s32 var_a0;
-    s32 var_s2;
-    void *temp_v1;
-
-    var_a0 = 0;
-    do {
-        temp_v1 = arg0 + var_a0;
-        M2C_FIELD(temp_v1, s8 *, 6) = 0;
-        var_a0 += 7;
-        M2C_FIELD(temp_v1, s8 *, 7) = 0;
-        M2C_FIELD(temp_v1, s8 *, 8) = 0;
-        M2C_FIELD(temp_v1, s8 *, 9) = 0;
-        M2C_FIELD(temp_v1, s8 *, 0xA) = 0;
-        M2C_FIELD(temp_v1, s8 *, 0xB) = 0;
-        M2C_FIELD(temp_v1, s8 *, 0xC) = 0;
-    } while (var_a0 < 0xE);
-    M2C_FIELD(arg0, s8 *, 0) = 3;
-    var_s2 = 0;
-    M2C_FIELD(arg0, s8 *, 1) = 0x10;
-    M2C_FIELD(arg0, s8 *, 2) = 0x17;
-    M2C_FIELD(arg0, s8 *, 3) = 0x21;
-    M2C_FIELD(arg0, s8 *, 4) = 0x1E;
-    M2C_FIELD(arg0, s8 *, 5) = 0x26;
-    do {
-        func_002C8220(arg0, M2C_FIELD((arg1 + var_s2), u8 *, 0x14));
-        var_s2 += 1;
-    } while (var_s2 < 0xB);
+    s1 = a0;
+    s0 = a1;
+    a0 = 0;
+L_002C82E0:;
+    v1 = (s32) ((u32) s1 + (u32) a0);
+    (*(volatile u8 *) (u32) (v1 + 6)) = (u8) 0;
+    a0 = (s32) ((u32) a0 + 0x7U);
+    (*(volatile u8 *) (u32) (v1 + 7)) = (u8) 0;
+    v0 = a0 < 14;
+    (*(volatile u8 *) (u32) (v1 + 8)) = (u8) 0;
+    (*(volatile u8 *) (u32) (v1 + 9)) = (u8) 0;
+    (*(volatile u8 *) (u32) (v1 + 10)) = (u8) 0;
+    (*(volatile u8 *) (u32) (v1 + 11)) = (u8) 0;
+    { s32 c_ = v0 != 0; (*(volatile u8 *) (u32) (v1 + 12)) = (u8) 0; if (c_) goto L_002C82E0; }
+    v1 = 3;
+    v0 = 16;
+    (*(volatile u8 *) (u32) s1) = (u8) v1;
+    s2 = 0;
+    (*(volatile u8 *) (u32) (s1 + 1)) = (u8) v0;
+    v1 = 23;
+    (*(volatile u8 *) (u32) (s1 + 2)) = (u8) v1;
+    v0 = 33;
+    (*(volatile u8 *) (u32) (s1 + 3)) = (u8) v0;
+    v1 = 30;
+    v0 = 38;
+    (*(volatile u8 *) (u32) (s1 + 4)) = (u8) v1;
+    (*(volatile u8 *) (u32) (s1 + 5)) = (u8) v0;
+L_002C8340:;
+    v0 = (s32) ((u32) s0 + (u32) s2);
+    a1 = (*(volatile u8 *) (u32) (v0 + 20));
+    a0 = s1; func_002C8220(a0, a1, a2, a3);
+    s2 = (s32) ((u32) s2 + 0x1U);
+    v1 = s2 < 11;
+    if (v1 != 0) goto L_002C8340;
+    return;
 }

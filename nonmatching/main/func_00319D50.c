@@ -1,46 +1,68 @@
-/* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
-extern int func_003387D0(void *, int);
-extern s32 func_003389F0(void *, s32, s32);
-s32 func_00992220(void *);                          /* extern */
-extern char Pes6MatchPlayers[];
-extern M2C_UNK func_00319BD0;
+void Pes6Job_SetArg(s32, s32, s32);
+void Pes6Job_SetField4(s32, s32);
+s32 func_00992220(s32, s32, s32, s32);
 
-s32 func_00319D50(void *arg0) {
-    s32 var_a0;
-    u8 temp_v1;
-    u8 temp_v1_2;
-    void *temp_s0;
-    void *temp_s1;
+s32 func_00319D50(s32 a0, s32 a1, s32 a2, s32 a3) {
+    s32 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0;
+    s32 hi = 0, lo = 0;
 
-    temp_s1 = M2C_FIELD(arg0, void **, 0x44);
-    if (M2C_FIELD(temp_s1, u8 *, 8) == 0) {
-        goto block_13;
-    }
-    temp_s0 = temp_s1 + 0x74;
-    if (M2C_FIELD(temp_s1, s32 *, 0x74) == 0xA) {
-        temp_v1 = M2C_FIELD(temp_s0, u8 *, 0x20);
-        if ((temp_v1 != 3) && (temp_v1 != 2) && (temp_v1 != 1)) {
-            goto block_13;
-        }
-        temp_v1_2 = M2C_FIELD(temp_s0, u8 *, 4);
-        if (temp_v1_2 == 0xFF) {
-            var_a0 = 1;
-        } else {
-            var_a0 = (s32) temp_v1_2 % 23;
-        }
-        if (func_00992220(((void *)Pes6MatchPlayers) + (var_a0 * 0x240)) != 0) {
-            func_003387D0(arg0, (s32) &func_00319BD0);
-            func_003389F0(arg0, 0, (s32) M2C_FIELD(temp_s0, u8 *, 4));
-            func_003389F0(arg0, 1, (s32) M2C_FIELD(temp_s1, u8 *, 0xB8));
-            func_003389F0(arg0, 2, 0);
-            func_003389F0(arg0, 3, 0);
-            return 1;
-        }
-        goto block_13;
-    }
-block_13:
-    return 0;
+    s1 = (*(volatile s32 *) (u32) (a0 + 68));
+    v0 = (*(volatile u8 *) (u32) (s1 + 8));
+    { s32 c_ = v0 != 0; s2 = a0; if (c_) goto L_00319D7C; }
+    v0 = 0; goto L_00319E60;
+L_00319D7C:;
+    v1 = (*(volatile s32 *) (u32) (s1 + 116));
+    v0 = 10;
+    { s32 c_ = v1 != v0; s0 = (s32) ((u32) s1 + 0x74U); if (c_) goto L_00319E5C; }
+    v1 = (*(volatile u8 *) (u32) (s0 + 32));
+    v0 = 3;
+    if (v1 == v0) { v1 = (*(volatile u8 *) (u32) (s0 + 4)); goto L_00319DC0; }
+    v0 = 2;
+    if (v1 == v0) goto L_00319DBC;
+    v0 = 1;
+    if (v1 == v0) goto L_00319DBC;
+    v0 = 0; goto L_00319E60;
+L_00319DBC:;
+    v1 = (*(volatile u8 *) (u32) (s0 + 4));
+L_00319DC0:;
+    v0 = 255;
+    if (v1 == v0) { a0 = 1; goto L_00319DD8; }
+    v0 = 23;
+    if ((s32) v0 != 0) { s64 q_ = (s32) ((s32) v1 / (s32) v0); hi = (s32) ((s32) v1 % (s32) v0); lo = q_; }
+    a0 = hi;
+L_00319DD8:;
+    v1 = (s32) ((u32) a0 << 3);
+    v0 = (s32) 0x590000U;
+    v1 = (s32) ((u32) v1 + (u32) a0);
+    v0 = (s32) ((u32) v0 + 0xffffe5b0U);
+    v1 = (s32) ((u32) v1 << 6);
+    a0 = (s32) ((u32) v0 + (u32) v1); v0 = func_00992220(a0, a1, a2, a3);
+    if (v0 == 0) goto L_00319E5C;
+    a1 = (s32) 0x320000U;
+    a2 = (s32) 0x3e0000U;
+    a0 = s2;
+    a1 = (s32) ((u32) a1 + 0xffff9bd0U);
+    a2 = (s32) ((u32) a2 + 0x1510U); Pes6Job_SetField4(a0, a1);
+    a2 = (*(volatile u8 *) (u32) (s0 + 4));
+    a0 = s2;
+    a1 = 0; Pes6Job_SetArg(a0, a1, a2);
+    a2 = (*(volatile u8 *) (u32) (s1 + 184));
+    a0 = s2;
+    a1 = 1; Pes6Job_SetArg(a0, a1, a2);
+    a0 = s2;
+    a1 = 2;
+    a2 = 0; Pes6Job_SetArg(a0, a1, a2);
+    a0 = s2;
+    a1 = 3;
+    a2 = 0; Pes6Job_SetArg(a0, a1, a2);
+    v0 = 1; goto L_00319E60;
+L_00319E5C:;
+    v0 = 0;
+L_00319E60:;
+    return v0;
 }

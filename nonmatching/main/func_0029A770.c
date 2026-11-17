@@ -1,12 +1,12 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
 extern void func_0029AAD0(f32 *out, s32 k, f32 a, f32 b, f32 c, f32 d);
 
 
 void func_0029A770(u8 *pts, s32 n, f32 *out, f32 x) {
-    f32 v0[4];
     f32 v1[4];
+    f32 v0[4];
     s32 t = (s32)x;
     f32 t2, t3;
 
@@ -44,6 +44,6 @@ void func_0029A770(u8 *pts, s32 n, f32 *out, f32 x) {
     }
     t2 = x * x;
     t3 = t2 * x;
-    out[0] = v0[3] + (v0[1] * t2 + v0[0] * t3 + v0[2] * x);
-    out[1] = v1[3] + (v1[1] * t2 + v1[0] * t3 + v1[2] * x);
+    out[0] = v0[3] + (v0[0] * t3 + v0[1] * t2 + v0[2] * x);
+    out[1] = v1[3] + (v1[0] * t3 + v1[1] * t2 + v1[2] * x);
 }

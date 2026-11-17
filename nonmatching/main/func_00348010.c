@@ -1,382 +1,185 @@
-/* compiler: ee-gcc-2.9 */
-/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
- * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+/* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-s64 Pes6BitSet_Initialize(s64, s64, s64);
-s64 Pes6BitSet_Write(s64, s64, s64);
-s64 Pes6Job_SendMessage(s64, s64, s64, s64, s64, s64, s64);
-s64 Pes6Job_SetDone(s64);
-s64 Pes6MatchClock_GetRemaining(void);
-s64 Pes6MatchContext_GetHalf(void);
-s64 Pes6MatchPlayer_GetTeamRelativeXZ(s64, s64, s64);
-s64 func_002AE670(s64);
-s64 func_0030D990(s64);
-f32 func_0030EBB0(s64, s64, f32);
-s64 func_0030ED20(s64, s64);
-s64 func_0030EE80(s64);
-s64 func_00310CF0(s64);
-s64 func_00311570(s64);
-s64 func_00311730(s64, s64);
-s64 func_003139F0(s64, s64);
-s64 func_00325CE0(s64, s64, s64);
-s64 func_003260E0(s64, s64);
-s64 func_00333030(s64, s64, s64, s64, s64, s64, s64);
-s64 func_00333190(s64);
-s64 func_003332D0(s64, s64, s64, s64);
-s64 func_003336E0(s64, s64);
-s64 func_00333710(s64, s64);
-s64 func_003405E0(f32, f32);
-s64 func_003407B0(s64, s64, s64, s64, f32, f32);
-s64 func_00340880(f32, f32);
-s64 func_00340980(f32, f32);
-s64 func_00341880(s64, s64);
-s64 func_009B3070(s64, s64, s64, s64);
+extern char D_00CBCDE0[];
+extern char D_0058E5C6[];
+extern char D_0058E5D6[];
+extern char D_0058E5D8[];
+extern char D_0058E5B0[];
+extern char D_0058E6D8[];
 
-s64 func_00348010(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, f32 fa12, f32 fa13) {
-    s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0, fp = 0;
-    u64 qh_v0 = 0;
-    union { f32 f; s32 i; } f0 = { 0 };
-    union { f32 f; s32 i; } f1 = { 0 };
-    union { f32 f; s32 i; } f12 = { fa12 };
-    union { f32 f; s32 i; } f13 = { fa13 };
-    union { f32 f; s32 i; } f20 = { 0 };
-    union { f32 f; s32 i; } f21 = { 0 };
-    s64 hi = 0, lo = 0;
-    s32 fcc = 0;
-    s64 frame[36];
-    s64 sp = (s32) (u32) frame;
+void func_0030EE80(void *out);
+f32 func_0030EBB0(s32 a, s32 b, f32 f);
+s32 func_003405E0(f32 a, f32 b);
+void func_0030DCC0(f32 *a, f32 *b, s32 c);
+s32 func_00333710(void *a, s32 b);
+s32 func_00340880(f32 a, f32 b);
+s32 func_00340980(f32 a, f32 b);
+void func_00325CE0(s32 *out, void *a, s32 c);
+void func_0030ED20(s32 *out, s32 a);
+void func_00313A80(void *bs, s32 n, void *buf);
+void func_003139F0(void *bs, s32 a);
+s32 func_00333190(s32 a);
+void func_003332D0(s32 a);
+s32 func_00333030(s32 a);
+void func_00313B30(void *bs, s32 idx, s32 val);
+s32 func_0030E830(void);
+s32 func_0030E780(void);
+s32 func_00311570(s32 a);
+s32 func_003260E0(void *a, s32 b);
+s32 func_002AE670(s32 a);
+s32 func_00341880(s32 a, s32 b);
+s32 func_00310CF0(s32 a);
+s32 func_003407B0(s32 a, f32 b, f32 c);
+s32 func_009B3070(s32 a, s32 b);
+s32 func_00311730(s32 a, s32 b);
+s32 func_0030D990(s32 a);
+s32 func_003336E0(void *a, s32 b);
+void func_00333440(s32 a, void *b, s32 c);
+void func_00338930(void *a);
 
-    (*(volatile u32 *) (u32) (sp + 204)) = (u32) a0;
-    fp = (*(volatile s32 *) (u32) (a0 + 68));
-    s1 = (*(volatile s32 *) (u32) (a0 + 64));
-    s3 = (*(volatile s32 *) (u32) (a0 + 76));
-    a0 = (s32) ((u32) sp + 0xf0U); v0 = func_0030EE80(a0);
-    a0 = (*(volatile u8 *) (u32) (s3 + 22));
-    f12.f = (*(volatile f32 *) (u32) (sp + 240));
-    a1 = 1; f0.f = func_0030EBB0(a0, a1, f12.f);
-    a0 = (*(volatile u8 *) (u32) (s3 + 22));
-    f12.f = (*(volatile f32 *) (u32) (sp + 248));
-    f20.i = f0.i;
-    a1 = 1; f0.f = func_0030EBB0(a0, a1, f12.f);
-    f21.i = f0.i;
-    f12.i = f20.i;
-    f13.i = f21.i; v0 = func_003405E0(f12.f, f13.f);
-    a2 = (*(volatile u8 *) (u32) (s3 + 22));
-    s0 = v0;
-    a0 = (s32) ((u32) sp + 0x11cU);
-    a1 = (s32) ((u32) sp + 0x118U); v0 = Pes6MatchPlayer_GetTeamRelativeXZ(a0, a1, a2);
-    a1 = (*(volatile u8 *) (u32) (s3 + 19));
-    a0 = fp; v0 = func_00333710(a0, a1);
-    s2 = v0;
-    f12.i = f20.i;
-    f13.i = f21.i; v0 = func_00340880(f12.f, f13.f);
-    s6 = v0;
-    f12.i = f20.i;
-    f13.i = f21.i; v0 = func_00340980(f12.f, f13.f);
-    a2 = (*(volatile u8 *) (u32) (s3 + 20));
-    s7 = v0;
-    a0 = (s32) ((u32) sp + 0x114U);
-    a1 = s1; v0 = func_00325CE0(a0, a1, a2);
-    a2 = (*(volatile u8 *) (u32) (s3 + 19));
-    a0 = (s32) ((u32) sp + 0x110U);
-    v1 = (*(volatile u8 *) (u32) (s3 + 20));
-    a1 = (*(volatile u8 *) (u32) (s3 + 21));
-    v0 = (s32) ((u32) a2 << 3);
-    v0 = (s32) ((u32) v0 + (u32) s3);
-    s4 = a2 ^ v1;
-    v0 = (*(volatile s32 *) (u32) (v0 + 24));
-    s4 = (u64) s4 < (u64) (s64) 1;
-    { u32 a_ = (u32) (sp + 176) & ~15U; *(volatile u64 *) a_ = (u64) v0; *(volatile u64 *) (a_ + 8) = qh_v0; } v0 = func_0030ED20(a0, a1);
-    s5 = (s32) ((u32) sp + 0xd0U);
-    a1 = 75;
-    a0 = s5;
-    a2 = (s32) ((u32) sp + 0x100U); v0 = Pes6BitSet_Initialize(a0, a1, a2);
-    a1 = (*(volatile u8 *) (u32) (s3 + 19));
-    a0 = s5; v0 = func_003139F0(a0, a1);
-    a0 = (u64) 0 < (u64) s0;
-    if (a0 == 0) goto L_00348148;
-    a0 = 24000; v0 = func_00333190(a0);
-    a0 = (u64) 0 < (u64) v0;
-L_00348148:;
-    v0 = func_003332D0(a0, a1, a2, a3);
-    a0 = 24000; v0 = func_00333030(a0, a1, a2, a3, a4, a5, a6);
-    a2 = s0 | v0;
-    a0 = s5;
-    a1 = 0; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a0 = s5;
-    a1 = 1;
-    a2 = s0; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = Pes6MatchContext_GetHalf();
-    v0 = v0 ^ 0x1;
-    a2 = (u64) v0 < (u64) (s64) 1;
-    if (a2 == 0) goto L_003481A0;
-    v0 = Pes6MatchClock_GetRemaining();
-    v0 = (u64) 0 < (u64) v0;
-    a2 = v0 ^ 0x1;
-L_003481A0:;
-    if (a2 == 0) { a0 = s5; goto L_003481B4; }
-    v0 = s2 ^ 0xd;
-    a2 = (u64) v0 < (u64) (s64) 1;
-    a0 = s5;
-L_003481B4:;
-    a1 = 2; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = (s32) 0x46140000U;
-    v0 = v0 | 0x6400;
-    f0.i = (s32) v0;
-    fcc = f20.f < f0.f;
-    { s32 c_ = fcc; a2 = 1; if (c_) goto L_003481DC; }
-    a2 = 0;
-L_003481DC:;
-    if (a2 != 0) { a0 = s5; goto L_0034820C; }
-    f1.i = f21.i & 0x7FFFFFFF;
-    v0 = (s32) 0x45990000U;
-    v0 = v0 | 0x4000;
-    f0.i = (s32) v0;
-    fcc = f1.f <= f0.f;
-    { s32 c_ = !fcc; a2 = 1; if (c_) goto L_00348208; }
-    a2 = 0;
-L_00348208:;
-    a0 = s5;
-L_0034820C:;
-    a1 = 3; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a0 = (*(volatile u8 *) (u32) (s3 + 22)); v0 = func_00311570(a0);
-    a2 = v0;
-    a0 = s5;
-    a1 = 4; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = (u64) 0 < (u64) s0;
-    a0 = s5;
-    a2 = v0 ^ 0x1;
-    a1 = 5; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a1 = (*(volatile u8 *) (u32) (s3 + 22));
-    a0 = s1; v0 = func_003260E0(a0, a1);
-    a2 = v0;
-    a0 = s5;
-    a1 = 6; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = (s32) 0xcc0000U;
-    v0 = (*(volatile u8 *) (u32) (v0 + -12832));
-    v0 = v0 ^ 0x1;
-    a2 = (u64) v0 < (u64) (s64) 1;
-    if (a2 == 0) { a0 = s5; goto L_00348290; }
-    a0 = 224; v0 = func_002AE670(a0);
-    a0 = v0;
-    a1 = 6; v0 = func_00341880(a0, a1);
-    a2 = (u64) 0 < (u64) v0;
-    a0 = s5;
-L_00348290:;
-    a1 = 7; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = (s32) 0x460c0000U;
-    v0 = v0 | 0x6400;
-    f0.i = (s32) v0;
-    fcc = f20.f <= f0.f;
-    { s32 c_ = !fcc; a2 = 1; if (c_) goto L_003482B8; }
-    a2 = 0;
-L_003482B8:;
-    if (a2 == 0) { a0 = s5; goto L_003482E8; }
-    f1.i = f21.i & 0x7FFFFFFF;
-    v0 = (s32) 0x45a90000U;
-    v0 = v0 | 0x4000;
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    { s32 c_ = fcc; a2 = 1; if (c_) goto L_003482E4; }
-    a2 = 0;
-L_003482E4:;
-    a0 = s5;
-L_003482E8:;
-    a1 = 8; v0 = Pes6BitSet_Write(a0, a1, a2);
+s32 func_00348010(char *a0)
+{
+    u8 *s3 = *(u8 **)(a0 + 0x4c);
+    void *s1 = *(void **)(a0 + 0x40);
+    void *fp = *(void **)(a0 + 0x44);
+    f32 fz, fx;
+    s32 n114, n110;
+    u32 buf[4];
+    f32 pos[4];
+    u32 bsa[8];
+    u32 *bs = bsa;
+    f32 f20, f21;
+    s32 s0, s2, s4, s6, s7, v, t, i, j, a, b;
+    s32 vtab;
+
+    func_0030EE80(pos);
+    f20 = func_0030EBB0(s3[22], 1, pos[0]);
+    f21 = func_0030EBB0(s3[22], 1, pos[2]);
+    s0 = func_003405E0(f20, f21);
+    func_0030DCC0(&fz, &fx, s3[22]);
+    s2 = func_00333710(fp, s3[19]);
+    s6 = func_00340880(f20, f21);
+    s7 = func_00340980(f20, f21);
+    func_00325CE0(&n114, s1, s3[20]);
+    s4 = (s3[19] ^ s3[20]) == 0;
+    vtab = *(s32 *)(s3 + s3[19] * 8 + 0x18);
+    func_0030ED20(&n110, s3[21]);
+    func_00313A80(bs, 75, buf);
+    func_003139F0(bs, s3[19]);
+    t = s0 != 0;
+    if (t) {
+        t = func_00333190(24000) != 0;
+    }
+    func_003332D0(t);
+    v = func_00333030(24000);
+    func_00313B30(bs, 0, s0 | v);
+    func_00313B30(bs, 1, s0);
+
+    t = (func_0030E830() ^ 1) == 0;
+    if (t) {
+        t = !(func_0030E780() != 0);
+    }
+    if (t) {
+        t = (s2 ^ 13) == 0;
+    }
+    func_00313B30(bs, 2, t);
+
+    t = f20 < 9497.0f;
+    if (!t) {
+        f32 ab = f21 < 0 ? -f21 : f21;
+        t = !(ab <= 4904.0f);
+    }
+    func_00313B30(bs, 3, t);
+    func_00313B30(bs, 4, func_00311570(s3[22]));
+    func_00313B30(bs, 5, !(s0 != 0));
+    func_00313B30(bs, 6, func_003260E0(s1, s3[22]));
+
+    t = (*(u8 *)D_00CBCDE0 ^ 1) == 0;
+    if (t) {
+        t = func_00341880(func_002AE670(224), 6) != 0;
+    }
+    func_00313B30(bs, 7, t);
+
+    t = !(f20 <= 8985.0f);
+    if (t) {
+        f32 ab = f21 < 0 ? -f21 : f21;
+        t = ab < 5416.0f;
+    }
+    func_00313B30(bs, 8, t);
+
     s0 = s6 | s7;
-    a0 = s5;
-    a1 = 9;
-    a2 = s0; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a0 = 0; v0 = func_00310CF0(a0);
-    s1 = v0;
-    a0 = 1; v0 = func_00310CF0(a0);
-    v0 = (s32) ((u32) s1 + (u32) v0);
-    v0 = (u64) 0 < (u64) v0;
-    if (v0 != 0) { a2 = v0 ^ 0x1; goto L_00348340; }
-    a0 = (*(volatile u8 *) (u32) (s3 + 21));
-    f13.i = f21.i;
-    f12.i = f20.i; v0 = func_003407B0(a0, a1, a2, a3, f12.f, f13.f);
-    v0 = (u64) 0 < (u64) v0;
-    a2 = v0 ^ 0x1;
-L_00348340:;
-    if (a2 == 0) { a0 = s5; goto L_00348360; }
-    v0 = (*(volatile u8 *) (u32) (s3 + 19));
-    v0 = (s32) ((u32) v0 << 3);
-    v0 = (s32) ((u32) v0 + (u32) s3);
-    v0 = (*(volatile s32 *) (u32) (v0 + 24));
-    a2 = v0 < 2;
-    a0 = s5;
-L_00348360:;
-    a1 = 10; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = (u64) 0 < (u64) s0;
-    a2 = v0 ^ 0x1;
-    if (a2 == 0) { a0 = s5; goto L_00348494; }
-    v1 = (*(volatile u8 *) (u32) (s3 + 21));
-    v0 = 255;
-    if (v1 == v0) { a0 = 1; goto L_00348394; }
-    v0 = 23;
-    if ((s32) v0 != 0) { s64 q_ = (s32) ((s32) v1 / (s32) v0); hi = (s32) ((s32) v1 % (s32) v0); lo = q_; }
-    a0 = hi;
-L_00348394:;
-    v1 = (*(volatile u8 *) (u32) (s3 + 22));
-    v0 = 255;
-    if (v1 == v0) { a1 = 1; goto L_003483B0; }
-    v0 = 23;
-    if ((s32) v0 != 0) { s64 q_ = (s32) ((s32) v1 / (s32) v0); hi = (s32) ((s32) v1 % (s32) v0); lo = q_; }
-    a1 = hi;
-L_003483B0:;
-    v0 = (s32) ((u32) a0 << 3);
-    v1 = (s32) 0x590000U;
-    a0 = (s32) ((u32) v0 + (u32) a0);
-    v1 = (s32) ((u32) v1 + 0xffffe5c6U);
-    s1 = (s32) ((u32) a0 << 6);
-    v0 = 13;
-    v1 = (s32) ((u32) v1 + (u32) s1);
-    v1 = (*(volatile u8 *) (u32) v1);
-    if (v1 != v0) { v0 = 0; goto L_0034848C; }
-    v0 = (s32) ((u32) a1 << 3);
-    v1 = (s32) 0x590000U;
-    v0 = (s32) ((u32) v0 + (u32) a1);
-    v1 = (s32) ((u32) v1 + 0xffffe5d8U);
-    s0 = (s32) ((u32) v0 << 6);
-    s6 = (s32) ((u32) v1 + (u32) s1);
-    v0 = (s32) 0x590000U;
-    v0 = (s32) ((u32) v0 + 0xffffe5d6U);
-    s7 = (s32) ((u32) v0 + (u32) s0);
-    a0 = (*(volatile u16 *) (u32) s7);
-    a1 = (*(volatile u16 *) (u32) s6); v0 = func_009B3070(a0, a1, a2, a3);
-    v0 = v0 & 0xffff;
-    at = v0 < 12288;
-    if (at == 0) goto L_00348488;
-    v0 = (s32) 0x590000U;
-    v0 = (s32) ((u32) v0 + 0xffffe5d8U);
-    v0 = (s32) ((u32) v0 + (u32) s0);
-    a0 = (*(volatile u16 *) (u32) v0);
-    a1 = (*(volatile u16 *) (u32) s6); v0 = func_009B3070(a0, a1, a2, a3);
-    v0 = v0 & 0xffff;
-    at = v0 < 12288;
-    if (at == 0) goto L_00348488;
-    v0 = (s32) 0x590000U;
-    v0 = (s32) ((u32) v0 + 0xffffe5b0U);
-    v1 = (s32) ((u32) v0 + (u32) s0);
-    v1 = (*(volatile u8 *) (u32) v1);
-    v0 = (s32) 0x590000U;
-    v0 = (s32) ((u32) v0 + 0xffffe6d8U);
-    v0 = (s32) ((u32) v0 + (u32) s1);
-    v1 = (s32) ((u32) v1 << 1);
-    v0 = (s32) ((u32) v1 + (u32) v0);
-    a1 = (*(volatile u16 *) (u32) v0);
-    a0 = (*(volatile u16 *) (u32) s7); v0 = func_009B3070(a0, a1, a2, a3);
-    v0 = v0 & 0xffff;
-    at = v0 < 12288;
-    if (at == 0) goto L_00348488;
-    v0 = 1; goto L_0034848C;
-L_00348488:;
-    v0 = 0;
-L_0034848C:;
-    a2 = (u64) 0 < (u64) v0;
-    a0 = s5;
-L_00348494:;
-    a1 = 12; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a1 = (*(volatile u8 *) (u32) (s3 + 22));
-    a0 = (*(volatile u8 *) (u32) (s3 + 21)); v0 = func_00311730(a0, a1);
-    a2 = v0;
-    a0 = s5;
-    a1 = 13; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a0 = (*(volatile u8 *) (u32) (s3 + 22)); v0 = func_0030D990(a0);
-    a2 = v0 ^ 0;
-    a2 = (u64) a2 < (u64) (s64) 1;
-    if (a2 == 0) { a0 = s5; goto L_0034852C; }
-    v0 = (s32) 0xc6100000U;
-    v0 = v0 | 0x6400;
-    f1.f = (*(volatile f32 *) (u32) (sp + 284));
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    { s32 c_ = fcc; v1 = 1; if (c_) goto L_003484F4; }
-    v1 = 0;
-L_003484F4:;
-    if (v1 == 0) { a2 = (u64) 0 < (u64) v1; goto L_00348528; }
-    f0.f = (*(volatile f32 *) (u32) (sp + 280));
-    f1.i = f0.i & 0x7FFFFFFF;
-    v0 = (s32) 0x45a10000U;
-    v0 = v0 | 0x4000;
-    f0.i = (s32) v0;
-    fcc = f1.f < f0.f;
-    { s32 c_ = fcc; v1 = 1; if (c_) goto L_00348524; }
-    v1 = 0;
-L_00348524:;
-    a2 = (u64) 0 < (u64) v1;
-L_00348528:;
-    a0 = s5;
-L_0034852C:;
-    a1 = 14; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = (*(volatile s32 *) (u32) (s3 + 40));
-    a0 = s5;
-    a1 = 15;
-    v0 = v0 ^ 0x5;
-    a2 = (u64) v0 < (u64) (s64) 1; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = (*(volatile s32 *) (u32) (sp + 276));
-    v0 = v0 < 5;
-    a2 = v0 ^ 0x1;
-    if (a2 == 0) { a0 = s5; goto L_00348578; }
-    v0 = s2 < 10;
-    a2 = v0 ^ 0x1;
-    if (a2 == 0) goto L_00348574;
-    a2 = s2 < 17;
-L_00348574:;
-    a0 = s5;
-L_00348578:;
-    a1 = 16; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = (u64) 0 < (u64) s4;
-    a0 = s5;
-    s0 = v0 ^ 0x1;
-    a1 = 17;
-    a2 = s0; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a0 = s5;
-    a1 = 19;
-    a2 = s4; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = (*(volatile u8 *) (u32) (s3 + 19));
-    a0 = fp;
-    a1 = v0 ^ 0x1; v0 = func_003336E0(a0, a1);
-    v0 = v0 ^ 0xd;
-    a0 = s5;
-    a2 = (u64) v0 < (u64) (s64) 1;
-    a1 = 22; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a0 = s5;
-    a1 = 23;
-    a2 = s0; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a0 = s5;
-    a1 = 24;
-    a2 = s4; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a2 = s4;
-    a0 = s5;
-    a1 = 28; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a2 = s0;
-    a0 = s5;
-    a1 = 29; v0 = Pes6BitSet_Write(a0, a1, a2);
-    { u32 a_ = (u32) (sp + 176) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
-    a0 = s5;
-    a1 = 38;
-    a2 = v0 < 3; v0 = Pes6BitSet_Write(a0, a1, a2);
-    v0 = (s32) 0x458c0000U;
-    v0 = v0 | 0x42ab;
-    f0.i = (s32) v0;
-    fcc = f0.f < f20.f;
-    { s32 c_ = fcc; a2 = 1; if (c_) goto L_00348640; }
-    a2 = 0;
-L_00348640:;
-    a0 = s5;
-    a1 = 39; v0 = Pes6BitSet_Write(a0, a1, a2);
-    { u32 a_ = (u32) (sp + 176) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
-    a0 = s5;
-    a1 = 40;
-    v0 = v0 < 3;
-    a2 = v0 ^ 0x1; v0 = Pes6BitSet_Write(a0, a1, a2);
-    a1 = s5;
-    a0 = 57;
-    a2 = 1; v0 = Pes6Job_SendMessage(a0, a1, a2, a3, a4, a5, a6);
-    a0 = (*(volatile s32 *) (u32) (sp + 204)); v0 = Pes6Job_SetDone(a0);
-    v0 = 1;
-    return v0;
+    func_00313B30(bs, 9, s0);
+
+    a = func_00310CF0(0);
+    b = func_00310CF0(1);
+    v = (a + b) != 0;
+    if (v) {
+        t = v ^ 1;
+    } else {
+        v = func_003407B0(s3[21], f20, f21) != 0;
+        t = v ^ 1;
+    }
+    if (t) {
+        t = vtab < 2;
+    }
+    func_00313B30(bs, 10, t);
+
+    t = (s0 != 0) ^ 1;
+    if (t) {
+        if (s3[21] == 255) i = 1; else i = s3[21] % 23;
+        if (s3[22] == 255) j = 1; else j = s3[22] % 23;
+        if (*(u8 *)(D_0058E5C6 + i * 576) != 13) {
+            v = 0;
+        } else {
+            if ((func_009B3070(*(u16 *)(D_0058E5D6 + j * 576), *(u16 *)(D_0058E5D8 + i * 576)) & 0xffff) < 0x3000
+                && (func_009B3070(*(u16 *)(D_0058E5D8 + j * 576), *(u16 *)(D_0058E5D8 + i * 576)) & 0xffff) < 0x3000
+                && (func_009B3070(*(u16 *)(D_0058E5D6 + j * 576),
+                                  *(u16 *)(D_0058E6D8 + i * 576 + *(u8 *)(D_0058E5B0 + j * 576) * 2)) & 0xffff) < 0x3000) {
+                v = 1;
+            } else {
+                v = 0;
+            }
+        }
+        t = v != 0;
+    }
+    func_00313B30(bs, 12, t);
+
+    func_00313B30(bs, 13, func_00311730(s3[21], s3[22]));
+
+    t = func_0030D990(s3[22]) == 0;
+    if (t) {
+        v = fz < -9241.0f;
+        if (v) {
+            f32 ab = fx < 0 ? -fx : fx;
+            v = ab < 5160.0f;
+        }
+        t = v != 0;
+    }
+    func_00313B30(bs, 14, t);
+
+    func_00313B30(bs, 15, (*(s32 *)(s3 + 0x28) ^ 5) == 0);
+
+    t = !(n114 < 5);
+    if (t) {
+        t = !(s2 < 10);
+        if (t) {
+            t = s2 < 17;
+        }
+    }
+    func_00313B30(bs, 16, t);
+
+    func_00313B30(bs, 17, s4 == 0);
+    func_00313B30(bs, 19, s4);
+    func_00313B30(bs, 22, (func_003336E0(fp, s3[19] ^ 1) ^ 13) == 0);
+    func_00313B30(bs, 23, s4 == 0);
+    func_00313B30(bs, 24, s4);
+    func_00313B30(bs, 28, s4);
+    func_00313B30(bs, 29, s4 == 0);
+    func_00313B30(bs, 38, vtab < 3);
+    func_00313B30(bs, 39, 4488.33349609375f < f20);
+    func_00313B30(bs, 40, !(vtab < 3));
+    func_00333440(57, bs, 1);
+    func_00338930(a0);
+    return 1;
 }

@@ -1,282 +1,56 @@
-/* compiler: ee-gcc-2.9 */
-/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
- * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+/* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-s64 func_0023CE80(s64, s64, s64, s64);
-s64 func_00287910(s64, s64, s64, s64);
-s64 func_00287A10(s64, s64, s64, s64, s64, s64);
-s64 func_00366830(void);
+typedef struct { u8 b[8]; } S8;
 
-s64 func_001F94B0(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5) {
-    s64 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0;
-    union { f32 f; s32 i; } f0 = { 0 };
-    union { f32 f; s32 i; } f1 = { 0 };
-    union { f32 f; s32 i; } f2 = { 0 };
-    union { f32 f; s32 i; } f3 = { 0 };
-    s64 frame[12];
-    s64 sp = (s32) (u32) frame;
+extern char D_00592980[];
+extern char D_00591C09[];
+extern char D_00591E00[];
+extern char D_00591E02[];
+extern char D_00591E07[];
+void func_00287A10(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f);
+void func_00287910(S8 a, S8 b, s32 c, s32 d);
+void func_00366830(void);
+void func_0023CE80(s8 *out, s32 a, s32 b, s32 c);
 
-    a0 = (s32) 0x590000U;
-    a2 = 0;
-    a0 = (s32) ((u32) a0 + 0x2980U);
-L_001F94D4:;
-    a1 = 0;
-    v1 = a0;
-L_001F94E0:;
-    a1 = (s32) ((u32) a1 + 0x8U);
-    f3.f = (*(volatile f32 *) (u32) (v1 + 148));
-    v0 = a1 < 32;
-    f2.f = (*(volatile f32 *) (u32) (v1 + 152));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 156));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 160));
-    (*(volatile f32 *) (u32) (v1 + 104)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 108)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 112)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 116)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 164));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 168));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 172));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 176));
-    (*(volatile f32 *) (u32) (v1 + 120)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 124)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 128)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 132)) = f0.f;
-    f2.f = (*(volatile f32 *) (u32) (v1 + 180));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 184));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 188));
-    (*(volatile f32 *) (u32) (v1 + 136)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 140)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 144)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 988));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 992));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 996));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 1000));
-    (*(volatile f32 *) (u32) (v1 + 944)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 948)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 952)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 956)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 1004));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 1008));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 1012));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 1016));
-    (*(volatile f32 *) (u32) (v1 + 960)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 964)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 968)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 972)) = f0.f;
-    f2.f = (*(volatile f32 *) (u32) (v1 + 1020));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 1024));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 1028));
-    (*(volatile f32 *) (u32) (v1 + 976)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 980)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 984)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 1828));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 1832));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 1836));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 1840));
-    (*(volatile f32 *) (u32) (v1 + 1784)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 1788)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 1792)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 1796)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 1844));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 1848));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 1852));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 1856));
-    (*(volatile f32 *) (u32) (v1 + 1800)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 1804)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 1808)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 1812)) = f0.f;
-    f2.f = (*(volatile f32 *) (u32) (v1 + 1860));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 1864));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 1868));
-    (*(volatile f32 *) (u32) (v1 + 1816)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 1820)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 1824)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 2668));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 2672));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 2676));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 2680));
-    (*(volatile f32 *) (u32) (v1 + 2624)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 2628)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 2632)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 2636)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 2684));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 2688));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 2692));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 2696));
-    (*(volatile f32 *) (u32) (v1 + 2640)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 2644)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 2648)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 2652)) = f0.f;
-    f2.f = (*(volatile f32 *) (u32) (v1 + 2700));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 2704));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 2708));
-    (*(volatile f32 *) (u32) (v1 + 2656)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 2660)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 2664)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 3508));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 3512));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 3516));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 3520));
-    (*(volatile f32 *) (u32) (v1 + 3464)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 3468)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 3472)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 3476)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 3524));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 3528));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 3532));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 3536));
-    (*(volatile f32 *) (u32) (v1 + 3480)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 3484)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 3488)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 3492)) = f0.f;
-    f2.f = (*(volatile f32 *) (u32) (v1 + 3540));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 3544));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 3548));
-    (*(volatile f32 *) (u32) (v1 + 3496)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 3500)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 3504)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 4348));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 4352));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 4356));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 4360));
-    (*(volatile f32 *) (u32) (v1 + 4304)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 4308)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 4312)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 4316)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 4364));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 4368));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 4372));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 4376));
-    (*(volatile f32 *) (u32) (v1 + 4320)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 4324)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 4328)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 4332)) = f0.f;
-    f2.f = (*(volatile f32 *) (u32) (v1 + 4380));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 4384));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 4388));
-    (*(volatile f32 *) (u32) (v1 + 4336)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 4340)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 4344)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 5188));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 5192));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 5196));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 5200));
-    (*(volatile f32 *) (u32) (v1 + 5144)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 5148)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 5152)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 5156)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 5204));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 5208));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 5212));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 5216));
-    (*(volatile f32 *) (u32) (v1 + 5160)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 5164)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 5168)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 5172)) = f0.f;
-    f2.f = (*(volatile f32 *) (u32) (v1 + 5220));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 5224));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 5228));
-    (*(volatile f32 *) (u32) (v1 + 5176)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 5180)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 5184)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 6028));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 6032));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 6036));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 6040));
-    (*(volatile f32 *) (u32) (v1 + 5984)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 5988)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 5992)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 5996)) = f0.f;
-    f3.f = (*(volatile f32 *) (u32) (v1 + 6044));
-    f2.f = (*(volatile f32 *) (u32) (v1 + 6048));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 6052));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 6056));
-    (*(volatile f32 *) (u32) (v1 + 6000)) = f3.f;
-    (*(volatile f32 *) (u32) (v1 + 6004)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 6008)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 6012)) = f0.f;
-    f2.f = (*(volatile f32 *) (u32) (v1 + 6060));
-    f1.f = (*(volatile f32 *) (u32) (v1 + 6064));
-    f0.f = (*(volatile f32 *) (u32) (v1 + 6068));
-    (*(volatile f32 *) (u32) (v1 + 6016)) = f2.f;
-    (*(volatile f32 *) (u32) (v1 + 6020)) = f1.f;
-    (*(volatile f32 *) (u32) (v1 + 6024)) = f0.f;
-    { s32 c_ = v0 != 0; v1 = (s32) ((u32) v1 + 0x1a40U); if (c_) goto L_001F94E0; }
-    a2 = (s32) ((u32) a2 + 0x1U);
-    v0 = a2 < 2;
-    { s32 c_ = v0 != 0; a0 = (s32) ((u32) a0 + 0x6900U); if (c_) goto L_001F94D4; }
-    s1 = 0;
-    s0 = 0;
-L_001F97C8:;
-    a0 = s1;
-    a1 = s0; v0 = func_00287A10(a0, a1, a2, a3, a4, a5);
-    s0 = (s32) ((u32) s0 + 0x1U);
-    v0 = s0 < 32;
-    if (v0 != 0) goto L_001F97C8;
-    s1 = (s32) ((u32) s1 + 0x1U);
-    v0 = s1 < 2;
-    if (v0 != 0) { s0 = 0; goto L_001F97C8; }
-    v0 = (s32) 0x590000U;
-    v1 = 5;
-    v0 = (*(volatile u8 *) (u32) (v0 + 7177));
-    if (v0 != v1) { a0 = (s32) ((u32) sp + 0x58U); goto L_001F9814; }
-    v0 = func_00366830();
-    a0 = (s32) ((u32) sp + 0x58U);
-L_001F9814:;
-    a1 = 0;
-    a2 = 0;
-    a3 = 1; v0 = func_0023CE80(a0, a1, a2, a3);
-    a0 = (s32) 0x590000U;
-    a1 = (s32) ((u32) sp + 0x58U);
-    a0 = (s32) ((u32) a0 + 0x1e02U);
-    v1 = 5;
-L_001F9834:;
-    v0 = (*(volatile s8 *) (u32) a1);
-    v1 = (s32) ((u32) v1 + 0xffffffffU);
-    (*(volatile u8 *) (u32) a0) = (u8) v0;
-    a1 = (s32) ((u32) a1 + 0x1U);
-    a0 = (s32) ((u32) a0 + 0x1U);
-    if (v1 > 0) goto L_001F9834;
-    a1 = 1;
-    a0 = (s32) ((u32) sp + 0x50U);
-    a2 = 0;
-    a3 = a1; v0 = func_0023CE80(a0, a1, a2, a3);
-    a0 = (s32) 0x590000U;
-    a1 = (s32) ((u32) sp + 0x50U);
-    a0 = (s32) ((u32) a0 + 0x1e07U);
-    v1 = 5;
-L_001F9874:;
-    v0 = (*(volatile s8 *) (u32) a1);
-    v1 = (s32) ((u32) v1 + 0xffffffffU);
-    (*(volatile u8 *) (u32) a0) = (u8) v0;
-    a1 = (s32) ((u32) a1 + 0x1U);
-    a0 = (s32) ((u32) a0 + 0x1U);
-    if (v1 > 0) goto L_001F9874;
-    s2 = (s32) 0x590000U;
-    s1 = 0;
-    s2 = (s32) ((u32) s2 + 0x1e00U);
-L_001F989C:;
-    a0 = s1 ^ 0x1;
-    v0 = (s32) 0x590000U;
-    v1 = (s32) ((u32) a0 << 2);
-    v0 = (s32) ((u32) v0 + 0x1e00U);
-    v1 = (s32) ((u32) v1 + (u32) a0);
-    s0 = 0;
-    v0 = (s32) ((u32) v0 + (u32) v1);
-    s3 = (s32) ((u32) v0 + 0x2U);
-L_001F98C0:;
-    { u32 a_ = (u32) (s2 + 2); u32 s_ = 8 * (a_ & 7); u64 d_ = *(volatile u64 *) (a_ & ~7U); u64 m_ = ~(u64) 0 >> s_; a0 = (s64) (((u64) a0 & ~m_) | (d_ >> s_)); }
-    { u32 a_ = (u32) (s3 + 0); u32 s_ = 8 * (a_ & 7); u64 d_ = *(volatile u64 *) (a_ & ~7U); u64 m_ = ~(u64) 0 >> s_; a1 = (s64) (((u64) a1 & ~m_) | (d_ >> s_)); }
-    a2 = s1;
-    { u32 a_ = (u32) (s2 + 9); u32 s_ = 56 - 8 * (a_ & 7); u64 d_ = *(volatile u64 *) (a_ & ~7U); a0 = (s64) ((d_ << s_) | ((u64) a0 & (((u64) 1 << s_) - 1))); }
-    { u32 a_ = (u32) (s3 + 7); u32 s_ = 56 - 8 * (a_ & 7); u64 d_ = *(volatile u64 *) (a_ & ~7U); a1 = (s64) ((d_ << s_) | ((u64) a1 & (((u64) 1 << s_) - 1))); }
-    a3 = s0; v0 = func_00287910(a0, a1, a2, a3);
-    s0 = (s32) ((u32) s0 + 0x1U);
-    v1 = s0 < 32;
-    if (v1 != 0) goto L_001F98C0;
-    s1 = (s32) ((u32) s1 + 0x1U);
-    v1 = s1 < 2;
-    { s32 c_ = v1 != 0; s2 = (s32) ((u32) s2 + 0x5U); if (c_) goto L_001F989C; }
-    return v0;
+void func_001F94B0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5) {
+    s8 buf0[8];
+    s8 buf1[8];
+    s32 i, j, k;
+    char *base = D_00592980;
+
+    for (i = 0; i < 2; i++) {
+        char *p = base;
+        for (j = 0; j < 32; j++) {
+            f32 *d = (f32 *)(p + 0x68);
+            f32 *s = (f32 *)(p + 0x94);
+            for (k = 0; k < 11; k++) {
+                d[k] = s[k];
+            }
+            p += 0x348;
+        }
+        base += 0x6900;
+    }
+    for (i = 0; i < 2; i++) {
+        for (j = 0; j < 32; j++) {
+            func_00287A10(i, j, 2, a3, a4, a5);
+        }
+    }
+    if (*(u8 *)D_00591C09 == 5) {
+        func_00366830();
+    }
+    func_0023CE80(buf0, 0, 0, 1);
+    for (i = 0; i < 5; i++) {
+        D_00591E02[i] = buf0[i];
+    }
+    func_0023CE80(buf1, 1, 0, 1);
+    for (i = 0; i < 5; i++) {
+        D_00591E07[i] = buf1[i];
+    }
+    for (i = 0; i < 2; i++) {
+        for (j = 0; j < 32; j++) {
+            func_00287910(*(S8 *)(D_00591E00 + i * 5 + 2),
+                          *(S8 *)(D_00591E00 + (i ^ 1) * 5 + 2), i, j);
+        }
+    }
 }
