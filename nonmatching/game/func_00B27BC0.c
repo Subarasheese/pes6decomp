@@ -1,4 +1,4 @@
-/* compiler: ee-gcc-2.9-G0 */
+/* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
 extern void func_00188910(f32 *);

@@ -16,11 +16,18 @@ extern char D_00CBCDE8[];
 extern char D_00CBCDF4[];
 extern char D_00CBD2A0[];
 
+struct T {
+    s32 a;
+    s16 h;
+    f32 c;
+};
+
 void func_00B9CC30(char *arg0, char *arg1) {
-    s32 v50[3];
-    s32 v5c[9];
+    s32 v50[12];
     s32 var_a4;
-    s32 a, c, h;
+    struct T t2;
+    struct T t1;
+    s32 c, h;
     s32 var_v0;
     s32 var_v1;
     u8 temp_s0;
@@ -29,15 +36,23 @@ void func_00B9CC30(char *arg0, char *arg1) {
     (*(s8 *)D_00CBCDF4) = 1;
     func_00B9A770(v50, arg0, arg1, 0, temp_s0);
     if ((*(u8 *)D_005926FD) == 0 && (*(u16 *)D_00CBCDE8) == 0 && (*(u16 *)D_00CBD2A0) == 0 && (*(s32 *)Pes6MatchClock_Remaining) != 0) {
-        func_002744C0(arg0, arg1, v5c);
+        func_002744C0(arg0, arg1, &v50[3]);
     }
     h = (u16)v50[1];
     if (h > 0) {
         (*(u8 *)D_00CBCDE6) = temp_s0;
         (*(s8 *)D_00CBCDE5) = 0;
     }
-    a = v50[0];
-    c = v50[2];
+    t1.a = v50[0];
+    t1.h = h;
+    t1.c = *(f32 *)&v50[2];
+    {
+        struct T *q = &t1;
+        struct T *r = &t2;
+        *r = *q;
+    }
+    h = t2.h;
+    c = *(s32 *)&t2.c;
     var_v0 = (s32) M2C_FIELD(Pes6Ball_Current, f32 *, 0x10);
     if (var_v0 <= 0) {
         var_v0 = -var_v0;
@@ -58,5 +73,5 @@ void func_00B9CC30(char *arg0, char *arg1) {
     }
     var_a4 = func_00BBB8C0((u32) (*(u8 *)D_00591BE4) >> 2) + ((u32) (*(u8 *)D_00591BE4) >> 1);
 done:
-    func_00B98610(arg0, arg1, a, (s16) h, var_a4, c);
+    func_00B98610(arg0, arg1, t2.a, h, var_a4, c);
 }

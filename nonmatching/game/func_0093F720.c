@@ -32,10 +32,10 @@ void func_009945C0(s32);
 s16 func_009B34C0(s32, f32, f32, f32, f32);
 
 void func_0093F720(void) {
-    f32 a[4];
-    f32 b[4];
-    f32 c[4];
     f32 d[4];
+    f32 c[4];
+    f32 b[4];
+    f32 a[4];
     s32 r;
     s32 t;
     f32 d1;

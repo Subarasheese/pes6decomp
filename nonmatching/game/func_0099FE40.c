@@ -1,24 +1,18 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
-
 extern void func_002871C0(void *);
-extern void func_00270530(u8 *, f32 *);
-extern char Pes6MatchPlayers[];
-extern char D_00591E00[];
+extern void func_00270530(void *, f32 *);
+extern char D_0058E5B0[];
 extern char D_00592380[];
-
+extern char D_00591E00[];
 void func_0099FE40(void) {
     f32 v[3];
-    u8 *src;
-    s32 off;
     s32 i;
-    f32 *dst;
-
+    s32 off = 0;
+    char *src = D_0058E5B0;
     func_002871C0(D_00592380);
-    src = (u8 *)Pes6MatchPlayers;
-    off = 0;
     for (i = 0; i < 0x17; i++) {
-        dst = (f32 *)(D_00591E00 + (off + 0xC) + 0x580);
+        f32 *dst = (f32 *)(D_00591E00 + (off + 0xC) + 0x580);
         func_00270530(src, v);
         off += 0xC;
         src += 0x240;

@@ -1,83 +1,56 @@
-/* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-
-M2C_UNK func_0096B650(f32 *, void *, s32, s32, s32, s32, char *, s32); /* extern */
+extern void func_0096B650(f32 *, void *, s32);
 extern char Pes6MatchPlayers[];
 extern char D_00CBBE48[];
 
-void func_0096B500(void *arg0, M2C_UNK arg1, M2C_UNK arg2, s32 arg3, s32 arg4, s32 arg5, char *arg6, s32 arg7) {
-    f32 sp40[4];
-    char *var_a6;
-    f32 temp_f0_3;
-    f32 var_f0;
-    f32 var_f3;
-    s32 temp_f0;
-    s32 temp_f0_2;
-    s32 var_a2;
-    s32 var_a3;
-    s32 var_a4;
-    s32 var_a7;
-    s32 var_s1;
-    s32 var_t0;
-    s32 var_a5;
-    void *temp_a0;
+void func_0096B500(void *arg0) {
+    f32 sp[4];
+    u8 *p;
+    s32 i;
+    s32 j;
+    s32 found;
+    s32 id;
+    s32 idx;
+    f32 x;
+    f32 z;
+    s32 dx;
+    s32 dz;
+    u8 *pl;
 
-    var_a3 = arg3;
-    var_a4 = arg4;
-    var_a5 = arg5;
-    var_a6 = arg6;
-    var_a7 = arg7;
-    var_s1 = 0;
-loop_1:
-    func_0096B650(sp40, arg0, var_s1, var_a3, var_a4, var_a5, var_a6, var_a7);
-    var_a7 = 1;
-    var_t0 = 0;
-    var_a6 = ((void *)D_00CBBE48);
-    var_a3 = 0x17;
-    var_a4 = 0xFF;
-loop_2:
-    var_a5 = M2C_FIELD(var_a6, u8 *, 9);
-    if (var_a5 != 0xFF) {
-        if (var_a5 == 0xFF) {
-            var_a2 = 1;
-        } else {
-            var_a2 = (s32) var_a5 % 23;
+    for (i = 0; i < 3; i++) {
+        func_0096B650(sp, arg0, i);
+        found = 1;
+        p = (u8 *)D_00CBBE48;
+        for (j = 0; j < 3; j++, p++) {
+            id = p[9];
+            if (id == 0xFF) {
+                continue;
+            }
+            idx = id % 23;
+            pl = (u8 *)Pes6MatchPlayers + idx * 0x240;
+            if (id == *(u8 *)arg0) {
+                x = *(f32 *)((u8 *)arg0 + 0xE0);
+                z = *(f32 *)((u8 *)arg0 + 0xE8);
+            } else {
+                z = *(f32 *)(pl + 0x78);
+                x = *(f32 *)(pl + 0x74);
+            }
+            dx = (s32)(x - sp[0]);
+            dz = (s32)(z - sp[2]);
+            if ((u32)(dx * dx + dz * dz) < 0x64001U) {
+                found = 0;
+                break;
+            }
         }
-        temp_a0 = ((void *)Pes6MatchPlayers) + (var_a2 * 0x240);
-        if (var_a5 == M2C_FIELD(arg0, u8 *, 0)) {
-            var_f0 = M2C_FIELD(arg0, f32 *, 0xE0);
-            var_f3 = M2C_FIELD(arg0, f32 *, 0xE8);
-        } else {
-            var_f3 = M2C_FIELD(temp_a0, f32 *, 0x78);
-            var_f0 = M2C_FIELD(temp_a0, f32 *, 0x74);
-        }
-        temp_f0 = (s32) (var_f0 - sp40[0]);
-        temp_f0_2 = (s32) (var_f3 - sp40[2]);
-        if ((u32) ((temp_f0 * temp_f0) + (temp_f0_2 * temp_f0_2)) < 0x64001U) {
-            var_a7 = 0;
-        } else {
-            goto block_11;
-        }
-    } else {
-block_11:
-        var_t0 += 1;
-        var_a6 += 1;
-        if (var_t0 < 3) {
-            goto loop_2;
+        if (found == 1) {
+            break;
         }
     }
-    if (var_a7 != 1) {
-        var_s1 += 1;
-        if (var_s1 < 3) {
-            goto loop_1;
-        }
-    }
-    M2C_FIELD(arg0, s32 *, 0x1E8) = var_s1;
-    M2C_FIELD(arg0, f32 *, 0x74) = sp40[0];
-    M2C_FIELD(arg0, f32 *, 0x6C) = sp40[0];
-    temp_f0_3 = sp40[2];
-    M2C_FIELD(arg0, f32 *, 0x78) = temp_f0_3;
-    M2C_FIELD(arg0, f32 *, 0x70) = temp_f0_3;
+    *(s32 *)((u8 *)arg0 + 0x1E8) = i;
+    *(f32 *)((u8 *)arg0 + 0x74) = sp[0];
+    *(f32 *)((u8 *)arg0 + 0x6C) = sp[0];
+    *(f32 *)((u8 *)arg0 + 0x78) = sp[2];
+    *(f32 *)((u8 *)arg0 + 0x70) = sp[2];
 }

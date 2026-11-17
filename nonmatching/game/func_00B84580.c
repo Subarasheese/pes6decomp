@@ -1,75 +1,30 @@
-/* compiler: ee-gcc-2.9-G0 */
-/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
- * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+/* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
-
-void func_00B2A6E0(s32, s32, s32, s32, f32, f32);
-void func_00B84790(s32, s32, s32, s32, s32, f32);
-
-void func_00B84580(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, f32 fa12, f32 fa13) {
-    s32 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0;
-    volatile union { f32 f; s32 i; } f0 = { 0 };
-    volatile union { f32 f; s32 i; } f1 = { 0 };
-    volatile union { f32 f; s32 i; } f2 = { 0 };
-    volatile union { f32 f; s32 i; } f12 = { fa12 };
-    volatile union { f32 f; s32 i; } f13 = { fa13 };
-    volatile union { f32 f; s32 i; } f20 = { 0 };
-    volatile union { f32 f; s32 i; } f21 = { 0 };
-    s64 frame[12];
-    s32 sp = (s32) (u32) frame;
-
-    a3 = a2;
-    a2 = (s32) ((u32) sp + 0x5eU);
-    s2 = a0;
-    s1 = a1;
-    v0 = (*(volatile s32 *) (u32) a0);
-    f21.f = (*(volatile f32 *) (u32) (v0 + 224));
-    s0 = (*(volatile u16 *) (u32) (v0 + 38));
-    f20.f = (*(volatile f32 *) (u32) (v0 + 232));
-    a1 = (s32) ((u32) sp + 0x50U); func_00B2A6E0(a0, a1, a2, a3, f12.f, f13.f);
-    v0 = (s32) ((u32) s1 << 1);
-    a0 = s2;
-    f0.i = (s32) v0;
-    f1.f = (*(volatile f32 *) (u32) (sp + 80));
-    v0 = (*(volatile s32 *) (u32) s2);
-    f12.f = (f32) f0.i;
-    (*(volatile f32 *) (u32) (v0 + 224)) = f1.f;
-    f0.f = (*(volatile f32 *) (u32) (sp + 84));
-    v0 = (*(volatile s32 *) (u32) s2);
-    (*(volatile f32 *) (u32) (v0 + 232)) = f0.f;
-    v1 = (*(volatile u16 *) (u32) (sp + 94));
-    v0 = (*(volatile s32 *) (u32) s2);
-    (*(volatile u16 *) (u32) (v0 + 38)) = (u16) v1;
-    v1 = (*(volatile s32 *) (u32) s2);
-    v0 = (*(volatile s32 *) (u32) (v1 + 4));
-    a2 = (*(volatile u16 *) (u32) (v1 + 38));
-    a1 = (*(volatile u16 *) (u32) (v0 + 48));
-    a3 = (*(volatile u8 *) (u32) (v0 + 45));
-    a4 = 1; func_00B84790(a0, a1, a2, a3, a4, f12.f);
-    v1 = (s32) 0x590000U;
-    a2 = (s32) ((u32) s1 << 2);
-    f2.f = (*(volatile f32 *) (u32) (v1 + 7788));
-    v1 = (s32) 0xcc0000U;
-    v1 = (s32) ((u32) v1 + 0xffffcc70U);
-    a1 = (s32) ((u32) v1 + (u32) a2);
-    v1 = (s32) 0x590000U;
-    f1.f = (*(volatile f32 *) (u32) (v1 + 7792));
-    (*(volatile f32 *) (u32) a1) = f2.f;
-    v1 = (s32) 0xcc0000U;
-    v1 = (s32) ((u32) v1 + 0xffffcc90U);
-    a0 = (s32) ((u32) v1 + (u32) a2);
-    v1 = (s32) 0x590000U;
-    f0.f = (*(volatile f32 *) (u32) (v1 + 7796));
-    (*(volatile f32 *) (u32) a0) = f1.f;
-    v1 = (s32) 0xcc0000U;
-    v1 = (s32) ((u32) v1 + 0xffffccb0U);
-    v1 = (s32) ((u32) v1 + (u32) a2);
-    (*(volatile f32 *) (u32) v1) = f0.f;
-    v1 = (*(volatile s32 *) (u32) s2);
-    (*(volatile f32 *) (u32) (v1 + 224)) = f21.f;
-    v1 = (*(volatile s32 *) (u32) s2);
-    (*(volatile f32 *) (u32) (v1 + 232)) = f20.f;
-    v1 = (*(volatile s32 *) (u32) s2);
-    (*(volatile u16 *) (u32) (v1 + 38)) = (u16) s0;
-    return;
+extern void func_00B2A6E0(s32, f32 *, u16 *, s32);
+extern void func_00B84790(s32, s32, s32, s32, s32, f32);
+extern char D_00591E6C[];
+extern char D_00591E70[];
+extern char D_00591E74[];
+extern char D_00CBCC70[];
+extern char D_00CBCC90[];
+extern char D_00CBCCB0[];
+void func_00B84580(s32 *obj, s32 idx, s32 a2) {
+    f32 buf[2];
+    u16 h;
+    f32 s21 = *(f32 *)(*(u8 **)obj + 0xE0);
+    u16 s0 = *(u16 *)(*(u8 **)obj + 0x26);
+    f32 s20 = *(f32 *)(*(u8 **)obj + 0xE8);
+    u8 *p;
+    func_00B2A6E0((s32)obj, buf, &h, a2);
+    *(f32 *)(*(u8 **)obj + 0xE0) = buf[0];
+    *(f32 *)(*(u8 **)obj + 0xE8) = buf[1];
+    *(u16 *)(*(u8 **)obj + 0x26) = h;
+    p = *(u8 **)obj;
+    func_00B84790((s32)obj, *(u16 *)(*(u8 **)(p + 4) + 0x30), *(u16 *)(p + 0x26), *(u8 *)(*(u8 **)(p + 4) + 0x2D), 1, (f32)(idx * 2));
+    *(f32 *)(D_00CBCC70 + idx * 4) = *(f32 *)D_00591E6C;
+    *(f32 *)(D_00CBCC90 + idx * 4) = *(f32 *)D_00591E70;
+    *(f32 *)(D_00CBCCB0 + idx * 4) = *(f32 *)D_00591E74;
+    *(f32 *)(*(u8 **)obj + 0xE0) = s21;
+    *(f32 *)(*(u8 **)obj + 0xE8) = s20;
+    *(u16 *)(*(u8 **)obj + 0x26) = s0;
 }

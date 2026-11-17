@@ -7,7 +7,7 @@ behavioural evidence, not byte identity, and not a proof. `tools/equiv.py` expla
 and what is compared. Coverage is the share of the original function's instructions the cases
 ran; a branch no case reached is not checked.
 
-Checked: differs 124, equivalent 5295, untestable 5.
+Checked: differs 70, equivalent 5481, untestable 1.
 
 Cases start from the memory each row names: `ram:...` is a RAM snapshot of the running game
 (PES6_EQUIV_RAM, or build/equiv/ram-exhibition.bin; `ram-match.bin` is the earlier training-mode snapshot), `image` the executable's initial memory.
@@ -17,8 +17,10 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00930080` | `func_00930080` | 7 | 65 | 99.1% | ram:ram-exhibition.bin |
 | game | `00930240` | `func_00930240` | 24 | 118 | 38.6% | ram:ram-exhibition.bin |
 | game | `00936BC0` | `func_00936BC0` | 19 | 132 | 92.9% | ram:ram-exhibition.bin |
+| game | `00937180` | `func_00937180` | 11 | 171 | 24.1% | ram:ram-exhibition.bin |
 | game | `0093C1C0` | `func_0093C1C0` | 24 | 132 | 86.2% | ram:ram-exhibition.bin |
 | game | `0093CD10` | `func_0093CD10` | 24 | 208 | 71.7% | ram:ram-exhibition.bin |
+| game | `0093F720` | `func_0093F720` | 6 | 528 | 91.9% | ram:ram-exhibition.bin |
 | game | `0093FB30` | `func_0093FB30` | 4 | 596 | 98.9% | ram:ram-exhibition.bin |
 | game | `0093FCB0` | `func_0093FCB0` | 4 | 373 | 96.8% | ram:ram-exhibition.bin |
 | game | `0093FD30` | `func_0093FD30` | 4 | 413 | 97.9% | ram:ram-exhibition.bin |
@@ -29,6 +31,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00941FE0` | `func_00941FE0` | 8 | 342 | 84.7% | ram:ram-exhibition.bin |
 | game | `00942340` | `func_00942340` | 16 | 274 | 89.9% | ram:ram-exhibition.bin |
 | game | `00942A90` | `func_00942A90` | 21 | 276 | 32.8% | ram:ram-exhibition.bin |
+| game | `00944A50` | `func_00944A50` | 18 | 322 | 98.0% | ram:ram-exhibition.bin |
 | game | `009458A0` | `func_009458A0` | 11 | 198 | 50.5% | ram:ram-exhibition.bin |
 | game | `009462B0` | `func_009462B0` | 10 | 360 | 56.7% | ram:ram-exhibition.bin |
 | game | `00946810` | `func_00946810` | 9 | 362 | 30.9% | ram:ram-exhibition.bin |
@@ -53,6 +56,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00950240` | `func_00950240` | 9 | 390 | 99.5% | ram:ram-exhibition.bin |
 | game | `00950560` | `func_00950560` | 5 | 376 | 24.7% | ram:ram-exhibition.bin |
 | game | `00950A00` | `func_00950A00` | 4 | 596 | 95.7% | ram:ram-exhibition.bin |
+| game | `00950B20` | `func_00950B20` | 18 | 311 | 98.8% | ram:ram-exhibition.bin |
 | game | `009511D0` | `func_009511D0` | 9 | 377 | 80.3% | ram:ram-exhibition.bin |
 | game | `009513C0` | `func_009513C0` | 10 | 586 | 91.3% | ram:ram-exhibition.bin |
 | game | `00951980` | `func_00951980` | 7 | 316 | 93.8% | ram:ram-exhibition.bin |
@@ -68,6 +72,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00952AD0` | `func_00952AD0` | 18 | 578 | 77.3% | ram:ram-exhibition.bin |
 | game | `00952FE0` | `func_00952FE0` | 4 | 596 | 96.8% | ram:ram-exhibition.bin |
 | game | `00953060` | `func_00953060` | 6 | 594 | 100.0% | ram:ram-exhibition.bin |
+| game | `00953400` | `func_00953400` | 7 | 304 | 94.7% | ram:ram-exhibition.bin |
 | game | `00954230` | `func_00954230` | 7 | 355 | 98.6% | ram:ram-exhibition.bin |
 | game | `00954460` | `func_00954460` | 16 | 306 | 91.3% | ram:ram-exhibition.bin |
 | game | `009550C0` | `func_009550C0` | 4 | 398 | 49.2% | ram:ram-exhibition.bin |
@@ -76,6 +81,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00956610` | `func_00956610` | 12 | 553 | 26.2% | ram:ram-exhibition.bin |
 | game | `00957490` | `func_00957490` | 7 | 574 | 97.2% | ram:ram-exhibition.bin |
 | game | `00957640` | `func_00957640` | 13 | 377 | 59.0% | ram:ram-exhibition.bin |
+| game | `00957D00` | `func_00957D00` | 7 | 338 | 98.7% | ram:ram-exhibition.bin |
 | game | `00958200` | `func_00958200` | 5 | 370 | 97.7% | ram:ram-exhibition.bin |
 | game | `009584B0` | `func_009584B0` | 8 | 217 | 50.8% | ram:ram-exhibition.bin |
 | game | `00958AD0` | `func_00958AD0` | 5 | 563 | 94.9% | ram:ram-exhibition.bin |
@@ -100,6 +106,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `0095EBD0` | `func_0095EBD0` | 24 | 438 | 79.3% | ram:ram-exhibition.bin |
 | game | `0095FA40` | `func_0095FA40` | 11 | 402 | 98.6% | ram:ram-exhibition.bin |
 | game | `0095FDA0` | `func_0095FDA0` | 11 | 590 | 97.9% | ram:ram-exhibition.bin |
+| game | `00960450` | `func_00960450` | 24 | 340 | 75.3% | ram:ram-exhibition.bin |
 | game | `00960F50` | `func_00960F50` | 4 | 348 | 100.0% | ram:ram-exhibition.bin |
 | game | `00960F90` | `func_00960F90` | 14 | 317 | 87.6% | ram:ram-exhibition.bin |
 | game | `00961660` | `func_00961660` | 4 | 336 | 100.0% | ram:ram-exhibition.bin |
@@ -153,12 +160,18 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009694E0` | `func_009694E0` | 10 | 548 | 99.4% | ram:ram-exhibition.bin |
 | game | `009699C0` | `func_009699C0` | 18 | 288 | 78.9% | ram:ram-exhibition.bin |
 | game | `0096A850` | `func_0096A850` | 13 | 385 | 77.5% | ram:ram-exhibition.bin |
+| game | `0096B070` | `func_0096B070` | 15 | 584 | 81.9% | ram:ram-exhibition.bin |
 | game | `0096B400` | `func_0096B400` | 7 | 594 | 97.4% | ram:ram-exhibition.bin |
 | game | `0096B4A0` | `func_0096B4A0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
+| game | `0096B500` | `func_0096B500` | 4 | 361 | 97.6% | ram:ram-exhibition.bin |
+| game | `0096B650` | `func_0096B650` | 11 | 355 | 95.9% | ram:ram-exhibition.bin |
 | game | `0096BF00` | `func_0096BF00` | 9 | 331 | 40.8% | ram:ram-exhibition.bin |
 | game | `0096CAB0` | `func_0096CAB0` | 7 | 500 | 47.6% | ram:ram-exhibition.bin |
 | game | `0096D0A0` | `func_0096D0A0` | 4 | 322 | 98.4% | ram:ram-exhibition.bin |
+| game | `0096E120` | `func_0096E120` | 11 | 388 | 24.8% | ram:ram-exhibition.bin |
+| game | `0096F290` | `func_0096F290` | 24 | 312 | 78.1% | ram:ram-exhibition.bin |
 | game | `0096F870` | `func_0096F870` | 4 | 492 | 77.7% | ram:ram-exhibition.bin |
+| game | `0096FAC0` | `func_0096FAC0` | 9 | 384 | 87.4% | ram:ram-exhibition.bin |
 | game | `00970150` | `func_00970150` | 11 | 524 | 94.4% | ram:ram-exhibition.bin |
 | game | `00970590` | `func_00970590` | 9 | 587 | 34.1% | ram:ram-exhibition.bin |
 | game | `00970BE0` | `func_00970BE0` | 8 | 571 | 51.8% | ram:ram-exhibition.bin |
@@ -207,12 +220,15 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00987BF0` | `func_00987BF0` | 4 | 596 | 60.6% | ram:ram-exhibition.bin |
 | game | `00987EB0` | `func_00987EB0` | 13 | 517 | 79.0% | ram:ram-exhibition.bin |
 | game | `00988B20` | `func_00988B20` | 7 | 580 | 88.6% | ram:ram-exhibition.bin |
+| game | `00988C60` | `func_00988C60` | 8 | 456 | 98.1% | ram:ram-exhibition.bin |
 | game | `00988E10` | `func_00988E10` | 18 | 510 | 81.5% | ram:ram-exhibition.bin |
+| game | `00989920` | `func_00989920` | 20 | 420 | 81.1% | ram:ram-exhibition.bin |
 | game | `0098A8B0` | `func_0098A8B0` | 4 | 596 | 89.8% | ram:ram-exhibition.bin |
 | game | `0098AC30` | `func_0098AC30` | 11 | 334 | 74.2% | ram:ram-exhibition.bin |
 | game | `0098B050` | `func_0098B050` | 9 | 288 | 97.8% | ram:ram-exhibition.bin |
 | game | `0098B490` | `func_0098B490` | 4 | 596 | 84.3% | ram:ram-exhibition.bin |
 | game | `0098B5B0` | `func_0098B5B0` | 8 | 362 | 64.7% | ram:ram-exhibition.bin |
+| game | `0098BB00` | `func_0098BB00` | 5 | 426 | 49.6% | ram:ram-exhibition.bin |
 | game | `0098BF30` | `func_0098BF30` | 5 | 578 | 98.7% | ram:ram-exhibition.bin |
 | game | `0098C060` | `func_0098C060` | 5 | 592 | 66.7% | ram:ram-exhibition.bin |
 | game | `0098C460` | `func_0098C460` | 14 | 318 | 85.5% | ram:ram-exhibition.bin |
@@ -326,6 +342,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00998290` | `func_00998290` | 5 | 596 | 98.6% | ram:ram-exhibition.bin |
 | game | `00999150` | `func_00999150` | 24 | 539 | 74.2% | ram:ram-exhibition.bin |
 | game | `0099B4F0` | `func_0099B4F0` | 4 | 596 | 97.1% | ram:ram-exhibition.bin |
+| game | `0099B600` | `func_0099B600` | 13 | 553 | 77.0% | ram:ram-exhibition.bin |
 | game | `0099C460` | `func_0099C460` | 4 | 596 | 84.3% | ram:ram-exhibition.bin |
 | game | `0099C680` | `func_0099C680` | 4 | 596 | 97.0% | ram:ram-exhibition.bin |
 | game | `0099C790` | `func_0099C790` | 5 | 595 | 99.1% | ram:ram-exhibition.bin |
@@ -346,12 +363,15 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `0099E3C0` | `func_0099E3C0` | 4 | 596 | 96.3% | ram:ram-exhibition.bin |
 | game | `0099E430` | `func_0099E430` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `0099E470` | `func_0099E470` | 4 | 438 | 80.6% | ram:ram-exhibition.bin |
+| game | `0099E7D0` | `func_0099E7D0` | 10 | 339 | 99.5% | ram:ram-exhibition.bin |
 | game | `0099EAE0` | `func_0099EAE0` | 7 | 537 | 86.3% | ram:ram-exhibition.bin |
 | game | `0099EDE0` | `func_0099EDE0` | 4 | 596 | 91.2% | ram:ram-exhibition.bin |
 | game | `0099F3A0` | `func_0099F3A0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `0099F400` | `func_0099F400` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
+| game | `0099F490` | `func_0099F490` | 9 | 330 | 90.9% | ram:ram-exhibition.bin |
 | game | `0099FAF0` | `func_0099FAF0` | 4 | 184 | 100.0% | ram:ram-exhibition.bin |
 | game | `0099FC30` | `func_0099FC30` | 6 | 240 | 99.2% | ram:ram-exhibition.bin |
+| game | `0099FE40` | `func_0099FE40` | 4 | 596 | 97.8% | ram:ram-exhibition.bin |
 | game | `0099FF00` | `func_0099FF00` | 4 | 544 | 96.8% | ram:ram-exhibition.bin |
 | game | `009A00D0` | `func_009A00D0` | 4 | 596 | 98.4% | ram:ram-exhibition.bin |
 | game | `009A01D0` | `func_009A01D0` | 4 | 596 | 97.4% | ram:ram-exhibition.bin |
@@ -384,6 +404,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009A6DC0` | `func_009A6DC0` | 4 | 596 | 97.2% | ram:ram-exhibition.bin |
 | game | `009A7000` | `func_009A7000` | 4 | 596 | 97.6% | ram:ram-exhibition.bin |
 | game | `009A70B0` | `func_009A70B0` | 4 | 596 | 98.7% | ram:ram-exhibition.bin |
+| game | `009A7240` | `func_009A7240` | 6 | 594 | 98.4% | ram:ram-exhibition.bin |
 | game | `009A7550` | `func_009A7550` | 4 | 343 | 100.0% | ram:ram-exhibition.bin |
 | game | `009A7690` | `func_009A7690` | 4 | 238 | 97.1% | ram:ram-exhibition.bin |
 | game | `009A7910` | `func_009A7910` | 4 | 47 | 20.9% | ram:ram-exhibition.bin |
@@ -392,6 +413,10 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009A8670` | `func_009A8670` | 4 | 41 | 100.0% | ram:ram-exhibition.bin |
 | game | `009A8760` | `func_009A8760` | 5 | 344 | 100.0% | ram:ram-exhibition.bin |
 | game | `009A8970` | `func_009A8970` | 4 | 51 | 99.0% | ram:ram-exhibition.bin |
+| game | `009A8C80` | `func_009A8C80` | 4 | 313 | 28.9% | ram:ram-exhibition.bin |
+| game | `009A9050` | `func_009A9050` | 4 | 336 | 28.9% | ram:ram-exhibition.bin |
+| game | `009A9420` | `func_009A9420` | 4 | 251 | 98.5% | ram:ram-exhibition.bin |
+| game | `009A9730` | `func_009A9730` | 4 | 257 | 97.7% | ram:ram-exhibition.bin |
 | game | `009A99F0` | `func_009A99F0` | 4 | 91 | 97.5% | ram:ram-exhibition.bin |
 | game | `009A9A90` | `func_009A9A90` | 4 | 88 | 97.5% | ram:ram-exhibition.bin |
 | game | `009A9B30` | `func_009A9B30` | 4 | 79 | 100.0% | ram:ram-exhibition.bin |
@@ -410,17 +435,21 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009AC650` | `func_009AC650` | 6 | 594 | 100.0% | ram:ram-exhibition.bin |
 | game | `009AC830` | `func_009AC830` | 10 | 336 | 98.6% | ram:ram-exhibition.bin |
 | game | `009ACB20` | `func_009ACB20` | 12 | 428 | 89.7% | ram:ram-exhibition.bin |
+| game | `009ACFE0` | `func_009ACFE0` | 10 | 352 | 95.8% | ram:ram-exhibition.bin |
 | game | `009AD400` | `func_009AD400` | 10 | 508 | 96.0% | ram:ram-exhibition.bin |
 | game | `009AD9F0` | `func_009AD9F0` | 4 | 329 | 98.9% | ram:ram-exhibition.bin |
+| game | `009ADB60` | `func_009ADB60` | 6 | 450 | 100.0% | ram:ram-exhibition.bin |
 | game | `009ADD10` | `func_009ADD10` | 8 | 454 | 66.7% | ram:ram-exhibition.bin |
 | game | `009ADED0` | `func_009ADED0` | 6 | 221 | 66.5% | ram:ram-exhibition.bin |
 | game | `009AE170` | `func_009AE170` | 5 | 231 | 53.1% | ram:ram-exhibition.bin |
 | game | `009AE3F0` | `func_009AE3F0` | 6 | 230 | 69.1% | ram:ram-exhibition.bin |
 | game | `009AE680` | `func_009AE680` | 8 | 213 | 98.9% | ram:ram-exhibition.bin |
 | game | `009AE7E0` | `func_009AE7E0` | 6 | 386 | 93.1% | ram:ram-exhibition.bin |
+| game | `009AE900` | `func_009AE900` | 4 | 229 | 99.5% | ram:ram-exhibition.bin |
 | game | `009AEC30` | `func_009AEC30` | 6 | 244 | 99.5% | ram:ram-exhibition.bin |
 | game | `009AEF80` | `func_009AEF80` | 4 | 268 | 100.0% | ram:ram-exhibition.bin |
 | game | `009AF2E0` | `func_009AF2E0` | 4 | 237 | 100.0% | ram:ram-exhibition.bin |
+| game | `009AF560` | `func_009AF560` | 4 | 261 | 100.0% | ram:ram-exhibition.bin |
 | game | `009AF8B0` | `func_009AF8B0` | 4 | 232 | 100.0% | ram:ram-exhibition.bin |
 | game | `009AFB40` | `func_009AFB40` | 6 | 226 | 100.0% | ram:ram-exhibition.bin |
 | game | `009AFE60` | `func_009AFE60` | 4 | 232 | 82.8% | ram:ram-exhibition.bin |
@@ -442,6 +471,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009B21E0` | `func_009B21E0` | 4 | 542 | 98.3% | ram:ram-exhibition.bin |
 | game | `009B22D0` | `func_009B22D0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `009B2300` | `func_009B2300` | 8 | 545 | 96.3% | ram:ram-exhibition.bin |
+| game | `009B2870` | `func_009B2870` | 6 | 594 | 98.0% | ram:ram-exhibition.bin |
 | game | `009B2940` | `func_009B2940` | 6 | 540 | 64.2% | ram:ram-exhibition.bin |
 | game | `009B2B30` | `func_009B2B30` | 8 | 577 | 83.2% | ram:ram-exhibition.bin |
 | game | `009B2EB0` | `func_009B2EB0` | 4 | 596 | 80.4% | ram:ram-exhibition.bin |
@@ -452,6 +482,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009B3220` | `func_009B3220` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `009B32D0` | `func_009B32D0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `009B3560` | `func_009B3560` | 4 | 575 | 98.9% | ram:ram-exhibition.bin |
+| game | `009B36C0` | `func_009B36C0` | 4 | 210 | 100.0% | ram:ram-exhibition.bin |
 | game | `009B37F0` | `func_009B37F0` | 5 | 309 | 87.8% | ram:ram-exhibition.bin |
 | game | `009B39E0` | `func_009B39E0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `009B3C90` | `func_009B3C90` | 1 | 0 | 98.9% | ram:ram-exhibition.bin |
@@ -529,6 +560,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009C7D90` | `func_009C7D90` | 4 | 358 | 36.1% | ram:ram-exhibition.bin |
 | game | `009C80D0` | `func_009C80D0` | 11 | 348 | 74.4% | ram:ram-exhibition.bin |
 | game | `009C8970` | `func_009C8970` | 8 | 345 | 16.3% | ram:ram-exhibition.bin |
+| game | `009C9E40` | `func_009C9E40` | 10 | 203 | 84.9% | ram:ram-exhibition.bin |
 | game | `009CA3F0` | `func_009CA3F0` | 7 | 418 | 93.5% | ram:ram-exhibition.bin |
 | game | `009CA5A0` | `func_009CA5A0` | 6 | 258 | 40.4% | ram:ram-exhibition.bin |
 | game | `009CAD90` | `func_009CAD90` | 8 | 356 | 43.2% | ram:ram-exhibition.bin |
@@ -542,6 +574,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009CDC80` | `func_009CDC80` | 5 | 350 | 98.9% | ram:ram-exhibition.bin |
 | game | `009CDDF0` | `func_009CDDF0` | 10 | 224 | 91.8% | ram:ram-exhibition.bin |
 | game | `009D2EE0` | `func_009D2EE0` | 10 | 203 | 98.4% | ram:ram-exhibition.bin |
+| game | `009D34E0` | `func_009D34E0` | 11 | 132 | 50.9% | ram:ram-exhibition.bin |
 | game | `009D4560` | `func_009D4560` | 9 | 272 | 73.9% | ram:ram-exhibition.bin |
 | game | `009D4890` | `func_009D4890` | 11 | 356 | 100.0% | ram:ram-exhibition.bin |
 | game | `009D4BA0` | `func_009D4BA0` | 4 | 210 | 84.5% | ram:ram-exhibition.bin |
@@ -549,6 +582,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009D5560` | `func_009D5560` | 5 | 261 | 61.3% | ram:ram-exhibition.bin |
 | game | `009D58B0` | `func_009D58B0` | 5 | 312 | 99.6% | ram:ram-exhibition.bin |
 | game | `009D5C80` | `func_009D5C80` | 4 | 326 | 99.3% | ram:ram-exhibition.bin |
+| game | `009D5F20` | `func_009D5F20` | 9 | 186 | 69.7% | ram:ram-exhibition.bin |
 | game | `009D6500` | `func_009D6500` | 8 | 132 | 66.0% | ram:ram-exhibition.bin |
 | game | `009D6E10` | `func_009D6E10` | 8 | 210 | 86.5% | ram:ram-exhibition.bin |
 | game | `009D7080` | `func_009D7080` | 4 | 170 | 34.3% | ram:ram-exhibition.bin |
@@ -586,6 +620,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009E1EC0` | `func_009E1EC0` | 4 | 596 | 97.7% | ram:ram-exhibition.bin |
 | game | `009E20D0` | `func_009E20D0` | 10 | 342 | 92.3% | ram:ram-exhibition.bin |
 | game | `009E3090` | `func_009E3090` | 7 | 581 | 96.5% | ram:ram-exhibition.bin |
+| game | `009E33B0` | `func_009E33B0` | 5 | 453 | 83.7% | ram:ram-exhibition.bin |
 | game | `009E37F0` | `func_009E37F0` | 4 | 63 | 99.0% | ram:ram-exhibition.bin |
 | game | `009E3990` | `func_009E3990` | 4 | 38 | 98.8% | ram:ram-exhibition.bin |
 | game | `009E3E70` | `func_009E3E70` | 17 | 384 | 70.9% | ram:ram-exhibition.bin |
@@ -599,6 +634,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009E6140` | `func_009E6140` | 13 | 588 | 90.9% | ram:ram-exhibition.bin |
 | game | `009E62D0` | `func_009E62D0` | 7 | 595 | 94.7% | ram:ram-exhibition.bin |
 | game | `009E6400` | `func_009E6400` | 6 | 538 | 98.3% | ram:ram-exhibition.bin |
+| game | `009ECBE0` | `func_009ECBE0` | 4 | 143 | 99.2% | ram:ram-exhibition.bin |
 | game | `009ECDE0` | `func_009ECDE0` | 7 | 340 | 98.6% | ram:ram-exhibition.bin |
 | game | `009ECF00` | `func_009ECF00` | 5 | 391 | 62.5% | ram:ram-exhibition.bin |
 | game | `009ED080` | `func_009ED080` | 6 | 381 | 94.1% | ram:ram-exhibition.bin |
@@ -614,6 +650,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `009EFC40` | `func_009EFC40` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `009EFCA0` | `func_009EFCA0` | 4 | 346 | 99.0% | ram:ram-exhibition.bin |
 | game | `009F0020` | `func_009F0020` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
+| game | `009F0150` | `func_009F0150` | 12 | 376 | 70.0% | ram:ram-exhibition.bin |
 | game | `009F0D30` | `func_009F0D30` | 4 | 167 | 74.8% | ram:ram-exhibition.bin |
 | game | `009F1390` | `func_009F1390` | 4 | 596 | 94.6% | ram:ram-exhibition.bin |
 | game | `009F1470` | `func_009F1470` | 10 | 372 | 65.9% | ram:ram-exhibition.bin |
@@ -714,6 +751,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A11500` | `func_00A11500` | 12 | 532 | 89.3% | ram:ram-exhibition.bin |
 | game | `00A11780` | `func_00A11780` | 12 | 184 | 98.8% | ram:ram-exhibition.bin |
 | game | `00A11B40` | `func_00A11B40` | 4 | 230 | 48.8% | ram:ram-exhibition.bin |
+| game | `00A11DD0` | `func_00A11DD0` | 6 | 541 | 67.7% | ram:ram-exhibition.bin |
 | game | `00A121B0` | `func_00A121B0` | 6 | 467 | 99.2% | ram:ram-exhibition.bin |
 | game | `00A123A0` | `func_00A123A0` | 5 | 338 | 89.6% | ram:ram-exhibition.bin |
 | game | `00A126F0` | `func_00A126F0` | 9 | 431 | 99.0% | ram:ram-exhibition.bin |
@@ -757,6 +795,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A1C780` | `func_00A1C780` | 8 | 592 | 100.0% | ram:ram-exhibition.bin |
 | game | `00A1C980` | `func_00A1C980` | 14 | 245 | 58.2% | ram:ram-exhibition.bin |
 | game | `00A1CF00` | `func_00A1CF00` | 12 | 329 | 91.7% | ram:ram-exhibition.bin |
+| game | `00A1D080` | `func_00A1D080` | 17 | 247 | 63.2% | ram:ram-exhibition.bin |
 | game | `00A1FEA0` | `func_00A1FEA0` | 8 | 581 | 26.1% | ram:ram-exhibition.bin |
 | game | `00A20DC0` | `func_00A20DC0` | 6 | 557 | 53.9% | ram:ram-exhibition.bin |
 | game | `00A21680` | `func_00A21680` | 11 | 281 | 96.5% | ram:ram-exhibition.bin |
@@ -775,6 +814,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A2D770` | `func_00A2D770` | 6 | 536 | 87.5% | ram:ram-exhibition.bin |
 | game | `00A2D930` | `func_00A2D930` | 5 | 359 | 100.0% | ram:ram-exhibition.bin |
 | game | `00A2DA90` | `func_00A2DA90` | 18 | 270 | 89.3% | ram:ram-exhibition.bin |
+| game | `00A2E100` | `func_00A2E100` | 13 | 478 | 71.6% | ram:ram-exhibition.bin |
 | game | `00A2E740` | `func_00A2E740` | 20 | 319 | 46.9% | ram:ram-exhibition.bin |
 | game | `00A315B0` | `func_00A315B0` | 10 | 341 | 91.0% | ram:ram-exhibition.bin |
 | game | `00A31D20` | `func_00A31D20` | 7 | 224 | 95.5% | ram:ram-exhibition.bin |
@@ -818,6 +858,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A42380` | `func_00A42380` | 18 | 313 | 94.3% | ram:ram-exhibition.bin |
 | game | `00A426D0` | `func_00A426D0` | 4 | 467 | 98.6% | ram:ram-exhibition.bin |
 | game | `00A427F0` | `func_00A427F0` | 9 | 379 | 87.3% | ram:ram-exhibition.bin |
+| game | `00A42990` | `func_00A42990` | 23 | 276 | 75.2% | ram:ram-exhibition.bin |
 | game | `00A43A90` | `func_00A43A90` | 24 | 363 | 43.4% | ram:ram-exhibition.bin |
 | game | `00A46820` | `func_00A46820` | 15 | 297 | 91.5% | ram:ram-exhibition.bin |
 | game | `00A46AB0` | `func_00A46AB0` | 24 | 310 | 24.1% | ram:ram-exhibition.bin |
@@ -848,7 +889,9 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A59F60` | `func_00A59F60` | 7 | 506 | 78.1% | ram:ram-exhibition.bin |
 | game | `00A5AFB0` | `func_00A5AFB0` | 7 | 374 | 66.0% | ram:ram-exhibition.bin |
 | game | `00A5B2D0` | `func_00A5B2D0` | 8 | 341 | 53.9% | ram:ram-exhibition.bin |
+| game | `00A5BA90` | `func_00A5BA90` | 18 | 369 | 66.9% | ram:ram-exhibition.bin |
 | game | `00A5C750` | `func_00A5C750` | 6 | 415 | 95.6% | ram:ram-exhibition.bin |
+| game | `00A5C9D0` | `func_00A5C9D0` | 17 | 371 | 78.8% | ram:ram-exhibition.bin |
 | game | `00A5D280` | `func_00A5D280` | 7 | 250 | 99.8% | ram:ram-exhibition.bin |
 | game | `00A5DA00` | `func_00A5DA00` | 4 | 177 | 88.6% | ram:ram-exhibition.bin |
 | game | `00A5DC80` | `func_00A5DC80` | 10 | 474 | 89.4% | ram:ram-exhibition.bin |
@@ -887,6 +930,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A70B00` | `func_00A70B00` | 15 | 140 | 36.1% | ram:ram-exhibition.bin |
 | game | `00A71800` | `func_00A71800` | 10 | 575 | 46.2% | ram:ram-exhibition.bin |
 | game | `00A72D50` | `func_00A72D50` | 6 | 205 | 86.3% | ram:ram-exhibition.bin |
+| game | `00A731E0` | `func_00A731E0` | 6 | 467 | 99.6% | ram:ram-exhibition.bin |
 | game | `00A73640` | `func_00A73640` | 8 | 287 | 71.4% | ram:ram-exhibition.bin |
 | game | `00A73E20` | `func_00A73E20` | 23 | 400 | 87.6% | ram:ram-exhibition.bin |
 | game | `00A74E50` | `func_00A74E50` | 4 | 69 | 86.6% | ram:ram-exhibition.bin |
@@ -905,18 +949,22 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00A87E80` | `func_00A87E80` | 24 | 334 | 78.2% | ram:ram-exhibition.bin |
 | game | `00A8A7B0` | `func_00A8A7B0` | 4 | 596 | 91.1% | ram:ram-exhibition.bin |
 | game | `00A8AAB0` | `func_00A8AAB0` | 17 | 275 | 74.3% | ram:ram-exhibition.bin |
+| game | `00A8B6A0` | `func_00A8B6A0` | 15 | 375 | 89.0% | ram:ram-exhibition.bin |
 | game | `00A8BE30` | `func_00A8BE30` | 15 | 346 | 92.7% | ram:ram-exhibition.bin |
 | game | `00A8C2B0` | `func_00A8C2B0` | 19 | 258 | 32.2% | ram:ram-exhibition.bin |
+| game | `00A8F230` | `func_00A8F230` | 6 | 40 | 47.7% | ram:ram-exhibition.bin |
 | game | `00A8FD80` | `func_00A8FD80` | 11 | 384 | 70.6% | ram:ram-exhibition.bin |
 | game | `00A90760` | `func_00A90760` | 4 | 251 | 93.6% | ram:ram-exhibition.bin |
 | game | `00A90AD0` | `func_00A90AD0` | 20 | 165 | 89.6% | ram:ram-exhibition.bin |
 | game | `00A92100` | `func_00A92100` | 5 | 552 | 27.3% | ram:ram-exhibition.bin |
+| game | `00A923C0` | `func_00A923C0` | 7 | 357 | 99.7% | ram:ram-exhibition.bin |
 | game | `00A94120` | `func_00A94120` | 10 | 443 | 98.6% | ram:ram-exhibition.bin |
 | game | `00A94580` | `func_00A94580` | 5 | 595 | 99.3% | ram:ram-exhibition.bin |
 | game | `00A947D0` | `func_00A947D0` | 14 | 511 | 91.2% | ram:ram-exhibition.bin |
 | game | `00A95300` | `func_00A95300` | 15 | 294 | 69.0% | ram:ram-exhibition.bin |
 | game | `00A95C30` | `func_00A95C30` | 14 | 138 | 38.5% | ram:ram-exhibition.bin |
 | game | `00A96670` | `func_00A96670` | 4 | 408 | 63.6% | ram:ram-exhibition.bin |
+| game | `00A96720` | `func_00A96720` | 5 | 240 | 100.0% | ram:ram-exhibition.bin |
 | game | `00A96A00` | `func_00A96A00` | 4 | 533 | 99.1% | ram:ram-exhibition.bin |
 | game | `00A96BB0` | `func_00A96BB0` | 7 | 246 | 71.6% | ram:ram-exhibition.bin |
 | game | `00A970D0` | `func_00A970D0` | 8 | 210 | 98.8% | ram:ram-exhibition.bin |
@@ -961,6 +1009,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00AA0960` | `func_00AA0960` | 6 | 416 | 79.6% | ram:ram-exhibition.bin |
 | game | `00AA1110` | `func_00AA1110` | 5 | 570 | 38.0% | ram:ram-exhibition.bin |
 | game | `00AA1E10` | `func_00AA1E10` | 6 | 371 | 88.5% | ram:ram-exhibition.bin |
+| game | `00AA2020` | `func_00AA2020` | 7 | 331 | 96.7% | ram:ram-exhibition.bin |
 | game | `00AA24E0` | `func_00AA24E0` | 5 | 205 | 90.7% | ram:ram-exhibition.bin |
 | game | `00AA2AC0` | `func_00AA2AC0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00AA2B40` | `func_00AA2B40` | 4 | 596 | 98.3% | ram:ram-exhibition.bin |
@@ -976,6 +1025,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00AA3CF0` | `func_00AA3CF0` | 24 | 208 | 67.7% | ram:ram-exhibition.bin |
 | game | `00AA4A30` | `func_00AA4A30` | 11 | 232 | 29.8% | ram:ram-exhibition.bin |
 | game | `00AA5D60` | `func_00AA5D60` | 10 | 396 | 37.0% | ram:ram-exhibition.bin |
+| game | `00AA6970` | `func_00AA6970` | 13 | 394 | 44.2% | ram:ram-exhibition.bin |
 | game | `00AA74B0` | `func_00AA74B0` | 8 | 541 | 82.3% | ram:ram-exhibition.bin |
 | game | `00AA7B70` | `func_00AA7B70` | 13 | 218 | 61.3% | ram:ram-exhibition.bin |
 | game | `00AA8B90` | `func_00AA8B90` | 19 | 201 | 60.6% | ram:ram-exhibition.bin |
@@ -1001,6 +1051,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00AB3990` | `func_00AB3990` | 7 | 178 | 100.0% | ram:ram-exhibition.bin |
 | game | `00AB3BB0` | `func_00AB3BB0` | 4 | 193 | 100.0% | ram:ram-exhibition.bin |
 | game | `00AB3CB0` | `func_00AB3CB0` | 4 | 238 | 75.8% | ram:ram-exhibition.bin |
+| game | `00AB3DC0` | `func_00AB3DC0` | 11 | 236 | 82.6% | ram:ram-exhibition.bin |
 | game | `00AB4270` | `func_00AB4270` | 4 | 547 | 98.4% | ram:ram-exhibition.bin |
 | game | `00AB4370` | `func_00AB4370` | 4 | 590 | 98.3% | ram:ram-exhibition.bin |
 | game | `00AB44C0` | `func_00AB44C0` | 6 | 510 | 71.9% | ram:ram-exhibition.bin |
@@ -1066,10 +1117,12 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00AE0200` | `func_00AE0200` | 6 | 333 | 98.0% | ram:ram-exhibition.bin |
 | game | `00AE02D0` | `func_00AE02D0` | 24 | 266 | 31.9% | ram:ram-exhibition.bin |
 | game | `00AE2F30` | `func_00AE2F30` | 8 | 138 | 93.8% | ram:ram-exhibition.bin |
+| game | `00AE3680` | `func_00AE3680` | 4 | 230 | 100.0% | ram:ram-exhibition.bin |
 | game | `00AE39E0` | `func_00AE39E0` | 5 | 223 | 99.0% | ram:ram-exhibition.bin |
 | game | `00AE3B80` | `func_00AE3B80` | 5 | 118 | 65.5% | ram:ram-exhibition.bin |
 | game | `00AE40C0` | `func_00AE40C0` | 4 | 99 | 100.0% | ram:ram-exhibition.bin |
 | game | `00AE4390` | `func_00AE4390` | 4 | 597 | 22.6% | ram:ram-exhibition.bin |
+| game | `00AE47E0` | `func_00AE47E0` | 12 | 337 | 96.3% | ram:ram-exhibition.bin |
 | game | `00AE4EC0` | `func_00AE4EC0` | 8 | 452 | 28.8% | ram:ram-exhibition.bin |
 | game | `00AE5370` | `func_00AE5370` | 7 | 287 | 99.5% | ram:ram-exhibition.bin |
 | game | `00AE5680` | `func_00AE5680` | 5 | 563 | 29.5% | ram:ram-exhibition.bin |
@@ -1120,6 +1173,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00AFBAB0` | `func_00AFBAB0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00AFBB00` | `func_00AFBB00` | 9 | 441 | 81.1% | ram:ram-exhibition.bin |
 | game | `00AFBFD0` | `func_00AFBFD0` | 11 | 51 | 99.0% | ram:ram-exhibition.bin |
+| game | `00AFCBF0` | `func_00AFCBF0` | 24 | 182 | 61.3% | ram:ram-exhibition.bin |
 | game | `00AFE340` | `func_00AFE340` | 12 | 219 | 95.6% | ram:ram-exhibition.bin |
 | game | `00AFE670` | `func_00AFE670` | 13 | 262 | 45.0% | ram:ram-exhibition.bin |
 | game | `00AFF630` | `func_00AFF630` | 13 | 191 | 26.5% | ram:ram-exhibition.bin |
@@ -1145,7 +1199,9 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B0F640` | `func_00B0F640` | 5 | 350 | 38.3% | ram:ram-exhibition.bin |
 | game | `00B0F930` | `func_00B0F930` | 5 | 307 | 84.5% | ram:ram-exhibition.bin |
 | game | `00B0FA80` | `func_00B0FA80` | 11 | 310 | 90.8% | ram:ram-exhibition.bin |
+| game | `00B10020` | `func_00B10020` | 8 | 293 | 91.8% | ram:ram-exhibition.bin |
 | game | `00B104E0` | `func_00B104E0` | 7 | 501 | 50.2% | ram:ram-exhibition.bin |
+| game | `00B10BA0` | `func_00B10BA0` | 13 | 113 | 69.0% | ram:ram-exhibition.bin |
 | game | `00B11850` | `func_00B11850` | 6 | 180 | 71.8% | ram:ram-exhibition.bin |
 | game | `00B13000` | `func_00B13000` | 16 | 149 | 95.5% | ram:ram-exhibition.bin |
 | game | `00B13270` | `func_00B13270` | 24 | 319 | 30.0% | ram:ram-exhibition.bin |
@@ -1314,6 +1370,9 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B27820` | `func_00B27820` | 4 | 596 | 95.7% | ram:ram-exhibition.bin |
 | game | `00B27880` | `func_00B27880` | 4 | 397 | 100.0% | ram:ram-exhibition.bin |
 | game | `00B27920` | `func_00B27920` | 6 | 160 | 91.1% | ram:ram-exhibition.bin |
+| game | `00B27BC0` | `func_00B27BC0` | 9 | 544 | 98.1% | ram:ram-exhibition.bin |
+| game | `00B27FE0` | `func_00B27FE0` | 4 | 596 | 97.4% | ram:ram-exhibition.bin |
+| game | `00B281B0` | `func_00B281B0` | 5 | 350 | 93.9% | ram:ram-exhibition.bin |
 | game | `00B28750` | `func_00B28750` | 9 | 501 | 64.4% | ram:ram-exhibition.bin |
 | game | `00B29110` | `func_00B29110` | 9 | 590 | 94.5% | ram:ram-exhibition.bin |
 | game | `00B29310` | `func_00B29310` | 4 | 597 | 92.3% | ram:ram-exhibition.bin |
@@ -1351,8 +1410,10 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B342C0` | `func_00B342C0` | 5 | 344 | 72.1% | ram:ram-exhibition.bin |
 | game | `00B345F0` | `func_00B345F0` | 4 | 204 | 99.2% | ram:ram-exhibition.bin |
 | game | `00B347F0` | `func_00B347F0` | 4 | 81 | 95.7% | ram:ram-exhibition.bin |
+| game | `00B34AE0` | `func_00B34AE0` | 12 | 228 | 92.8% | ram:ram-exhibition.bin |
 | game | `00B34F70` | `func_00B34F70` | 7 | 170 | 63.9% | ram:ram-exhibition.bin |
 | game | `00B35120` | `func_00B35120` | 4 | 105 | 94.0% | ram:ram-exhibition.bin |
+| game | `00B35340` | `func_00B35340` | 4 | 250 | 98.7% | ram:ram-exhibition.bin |
 | game | `00B354C0` | `func_00B354C0` | 4 | 186 | 99.2% | ram:ram-exhibition.bin |
 | game | `00B356D0` | `func_00B356D0` | 4 | 80 | 95.7% | ram:ram-exhibition.bin |
 | game | `00B35790` | `func_00B35790` | 5 | 55 | 100.0% | ram:ram-exhibition.bin |
@@ -1374,6 +1435,9 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B37DF0` | `func_00B37DF0` | 6 | 594 | 98.9% | ram:ram-exhibition.bin |
 | game | `00B37F50` | `func_00B37F50` | 8 | 25 | 75.9% | ram:ram-exhibition.bin |
 | game | `00B382F0` | `func_00B382F0` | 4 | 211 | 98.3% | ram:ram-exhibition.bin |
+| game | `00B383E0` | `func_00B383E0` | 4 | 80 | 72.8% | ram:ram-exhibition.bin |
+| game | `00B38720` | `func_00B38720` | 4 | 11 | 99.7% | ram:ram-exhibition.bin |
+| game | `00B38C40` | `func_00B38C40` | 8 | 11 | 76.4% | ram:ram-exhibition.bin |
 | game | `00B39560` | `func_00B39560` | 5 | 78 | 45.1% | ram:ram-exhibition.bin |
 | game | `00B397F0` | `func_00B397F0` | 4 | 455 | 30.7% | ram:ram-exhibition.bin |
 | game | `00B39A20` | `func_00B39A20` | 7 | 475 | 65.3% | ram:ram-exhibition.bin |
@@ -1396,6 +1460,9 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B3C450` | `func_00B3C450` | 9 | 591 | 80.2% | ram:ram-exhibition.bin |
 | game | `00B3C7D0` | `func_00B3C7D0` | 4 | 91 | 96.8% | ram:ram-exhibition.bin |
 | game | `00B3C8D0` | `func_00B3C8D0` | 6 | 594 | 69.8% | ram:ram-exhibition.bin |
+| game | `00B3CB50` | `func_00B3CB50` | 13 | 580 | 98.9% | ram:ram-exhibition.bin |
+| game | `00B3CF80` | `func_00B3CF80` | 4 | 0 | 94.6% | ram:ram-exhibition.bin |
+| game | `00B3D220` | `func_00B3D220` | 9 | 341 | 98.4% | ram:ram-exhibition.bin |
 | game | `00B3D420` | `func_00B3D420` | 17 | 166 | 41.5% | ram:ram-exhibition.bin |
 | game | `00B3E340` | `func_00B3E340` | 12 | 48 | 32.0% | ram:ram-exhibition.bin |
 | game | `00B3F5B0` | `func_00B3F5B0` | 7 | 217 | 20.7% | ram:ram-exhibition.bin |
@@ -1404,6 +1471,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B40370` | `func_00B40370` | 6 | 133 | 85.0% | ram:ram-exhibition.bin |
 | game | `00B40730` | `func_00B40730` | 5 | 122 | 61.2% | ram:ram-exhibition.bin |
 | game | `00B40A40` | `func_00B40A40` | 4 | 118 | 78.6% | ram:ram-exhibition.bin |
+| game | `00B41320` | `func_00B41320` | 6 | 159 | 100.0% | ram:ram-exhibition.bin |
 | game | `00B41530` | `func_00B41530` | 7 | 131 | 82.5% | ram:ram-exhibition.bin |
 | game | `00B417B0` | `func_00B417B0` | 8 | 145 | 85.4% | ram:ram-exhibition.bin |
 | game | `00B41A80` | `func_00B41A80` | 7 | 140 | 64.4% | ram:ram-exhibition.bin |
@@ -1453,6 +1521,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B4E1E0` | `func_00B4E1E0` | 7 | 222 | 39.7% | ram:ram-exhibition.bin |
 | game | `00B4E560` | `func_00B4E560` | 7 | 97 | 38.6% | ram:ram-exhibition.bin |
 | game | `00B4F920` | `func_00B4F920` | 4 | 325 | 16.8% | ram:ram-exhibition.bin |
+| game | `00B4FC20` | `func_00B4FC20` | 16 | 99 | 70.0% | ram:ram-exhibition.bin |
 | game | `00B50900` | `func_00B50900` | 4 | 12 | 9.5% | ram:ram-exhibition.bin |
 | game | `00B51290` | `func_00B51290` | 4 | 596 | 11.0% | ram:ram-exhibition.bin |
 | game | `00B516B0` | `func_00B516B0` | 4 | 15 | 27.3% | ram:ram-exhibition.bin |
@@ -1484,6 +1553,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B5C000` | `func_00B5C000` | 6 | 594 | 47.9% | ram:ram-exhibition.bin |
 | game | `00B5C240` | `func_00B5C240` | 4 | 596 | 27.5% | ram:ram-exhibition.bin |
 | game | `00B5C480` | `func_00B5C480` | 5 | 595 | 98.0% | ram:ram-exhibition.bin |
+| game | `00B5C550` | `func_00B5C550` | 7 | 373 | 94.5% | ram:ram-exhibition.bin |
 | game | `00B5C9E0` | `func_00B5C9E0` | 9 | 592 | 44.6% | ram:ram-exhibition.bin |
 | game | `00B5D280` | `func_00B5D280` | 6 | 594 | 99.4% | ram:ram-exhibition.bin |
 | game | `00B5D540` | `func_00B5D540` | 4 | 69 | 30.6% | ram:ram-exhibition.bin |
@@ -1504,6 +1574,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B63090` | `func_00B63090` | 4 | 526 | 11.0% | ram:ram-exhibition.bin |
 | game | `00B637B0` | `func_00B637B0` | 6 | 594 | 98.3% | ram:ram-exhibition.bin |
 | game | `00B63A60` | `func_00B63A60` | 4 | 269 | 99.0% | ram:ram-exhibition.bin |
+| game | `00B63BF0` | `func_00B63BF0` | 10 | 591 | 97.1% | ram:ram-exhibition.bin |
 | game | `00B63E10` | `func_00B63E10` | 10 | 593 | 81.2% | ram:ram-exhibition.bin |
 | game | `00B64040` | `func_00B64040` | 4 | 336 | 13.5% | ram:ram-exhibition.bin |
 | game | `00B64490` | `func_00B64490` | 4 | 139 | 43.8% | ram:ram-exhibition.bin |
@@ -1526,6 +1597,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B68210` | `func_00B68210` | 5 | 135 | 98.9% | ram:ram-exhibition.bin |
 | game | `00B68390` | `func_00B68390` | 24 | 316 | 47.7% | ram:ram-exhibition.bin |
 | game | `00B69B30` | `func_00B69B30` | 4 | 163 | 98.9% | ram:ram-exhibition.bin |
+| game | `00B69CA0` | `func_00B69CA0` | 11 | 277 | 71.7% | ram:ram-exhibition.bin |
 | game | `00B6A1D0` | `func_00B6A1D0` | 11 | 591 | 89.3% | ram:ram-exhibition.bin |
 | game | `00B6A3C0` | `func_00B6A3C0` | 6 | 585 | 100.0% | ram:ram-exhibition.bin |
 | game | `00B6A540` | `func_00B6A540` | 6 | 414 | 25.9% | ram:ram-exhibition.bin |
@@ -1583,6 +1655,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B77210` | `func_00B77210` | 4 | 275 | 83.2% | ram:ram-exhibition.bin |
 | game | `00B77510` | `func_00B77510` | 6 | 573 | 75.0% | ram:ram-exhibition.bin |
 | game | `00B77910` | `func_00B77910` | 12 | 159 | 41.1% | ram:ram-exhibition.bin |
+| game | `00B77DA0` | `func_00B77DA0` | 4 | 5 | 72.8% | ram:ram-exhibition.bin |
 | game | `00B78620` | `func_00B78620` | 9 | 392 | 81.7% | ram:ram-exhibition.bin |
 | game | `00B789A0` | `func_00B789A0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00B789F0` | `func_00B789F0` | 7 | 594 | 72.5% | ram:ram-exhibition.bin |
@@ -1609,13 +1682,18 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B7B970` | `func_00B7B970` | 8 | 252 | 92.7% | ram:ram-exhibition.bin |
 | game | `00B7BB60` | `func_00B7BB60` | 4 | 233 | 63.4% | ram:ram-exhibition.bin |
 | game | `00B7BD20` | `func_00B7BD20` | 4 | 177 | 11.9% | ram:ram-exhibition.bin |
+| game | `00B7C220` | `func_00B7C220` | 9 | 203 | 97.0% | ram:ram-exhibition.bin |
 | game | `00B7C7F0` | `func_00B7C7F0` | 4 | 540 | 76.2% | ram:ram-exhibition.bin |
 | game | `00B7C940` | `func_00B7C940` | 24 | 374 | 52.2% | ram:ram-exhibition.bin |
+| game | `00B7D7B0` | `func_00B7D7B0` | 4 | 596 | 85.7% | ram:ram-exhibition.bin |
 | game | `00B7DAC0` | `func_00B7DAC0` | 4 | 596 | 88.5% | ram:ram-exhibition.bin |
 | game | `00B7DB90` | `func_00B7DB90` | 4 | 597 | 90.8% | ram:ram-exhibition.bin |
+| game | `00B7DEA0` | `func_00B7DEA0` | 6 | 60 | 98.3% | ram:ram-exhibition.bin |
 | game | `00B7E420` | `func_00B7E420` | 4 | 596 | 39.6% | ram:ram-exhibition.bin |
 | game | `00B7E770` | `func_00B7E770` | 10 | 590 | 96.8% | ram:ram-exhibition.bin |
+| game | `00B7EBD0` | `func_00B7EBD0` | 4 | 596 | 96.1% | ram:ram-exhibition.bin |
 | game | `00B7F030` | `func_00B7F030` | 4 | 456 | 52.5% | ram:ram-exhibition.bin |
+| game | `00B7F710` | `func_00B7F710` | 4 | 334 | 94.9% | ram:ram-exhibition.bin |
 | game | `00B7FB10` | `func_00B7FB10` | 6 | 594 | 97.2% | ram:ram-exhibition.bin |
 | game | `00B7FEC0` | `func_00B7FEC0` | 4 | 72 | 16.3% | ram:ram-exhibition.bin |
 | game | `00B80050` | `func_00B80050` | 5 | 591 | 97.7% | ram:ram-exhibition.bin |
@@ -1637,7 +1715,9 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B83FF0` | `func_00B83FF0` | 4 | 341 | 95.7% | ram:ram-exhibition.bin |
 | game | `00B84160` | `func_00B84160` | 4 | 142 | 97.4% | ram:ram-exhibition.bin |
 | game | `00B84330` | `func_00B84330` | 4 | 27 | 95.3% | ram:ram-exhibition.bin |
+| game | `00B84580` | `func_00B84580` | 4 | 117 | 98.6% | ram:ram-exhibition.bin |
 | game | `00B846A0` | `func_00B846A0` | 4 | 375 | 88.3% | ram:ram-exhibition.bin |
+| game | `00B84790` | `func_00B84790` | 4 | 29 | 91.5% | ram:ram-exhibition.bin |
 | game | `00B84BA0` | `func_00B84BA0` | 4 | 185 | 68.2% | ram:ram-exhibition.bin |
 | game | `00B84D00` | `func_00B84D00` | 4 | 102 | 98.4% | ram:ram-exhibition.bin |
 | game | `00B84E00` | `func_00B84E00` | 9 | 42 | 99.1% | ram:ram-exhibition.bin |
@@ -1657,6 +1737,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B880F0` | `func_00B880F0` | 7 | 138 | 65.8% | ram:ram-exhibition.bin |
 | game | `00B88530` | `func_00B88530` | 8 | 95 | 57.1% | ram:ram-exhibition.bin |
 | game | `00B888B0` | `func_00B888B0` | 5 | 73 | 99.2% | ram:ram-exhibition.bin |
+| game | `00B88B00` | `func_00B88B00` | 4 | 51 | 58.8% | ram:ram-exhibition.bin |
 | game | `00B89020` | `func_00B89020` | 7 | 593 | 100.0% | ram:ram-exhibition.bin |
 | game | `00B89080` | `func_00B89080` | 4 | 520 | 99.6% | ram:ram-exhibition.bin |
 | game | `00B89460` | `func_00B89460` | 4 | 54 | 72.9% | ram:ram-exhibition.bin |
@@ -1683,6 +1764,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B8C680` | `func_00B8C680` | 5 | 218 | 14.8% | ram:ram-exhibition.bin |
 | game | `00B8D950` | `func_00B8D950` | 4 | 112 | 61.9% | ram:ram-exhibition.bin |
 | game | `00B8DBD0` | `func_00B8DBD0` | 4 | 199 | 91.8% | ram:ram-exhibition.bin |
+| game | `00B8DE20` | `func_00B8DE20` | 4 | 133 | 94.5% | ram:ram-exhibition.bin |
 | game | `00B8E020` | `func_00B8E020` | 4 | 111 | 100.0% | ram:ram-exhibition.bin |
 | game | `00B8E0F0` | `func_00B8E0F0` | 5 | 195 | 57.9% | ram:ram-exhibition.bin |
 | game | `00B8E380` | `func_00B8E380` | 4 | 111 | 100.0% | ram:ram-exhibition.bin |
@@ -1718,6 +1800,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B94B20` | `func_00B94B20` | 5 | 325 | 98.8% | ram:ram-exhibition.bin |
 | game | `00B94C80` | `func_00B94C80` | 5 | 590 | 98.3% | ram:ram-exhibition.bin |
 | game | `00B94F30` | `func_00B94F30` | 4 | 596 | 85.7% | ram:ram-exhibition.bin |
+| game | `00B95030` | `func_00B95030` | 5 | 525 | 98.1% | ram:ram-exhibition.bin |
 | game | `00B95380` | `func_00B95380` | 5 | 320 | 96.4% | ram:ram-exhibition.bin |
 | game | `00B956F0` | `func_00B956F0` | 8 | 533 | 98.5% | ram:ram-exhibition.bin |
 | game | `00B95D50` | `func_00B95D50` | 6 | 314 | 97.3% | ram:ram-exhibition.bin |
@@ -1727,9 +1810,12 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B970C0` | `func_00B970C0` | 24 | 536 | 79.4% | ram:ram-exhibition.bin |
 | game | `00B97E60` | `func_00B97E60` | 10 | 591 | 75.7% | ram:ram-exhibition.bin |
 | game | `00B98470` | `func_00B98470` | 6 | 594 | 98.6% | ram:ram-exhibition.bin |
+| game | `00B98610` | `func_00B98610` | 12 | 558 | 85.7% | ram:ram-exhibition.bin |
 | game | `00B99230` | `func_00B99230` | 8 | 592 | 33.3% | ram:ram-exhibition.bin |
 | game | `00B998C0` | `func_00B998C0` | 10 | 446 | 95.9% | ram:ram-exhibition.bin |
 | game | `00B99C30` | `func_00B99C30` | 9 | 197 | 98.9% | ram:ram-exhibition.bin |
+| game | `00B9CB40` | `func_00B9CB40` | 5 | 135 | 100.0% | ram:ram-exhibition.bin |
+| game | `00B9CC30` | `func_00B9CC30` | 5 | 216 | 84.2% | ram:ram-exhibition.bin |
 | game | `00B9CEA0` | `func_00B9CEA0` | 4 | 148 | 55.4% | ram:ram-exhibition.bin |
 | game | `00B9CF80` | `func_00B9CF80` | 4 | 82 | 40.0% | ram:ram-exhibition.bin |
 | game | `00B9D3A0` | `func_00B9D3A0` | 4 | 263 | 97.9% | ram:ram-exhibition.bin |
@@ -1741,11 +1827,14 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00B9E2B0` | `func_00B9E2B0` | 4 | 164 | 94.7% | ram:ram-exhibition.bin |
 | game | `00B9E3E0` | `func_00B9E3E0` | 6 | 164 | 96.1% | ram:ram-exhibition.bin |
 | game | `00B9E580` | `func_00B9E580` | 6 | 594 | 100.0% | ram:ram-exhibition.bin |
+| game | `00B9E5D0` | `func_00B9E5D0` | 6 | 97 | 92.7% | ram:ram-exhibition.bin |
 | game | `00B9E7C0` | `func_00B9E7C0` | 4 | 122 | 25.9% | ram:ram-exhibition.bin |
 | game | `00B9EA10` | `func_00B9EA10` | 4 | 152 | 12.2% | ram:ram-exhibition.bin |
 | game | `00B9ECE0` | `func_00B9ECE0` | 4 | 109 | 76.5% | ram:ram-exhibition.bin |
 | game | `00B9EDF0` | `func_00B9EDF0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00B9EE40` | `func_00B9EE40` | 4 | 596 | 90.4% | ram:ram-exhibition.bin |
+| game | `00B9EF90` | `func_00B9EF90` | 5 | 595 | 54.5% | ram:ram-exhibition.bin |
+| game | `00B9F690` | `func_00B9F690` | 6 | 594 | 99.3% | ram:ram-exhibition.bin |
 | game | `00B9F8F0` | `func_00B9F8F0` | 8 | 592 | 74.4% | ram:ram-exhibition.bin |
 | game | `00BA0220` | `func_00BA0220` | 11 | 320 | 43.0% | ram:ram-exhibition.bin |
 | game | `00BA1370` | `func_00BA1370` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
@@ -1763,15 +1852,19 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BA2490` | `func_00BA2490` | 4 | 596 | 22.1% | ram:ram-exhibition.bin |
 | game | `00BA26B0` | `func_00BA26B0` | 5 | 383 | 91.2% | ram:ram-exhibition.bin |
 | game | `00BA27F0` | `func_00BA27F0` | 12 | 194 | 23.9% | ram:ram-exhibition.bin |
+| game | `00BA4910` | `func_00BA4910` | 14 | 544 | 96.2% | ram:ram-exhibition.bin |
 | game | `00BA4EC0` | `func_00BA4EC0` | 4 | 348 | 99.0% | ram:ram-exhibition.bin |
 | game | `00BA5040` | `func_00BA5040` | 5 | 595 | 89.8% | ram:ram-exhibition.bin |
+| game | `00BA51F0` | `func_00BA51F0` | 4 | 2 | 88.5% | ram:ram-exhibition.bin |
 | game | `00BA5390` | `func_00BA5390` | 4 | 138 | 22.3% | ram:ram-exhibition.bin |
+| game | `00BA5790` | `func_00BA5790` | 4 | 176 | 98.8% | ram:ram-exhibition.bin |
 | game | `00BA58E0` | `func_00BA58E0` | 4 | 20 | 44.7% | ram:ram-exhibition.bin |
 | game | `00BA5B40` | `func_00BA5B40` | 4 | 34 | 75.4% | ram:ram-exhibition.bin |
 | game | `00BA5D80` | `func_00BA5D80` | 4 | 98 | 33.6% | ram:ram-exhibition.bin |
 | game | `00BA6160` | `func_00BA6160` | 4 | 148 | 99.1% | ram:ram-exhibition.bin |
 | game | `00BA6330` | `func_00BA6330` | 4 | 74 | 99.1% | ram:ram-exhibition.bin |
 | game | `00BA64E0` | `func_00BA64E0` | 4 | 532 | 98.4% | ram:ram-exhibition.bin |
+| game | `00BA65E0` | `func_00BA65E0` | 18 | 304 | 84.1% | ram:ram-exhibition.bin |
 | game | `00BA74A0` | `func_00BA74A0` | 14 | 210 | 39.4% | ram:ram-exhibition.bin |
 | game | `00BA81B0` | `func_00BA81B0` | 4 | 245 | 43.9% | ram:ram-exhibition.bin |
 | game | `00BA83E0` | `func_00BA83E0` | 4 | 245 | 89.9% | ram:ram-exhibition.bin |
@@ -1863,11 +1956,13 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BB5F00` | `func_00BB5F00` | 14 | 586 | 100.0% | ram:ram-exhibition.bin |
 | game | `00BB5FB0` | `func_00BB5FB0` | 4 | 596 | 17.5% | ram:ram-exhibition.bin |
 | game | `00BB6050` | `func_00BB6050` | 4 | 596 | 17.5% | ram:ram-exhibition.bin |
+| game | `00BB6100` | `func_00BB6100` | 10 | 590 | 82.5% | ram:ram-exhibition.bin |
 | game | `00BB6780` | `func_00BB6780` | 4 | 596 | 98.7% | ram:ram-exhibition.bin |
 | game | `00BB68D0` | `func_00BB68D0` | 4 | 596 | 99.2% | ram:ram-exhibition.bin |
 | game | `00BB6AB0` | `func_00BB6AB0` | 4 | 363 | 100.0% | ram:ram-exhibition.bin |
 | game | `00BB6B60` | `func_00BB6B60` | 4 | 355 | 100.0% | ram:ram-exhibition.bin |
 | game | `00BB6BE0` | `func_00BB6BE0` | 4 | 596 | 97.9% | ram:ram-exhibition.bin |
+| game | `00BB6CA0` | `func_00BB6CA0` | 6 | 366 | 95.5% | ram:ram-exhibition.bin |
 | game | `00BB6FC0` | `func_00BB6FC0` | 5 | 396 | 100.0% | ram:ram-exhibition.bin |
 | game | `00BB7100` | `func_00BB7100` | 4 | 328 | 100.0% | ram:ram-exhibition.bin |
 | game | `00BB7170` | `func_00BB7170` | 10 | 103 | 31.8% | ram:ram-exhibition.bin |
@@ -1905,6 +2000,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BBC8A0` | `func_00BBC8A0` | 4 | 103 | 76.3% | ram:ram-exhibition.bin |
 | game | `00BBCB00` | `func_00BBCB00` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00BBCBC0` | `func_00BBCBC0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
+| game | `00BBCC90` | `func_00BBCC90` | 4 | 596 | 99.2% | ram:ram-exhibition.bin |
 | game | `00BBCE80` | `func_00BBCE80` | 4 | 596 | 98.9% | ram:ram-exhibition.bin |
 | game | `00BBCFF0` | `func_00BBCFF0` | 12 | 588 | 79.8% | ram:ram-exhibition.bin |
 | game | `00BBD190` | `func_00BBD190` | 8 | 172 | 100.0% | ram:ram-exhibition.bin |
@@ -1990,6 +2086,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BCB420` | `func_00BCB420` | 5 | 595 | 90.8% | ram:ram-exhibition.bin |
 | game | `00BCB550` | `func_00BCB550` | 7 | 81 | 85.5% | ram:ram-exhibition.bin |
 | game | `00BCBAF0` | `func_00BCBAF0` | 4 | 596 | 97.6% | ram:ram-exhibition.bin |
+| game | `00BCBC40` | `func_00BCBC40` | 5 | 567 | 99.1% | ram:ram-exhibition.bin |
 | game | `00BCBE10` | `func_00BCBE10` | 6 | 379 | 99.0% | ram:ram-exhibition.bin |
 | game | `00BCBFA0` | `func_00BCBFA0` | 10 | 592 | 44.8% | ram:ram-exhibition.bin |
 | game | `00BCC4E0` | `func_00BCC4E0` | 4 | 596 | 88.9% | ram:ram-exhibition.bin |
@@ -2036,6 +2133,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BD40A0` | `func_00BD40A0` | 4 | 147 | 66.3% | ram:ram-exhibition.bin |
 | game | `00BD4200` | `func_00BD4200` | 6 | 100 | 74.7% | ram:ram-exhibition.bin |
 | game | `00BD44E0` | `func_00BD44E0` | 4 | 228 | 100.0% | ram:ram-exhibition.bin |
+| game | `00BD45B0` | `func_00BD45B0` | 4 | 596 | 90.4% | ram:ram-exhibition.bin |
 | game | `00BD4730` | `func_00BD4730` | 4 | 206 | 100.0% | ram:ram-exhibition.bin |
 | game | `00BD4780` | `func_00BD4780` | 7 | 593 | 87.5% | ram:ram-exhibition.bin |
 | game | `00BD48A0` | `func_00BD48A0` | 9 | 52 | 80.0% | ram:ram-exhibition.bin |
@@ -2046,6 +2144,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BD5880` | `func_00BD5880` | 7 | 224 | 98.7% | ram:ram-exhibition.bin |
 | game | `00BD59C0` | `func_00BD59C0` | 9 | 178 | 80.7% | ram:ram-exhibition.bin |
 | game | `00BD5CB0` | `func_00BD5CB0` | 6 | 192 | 98.4% | ram:ram-exhibition.bin |
+| game | `00BD5DB0` | `func_00BD5DB0` | 12 | 270 | 95.8% | ram:ram-exhibition.bin |
 | game | `00BD60B0` | `func_00BD60B0` | 4 | 172 | 89.0% | ram:ram-exhibition.bin |
 | game | `00BD6290` | `func_00BD6290` | 5 | 214 | 76.8% | ram:ram-exhibition.bin |
 | game | `00BD6530` | `func_00BD6530` | 8 | 187 | 91.0% | ram:ram-exhibition.bin |
@@ -2055,6 +2154,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BD6CD0` | `func_00BD6CD0` | 4 | 560 | 53.0% | ram:ram-exhibition.bin |
 | game | `00BD6E60` | `func_00BD6E60` | 4 | 565 | 34.4% | ram:ram-exhibition.bin |
 | game | `00BD70F0` | `func_00BD70F0` | 4 | 161 | 51.1% | ram:ram-exhibition.bin |
+| game | `00BD7260` | `func_00BD7260` | 4 | 81 | 74.4% | ram:ram-exhibition.bin |
 | game | `00BD74E0` | `func_00BD74E0` | 4 | 132 | 27.6% | ram:ram-exhibition.bin |
 | game | `00BD7880` | `func_00BD7880` | 6 | 185 | 88.3% | ram:ram-exhibition.bin |
 | game | `00BD7C40` | `func_00BD7C40` | 4 | 133 | 96.4% | ram:ram-exhibition.bin |
@@ -2074,6 +2174,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BDA660` | `func_00BDA660` | 4 | 16 | 86.4% | ram:ram-exhibition.bin |
 | game | `00BDA750` | `func_00BDA750` | 4 | 125 | 47.2% | ram:ram-exhibition.bin |
 | game | `00BDA9E0` | `func_00BDA9E0` | 4 | 115 | 95.3% | ram:ram-exhibition.bin |
+| game | `00BDAA90` | `func_00BDAA90` | 4 | 10 | 62.6% | ram:ram-exhibition.bin |
 | game | `00BDAD20` | `func_00BDAD20` | 4 | 70 | 82.9% | ram:ram-exhibition.bin |
 | game | `00BDAFE0` | `func_00BDAFE0` | 4 | 83 | 90.6% | ram:ram-exhibition.bin |
 | game | `00BDB260` | `func_00BDB260` | 5 | 364 | 58.3% | ram:ram-exhibition.bin |
@@ -2139,6 +2240,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BE4A60` | `func_00BE4A60` | 5 | 93 | 75.2% | ram:ram-exhibition.bin |
 | game | `00BE4F60` | `func_00BE4F60` | 4 | 84 | 94.9% | ram:ram-exhibition.bin |
 | game | `00BE50A0` | `func_00BE50A0` | 4 | 23 | 37.3% | ram:ram-exhibition.bin |
+| game | `00BE5610` | `func_00BE5610` | 8 | 162 | 94.2% | ram:ram-exhibition.bin |
 | game | `00BE5840` | `func_00BE5840` | 4 | 191 | 24.3% | ram:ram-exhibition.bin |
 | game | `00BE59D0` | `func_00BE59D0` | 4 | 14 | 57.9% | ram:ram-exhibition.bin |
 | game | `00BE5C00` | `func_00BE5C00` | 6 | 27 | 94.6% | ram:ram-exhibition.bin |
@@ -2146,11 +2248,14 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BE6280` | `func_00BE6280` | 4 | 25 | 56.3% | ram:ram-exhibition.bin |
 | game | `00BE6480` | `func_00BE6480` | 6 | 16 | 95.9% | ram:ram-exhibition.bin |
 | game | `00BE6730` | `func_00BE6730` | 4 | 126 | 46.6% | ram:ram-exhibition.bin |
+| game | `00BE6A10` | `func_00BE6A10` | 4 | 23 | 55.2% | ram:ram-exhibition.bin |
+| game | `00BE70B0` | `func_00BE70B0` | 5 | 203 | 93.9% | ram:ram-exhibition.bin |
 | game | `00BE7240` | `func_00BE7240` | 5 | 105 | 60.0% | ram:ram-exhibition.bin |
 | game | `00BE77B0` | `func_00BE77B0` | 6 | 164 | 98.7% | ram:ram-exhibition.bin |
 | game | `00BE78F0` | `func_00BE78F0` | 5 | 113 | 99.2% | ram:ram-exhibition.bin |
 | game | `00BE7BC0` | `func_00BE7BC0` | 15 | 118 | 95.2% | ram:ram-exhibition.bin |
 | game | `00BE7FB0` | `func_00BE7FB0` | 4 | 23 | 65.3% | ram:ram-exhibition.bin |
+| game | `00BE8200` | `func_00BE8200` | 4 | 27 | 99.2% | ram:ram-exhibition.bin |
 | game | `00BE83E0` | `func_00BE83E0` | 4 | 398 | 99.4% | ram:ram-exhibition.bin |
 | game | `00BE9F30` | `func_00BE9F30` | 4 | 385 | 88.0% | ram:ram-exhibition.bin |
 | game | `00BEA1D0` | `func_00BEA1D0` | 4 | 596 | 76.1% | ram:ram-exhibition.bin |
@@ -2169,11 +2274,13 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BEC640` | `func_00BEC640` | 4 | 122 | 9.7% | ram:ram-exhibition.bin |
 | game | `00BECD80` | `func_00BECD80` | 4 | 203 | 68.0% | ram:ram-exhibition.bin |
 | game | `00BED050` | `func_00BED050` | 8 | 172 | 97.8% | ram:ram-exhibition.bin |
+| game | `00BED3F0` | `func_00BED3F0` | 7 | 135 | 79.6% | ram:ram-exhibition.bin |
 | game | `00BED790` | `func_00BED790` | 5 | 181 | 61.8% | ram:ram-exhibition.bin |
 | game | `00BED930` | `func_00BED930` | 8 | 148 | 50.6% | ram:ram-exhibition.bin |
 | game | `00BEDBE0` | `func_00BEDBE0` | 4 | 240 | 99.2% | ram:ram-exhibition.bin |
 | game | `00BEDDF0` | `func_00BEDDF0` | 4 | 119 | 99.2% | ram:ram-exhibition.bin |
 | game | `00BEDFD0` | `func_00BEDFD0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
+| game | `00BEE220` | `func_00BEE220` | 11 | 589 | 100.0% | ram:ram-exhibition.bin |
 | game | `00BEE4D0` | `func_00BEE4D0` | 4 | 174 | 94.1% | ram:ram-exhibition.bin |
 | game | `00BEE8D0` | `func_00BEE8D0` | 4 | 595 | 61.3% | ram:ram-exhibition.bin |
 | game | `00BEEA30` | `func_00BEEA30` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
@@ -2183,6 +2290,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BEF180` | `func_00BEF180` | 5 | 519 | 90.0% | ram:ram-exhibition.bin |
 | game | `00BEF430` | `func_00BEF430` | 4 | 106 | 98.5% | ram:ram-exhibition.bin |
 | game | `00BEF540` | `func_00BEF540` | 4 | 34 | 86.8% | ram:ram-exhibition.bin |
+| game | `00BEF810` | `func_00BEF810` | 8 | 459 | 79.9% | ram:ram-exhibition.bin |
 | game | `00BEFDD0` | `func_00BEFDD0` | 6 | 477 | 82.9% | ram:ram-exhibition.bin |
 | game | `00BF04E0` | `func_00BF04E0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00BF0580` | `func_00BF0580` | 5 | 595 | 85.0% | ram:ram-exhibition.bin |
@@ -2241,10 +2349,12 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00BFE890` | `func_00BFE890` | 7 | 544 | 79.8% | ram:ram-exhibition.bin |
 | game | `00BFEE00` | `func_00BFEE00` | 9 | 591 | 99.0% | ram:ram-exhibition.bin |
 | game | `00BFEFA0` | `func_00BFEFA0` | 7 | 593 | 88.4% | ram:ram-exhibition.bin |
+| game | `00BFF740` | `func_00BFF740` | 4 | 596 | 96.9% | ram:ram-exhibition.bin |
 | game | `00BFFA50` | `func_00BFFA50` | 17 | 584 | 82.1% | ram:ram-exhibition.bin |
 | game | `00BFFEF0` | `func_00BFFEF0` | 4 | 597 | 96.9% | ram:ram-exhibition.bin |
 | game | `00C00070` | `func_00C00070` | 4 | 596 | 77.1% | ram:ram-exhibition.bin |
 | game | `00C001F0` | `func_00C001F0` | 5 | 595 | 60.6% | ram:ram-exhibition.bin |
+| game | `00C00440` | `func_00C00440` | 4 | 596 | 84.8% | ram:ram-exhibition.bin |
 | game | `00C00640` | `func_00C00640` | 14 | 586 | 33.6% | ram:ram-exhibition.bin |
 | game | `00C008A0` | `func_00C008A0` | 14 | 586 | 33.6% | ram:ram-exhibition.bin |
 | game | `00C00B00` | `func_00C00B00` | 15 | 585 | 35.6% | ram:ram-exhibition.bin |
@@ -2255,6 +2365,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C01540` | `func_00C01540` | 24 | 576 | 61.3% | ram:ram-exhibition.bin |
 | game | `00C01A40` | `func_00C01A40` | 6 | 208 | 75.4% | ram:ram-exhibition.bin |
 | game | `00C01D00` | `func_00C01D00` | 4 | 331 | 82.8% | ram:ram-exhibition.bin |
+| game | `00C01E60` | `func_00C01E60` | 15 | 317 | 87.8% | ram:ram-exhibition.bin |
 | game | `00C02570` | `func_00C02570` | 22 | 116 | 89.2% | ram:ram-exhibition.bin |
 | game | `00C02BF0` | `func_00C02BF0` | 4 | 385 | 94.4% | ram:ram-exhibition.bin |
 | game | `00C02D10` | `func_00C02D10` | 20 | 264 | 88.4% | ram:ram-exhibition.bin |
@@ -2285,6 +2396,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C05720` | `func_00C05720` | 4 | 240 | 98.1% | ram:ram-exhibition.bin |
 | game | `00C057F0` | `func_00C057F0` | 4 | 276 | 98.1% | ram:ram-exhibition.bin |
 | game | `00C058C0` | `func_00C058C0` | 10 | 215 | 85.1% | ram:ram-exhibition.bin |
+| game | `00C060A0` | `func_00C060A0` | 8 | 230 | 99.5% | ram:ram-exhibition.bin |
 | game | `00C063D0` | `func_00C063D0` | 6 | 337 | 99.3% | ram:ram-exhibition.bin |
 | game | `00C06620` | `func_00C06620` | 7 | 193 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C06990` | `func_00C06990` | 5 | 365 | 100.0% | ram:ram-exhibition.bin |
@@ -2301,9 +2413,11 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C078F0` | `func_00C078F0` | 5 | 222 | 95.2% | ram:ram-exhibition.bin |
 | game | `00C079F0` | `func_00C079F0` | 4 | 350 | 96.8% | ram:ram-exhibition.bin |
 | game | `00C07A70` | `func_00C07A70` | 8 | 358 | 100.0% | ram:ram-exhibition.bin |
+| game | `00C07AA0` | `func_00C07AA0` | 8 | 202 | 96.9% | ram:ram-exhibition.bin |
 | game | `00C07F20` | `func_00C07F20` | 4 | 333 | 98.9% | ram:ram-exhibition.bin |
 | game | `00C080A0` | `func_00C080A0` | 8 | 191 | 99.4% | ram:ram-exhibition.bin |
 | game | `00C083B0` | `func_00C083B0` | 4 | 380 | 98.9% | ram:ram-exhibition.bin |
+| game | `00C08520` | `func_00C08520` | 10 | 281 | 87.5% | ram:ram-exhibition.bin |
 | game | `00C08A80` | `func_00C08A80` | 4 | 361 | 97.7% | ram:ram-exhibition.bin |
 | game | `00C08B30` | `func_00C08B30` | 4 | 294 | 47.9% | ram:ram-exhibition.bin |
 | game | `00C08EF0` | `func_00C08EF0` | 4 | 259 | 97.7% | ram:ram-exhibition.bin |
@@ -2386,6 +2500,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C12150` | `func_00C12150` | 4 | 596 | 96.2% | ram:ram-exhibition.bin |
 | game | `00C121E0` | `func_00C121E0` | 5 | 595 | 98.0% | ram:ram-exhibition.bin |
 | game | `00C122B0` | `func_00C122B0` | 4 | 596 | 97.7% | ram:ram-exhibition.bin |
+| game | `00C12360` | `func_00C12360` | 4 | 596 | 99.3% | ram:ram-exhibition.bin |
 | game | `00C12590` | `func_00C12590` | 5 | 341 | 72.1% | ram:ram-exhibition.bin |
 | game | `00C12760` | `func_00C12760` | 4 | 596 | 97.1% | ram:ram-exhibition.bin |
 | game | `00C127F0` | `func_00C127F0` | 4 | 409 | 96.3% | ram:ram-exhibition.bin |
@@ -2450,6 +2565,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C16080` | `func_00C16080` | 4 | 342 | 30.6% | ram:ram-exhibition.bin |
 | game | `00C16270` | `func_00C16270` | 4 | 343 | 90.0% | ram:ram-exhibition.bin |
 | game | `00C162F0` | `func_00C162F0` | 4 | 330 | 100.0% | ram:ram-exhibition.bin |
+| game | `00C163B0` | `func_00C163B0` | 7 | 378 | 59.2% | ram:ram-exhibition.bin |
 | game | `00C168D0` | `func_00C168D0` | 4 | 596 | 94.1% | ram:ram-exhibition.bin |
 | game | `00C16E20` | `func_00C16E20` | 4 | 596 | 93.8% | ram:ram-exhibition.bin |
 | game | `00C16E80` | `func_00C16E80` | 4 | 327 | 99.2% | ram:ram-exhibition.bin |
@@ -2510,9 +2626,14 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C20820` | `func_00C20820` | 4 | 54 | 99.4% | ram:ram-exhibition.bin |
 | game | `00C20A90` | `func_00C20A90` | 4 | 596 | 98.5% | ram:ram-exhibition.bin |
 | game | `00C20BA0` | `func_00C20BA0` | 7 | 595 | 98.4% | ram:ram-exhibition.bin |
+| game | `00C20CA0` | `func_00C20CA0` | 4 | 2 | 97.2% | ram:ram-exhibition.bin |
+| game | `00C20DC0` | `func_00C20DC0` | 8 | 588 | 98.9% | ram:ram-exhibition.bin |
 | game | `00C20F30` | `func_00C20F30` | 5 | 596 | 100.0% | ram:ram-exhibition.bin |
+| game | `00C21050` | `func_00C21050` | 6 | 57 | 98.6% | ram:ram-exhibition.bin |
 | game | `00C21800` | `func_00C21800` | 4 | 471 | 97.9% | ram:ram-exhibition.bin |
 | game | `00C219D0` | `func_00C219D0` | 4 | 596 | 93.8% | ram:ram-exhibition.bin |
+| game | `00C21A30` | `func_00C21A30` | 4 | 441 | 98.5% | ram:ram-exhibition.bin |
+| game | `00C21D60` | `func_00C21D60` | 4 | 440 | 98.5% | ram:ram-exhibition.bin |
 | game | `00C22090` | `func_00C22090` | 4 | 522 | 98.5% | ram:ram-exhibition.bin |
 | game | `00C221A0` | `func_00C221A0` | 4 | 596 | 55.9% | ram:ram-exhibition.bin |
 | game | `00C222B0` | `func_00C222B0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
@@ -2533,6 +2654,8 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C228C0` | `func_00C228C0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C228F0` | `func_00C228F0` | 4 | 556 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C22930` | `func_00C22930` | 4 | 548 | 100.0% | ram:ram-exhibition.bin |
+| game | `00C229A0` | `func_00C229A0` | 4 | 596 | 97.9% | ram:ram-exhibition.bin |
+| game | `00C22A60` | `func_00C22A60` | 6 | 594 | 85.1% | ram:ram-exhibition.bin |
 | game | `00C22CA0` | `func_00C22CA0` | 4 | 596 | 89.3% | ram:ram-exhibition.bin |
 | game | `00C22D10` | `func_00C22D10` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C22D80` | `func_00C22D80` | 4 | 596 | 89.3% | ram:ram-exhibition.bin |
@@ -2563,16 +2686,23 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C26780` | `func_00C26780` | 13 | 212 | 99.8% | ram:ram-exhibition.bin |
 | game | `00C26E30` | `func_00C26E30` | 6 | 384 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C27000` | `func_00C27000` | 8 | 592 | 40.4% | ram:ram-exhibition.bin |
+| game | `00C278C0` | `func_00C278C0` | 12 | 592 | 78.3% | ram:ram-exhibition.bin |
+| game | `00C282B0` | `func_00C282B0` | 14 | 586 | 94.0% | ram:ram-exhibition.bin |
 | game | `00C28AD0` | `func_00C28AD0` | 4 | 596 | 20.4% | ram:ram-exhibition.bin |
 | game | `00C296B0` | `func_00C296B0` | 6 | 594 | 97.7% | ram:ram-exhibition.bin |
+| game | `00C29A30` | `func_00C29A30` | 9 | 592 | 94.1% | ram:ram-exhibition.bin |
 | game | `00C2A050` | `func_00C2A050` | 4 | 594 | 94.4% | ram:ram-exhibition.bin |
 | game | `00C2A320` | `func_00C2A320` | 8 | 568 | 92.5% | ram:ram-exhibition.bin |
 | game | `00C2A7F0` | `func_00C2A7F0` | 6 | 594 | 98.8% | ram:ram-exhibition.bin |
 | game | `00C2AA90` | `func_00C2AA90` | 4 | 596 | 96.7% | ram:ram-exhibition.bin |
+| game | `00C2ACF0` | `func_00C2ACF0` | 9 | 577 | 84.4% | ram:ram-exhibition.bin |
 | game | `00C2B780` | `func_00C2B780` | 6 | 594 | 99.2% | ram:ram-exhibition.bin |
+| game | `00C2B970` | `func_00C2B970` | 12 | 589 | 76.7% | ram:ram-exhibition.bin |
+| game | `00C2C6F0` | `func_00C2C6F0` | 6 | 595 | 95.5% | ram:ram-exhibition.bin |
 | game | `00C2CAC0` | `func_00C2CAC0` | 4 | 353 | 98.5% | ram:ram-exhibition.bin |
 | game | `00C2CBD0` | `func_00C2CBD0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C2CE90` | `func_00C2CE90` | 9 | 592 | 71.8% | ram:ram-exhibition.bin |
+| game | `00C2D6F0` | `func_00C2D6F0` | 14 | 584 | 58.3% | ram:ram-exhibition.bin |
 | game | `00C2E420` | `func_00C2E420` | 4 | 574 | 96.8% | ram:ram-exhibition.bin |
 | game | `00C2E6A0` | `func_00C2E6A0` | 4 | 596 | 95.6% | ram:ram-exhibition.bin |
 | game | `00C2E7B0` | `func_00C2E7B0` | 24 | 577 | 87.4% | ram:ram-exhibition.bin |
@@ -2584,6 +2714,9 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C2FC70` | `func_00C2FC70` | 6 | 420 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C2FE10` | `func_00C2FE10` | 9 | 445 | 98.3% | ram:ram-exhibition.bin |
 | game | `00C305F0` | `func_00C305F0` | 5 | 321 | 99.3% | ram:ram-exhibition.bin |
+| game | `00C30A20` | `func_00C30A20` | 7 | 593 | 99.2% | ram:ram-exhibition.bin |
+| game | `00C30C10` | `func_00C30C10` | 5 | 595 | 69.1% | ram:ram-exhibition.bin |
+| game | `00C31110` | `func_00C31110` | 9 | 591 | 97.2% | ram:ram-exhibition.bin |
 | game | `00C31960` | `func_00C31960` | 4 | 326 | 95.7% | ram:ram-exhibition.bin |
 | game | `00C31B90` | `func_00C31B90` | 4 | 362 | 97.9% | ram:ram-exhibition.bin |
 | game | `00C31D10` | `func_00C31D10` | 7 | 594 | 47.9% | ram:ram-exhibition.bin |
@@ -2607,9 +2740,11 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C33B40` | `func_00C33B40` | 7 | 93 | 60.9% | ram:ram-exhibition.bin |
 | game | `00C33E20` | `func_00C33E20` | 7 | 118 | 99.4% | ram:ram-exhibition.bin |
 | game | `00C340B0` | `func_00C340B0` | 4 | 47 | 93.9% | ram:ram-exhibition.bin |
+| game | `00C34650` | `func_00C34650` | 10 | 117 | 55.2% | ram:ram-exhibition.bin |
 | game | `00C34C90` | `func_00C34C90` | 9 | 108 | 79.6% | ram:ram-exhibition.bin |
 | game | `00C350E0` | `func_00C350E0` | 16 | 584 | 98.3% | ram:ram-exhibition.bin |
 | game | `00C351D0` | `func_00C351D0` | 12 | 212 | 94.6% | ram:ram-exhibition.bin |
+| game | `00C35600` | `func_00C35600` | 18 | 583 | 92.1% | ram:ram-exhibition.bin |
 | game | `00C35960` | `func_00C35960` | 4 | 367 | 9.5% | ram:ram-exhibition.bin |
 | game | `00C36020` | `func_00C36020` | 4 | 593 | 98.5% | ram:ram-exhibition.bin |
 | game | `00C36230` | `func_00C36230` | 4 | 56 | 88.1% | ram:ram-exhibition.bin |
@@ -2618,6 +2753,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C36C00` | `func_00C36C00` | 8 | 593 | 59.3% | ram:ram-exhibition.bin |
 | game | `00C36F80` | `func_00C36F80` | 4 | 252 | 87.0% | ram:ram-exhibition.bin |
 | game | `00C37130` | `func_00C37130` | 4 | 36 | 95.0% | ram:ram-exhibition.bin |
+| game | `00C373B0` | `func_00C373B0` | 4 | 102 | 98.9% | ram:ram-exhibition.bin |
 | game | `00C37530` | `func_00C37530` | 4 | 139 | 95.7% | ram:ram-exhibition.bin |
 | game | `00C37590` | `func_00C37590` | 4 | 529 | 95.0% | ram:ram-exhibition.bin |
 | game | `00C37610` | `func_00C37610` | 4 | 572 | 91.7% | ram:ram-exhibition.bin |
@@ -2632,17 +2768,21 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C37FF0` | `func_00C37FF0` | 4 | 102 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C380E0` | `func_00C380E0` | 5 | 157 | 98.6% | ram:ram-exhibition.bin |
 | game | `00C38580` | `func_00C38580` | 10 | 281 | 53.3% | ram:ram-exhibition.bin |
+| game | `00C38AC0` | `func_00C38AC0` | 4 | 6 | 90.5% | ram:ram-exhibition.bin |
 | game | `00C38EE0` | `func_00C38EE0` | 4 | 12 | 87.3% | ram:ram-exhibition.bin |
 | game | `00C390E0` | `func_00C390E0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C39160` | `func_00C39160` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C391E0` | `func_00C391E0` | 4 | 245 | 14.8% | ram:ram-exhibition.bin |
 | game | `00C394C0` | `func_00C394C0` | 5 | 595 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C39630` | `func_00C39630` | 6 | 594 | 88.6% | ram:ram-exhibition.bin |
+| game | `00C39780` | `func_00C39780` | 4 | 202 | 97.0% | ram:ram-exhibition.bin |
 | game | `00C39BB0` | `func_00C39BB0` | 5 | 590 | 94.6% | ram:ram-exhibition.bin |
 | game | `00C39E50` | `func_00C39E50` | 10 | 590 | 99.5% | ram:ram-exhibition.bin |
+| game | `00C3A1A0` | `func_00C3A1A0` | 4 | 473 | 82.9% | ram:ram-exhibition.bin |
 | game | `00C3A630` | `func_00C3A630` | 4 | 9 | 89.0% | ram:ram-exhibition.bin |
 | game | `00C3A850` | `func_00C3A850` | 4 | 14 | 90.6% | ram:ram-exhibition.bin |
 | game | `00C3AC00` | `func_00C3AC00` | 4 | 134 | 78.8% | ram:ram-exhibition.bin |
+| game | `00C3AE10` | `func_00C3AE10` | 2 | 0 | 60.1% | ram:ram-exhibition.bin |
 | game | `00C3B250` | `func_00C3B250` | 4 | 521 | 93.1% | ram:ram-exhibition.bin |
 | game | `00C3B900` | `func_00C3B900` | 4 | 595 | 76.4% | ram:ram-exhibition.bin |
 | game | `00C3BC50` | `func_00C3BC50` | 4 | 277 | 100.0% | ram:ram-exhibition.bin |
@@ -2654,6 +2794,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C3E190` | `func_00C3E190` | 4 | 343 | 98.5% | ram:ram-exhibition.bin |
 | game | `00C3E3A0` | `func_00C3E3A0` | 8 | 289 | 80.1% | ram:ram-exhibition.bin |
 | game | `00C3EC10` | `func_00C3EC10` | 12 | 265 | 98.9% | ram:ram-exhibition.bin |
+| game | `00C3F190` | `func_00C3F190` | 14 | 260 | 96.4% | ram:ram-exhibition.bin |
 | game | `00C3FB20` | `func_00C3FB20` | 4 | 247 | 99.0% | ram:ram-exhibition.bin |
 | game | `00C3FCC0` | `func_00C3FCC0` | 5 | 224 | 99.3% | ram:ram-exhibition.bin |
 | game | `00C3FF00` | `func_00C3FF00` | 6 | 126 | 32.5% | ram:ram-exhibition.bin |
@@ -2680,6 +2821,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C484F0` | `func_00C484F0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C48550` | `func_00C48550` | 5 | 356 | 56.0% | ram:ram-exhibition.bin |
 | game | `00C48870` | `func_00C48870` | 8 | 556 | 45.9% | ram:ram-exhibition.bin |
+| game | `00C48CA0` | `func_00C48CA0` | 4 | 537 | 7.8% | ram:ram-exhibition.bin |
 | game | `00C4A930` | `func_00C4A930` | 5 | 303 | 99.2% | ram:ram-exhibition.bin |
 | game | `00C4AB30` | `func_00C4AB30` | 4 | 328 | 98.1% | ram:ram-exhibition.bin |
 | game | `00C4ADB0` | `func_00C4ADB0` | 14 | 237 | 21.2% | ram:ram-exhibition.bin |
@@ -2690,6 +2832,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C4E110` | `func_00C4E110` | 9 | 295 | 29.6% | ram:ram-exhibition.bin |
 | game | `00C4F070` | `func_00C4F070` | 4 | 341 | 99.1% | ram:ram-exhibition.bin |
 | game | `00C4F240` | `func_00C4F240` | 6 | 225 | 95.3% | ram:ram-exhibition.bin |
+| game | `00C4F9B0` | `func_00C4F9B0` | 13 | 349 | 84.7% | ram:ram-exhibition.bin |
 | game | `00C4FE30` | `func_00C4FE30` | 5 | 595 | 98.8% | ram:ram-exhibition.bin |
 | game | `00C4FF80` | `func_00C4FF80` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C4FFD0` | `func_00C4FFD0` | 13 | 275 | 79.1% | ram:ram-exhibition.bin |
@@ -2705,6 +2848,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C55C50` | `func_00C55C50` | 10 | 188 | 91.8% | ram:ram-exhibition.bin |
 | game | `00C56570` | `func_00C56570` | 4 | 596 | 94.4% | ram:ram-exhibition.bin |
 | game | `00C565C0` | `func_00C565C0` | 4 | 341 | 99.3% | ram:ram-exhibition.bin |
+| game | `00C567F0` | `func_00C567F0` | 14 | 303 | 59.0% | ram:ram-exhibition.bin |
 | game | `00C57220` | `func_00C57220` | 4 | 574 | 76.5% | ram:ram-exhibition.bin |
 | game | `00C57430` | `func_00C57430` | 4 | 538 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C57680` | `func_00C57680` | 4 | 453 | 97.4% | ram:ram-exhibition.bin |
@@ -2720,6 +2864,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C58BE0` | `func_00C58BE0` | 4 | 541 | 99.3% | ram:ram-exhibition.bin |
 | game | `00C58E40` | `func_00C58E40` | 4 | 480 | 97.4% | ram:ram-exhibition.bin |
 | game | `00C590F0` | `func_00C590F0` | 16 | 586 | 98.2% | ram:ram-exhibition.bin |
+| game | `00C59460` | `func_00C59460` | 4 | 299 | 98.9% | ram:ram-exhibition.bin |
 | game | `00C595D0` | `func_00C595D0` | 9 | 592 | 99.3% | ram:ram-exhibition.bin |
 | game | `00C597F0` | `func_00C597F0` | 8 | 585 | 99.1% | ram:ram-exhibition.bin |
 | game | `00C59B70` | `func_00C59B70` | 4 | 597 | 98.5% | ram:ram-exhibition.bin |
@@ -2753,6 +2898,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C5C690` | `func_00C5C690` | 8 | 592 | 40.8% | ram:ram-exhibition.bin |
 | game | `00C5C970` | `func_00C5C970` | 8 | 593 | 73.0% | ram:ram-exhibition.bin |
 | game | `00C5CB00` | `func_00C5CB00` | 7 | 594 | 72.4% | ram:ram-exhibition.bin |
+| game | `00C5CEB0` | `func_00C5CEB0` | 8 | 593 | 45.3% | ram:ram-exhibition.bin |
 | game | `00C5D100` | `func_00C5D100` | 7 | 593 | 93.2% | ram:ram-exhibition.bin |
 | game | `00C5D1F0` | `func_00C5D1F0` | 6 | 594 | 50.5% | ram:ram-exhibition.bin |
 | game | `00C5D5B0` | `func_00C5D5B0` | 8 | 559 | 100.0% | ram:ram-exhibition.bin |
@@ -2865,6 +3011,8 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C70FE0` | `func_00C70FE0` | 4 | 596 | 99.2% | ram:ram-exhibition.bin |
 | game | `00C711D0` | `func_00C711D0` | 4 | 596 | 99.1% | ram:ram-exhibition.bin |
 | game | `00C71380` | `func_00C71380` | 4 | 596 | 98.0% | ram:ram-exhibition.bin |
+| game | `00C71510` | `func_00C71510` | 5 | 376 | 100.0% | ram:ram-exhibition.bin |
+| game | `00C716C0` | `func_00C716C0` | 5 | 108 | 99.5% | ram:ram-exhibition.bin |
 | game | `00C719E0` | `func_00C719E0` | 4 | 596 | 98.0% | ram:ram-exhibition.bin |
 | game | `00C71AB0` | `func_00C71AB0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C71FC0` | `func_00C71FC0` | 4 | 596 | 98.7% | ram:ram-exhibition.bin |
@@ -2873,8 +3021,18 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C72360` | `func_00C72360` | 4 | 596 | 96.7% | ram:ram-exhibition.bin |
 | game | `00C72400` | `func_00C72400` | 4 | 596 | 97.5% | ram:ram-exhibition.bin |
 | game | `00C72500` | `func_00C72500` | 4 | 597 | 100.0% | ram:ram-exhibition.bin |
+| game | `00C72620` | `func_00C72620` | 4 | 589 | 93.5% | ram:ram-exhibition.bin |
+| game | `00C72940` | `func_00C72940` | 6 | 590 | 97.9% | ram:ram-exhibition.bin |
+| game | `00C72D00` | `func_00C72D00` | 4 | 596 | 80.9% | ram:ram-exhibition.bin |
 | game | `00C73390` | `func_00C73390` | 4 | 580 | 98.1% | ram:ram-exhibition.bin |
+| game | `00C73460` | `func_00C73460` | 4 | 590 | 99.2% | ram:ram-exhibition.bin |
 | game | `00C73650` | `func_00C73650` | 4 | 596 | 77.8% | ram:ram-exhibition.bin |
+| game | `00C73A40` | `func_00C73A40` | 4 | 596 | 99.2% | ram:ram-exhibition.bin |
+| game | `00C73C30` | `func_00C73C30` | 4 | 596 | 67.4% | ram:ram-exhibition.bin |
+| game | `00C73EF0` | `func_00C73EF0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
+| game | `00C74090` | `func_00C74090` | 4 | 596 | 99.2% | ram:ram-exhibition.bin |
+| game | `00C74270` | `func_00C74270` | 4 | 596 | 67.2% | ram:ram-exhibition.bin |
+| game | `00C74530` | `func_00C74530` | 4 | 596 | 99.5% | ram:ram-exhibition.bin |
 | game | `00C74810` | `func_00C74810` | 4 | 596 | 96.9% | ram:ram-exhibition.bin |
 | game | `00C74890` | `func_00C74890` | 8 | 592 | 98.4% | ram:ram-exhibition.bin |
 | game | `00C74A20` | `func_00C74A20` | 5 | 596 | 88.1% | ram:ram-exhibition.bin |
@@ -2988,6 +3146,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C843A0` | `func_00C843A0` | 4 | 115 | 99.0% | ram:ram-exhibition.bin |
 | game | `00C84530` | `func_00C84530` | 4 | 10 | 49.6% | ram:ram-exhibition.bin |
 | game | `00C84740` | `func_00C84740` | 4 | 362 | 90.5% | ram:ram-exhibition.bin |
+| game | `00C84B60` | `func_00C84B60` | 4 | 335 | 98.1% | ram:ram-exhibition.bin |
 | game | `00C85220` | `func_00C85220` | 4 | 369 | 99.3% | ram:ram-exhibition.bin |
 | game | `00C85480` | `func_00C85480` | 4 | 596 | 98.9% | ram:ram-exhibition.bin |
 | game | `00C855F0` | `func_00C855F0` | 5 | 580 | 86.5% | ram:ram-exhibition.bin |
@@ -3009,9 +3168,11 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C86E10` | `func_00C86E10` | 4 | 596 | 97.8% | ram:ram-exhibition.bin |
 | game | `00C86ED0` | `func_00C86ED0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C86F70` | `func_00C86F70` | 4 | 596 | 96.4% | ram:ram-exhibition.bin |
+| game | `00C87170` | `func_00C87170` | 7 | 593 | 91.7% | ram:ram-exhibition.bin |
 | game | `00C87470` | `func_00C87470` | 4 | 596 | 61.5% | ram:ram-exhibition.bin |
 | game | `00C87510` | `func_00C87510` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C87630` | `func_00C87630` | 4 | 596 | 95.0% | ram:ram-exhibition.bin |
+| game | `00C877A0` | `func_00C877A0` | 11 | 589 | 99.7% | ram:ram-exhibition.bin |
 | game | `00C88350` | `func_00C88350` | 4 | 597 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C88660` | `func_00C88660` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C88950` | `func_00C88950` | 4 | 596 | 97.8% | ram:ram-exhibition.bin |
@@ -3066,6 +3227,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C8B370` | `func_00C8B370` | 8 | 593 | 97.6% | ram:ram-exhibition.bin |
 | game | `00C8B570` | `func_00C8B570` | 7 | 593 | 97.1% | ram:ram-exhibition.bin |
 | game | `00C8B8A0` | `func_00C8B8A0` | 4 | 596 | 97.0% | ram:ram-exhibition.bin |
+| game | `00C8BB40` | `func_00C8BB40` | 4 | 106 | 90.8% | ram:ram-exhibition.bin |
 | game | `00C8BC70` | `func_00C8BC70` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C8BD70` | `func_00C8BD70` | 5 | 595 | 83.8% | ram:ram-exhibition.bin |
 | game | `00C8C0A0` | `func_00C8C0A0` | 4 | 596 | 98.3% | ram:ram-exhibition.bin |
@@ -3089,7 +3251,10 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C8EC10` | `func_00C8EC10` | 4 | 340 | 89.2% | ram:ram-exhibition.bin |
 | game | `00C8ED40` | `func_00C8ED40` | 4 | 342 | 89.5% | ram:ram-exhibition.bin |
 | game | `00C8EE70` | `func_00C8EE70` | 4 | 348 | 89.5% | ram:ram-exhibition.bin |
+| game | `00C8EFA0` | `func_00C8EFA0` | 8 | 10 | 99.5% | ram:ram-exhibition.bin |
+| game | `00C8F830` | `func_00C8F830` | 5 | 330 | 94.1% | ram:ram-exhibition.bin |
 | game | `00C8FA50` | `func_00C8FA50` | 8 | 354 | 98.9% | ram:ram-exhibition.bin |
+| game | `00C8FBC0` | `func_00C8FBC0` | 4 | 201 | 70.5% | ram:ram-exhibition.bin |
 | game | `00C90160` | `func_00C90160` | 5 | 590 | 95.2% | ram:ram-exhibition.bin |
 | game | `00C90290` | `func_00C90290` | 4 | 596 | 96.8% | ram:ram-exhibition.bin |
 | game | `00C90310` | `func_00C90310` | 4 | 596 | 95.2% | ram:ram-exhibition.bin |
@@ -3104,6 +3269,8 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C91F90` | `func_00C91F90` | 4 | 596 | 99.5% | ram:ram-exhibition.bin |
 | game | `00C92300` | `func_00C92300` | 4 | 596 | 66.7% | ram:ram-exhibition.bin |
 | game | `00C92310` | `func_00C92310` | 4 | 596 | 90.0% | ram:ram-exhibition.bin |
+| game | `00C92560` | `func_00C92560` | 8 | 528 | 96.8% | ram:ram-exhibition.bin |
+| game | `00C92930` | `func_00C92930` | 4 | 537 | 99.5% | ram:ram-exhibition.bin |
 | game | `00C92C80` | `func_00C92C80` | 4 | 594 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C92CD0` | `func_00C92CD0` | 4 | 540 | 100.0% | ram:ram-exhibition.bin |
 | game | `00C92DD0` | `func_00C92DD0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
@@ -3132,10 +3299,12 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C95750` | `func_00C95750` | 4 | 596 | 75.0% | ram:ram-exhibition.bin |
 | game | `00C95760` | `func_00C95760` | 4 | 596 | 75.0% | ram:ram-exhibition.bin |
 | game | `00C95770` | `func_00C95770` | 6 | 577 | 80.8% | ram:ram-exhibition.bin |
+| game | `00C95900` | `func_00C95900` | 8 | 592 | 97.1% | ram:ram-exhibition.bin |
 | game | `00C95BB0` | `func_00C95BB0` | 4 | 596 | 97.9% | ram:ram-exhibition.bin |
 | game | `00C95C70` | `func_00C95C70` | 7 | 592 | 90.4% | ram:ram-exhibition.bin |
 | game | `00C95F80` | `func_00C95F80` | 4 | 596 | 60.0% | ram:ram-exhibition.bin |
 | game | `00C96160` | `func_00C96160` | 4 | 597 | 56.1% | ram:ram-exhibition.bin |
+| game | `00C96390` | `func_00C96390` | 4 | 596 | 99.0% | ram:ram-exhibition.bin |
 | game | `00C96520` | `func_00C96520` | 4 | 596 | 17.3% | ram:ram-exhibition.bin |
 | game | `00C969C0` | `func_00C969C0` | 24 | 583 | 72.9% | ram:ram-exhibition.bin |
 | game | `00C97580` | `func_00C97580` | 24 | 579 | 100.0% | ram:ram-exhibition.bin |
@@ -3147,6 +3316,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | game | `00C985F0` | `func_00C985F0` | 5 | 140 | 45.5% | ram:ram-exhibition.bin |
 | game | `00C988A0` | `func_00C988A0` | 6 | 594 | 78.4% | ram:ram-exhibition.bin |
 | game | `00C98A70` | `func_00C98A70` | 8 | 592 | 90.4% | ram:ram-exhibition.bin |
+| game | `00C98E00` | `func_00C98E00` | 12 | 588 | 99.7% | ram:ram-exhibition.bin |
 | game | `00C99460` | `func_00C99460` | 11 | 582 | 79.4% | ram:ram-exhibition.bin |
 | game | `00C99850` | `func_00C99850` | 4 | 597 | 92.2% | ram:ram-exhibition.bin |
 | game | `00C99950` | `func_00C99950` | 4 | 596 | 83.3% | ram:ram-exhibition.bin |
@@ -3293,6 +3463,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00151440` | `func_00151440` | 4 | 596 | 97.2% | ram:ram-exhibition.bin |
 | main | `001514D0` | `func_001514D0` | 4 | 67 | 96.9% | ram:ram-exhibition.bin |
 | main | `00151550` | `func_00151550` | 4 | 73 | 96.9% | ram:ram-exhibition.bin |
+| main | `00151600` | `func_00151600` | 11 | 62 | 86.5% | ram:ram-exhibition.bin |
 | main | `00151A50` | `func_00151A50` | 4 | 596 | 95.7% | ram:ram-exhibition.bin |
 | main | `00151AB0` | `func_00151AB0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | main | `00151B10` | `func_00151B10` | 4 | 88 | 100.0% | ram:ram-exhibition.bin |
@@ -3321,6 +3492,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `0017C740` | `func_0017C740` | 4 | 432 | 97.7% | ram:ram-exhibition.bin |
 | main | `0017C840` | `func_0017C840` | 4 | 444 | 97.5% | ram:ram-exhibition.bin |
 | main | `0017C8E0` | `func_0017C8E0` | 4 | 203 | 100.0% | ram:ram-exhibition.bin |
+| main | `0017CA70` | `func_0017CA70` | 4 | 69 | 97.1% | ram:ram-exhibition.bin |
 | main | `0017CC80` | `func_0017CC80` | 4 | 596 | 98.3% | ram:ram-exhibition.bin |
 | main | `0017CD70` | `func_0017CD70` | 6 | 336 | 100.0% | ram:ram-exhibition.bin |
 | main | `0017CED0` | `func_0017CED0` | 4 | 79 | 97.4% | ram:ram-exhibition.bin |
@@ -3413,14 +3585,18 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00190620` | `func_00190620` | 4 | 441 | 100.0% | ram:ram-exhibition.bin |
 | main | `00190820` | `func_00190820` | 4 | 421 | 96.4% | ram:ram-exhibition.bin |
 | main | `00190890` | `func_00190890` | 4 | 230 | 100.0% | ram:ram-exhibition.bin |
+| main | `00190AC0` | `func_00190AC0` | 4 | 16 | 92.5% | ram:ram-exhibition.bin |
 | main | `00192060` | `func_00192060` | 6 | 537 | 53.2% | ram:ram-exhibition.bin |
 | main | `00193120` | `func_00193120` | 4 | 589 | 99.8% | ram:ram-exhibition.bin |
+| main | `00193990` | `func_00193990` | 4 | 57 | 6.2% | ram:ram-exhibition.bin |
 | main | `00194DD0` | `func_00194DD0` | 5 | 539 | 96.1% | ram:ram-exhibition.bin |
 | main | `001954E0` | `func_001954E0` | 4 | 422 | 100.0% | ram:ram-exhibition.bin |
 | main | `001959E0` | `func_001959E0` | 4 | 527 | 100.0% | ram:ram-exhibition.bin |
+| main | `00195A20` | `func_00195A20` | 4 | 27 | 3.2% | ram:ram-exhibition.bin |
 | main | `001974E0` | `func_001974E0` | 5 | 535 | 94.9% | ram:ram-exhibition.bin |
 | main | `00197B00` | `func_00197B00` | 4 | 434 | 97.3% | ram:ram-exhibition.bin |
 | main | `001982E0` | `func_001982E0` | 5 | 402 | 97.8% | ram:ram-exhibition.bin |
+| main | `00199440` | `func_00199440` | 4 | 415 | 83.9% | ram:ram-exhibition.bin |
 | main | `00199BD0` | `func_00199BD0` | 4 | 596 | 74.6% | ram:ram-exhibition.bin |
 | main | `0019A080` | `func_0019A080` | 5 | 523 | 92.1% | ram:ram-exhibition.bin |
 | main | `0019AAE0` | `func_0019AAE0` | 4 | 421 | 100.0% | ram:ram-exhibition.bin |
@@ -3709,6 +3885,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `001DFA30` | `func_001DFA30` | 4 | 281 | 100.0% | ram:ram-exhibition.bin |
 | main | `001DFAD0` | `func_001DFAD0` | 9 | 53 | 89.5% | ram:ram-exhibition.bin |
 | main | `001DFF50` | `func_001DFF50` | 4 | 20 | 35.7% | ram:ram-exhibition.bin |
+| main | `001E0160` | `func_001E0160` | 6 | 105 | 77.6% | ram:ram-exhibition.bin |
 | main | `001E0540` | `func_001E0540` | 9 | 388 | 98.0% | ram:ram-exhibition.bin |
 | main | `001E06D0` | `func_001E06D0` | 5 | 12 | 99.2% | ram:ram-exhibition.bin |
 | main | `001E0AC0` | `func_001E0AC0` | 5 | 536 | 97.0% | ram:ram-exhibition.bin |
@@ -3716,6 +3893,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `001E0DF0` | `func_001E0DF0` | 4 | 159 | 4.8% | ram:ram-exhibition.bin |
 | main | `001E14C0` | `func_001E14C0` | 4 | 44 | 75.8% | ram:ram-exhibition.bin |
 | main | `001E1A60` | `func_001E1A60` | 4 | 127 | 96.2% | ram:ram-exhibition.bin |
+| main | `001E1AD0` | `func_001E1AD0` | 4 | 174 | 100.0% | ram:ram-exhibition.bin |
 | main | `001E1B50` | `func_001E1B50` | 4 | 207 | 100.0% | ram:ram-exhibition.bin |
 | main | `001E1BE0` | `func_001E1BE0` | 4 | 470 | 96.2% | ram:ram-exhibition.bin |
 | main | `001E1C80` | `func_001E1C80` | 4 | 448 | 100.0% | ram:ram-exhibition.bin |
@@ -3890,6 +4068,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `001FCE50` | `func_001FCE50` | 4 | 100 | 96.8% | ram:ram-exhibition.bin |
 | main | `001FCEE0` | `func_001FCEE0` | 4 | 40 | 96.7% | ram:ram-exhibition.bin |
 | main | `001FCF60` | `func_001FCF60` | 4 | 596 | 98.7% | ram:ram-exhibition.bin |
+| main | `001FD160` | `func_001FD160` | 17 | 337 | 80.3% | ram:ram-exhibition.bin |
 | main | `001FDBF0` | `func_001FDBF0` | 4 | 562 | 97.7% | ram:ram-exhibition.bin |
 | main | `001FDDA0` | `func_001FDDA0` | 4 | 597 | 92.0% | ram:ram-exhibition.bin |
 | main | `001FFDB0` | `func_001FFDB0` | 4 | 408 | 80.6% | ram:ram-exhibition.bin |
@@ -3959,6 +4138,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `0020CC20` | `func_0020CC20` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | main | `0020CC80` | `func_0020CC80` | 4 | 596 | 98.8% | ram:ram-exhibition.bin |
 | main | `0020CDC0` | `func_0020CDC0` | 4 | 596 | 99.2% | ram:ram-exhibition.bin |
+| main | `0020D170` | `func_0020D170` | 4 | 164 | 98.7% | ram:ram-exhibition.bin |
 | main | `0020D2B0` | `func_0020D2B0` | 4 | 596 | 98.7% | ram:ram-exhibition.bin |
 | main | `0020D3F0` | `Pes6StagedLoader_Update` | 11 | 319 | 84.3% | ram:ram-exhibition.bin |
 | main | `0020D6D0` | `func_0020D6D0` | 4 | 596 | 98.1% | ram:ram-exhibition.bin |
@@ -4065,6 +4245,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `0023AE40` | `func_0023AE40` | 4 | 597 | 93.3% | ram:ram-exhibition.bin |
 | main | `0023AEC0` | `func_0023AEC0` | 7 | 594 | 96.9% | ram:ram-exhibition.bin |
 | main | `0023CE80` | `func_0023CE80` | 4 | 596 | 98.9% | ram:ram-exhibition.bin |
+| main | `0023CFE0` | `func_0023CFE0` | 4 | 40 | 50.0% | ram:ram-exhibition.bin |
 | main | `0023D190` | `func_0023D190` | 4 | 597 | 96.3% | ram:ram-exhibition.bin |
 | main | `0023D560` | `func_0023D560` | 4 | 126 | 96.7% | ram:ram-exhibition.bin |
 | main | `0023D8A0` | `Pes6TeamPair_Apply` | 4 | 595 | 97.2% | ram:ram-exhibition.bin |
@@ -4246,6 +4427,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00284E60` | `func_00284E60` | 4 | 541 | 100.0% | ram:ram-exhibition.bin |
 | main | `00284EA0` | `func_00284EA0` | 4 | 22 | 99.2% | ram:ram-exhibition.bin |
 | main | `00285080` | `func_00285080` | 4 | 537 | 96.7% | ram:ram-exhibition.bin |
+| main | `00285100` | `Pes6Ball_IntegratePhysics` | 4 | 105 | 14.3% | ram:ram-exhibition.bin |
 | main | `00286E00` | `func_00286E00` | 4 | 596 | 99.2% | ram:ram-exhibition.bin |
 | main | `00287000` | `func_00287000` | 4 | 539 | 98.6% | ram:ram-exhibition.bin |
 | main | `00287120` | `func_00287120` | 4 | 254 | 100.0% | ram:ram-exhibition.bin |
@@ -4285,6 +4467,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `0028F9E0` | `func_0028F9E0` | 4 | 341 | 97.5% | ram:ram-exhibition.bin |
 | main | `0028FC70` | `func_0028FC70` | 4 | 373 | 100.0% | ram:ram-exhibition.bin |
 | main | `0028FD10` | `func_0028FD10` | 4 | 589 | 87.2% | ram:ram-exhibition.bin |
+| main | `0028FE70` | `func_0028FE70` | 7 | 360 | 94.8% | ram:ram-exhibition.bin |
 | main | `00290B80` | `func_00290B80` | 6 | 594 | 100.0% | ram:ram-exhibition.bin |
 | main | `00290C00` | `func_00290C00` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | main | `002918C0` | `func_002918C0` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
@@ -4346,6 +4529,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `0029BD50` | `func_0029BD50` | 7 | 593 | 99.2% | ram:ram-exhibition.bin |
 | main | `0029C300` | `func_0029C300` | 4 | 1 | 99.3% | ram:ram-exhibition.bin |
 | main | `0029C7C0` | `func_0029C7C0` | 6 | 594 | 93.1% | ram:ram-exhibition.bin |
+| main | `0029D030` | `func_0029D030` | 17 | 520 | 93.4% | ram:ram-exhibition.bin |
 | main | `0029E9A0` | `func_0029E9A0` | 4 | 60 | 97.6% | ram:ram-exhibition.bin |
 | main | `0029EA50` | `func_0029EA50` | 4 | 134 | 98.9% | ram:ram-exhibition.bin |
 | main | `0029EBC0` | `func_0029EBC0` | 7 | 125 | 94.0% | ram:ram-exhibition.bin |
@@ -4607,6 +4791,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `002C8220` | `func_002C8220` | 7 | 593 | 97.4% | ram:ram-exhibition.bin |
 | main | `002C82C0` | `func_002C82C0` | 4 | 596 | 97.9% | ram:ram-exhibition.bin |
 | main | `002C96C0` | `func_002C96C0` | 10 | 591 | 32.1% | ram:ram-exhibition.bin |
+| main | `002C9E90` | `func_002C9E90` | 4 | 505 | 98.4% | ram:ram-exhibition.bin |
 | main | `002CA080` | `func_002CA080` | 4 | 596 | 96.2% | ram:ram-exhibition.bin |
 | main | `002CA140` | `func_002CA140` | 4 | 596 | 100.0% | ram:ram-exhibition.bin |
 | main | `002CA200` | `func_002CA200` | 4 | 220 | 99.1% | ram:ram-exhibition.bin |
@@ -5068,6 +5253,7 @@ Cases start from the memory each row names: `ram:...` is a RAM snapshot of the r
 | main | `00338AD0` | `Pes6Job_Create` | 5 | 264 | 97.3% | ram:ram-exhibition.bin |
 | main | `00338C90` | `func_00338C90` | 4 | 0 | 96.2% | ram:ram-exhibition.bin |
 | main | `00338D00` | `func_00338D00` | 5 | 69 | 83.1% | ram:ram-exhibition.bin |
+| main | `00338EE0` | `func_00338EE0` | 4 | 523 | 99.2% | ram:ram-exhibition.bin |
 | main | `003390D0` | `func_003390D0` | 4 | 596 | 97.0% | ram:ram-exhibition.bin |
 | main | `00339160` | `func_00339160` | 8 | 380 | 97.5% | ram:ram-exhibition.bin |
 | main | `003394E0` | `func_003394E0` | 4 | 344 | 95.5% | ram:ram-exhibition.bin |

@@ -20,11 +20,9 @@ void func_0096B650(f32 *out, u8 *p, s32 mode) {
     s32 r;
     s32 t;
     u8 m;
-    f32 x;
-    f32 y;
-    f32 z;
-    f32 fx;
+    f32 v[3];
     f32 fz;
+    f32 fx;
 
     if ((func_00BF0520() & 0xFF) == 0xFF) {
         idx = 1;
@@ -48,15 +46,15 @@ void func_0096B650(f32 *out, u8 *p, s32 mode) {
     r += 0x100;
     if (mode >= 3) {
         s32 q = *(s16 *)(e + 0x14);
-        x = *(f32 *)(e + 0xE0);
+        v[0] = *(f32 *)(e + 0xE0);
         if (mode == 4) {
-            x += (f32)(q * 3 << 8);
+            v[0] += (f32)(q * 3 << 8);
             sign = (*(f32 *)(e + 0xE8) < 0.0f) ? -1 : 1;
-            z = 4008.0f * (f32)sign;
+            v[2] = 4008.0f * (f32)sign;
         } else {
-            x += (f32)(q * 3 << 9);
+            v[0] += (f32)(q * 3 << 9);
             sign = (*(f32 *)(e + 0xE8) < 0.0f) ? -1 : 1;
-            z = 4392.0f * (f32)sign;
+            v[2] = 4392.0f * (f32)sign;
         }
     } else {
         if (mode == 2) {
@@ -84,19 +82,19 @@ void func_0096B650(f32 *out, u8 *p, s32 mode) {
             }
         }
         t = func_00BBB990(ang, r);
-        x = fx + (f32)t;
-        y = -28.0f;
+        v[0] = fx + (f32)t;
+        v[1] = -28.0f;
         t = func_00BBB9C0(ang, r);
-        z = fz + (f32)t;
+        v[2] = fz + (f32)t;
     }
     {
-        f32 a = x;
+        f32 a = v[0];
         if (a < 0.0f) a = -a;
         if (!(a < 12953.0f)) {
-            x = 12953.0f * (f32)(x < 0.0f ? -1 : 1);
+            v[0] = 12953.0f * (f32)(v[0] < 0.0f ? -1 : 1);
         }
     }
-    out[0] = x;
-    out[1] = y;
-    out[2] = z;
+    out[0] = v[0];
+    out[1] = v[1];
+    out[2] = v[2];
 }

@@ -3,9 +3,9 @@
  * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
-void Pes6Heap_Free(s32, s32);
-f32 func_0011D138(s32, s32, s32, s32, s32, f32);
-f32 func_0011D468(s32, s32, s32, s32, s32, f32);
+void Pes6Heap_Free(s32);
+f32 func_0011D138(f32);
+f32 func_0011D468(f32);
 s32 func_00153FE0(s32, s32);
 void func_00190890(s32, s32, f32);
 
@@ -301,9 +301,9 @@ L_00190F14:;
 L_00190F2C:;
     f0.f = f23.f * f0.f;
     f24.f = f0.f / f22.f;
-    f12.i = f24.i; f0.f = func_0011D138(a0, a1, a2, a3, a4, f12.f);
+    f12.i = f24.i; f0.f = func_0011D138(f12.f);
     f12.i = f24.i;
-    (*(volatile f32 *) (u32) (sp + 256)) = f0.f; f0.f = func_0011D468(a0, a1, a2, a3, a4, f12.f);
+    (*(volatile f32 *) (u32) (sp + 256)) = f0.f; f0.f = func_0011D468(f12.f);
     f1.f = (*(volatile f32 *) (u32) (sp + 256));
     v0 = (s32) 0x520000U;
     (*(volatile f32 *) (u32) s6) = f0.f;
@@ -775,8 +775,8 @@ L_001916D8:;
     s5 = (s32) ((u32) s5 + 0x4U);
     v0 = (u64) s0 < (u64) (s64) 4;
     { s32 c_ = v0 != 0; s2 = (s32) ((u32) s2 + 0xcU); if (c_) goto L_00191030; }
-    a0 = fp; Pes6Heap_Free(a0, a1);
-    a0 = s7; Pes6Heap_Free(a0, a1);
+    a0 = fp; Pes6Heap_Free(a0);
+    a0 = s7; Pes6Heap_Free(a0);
     v1 = 51;
     a0 = 88;
     (*(volatile u16 *) (u32) (s1 + 2064)) = (u16) v1;

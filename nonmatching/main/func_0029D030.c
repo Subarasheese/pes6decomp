@@ -3,7 +3,7 @@
  * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
-f32 func_0029EA50(s64, s64, s64, f32, f32, f32, f32);
+void func_0029EA50(s64, s64, s64, f32, f32, f32, f32);
 void func_0029F030(s64, s64, f32);
 void func_0029F350(s64, s64, s64, f32, f32);
 void func_0029F810(void);
@@ -1385,7 +1385,7 @@ L_0029E7D0:;
     f12.f = (*(volatile f32 *) (u32) (s4 + 48));
     a2 = (s32) ((u32) s3 + 0x50U);
     f15.f = (*(volatile f32 *) (u32) s0);
-    f14.f = f0.f - f13.f; f0.f = func_0029EA50(a0, a1, a2, f12.f, f13.f, f14.f, f15.f);
+    f14.f = f0.f - f13.f; func_0029EA50(a0, a1, a2, f12.f, f13.f, f14.f, f15.f);
     f1.f = (*(volatile f32 *) (u32) (s3 + 84)); goto L_0029E668;
 L_0029E7FC:;
     (*(volatile f32 *) (u32) (s3 + 84)) = f0.f;
@@ -1399,7 +1399,7 @@ L_0029E80C:;
     f12.f = (*(volatile f32 *) (u32) (s4 + 52));
     a2 = (s32) ((u32) s3 + 0x54U);
     f15.f = (*(volatile f32 *) (u32) s0);
-    f14.f = f0.f - f13.f; f0.f = func_0029EA50(a0, a1, a2, f12.f, f13.f, f14.f, f15.f);
+    f14.f = f0.f - f13.f; func_0029EA50(a0, a1, a2, f12.f, f13.f, f14.f, f15.f);
     f3.f = (*(volatile f32 *) (u32) (s3 + 88)); goto L_0029E6D0;
 L_0029E838:;
     (*(volatile f32 *) (u32) (s3 + 88)) = f0.f;
@@ -1473,7 +1473,7 @@ L_0029E944:;
     f15.f = (*(volatile f32 *) (u32) s0);
     f12.f = (*(volatile f32 *) (u32) (s4 + 60));
     a1 = (s32) ((u32) s4 + 0x3cU);
-    f14.f = f0.f - f13.f; f0.f = func_0029EA50(a0, a1, a2, f12.f, f13.f, f14.f, f15.f);
+    f14.f = f0.f - f13.f; func_0029EA50(a0, a1, a2, f12.f, f13.f, f14.f, f15.f);
     goto L_0029E0F4;
 L_0029E970:;
     return;

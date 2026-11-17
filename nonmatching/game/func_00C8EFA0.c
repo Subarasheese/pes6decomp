@@ -33,13 +33,14 @@ void func_00C8EFA0(void) {
     s32 s2, s3, s4, v, d, i;
     char *p;
     f32 f;
-    u8 v80[16];
     u8 v90[16];
+    u8 v80[16];
     u8 v70[16];
     u8 v60[16];
     s32 w_ac;
     s32 w_a8;
-    struct { u8 a; u8 b; s8 c; s8 *p; } e;
+    struct E { u8 a; u8 b; s8 c; s8 *p; } e;
+    struct E *ep;
 
     v = func_001D5A10(0x1024E);
     *(s32 *)D_00CCD898 = v;
@@ -137,29 +138,29 @@ void func_00C8EFA0(void) {
     func_001D7A20(s2, s0 + 0xA4, 5);
 
     e.a = 0xB; e.b = 0; e.c = 5; e.p = D_00CA8940;
-    if (e.p != 0) {
-        s32 a1;
-        s2 = e.a;
-        s4 = func_001D7F90(*(s32 *)D_00CCD898);
-        if (s4 != 0) {
-            func_001D7E40(s4, s2);
-            func_001D7840(s4, 3);
-            func_001D7D60(s4, 1);
+    ep = &e;
+    if (ep != 0 && ep->p != 0) {
+        s32 a = ep->a;
+        s32 h = func_001D7F90(*(s32 *)D_00CCD898);
+        if (h != 0) {
+            func_001D7E40(h, a);
+            func_001D7840(h, 3);
+            func_001D7D60(h, 1);
         }
-        func_001D7D80(s4, e.b);
-        if (e.c > 0) {
-            s3 = 0;
-            s2 = 0;
+        func_001D7D80(h, ep->b);
+        if (ep->c > 0) {
+            s32 n = 0;
+            s32 o = 0;
             do {
-                s8 *t = e.p + s2;
-                func_001D7A20(s4, s1 + t[0] * 16 + 0x24, t[1]);
-                s3++;
-                s2 += 2;
-            } while (s3 < e.c);
+                s8 *t = ep->p + o;
+                func_001D7A20(h, s1 + t[0] * 16 + 0x24, t[1]);
+                n++;
+                o += 2;
+            } while (n < ep->c);
         }
-        f = func_001D79A0(s4, e.p[7]);
+        f = func_001D79A0(h, ep->p[7]);
         *(f32 *)D_00CCD894 = f;
-        func_001D7F10(s4);
+        func_001D7F10(h);
     }
     f = *(f32 *)(v80 + 4);
     *(f32 *)(s1 + 0x38) = *(f32 *)(s1 + 0x38) + f;
@@ -197,29 +198,30 @@ void func_00C8EFA0(void) {
     *(f32 *)D_00CCD890 = f;
     func_001D7F10(s2);
 
-    e.a = 0xC; e.b = 0; e.c = 5; e.p = D_00CA894A;
-    if (e.p != 0) {
-        s2 = e.a;
-        s3 = func_001D7F90(*(s32 *)D_00CCD898);
-        if (s3 != 0) {
-            func_001D7E40(s3, s2);
-            func_001D7840(s3, 3);
-            func_001D7D60(s3, 1);
+    ep->a = 0xC; ep->b = 0; ep->c = 5; ep->p = D_00CA894A;
+    ep = &e;
+    if (ep != 0 && ep->p != 0) {
+        s32 a = ep->a;
+        s32 h = func_001D7F90(*(s32 *)D_00CCD898);
+        if (h != 0) {
+            func_001D7E40(h, a);
+            func_001D7840(h, 3);
+            func_001D7D60(h, 1);
         }
-        func_001D7D80(s3, e.b);
-        if (e.c > 0) {
-            s2 = 0;
-            i = 0;
+        func_001D7D80(h, ep->b);
+        if (ep->c > 0) {
+            s32 n = 0;
+            s32 o = 0;
             do {
-                s8 *t = e.p + i;
-                func_001D7A20(s3, s0 + t[0] * 16 + 0x24, t[1]);
-                s2++;
-                i += 2;
-            } while (s2 < e.c);
+                s8 *t = ep->p + o;
+                func_001D7A20(h, s0 + t[0] * 16 + 0x24, t[1]);
+                n++;
+                o += 2;
+            } while (n < ep->c);
         }
-        f = func_001D79A0(s3, e.p[7]);
+        f = func_001D79A0(h, ep->p[7]);
         *(f32 *)D_00CCD894 = f;
-        func_001D7F10(s3);
+        func_001D7F10(h);
     }
     f = *(f32 *)(v80 + 4);
     *(f32 *)(s0 + 0x38) = *(f32 *)(s0 + 0x38) + f;
