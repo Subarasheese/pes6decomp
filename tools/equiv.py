@@ -231,12 +231,14 @@ class Pools:
         self.floats = FLOATS + cf + float_neighbours(cf)
         self.key = hashlib.sha256(json.dumps([self.ints, self.floats]).encode()).hexdigest()
 
+    ptr_bias = False        # the fallback cases: callees, globals and arguments mostly give pointers
+
     def pointer(self):
         return BUF + 0x8000 + (self.rng.randrange(0, BUFSZ - 0x10000) & ~15)
 
     def int_value(self):
         r = self.rng.random()
-        if r < 0.35:
+        if r < (0.6 if self.ptr_bias else 0.35):
             return self.pointer()
         if r < 0.85:
             return self.rng.choice(self.ints)
@@ -255,8 +257,8 @@ class Pools:
     def global_value(self, current):
         """A new value for a global the function reads: a pointer where the game keeps a pointer (or
         NULL) there, so the paths behind it can run, else a constant of the code or a float."""
-        if current == 0 or 0x00100000 <= current < 0x02000000:
-            if self.rng.random() < 0.6:
+        if current == 0 or 0x00100000 <= current < 0x02000000 or self.ptr_bias:
+            if self.rng.random() < (0.85 if self.ptr_bias else 0.6):
                 return self.pointer()
         return self.response() if self.rng.random() < 0.75 else self.float_value()
 
@@ -264,6 +266,8 @@ class Pools:
         """A stubbed callee's return value: mostly the code's own constants, which is what callers
         compare results against, and fewer pointers than an argument gets."""
         r = self.rng.random()
+        if self.ptr_bias and r < 0.75:
+            return self.pointer()
         if r < 0.3:
             return self.rng.choice((0, 0, 1, 1, M32))       # booleans, NULL and -1 dominate return values
         if r < 0.42:
@@ -278,7 +282,7 @@ def make_case(rng, pools, read_set, mem=None):
     case = {
         "gpr": {r: S.sx64(pools.int_value()) for r in (4, 5, 6, 7, 8, 9, 10, 11)},
         "fpr": {r: pools.float_value() for r in range(12, 20)},
-        "buf_seed": rng.randrange(6),
+        "buf_seed": rng.randrange(6) + (100 if pools.ptr_bias else 0),
         "buf_pools": pools,
         "globals": {},
         "responses": [(pools.response(), pools.float_value()) for _ in range(64)],
@@ -298,6 +302,11 @@ def fill_buffer(seed, like=None):
     pools = Pools(rng, [])
     if like is not None:
         pools.ints, pools.floats = like.ints, like.floats
+    if seed >= 100:
+        # the fallback cases' buffers (see Pools.ptr_bias): mostly pointers into the buffer, so chains
+        # of pointers (a table of entries pointing to records pointing to...) can be followed
+        return b"".join(struct.pack("<I", (pools.pointer() if rng.random() < 0.8 else pools.word()) & M32)
+                        for _ in range(BUFSZ // 4))
     return b"".join(struct.pack("<I", pools.word() & M32) for _ in range(BUFSZ // 4))
 
 
@@ -320,8 +329,89 @@ def function_starts(image):
                     m = re.match(r"func_([0-9A-F]{8})\.s$", f)
                     if m:
                         s.add(int(m.group(1), 16))
+        if image == "main" and memory_source():
+            # a function of the executable may call into the overlay resident in the snapshot: its
+            # functions are known too, so such a callee is analysed, not taken to read a0-a3
+            p = os.path.join(ROOT, "config", "overlays", DUMP_OVERLAY, "functions.csv")
+            if os.path.exists(p):
+                s |= {int(r["address"], 16) for r in csv.DictReader(open(p))}
         _STARTS[image] = sorted(s)
     return _STARTS[image]
+
+
+def _own_jump_table(mem, at, lo, hi):
+    """Whether the jr at `at` jumps through a table of addresses inside [lo, hi): the table base is a
+    lui/addiu (or lui + load offset) pair in the few instructions before it."""
+    hi_of, base = {}, []
+    for a in range(max(lo, at - 40), at, 4):
+        w = struct.unpack_from("<I", mem, a)[0]
+        op, rs, rt, imm = w >> 26, (w >> 21) & 31, (w >> 16) & 31, w & 0xFFFF
+        sx = imm - 0x10000 if imm & 0x8000 else imm
+        if op == 15:                                    # lui
+            hi_of[rt] = imm << 16
+        elif op == 9 and rs in hi_of:                   # addiu
+            base.append((hi_of[rs] + sx) & M32)
+        elif op == 35 and rs in hi_of:                  # lw with the low half as offset
+            base.append((hi_of[rs] + sx) & M32)
+    for b in base:
+        if 0 < b and b + 4 <= len(mem):
+            e = struct.unpack_from("<I", mem, b)[0]
+            if lo <= e < hi:
+                return True
+    return False
+
+
+_OUTPUTS = {}
+
+
+def callee_outputs(target, mem, image):
+    """{argument register: sorted word offsets} the original callee stores through each pointer argument
+    (directly or through a copy of it in another register), from a linear scan of its code: what a stub
+    of it must fill for an output parameter. An unknown callee, or one that stores nothing found, gives
+    {} and the stub writes one word at offset 0 as before."""
+    import bisect
+    key = (image, target)
+    if key in _OUTPUTS:
+        return _OUTPUTS[key]
+    out = {}
+    starts = function_starts(image)
+    i = bisect.bisect_left(starts, target)
+    if i < len(starts) and starts[i] == target:
+        end = min(starts[i + 1] if i + 1 < len(starts) else target + 0x4000, target + 0x4000)
+        alias = {r: r for r in (4, 5, 6, 7)}                 # register -> the argument it still holds
+        size_of = {40: 1, 41: 2, 43: 4, 63: 8, 57: 4, 31: 16, 62: 16}   # sb sh sw sd swc1 sq sqc2
+        drop_at = None
+        for a in range(target, end, 4):
+            if a + 4 > len(mem):
+                break
+            if a == drop_at:
+                alias = {r: v for r, v in alias.items() if 16 <= r <= 23 or r == 30}
+                drop_at = None
+            w = struct.unpack_from("<I", mem, a)[0]
+            op, rs, rt, rd, fn = w >> 26, (w >> 21) & 31, (w >> 16) & 31, (w >> 11) & 31, w & 63
+            imm = (w & 0xFFFF) - 0x10000 if w & 0x8000 else w & 0xFFFF
+            if op in size_of and rs in alias and 0 <= imm < 0x100:
+                for k in range(imm & ~3, imm + size_of[op], 4):
+                    out.setdefault(alias[rs], set()).add(k)
+            elif op == 0 and fn in (0x21, 0x2D, 0x25) and (rt == 0 or rs == 0) and rd:   # move
+                src = rs if rt == 0 else rt
+                if src in alias:
+                    alias[rd] = alias[src]
+                else:
+                    alias.pop(rd, None)
+            elif op == 3 or (op == 0 and fn == 9):
+                # a call: after its delay slot, only copies in callee-saved registers still hold the pointer
+                drop_at = a + 8
+            elif op == 2 or (op == 0 and fn == 8):
+                pass                                      # a jump or return: other paths follow
+            else:
+                # any other write to a register ends its alias
+                dst = rt if op in (8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 32, 33, 34, 35, 36, 37, 39, 55) else (rd if op == 0 else None)
+                if dst is not None:
+                    alias.pop(dst, None)
+    res = {r: sorted(v)[:16] for r, v in out.items()}
+    _OUTPUTS[key] = res
+    return res
 
 
 def callee_inputs(target, mem, image, depth=0, memo=None):
@@ -349,19 +439,21 @@ def callee_inputs(target, mem, image, depth=0, memo=None):
     end = min(end, target + 0x8000)
     written, ints, flts = set(), set(), set()
     memo[key] = (set(INT_ARGS[:4]), set())          # recursion guard
+    pending = None      # a call or jump seen: what it takes counts after its delay slot, which runs first
     for a in range(target, end, 4):
         if a + 4 > len(mem):
             break
         w = struct.unpack_from("<I", mem, a)[0]
         ins = R.Instruction(w, a, R.InstrCategory.R5900)
         op = w >> 26
+        take, pending = pending, None
         if op in (2, 3):
-            t = ((a + 4) & 0xF0000000) | ((w & 0x3FFFFFF) << 2)
-            si, sf = callee_inputs(t, mem, image, depth + 1, memo)
-            ints |= si - written
-            flts |= sf - written
+            pending = ("call", ((a + 4) & 0xF0000000) | ((w & 0x3FFFFFF) << 2))
         elif op == 0 and (w & 0x3F) in (8, 9) and ((w >> 21) & 31) != 31:
-            ints |= set(INT_ARGS[:4]) - written
+            # a jr through the function's own jump table passes nothing on; any other indirect jump or
+            # call is taken to pass a0-a3
+            if not ((w & 0x3F) == 8 and _own_jump_table(mem, a, target, end)):
+                pending = ("indirect", None)
         for reads, field in ((ins.readsRs, "rs"), (ins.readsRt, "rt"), (ins.readsRd, "rd")):
             try:
                 if reads():
@@ -392,6 +484,13 @@ def callee_inputs(target, mem, image, depth=0, memo=None):
                         written.add(getattr(ins, field).value)
                 except (AttributeError, ValueError):
                     pass
+        if take is not None:
+            if take[0] == "call":
+                si, sf = callee_inputs(take[1], mem, image, depth + 1, memo)
+                ints |= si - written
+                flts |= sf - written
+            else:
+                ints |= set(INT_ARGS[:4]) - written
     memo[key] = (ints, flts)
     return memo[key]
 
@@ -509,12 +608,20 @@ class Run:
             calls.append((target, ints + flts))
             # the stub fills an output parameter: one word through each word-aligned pointer argument
             # into the stack or the buffer, the same for original and C (the call itself was compared)
+            # (at the word offsets the real callee stores through that argument, when its code shows them:
+            # a callee that fills a vector fills all of it, so what follows is not uninitialised)
             out = case["outputs"][idx[0] % len(case["outputs"])]
+            fills = callee_outputs(target, self.base, self.image)
             for r in iregs:
                 a = m.g32(r)
                 if not a & 3 and (STACK_TOP - FRAME <= a < STACK_TOP or BUF <= a < BUF + BUFSZ - 4):
-                    m.mem[a:a + 4] = struct.pack("<I", out & M32)
-                    self.dirty.append((a, 4))
+                    for n, off in enumerate(fills.get(r) or [0]):
+                        b = a + off
+                        if not (STACK_TOP - FRAME <= b < STACK_TOP - 3 or BUF <= b < BUF + BUFSZ - 4):
+                            continue
+                        v = out if n == 0 else case["outputs"][(idx[0] + n) % len(case["outputs"])]
+                        m.mem[b:b + 4] = struct.pack("<I", v & M32)
+                        self.dirty.append((b, 4))
             v, f = responses[idx[0] % len(responses)]
             idx[0] += 1
             m.gpr[2] = S.sx64(v)
@@ -538,7 +645,18 @@ class Run:
         def on_syscall(mm, code):
             answer(0xFFFF0000 | (mm.g32(3) & 0xFFFF))
 
+        def on_tail(mm, target):
+            # a jump (not a call) out of all code: through a pointer the case made up (a stubbed
+            # callee's return, a global, a field). The game only jumps out of a function to another
+            # function, so it is that tail call, answered like any call
+            if target == S.SENTINEL & M32 or any(c0 <= target < c1 for c0, c1 in mm.readonly):
+                return None
+            if SCRATCH_CODE <= target < STACK_TOP - FRAME:
+                return None
+            return lambda: answer(target)
+
         m.call_hook = on_call
+        m.tail_hook = on_tail
         m.syscall_hook = on_syscall
         m.io_read = lambda a, s: 0
         m.io_write = lambda a, s, v: None
@@ -587,7 +705,10 @@ class Run:
         for a, size, v in m.writes:
             for k in range(size):
                 ad = (a + k) & M32
-                if sp0 - FRAME <= ad < sp0:
+                # the function's own frame, and the stack-argument area just above it (the callee's under
+                # the calling convention; an out-of-range local store of the original lands there, the
+                # C's in its own differently laid out frame)
+                if sp0 - FRAME <= ad < sp0 + 0x100:
                     continue
                 mem[ad] = (v >> (8 * k)) & 0xFF
         saved = tuple(m.gpr[r] & M64 for r in (16, 17, 18, 19, 20, 21, 22, 23, 28, 29, 30))
@@ -762,6 +883,87 @@ def cache_key(original, compiled, protos, ret):
     return h.hexdigest()
 
 
+def _trace_divergence(o_run, c_run, case, address, lo, hi, clo, chi, protos):
+    """Debugging aid (EQUIV_TRACE=1, never part of a verdict): run the failing case again on both sides,
+    log every data access outside code and the stack, and print where the two sequences first differ
+    with the original's instructions just before it."""
+    def traced(run, entry, a, b, steps):
+        m, log = run.m, []
+        rd0, wr0 = m.read, m.write
+        stack_too = os.environ.get("EQUIV_TRACE_STACK")
+        skip = lambda x: any(c0 <= x < c1 for c0, c1 in m.readonly) or (not stack_too and STACK_TOP - FRAME <= x < STACK_TOP)
+        def rd(addr, size):
+            v = rd0(addr, size)
+            if not skip(addr & M32):
+                log.append(("R", m.cur, addr & M32, size, v))
+            return v
+        def wr(addr, size, value):
+            wr0(addr, size, value)
+            if not skip(addr & M32):
+                log.append(("W", m.cur, addr & M32, size, value & ((1 << (8 * size)) - 1)))
+        m.read, m.write = rd, wr
+        fl, cl_ = [], []
+        ex0 = m.exec
+        def ex(x, pc):
+            ex0(x, pc)
+            # float arithmetic (cop1, fmt S or W, not a move/compare): its result, in order
+            if x >> 26 == 17 and (x >> 21) & 31 in (16, 20) and (x & 63) not in (6,) and (x & 63) < 48:
+                fl.append((pc, (x >> 6) & 31, m.fpr[(x >> 6) & 31], x & 63))
+            # integer compares (slt, sltu, slti, sltiu): the operands, in order
+            op, fn = x >> 26, x & 63
+            if (op == 0 and fn in (42, 43)) or op in (10, 11):
+                rs, rt = (x >> 21) & 31, (x >> 16) & 31
+                b = m.gpr[rt] if op == 0 else (x & 0xFFFF)
+                cl_.append((pc, m.gpr[rs] & ((1 << 64) - 1), b & ((1 << 64) - 1), "u" if fn == 43 or op == 11 else "s"))
+        m.exec = ex
+        try:
+            run.run(entry, a, b, case, protos, max_steps=steps)
+        except Exception as e:
+            log.append(("X", m.cur, 0, 0, str(e)))
+        finally:
+            del m.read, m.write, m.exec
+        return log, fl, cl_
+    ol, ofl, ocmp = traced(o_run, address, lo, hi, MAX_STEPS)
+    cl, cfl, ccmp = traced(c_run, SCRATCH_CODE, clo, chi, C_STEP_FACTOR * MAX_STEPS)
+    j = 0
+    while j < min(len(ocmp), len(ccmp)) and ocmp[j][1:] == ccmp[j][1:]:
+        j += 1
+    print(f"TRACE compares first differ at #{j}:", file=sys.stderr)
+    for e in ocmp[max(0, j - 3):j + 2]:
+        print(f"  original pc={e[0]:08x} {e[3]} {e[1]:016x} vs {e[2]:016x}", file=sys.stderr)
+    for e in ccmp[max(0, j - 3):j + 2]:
+        print(f"  C        pc={e[0]:08x} {e[3]} {e[1]:016x} vs {e[2]:016x}", file=sys.stderr)
+    print(f"TRACE compares: {len(ocmp)} original / {len(ccmp)} C; the last ones of each:", file=sys.stderr)
+    for e in ocmp[-8:]:
+        print(f"  original pc={e[0]:08x} {e[3]} {e[1]:016x} vs {e[2]:016x}", file=sys.stderr)
+    for e in ccmp[-8:]:
+        print(f"  C        pc={e[0]:08x} {e[3]} {e[1]:016x} vs {e[2]:016x}", file=sys.stderr)
+    k = 0
+    while k < min(len(ofl), len(cfl)) and ofl[k][2] == cfl[k][2]:
+        k += 1
+    print(f"TRACE float results first differ at #{k} of {len(ofl)} / {len(cfl)}", file=sys.stderr)
+    for e in ofl[max(0, k - 3):k + 2]:
+        print(f"  original pc={e[0]:08x} funct={e[3]} result={e[2]:08x}", file=sys.stderr)
+    for e in cfl[max(0, k - 3):k + 2]:
+        print(f"  C        pc={e[0]:08x} funct={e[3]} result={e[2]:08x}", file=sys.stderr)
+    watch = os.environ.get("EQUIV_TRACE_ADDR")
+    if watch:
+        w0, w1 = (int(x, 16) for x in (watch.split("-") if "-" in watch else (watch, watch)))
+        for side, lg in (("original", ol), ("C", cl)):
+            for e in lg:
+                if e[0] in "RW" and e[2] <= w1 and w0 < e[2] + e[3] and (e[0] == "W" or "-" not in watch):
+                    print(f"  {side:8} {e[0]} pc={e[1]:08x} addr={e[2]:08x} size={e[3]} value={e[4]:#x}", file=sys.stderr)
+    n = 0
+    while n < min(len(ol), len(cl)) and ol[n][0] == cl[n][0] and ol[n][2:] == cl[n][2:]:
+        n += 1
+    fmt = lambda e: f"{e[0]} pc={e[1]:08x} addr={e[2]:08x} size={e[3]} value={e[4] if isinstance(e[4], str) else hex(e[4])}"
+    print(f"TRACE first difference at access #{n} of {len(ol)} (original) / {len(cl)} (C)", file=sys.stderr)
+    for e in ol[max(0, n - 4):n + 2]:
+        print("  original", fmt(e), file=sys.stderr)
+    for e in cl[max(0, n - 4):n + 2]:
+        print("  C       ", fmt(e), file=sys.stderr)
+
+
 def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None):
     import match
     import symbols
@@ -794,7 +996,9 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
         # code_end) is read-only, the globals after it are written by the game
         import project
         code.append((tl, min(tl + len(tt), project.target["code_end"])))
-    o_run.m.readonly = list(code)                       # game code never writes its own text
+    # game code never writes its own text; and a case whose pointers make the original write where the
+    # C's code and data are placed (the scratch area) is not a case: both runs must see the same memory
+    o_run.m.readonly = list(code) + [(SCRATCH_CODE, STACK_TOP - FRAME)]
     c_run.m.readonly = code + [(SCRATCH_CODE, SCRATCH_CODE + 4 * len(compiled))] + [(a, a + len(d)) for a, d in rodata]
     c_mem = bytearray(base_mem)
     blob = struct.pack(f"<{len(compiled)}I", *compiled)
@@ -837,6 +1041,21 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
                 continue
             read_set |= globals_of(r["reads"])
             candidates.append((case, r))
+        if not candidates:
+            # the original faulted on every case: most often it follows pointers a stubbed callee
+            # returned or a global holds. Try again with cases that give pointers almost everywhere
+            pools.ptr_bias = True
+            for n in range(CANDIDATES // 2):
+                if time.time() - t0 > TIME_BUDGET / 2:
+                    break
+                case = make_case(rng, pools, read_set, base_mem)
+                try:
+                    r = o_run.run(address, lo, hi, case, protos_by_addr, collect_reads=True, dests=dests)
+                except (S.Fault, StepLimit):
+                    read_set |= globals_of(o_run.m.reads or set())
+                    continue
+                read_set |= globals_of(r["reads"])
+                candidates.append((case, r))
         # coverage-guided search: change one or two inputs of a case already found (an argument, a
         # global, a callee's return value or output) and keep the child when it takes a branch
         # direction no case took yet; this reaches branches that need several values at once
@@ -907,6 +1126,8 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
             except S.Unimplemented as e:
                 return {"verdict": "UNTESTABLE", "detail": f"C: {e}"}
             why = compare(o, c, ret)
+            if why and os.environ.get("EQUIV_TRACE"):
+                _trace_divergence(o_run, c_run, case, address, lo, hi, clo, chi, protos_by_addr)
             if why:
                 return {"verdict": "DIFFERS", "detail": f"{kind} case: {why}", "cases": len(chosen) + len(holdout),
                         "coverage": coverage, "key": key}

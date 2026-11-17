@@ -59,6 +59,9 @@ class Machine:
         self.reset_regs()
         self.stubs = {}             # address -> callable(machine) for calls not to execute
         self.call_hook = None       # callable(machine, target) -> True if handled (called for every jal/jalr)
+        # callable(machine, target) -> a callable when a jr to `target` is to be handled as a stubbed tail
+        # call: the delay slot runs, the callable answers the call, and the function returns to ra
+        self.tail_hook = None
         self.syscall_hook = None    # callable(machine, number)
         self.io_read = None         # callable(addr, size) -> value, for addresses outside RAM/scratchpad
         self.io_write = None        # callable(addr, size, value)
@@ -249,6 +252,20 @@ class Machine:
                 self.pc, self.npc = pc + 8, pc + 12
                 return
             self.pc, self.npc = target, target + 4
+            return
+        handler = self.tail_hook(self, target & M32) if self.tail_hook else None
+        if handler is not None:
+            slot = self.pc
+            self.covered.add(slot)
+            ins = self._dec.get(slot)
+            if ins is None:
+                ins = self._fetch(slot)
+                self._dec[slot] = ins
+            self.pc, self.npc = slot + 4, slot + 8
+            self.exec(ins, slot)
+            handler()
+            ra = self.g32(31)
+            self.pc, self.npc = ra, (ra + 4) & M32
             return
         self.npc = target & M32
 

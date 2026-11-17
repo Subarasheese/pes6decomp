@@ -41,7 +41,7 @@ sys.path.insert(0, HERE)
 GPR = ["zero", "at", "v0", "v1", "a0", "a1", "a2", "a3", "a4", "a5", "a6", "a7", "t4", "t5", "t6", "t7",
        "s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "t8", "t9", "k0", "k1", "gp", "sp", "fp", "ra"]
 SAVED = set(range(16, 24)) | {30, 31}
-COMPILERS = ("ee-gcc-2.9-G0", "ee-gcc-2.9", "mwcc-3.0.1b210")   # G0 first: no gp-relative literals
+COMPILERS = ("ee-gcc-2.9-G0", "ee-gcc-2.9", "mwcc-3.0.1b210", "mwcc-3.0.1b151", "mwcc-3.0.1b198")   # G0 first: no gp-relative literals
 REVIEW = ("Lifted from the original instructions by tools/lift.py (registers as variables, one statement per "
           "instruction) and admitted because tools/equiv.py found it equivalent to the original on generated "
           "cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable "
