@@ -782,7 +782,7 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
         a = symbols.address_of(name)
         if a is not None:
             protos_by_addr[a] = p
-    key = cache_key(original, compiled + [b for _, d in rodata for b in d], protos, ret)
+    key = cache_key(original, compiled + [b for _, d in rodata for b in d], protos, ret) + "|" + memory_label()
     if cache is not None and key in cache:
         return dict(cache[key], cached=True)
 
@@ -790,7 +790,10 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
     code = [(0x00100000, 0x00372AE0)]
     if image != "main":
         tl, tt = match.load_text()
-        code.append((tl, tl + len(tt)))
+        # the overlay's code section as loaded also holds its .data and .sdata: only the code (up to
+        # code_end) is read-only, the globals after it are written by the game
+        import project
+        code.append((tl, min(tl + len(tt), project.target["code_end"])))
     o_run.m.readonly = list(code)                       # game code never writes its own text
     c_run.m.readonly = code + [(SCRATCH_CODE, SCRATCH_CODE + 4 * len(compiled))] + [(a, a + len(d)) for a, d in rodata]
     c_mem = bytearray(base_mem)
@@ -914,14 +917,16 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
     return res
 
 
-DEFAULT_RAM = os.path.join(ROOT, "build", "equiv", "ram-match.bin")
+# an exhibition match in progress (only game.ovl resident). The earlier snapshot, ram-match.bin, was
+# taken in training mode (training_free.ovl resident too): results name the snapshot they were judged from
+DEFAULT_RAM = os.path.join(ROOT, "build", "equiv", "ram-exhibition.bin")
 # the overlay resident when the snapshot was taken (an in-match savestate)
 DUMP_OVERLAY = "game"
 
 
 def memory_source():
     """What cases start from: PES6_EQUIV_RAM if set ("image" forces the executable's initial memory),
-    else build/equiv/ram-match.bin when it exists, else the executable's initial memory. Every result
+    else build/equiv/ram-exhibition.bin when it exists, else the executable's initial memory. Every result
     records it, so a verdict judged without a snapshot is visible."""
     p = os.environ.get("PES6_EQUIV_RAM")
     if p == "image":
@@ -1078,8 +1083,17 @@ def batch(list_path, jobs, limit):
         if m:
             for a, r in json.load(open(os.path.join(RESULTS, fn))).items():
                 done[(m.group(1), a)] = r
-    skipped = sum(1 for r in want if (r["image"], r["address"]) in done)
-    want = [r for r in want if (r["image"], r["address"]) not in done]
+    # a result judged from another starting memory (an older snapshot) is judged again from this one
+    now = {}
+    for image in {r["image"] for r in want}:
+        os.environ["PES6_TARGET"] = image
+        if image == "main":
+            os.environ.pop("PES6_TARGET")
+        now[image] = memory_label()
+    current = lambda r: done.get((r["image"], r["address"]), {}).get("memory", "ram:ram-match.bin") == now[r["image"]] \
+        if (r["image"], r["address"]) in done else False
+    skipped = sum(1 for r in want if current(r))
+    want = [r for r in want if not current(r)]
     print(f"{skipped} already judged, {len(want)} to go", flush=True)
     if limit:
         want = want[:limit]
@@ -1139,7 +1153,7 @@ def report():
              "ran; a branch no case reached is not checked.", "",
              "Checked: " + ", ".join(f"{k.lower()} {v}" for k, v in sorted(counts.items())) + ".", "",
              "Cases start from the memory each row names: `ram:...` is a RAM snapshot of the running game",
-             "(PES6_EQUIV_RAM, or build/equiv/ram-match.bin), `image` the executable's initial memory.", "",
+             "(PES6_EQUIV_RAM, or build/equiv/ram-exhibition.bin; `ram-match.bin` is the earlier training-mode snapshot), `image` the executable's initial memory.", "",
              "| image | address | symbol | cases | holdout | coverage | memory |", "|---|---|---|---:|---:|---:|---|"]
     for image, a, r in sorted(eq):
         # results recorded before the memory field existed were all judged from the in-match snapshot

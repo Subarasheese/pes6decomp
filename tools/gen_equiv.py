@@ -366,6 +366,15 @@ def admit(only_image):
         for line in open(os.path.join(OUT, fn)):
             r = json.loads(line)
             results[r["address"]] = r
+        # only passes judged from the current starting memory are admitted (an older snapshot's do not count)
+        import equiv
+        src = equiv.memory_source()
+        label = "ram:" + os.path.basename(src) if src else "image"
+        stale = [a for a, r in results.items() if r["verdict"] == "EQUIVALENT" and r.get("memory") != label]
+        for a in stale:
+            results[a] = dict(results[a], verdict="STALE")
+        if stale:
+            print(f"{image}: {len(stale)} passes from another starting memory ignored")
         covered = has_c(image)
         rows, copied = [], {}
         env = {k: v for k, v in os.environ.items() if k != "PES6_TARGET"}

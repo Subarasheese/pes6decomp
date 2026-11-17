@@ -580,7 +580,12 @@ class Lifter:
         if name == self.symbol:                    # recursion: the arguments are this function's parameters
             for n in range(8):
                 self.g(4 + n) if n < 4 else None
-            expr = f"{name}(@SELF@)"
+            # through an alias of its own address: the call then targets the original function's address,
+            # as the original's recursive call does, wherever this C is linked
+            expr = f"D_{self.address:08X}(@SELF@)"
+            self.recursive = True
+            if self.use == "void":
+                return expr + ";"
             if self.returns_float:
                 return self.setf(0, expr)
             return self.setg(2, expr)
@@ -728,8 +733,10 @@ class Lifter:
                     note()
                     d = take(k + 1)
                     self.reads, self.writes = set(), set()
-                    args = ", ".join(self.g(r) for r in (4, 5, 6, 7))
-                    c = self.setg(2, f"((s64 (*)(s64, s64, s64, s64)) t_)({args})")    # through a pointer
+                    # the callee is unknown: every argument register goes on, as the original leaves them
+                    args = ", ".join([self.g(r) for r in range(4, 12)] + [self.f(r) for r in range(12, 20)])
+                    proto = ", ".join(["s64"] * 8 + ["f32"] * 8)
+                    c = self.setg(2, f"((s64 (*)({proto})) t_)({args})")
                     note()
                     body.append(f"    {{ u32 t_ = (u32) {fp}; {d} {c} }}")
                 else:
@@ -742,8 +749,9 @@ class Lifter:
             entry |= reads - written
             written |= writes
         bad = [GPR[r] for kind, r in entry if kind == "g" and (r in SAVED or r == 26 or r == 27) and r != 31]
-        if bad:
-            raise Unsupported(f"reads {bad[0]} before writing it")
+        # a saved register read before any write (in address order) holds the caller's value in the
+        # original; here it starts at 0. Whether that value reaches anything observable is for the
+        # checker to decide, so the function is lifted anyway.
         # an argument register read anywhere is a parameter: on some path it may be read before any write
         # (the textual order above is not the control flow), and an extra parameter only starts the
         # variable with the caller's value, as the original register does
@@ -768,6 +776,8 @@ class Lifter:
         if self.needs_sqrt:
             out.append("f32 sqrtf(f32);")
         rtype = "void" if self.returns_void else ("f32" if self.returns_float else R)
+        if getattr(self, "recursive", False):
+            out.append(f"{rtype} D_{self.address:08X}({', '.join(params) or 'void'});")
         out += ["", f"{rtype} {symbol}({', '.join(params) or 'void'}) {{"]
         self.used_g |= {r for r in self.uses_q if r}
         locals_ = sorted(r for r in self.used_g if not (4 <= r < 4 + ni) and r not in (0, 28, 29))
@@ -1065,6 +1075,7 @@ def main():
         return
     if (os.environ.get("PES6_TARGET") or "main") != only:
         sys.exit(f"--image {only} needs PES6_TARGET={'' if only == 'main' else only}")
+    import equiv
     for image, rows in draft_fix.targets(a[0]).items():
         if only and image != only:
             continue
@@ -1074,7 +1085,8 @@ def main():
                 r = json.loads(line)
             except ValueError:
                 continue
-            (done.add if r.get("verdict") == "EQUIVALENT" else done.discard)(r["address"])
+            # a pass judged from another starting memory (an older snapshot) does not count
+            (done.add if r.get("verdict") == "EQUIVALENT" and r.get("memory") == equiv.memory_label() else done.discard)(r["address"])
         addresses = [x for x, _ in rows if x not in done][:limit or None]
         print(f"{image}: {len(addresses)} functions", flush=True)
         counts = {}
