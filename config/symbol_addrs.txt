@@ -837,3 +837,5 @@ Pes6StripSelect_State = 0x003EA490; // type:data
 // Formation overlay menu state (byte): 0 init, 1 wait, 2 load, 3 setup, 4 pre-match page, 5/6 after confirm
 // (5 when bit 0x80 of its flags is set), 7 close, 8 done -> Pes6FormationMenu_Update returns 1.
 Pes6FormationMenu_State = 0x003EA4EC; // type:data
+// A function placed right after the indirect tail call of func_001AAF50, found by no call.
+func_001AAF70 = 0x001AAF70; // type:func

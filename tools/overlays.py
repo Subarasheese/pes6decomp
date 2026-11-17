@@ -178,7 +178,7 @@ def prepare(iso):
             base_path='../../..', target_path=rel+'/image.rom', elf_path=rel+'/image.elf',
             platform='ps2', compiler='EEGCC', gp_value=t['gp'], asm_path=rel+'/splat/asm',
             src_path=rel+'/splat/src', build_path=rel+'/splat/obj', ld_script_path=rel+'/splat/image.ld',
-            cache_path=rel+'/splat/.splat_cache', symbol_addrs_path=[],
+            cache_path=rel+'/splat/.splat_cache', symbol_addrs_path=extra_symbols(t['name']),
             undefined_funcs_auto_path=rel+'/splat/undefined_funcs_auto.txt',
             undefined_syms_auto_path=rel+'/splat/undefined_syms_auto.txt', ld_dependencies=False,
             create_c_files=False, generate_asm_macros_files=False, named_regs_for_c_funcs=False),
@@ -188,6 +188,13 @@ def prepare(iso):
         c = ROOT/'config/overlays'/t['name'];c.mkdir(parents=True,exist_ok=True)
         if not (c/'units.txt').exists(): (c/'units.txt').write_text(f"0x{t['code_start']:08X} overlays/{t['name']}\n")
     print(f'Mapped {len(images)-1} MWo3 members and one auxiliary EE executable; prepared {sum(t["executable"] for t in images)} code targets')
+
+
+def extra_symbols(name):
+    """Function starts splat cannot find on its own (a function placed right after an indirect jump of
+    another one), from config/overlays/<name>/symbol_addrs.txt when that file exists."""
+    p = ROOT/'config/overlays'/name/'symbol_addrs.txt'
+    return [str(p.relative_to(ROOT))] if p.exists() else []
 
 
 def env_for(name):
