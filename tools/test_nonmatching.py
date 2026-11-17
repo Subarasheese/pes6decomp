@@ -16,6 +16,30 @@ class ComparisonTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "targets differ"):
             nonmatching.compare(original, changed, 0x200000)
 
+    def test_jump_through_a_constant_address_is_a_direct_target(self):
+        # lui v0,0x14; addiu v0,v0,0x31D0; jr v0; nop  ==  j 0x001431D0; nop
+        computed = [0x3C020014, 0x244231D0, 0x00400008, 0]
+        direct = [0x08000000 | (0x1431D0 >> 2), 0, 0x24020000, 0x24020001]
+        r = nonmatching.compare(computed, direct, 0x200000)
+        self.assertEqual(r["original_code_bytes"], 16)
+        # a different fixed target is still a different callee
+        other = [0x08000000 | (0x1431E0 >> 2), 0, 0x24020000, 0x24020001]
+        with self.assertRaisesRegex(ValueError, "targets differ"):
+            nonmatching.compare(computed, other, 0x200000)
+        # a jump through a loaded pointer stays an indirect transfer
+        # beql v0,zero,+4; lui v0,0x8400 (delay slot: runs only when the branch is taken); jalr v0
+        # -- on the fall-through path v0 is the loaded pointer, so this is an indirect call
+        likely = [0x8C820000, 0x50400004, 0x3C028400, 0x0040F809, 0]
+        self.assertEqual(nonmatching.computed_jump_targets(likely), [])
+        # a jump through a loaded pointer (a jump table) may be compare-and-branch code in the draft...
+        loaded = [0x8C820000, 0x00400008, 0, 0]
+        nonmatching.compare(loaded, [0x8C820000, 0, 0, 0], 0x200000)
+        # ...but a draft may not gain an indirect jump, and an indirect call (jalr) may not be lost
+        with self.assertRaisesRegex(ValueError, "indirect"):
+            nonmatching.compare([0x8C820000, 0, 0, 0], loaded, 0x200000)
+        with self.assertRaisesRegex(ValueError, "indirect"):
+            nonmatching.compare([0x8C820000, 0x0040F809, 0, 0], [0x8C820000, 0, 0, 0], 0x200000)
+
     def test_full_body_and_length_are_counted(self):
         r = nonmatching.compare([1, 2, 3, 4], [1, 2, 3, 5, 6], 0x200000)
         self.assertEqual(r["instruction_similarity"], 60)

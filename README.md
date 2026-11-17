@@ -175,6 +175,12 @@ They use assembly only for those instructions. Writing the barriers or interrupt
 ordinary C would change behavior, so such functions are either listed there or left
 unrecovered.
 
+Non-matching drafts (`nonmatching/`) may also use inline assembly made only of VU0 macro-mode
+instructions: `lqc2`/`sqc2`, `qmfc2`/`qmtc2`, `cfc2`/`ctc2` and the vector `v...` operations
+(`vmulax.xyzw ACC, $vf4, $vf8x`, for example). The configured compilers cannot emit them from C,
+and `tools/equiv.py` simulates them. Any other instruction inside such a block is still rejected,
+and the rest of the draft is held to every other rule.
+
 Only publish source, configuration, and documentation. Keep original game
 files, BIOS, compiler distributions, generated assembly, build outputs,
 save states, logs, and personal paths outside Git. See [THIRD_PARTY.md](THIRD_PARTY.md)

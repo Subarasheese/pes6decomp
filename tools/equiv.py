@@ -62,6 +62,7 @@ CANDIDATES = 600                # cases drawn per function (all of them are judg
 DEV_CASES = 24
 HOLDOUT = 8
 MAX_STEPS = 200_000
+C_STEP_FACTOR = 6               # step limit of the C run, as a multiple of the original's
 TIME_BUDGET = 90.0              # seconds of simulation per function for drawing cases
 FUNCTION_TIMEOUT = 300          # hard wall-clock limit per function in a batch
 GP = 0x003EF370
@@ -397,6 +398,33 @@ def callee_inputs(target, mem, image, depth=0, memo=None):
 
 # ---- running -------------------------------------------------------------------------------------
 
+UNSET = "unset"      # an argument register the original did not set since the previous call
+
+
+def arg_destinations(words, lo):
+    """{pc: ("g", n) or ("f", n)} for the instructions that write an argument register (a0-a7, f12-f19)."""
+    out = {}
+    for k, w in enumerate(words):
+        op, rs, rt, rd, sa, fn = w >> 26, (w >> 21) & 31, (w >> 16) & 31, (w >> 11) & 31, (w >> 6) & 31, w & 63
+        d = None
+        if op == 0 and fn not in (8, 9, 12, 13, 15, 17, 19, 26, 27) and w:
+            d = ("g", rd)
+        elif 8 <= op <= 15 or op in (24, 25, 26, 27, 30, 55) or 32 <= op <= 39:
+            d = ("g", rt)
+        elif op == 28:
+            d = ("g", rd)
+        elif op == 17:
+            if rs == 0: d = ("g", rt)
+            elif rs == 4: d = ("f", rd)
+            elif rs in (16, 20) and fn not in (24, 25, 26, 30, 31, 48, 50, 52, 54): d = ("f", sa)
+        elif op == 49:
+            d = ("f", rt)
+        elif op == 18 and rs in (1, 2):
+            d = ("g", rt)
+        if d and ((d[0] == "g" and 4 <= d[1] <= 11) or (d[0] == "f" and 12 <= d[1] <= 19)):
+            out[lo + 4 * k] = d
+    return out
+
 _BUFFERS = {}
 
 
@@ -449,7 +477,7 @@ class Run:
         m.gpr[28] = GP
         m.gpr[29] = STACK_TOP
 
-    def run(self, entry, lo, hi, case, protos_by_addr, collect_reads=False):
+    def run(self, entry, lo, hi, case, protos_by_addr, collect_reads=False, max_steps=MAX_STEPS, dests=None):
         """Run one function from the prepared state; returns its observable behaviour."""
         m = self.m
         self.prepare(case)
@@ -457,6 +485,13 @@ class Run:
         calls = []
         responses = case["responses"]
         idx = [0]
+        # With `dests` (the original's run): the argument registers that hold a value the function was
+        # given or computed. After a call returns, the caller-saved registers hold whatever the callee
+        # left: the calling convention makes that garbage, no compiler passes it on purpose, and the C
+        # cannot reproduce it. Such a register is reported as UNSET and compare() skips it.
+        defined = None
+        if dests is not None:
+            defined = {("g", r) for r in INT_ARGS} | {("f", r) for r in FLOAT_ARGS}
 
         def answer(target):
             # compared arguments: those the draft's prototype declares, plus every register the original
@@ -468,8 +503,9 @@ class Run:
             fregs = sorted(set(FLOAT_ARGS[:nf]) | rf)
             # a pointer into the function's own stack frame is compared as "the stack": where a
             # local lives is the compiler's choice, so its address may differ between original and C
-            ints = tuple("stack" if STACK_TOP - FRAME <= m.g32(r) < STACK_TOP else m.g32(r) for r in iregs)
-            flts = tuple(m.fpr[r] for r in fregs)
+            ints = tuple(UNSET if defined is not None and ("g", r) not in defined else
+                         "stack" if STACK_TOP - FRAME <= m.g32(r) < STACK_TOP else m.g32(r) for r in iregs)
+            flts = tuple(UNSET if defined is not None and ("f", r) not in defined else m.fpr[r] for r in fregs)
             calls.append((target, ints + flts))
             # the stub fills an output parameter: one word through each word-aligned pointer argument
             # into the stack or the buffer, the same for original and C (the call itself was compared)
@@ -491,8 +527,12 @@ class Run:
         def on_call(mm, target):
             if target & M32 in runtime:
                 inside.append(mm.pc)            # the delay slot ran: mm.pc is the return address
+                if defined is not None and len(inside) == 1:
+                    defined.clear()             # a runtime routine runs for real and leaves its own values
                 return False
             answer(target & M32)
+            if defined is not None and not inside:
+                defined.clear()
             return True
 
         def on_syscall(mm, code):
@@ -521,15 +561,24 @@ class Run:
                     ra = m.g32(31)
                     m.pc, m.npc = ra, ra + 4
                     steps += 1                              # a bad ra could bounce here forever
-                    if steps > MAX_STEPS:
+                    if steps > max_steps:
                         raise StepLimit()
                     continue
                 p = m.pc
+                if defined is not None and not inside and lo <= p < hi:
+                    d = dests.get(p)
+                    if d:
+                        defined.add(d)
+                    w = struct.unpack_from("<I", m.mem, p)[0]
+                    if w >> 26 == 3 or (w >> 26 == 0 and w & 63 == 9):       # a call: its delay slot runs first
+                        d = dests.get(p + 4)
+                        if d:
+                            defined.add(d)
                 m.step()
                 if lo <= p < hi:
                     edges.add((p, m.pc))            # which way control went: branch outcomes, not just pcs
                 steps += 1
-                if steps > MAX_STEPS:
+                if steps > max_steps:
                     raise StepLimit()
         finally:
             self.dirty.extend((a, s) for a, s, _ in m.writes)   # restored before the next case, even after a fault
@@ -546,9 +595,15 @@ class Run:
                 "covered": {a for a in m.covered if lo <= a < hi}, "edges": edges, "reads": m.reads or set()}
 
 
+def same_call(x, y):
+    """A call of the original against the C's: same target, and equal arguments wherever the original's
+    is not UNSET."""
+    return x[0] == y[0] and len(x[1]) == len(y[1]) and all(a == UNSET or a == b for a, b in zip(x[1], y[1]))
+
+
 def compare(o, c, ret):
-    if o["calls"] != c["calls"]:
-        n = next((i for i, (x, y) in enumerate(zip(o["calls"], c["calls"])) if x != y), min(len(o["calls"]), len(c["calls"])))
+    if len(o["calls"]) != len(c["calls"]) or not all(same_call(x, y) for x, y in zip(o["calls"], c["calls"])):
+        n = next((i for i, (x, y) in enumerate(zip(o["calls"], c["calls"])) if not same_call(x, y)), min(len(o["calls"]), len(c["calls"])))
         a = o["calls"][n] if n < len(o["calls"]) else None
         b = c["calls"][n] if n < len(c["calls"]) else None
         fmt = lambda x: "none" if x is None else f"{x[0]:08X}({', '.join(v if isinstance(v, str) else f'{v:x}' for v in x[1])})"
@@ -750,6 +805,7 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
 
     lo, hi = address, address + 4 * len(original)
     clo, chi = SCRATCH_CODE, SCRATCH_CODE + 4 * len(compiled)
+    dests = arg_destinations(original, address)
     rng = random.Random(address)
     pools = Pools(rng, original, base_mem)
     read_set = set()
@@ -771,7 +827,7 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
                 break
             case = make_case(rng, pools, read_set, base_mem)
             try:
-                r = o_run.run(address, lo, hi, case, protos_by_addr, collect_reads=True)
+                r = o_run.run(address, lo, hi, case, protos_by_addr, collect_reads=True, dests=dests)
             except (S.Fault, StepLimit):
                 # a run that faults still shows which globals lead there (a NULL pointer to vary)
                 read_set |= globals_of(o_run.m.reads or set())
@@ -804,7 +860,7 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
                 else:
                     child["fpr"][rng.choice(FLOAT_ARGS)] = pools.float_value()
             try:
-                r = o_run.run(address, lo, hi, child, protos_by_addr, collect_reads=True)
+                r = o_run.run(address, lo, hi, child, protos_by_addr, collect_reads=True, dests=dests)
             except (S.Fault, StepLimit):
                 read_set |= globals_of(o_run.m.reads or set())
                 continue
@@ -836,7 +892,9 @@ def judge(image, address, src, symbol=None, base_mem=None, obj=None, cache=None)
     for kind, group in (("dev", chosen), ("holdout", holdout)):
         for case, o in group:
             try:
-                c = c_run.run(SCRATCH_CODE, clo, chi, case, protos_by_addr)
+                # the C may take more instructions for the same work (a case is one the original finished
+                # within MAX_STEPS): its limit is a multiple, so only C that really does not return fails
+                c = c_run.run(SCRATCH_CODE, clo, chi, case, protos_by_addr, max_steps=C_STEP_FACTOR * MAX_STEPS)
             except S.Fault as e:
                 return {"verdict": "DIFFERS", "detail": f"C faults ({kind} case): {e}", "cases": len(chosen) + len(holdout),
                         "coverage": coverage, "key": key}

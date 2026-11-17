@@ -34,6 +34,23 @@ class AssemblyPolicyTests(unittest.TestCase):
             with self.subTest(source=source):
                 self.assertFalse(asm_policy.violations(source))
 
+    def test_drafts_may_use_vu0_macro_instructions_only(self):
+        vu0 = ('void f(void *o, void *i) { __asm__ volatile("lqc2 $vf4, 0x0(%1)\\n vmulx.xyz $vf6, $vf4, $vf5x\\n'
+               ' vmaddw.xyzw $vf9, $vf7, $vf0w\\n qmfc2.ni %0, $vf6\\n sqc2 $vf6, 0x0(%0)" : : "r"(o), "r"(i) : "memory"); }')
+        self.assertFalse(asm_policy.violations(vu0, allow_vu0=True))
+        # sources under src/ keep the strict rule
+        self.assertTrue(asm_policy.violations(vu0))
+        rejected = [
+            'void f(void) { __asm__ volatile("vadd.xyz $vf1, $vf2, $vf3\\n sync"); }',   # a non-VU0 instruction
+            'void f(void) { __asm__("vnop"); __asm__("ei"); }',                          # one VU0 block, one not
+            'register int value __asm__("$3");',                                         # register pinning
+            'asm void f() { vnop }',                                                     # asm function body
+            'INCLUDE_ASM("local", func_00100000);',
+        ]
+        for source in rejected:
+            with self.subTest(source=source):
+                self.assertTrue(asm_policy.violations(source, allow_vu0=True))
+
     def test_detects_register_pinning(self):
         self.assertTrue(asm_policy.fakematch('register int x __asm__("$3");'))
         self.assertFalse(asm_policy.fakematch('/* register int x asm("$3"); */'))

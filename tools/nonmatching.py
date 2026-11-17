@@ -64,8 +64,17 @@ def fingerprint(records):
 
 def source_problems(text):
     import asm_policy
-    problems = asm_policy.violations(text)
-    if FORBIDDEN.search(text):
+    # drafts may use inline assembly made only of VU0 macro-mode instructions (tools/asm_policy.py);
+    # everything else in the source, and any other assembly, is checked as before
+    problems = asm_policy.violations(text, allow_vu0=True)
+    rest = text
+    statements = asm_policy.asm_statements(text)
+    if statements and all(asm_policy.vu0_only(t) for _, _, t in statements):
+        spliced = re.sub(r"\\\r?\n", "", text)
+        for start, end, _ in reversed(statements):
+            spliced = spliced[:start] + " " * (end - start) + spliced[end:]
+        rest = spliced
+    if FORBIDDEN.search(rest):
         problems.append("incomplete translation, instruction placeholder, or assembly")
     if re.search(r"(?m)^\s*#\s*define\b", text):
         problems.append("local macro definitions are not accepted")
@@ -129,19 +138,62 @@ def referenced_addresses(words, gp):
     return found
 
 
+def computed_jump_targets(words):
+    """Constant addresses jumped to through a register: an address built with lui and addiu/ori, then
+    taken by jr or jalr in the same straight run of code (no branch, jump or call in between: a value
+    may not survive those, and an instruction in a delay slot may be skipped), one entry per jump.
+    Such a target is as fixed as a jal's: the call-target comparison counts it, and the
+    indirect-transfer count does not."""
+    regs, found = {}, []
+    in_delay_slot = False
+    for word in words:
+        op, rs, rt, rd = word >> 26, (word >> 21) & 31, (word >> 16) & 31, (word >> 11) & 31
+        imm = word & 0xFFFF
+        transfer = op in (1, 2, 3, 4, 5, 6, 7, 0x14, 0x15, 0x16, 0x17) or (op == 0x11 and rs == 8) \
+            or (op == 0 and word & 63 in (8, 9))
+        if in_delay_slot:
+            regs.clear()        # a delay-slot instruction (nullified by a branch-likely, or past the jump)
+            in_delay_slot = transfer
+            continue
+        if op == 15:                                            # lui
+            regs[rt] = (imm << 16) & 0xFFFFFFFF
+        elif op in (9, 13) and rs in regs:                      # addiu / ori on a built constant
+            regs[rt] = (regs[rs] | imm) if op == 13 else (regs[rs] + (imm - 0x10000 if imm & 0x8000 else imm)) & 0xFFFFFFFF
+        elif op == 0 and word & 63 in (8, 9):                   # jr / jalr
+            if rs in regs and rs != 31:
+                found.append(regs[rs])
+            regs.clear()
+        elif transfer:
+            regs.clear()        # a branch, jump or call: only a constant built in the same straight run counts
+        elif op == 0:
+            regs.pop(rd, None)
+        elif op not in (0x28, 0x29, 0x2B, 0x3F, 0x1F, 0x39, 0x3D):
+            regs.pop(rt, None)                                  # anything else that writes rt
+        in_delay_slot = transfer
+    return found
+
+
 def compare(original, compiled, address):
     # As in match.py check: nops left in the original after the compiled function's last
     # instruction are alignment padding, not missing instructions.
     if len(original) > len(compiled) and all(w == NOP for w in original[len(compiled):]):
         original = original[:len(compiled)]
     end = address + len(original) * 4
-    external = lambda words: {a for a in call_targets(words) if not address <= a < end}
+    external = lambda words: {a for a in call_targets(words) | set(computed_jump_targets(words)) if not address <= a < end}
     if external(original) != external(compiled):
         raise ValueError("external direct call/tail-call targets differ")
-    indirect = lambda ws: sum(w >> 26 == 0 and (w & 63) in (8, 9) and (w >> 21 & 31) != 31 for w in ws)
-    if indirect(original) != indirect(compiled):
+    # Indirect calls (jalr, minus those to an address built in place) must match in number. An indirect
+    # jump (jr through a register other than ra) may be missing from the draft: a jump table of the
+    # original can be compare-and-branch code in the draft, and tools/equiv.py compares the calls made.
+    fixed = lambda ws: len(computed_jump_targets(ws))
+    jalr = lambda ws: sum(w >> 26 == 0 and (w & 63) == 9 for w in ws)
+    jr = lambda ws: sum(w >> 26 == 0 and (w & 63) == 8 and (w >> 21 & 31) != 31 for w in ws)
+    if jalr(original) + jr(original) - fixed(original) < jalr(compiled) + jr(compiled) - fixed(compiled) \
+            or jalr(original) > jalr(compiled) + fixed(original):
         raise ValueError("indirect call/tail-call count differs")
-    if not original or not compiled or not 0.5 <= len(compiled) / len(original) <= 1.75:
+    # The lower bound catches a missing body. The upper bound is loose: an instruction-by-instruction
+    # lift (tools/lift.py) compiles larger than the original's optimised code.
+    if not original or not compiled or not 0.5 <= len(compiled) / len(original) <= 4.0:
         raise ValueError("missing body or implausible compiled length")
     blocks = difflib.SequenceMatcher(None, original, compiled, autojunk=False).get_matching_blocks()
     identical = sum(b.size for b in blocks)

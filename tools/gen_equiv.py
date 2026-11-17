@@ -390,7 +390,7 @@ def admit(only_image):
             shutil.copy(os.path.join(ROOT, r["source"]), os.path.join(ROOT, dest))
             copied[a] = dest
             rows.append({"image": image, "address": a, "symbol": symbol_of[a], "source": dest, "compiler": r["compiler"],
-                         "minimum_similarity": 0, "review": REVIEW, "known_issues": KNOWN})
+                         "minimum_similarity": 0, "review": r.get("review", REVIEW), "known_issues": r.get("known_issues", KNOWN)})
         if not rows:
             print(f"{image}: nothing to admit")
             continue
