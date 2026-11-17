@@ -4,13 +4,13 @@
 
 
 extern char D_005F1CC0[];
-extern void *D_005F1D68;
+extern char D_005F1D68[];
 
 s32 func_00338C90(void) {
     void *temp_a0;
     void *var_a3;
 
-    var_a3 = D_005F1D68;
+    var_a3 = *(void **)D_005F1D68;
     if (M2C_FIELD(var_a3, s32 *, 8) != 0x21) {
         do {
             temp_a0 = M2C_FIELD(var_a3, void **, 0x14);

@@ -1,8 +1,8 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern u8 func_00BF6270(void);
+extern s32 func_00BF6270(void);
 s64 func_002BDD00(s32);                             /* extern */
 s64 func_002BDE70(u8, u8, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
 s64 func_002BE490(s32, M2C_UNK);                    /* extern */
@@ -31,14 +31,14 @@ s32 func_00B42F00(void) {
     u8 temp_s0;
     u8 temp_s2;
     u8 temp_s2_2;
-    void *temp_s1;
+    char *temp_s1;
 
     if (func_00BF6270() == 0xFF) {
         var_a0 = 1;
     } else {
         var_a0 = func_00BF6270() % 23;
     }
-    temp_s1 = ((void *)Pes6MatchPlayers) + (var_a0 * 0x240);
+    temp_s1 = ((char *)Pes6MatchPlayers) + (var_a0 * 0x240);
     temp_s0 = M2C_FIELD(temp_s1, u8 *, 0x12);
     if ((*(u8 *)D_00591DCD) == 0) {
         var_s0 = (s64) (func_002BE490(temp_s0 & 0xFF, 0) << 0x30) >> 0x30;

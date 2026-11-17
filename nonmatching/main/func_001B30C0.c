@@ -22,7 +22,7 @@ extern s32 D_003E7480;
 extern s32 D_003E98E8;
 
 void func_001B30C0(void *arg0) {
-    M2C_UNK *var_s1_2;
+    u8 *var_s1_2;
     s32 temp_a1;
     s32 temp_s0;
     s32 temp_s1;
@@ -62,23 +62,19 @@ void func_001B30C0(void *arg0) {
     temp_s0 = M2C_FIELD(var_s3, u8 *, 0x66) + 0xFB9;
     func_001454C0(temp_s0);
     temp_a0 = M2C_FIELD(var_s3, u8 *, 0x10);
-    switch (temp_a0) {                              /* irregular */
-    case 2:
+    if (temp_a0 == 2) {
         func_0017D480(temp_s0, M2C_FIELD(var_s3, u8 *, 0x66) + 0xFA0, var_s3 + 0x38, 0, 0x40);
         return;
-    case 1:
+    }
+    if (temp_a0 == 1) {
         var_s2 = 0;
-        var_s1_2 = ((void *)D_003981F0);
+        var_s1_2 = (u8 *)D_003981F0;
         do {
-            func_0017D330(temp_s0, 0x1F40, var_s3 + 0x38, M2C_FIELD(var_s1_2, u8 *, 0), M2C_FIELD(var_s1_2, u8 *, 1));
+            func_0017D330(temp_s0, 0x1F40, var_s3 + 0x38, var_s1_2[0], var_s1_2[1]);
             var_s2 += 1;
             var_s1_2 += 2;
             var_s3 += 2;
         } while (var_s2 < 0x15);
         func_0017D6A0(temp_s0, 0xCC, 0x1F40, 0xCC, 6);
-        break;
-    case 3:
-    case 0:
-        return;
     }
 }

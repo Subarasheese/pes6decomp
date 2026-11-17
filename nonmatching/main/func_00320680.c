@@ -8,13 +8,13 @@ extern void func_00338930(int);
 extern s32 func_003389D0(s32, s32);
 extern s32 func_00338A60(void *, void *);
 extern s32 func_003389F0(void *, s32, s32);
-void *func_00338AD0(M2C_UNK, M2C_UNK *, s32, M2C_UNK *); /* extern */
+void *func_00338AD0(s32, void *, s32, void *); /* extern */
 s32 func_009E1C90(M2C_UNK);                         /* extern */
 s32 func_00BD9F80();                                /* extern */
 s32 func_00BF6280();                                /* extern */
 extern char D_003E15C8[];
-extern M2C_UNK func_0031F480;
-extern M2C_UNK func_0031F8B0;
+extern void func_0031F480(void);
+extern void func_0031F8B0(void);
 
 s32 func_00320680(s32 arg0) {
     s32 var_v0;

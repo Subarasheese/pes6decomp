@@ -4,10 +4,10 @@
 
 s32 func_0029AC20();                                /* extern */
 M2C_UNK func_002A6B20();                            /* extern */
-M2C_UNK func_002ADD60(); /* extern */
-M2C_UNK func_002BBD00();                       /* extern */
-M2C_UNK func_002BC540();                         /* extern */
-s32 func_00BBB9F0();                           /* extern */
+M2C_UNK func_002ADD60(void *, void *, s32); /* extern */
+M2C_UNK func_002BBD00(void *);                       /* extern */
+M2C_UNK func_002BC540(s32);                         /* extern */
+s32 func_00BBB9F0(void *);                           /* extern */
 M2C_UNK func_00BBBC10();                            /* extern */
 f32 func_00BBCB90();                                /* extern */
 s32 func_00BBCBC0();                                /* extern */
@@ -27,15 +27,14 @@ extern char D_005E32E7[];
 /* Warning: Gap in callee-saved word stack region.
  * Saved: [0x0, 0x10, 0x14, 0x18, 0x1c, 0x20, 0x24], gap at: 0x8. */
 void func_002BC000(void) {
-    s32 sp38;
+    s32 sp38[2];
     f32 temp_f20;
     f32 var_f0;
     f32 var_f2;
-    s32 *var_v1;
     s32 temp_a0;
     s32 temp_v0;
     s32 var_s0;
-    s32 var_v0;
+    void *last;
 
     temp_f20 = *D_003E74CC / 60.0f;
     if (func_0029AC20() != 0) {
@@ -46,7 +45,7 @@ void func_002BC000(void) {
     if ((*(s32 *)D_005E2F70) == 0) {
         goto block_31;
     }
-    if (func_00BBB9F0(((char *)D_005E31C0)) == 0) {
+    if (func_00BBB9F0((char *)0x5E0000) == 0) {
         goto block_31;
     }
     if (((*(f32 *)D_005E31C4) - (*(f32 *)D_005E31C0)) <= 2.0f) {
@@ -79,23 +78,13 @@ block_14:
 block_15:
     var_s0 = 0;
 loop_16:
-    var_v1 = &sp38;
-    var_v0 = 8;
-    if (var_v1 == NULL) {
-        goto block_18;
-    }
-loop_17:
-    *var_v1 = 0;
-    var_v0 -= 1;
-    var_v1 += 1;
-    if (var_v0 != 0) {
-        goto loop_17;
-    }
-block_18:
+    sp38[0] = 0;
+    sp38[1] = 0;
+    last = (void *)(*(s32 *)D_005E2F70);
     if ((*(s32 *)D_005E2F70) == 0) {
         goto block_24;
     }
-    sp38 = (*(s32 *)D_005E2F70);
+    sp38[0] = (*(s32 *)D_005E2F70);
     if ((*(s32 *)D_005E2F74) & 1) {
         goto block_32;
     }
@@ -103,16 +92,17 @@ block_21:
     if (!((*(s32 *)D_005E2F74) & 2)) {
         goto block_23;
     }
-    func_002ADD60();
+    func_002ADD60(D_005E32E7, D_005E32CA, 0x1D);
 block_23:
     temp_a0 = (*(s32 *)D_005E2F74);
     (*(s32 *)D_005E2F74) = temp_a0 & ~3;
-    func_002BC540();
+    func_002BC540(temp_a0);
     (*(s32 *)D_005E2F78) = -1;
-    func_002BBD00();
+    func_002BBD00(sp38);
+    last = sp38;
 block_24:
     func_00BBBC10();
-    if (func_00BBB9F0() == 0) {
+    if (func_00BBB9F0(last) == 0) {
         goto block_28;
     }
     if (var_s0 >= 0xB) {
@@ -133,6 +123,6 @@ block_31:
     func_00BBBC10();
     goto block_28;
 block_32:
-    func_002ADD60();
+    func_002ADD60(D_005E32AD, D_005E3290, 0x1D);
     goto block_21;
 }

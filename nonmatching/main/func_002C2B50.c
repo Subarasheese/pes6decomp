@@ -74,18 +74,16 @@ loop_13:
                     temp_f21 = temp_f20 * ((86.59164f * (f32) ((s32) M2C_FIELD(func_00C13280(var_s5), u16 *, 2) % 312)) - 13465.0f);
                     if (func_00C12C80(temp_s3) != 0) {
                         temp_v1_2 = M2C_FIELD(func_00C13280(var_s5), u8 *, 5) & 3;
-                        switch (temp_v1_2) {        /* irregular */
-                        case 2:
-                        case 1:
-                            var_fp = 1;
-                            break;
-                        case 3:
+                        if (temp_v1_2 == 3) {
                             if (!(temp_f21 <= 0.0f)) {
                                 var_fp = 1;
                             } else {
                                 goto block_21;
                             }
-                            break;
+                        } else if (temp_v1_2 == 2 || temp_v1_2 == 1) {
+                            var_fp = 1;
+                        } else {
+                            goto block_21;
                         }
                     } else {
 block_21:

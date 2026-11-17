@@ -4,7 +4,7 @@
 
 extern s32 func_00BBB8C0(s32);
 extern s32 func_009B30B0(s32, s32);
-s32 func_00BC03A0(u16);                             /* extern */
+s32 func_00BC03A0(u16, s32, s32);
 extern void *Pes6Ball_Current;
 extern char Pes6MatchSquads[];
 
@@ -34,17 +34,17 @@ void func_00ADE160(void *arg0, s32 arg1, s32 arg2) {
         var_s2 = temp_v1;
     }
     temp_s0 = var_s2 & 0xFFFF;
-    temp_v0 = func_00BC03A0(M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x30));
+    temp_v0 = func_00BC03A0(M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x30), arg1, arg2);
     if ((temp_v0 != 0x19) && (temp_v0 != 6) && (temp_v0 != 0x12)) {
 
     } else if ((var_s2 & 0xFFFF) >= 0x10) {
         var_s2 = 0x10;
     }
     temp_v1_2 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
-    if (M2C_FIELD(Pes6Ball_Current, f32 *, 0x7FC) < (f32) (((temp_v1_2 * -0x40) / 183) + ((u32) (temp_v1_2 * -0x40) >> 0x1F))) {
+    if (M2C_FIELD(Pes6Ball_Current, f32 *, 0x7FC) < (f32) (((temp_v1_2 * -0x40) / 183))) {
         temp_v1_3 = func_00BBB8C0(6) + 0xA;
         temp_v0_2 = var_s2 & 0xFFFF;
-        var_s2 = (((temp_v0_2 * temp_v1_3) / 10) + ((u32) (temp_v0_2 * temp_v1_3) >> 0x1F)) & 0xFFFF;
+        var_s2 = (((temp_v0_2 * temp_v1_3) / 10)) & 0xFFFF;
     }
     if ((M2C_FIELD(arg0, u8 *, 0x16) == 4) && (M2C_FIELD(arg0, u8 *, 0x221) & 1)) {
         var_s1 = 1;
@@ -76,12 +76,12 @@ void func_00ADE160(void *arg0, s32 arg1, s32 arg2) {
     }
     if (var_s1 != 0) {
         temp_a0_2 = M2C_FIELD(Pes6Ball_Current, u16 *, 0x6A);
-        var_v0 = ((temp_a0_2 * 0x19) / 10) + ((u32) (temp_a0_2 * 0x19) >> 0x1F);
+        var_v0 = ((temp_a0_2 * 0x19) / 10);
         goto block_27;
     }
     if (M2C_FIELD(M2C_FIELD(M2C_FIELD(arg0, void **, 4), void **, 4), u8 *, 0xC) & 2) {
         temp_a0_3 = M2C_FIELD(Pes6Ball_Current, u16 *, 0x6A);
-        var_v0 = ((temp_a0_3 * 0xD) / 10) + ((u32) (temp_a0_3 * 0xD) >> 0x1F);
+        var_v0 = ((temp_a0_3 * 0xD) / 10);
 block_27:
         M2C_FIELD(Pes6Ball_Current, s16 *, 0x6A) = var_v0;
     }

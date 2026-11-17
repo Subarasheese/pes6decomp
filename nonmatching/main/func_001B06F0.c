@@ -1,0 +1,118 @@
+/* compiler: ee-gcc-2.9 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s32 Pes6Random_Below(s32);
+s32 func_0014AC50(s32, s32, s32, s32);
+
+s32 func_001B06F0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5) {
+    s32 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0;
+    s32 gp = 0x3ef370;
+    s32 hi = 0, lo = 0;
+
+    v0 = (s32) 0x2dd70000U;
+    a3 = v0 | 0x95ac;
+    v0 = (s32) 0x5d540000U;
+    v1 = v0 | 0xfc78;
+    v0 = (s32) 0xf7b50000U;
+    a2 = v0 | 0xb641;
+    v0 = (s32) 0x78d50000U;
+    s4 = a0;
+    a1 = v0 | 0x165;
+    s2 = (s32) ((u32) s4 + 0x20U);
+    a5 = (*(volatile s32 *) (u32) (a0 + 24));
+    s1 = (s32) ((u32) s4 + 0x10U);
+    a4 = (*(volatile s32 *) (u32) (a0 + 28));
+    s0 = (*(volatile s32 *) (u32) (a0 + 32));
+    s5 = (*(volatile s32 *) (u32) (a0 + 36));
+    s6 = (*(volatile s32 *) (u32) (a0 + 44));
+    s7 = (*(volatile s32 *) (u32) (a0 + 52));
+    v0 = (s32) ((u32) a5 + (u32) a4);
+    v0 = v0 & a3;
+    v0 = s0 ^ v0;
+    (*(volatile u32 *) (u32) (a0 + 32)) = (u32) v0;
+    a4 = (*(volatile s32 *) (u32) (a0 + 28));
+    a3 = (*(volatile s32 *) (u32) (a0 + 20));
+    v0 = (*(volatile s32 *) (u32) (a0 + 36));
+    a3 = (s32) ((u32) a4 - (u32) a3);
+    v1 = a3 & v1;
+    v0 = v0 ^ v1;
+    (*(volatile u32 *) (u32) (a0 + 36)) = (u32) v0;
+    a3 = (*(volatile s32 *) (u32) (a0 + 20));
+    v1 = (*(volatile s32 *) (u32) (a0 + 16));
+    v0 = (*(volatile s32 *) (u32) (a0 + 44));
+    a2 = a3 & a2;
+    v1 = (s32) ((u32) a2 + (u32) v1);
+    v0 = v0 ^ v1;
+    (*(volatile u32 *) (u32) (a0 + 44)) = (u32) v0;
+    a2 = (*(volatile s32 *) (u32) (a0 + 24));
+    v1 = (*(volatile s32 *) (u32) (a0 + 16));
+    v0 = (*(volatile s32 *) (u32) (a0 + 52));
+    a1 = a2 & a1;
+    v1 = (s32) ((u32) v1 - (u32) a1);
+    v0 = v0 ^ v1;
+    (*(volatile u32 *) (u32) (a0 + 52)) = (u32) v0; v0 = func_0014AC50(a0, a1, a2, a3);
+    s3 = v0;
+    v0 = (s32) 0x3b0000U;
+    v1 = (*(volatile u8 *) (u32) (v0 + -1008));
+    v0 = 1;
+    if (v1 == v0) goto L_001B08B0;
+    a2 = (*(volatile s32 *) (u32) (s4 + 4));
+    v0 = (s32) 0x2d980000U;
+    a1 = (*(volatile s32 *) (u32) (s2 + 12));
+    v0 = v0 | 0xa3ab;
+    a0 = (*(volatile s32 *) (u32) (s1 + 8));
+    v1 = (s32) ((u32) a2 >> 2);
+    v0 = a1 & v0;
+    v1 = (s32) ((u32) v1 + 0xffffffffU);
+    a3 = a2 ^ v0;
+    a1 = a3 & v1;
+    v0 = (s32) ((u32) a3 + 0xcU);
+    a1 = (s32) ((u32) a1 << 2);
+    v0 = v0 & v1;
+    a2 = (s32) ((u32) s2 + (u32) a1);
+    a1 = (s32) ((u32) v0 << 2);
+    a1 = (s32) ((u32) s2 + (u32) a1);
+    v0 = (*(volatile s32 *) (u32) a2);
+    a1 = (*(volatile s32 *) (u32) a1);
+    a3 = a3 ^ a1;
+    a2 = a3 & v1;
+    a1 = (s32) ((u32) a3 + 0x4fU);
+    a2 = (s32) ((u32) a2 << 2);
+    a1 = a1 & v1;
+    a2 = (s32) ((u32) s2 + (u32) a2);
+    a1 = (s32) ((u32) a1 << 2);
+    a2 = (*(volatile s32 *) (u32) a2);
+    a1 = (s32) ((u32) s2 + (u32) a1);
+    a1 = (*(volatile s32 *) (u32) a1);
+    a2 = (s32) ((u32) a2 << 1);
+    a2 = (s32) ((u32) v0 - (u32) a2);
+    v0 = (s32) ((u32) a3 - (u32) a1);
+    v0 = v0 & v1;
+    v0 = (s32) ((u32) v0 << 2);
+    v0 = (s32) ((u32) s2 + (u32) v0);
+    v0 = (*(volatile s32 *) (u32) v0);
+    v0 = (s32) ((u32) v0 >> 6);
+    v0 = a2 ^ v0;
+    if (v0 == a0) goto L_001B08B0;
+    v0 = (*(volatile s32 *) (u32) (gp + -23176));
+    at = v0 < 7;
+    if (at == 0) goto L_001B08B0;
+    a0 = 256; v0 = Pes6Random_Below(a0);
+    v1 = v0 & 0xffff;
+    v0 = 3;
+    if ((s32) v0 != 0) { s64 q_ = (s32) ((s32) v1 / (s32) v0); hi = (s32) ((s32) v1 % (s32) v0); lo = q_; }
+    v1 = hi;
+    v0 = (*(volatile s32 *) (u32) (gp + -23176));
+    v1 = (u64) 0 < (u64) v1;
+    v0 = (s32) ((u32) v0 + (u32) v1);
+    (*(volatile u32 *) (u32) (gp + -23176)) = (u32) v0;
+L_001B08B0:;
+    (*(volatile u32 *) (u32) s2) = (u32) s0;
+    v0 = s3;
+    (*(volatile u32 *) (u32) (s2 + 4)) = (u32) s5;
+    (*(volatile u32 *) (u32) (s2 + 12)) = (u32) s6;
+    (*(volatile u32 *) (u32) (s2 + 20)) = (u32) s7;
+    return v0;
+}

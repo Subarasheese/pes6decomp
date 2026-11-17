@@ -2,8 +2,8 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern void func_00143300(void *, void *, s32, u8);
-void func_0017DCE0(void *arg0, s32 arg1, u8 arg2) {
+extern void func_00143300(void *, void *, s32, s32);
+void func_0017DCE0(void *arg0, s32 arg1, s32 arg2) {
     s32 var_s3;
     s32 var_s3_2;
     s32 var_s3_3;

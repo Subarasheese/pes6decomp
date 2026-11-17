@@ -20,84 +20,61 @@ extern char D_003B72CC[];
 extern char D_00591C09[];
 
 s32 func_00323E50(void *arg0) {
-    s32 sp50;
-    f32 sp54;
-    f32 sp58;
-    f32 sp5C;
-    f32 sp60;
-    f32 sp64;
-    f32 sp68;
-    f32 sp6C;
-    f32 sp70;
-    f32 sp74;
-    f32 sp78;
-    f32 sp7C;
-    s32 *var_s0;
-    s32 temp_v1;
-    s32 var_s2;
-    s32 var_s3;
-    s32 var_v0;
-    void *var_s1;
+    s32 tbl[12];
+    s32 *p;
+    s32 i;
+    s32 j;
+    s32 v;
+    u8 *dst;
 
-    var_s3 = 0;
-    var_s1 = arg0;
-    sp50 = (*(s32 *)D_003B72A0);
-    sp54 = (*(f32 *)D_003B72A4);
-    sp58 = (*(f32 *)D_003B72A8);
-    sp5C = (*(f32 *)D_003B72AC);
-    sp60 = (*(f32 *)D_003B72B0);
-    sp64 = (*(f32 *)D_003B72B4);
-    sp68 = (*(f32 *)D_003B72B8);
-    sp6C = (*(f32 *)D_003B72BC);
-    sp70 = (*(f32 *)D_003B72C0);
-    sp74 = (*(f32 *)D_003B72C4);
-    sp78 = (*(f32 *)D_003B72C8);
-    sp7C = (*(f32 *)D_003B72CC);
-    do {
-        M2C_FIELD(var_s1, s32 *, 0x40) = 0xE;
+    tbl[0] = (*(s32 *)D_003B72A0);
+    tbl[1] = (*(s32 *)D_003B72A4);
+    tbl[2] = (*(s32 *)D_003B72A8);
+    tbl[3] = (*(s32 *)D_003B72AC);
+    tbl[4] = (*(s32 *)D_003B72B0);
+    tbl[5] = (*(s32 *)D_003B72B4);
+    tbl[6] = (*(s32 *)D_003B72B8);
+    tbl[7] = (*(s32 *)D_003B72BC);
+    tbl[8] = (*(s32 *)D_003B72C0);
+    tbl[9] = (*(s32 *)D_003B72C4);
+    tbl[10] = (*(s32 *)D_003B72C8);
+    tbl[11] = (*(s32 *)D_003B72CC);
+    dst = (u8 *)arg0;
+    for (i = 0; i < 2; i++, dst += 4) {
+        *(s32 *)(dst + 0x40) = 0xE;
         if ((func_00309420() == 0) && ((*(u8 *)D_00591C09) != 0)) {
-            var_s2 = 0;
-            var_s0 = &sp50;
-            do {
-                if (func_00292440(var_s3, M2C_FIELD(var_s0, s32 *, 0)) != 0) {
+            p = tbl;
+            for (j = 0; j < 6; j++, p += 2) {
+                if (func_00292440(i, p[0]) != 0) {
                     if ((*(u8 *)D_00591C09) == 0xE) {
-                        temp_v1 = M2C_FIELD(var_s0, s32 *, 0);
-                        switch (temp_v1) {          /* irregular */
-                        case 2:
-                            var_v0 = 0xC;
-                            break;
-                        case 1:
-                            var_v0 = 0xD;
-                            break;
-                        case 4:
-                            var_v0 = 6;
-                            break;
-                        default:
-                            var_v0 = M2C_FIELD(var_s0, s32 *, 4);
-                            break;
+                        v = p[0];
+                        if (v == 4) {
+                            v = 6;
+                        } else if (v == 1) {
+                            v = 0xD;
+                        } else if (v == 2) {
+                            v = 0xC;
+                        } else {
+                            v = p[1];
                         }
                     } else {
-                        var_v0 = M2C_FIELD(var_s0, s32 *, 4);
+                        v = p[1];
                     }
-                    M2C_FIELD(var_s1, s32 *, 0x40) = var_v0;
+                    *(s32 *)(dst + 0x40) = v;
                 }
-                var_s2 += 1;
-                var_s0 += 8;
-            } while (var_s2 < 6);
-            if (((func_00292660(var_s3, 4) & 0xFF) == 3) || ((func_00292660(var_s3, 0) & 0xFF) == 3)) {
-                M2C_FIELD(var_s1, s32 *, 0x40) = 9;
-            } else if (((func_00292660(var_s3, 1) & 0xFF) == 3) || ((func_00292660(var_s3, 2) & 0xFF) == 3)) {
+            }
+            if (((func_00292660(i, 4) & 0xFF) == 3) || ((func_00292660(i, 0) & 0xFF) == 3)) {
+                *(s32 *)(dst + 0x40) = 9;
+            } else if (((func_00292660(i, 1) & 0xFF) == 3) || ((func_00292660(i, 2) & 0xFF) == 3)) {
                 if ((*(u8 *)D_00591C09) == 0xE) {
-                    M2C_FIELD(var_s1, s32 *, 0x40) = 0xA;
+                    *(s32 *)(dst + 0x40) = 0xA;
                 }
-            } else if ((func_00292660(var_s3, 4) & 0xFF) == 3) {
-                M2C_FIELD(var_s1, s32 *, 0x40) = 0xA;
-            } else if ((func_00292660(var_s3, 4) & 0xFF) == 1) {
-                M2C_FIELD(var_s1, s32 *, 0x40) = 0xB;
+            } else if ((func_00292660(i, 4) & 0xFF) == 3) {
+                *(s32 *)(dst + 0x40) = 0xA;
+            } else if ((func_00292660(i, 4) & 0xFF) == 1) {
+                *(s32 *)(dst + 0x40) = 0xB;
             }
         }
-        var_s3 += 1;
-        var_s1 += 4;
-    } while (var_s3 < 2);
+    }
     return 1;
 }

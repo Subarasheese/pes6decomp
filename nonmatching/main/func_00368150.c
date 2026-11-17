@@ -8,40 +8,40 @@ s32 func_00C5B730(s32, s32, s32);                   /* extern */
 s32 func_00C5B830(s32, s32, s32);                   /* extern */
 s32 func_00C5B930(s32, s32, u8);                    /* extern */
 s32 func_00C5B9F0(s32, s32, u8);                    /* extern */
-s32 func_00C5BC90(s32, s32, s32, M2C_UNK *);        /* extern */
-s32 func_00C5BDC0(s32, s32, s32, M2C_UNK *);        /* extern */
-s32 func_00C5BEE0(s32, s32, s32, M2C_UNK *);        /* extern */
+s32 func_00C5BC90(s32, s32, s32, void (*)(void));        /* extern */
+s32 func_00C5BDC0(s32, s32, s32, void (*)(void));        /* extern */
+s32 func_00C5BEE0(s32, s32, s32, void (*)(void));        /* extern */
 s32 func_00C5BF80(s32, s32, u8);                    /* extern */
-s32 func_00C5C070(s32, s32, u8, M2C_UNK *);         /* extern */
-s32 func_00C5C340(s32, s32, u8, M2C_UNK *);         /* extern */
-s32 func_00C5C460(s32, s32, u8, M2C_UNK *);         /* extern */
-s32 func_00C5C590(s32, s32, u8, M2C_UNK *);         /* extern */
-s32 func_00C5C690(s32, s32, u8, M2C_UNK *);         /* extern */
-s32 func_00C5C970(s32, s32, u8, M2C_UNK *);         /* extern */
-s32 func_00C5CB00(s32, s32, u8, M2C_UNK *);         /* extern */
-s32 func_00C5D1F0(s32, s32, u8, M2C_UNK *);         /* extern */
+s32 func_00C5C070(s32, s32, u8, void (*)(void));         /* extern */
+s32 func_00C5C340(s32, s32, u8, void (*)(void));         /* extern */
+s32 func_00C5C460(s32, s32, u8, void (*)(void));         /* extern */
+s32 func_00C5C590(s32, s32, u8, void (*)(void));         /* extern */
+s32 func_00C5C690(s32, s32, u8, void (*)(void));         /* extern */
+s32 func_00C5C970(s32, s32, u8, void (*)(void));         /* extern */
+s32 func_00C5CB00(s32, s32, u8, void (*)(void));         /* extern */
+s32 func_00C5D1F0(s32, s32, u8, void (*)(void));         /* extern */
 s32 func_00C5D4D0(s32, s32, u8);                    /* extern */
-s32 func_00C5D5B0(s32, s32, u8, M2C_UNK *);         /* extern */
+s32 func_00C5D5B0(s32, s32, u8, void (*)(void));         /* extern */
 s32 func_00C5DAF0(s32, s32, u8);                    /* extern */
-s32 func_00C5DB10(s32, s32, u8, M2C_UNK *);         /* extern */
+s32 func_00C5DB10(s32, s32, u8, void (*)(void));         /* extern */
 s32 func_00C5DE20(s32, s32, u8);                    /* extern */
 s32 func_00C5DFD0(s32, s32, u8);                    /* extern */
 s32 func_00C5E140(s32, s32, u8);                    /* extern */
-s32 func_00C5E2B0(s32, s32, u8, M2C_UNK *);         /* extern */
-extern M2C_UNK func_0036FE20;
-extern M2C_UNK func_0036FE60;
-extern M2C_UNK func_00370030;
-extern M2C_UNK func_00370060;
-extern M2C_UNK func_00370090;
-extern M2C_UNK func_003700A0;
-extern M2C_UNK func_00370170;
-extern M2C_UNK func_003701A0;
-extern M2C_UNK func_003701D0;
-extern M2C_UNK func_00370230;
-extern M2C_UNK func_00370260;
-extern M2C_UNK func_00370290;
-extern M2C_UNK func_003702E0;
-extern M2C_UNK func_00370320;
+s32 func_00C5E2B0(s32, s32, u8, void (*)(void));         /* extern */
+void func_0036FE20(void);
+void func_0036FE60(void);
+void func_00370030(void);
+void func_00370060(void);
+void func_00370090(void);
+void func_003700A0(void);
+void func_00370170(void);
+void func_003701A0(void);
+void func_003701D0(void);
+void func_00370230(void);
+void func_00370260(void);
+void func_00370290(void);
+void func_003702E0(void);
+void func_00370320(void);
 
 s32 func_00368150(void *arg0, s32 arg1, s32 arg2, u8 arg3, s32 arg4) {
     s32 temp_s6;

@@ -3,13 +3,13 @@
 #include "pes6/m2c.h"
 
 M2C_UNK func_001A4880(M2C_UNK);                     /* extern */
-M2C_UNK func_001A56D0(M2C_UNK, M2C_UNK);            /* extern */
+M2C_UNK func_001A56D0(f32, f32);
 M2C_UNK func_001AFD70(s32);                         /* extern */
 M2C_UNK func_00207360(s32 *);                       /* extern */
 M2C_UNK func_0027A770();                            /* extern */
 s16 func_002A1110(u8);                              /* extern */
 M2C_UNK func_002A81F0(s32, s32);                    /* extern */
-M2C_UNK func_002A8C00(M2C_UNK);                     /* extern */
+M2C_UNK func_002A8C00(f32);
 M2C_UNK func_002A9520(s32);                         /* extern */
 M2C_UNK func_002B8690();                            /* extern */
 extern char Pes6MatchPlayers[];
@@ -40,7 +40,7 @@ extern char D_005E21A0[];
 extern char D_005E2208[];
 
 void func_002A7F30(s32 arg0, s32 arg1, s32 arg2, s8 arg3, s32 arg4) {
-    M2C_UNK *var_s0;
+    char *var_s0;
     f32 var_f1;
     s32 temp_v1;
     s32 temp_v1_2;
@@ -56,7 +56,9 @@ void func_002A7F30(s32 arg0, s32 arg1, s32 arg2, s8 arg3, s32 arg4) {
     }
     func_002A9520(arg0);
     if (arg4 < 0) {
-        var_f1 = 2.0f * (f32) (((u32) arg4 >> 1) | (arg4 & 1));
+        temp_v1 = ((u32) arg4 >> 1) | (arg4 & 1);
+        var_f1 = (f32) temp_v1;
+        var_f1 = var_f1 + var_f1;
     } else {
         var_f1 = (f32) arg4;
     }
@@ -115,5 +117,5 @@ void func_002A7F30(s32 arg0, s32 arg1, s32 arg2, s8 arg3, s32 arg4) {
         func_001A4880(1);
     }
     (*(s32 *)D_005E19A4) = 0;
-    func_001A56D0(0x42480000, 0x467A0000);
+    func_001A56D0(50.0f, 16000.0f);
 }

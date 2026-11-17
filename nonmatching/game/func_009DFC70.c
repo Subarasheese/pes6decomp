@@ -25,7 +25,7 @@ void func_009DFC70(void *arg0) {
     u32 temp_v0;
     u8 temp_a0;
     u8 temp_v1;
-    u8 var_s0;
+    s32 var_s0;
     void *temp_s1;
 
     if ((*(u8 *)D_00591E4C) == 0xFF) {

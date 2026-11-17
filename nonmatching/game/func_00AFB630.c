@@ -12,7 +12,7 @@ void func_00AFB630(void *arg0, s32 arg1, s32 arg2) {
     s32 var_a0_2;
     s32 var_s0;
 
-    temp_a2 = ((arg2 * (*(u8 *)D_00591DF0)) / 60) + ((u32) (arg2 * (*(u8 *)D_00591DF0)) >> 0x1F);
+    temp_a2 = (arg2 * (*(u8 *)D_00591DF0)) / 60;
     if (arg1 >= M2C_FIELD(arg0, s32 *, 0x1C)) {
         var_a0 = (s32) (0x1900 - (M2C_FIELD(arg0, u8 *, 0x5C) * 0xC)) / temp_a2;
         if (var_a0 >= 0x201) {
@@ -29,7 +29,7 @@ void func_00AFB630(void *arg0, s32 arg1, s32 arg2) {
             var_s0 = (s32) (temp_v0 + 1) >> 1;
         }
         if (func_00288580() != 0) {
-            var_s0 = ((var_s0 * 0xB) / 10) + ((u32) (var_s0 * 0xB) >> 0x1F);
+            var_s0 = (var_s0 * 0xB) / 10;
         }
         var_a0_2 = (s32) (0x1900 - (M2C_FIELD(arg0, u8 *, 0x5C) * 0xC)) / var_s0;
         if (var_a0_2 >= 0x201) {

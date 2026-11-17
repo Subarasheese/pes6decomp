@@ -29,7 +29,7 @@ block_2:
     temp_a5 = M2C_FIELD(arg0, u8 *, 0x12);
     temp_f3 = M2C_FIELD((temp_s0 + Pes6Ball_Current), f32 *, 0x7FC);
     temp_a1 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (temp_a5 * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
-    if (!(temp_f3 < (f32) (((temp_a1 * -0x250) / 183) + ((u32) (temp_a1 * -0x250) >> 0x1F)))) {
+    if (!(temp_f3 < (f32) ((temp_a1 * -0x250) / 183))) {
         goto block_4;
     }
     var_s1 += 2;
@@ -55,7 +55,7 @@ block_8:
 block_10:
     var_s1 += 0x10;
 block_11:
-    if ((func_009B30B0(M2C_FIELD(arg0, u16 *, 0x28), M2C_FIELD(Pes6Ball_Current, u16 *, 0x58), temp_a3, ((char *)Pes6MatchSquads), temp_a5 * 0x69) & 0xFFFF) >= 0x21) {
+    if ((func_009B30B0(M2C_FIELD(arg0, u16 *, 0x28), M2C_FIELD(Pes6Ball_Current, u16 *, 0x58)) & 0xFFFF) >= 0x21) {
         goto block_13;
     }
     var_s1 += 0x20;

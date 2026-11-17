@@ -1,0 +1,407 @@
+/* compiler: ee-gcc-2.9 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s64 Pes6BitSet_Write(s64, s64, s64);
+s64 Pes6MatchContext_GetHalf(void);
+s64 func_0030DAF0(s64);
+s64 func_00325C20(s64);
+s64 func_00325C50(s64);
+s64 func_00325E40(s64);
+s64 func_00325FC0(s64, s64);
+s64 func_00326040(s64, s64);
+s64 func_00333710(s64, s64);
+s64 func_00333740(s64, s64);
+s64 func_003395B0(s64);
+s64 func_00340C80(f32);
+s64 func_00341010(s64);
+
+s64 func_00318380(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, f32 fa12) {
+    s64 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0, fp = 0;
+    u64 qh_v0 = 0;
+    u64 qh_v1 = 0;
+    union { f32 f; s32 i; } f12 = { fa12 };
+    s64 hi = 0, lo = 0;
+    s64 frame[36];
+    s64 sp = (s32) (u32) frame;
+
+    s7 = a2;
+    s5 = a0;
+    s4 = a1;
+    s3 = a3;
+    a0 = s3;
+    s2 = (*(volatile u8 *) (u32) (a1 + 5));
+    (*(volatile u32 *) (u32) (sp + 284)) = (u32) a4;
+    a1 = s2; v0 = func_00333710(a0, a1);
+    s1 = v0;
+    a0 = s3;
+    a1 = s2; v0 = func_00333740(a0, a1);
+    a0 = 0; v0 = func_0030DAF0(a0);
+    s0 = (s64) ((u64) v0 << 48);
+    a0 = 1;
+    s0 = s0 >> 48; v0 = func_0030DAF0(a0);
+    fp = (s64) ((u64) v0 << 48);
+    v0 = (*(volatile u8 *) (u32) (s4 + 5));
+    fp = fp >> 48;
+    v0 = (s32) ((u32) v0 << 1);
+    v1 = (s32) ((u32) s4 + (u32) v0);
+    s6 = (*(volatile u8 *) (u32) (v1 + 56));
+    v0 = (s32) ((u32) v1 + 0x38U);
+    { u32 a_ = (u32) (sp + 208) & ~15U; *(volatile u64 *) a_ = (u64) v0; *(volatile u64 *) (a_ + 8) = qh_v0; } v0 = Pes6MatchContext_GetHalf();
+    v1 = (s32) ((u32) s0 + (u32) fp);
+    { u32 a_ = (u32) (sp + 192) & ~15U; *(volatile u64 *) a_ = (u64) v0; *(volatile u64 *) (a_ + 8) = qh_v0; }
+    { u64 x_[2], y_[2], z_[2]; s32 n_; x_[0] = (u64) v1; x_[1] = qh_v1; y_[0] = (u64) 0; y_[1] = (u64) 0; z_[0] = z_[1] = 0; for (n_ = 0; n_ < 16; n_++) { u32 b_ = (u32) ((x_[n_ >> 3] >> (8 * (n_ & 7))) & 0xFF) + (u32) ((y_[n_ >> 3] >> (8 * (n_ & 7))) & 0xFF); if (b_ > 0xFF) b_ = 0xFF; z_[n_ >> 3] |= (u64) b_ << (8 * (n_ & 7)); } v0 = (s64) z_[0]; qh_v0 = z_[1]; }
+    s0 = (*(volatile s32 *) (u32) s7);
+    v0 = v0 ^ 0x1;
+    { u32 a_ = (u32) (sp + 176) & ~15U; *(volatile u64 *) a_ = (u64) v1; *(volatile u64 *) (a_ + 8) = qh_v1; }
+    v0 = (u64) v0 < (u64) (s64) 1;
+    a0 = s1;
+    (*(volatile u32 *) (u32) (sp + 256)) = (u32) v0; v0 = func_00341010(a0);
+    fp = v0;
+    a0 = s7;
+    v0 = (*(volatile u8 *) (u32) (s3 + 55));
+    a1 = s2;
+    v0 = v0 ^ s2;
+    v0 = (u64) v0 < (u64) (s64) 1;
+    v0 = fp & v0;
+    (*(volatile u32 *) (u32) (sp + 240)) = (u32) v0; v0 = func_00325FC0(a0, a1);
+    (*(volatile u32 *) (u32) (sp + 236)) = (u32) v0;
+    v0 = (*(volatile u8 *) (u32) (s4 + 17));
+    v0 = v0 ^ 0x8;
+    a2 = (u64) 0 < (u64) v0;
+    if (a2 == 0) { a0 = s5; goto L_00318490; }
+    v0 = (*(volatile u8 *) (u32) (s4 + 7));
+    v0 = (u64) 0 < (u64) v0;
+    a2 = v0 ^ 0x1;
+    a0 = s5;
+L_00318490:;
+    a1 = 40; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a2 = (*(volatile s32 *) (u32) (sp + 236));
+    a0 = s5;
+    a1 = 41; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 < 17;
+    a0 = s5;
+    a2 = v0 ^ 0x1;
+    a1 = 42; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a2 = (*(volatile s32 *) (u32) (sp + 240));
+    a0 = s5;
+    a1 = 43; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0xd;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 44; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile s32 *) (u32) (sp + 256));
+    a2 = (u64) 0 < (u64) v0;
+    if (a2 == 0) { a0 = s5; goto L_003184F8; }
+    a2 = s6 < 4;
+    a0 = s5;
+L_003184F8:;
+    a1 = 45; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0x11;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    if (a2 == 0) goto L_0031851C;
+    { u32 a_ = (u32) (sp + 176) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    v0 = v0 ^ 0x2;
+    a2 = (u64) v0 < (u64) (s64) 1;
+L_0031851C:;
+    if (a2 == 0) { a0 = s5; goto L_0031854C; }
+    a0 = (*(volatile s32 *) (u32) (sp + 284)); v0 = func_003395B0(a0);
+    { u32 a_ = (u32) (sp + 160) & ~15U; *(volatile u64 *) a_ = (u64) v0; *(volatile u64 *) (a_ + 8) = qh_v0; }
+    v0 = (s32) 0x42700000U;
+    f12.i = (s32) v0;
+    v0 = func_00340C80(f12.f);
+    { u32 a_ = (u32) (sp + 160) & ~15U; v1 = *(volatile s64 *) a_; qh_v1 = *(volatile u64 *) (a_ + 8); }
+    a2 = v1 < v0;
+    a0 = s5;
+L_0031854C:;
+    a1 = 46; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s0; v0 = func_00325C20(a0);
+    a2 = (u64) 0 < (u64) v0;
+    if (a2 == 0) { a0 = s5; goto L_00318574; }
+    { u32 a_ = (u32) (sp + 192) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    a2 = v0 < 2;
+    a0 = s5;
+L_00318574:;
+    a1 = 47; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile u8 *) (u32) (s4 + 5));
+    v0 = (s32) ((u32) v0 + (u32) s3);
+    v0 = (*(volatile u8 *) (u32) (v0 + 57));
+    v0 = v0 < 2;
+    a2 = v0 ^ 0x1;
+    if (a2 == 0) { a0 = s5; goto L_003185A0; }
+    a2 = (u64) 0 < (u64) fp;
+    a0 = s5;
+L_003185A0:;
+    a1 = 48; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s5;
+    a1 = 49;
+    a2 = fp; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0xd;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 50; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s6 < 70;
+    a2 = v0 ^ 0x1;
+    if (a2 == 0) { a0 = s5; goto L_003185E8; }
+    v0 = (*(volatile s32 *) (u32) (sp + 256));
+    a2 = (u64) 0 < (u64) v0;
+    a0 = s5;
+L_003185E8:;
+    a1 = 51; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s0; v0 = func_00325C50(a0);
+    a2 = v0;
+    a0 = s5;
+    a1 = 52; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile s32 *) (u32) (sp + 236));
+    a0 = s5;
+    a1 = 53;
+    v0 = (u64) 0 < (u64) v0;
+    s0 = v0 ^ 0x1;
+    a2 = s0; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile s32 *) (u32) (s7 + 4));
+    v0 = v0 ^ 0x2;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    if (a2 == 0) goto L_00318644;
+    { u32 a_ = (u32) (sp + 192) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    v0 = v0 < 2;
+    a2 = v0 ^ 0x1;
+L_00318644:;
+    if (a2 == 0) { a0 = s5; goto L_00318654; }
+    a2 = (u64) 0 < (u64) fp;
+    a0 = s5;
+L_00318654:;
+    a1 = 54; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s5;
+    a1 = 55;
+    a2 = s0; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a2 = (*(volatile s32 *) (u32) (sp + 256));
+    a0 = s5;
+    a1 = 56; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile u8 *) (u32) (s4 + 5));
+    v0 = v0 ^ 0x1;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    if (a2 == 0) { a0 = s5; goto L_003186A4; }
+    a0 = s7; v0 = func_00325E40(a0);
+    v0 = (u64) 0 < (u64) v0;
+    a2 = v0 ^ 0x1;
+    a0 = s5;
+L_003186A4:;
+    a1 = 57; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0xd;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 58; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile u8 *) (u32) (s4 + 5));
+    v0 = (s32) ((u32) v0 + (u32) s3);
+    v0 = (*(volatile u8 *) (u32) (v0 + 57));
+    v0 = v0 ^ 0x1;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    if (a2 == 0) { a0 = s5; goto L_00318730; }
+    v0 = s6 < 82;
+    a2 = v0 ^ 0x1;
+    if (a2 != 0) goto L_00318708;
+    { u32 a_ = (u32) (sp + 192) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    v0 = v0 ^ 0x2;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    if (a2 == 0) goto L_00318708;
+    v0 = s6 < 100;
+    a2 = v0 ^ 0x1;
+L_00318708:;
+    if (a2 != 0) goto L_0031872C;
+    { u32 a_ = (u32) (sp + 192) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    v0 = v0 ^ 0x3;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    if (a2 == 0) goto L_0031872C;
+    v0 = s6 < 115;
+    a2 = v0 ^ 0x1;
+L_0031872C:;
+    a0 = s5;
+L_00318730:;
+    a1 = 59; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v1 = (*(volatile u8 *) (u32) (s4 + 5));
+    a0 = s5;
+    v0 = (*(volatile u8 *) (u32) (s4 + 9));
+    a1 = 60;
+    a2 = v1 ^ v0;
+    a2 = (u64) a2 < (u64) (s64) 1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile u8 *) (u32) (s4 + 9));
+    a0 = s5;
+    v1 = (*(volatile u8 *) (u32) (s4 + 5));
+    a1 = 61;
+    v0 = v0 ^ 0x1;
+    a2 = v1 ^ v0;
+    a2 = (u64) a2 < (u64) (s64) 1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile u8 *) (u32) (s4 + 5));
+    a0 = s5;
+    a1 = 62;
+    v0 = (s32) ((u32) v0 + (u32) s3);
+    v0 = (*(volatile u8 *) (u32) (v0 + 57));
+    v0 = v0 < 2;
+    a2 = v0 ^ 0x1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v1 = (*(volatile u8 *) (u32) (s4 + 5));
+    a0 = s5;
+    v0 = (*(volatile u8 *) (u32) (s4 + 9));
+    a1 = 63;
+    a2 = v1 ^ v0;
+    a2 = (u64) a2 < (u64) (s64) 1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile u8 *) (u32) (s4 + 9));
+    a0 = s5;
+    v1 = (*(volatile u8 *) (u32) (s4 + 5));
+    a1 = 64;
+    v0 = v0 ^ 0x1;
+    a2 = v1 ^ v0;
+    a2 = (u64) a2 < (u64) (s64) 1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s5;
+    a1 = 65;
+    a2 = s0; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile s32 *) (u32) (sp + 240));
+    a2 = (u64) 0 < (u64) v0;
+    if (a2 == 0) { a0 = s5; goto L_00318804; }
+    v0 = (s32) ((u32) s2 + (u32) s3);
+    v0 = (*(volatile u8 *) (u32) (v0 + 60));
+    v0 = v0 ^ 0x2;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a0 = s5;
+L_00318804:;
+    a1 = 66; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a2 = (*(volatile s32 *) (u32) (sp + 240));
+    a0 = s5;
+    a1 = 67; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s5;
+    a1 = 68;
+    a2 = s0; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile u8 *) (u32) (s3 + 55));
+    a2 = v0 ^ s2;
+    a2 = (u64) 0 < (u64) a2;
+    if (a2 == 0) { a0 = s5; goto L_00318848; }
+    a2 = (u64) 0 < (u64) fp;
+    a0 = s5;
+L_00318848:;
+    a1 = 69; v0 = Pes6BitSet_Write(a0, a1, a2);
+    { u32 a_ = (u32) (sp + 192) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    a0 = s5;
+    a1 = 70;
+    v0 = v0 < 2;
+    a2 = v0 ^ 0x1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v1 = (*(volatile u8 *) (u32) (s4 + 5));
+    a0 = s5;
+    v0 = (*(volatile u8 *) (u32) (s4 + 9));
+    a1 = 71;
+    a2 = v1 ^ v0;
+    a2 = (u64) a2 < (u64) (s64) 1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile u8 *) (u32) (s4 + 9));
+    a0 = s5;
+    v1 = (*(volatile u8 *) (u32) (s4 + 5));
+    a1 = 72;
+    v0 = v0 ^ 0x1;
+    a2 = v1 ^ v0;
+    a2 = (u64) a2 < (u64) (s64) 1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s7;
+    a1 = s2; v0 = func_00326040(a0, a1);
+    a2 = v0;
+    a0 = s5;
+    a1 = 73; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s5;
+    a1 = 74;
+    a2 = s0; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 < 18;
+    a2 = v0 ^ 0x1;
+    if (a2 != 0) { a0 = s5; goto L_003188FC; }
+    v0 = s6 < 76;
+    a2 = v0 ^ 0x1;
+    if (a2 == 0) goto L_003188F8;
+    v0 = s1 ^ 0x11;
+    a2 = (u64) v0 < (u64) (s64) 1;
+L_003188F8:;
+    a0 = s5;
+L_003188FC:;
+    a1 = 75; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s5;
+    a1 = 76;
+    a2 = s0; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a2 = s1 < 13;
+    a0 = s5;
+    a1 = 77; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0xa;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 78; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s6 < 75;
+    a0 = s5;
+    v0 = v0 ^ 0x1;
+    a1 = 79;
+    a2 = v0 & s0; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0x9;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 80; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0x8;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 81; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0x7;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 82; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 < 14;
+    a2 = v0 ^ 0x1;
+    if (a2 == 0) { a0 = s5; goto L_003189A8; }
+    v0 = s1 < 17;
+    a2 = v0 ^ 0x1;
+    a0 = s5;
+L_003189A8:;
+    a1 = 83; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0x11;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 84; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0x12;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 85; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s1 ^ 0x13;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 86; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v1 = (*(volatile u8 *) (u32) (s4 + 4));
+    v0 = (*(volatile u8 *) (u32) (s4 + 5));
+    a2 = v1 ^ v0;
+    a2 = (u64) a2 < (u64) (s64) 1;
+    if (a2 == 0) goto L_00318A18;
+    { u32 a_ = (u32) (sp + 208) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    v1 = (*(volatile u8 *) (u32) v0);
+    v0 = (*(volatile u8 *) (u32) (v0 + 1));
+    v0 = (s32) ((u32) v1 - (u32) v0);
+    a2 = v0 < 5;
+L_00318A18:;
+    if (a2 == 0) { a0 = s5; goto L_00318A78; }
+    { u32 a_ = (u32) (sp + 208) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    a3 = (*(volatile u8 *) (u32) v0);
+    v0 = (s32) 0xb60b0000U;
+    a1 = (s32) ((u32) a3 >> 31);
+    a2 = v0 | 0x60b7;
+    { u32 a_ = (u32) (sp + 208) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    { s64 m_ = (s64) (s32) a2 * (s64) (s32) a3; lo = (s32) m_; hi = (s32) (m_ >> 32); }
+    a0 = (*(volatile u8 *) (u32) (v0 + 1));
+    v0 = hi;
+    v1 = (s32) ((u32) a0 >> 31);
+    { s64 m_ = (s64) (s32) a2 * (s64) (s32) a0; lo = (s32) m_; hi = (s32) (m_ >> 32); }
+    v0 = (s32) ((u32) v0 + (u32) a3);
+    v0 = (s32) v0 >> 5;
+    a1 = (s32) ((u32) v0 + (u32) a1);
+    v0 = hi;
+    v0 = (s32) ((u32) v0 + (u32) a0);
+    v0 = (s32) v0 >> 5;
+    v0 = (s32) ((u32) v0 + (u32) v1);
+    a2 = a1 ^ v0;
+    a2 = (u64) a2 < (u64) (s64) 1;
+    a0 = s5;
+L_00318A78:;
+    a1 = 87; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s5;
+    a2 = s0;
+    a1 = 88; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = 1;
+    return v0;
+}

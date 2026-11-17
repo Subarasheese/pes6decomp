@@ -1,77 +1,74 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-
-s32 func_00287230(M2C_UNK, void *);                 /* extern */
+s32 func_00287230(void *, s32, void *);
 
 u16 func_00A09690(void *arg0) {
-    s32 var_v0;
-    u16 temp_v0;
-    u16 temp_v1;
     void *temp_a2;
+    u16 t;
+    u16 temp_v0;
+    s32 var_v0;
 
     temp_a2 = M2C_FIELD(arg0, void **, 4);
-    temp_v1 = M2C_FIELD(temp_a2, u16 *, 0x30);
+    t = M2C_FIELD(temp_a2, u16 *, 0x30);
     temp_v0 = M2C_FIELD(arg0, u16 *, 0x26);
-    switch (temp_v1) {                              /* irregular */
-    case 0x313:
-    case 0x16F:
-    case 0xC0:
-    case 0x236:
-    case 0x30C:
-    case 0x306:
-    case 0x2D8:
-    case 0x2D9:
-    case 0x2E5:
-    case 0x36:
-    case 0x5B:
-    case 0xC8:
-    case 0xB7:
-    case 0x3:
-    case 0xC1:
-    case 0x130:
-    case 0x39:
-    case 0x3A:
-    case 0x1F:
-    case 0x235:
-    case 0x56:
-    case 0x1D:
-    case 0x3E:
-    case 0x4C:
-    case 0x4A:
-    case 0x10B:
-    case 0x4D:
-    case 0x3D:
-    case 0x58:
-    case 0x2E:
-        var_v0 = func_00287230(0, temp_a2);
-block_53:
+    if (t == 0xBC ||
+        t == 0x49 ||
+        t == 0x24 ||
+        t == 0x2B5 ||
+        t == 0x38E ||
+        t == 0x2C6 ||
+        t == 0x1C ||
+        t == 0x228 ||
+        t == 0x2D6 ||
+        t == 0x2D7 ||
+        t == 0x5C ||
+        t == 0x63 ||
+        t == 0x59 ||
+        t == 0x5A ||
+        t == 0x4F ||
+        t == 0x2FE ||
+        t == 0x30E) {
+        var_v0 = func_00287230(arg0, 6, temp_a2);
         return var_v0 & 0xFFFF;
-    case 0x16E:
-    case 0x2FA:
-        var_v0 = (temp_v0 & 0xFFFF) + (((M2C_FIELD(temp_a2, u8 *, 0x2D) != 0) ? -1 : 1) * 0x5000);
-        goto block_53;
-    case 0xBC:
-    case 0x49:
-    case 0x24:
-    case 0x2B5:
-    case 0x38E:
-    case 0x2C6:
-    case 0x1C:
-    case 0x228:
-    case 0x2D6:
-    case 0x2D7:
-    case 0x5C:
-    case 0x63:
-    case 0x59:
-    case 0x5A:
-    case 0x4F:
-    case 0x2FE:
-    case 0x30E:
-        var_v0 = func_00287230(6, temp_a2);
-        goto block_53;
-    default:
-        return temp_v0;
     }
+    if (t == 0x16E ||
+        t == 0x2FA) {
+        var_v0 = (temp_v0 & 0xFFFF) + (((M2C_FIELD(temp_a2, u8 *, 0x2D) != 0) ? -1 : 1) * 0x5000);
+        return var_v0 & 0xFFFF;
+    }
+    if (t == 0x313 ||
+        t == 0x16F ||
+        t == 0xC0 ||
+        t == 0x236 ||
+        t == 0x30C ||
+        t == 0x306 ||
+        t == 0x2D8 ||
+        t == 0x2D9 ||
+        t == 0x2E5 ||
+        t == 0x36 ||
+        t == 0x5B ||
+        t == 0xC8 ||
+        t == 0xB7 ||
+        t == 0x3 ||
+        t == 0xC1 ||
+        t == 0x130 ||
+        t == 0x39 ||
+        t == 0x3A ||
+        t == 0x1F ||
+        t == 0x235 ||
+        t == 0x56 ||
+        t == 0x1D ||
+        t == 0x3E ||
+        t == 0x4C ||
+        t == 0x4A ||
+        t == 0x10B ||
+        t == 0x4D ||
+        t == 0x3D ||
+        t == 0x58 ||
+        t == 0x2E) {
+        var_v0 = func_00287230(arg0, 0, temp_a2);
+        return var_v0 & 0xFFFF;
+    }
+    return temp_v0;
 }

@@ -25,7 +25,7 @@ s32 func_00346280(s32 *arg0, char *arg1) {
         var_v0 = 4;
     } else if (func_00BC2B50(temp_s0, 2, 0) == 0) {
         if (func_00BC2B50(temp_s0, 4, 0) == 0) {
-            if (fabsf(*(((char *)D_00591E90) + ((M2C_FIELD(temp_s0, u8 *, 0x13) ^ 1) * 4))) <= fabsf(M2C_FIELD(temp_s0, f32 *, 0xE0))) {
+            if (fabsf(*(f32 *)(((char *)D_00591E90) + ((M2C_FIELD(temp_s0, u8 *, 0x13) ^ 1) * 4))) <= fabsf(M2C_FIELD(temp_s0, f32 *, 0xE0))) {
                 var_v0 = 6;
             } else {
                 var_v0 = 3;

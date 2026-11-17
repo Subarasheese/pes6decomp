@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern s32 func_00207D10(void *);
-extern u8 func_00BF6270(void);
+extern s32 func_00BF6270(void);
 extern s32 func_002079F0(void *);
 M2C_UNK func_00209A00(void *, s32, M2C_UNK);        /* extern */
 M2C_UNK func_00B2ACF0(void **);                     /* extern */

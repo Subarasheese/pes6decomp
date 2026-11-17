@@ -7,7 +7,7 @@ M2C_UNK func_0017F4C0(s32);                         /* extern */
 M2C_UNK func_0017F4D0(void *, M2C_UNK);             /* extern */
 s32 func_0017F560(void *, M2C_UNK, s32);            /* extern */
 s32 func_0017F710(s32);                             /* extern */
-M2C_UNK func_001801F0();                            /* extern */
+M2C_UNK func_001801F0(s32);                            /* extern */
 s32 func_00180550();                                /* extern */
 M2C_UNK func_00180560(M2C_UNK);                     /* extern */
 s32 func_00180FE0(s32);                             /* extern */
@@ -45,7 +45,7 @@ void func_00180D50(void *arg0) {
         temp_s2 = temp_s3 << 0xB;
 loop_7:
         if (func_0017F560(arg0, 0, temp_s2) == 0) {
-            func_001801F0();
+            func_001801F0((s32)arg0);
             goto loop_7;
         }
         func_001810C0(temp_v0, temp_s3, M2C_FIELD(arg0, s32 *, 0x60));
@@ -55,7 +55,7 @@ loop_15:
             if (M2C_FIELD(arg0, u8 *, 0x85) == 1) {
                 var_v0 = 3;
             } else {
-                func_001801F0();
+                func_001801F0(temp_v0);
                 var_v0 = func_00180FE0(temp_v0);
                 if (var_v0 != 2) {
 

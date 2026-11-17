@@ -6,9 +6,9 @@ extern int func_00333600(int);
 extern void func_00338930(int);
 extern s32 func_00338A60(void *, void *);
 extern s32 func_003389F0(void *, s32, s32);
-void *func_00338AD0(M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK *); /* extern */
+extern void *func_00338AD0(s32, void *, s32, void *);
 extern char D_003E5F18[];
-extern M2C_UNK func_00336490;
+extern void func_00336490(void);
 
 s32 func_003373B0(void *arg0) {
     s32 temp_s1;
@@ -23,7 +23,7 @@ s32 func_003373B0(void *arg0) {
         return 0;
     }
     if (temp_v1 != 0) {
-        temp_v0 = func_00338AD0(0x80000024, &func_00336490, 3, ((void *)D_003E5F18));
+        temp_v0 = func_00338AD0(0x80000024, (void *)func_00336490, 3, ((void *)D_003E5F18));
         func_003389F0(temp_v0, 3, 1);
         func_00338A60(temp_v0, arg0);
     }

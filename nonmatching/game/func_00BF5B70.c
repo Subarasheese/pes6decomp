@@ -8,10 +8,10 @@ M2C_UNK func_00853B50(M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK, s16, M2C_UNK, M2C_UNK,
 M2C_UNK func_00855290(M2C_UNK, s32, M2C_UNK);       /* extern */
 s32 func_009E1C90(M2C_UNK);                         /* extern */
 M2C_UNK func_009E1D30(M2C_UNK, M2C_UNK);            /* extern */
-M2C_UNK func_00BF4AF0(s32);                         /* extern */
-M2C_UNK func_00BF4D80(s32);                         /* extern */
+M2C_UNK func_00BF4AF0(s32, s32);                         /* extern */
+M2C_UNK func_00BF4D80(s32, s32);                         /* extern */
 
-void func_00BF5B70(void) {
+void func_00BF5B70(s32 arg0, s32 arg1) {
     s32 temp_a0;
 
     temp_a0 = func_009E1C90(2) & 0xFF;
@@ -24,10 +24,10 @@ void func_00BF5B70(void) {
         }
         return;
     case 0:
-        func_00BF4D80(temp_a0);
+        func_00BF4D80(temp_a0, arg1);
         return;
     case 1:
-        func_00BF4AF0(temp_a0);
+        func_00BF4AF0(temp_a0, arg1);
         return;
     }
 }

@@ -10,7 +10,7 @@ s32 func_00C132B0(s32);                             /* extern */
 s32 func_00C59D90(s32);                             /* extern */
 
 s32 func_00368BF0(s32 *arg0, s8 *arg1, s8 *arg2, s32 arg3, u32 arg4, s32 arg5) {
-    f32 sp70;
+    f32 spv[4];
     s32 temp_a0;
     s32 temp_a0_2;
     s32 temp_v0;
@@ -32,9 +32,9 @@ s32 func_00368BF0(s32 *arg0, s8 *arg1, s8 *arg2, s32 arg3, u32 arg4, s32 arg5) {
             *arg1 = 0xFF;
         }
         *arg2 = var_v0;
-        func_001C48E8(&sp70, 0, 0xC);
+        func_001C48E8(spv, 0, 0xC);
     } else {
-        func_002C4580(&sp70, temp_v0);
+        func_002C4580(spv, temp_v0);
         var_s3 = M2C_FIELD(func_00C13280(temp_v0), u8 *, 4);
         temp_v0_2 = func_00C132B0(temp_v0) & 0xFF;
         *arg1 = (temp_v0_2 >> 5) & 1;
@@ -49,10 +49,10 @@ s32 func_00368BF0(s32 *arg0, s8 *arg1, s8 *arg2, s32 arg3, u32 arg4, s32 arg5) {
     if ((temp_v0_3 < 0xCU) && ((1 << temp_v0_3) & 0xC03)) {
         var_a1 = 1;
     }
-    if ((sp70 > 6937.0f) && (sp70 < 9497.0f) && (var_a1 != 0)) {
+    if ((spv[0] > 6937.0f) && (spv[0] < 9497.0f) && (var_a1 != 0)) {
         *arg0 |= 0x40;
     }
-    if ((sp70 < 6937.0f) && (var_a1 != 0)) {
+    if ((spv[0] < 6937.0f) && (var_a1 != 0)) {
         *arg0 |= 0x80;
     }
     if (var_a1 != 0) {

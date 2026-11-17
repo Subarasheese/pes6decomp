@@ -4,12 +4,12 @@
 
 extern s32 func_009B30B0(s32, s32);
 extern s32 func_002AE670(s32);
-extern s32 func_009B3480(void *, f32, f32);
+extern s32 func_009B3480(void *, s32, s32, s32, f32, f32);
 extern s32 func_009B33A0(void *, s32, s32);
 f32 func_001CD9E0(f32);                             /* extern */
 extern void *Pes6Ball_Current;
 
-s32 func_00A11780(void *arg0, s32 arg1) {
+s32 func_00A11780(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 var_f12;
     s32 temp_f0;
     s32 temp_fp;
@@ -47,7 +47,7 @@ s32 func_00A11780(void *arg0, s32 arg1) {
             var_f12 = (f32) temp_v0;
         }
         temp_f0 = (s32) func_001CD9E0(var_f12);
-        temp_s1 = ((temp_f0 * 8) / 10) + ((u32) (temp_f0 * 8) >> 0x1F);
+        temp_s1 = (temp_f0 * 8) / 10;
         var_s6 = 0x20;
         if (M2C_FIELD(Pes6Ball_Current, u16 *, 0x84) != 1) {
             var_s6 = 0x28;
@@ -71,7 +71,7 @@ s32 func_00A11780(void *arg0, s32 arg1) {
             } else {
                 temp_v0_2 = (temp_s0_2 * 4) + Pes6Ball_Current;
                 var_s2 = var_s3 & 0xFFFF;
-                var_v1 = (((func_009B3480(arg0, M2C_FIELD(temp_v0_2, f32 *, 0x47C), M2C_FIELD(temp_v0_2, f32 *, 0xB7C)) & 0xFFFF) - var_s2) + 0x10000) & 0xFFFF;
+                var_v1 = (((func_009B3480(arg0, (s32) M2C_FIELD(arg0, u16 *, 0x32), (s32) M2C_FIELD(Pes6Ball_Current, f32 *, 0xB7C), arg3, M2C_FIELD(temp_v0_2, f32 *, 0x47C), M2C_FIELD(temp_v0_2, f32 *, 0xB7C)) & 0xFFFF) - var_s2) + 0x10000) & 0xFFFF;
             }
             temp_s0_3 = temp_s5 & 0xFFFF;
             temp_v0_3 = temp_s0_3 * 4;

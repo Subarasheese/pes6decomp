@@ -4,7 +4,7 @@
 
 extern s32 func_002AE670(s32);
 s32 func_009B30B0(u16, s32);                        /* extern */
-s32 func_009B3480(f32, f32);                        /* extern */
+s32 func_009B3480(f32, f32, void *, s32, s32, s32);
 s32 func_00A194A0(void *);                          /* extern */
 extern void *Pes6Ball_Current;
 extern char D_005926D8[];
@@ -25,7 +25,7 @@ s32 func_00A46820(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         if (!(-M2C_FIELD(Pes6Ball_Current, f32 *, 0x1458) <= (f32) M2C_FIELD(arg0, s32 *, 0x90))) {
             return 0;
         }
-        if (((u32) M2C_FIELD(arg0, u32 *, 0x114) < 0x200U) && ((func_009B30B0(M2C_FIELD(arg0, u16 *, 0x10C), func_009B3480(M2C_FIELD(Pes6Ball_Current, f32 *, 0x1454), M2C_FIELD(Pes6Ball_Current, f32 *, 0x145C))) & 0xFFFF) >= 0x40) && (arg3 >= 0x9001)) {
+        if (((u32) M2C_FIELD(arg0, u32 *, 0x114) < 0x200U) && ((func_009B30B0(M2C_FIELD(arg0, u16 *, 0x10C), func_009B3480(M2C_FIELD(Pes6Ball_Current, f32 *, 0x1454), M2C_FIELD(Pes6Ball_Current, f32 *, 0x145C), arg0, arg1, arg2, arg3)) & 0xFFFF) >= 0x40) && (arg3 >= 0x9001)) {
             goto block_40;
         }
         if (((func_00A194A0(arg0) != 0) || (((s32) M2C_FIELD(arg0, u8 *, 0x4E) < (s32) (*(u8 *)D_005926EC)) && ((arg1 & 0xFFFF) >= 0x61)) || (arg3 < 0x4000) || (((u32) M2C_FIELD(arg0, u32 *, 0x110) < 0x40001U) && ((arg1 & 0xFFFF) >= 0x41))) && (M2C_FIELD(arg0, s16 *, 0x1CE) == 0) && (M2C_FIELD(arg0, s16 *, 0x1D0) == 0)) {

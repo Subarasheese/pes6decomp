@@ -2,14 +2,13 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-
 void *func_00299FE0(s32, s32, s32);                 /* extern */
 extern char Pes6MatchPlayers[];
 extern char D_005E19B0[];
 extern char D_005E1A10[];
 
 void func_002A52B0(s32 *arg0, s32 arg1, f32 fparg0, f32 fparg1, f32 fparg2) {
-    M2C_UNK *var_s3;
+    char *var_s3;
     s32 temp_a1;
     s32 temp_s1;
     s32 var_a1;
@@ -18,7 +17,7 @@ void func_002A52B0(s32 *arg0, s32 arg1, f32 fparg0, f32 fparg1, f32 fparg2) {
     s32 var_v1;
     void *temp_s0;
 
-    var_s3 = ((void *)D_005E19B0);
+    var_s3 = D_005E19B0;
     var_s4 = 0;
     do {
         var_a2 = 1;
@@ -30,40 +29,31 @@ void func_002A52B0(s32 *arg0, s32 arg1, f32 fparg0, f32 fparg1, f32 fparg2) {
                 if (temp_a1 != 0xFF) {
                     var_a2 = temp_a1 % 23;
                 }
+                var_v1 = 0;
                 if (M2C_FIELD(*M2C_FIELD((((void *)Pes6MatchPlayers) + (var_a2 * 0x240)), void ***, 4), u8 *, 2) != 0) {
                     if (temp_a1 == 0xFF) {
                         var_a1 = 1;
                     } else {
                         var_a1 = temp_a1 % 23;
                     }
-                    if (M2C_FIELD(*M2C_FIELD((((void *)Pes6MatchPlayers) + (var_a1 * 0x240)), void ***, 4), u8 *, 1) != 2) {
-                        goto block_11;
-                    }
-                    goto block_20;
-                }
-block_11:
-                var_v1 = 0;
-            } else {
-                switch (temp_a1) {                  /* irregular */
-                case 28:
-                    if ((*(f32 *)D_005E1A10) == 0.0f) {
-                        var_v1 = 0;
-                    } else {
-                    case 27:
-block_20:
+                    if (M2C_FIELD(*M2C_FIELD((((void *)Pes6MatchPlayers) + (var_a1 * 0x240)), void ***, 4), u8 *, 1) == 2) {
                         var_v1 = 1;
                     }
-                    break;
-                default:
-                    if (M2C_FIELD(func_00299FE0(temp_a1 - 0x17, temp_a1, 1), u8 *, 4) == 0) {
-                        var_v1 = 0;
-                    } else {
-                        goto block_20;
-                    }
-                    break;
                 }
+            } else if (temp_a1 < 0x1B) {
+                var_v1 = 1;
+                if (M2C_FIELD(func_00299FE0(temp_a1 - 0x17, temp_a1, 1), u8 *, 4) == 0) {
+                    var_v1 = 0;
+                }
+            } else if (temp_a1 == 0x1C) {
+                var_v1 = 1;
+                if ((*(f32 *)D_005E1A10) == 0.0f) {
+                    var_v1 = 0;
+                }
+            } else {
+                var_v1 = 1;
             }
-            if ((var_v1 == 0) || !(fabsf(M2C_FIELD(var_s3, f32 *, 0x104)) < fparg0) || !(fabsf(M2C_FIELD(temp_s0, f32 *, 4)) < fparg1) || !(fabsf(M2C_FIELD(temp_s0, f32 *, 8) - M2C_FIELD((((void *)D_005E19B0) + ((arg1 & 0xFF) * 0xC) + 0x104), f32 *, 8)) < fparg2)) {
+            if ((var_v1 == 0) || !(fabsf(M2C_FIELD(temp_s0, f32 *, 0)) < fparg0) || !(fabsf(M2C_FIELD(temp_s0, f32 *, 4)) < fparg1) || !(fabsf(M2C_FIELD(temp_s0, f32 *, 8) - M2C_FIELD((((void *)D_005E19B0) + ((arg1 & 0xFF) * 0xC) + 0x104), f32 *, 8)) < fparg2)) {
                 *arg0 &= ~temp_s1;
             }
         }

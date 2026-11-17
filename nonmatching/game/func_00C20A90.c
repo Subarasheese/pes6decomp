@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern s32 func_00152130(s32, s8);
+extern s32 func_00152130(s32, s32);
 extern int func_002DCA30(void);
 extern int func_0029AC20(void);
 extern u8 func_00BF6270(void);

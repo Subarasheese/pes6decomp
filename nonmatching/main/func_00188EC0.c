@@ -1,9 +1,9 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 
-f32 func_00151CF0(M2C_UNK);                         /* extern */
+f32 func_00151CF0(f32);                         /* extern */
 void *func_00189180(s32, s32);                      /* extern */
 extern char D_0051FF48[];
 extern char D_0051FF49[];
@@ -29,7 +29,7 @@ s32 func_00188EC0(void *arg0, void *arg1, s32 arg2, s32 arg3) {
             M2C_FIELD(arg1, s32 *, 4) = 0;
             M2C_FIELD(arg1, f32 *, 8) = (f32) M2C_FIELD(temp_v0, f32 *, 0x34);
         }
-        temp_f0 = func_00151CF0(0x3F800000);
+        temp_f0 = func_00151CF0(1.0f);
         temp_f6 = M2C_FIELD(temp_v0, f32 *, 0);
         M2C_FIELD(arg0, f32 *, 0) = (f32) (((M2C_FIELD(temp_v0, f32 *, 0xC) - temp_f6) * temp_f0) + temp_f6);
         M2C_FIELD(arg0, f32 *, 4) = (f32) (((M2C_FIELD(temp_v0, f32 *, 0x10) - M2C_FIELD(temp_v0, f32 *, 4)) * temp_f0) + M2C_FIELD(temp_v0, f32 *, 4));

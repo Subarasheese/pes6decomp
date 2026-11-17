@@ -2,7 +2,7 @@
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern s32 func_00325910(void);
+extern s32 func_00325910(s32);
 extern int Pes6BitSet_Write(void *, int, int);
 extern s32 func_003389D0(s32, s32);
 s32 func_0033BAC0(void *arg0, void *arg1) {
@@ -14,7 +14,7 @@ s32 func_0033BAC0(void *arg0, void *arg1) {
     temp_s1 = M2C_FIELD(arg1, void **, 0x44);
     temp_s0 = func_003389D0((s32) arg1, 0) & 0xFF;
     temp_s0_2 = func_003389D0((s32) arg1, 2);
-    var_s2 = func_00325910();
+    var_s2 = func_00325910(temp_s0);
     if (M2C_FIELD(temp_s1, s32 *, 0) == 7) {
         if (temp_s0_2 < 0xE) {
             if (temp_s0_2 == 0xD) {

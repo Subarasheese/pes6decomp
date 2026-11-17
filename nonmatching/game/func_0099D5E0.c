@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern void func_002875F0(void *, signed char);
+extern void func_002875F0(void *, s32);
 extern char Pes6MatchPlayers[];
 extern char D_00591A90[];
 extern char D_005A2020[];
@@ -48,7 +48,7 @@ loop_7:
         temp_v1 = var_s2 & 0xFF;
         if (M2C_FIELD(var_s5, u8 *, 0x11) == M2C_FIELD((temp_v1 + (((void *)D_00591A90) + (temp_a3 * 0x8B))), u8 *, 7)) {
             temp_a2 = ((void *)D_005A2020) + (temp_a3 * 0x168);
-            func_002875F0(var_s5, (s8) M2C_FIELD((temp_a2 + (M2C_FIELD(temp_a2, u8 *, 1) * 0x52) + temp_v1), u8 *, 0x1C));
+            func_002875F0(var_s5, (s32) M2C_FIELD((temp_a2 + (M2C_FIELD(temp_a2, u8 *, 1) * 0x52) + temp_v1), u8 *, 0x1C));
         }
         var_s2 = (var_s2 + 1) & 0xFF;
         if (var_s2 < 0xB) {

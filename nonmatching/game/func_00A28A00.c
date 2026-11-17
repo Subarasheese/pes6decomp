@@ -6,13 +6,13 @@
 M2C_UNK func_002075B0(void *, s32, M2C_UNK, M2C_UNK); /* extern */
 s32 func_00A07C00(void *);                          /* extern */
 s32 func_00A11DD0(void *, s32, M2C_UNK);            /* extern */
-s32 func_00A99F00(M2C_UNK);                         /* extern */
+s32 func_00A99F00(void *, s32);
 
 s32 func_00A28A00(void *arg0, s32 arg1, s32 arg2) {
     void *temp_a0;
     void *temp_a0_2;
 
-    if (func_00A99F00(0) != 0) {
+    if (func_00A99F00(arg0, 0) != 0) {
         if (func_00A11DD0(arg0, arg1, 0) != 0) {
             return 0;
         }

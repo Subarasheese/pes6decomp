@@ -1,18 +1,17 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern u8 func_00B364C0(void);
-extern u8 func_00BF6270(void);
-M2C_UNK func_00207390(void *, M2C_UNK);             /* extern */
-M2C_UNK func_00209A00(void *, M2C_UNK, M2C_UNK);    /* extern */
-M2C_UNK func_0027A600(void *, M2C_UNK);             /* extern */
-void **func_00B2A420(u8);                           /* extern */
-s32 func_00B3B1F0(void *);                          /* extern */
-M2C_UNK func_00B84330(void *, s32, u16, M2C_UNK, u16, M2C_UNK); /* extern */
-M2C_UNK func_00B89C70(void *);                      /* extern */
-M2C_UNK func_00B93E50(void *, M2C_UNK);             /* extern */
-M2C_UNK func_00BD3CF0(void *, f32, f32);            /* extern */
+extern s32 func_00B364C0(void);
+extern s32 func_00BF6270(void);
+M2C_UNK func_00207390(void *, M2C_UNK);
+M2C_UNK func_00209A00(void *, M2C_UNK, M2C_UNK);
+M2C_UNK func_0027A600(void *, M2C_UNK);
+void **func_00B2A420(s32);
+s32 func_00B3B1F0(void *);
+M2C_UNK func_00B84330(void *, s32, u16, M2C_UNK, u16, M2C_UNK);
+M2C_UNK func_00B89C70(void *);
+M2C_UNK func_00B93E50(void *, M2C_UNK);
+M2C_UNK func_00BD3CF0(void *, f32, f32);
 extern char D_00CBCAD1[];
 extern char D_00CBCAFE[];
 extern char D_00CBCD72[];
@@ -20,8 +19,7 @@ extern char D_00CBCD81[];
 extern char D_00CBCD8C[];
 
 void func_00B8BD40(void *arg0) {
-    M2C_UNK var_a1;
-    M2C_UNK var_a1_2;
+    s32 var_a1;
     void **temp_s0;
     void *temp_v0;
 
@@ -30,19 +28,10 @@ void func_00B8BD40(void *arg0) {
     func_00BD3CF0(arg0, M2C_FIELD(temp_v0, f32 *, 0x6C), M2C_FIELD(temp_v0, f32 *, 0x70));
     if ((func_00B364C0() == 2) && ((s32) (*(u8 *)D_00CBCD81) < 3) && (M2C_FIELD(*temp_s0, u8 *, 0x4E) != 0) && (func_00B3B1F0(arg0) != 0)) {
         if ((*(u8 *)D_00CBCD81) != 2) {
-            switch ((*(u8 *)D_00CBCAD1)) {                   /* switch 1; irregular */
-            case 8:                                 /* switch 1 */
+            if ((*(u8 *)D_00CBCAD1) == 8 || (*(u8 *)D_00CBCAD1) == 7) {
                 var_a1 = 0xA00;
-                break;
-            case 7:                                 /* switch 1 */
-                var_a1 = 0xA00;
-                break;
-            case 9:                                 /* switch 1 */
-                /* fallthrough */
-            default:                                /* switch 1 */
-            case 6:                                 /* switch 1 */
+            } else {
                 var_a1 = 0xC00;
-                break;
             }
             func_00B93E50(arg0, var_a1);
             (*(u8 *)D_00CBCD81) = 0xFF;
@@ -62,21 +51,12 @@ void func_00B8BD40(void *arg0) {
             M2C_FIELD(M2C_FIELD(arg0, void **, 0), s16 *, 0x18) = 0x3E;
         }
     } else if (M2C_FIELD(M2C_FIELD(arg0, void **, 4), s8 *, 0x45) & 0x80) {
-        switch ((*(u8 *)D_00CBCAD1)) {                       /* switch 2; irregular */
-        case 8:                                     /* switch 2 */
-            var_a1_2 = 0xA00;
-            break;
-        case 7:                                     /* switch 2 */
-            var_a1_2 = 0xA00;
-            break;
-        case 9:                                     /* switch 2 */
-            /* fallthrough */
-        default:                                    /* switch 2 */
-        case 6:                                     /* switch 2 */
-            var_a1_2 = 0xC00;
-            break;
+        if ((*(u8 *)D_00CBCAD1) == 8 || (*(u8 *)D_00CBCAD1) == 7) {
+            var_a1 = 0xA00;
+        } else {
+            var_a1 = 0xC00;
         }
-        func_00B93E50(arg0, var_a1_2);
+        func_00B93E50(arg0, var_a1);
         (*(u8 *)D_00CBCD81) = 0xFF;
     } else if ((*(u8 *)D_00CBCD81) == 0xFF) {
         (*(u8 *)D_00CBCD8C) -= 1;

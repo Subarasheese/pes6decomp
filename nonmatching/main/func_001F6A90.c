@@ -1,4 +1,4 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -11,7 +11,7 @@ void *func_001E7FE0(s32, s32, u16, u16 *, s32, s32); /* extern */
 void func_001F6A90(void *arg0, s32 arg1, s32 arg2) {
     u16 sp6C;
     u16 sp6E;
-    s16 var_a1;
+    s32 var_a1;
     s32 temp_s0;
     s32 temp_s1;
     s32 temp_s2;
@@ -51,7 +51,7 @@ loop_7:
             } else {
                 var_a1 = 0;
             }
-            M2C_FIELD(arg0, s16 *, 0x18) = var_a1;
+            M2C_FIELD(arg0, u16 *, 0x18) = var_a1;
             break;
         case 2:
             M2C_FIELD(arg0, u16 *, 0x10) = (u16) (M2C_FIELD(arg0, u16 *, 0x10) + temp_s0);
@@ -66,7 +66,7 @@ loop_11:
             } else {
                 var_a1 = 0;
             }
-            M2C_FIELD(arg0, s16 *, 0x18) = var_a1;
+            M2C_FIELD(arg0, u16 *, 0x18) = var_a1;
             break;
         }
     }

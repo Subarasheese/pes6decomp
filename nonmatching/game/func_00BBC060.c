@@ -10,13 +10,13 @@ extern void Pes6MatchObj28_SetPosition(float, float, float);
 extern float func_002A95A0(void);
 extern void func_002A9200(float);
 extern void func_002A94D0(int);
-extern void func_002A9470(u8);
-extern void func_002ABF20(s8, s8);
+extern void func_002A9470(s32);
+extern void func_002ABF20(s32, s32);
 extern void func_00297390(void);
 extern void func_002A9570(int);
 M2C_UNK func_001C48E8(u8 *, M2C_UNK, M2C_UNK);      /* extern */
-M2C_UNK func_002A7D00(s32, s8);                     /* extern */
-M2C_UNK func_002A8C00(M2C_UNK);                     /* extern */
+M2C_UNK func_002A7D00(s32, s32);                    /* extern */
+extern void func_002A8C00(s32, f32);
 s32 func_00BBB8C0(M2C_UNK);                         /* extern */
 extern char D_00591BE4[];
 extern char D_005E24B0[];
@@ -27,7 +27,7 @@ extern char D_005E24B4[];
 extern char D_005E24B8[];
 extern char D_005E24BC[];
 
-void func_00BBC060(u8 arg0, s8 arg1, s32 arg2, s32 arg3) {
+void func_00BBC060(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 temp_f0;
     f32 var_f1;
     s32 temp_s0;
@@ -70,11 +70,11 @@ void func_00BBC060(u8 arg0, s8 arg1, s32 arg2, s32 arg3) {
     func_002A9570(arg3);
     if (var_s2 & 0xFF & 1) {
         func_002A8830(1);
-        func_002A8C00(0x3F19999A);
+        func_002A8C00(1, 0.6f);
         func_002A9210(0.0f);
         func_002A9200(0.2f);
         func_002A91F0(-0.4f);
-        func_002ABF20((s8) arg0, 0x1D);
+        func_002ABF20(arg0, 0x1D);
     }
     temp_f0 = func_002A95A0();
     if ((s32) (*(u8 *)D_00591BE4) < 0) {

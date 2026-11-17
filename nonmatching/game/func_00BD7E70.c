@@ -1,4 +1,4 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -38,7 +38,7 @@ void func_00BD7E70(void *arg0) {
     s32 var_v0_2;
     s8 var_v1;
     void **temp_s0;
-    void **var_s1;
+    char *var_s1;
     void *temp_a0;
     void *temp_a0_2;
     void *temp_a0_3;
@@ -59,34 +59,24 @@ void func_00BD7E70(void *arg0) {
     }
     if (func_00BD93C0(arg0) == 0) {
         var_v0 = func_00BBB8C0(3);
-        switch (var_v0) {                           /* switch 2; irregular */
-        case 1:                                     /* switch 2 */
-            var_v0 = M2C_FIELD(arg0, s32 *, 4);
-            var_v1 = 0x17;
-            break;
-        case 0:                                     /* switch 2 */
-            var_v1 = 0x11;
-            break;
-        default:                                    /* switch 2 */
-        case 2:                                     /* switch 2 */
-            var_v0 = M2C_FIELD(arg0, s32 *, 4);
+        if (var_v0 == 2) {
             var_v1 = 9;
-            break;
+        } else if (var_v0 == 1) {
+            var_v1 = 0x17;
+        } else if (var_v0 == 0) {
+            var_v1 = 0x11;
+        } else {
+            var_v1 = 9;
         }
     } else {
         var_v0 = func_00BBB8C0(2);
-        var_v1 = 1;
-        switch (var_v0) {                           /* switch 1; irregular */
-        case 0:                                     /* switch 1 */
-            break;
-        default:                                    /* switch 1 */
-        case 1:                                     /* switch 1 */
-            var_v0 = M2C_FIELD(arg0, s32 *, 4);
+        if (var_v0 == 0) {
+            var_v1 = 1;
+        } else {
             var_v1 = 0x21;
-            break;
         }
     }
-    M2C_FIELD(var_v0, s8 *, 0x4C) = var_v1;
+    M2C_FIELD(M2C_FIELD(arg0, s32 *, 4), s8 *, 0x4C) = var_v1;
     if (func_00BC2B50(*temp_s0, 1, 0) == 0) {
         if (func_00BC2B50(*temp_s0, 1, 1) != 0) {
             goto block_23;
@@ -109,18 +99,18 @@ block_32:
     if (func_00BA8740(M2C_FIELD(M2C_FIELD(arg0, s32 *, 4), u8 *, 0x4C)) == 0) {
         if (func_00BA8B40(arg0, M2C_FIELD(M2C_FIELD(arg0, s32 *, 4), u8 *, 0x4C)) != 0) {
             temp_v0 = M2C_FIELD(arg0, void **, 0);
-            temp_s0_2 = temp_v0 + 0x70;
-            temp_s1 = temp_v0 + 0x6C;
+            temp_s0_2 = (s32 *)((char *)temp_v0 + 0x70);
+            temp_s1 = (s32 *)((char *)temp_v0 + 0x6C);
             func_00B2A420(func_00BF6270());
             if ((*(u8 *)D_00592370) == 0) {
                 func_00B35E10(arg0, temp_s1, temp_s0_2);
                 if (M2C_FIELD(M2C_FIELD(arg0, void **, 0), u8 *, 0x10) != 0) {
                     func_00BD8510(arg0, temp_s1, temp_s0_2);
                 }
-                var_s1 = func_00B2A420(1U);
+                var_s1 = (char *)func_00B2A420(1U);
                 var_s0 = 0;
 loop_54:
-                if ((arg0 != var_s1) && (temp_v0_2 = M2C_FIELD(arg0, void **, 0), ((func_009B33A0(*var_s1, (s32) M2C_FIELD(temp_v0_2, f32 *, 0x6C), (s32) M2C_FIELD(temp_v0_2, f32 *, 0x70)) < 0x24001U) != 0))) {
+                if (((void *)arg0 != (void *)var_s1) && (temp_v0_2 = M2C_FIELD(arg0, void **, 0), ((func_009B33A0(*(void **)var_s1, (s32) M2C_FIELD(temp_v0_2, f32 *, 0x6C), (s32) M2C_FIELD(temp_v0_2, f32 *, 0x70)) < 0x24001U) != 0))) {
                     var_v0_2 = 0;
                 } else {
                     var_s0 += 1;
@@ -150,7 +140,8 @@ loop_54:
             temp_a0_2 = M2C_FIELD(arg0, void **, 0);
             temp_v0_5 = func_009B33A0(temp_a0_2, (s32) M2C_FIELD(temp_a0_2, f32 *, 0x6C), (s32) M2C_FIELD(temp_a0_2, f32 *, 0x70));
             if (temp_v0_5 < 0) {
-                var_f12 = 2.0f * (f32) (((u32) temp_v0_5 >> 1) | (temp_v0_5 & 1));
+                var_f12 = (f32) (s32) (((u32) temp_v0_5 >> 1) | (temp_v0_5 & 1));
+                var_f12 = var_f12 + var_f12;
             } else {
                 var_f12 = (f32) temp_v0_5;
             }
@@ -161,7 +152,7 @@ loop_54:
                 temp_v0_6 = M2C_FIELD(arg0, void **, 0);
                 M2C_FIELD(temp_v0_6, f32 *, 0x70) = (f32) (M2C_FIELD(temp_v0_6, f32 *, 0x70) + (f32) func_00BBB9C0(temp_s0_4, 0x500));
                 temp_v0_7 = M2C_FIELD(arg0, void **, 0);
-                func_00BD8510(arg0, temp_v0_7 + 0x6C, temp_v0_7 + 0x70);
+                func_00BD8510(arg0, (s32 *)((char *)temp_v0_7 + 0x6C), (s32 *)((char *)temp_v0_7 + 0x70));
             }
             temp_a0_3 = M2C_FIELD(arg0, void **, 0);
             M2C_FIELD(M2C_FIELD(arg0, void **, 0), s16 *, 0x2C) = func_009B3480(temp_a0_3, M2C_FIELD(temp_a0_3, f32 *, 0x6C), M2C_FIELD(temp_a0_3, f32 *, 0x70));

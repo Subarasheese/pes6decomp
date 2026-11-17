@@ -5,17 +5,18 @@
 extern s32 func_00311C50(s32, s32);
 extern s64 func_00311C20(void);
 extern int func_0030E830(void);
-extern s32 func_0030E0E0(void *, s32, s32);
+extern s32 func_0030E0E0(s16 *, s32, s32);
 extern int Pes6BitSet_Write(void *, int, int);
 extern int func_0030F1E0(void);
-extern s32 func_0030E170(void *, s32, s32);
+extern s32 func_0030E170(s16 *, s32, s32);
 M2C_UNK func_00311CD0(u8 *, u8, u8);                /* extern */
 
 s32 func_00352A10(void *arg0, void *arg1) {
-    s16 sp8A;
-    s16 sp8C;
-    u8 sp8E;
     u8 sp8F;
+    u8 sp8E;
+    s16 sp8C;
+    s16 sp8A;
+    s32 temp_s6;
     s32 temp_s0;
     s32 temp_s1;
     s32 temp_s2;
@@ -28,6 +29,7 @@ s32 func_00352A10(void *arg0, void *arg1) {
     func_00311C20();
     func_00311CD0(&sp8F, M2C_FIELD(arg1, u8 *, 5), M2C_FIELD(arg1, u8 *, 6));
     func_00311CD0(&sp8E, M2C_FIELD(arg1, u8 *, 5), M2C_FIELD(arg1, u8 *, 7));
+    temp_s6 = (s32) sp8F >= 3;
     temp_s3 = (s32) sp8E >= 3;
     temp_s1 = M2C_FIELD(arg1, s32 *, 0x10) & 0x10;
     temp_s2 = func_00311C50((s32) M2C_FIELD(arg1, u8 *, 5), (s32) M2C_FIELD(arg1, u8 *, 7));
@@ -55,7 +57,7 @@ s32 func_00352A10(void *arg0, void *arg1) {
     Pes6BitSet_Write(arg0, 0x39, sp8C < 3);
     Pes6BitSet_Write(arg0, 0x3A, (s32) sp8A);
     Pes6BitSet_Write(arg0, 0x3B, temp_s3);
-    Pes6BitSet_Write(arg0, 0x3D, (s32) sp8F >= 3);
+    Pes6BitSet_Write(arg0, 0x3D, temp_s6);
     temp_s3_2 = temp_s0 & 0x1FF00000;
     Pes6BitSet_Write(arg0, 0x26, temp_s3_2);
     Pes6BitSet_Write(arg0, 0x28, temp_s3_2);

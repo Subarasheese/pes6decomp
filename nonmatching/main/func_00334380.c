@@ -4,7 +4,7 @@
 
 
 M2C_UNK func_003338C0(void *, M2C_UNK, s32, s32);   /* extern */
-M2C_UNK func_00334030(s16 *, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+M2C_UNK func_00334030(void *, s16 *, s32, s32, s32);
 
 s32 func_00334380(void *arg0, s32 arg1, s32 arg2) {
     s16 sp4C;
@@ -41,7 +41,7 @@ s32 func_00334380(void *arg0, s32 arg1, s32 arg2) {
         M2C_FIELD(arg0, s8 *, 0x3A) = 0;
         sp4C = 0;
         sp4E = 0;
-        func_00334030(&sp4C, 0, 0xD, 1);
+        func_00334030(arg0, &sp4C, 0, 0xD, 1);
         func_003338C0(arg0, 0, arg2, arg1);
     }
     return 1;

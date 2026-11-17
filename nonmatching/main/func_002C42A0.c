@@ -7,7 +7,7 @@ char *func_00C13280(u32);                           /* extern */
 s32 func_00C132C0(u32);                             /* extern */
 u32 func_00C13740(u32, M2C_UNK);                    /* extern */
 u32 func_00C137C0(u32);                             /* extern */
-u32 func_00C137F0();                                /* extern */
+u32 func_00C137F0(u32, u32);
 u32 func_00C13840();                                /* extern */
 
 s32 func_002C42A0(char *arg0, s32 arg1, s32 arg2) {
@@ -38,7 +38,7 @@ loop_3:
 block_9:
             var_s2_2 = func_00C13740(var_s3, 1);
             if (var_s2_2 == -1U) {
-                var_s2_2 = func_00C137F0();
+                var_s2_2 = func_00C137F0(var_s3, 1);
             }
             func_001C48E8(arg0, 0, 0x1C);
             if (var_s3 < var_s2_2) {

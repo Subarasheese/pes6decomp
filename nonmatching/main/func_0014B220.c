@@ -9,7 +9,7 @@ s32 func_001454B0();                                /* extern */
 M2C_UNK func_0014D780(char *, s32);                 /* extern */
 char *func_00151600(M2C_UNK, s32, M2C_UNK, s32, s32, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK Pes6Heap_Free(s32);                         /* extern */
-s32 func_00154070(M2C_UNK, s32);                    /* extern */
+s32 func_00154070(s32);                    /* extern */
 M2C_UNK func_001C4730(s32, s32, M2C_UNK);           /* extern */
 M2C_UNK func_001C48E8(s32, M2C_UNK, M2C_UNK);       /* extern */
 extern char D_00376A80[];
@@ -26,6 +26,7 @@ char *func_0014B220(char *arg0, s32 arg1) {
     s32 var_a0;
     s32 var_a1;
     s32 var_a2;
+    s32 i;
     s32 var_a3;
     s32 var_a4;
     s32 var_a4_2;
@@ -108,21 +109,14 @@ char *func_0014B220(char *arg0, s32 arg1) {
     }
     func_001C4730(temp_v0_2, temp_s2, 0x40);
     var_a1 = 0;
-    if (0 < 5) {
-loop_24:
-        if (M2C_FIELD(temp_v0, u8 *, 0x19) != *(((char *)D_00376A80) + (var_a1 * 4))) {
-            var_a1 += 1;
-            if (var_a1 >= 5) {
-                goto block_30;
-            }
-            goto loop_24;
+    for (i = 0; i < 5; i++) {
+        if (M2C_FIELD(temp_v0, u8 *, 0x19) == *(s32 *)(D_00376A80 + (i * 4))) {
+            var_a1 = i;
+            break;
         }
-    } else {
-block_30:
-        var_a1 = 0;
     }
     if (var_a1 == 2) {
-        temp_s1 = func_00154070(0x400, var_a1);
+        temp_s1 = func_00154070(0x400);
         func_001C4730(temp_s1, Pes6Texture_GetClut(temp_v0), 0x400);
         func_0014D780(temp_v0, temp_s1);
         Pes6Heap_Free(temp_s1);

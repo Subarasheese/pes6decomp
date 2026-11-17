@@ -38,7 +38,7 @@ void func_009DD940(char *arg0, char *arg1, s32 arg2, s32 arg3, char *arg4, char 
     temp_f20 = M2C_FIELD(Pes6Ball_Current, f32 *, 0x1458);
     if ((M2C_FIELD(Pes6Ball_Current, u16 *, 0x84) == 0xB) || (M2C_FIELD(arg5, s32 *, 0x10) >= M2C_FIELD(arg4, s32 *, 0x10)) || ((func_00A09950(arg0) != 0) && ((temp_a1 = M2C_FIELD(arg5, s32 *, 0x10), (((temp_a1 + (*(u8 *)D_005926E4)) < M2C_FIELD(arg4, s32 *, 0x10)) == 0)) || (temp_a1 >= (s32) (*(u8 *)D_005926EC))))) {
         if (arg2 != 0) {
-            if (*(((char *)D_00591E67) + M2C_FIELD(arg0, u8 *, 0x12)) != 1) {
+            if (*(u8 *)(((char *)D_00591E67) + M2C_FIELD(arg0, u8 *, 0x12)) != 1) {
                 if (M2C_FIELD(Pes6Ball_Current, u16 *, 0x84) == 0xB) {
                     goto block_10;
                 }
@@ -48,7 +48,7 @@ block_10:
             if ((func_00B27740(arg0) != 0) && (M2C_FIELD(Pes6Ball_Current, s32 *, 0x50) >= 0x2001) && (temp_s7 >= 0x5F)) {
                 temp_f2 = (f32) arg3;
                 temp_a0 = M2C_FIELD(arg0, u8 *, 0x13) * 4;
-                if (!((temp_f2 * *(((char *)D_00591E90) + temp_a0)) <= (temp_f2 * M2C_FIELD((((*(u8 *)D_005926F0) * 4) + Pes6Ball_Current), f32 *, 0x47C))) && ((func_009B30B0(func_009B34C0(temp_a0, Pes6Ball_Current, M2C_FIELD(arg6, f32 *, 0), M2C_FIELD(arg6, f32 *, 8), -13465.0f * temp_f2, 0), M2C_FIELD(arg0, u16 *, 0x2A)) & 0xFFFF) >= 0x58)) {
+                if (!((temp_f2 * *(f32 *)(((char *)D_00591E90) + temp_a0)) <= (temp_f2 * M2C_FIELD((((*(u8 *)D_005926F0) * 4) + Pes6Ball_Current), f32 *, 0x47C))) && ((func_009B30B0(func_009B34C0(temp_a0, Pes6Ball_Current, M2C_FIELD(arg6, f32 *, 0), M2C_FIELD(arg6, f32 *, 8), -13465.0f * temp_f2, 0), M2C_FIELD(arg0, u16 *, 0x2A)) & 0xFFFF) >= 0x58)) {
                     M2C_FIELD(arg0, s32 *, 0xB0) = 0x10000;
                     M2C_FIELD(arg0, s8 *, 0x4A) = 0xB;
                     return;
@@ -67,7 +67,7 @@ block_16:
             if ((M2C_FIELD(arg0, u8 *, 0x16) == 0x82) && (M2C_FIELD(arg0, u16 *, 0x30) == 0) && ((func_009B30B0(M2C_FIELD(arg1, u16 *, 0x26), M2C_FIELD(Pes6Ball_Current, u16 *, 0x58)) & 0xFFFF) >= 0x20)) {
                 temp_v1 = M2C_FIELD(arg0, u32 *, 0x114);
                 if (temp_v1 < 0x1201U) {
-                    if ((temp_v1 >= 0x801U) && (*(((char *)D_00591EFD) + M2C_FIELD(arg0, u8 *, 0x13)) == 0)) {
+                    if ((temp_v1 >= 0x801U) && (*(u8 *)(((char *)D_00591EFD) + M2C_FIELD(arg0, u8 *, 0x13)) == 0)) {
                         goto block_33;
                     }
                     goto block_35;

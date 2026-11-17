@@ -6,7 +6,7 @@ extern void func_001AAF40(void *, signed char);
 extern void func_002BB820(int, int);
 M2C_UNK func_001AAF50(void *, M2C_UNK);             /* extern */
 M2C_UNK func_002BB870(u8, M2C_UNK);                 /* extern */
-M2C_UNK func_002BBF20(M2C_UNK *);                   /* extern */
+M2C_UNK func_002BBF20(void *, s32, s32);                   /* extern */
 M2C_UNK func_002BC2B0(s16, s16);                    /* extern */
 M2C_UNK func_00B24A80(M2C_UNK);                     /* extern */
 M2C_UNK func_00B25220();                            /* extern */
@@ -14,18 +14,18 @@ M2C_UNK func_00B25C50(M2C_UNK);                     /* extern */
 void *func_00B2A420(u8);                            /* extern */
 extern char D_003B91B0[];
 extern char D_00592740[];
-extern void *D_00CB3300;
+extern char D_00CB3300[];
 extern char D_00CBBDF6[];
 extern char D_00CBBDF7[];
 extern char D_00CBBDFD[];
 extern char D_00CBBE04[];
 
-void func_00C983D0(void) {
+void func_00C983D0(s32 arg0, s32 arg1, s32 arg2) {
     s16 var_a1;
     s32 var_s1;
+    s32 var_a0;
     u16 temp_a0;
     u8 temp_v1;
-    u8 var_a0;
     void *temp_v0;
 
     var_s1 = 0;
@@ -41,20 +41,17 @@ void func_00C983D0(void) {
                     var_s1 = 1;
                     (*(u8 *)D_00CBBDF6) = 0;
                 } else {
-                    var_a1 = M2C_FIELD(D_00CB3300, s16 *, 0xC);
-                    var_a0 = (u8) M2C_FIELD(D_00CB3300, s16 *, 0x300);
-                    if ((s32) var_a0 < var_a1) {
+                    var_a1 = M2C_FIELD(*(void **)D_00CB3300, s16 *, 0xC);
+                    var_a0 = M2C_FIELD(*(void **)D_00CB3300, s16 *, 0x300);
+                    if (var_a0 < var_a1) {
                         var_a0 = 6;
                         if (temp_v1 != 6) {
                             var_a0 = 8;
-                            if ((temp_v1 != 8) && (var_a0 = 0xF, (temp_v1 != 0xF))) {
-                                var_s1 = 1;
-                            } else {
-                                var_s1 = 1;
+                            if (temp_v1 != 8) {
+                                var_a0 = 0xF;
                             }
-                        } else {
-                            goto block_22;
                         }
+                        var_s1 = 1;
                     }
                 }
             } else {
@@ -64,20 +61,16 @@ void func_00C983D0(void) {
                     var_s1 = 1;
                     (*(u8 *)D_00CBBDF7) = 0;
                 } else {
-                    var_a1 = M2C_FIELD(D_00CB3300, s16 *, 0xC);
-                    var_a0 = (u8) M2C_FIELD(D_00CB3300, s16 *, 0x300);
-                    if (var_a1 < (s32) var_a0) {
+                    var_a1 = M2C_FIELD(*(void **)D_00CB3300, s16 *, 0xC);
+                    var_a0 = M2C_FIELD(*(void **)D_00CB3300, s16 *, 0x300);
+                    if (var_a1 < var_a0) {
                         var_a0 = 6;
                         if (temp_v1 != 6) {
                             var_a0 = 8;
                             if (temp_v1 != 8) {
                                 var_a0 = 0xF;
-                                if (temp_v1 != 0xF) {
-
-                                }
                             }
                         }
-block_22:
                         var_s1 = 1;
                     }
                 }
@@ -86,7 +79,7 @@ block_22:
                 func_002BC2B0((s16) var_a0, var_a1);
                 func_002BB870(M2C_FIELD(M2C_FIELD(temp_v0, void **, 0), u8 *, 0), 0x64);
                 func_002BB820((s32) M2C_FIELD(M2C_FIELD(temp_v0, void **, 0), u8 *, 0), 0x1D);
-                func_002BBF20(((void *)D_003B91B0));
+                func_002BBF20(((void *)D_003B91B0), 0x1D, arg2);
                 func_001AAF50(*M2C_FIELD(M2C_FIELD(temp_v0, void **, 0), void ***, 4), 0);
                 func_001AAF40(*M2C_FIELD(M2C_FIELD(temp_v0, void **, 0), void ***, 4), 1);
                 func_00B25220();

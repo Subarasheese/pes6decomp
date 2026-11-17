@@ -43,7 +43,7 @@ s32 func_00B20F30(char *arg0) {
                 if (M2C_FIELD(arg0, u8 *, 0x25) == 0) {
                     goto block_16;
                 }
-                if ((func_00BBB8C0(4) == 0) && (M2C_FIELD(arg0, s32 *, 0x1C) >= 0xC00) && ((temp_a1 = M2C_FIELD(arg0, u8 *, 0x12), ((func_00BBB780((s64) (((M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (temp_a1 * 0x6900))), u8 *, 0x98) & 0x7F) - 0x14) << 0x30) >> 0x30, temp_a1 * 0x69) & 0xFF) == 0)) || (func_00BBB8C0(0x14) == 0))) {
+                if ((func_00BBB8C0(4) == 0) && (M2C_FIELD(arg0, s32 *, 0x1C) >= 0xC00) && ((temp_a1 = M2C_FIELD(arg0, u8 *, 0x12), ((func_00BBB780((s64) (s16) ((M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (temp_a1 * 0x6900))), u8 *, 0x98) & 0x7F) - 0x14), temp_a1 * 0x69) & 0xFF) == 0)) || (func_00BBB8C0(0x14) == 0))) {
                     func_00B21B30(temp_s0, arg0, 0);
                     return 1;
                 }

@@ -3,10 +3,10 @@
 #include "pes6/m2c.h"
 
 M2C_UNK func_002D4BE0(s32);                         /* extern */
-M2C_UNK func_00305E60(char *, M2C_UNK *);           /* extern */
+M2C_UNK func_00305E60(char *, void (*)(void));           /* extern */
 s32 func_00BDA0E0();                                /* extern */
 extern char D_003B4F10[];
-extern M2C_UNK func_00301850;
+extern void func_00301850(void);
 
 s32 func_003017E0(char *arg0) {
     char *temp_s0;
@@ -15,7 +15,7 @@ s32 func_003017E0(char *arg0) {
     if (func_00BDA0E0() != 0) {
         return 0;
     }
-    func_002D4BE0(*(((char *)D_003B4F10) + (M2C_FIELD(temp_s0, s32 *, 0x24) * 4)));
-    func_00305E60(arg0, &func_00301850);
+    func_002D4BE0(((s32 *)D_003B4F10)[M2C_FIELD(temp_s0, s32 *, 0x24)]);
+    func_00305E60(arg0, func_00301850);
     return 1;
 }

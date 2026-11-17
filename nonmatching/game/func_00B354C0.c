@@ -39,25 +39,25 @@ void func_00B354C0(void **arg0, f32 fparg0, f32 fparg1) {
     var_s6 = 0;
     var_s2 = 0;
     temp_s1 = (M2C_FIELD(*arg0, u8 *, 0x13) ^ 1) * 0xB;
-loop_6:
-    temp_a1 = *arg0;
-    temp_s0 = M2C_FIELD((temp_s1 + temp_a1 + var_s2), u8 *, 0x1B4);
-    if ((temp_s0 != 0xFF) && ((u32) M2C_FIELD((temp_a1 + (temp_s0 * 4)), u32 *, 0x158) < 0x900000U)) {
+    for (;;) {
+        temp_a1 = *arg0;
+        temp_s0 = M2C_FIELD((temp_s1 + temp_a1 + var_s2), u8 *, 0x1B4);
+        if (temp_s0 == 0xFF) break;
+        if (!((u32) M2C_FIELD((temp_a1 + (temp_s0 * 4)), u32 *, 0x158) < 0x900000U)) break;
         if ((func_009B3070(temp_s3, (s32) M2C_FIELD((temp_a1 + (temp_s0 * 2)), u16 *, 0x128)) & 0xFFFF) < 0x800) {
             var_s6 = temp_s0 & 0xFF;
-        } else {
-            var_s2 += 1;
-            if (var_s2 < 0xB) {
-                goto loop_6;
-            }
+            break;
         }
+        var_s2 += 1;
+        if (var_s2 >= 0xB) break;
     }
     temp_a1_2 = var_s6 & 0xFF;
     if (temp_a1_2 == 0) {
         var_v0 = func_009B3220(temp_s3, (s32) M2C_FIELD(*arg0, u16 *, 0x26), 0x100);
     } else {
+        temp_s1 = func_00B35790(arg0, temp_a1_2) & 0xFF;
         temp_a0 = *arg0;
-        var_v0 = func_009B3220((M2C_FIELD(temp_a0, u16 *, 0x28) + (((func_00B35790(arg0, temp_a1_2) & 0xFF) ? -1 : 1) << 8)) & 0xFFFF, (s32) M2C_FIELD(temp_a0, u16 *, 0x26), 0x100);
+        var_v0 = func_009B3220((M2C_FIELD(temp_a0, u16 *, 0x28) + ((temp_s1 ? -1 : 1) << 8)) & 0xFFFF, (s32) M2C_FIELD(temp_a0, u16 *, 0x26), 0x100);
     }
     temp_s1_2 = var_v0 & 0xFFFF;
     temp_s0_2 = *arg0;

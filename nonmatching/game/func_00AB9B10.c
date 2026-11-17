@@ -33,7 +33,7 @@ s32 func_00AB9B10(void *arg0, s32 arg1, s32 arg2) {
         var_s0 = -var_s0;
     }
     temp_v0 = func_00BBB8C0(0x63 - func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x80) & 0x7F, 0x28U));
-    var_s2 = (arg1 + ((((var_s0 * temp_v0) / 200) + ((u32) (var_s0 * temp_v0) >> 0x1F)) & 0xFFFF)) & 0xFFFF;
+    var_s2 = (arg1 + (((var_s0 * temp_v0) / 200) & 0xFFFF)) & 0xFFFF;
     (*(s32 *)D_00592260) = var_s2;
     if (M2C_FIELD(arg0, u8 *, 0) == (*(u8 *)D_00591E4C)) {
         return var_s1;
@@ -55,7 +55,7 @@ block_14:
     }
     if (var_s0_2 > 0) {
         var_s2 = (var_s2 + (func_00AA24E0(arg0, var_s0_2, 8) & 0xFFFF)) & 0xFFFF;
-        var_s1 += func_00AA24E0(arg0, (var_s0_2 / 188) + ((u32) var_s0_2 >> 0x1F), 8);
+        var_s1 += func_00AA24E0(arg0, var_s0_2 / 188, 8);
     }
     (*(s32 *)D_00592260) = var_s2 & 0xFFFF;
     return var_s1;

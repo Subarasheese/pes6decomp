@@ -23,7 +23,7 @@ extern char D_00CCCBE8[];
 extern char D_00CCCBEC[];
 
 void func_00C82150(s32 arg0) {
-    M2C_UNK *var_s0;
+    u8 *var_s0;
     s32 var_s1;
     s32 var_v0;
     s32 var_v0_2;
@@ -49,7 +49,7 @@ void func_00C82150(s32 arg0) {
             return;
         }
         var_s1 = 0;
-        var_s0 = ((void *)D_00CCC200);
+        var_s0 = (u8 *)D_00CCC200;
         do {
             M2C_FIELD(var_s0, s32 *, 0x128) = 0;
             var_v0 = 0 != 0;

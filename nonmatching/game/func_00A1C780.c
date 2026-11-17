@@ -29,7 +29,7 @@ loop_4:
     if ((temp_v0 != 4) && (temp_v0 != 1) && (temp_v0 != 0)) {
         goto block_5;
     }
-    temp_a0 = *(((char *)D_00CB62B0) + (*var_s0 * 0x18));
+    temp_a0 = *(s32 *)(((char *)D_00CB62B0) + (*var_s0 * 0x18));
     if (((temp_a0 & 8) != 8) && ((temp_a0 & 0x04000000) != 0x04000000)) {
         var_s1 = 1;
 block_5:

@@ -6,16 +6,15 @@ extern int func_0030E780(void);
 extern s32 func_00310760(void *, s32, s32);
 extern s32 func_003107A0(void *, s32, s32);
 extern s32 func_00310800(void *, s32);
-extern s32 func_0030EA70(void);
+extern s32 func_0030EA70(void *, void *, s32, s32);
 s32 func_00326890(s32, s32, u8, M2C_UNK);           /* extern */
 s32 func_0032E8D0(M2C_UNK);                         /* extern */
 extern char D_003B7A90[];
 extern char Pes6MatchSquads[];
 
-s32 func_003549C0(s32 *arg0, s32 arg1, s32 arg2) {
-    s16 sp78;
-    s32 sp88;
-    u8 sp8F;
+s32 func_003549C0(s32 *arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s16 sp78[5];
+    struct { s32 sp88; u8 sp8C[3]; u8 sp8F; } fr;
     s16 *var_a0;
     s16 *var_a0_2;
     s16 *var_a1;
@@ -29,45 +28,45 @@ s32 func_003549C0(s32 *arg0, s32 arg1, s32 arg2) {
     void *temp_s0;
 
     var_v1 = 5;
-    var_a1 = ((void *)D_003B7A90);
-    var_a0 = &sp78;
+    var_a1 = (s16 *)D_003B7A90;
+    var_a0 = sp78;
     do {
         var_v1 -= 1;
         *var_a0 = *var_a1;
-        var_a1 += 2;
-        var_a0 += 2;
+        var_a1++;
+        var_a0++;
     } while (var_v1 > 0);
-    if (func_0030EA70() >= 0x55) {
+    if (func_0030EA70(var_a0, var_a1, arg2, arg3) >= 0x55) {
         return 0;
     }
     if (func_0030E780() != 0) {
         temp_s1 = arg1 & 0xFF;
         if (temp_s1 != 0xFF) {
-            func_00310800(&sp88, temp_s1);
+            func_00310800(&fr.sp88, temp_s1);
             var_s2 = 0;
-            if (sp88 > 0) {
+            if (fr.sp88 > 0) {
                 temp_s0 = ((void *)Pes6MatchSquads) + (temp_s1 * 0x6900);
 loop_15:
-                func_003107A0(&sp8F, var_s2, temp_s1);
-                if (func_00326890(arg2, arg1, sp8F, 0x800000) == 0) {
+                func_003107A0(&fr.sp8F, var_s2, temp_s1);
+                if (func_00326890(arg2, arg1, fr.sp8F, 0x800000) == 0) {
                     var_a1_2 = 0;
-                    var_a0_2 = &sp78;
+                    var_a0_2 = sp78;
 loop_20:
-                    if ((u16) *var_a0_2 != M2C_FIELD((temp_s0 + (sp8F * 0x348)), u16 *, 0x46)) {
+                    if ((u16) *var_a0_2 != M2C_FIELD((temp_s0 + (fr.sp8F * 0x348)), u16 *, 0x46)) {
                         var_a1_2 += 1;
-                        var_a0_2 += 2;
+                        var_a0_2++;
                         if (var_a1_2 >= 5) {
-                            func_00310760(&sp8F, var_s2, temp_s1);
-                            if (func_00326890(arg2, arg1, sp8F, 0x800000) == 0) {
+                            func_00310760(&fr.sp8F, var_s2, temp_s1);
+                            if (func_00326890(arg2, arg1, fr.sp8F, 0x800000) == 0) {
                                 var_a0_3 = 0;
-                                var_a1_3 = &sp78;
+                                var_a1_3 = sp78;
 loop_30:
-                                if ((u16) *var_a1_3 != M2C_FIELD((temp_s0 + (sp8F * 0x348)), u16 *, 0x46)) {
+                                if ((u16) *var_a1_3 != M2C_FIELD((temp_s0 + (fr.sp8F * 0x348)), u16 *, 0x46)) {
                                     var_a0_3 += 1;
-                                    var_a1_3 += 2;
+                                    var_a1_3++;
                                     if (var_a0_3 >= 5) {
                                         var_s2 += 1;
-                                        if (var_s2 >= sp88) {
+                                        if (var_s2 >= fr.sp88) {
                                             goto block_36;
                                         }
                                         goto loop_15;

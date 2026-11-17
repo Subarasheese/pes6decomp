@@ -7,8 +7,8 @@ typedef unsigned int u128 __attribute__((mode(TI)));
 
 M2C_UNK func_0027D0B0(void *, M2C_UNK);             /* extern */
 s32 func_009B3070(u16, u16);                        /* extern */
-s32 func_009B30B0(u16, u16);                        /* extern */
-u16 func_009B33F0(void *, void *);                  /* extern */
+s32 func_009B30B0(s32, s32);                        /* extern */
+s32 func_009B33F0(void *, void *);                  /* extern */
 s32 func_009B34C0(f32, f32, f32, f32);              /* extern */
 s32 func_00A09690(void *);                          /* extern */
 M2C_UNK func_00BBB780(M2C_UNK);                     /* extern */

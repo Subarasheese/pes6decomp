@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern u32 func_00288670(u32, u32);
+extern s32 func_00288670(s32, s32);
 s32 func_009B30B0(u16, u16);                        /* extern */
 extern char Pes6MatchSquads[];
 
@@ -11,8 +11,8 @@ s32 func_00AFBB00(void *arg0, void *arg1) {
     s32 temp_s0_2;
     u16 temp_v1;
     u16 temp_v1_3;
-    u32 temp_s0_3;
-    u32 temp_s0_4;
+    s32 temp_s0_3;
+    s32 temp_s0_4;
     u8 temp_v1_2;
 
     if ((M2C_FIELD(arg0, u8 *, 0) != 0) && (M2C_FIELD(arg1, u8 *, 0) != 0)) {

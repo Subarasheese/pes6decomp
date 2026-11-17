@@ -1,4 +1,4 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -6,7 +6,7 @@ extern void func_002506F0(s32);
 extern void func_00251BF0(int);
 extern void func_00251740(s32, s32);
 extern void func_00251C10(int);
-extern void func_00251880(void);
+extern void func_00251880(s32, s32);
 extern void func_00251C00(int);
 extern void func_00251C20(int);
 M2C_UNK func_0024EEF0(M2C_UNK, M2C_UNK);            /* extern */
@@ -72,27 +72,27 @@ block_38:
         func_00251740(2, 0);
         func_00251740(1, 0);
         func_00251740(3, 0);
-        func_00251880();
-        func_00251880();
-        func_00251880();
-        func_00251880();
+        func_00251880(0, 0);
+        func_00251880(2, 0);
+        func_00251880(1, 0);
+        func_00251880(3, 0);
         func_00253F60(0, 0xD, 0, 0, 0, 0, 0);
         func_00251C80(0);
         func_00251C20(0);
         goto block_38;
     case 0x82000001:
-        func_00251880();
-        func_00251880();
-        func_00251880();
-        func_00251880();
+        func_00251880(0, 0);
+        func_00251880(2, 0);
+        func_00251880(1, 0);
+        func_00251880(3, 0);
         func_00251C80(0);
         func_00251C20(0);
         goto block_38;
     case 0x82000000:
-        func_00251880();
-        func_00251880();
-        func_00251880();
-        func_00251880();
+        func_00251880(0, 1);
+        func_00251880(2, 1);
+        func_00251880(1, 1);
+        func_00251880(3, 1);
         func_00251C80(1);
         func_00251C20(1);
         goto block_38;

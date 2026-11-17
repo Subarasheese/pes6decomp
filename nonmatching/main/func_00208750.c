@@ -1,81 +1,60 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
+void func_00207390(void *, s32);
+void func_00208970(void *, s32, s32, f32);
+extern char *D_003E74CC;
 
-M2C_UNK func_00207390(void *, M2C_UNK);             /* extern */
-M2C_UNK func_00208970(s32, u16, f32);               /* extern */
-extern s32 D_003E74CC;
-
-void func_00208750(void *arg0, s32 arg1, u8 arg2) {
-    f32 temp_f1;
-    f32 temp_f1_2;
-    f32 temp_f1_3;
-    f32 var_f0;
-    f32 var_f0_2;
-    s32 temp_a0;
-    s32 temp_a0_2;
-    s32 temp_a1_2;
-    s32 temp_a3;
+void func_00208750(char *arg0, s32 arg1, s32 arg2) {
     s32 var_s0;
-    s32 var_v1;
-    u16 temp_a2;
-    u16 temp_a4;
-    u8 temp_a1;
-    void *temp_v1;
+    u16 id;
+    u32 tbl;
+    char *p;
+    s32 lo;
+    s32 hi;
+    s32 diff;
+    s32 half;
+    f32 f;
 
-    temp_a3 = arg1 & 0xFFFF;
-    temp_a4 = M2C_FIELD(arg0, u16 *, 0x30);
-    var_s0 = temp_a4 != temp_a3;
-    if (M2C_FIELD(arg0, u8 *, 0x2D) == (arg2 & 0xFF)) {
-        func_00208970(temp_a3, temp_a4, M2C_FIELD(arg0, f32 *, 0x38));
-        goto block_2;
-    }
-    M2C_FIELD(arg0, u8 *, 0x2D) = arg2;
-    var_s0 = 1;
-    func_00208970(temp_a3, temp_a4, M2C_FIELD(arg0, f32 *, 0x38));
-    temp_a2 = M2C_FIELD(arg0, u16 *, 0x30);
-    temp_a1 = M2C_FIELD(((temp_a2 * 4) + D_003E74CC), u8 *, 0x2FD8);
-    if ((temp_a2 != 0x38C) && (temp_a2 != 0x393) && (temp_a2 != 0x2B8) && (temp_a2 != 0xBF) && (temp_a2 != 0xB6) && (temp_a2 != 0x2C0)) {
-        temp_f1 = M2C_FIELD(arg0, f32 *, 0x38) + (f32) ((u32) (temp_a1 & 0xFF) >> 1);
-        M2C_FIELD(arg0, f32 *, 0x38) = temp_f1;
-        if ((s32) temp_a1 >= 0) {
-            var_f0 = (f32) temp_a1;
-        } else {
-            var_f0 = 2.0f * (f32) ((temp_a1 >> 1) | (temp_a1 & 1));
-        }
-        if (!(temp_f1 <= var_f0)) {
-            if ((s32) temp_a1 >= 0) {
-                var_f0_2 = (f32) temp_a1;
-            } else {
-                var_f0_2 = 2.0f * (f32) ((temp_a1 >> 1) | (temp_a1 & 1));
+    var_s0 = *(u16 *)(arg0 + 0x30) != (arg1 & 0xFFFF);
+    if (*(u8 *)(arg0 + 0x2D) != (arg2 & 0xFF)) {
+        *(u8 *)(arg0 + 0x2D) = arg2;
+        var_s0 = 1;
+        func_00208970(arg0, arg1, arg2, *(f32 *)(arg0 + 0x38));
+        id = *(u16 *)(arg0 + 0x30);
+        tbl = *(u8 *)(D_003E74CC + id * 4 + 0x2FD8);
+        if (id != 0x38C && id != 0x393 && id != 0x2B8 && id != 0xBF && id != 0xB6 && id != 0x2C0) {
+            f = *(f32 *)(arg0 + 0x38) + (f32) (tbl >> 1);
+            *(f32 *)(arg0 + 0x38) = f;
+            if (f <= (f32) tbl) {
+                return;
             }
-            M2C_FIELD(arg0, f32 *, 0x38) = (f32) (M2C_FIELD(arg0, f32 *, 0x38) - var_f0_2);
+            *(f32 *)(arg0 + 0x38) = f - (f32) tbl;
+            return;
         }
-        return;
+        p = *(char **)(arg0 + 4);
+        f = *(f32 *)(arg0 + 0x38);
+        lo = *(u8 *)(p + 1) * 2;
+        if (f < (f32) lo) {
+            return;
+        }
+        hi = *(u8 *)(p + 2) * 2;
+        if (!(f <= (f32) hi)) {
+            return;
+        }
+        diff = hi - lo;
+        half = diff / 2;
+        f = f + (f32) half;
+        *(f32 *)(arg0 + 0x38) = f;
+        if (!(f <= (f32) hi)) {
+            *(f32 *)(arg0 + 0x38) = f - (f32) diff;
+        }
+    } else {
+        func_00208970(arg0, arg1, arg2, *(f32 *)(arg0 + 0x38));
     }
-    temp_v1 = M2C_FIELD(arg0, void **, 4);
-    temp_f1_2 = M2C_FIELD(arg0, f32 *, 0x38);
-    temp_a0 = M2C_FIELD(temp_v1, u8 *, 1) * 2;
-    temp_a1_2 = M2C_FIELD(temp_v1, u8 *, 2) * 2;
-    if (!(temp_f1_2 < (f32) temp_a0) && (temp_f1_2 <= (f32) temp_a1_2)) {
-        temp_a0_2 = temp_a1_2 - temp_a0;
-        var_v1 = temp_a0_2 >> 1;
-        if (temp_a0_2 < 0) {
-            var_v1 = (s32) (temp_a0_2 + 1) >> 1;
-        }
-        temp_f1_3 = M2C_FIELD(arg0, f32 *, 0x38) + (f32) var_v1;
-        M2C_FIELD(arg0, f32 *, 0x38) = temp_f1_3;
-        if (!(temp_f1_3 <= (f32) temp_a1_2)) {
-            M2C_FIELD(arg0, f32 *, 0x38) = (f32) (temp_f1_3 - (f32) temp_a0_2);
-        }
-block_2:
-        if (var_s0 != 0) {
-            if (M2C_FIELD(arg0, u16 *, 0x30) != 0xC7) {
-
-            } else {
-                func_00207390(arg0, 6);
-            }
+    if (var_s0 != 0) {
+        if (*(u16 *)(arg0 + 0x30) == 0xC7) {
+            func_00207390(arg0, 6);
         }
     }
 }

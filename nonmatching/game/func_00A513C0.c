@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-s32 func_00A14EC0(void *);                          /* extern */
+s32 func_00A14EC0(void *, void *);                          /* extern */
 M2C_UNK func_00A15300(void *, void *, u8, f32, f32, f32); /* extern */
 M2C_UNK func_00A15540(void *, void *);              /* extern */
 s32 func_00A4E850(void *, M2C_UNK);                 /* extern */
@@ -22,7 +22,7 @@ s32 func_00A513C0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     u16 temp_v1;
     u8 temp_s1;
 
-    if (func_00A14EC0(arg0) != 0) {
+    if (func_00A14EC0(arg0, arg0) != 0) {
         M2C_FIELD(Pes6Ball_Current, s32 *, 0x7C) = (s32) M2C_FIELD(arg0, s32 *, 0xA0);
         func_00A515A0(arg0);
         return 0;

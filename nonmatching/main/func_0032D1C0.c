@@ -2,8 +2,8 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern u8 func_0030E540(s32);
-extern u8 func_0030DBA0(void);
+extern s32 func_0030E540(s32);
+extern int func_0030DBA0(void);
 extern int Pes6MatchPlayer_GetSquadIndex(u8);
 extern int func_003395B0(void *);
 extern s32 func_00340C80(f32);
@@ -15,7 +15,7 @@ s32 func_0032D1C0(void *arg0) {
     M2C_UNK (*temp_v0_4)(void *, s32);
     s32 temp_s0;
     s32 temp_s1;
-    u8 temp_v0;
+    s32 temp_v0;
     void *temp_s2;
 
     temp_s2 = M2C_FIELD(arg0, void **, 0);

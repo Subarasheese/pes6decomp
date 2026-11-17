@@ -1,12 +1,12 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: mwcc-3.0.1b210 */
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
 M2C_UNK func_002889E0(void *);                      /* extern */
-M2C_UNK func_00289040(void *, s32, s32, u8, s32, u8); /* extern */
+M2C_UNK func_00289040(void *, s32, s32, s32, s32, s32); /* extern */
 M2C_UNK func_00289D30(void *, s32);                 /* extern */
 
-void func_002886B0(void *arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5, u8 arg6) {
+void func_002886B0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
     s32 temp_a0;
     s32 temp_a1;
     s32 temp_a1_2;
@@ -33,8 +33,8 @@ void func_002886B0(void *arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5, 
     u8 temp_a6_3;
     u8 temp_a6_4;
     u8 temp_a6_5;
-    u8 var_a4;
-    u8 var_a6;
+    s32 var_a4;
+    s32 var_a6;
 
     var_a3 = arg3;
     var_a4 = arg4;
@@ -83,7 +83,7 @@ void func_002886B0(void *arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5, 
         M2C_FIELD(arg0, u8 *, 0x13) = (u8) ((var_a4 & ~0x7F) | ((var_a3 - ((((temp_a0 * temp_a1_7) / 100000) + ((u32) (temp_a0 * temp_a1_7) >> 0x1F)) & 0xFF)) & 0x7F));
     }
     if (arg2 > 0) {
-        func_00289040(arg0, arg2, var_a3, var_a4, var_a5, var_a6);
+        func_00289040(arg0, arg2, arg2, var_a3, var_a4, var_a5);
     }
     if (temp_s1 != 0) {
         func_002889E0(arg0);

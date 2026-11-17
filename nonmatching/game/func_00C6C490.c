@@ -20,9 +20,9 @@ void func_00C6C490(s32 arg0) {
 
     (*(s8 *)D_00591E4C) = 0;
     M2C_FIELD(Pes6Ball_Current, s32 *, 0x74) = func_00BBB7F0(0x800);
-    temp_v0 = M2C_FIELD(Pes6Ball_Current, s32 *, 0);
+    temp_v0 = M2C_FIELD(Pes6Ball_Current, s32 *, 0x50);
     if ((temp_v0 < 0x1800) && (temp_v0 < 0x800)) {
-        M2C_FIELD(Pes6Ball_Current, s32 *, 0) = 0x800;
+        M2C_FIELD(Pes6Ball_Current, s32 *, 0x50) = 0x800;
     }
     if (func_001520C0() != 0) {
         func_002562B0(4);

@@ -3,15 +3,15 @@
 #include "pes6/m2c.h"
 
 
-s32 func_0017F9A0(s32, M2C_UNK *, s32 *, M2C_UNK, M2C_UNK *); /* extern */
-M2C_UNK func_001A2C10(M2C_UNK, s32);                /* extern */
-s32 func_001CE740(s32 *, s32);                      /* extern */
+s32 func_0017F9A0(s32, void (*)(void), s32 *, M2C_UNK, M2C_UNK *); /* extern */
+M2C_UNK func_001A2C10(s32, s32, s32);                /* extern */
+s32 func_001CE740();                      /* extern */
 extern char D_0051FF88[];
 extern char D_0051FF8C[];
 extern char D_00520360[];
 extern char D_00520384[];
 extern char D_005203A4[];
-extern M2C_UNK func_001A2BD0;
+void func_001A2BD0(void);
 
 void func_001A2B30(s32 arg0) {
     s32 sp2C;
@@ -26,10 +26,10 @@ void func_001A2B30(s32 arg0) {
         (*(s32 *)D_00520384) = temp_a2;
         (*(s32 *)D_005203A4) = 0;
         if (arg0 == 1) {
-            func_001A2C10(1, temp_a2);
+            func_001A2C10(arg0, 1, temp_a2);
         }
     } else {
-        temp_s0 = func_001CE740(((void *)D_0051FF8C), temp_a2);
+        temp_s0 = func_001CE740();
         do {
 
         } while (func_0017F9A0(temp_s0, &func_001A2BD0, &sp2C, 4, ((void *)D_00520360)) != 1);

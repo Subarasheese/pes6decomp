@@ -4,12 +4,12 @@
 
 
 f32 func_001CD9E0(f32);                             /* extern */
-s32 func_009B30B0(u16, u16);                        /* extern */
+s32 func_009B30B0(s32, s32);                        /* extern */
 extern void *Pes6Ball_Current;
 extern char Pes6MatchPlayers[];
 extern char D_00591E4C[];
 
-s32 func_00A34F80(void *arg0, u16 arg1, u16 arg2, s32 arg3, s32 arg4) {
+s32 func_00A34F80(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 temp_fp;
     s32 temp_s0;
     s32 var_a0;

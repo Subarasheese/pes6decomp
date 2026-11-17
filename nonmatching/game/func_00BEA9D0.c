@@ -4,8 +4,8 @@
 
 extern int func_002DCA30(void);
 extern void func_009B4430(u32);
-M2C_UNK func_00849DA0();                            /* extern */
-M2C_UNK func_00914FA0(M2C_UNK, u8);                 /* extern */
+M2C_UNK func_00849DA0(s32, u8, u8, u8 *);                            /* extern */
+M2C_UNK func_00914FA0(s32, u8);                 /* extern */
 M2C_UNK func_009A7540();                            /* extern */
 M2C_UNK func_009B6C00();                            /* extern */
 M2C_UNK func_00B25720(M2C_UNK, u8 *, u8, u8 *, M2C_UNK, u8 *, u8 *); /* extern */
@@ -22,6 +22,8 @@ extern char D_00592375[];
 
 void func_00BEA9D0(void) {
     s32 var_a0;
+    u8 sw;
+    s32 mode;
     u8 *temp_a3_2;
     u8 *temp_a5;
     u8 temp_a3;
@@ -41,25 +43,25 @@ void func_00BEA9D0(void) {
     temp_a3_2 = &(((void *)D_00591E67))[temp_a3 ^ 1];
     *temp_a3_2 = 1;
     (*(u8 *)D_00592374) = (*(u8 *)D_00591E67);
-    (*(u8 *)D_00592375) = (*(u8 *)D_00591E68);
-    func_00B25720(0, ((void *)D_00592374), (*(u8 *)D_00591E67), temp_a3_2, 1, temp_a5, ((void *)D_00591E67));
+    (*(u8 *)D_00592375) = ((u8 *)D_00591E67)[1];
+    func_00B25720(0, (u8 *)(D_00592374 - 0x2374), (*(u8 *)D_00591E67), temp_a3_2, 1, temp_a5, ((void *)D_00591E67));
     func_009B4430(0U);
-    switch ((*(u8 *)D_00591F24)) {                           /* irregular */
-    case 3:
-        func_00914FA0(1, (*(u8 *)D_00591F24));
-        break;
-    case 6:
-        func_00914FA0(4, (*(u8 *)D_00591F24));
-        break;
-    case 2:
-        func_00914FA0(3, (*(u8 *)D_00591F24));
-        break;
-    case 1:
-        func_00914FA0(2, (*(u8 *)D_00591F24));
-        break;
+    sw = (*(u8 *)D_00591F24);
+    mode = 2;
+    if (sw == 3) {
+        mode = 1;
+        func_00914FA0(mode, sw);
+    } else if (sw == 6) {
+        mode = 4;
+        func_00914FA0(mode, sw);
+    } else if (sw == 2) {
+        mode = 3;
+        func_00914FA0(mode, sw);
+    } else if (sw == 1) {
+        func_00914FA0(mode, sw);
     }
     if (func_002DCA30() != 0) {
-        func_00849DA0();
+        func_00849DA0(mode, (*(u8 *)D_00591F24), (*(u8 *)D_00591E67), temp_a3_2);
     }
     func_00B78E60(0);
 }

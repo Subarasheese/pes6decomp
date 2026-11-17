@@ -3,8 +3,8 @@
 #include "pes6/m2c.h"
 
 
-s32 func_002CA7A0(M2C_UNK *);                       /* extern */
-s32 func_00A1B990(M2C_UNK *);                       /* extern */
+s32 func_002CA7A0(void *);                       /* extern */
+s32 func_00A1B990(void *);                       /* extern */
 s32 func_00AFBAB0(u8);                              /* extern */
 s32 func_00B29B50();                                /* extern */
 extern char Pes6MatchPlayers[];
@@ -18,10 +18,10 @@ extern char D_005E3810[];
 extern char D_005E3811[];
 
 void func_00B27920(void) {
-    M2C_UNK *var_a2;
-    M2C_UNK *var_s0;
-    M2C_UNK *var_s1_2;
-    M2C_UNK *var_s2;
+    u8 *var_a2;
+    u8 *var_s0;
+    u8 *var_s1_2;
+    u8 *var_s2;
     s32 var_a1;
     s32 var_a3;
     s32 var_a4;

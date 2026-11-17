@@ -28,7 +28,7 @@ s32 func_00301050(char *arg0) {
     if (var_s2 == 0) {
         return 0;
     }
-    func_002D4BE0((((char *)D_003B4F30))[M2C_FIELD(temp_s0, s32 *, 0x24)]);
+    func_002D4BE0(((s32 *)D_003B4F30)[M2C_FIELD(temp_s0, s32 *, 0x24)]);
     if (M2C_FIELD(temp_s0, s32 *, 0x24) == 1) {
         func_002D4BE0((*(s32 *)D_003B4F30));
     }

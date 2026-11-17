@@ -10,8 +10,8 @@ extern char D_005900B0[];
 extern char D_00CB52A0[];
 
 void func_00973CA0(void) {
-    M2C_UNK *var_s0;
-    M2C_UNK *var_t2;
+    char *var_s0;
+    char *var_t2;
     s32 temp_a6;
     s32 var_s1;
     s32 var_s2;
@@ -28,7 +28,7 @@ void func_00973CA0(void) {
     void *temp_v1;
 
     var_s3 = 0;
-    var_s0 = ((void *)D_00CB52A0);
+    var_s0 = D_00CB52A0;
     do {
         var_s1 = 0;
         if (var_s3 == 0) {
@@ -39,7 +39,7 @@ void func_00973CA0(void) {
         var_s2 = 0;
 loop_6:
         if (func_00BDB730(var_s4) != 0) {
-            temp_v1 = var_s0 + var_s1;
+            temp_v1 = (void *)(var_s0 + var_s1);
             var_s1 += 1;
             M2C_FIELD(temp_v1, u8 *, 0x41C) = (u8) *var_s4;
         }
@@ -50,7 +50,7 @@ loop_6:
         }
         if (var_s1 < 0xB) {
             do {
-                M2C_FIELD((var_s0 + var_s1), s8 *, 0x41C) = 0xFF;
+                M2C_FIELD((void *)(var_s0 + var_s1), s8 *, 0x41C) = 0xFF;
                 var_s1 += 1;
             } while (var_s1 < 0xB);
         }
@@ -58,7 +58,7 @@ loop_6:
         var_s0 += 0xB;
     } while (var_s3 < 2);
     var_t1 = 0;
-    var_t2 = ((void *)D_00CB52A0);
+    var_t2 = D_00CB52A0;
     do {
         var_t0 = 0;
 loop_18:
@@ -66,7 +66,7 @@ loop_18:
         var_t3 = 0;
         if (temp_a6 > 0) {
 loop_19:
-            temp_a5 = var_t2 + var_t3;
+            temp_a5 = (void *)(var_t2 + var_t3);
             temp_a4 = M2C_FIELD(temp_a5, u8 *, 0x41D);
             if (temp_a4 != 0xFF) {
                 if (temp_a4 == 0xFF) {

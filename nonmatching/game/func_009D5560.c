@@ -14,7 +14,7 @@ M2C_UNK func_009C1230(void *, M2C_UNK, s32, M2C_UNK, s32, M2C_UNK, M2C_UNK, void
 M2C_UNK func_009CB410(void *, u16);                 /* extern */
 M2C_UNK func_009D58B0(void *, u16);                 /* extern */
 M2C_UNK func_009D6E10(void *, u16);                 /* extern */
-M2C_UNK func_00A99360(M2C_UNK);                     /* extern */
+M2C_UNK func_00A99360(void *, s32);                     /* extern */
 s32 func_00BC03A0(u16);                             /* extern */
 M2C_UNK func_00C1EE80(void *);                      /* extern */
 extern void *Pes6Ball_Current;
@@ -29,7 +29,7 @@ void func_009D5560(void *arg0) {
     void *temp_v1;
     void *temp_v1_2;
 
-    func_00A99360(-0x258);
+    func_00A99360(arg0, -0x258);
     func_0027A600(arg0, 1);
     temp_a1 = M2C_FIELD(arg0, u16 *, 0x18);
     switch (temp_a1) {                              /* switch 1; irregular */
@@ -77,7 +77,7 @@ block_34:
         }
         return;
     case 0x0:                                       /* switch 1 */
-        func_009D6E10((void *)0x80, temp_a1);
+        func_009D6E10(arg0, temp_a1);
         temp_v1_2 = M2C_FIELD(arg0, void **, 4);
         if (M2C_FIELD(temp_v1_2, f32 *, 0x38) == (f32) (M2C_FIELD(M2C_FIELD(temp_v1_2, void **, 4), u8 *, 2) * 2)) {
             M2C_FIELD(arg0, s32 *, 0xE4) = 0;

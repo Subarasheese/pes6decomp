@@ -1,27 +1,27 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern void func_001540B0(void);
-extern void func_001540D0(void);
+extern void func_001540B0(s32, s32);
+extern void func_001540D0(s32);
 extern void func_00153FA0(void *);
 extern char D_005E3C9C[];
-extern void *D_005E3CA0;
+extern char D_005E3CA0[];
 
 void func_002CB780(void) {
-    s32 var_s2;
-    void *temp_s1;
+    s32 i;
+    u8 *obj;
+    s32 *p;
 
-    temp_s1 = D_005E3CA0;
-    if ((*(s32 *)D_005E3C9C) != 0) {
-        var_s2 = 1;
-        do {
-            func_001540B0();
-            var_s2 += 1;
-        } while (var_s2 < 0x1C);
-        func_001540D0();
-        D_005E3CA0 = M2C_FIELD(temp_s1, void **, 0x74);
-        func_00153FA0(temp_s1);
-        (*(s32 *)D_005E3C9C) -= 1;
+    obj = *(u8 **)D_005E3CA0;
+    if (*(s32 *)D_005E3C9C != 0) {
+        p = (s32 *)(obj + 4);
+        for (i = 1; i < 0x1C; i++) {
+            func_001540B0(i, *p);
+            p++;
+        }
+        func_001540D0(*(s8 *)(obj + 0x70));
+        *(u8 **)D_005E3CA0 = *(u8 **)(obj + 0x74);
+        func_00153FA0(obj);
+        *(s32 *)D_005E3C9C = *(s32 *)D_005E3C9C - 1;
     }
 }

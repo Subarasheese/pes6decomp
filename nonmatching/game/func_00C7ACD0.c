@@ -21,7 +21,7 @@ s32 func_00C7ACD0(void) {
 
     temp_v0 = func_002D5410();
     if ((temp_v0 != 0xB) && (temp_v0 != 0xA) && (temp_v0 != 0xE) && (temp_v0 != 0)) {
-        if (((u64) ((s64) *(u8 *)0xCCBF18 << 0x3D) >> 0x3F) != 0) {
+        if (((u64) ((s64) *(u8 *)D_00CCBF18 << 0x3D) >> 0x3F) != 0) {
             if (func_002D53F0() != 5) {
                 return 0;
             }
@@ -45,7 +45,7 @@ s32 func_00C7ACD0(void) {
         temp_a1 = M2C_FIELD(D_00CB3300, s16 *, 8);
         temp_a0 = M2C_FIELD(D_00CB3300, s16 *, 0x2FC);
         var_a2 = 0;
-        if (((*(s32 *)D_00CCBED8) == temp_a1) && ((((char *)D_00CCBED8))[temp_a0] < temp_a0)) {
+        if (((*(s32 *)D_00CCBED8) == temp_a1) && ((((s32 *)D_00CCBED8))[temp_a0] < temp_a0)) {
             var_a2 = 1;
         }
         (*(s32 *)D_00CCBED8) = (s32) temp_a1;

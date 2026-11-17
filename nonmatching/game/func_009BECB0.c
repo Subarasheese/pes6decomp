@@ -5,7 +5,7 @@
 extern s32 func_00BBB7F0(s32);
 extern s32 func_00BBB8C0(s32);
 extern s32 func_009B30B0(s32, s32);
-extern void func_00BC8C30(s8);
+extern void func_00BC8C30(s32);
 M2C_UNK func_00284AB0(void *, s32, s32, s32, M2C_UNK, void *); /* extern */
 M2C_UNK func_00994AC0(void *, s32);                 /* extern */
 extern void *Pes6Ball_Current;
@@ -49,7 +49,7 @@ void func_009BECB0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     s32 var_v0_2;
     s32 var_v1_2;
     s32 var_v1_3;
-    s8 var_a0_2;
+    s32 var_a0_2;
     u16 temp_v0;
     u32 var_v1;
     u8 temp_v0_2;
@@ -63,7 +63,7 @@ void func_009BECB0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
             if ((*(u8 *)D_00591E79) == 8) {
                 var_a0 = 0x25 & 0xFF;
             }
-            var_a0_2 = (var_a0 + ((((temp_a1 - 0x4000) / 1536) + ((u32) (temp_a1 - 0x4000) >> 0x1F)) & 0xFF)) & 0xFF;
+            var_a0_2 = (var_a0 + (((temp_a1 - 0x4000) / 1536) & 0xFF)) & 0xFF;
             if (var_a0_2 >= 0x29) {
                 var_a0_2 = 0x28;
             }
@@ -126,8 +126,8 @@ void func_009BECB0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
             }
         }
     }
-    temp_a0_3 = var_v0 + var_v1;
-    temp_s4 = ((temp_a0_3 * 0x5A) / 100) + ((u32) (temp_a0_3 * 0x5A) >> 0x1F);
+    temp_a0_3 = var_v0;
+    temp_s4 = (temp_a0_3 * 0x5A) / 100;
     temp_v1_4 = (func_009B30B0(arg1, (s32) M2C_FIELD(var_s4, u16 *, 0x58)) & 0xFFFF) + 0x80;
     var_v0_2 = temp_v1_4 >> 1;
     if (temp_v1_4 < 0) {
@@ -145,7 +145,7 @@ void func_009BECB0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         var_a1 = 0xB4 - var_a1_2;
     }
     temp_a0_5 = var_v0_2 & 0xFFFF & 0xFFFF;
-    temp_a2 = (((temp_a0_5 * var_a1) / 100) + ((u32) (temp_a0_5 * var_a1) >> 0x1F)) & 0xFFFF;
+    temp_a2 = ((temp_a0_5 * var_a1) / 100) & 0xFFFF;
     if (temp_v0_6 >= 0x2001) {
         if ((s32) (*(u8 *)D_005926E4) >= 0) {
             var_f0_3 = (f32) (*(u8 *)D_005926E4);
@@ -170,7 +170,7 @@ block_92:
         var_v1_2 = -var_v1_2;
     }
     temp_a1_2 = var_v1_2 - var_a0_3;
-    var_s4_3 = (var_s4_2 - (((temp_a1_2 * 7) / 10) + ((u32) (temp_a1_2 * 7) >> 0x1F))) + arg3;
+    var_s4_3 = (var_s4_2 - ((temp_a1_2 * 7) / 10)) + arg3;
     if (var_s4_3 >= 0x5801) {
         var_s4_3 = 0x5800;
     }

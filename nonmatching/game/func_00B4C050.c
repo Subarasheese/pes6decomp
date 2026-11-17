@@ -1,9 +1,9 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_00207BE0(void *);
-extern u8 func_00BF6260(void);
+extern s32 func_00BF6260(void);
 extern s32 func_00207D10(void *);
 M2C_UNK func_002075B0(void *, s32, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK func_00208610(void *, u16);                 /* extern */
@@ -14,10 +14,10 @@ extern char Pes6MatchPlayers[];
 extern char D_00CBCB37[];
 
 void func_00B4C050(void **arg0) {
-    s32 temp_a0;
-    s32 temp_a0_3;
-    s32 temp_a0_5;
-    s32 temp_a0_7;
+    u16 temp_a0;
+    u16 temp_a0_3;
+    u16 temp_a0_5;
+    u16 temp_a0_7;
     s32 temp_a3;
     s32 temp_a3_2;
     s32 temp_a3_3;
@@ -37,14 +37,14 @@ void func_00B4C050(void **arg0) {
     void *temp_a2_2;
     void *temp_a2_3;
     void *temp_a2_4;
-    void *temp_s0;
+    char *temp_s0;
 
     if (func_00BF6260() != 0xFF) {
         var_a0 = func_00BF6260() % 23;
     } else {
         var_a0 = 1;
     }
-    temp_s0 = ((void *)Pes6MatchPlayers) + (var_a0 * 0x240);
+    temp_s0 = ((char *)Pes6MatchPlayers) + (var_a0 * 0x240);
     func_00B2ACF0(arg0);
     func_00207BE0(M2C_FIELD(*arg0, void **, 4));
     temp_a0 = func_00BB1310(0x3C) & 0xFFFF;

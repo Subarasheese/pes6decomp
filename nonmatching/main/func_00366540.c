@@ -46,7 +46,7 @@ void func_00366540(void) {
                     M2C_FIELD(var_s1, u8 *, 4) = (u8) ((M2C_FIELD(var_s1, u8 *, 4) & ~1) | 1);
                 }
                 var_s4 += 1;
-                var_s1 += 0x10;
+                var_s1 += 4;
             } while (var_s4 < var_s3);
         }
     }

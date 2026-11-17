@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern void func_00287800(void);
-extern void func_00287640(void);
+extern void func_00287640(s32);
 extern void func_00186260(void);
 extern int func_002DCA30(void);
 extern int func_00287620(void);
@@ -14,13 +14,14 @@ s32 func_00152130(M2C_UNK, M2C_UNK);                /* extern */
 M2C_UNK func_00270EE0(u8);                          /* extern */
 M2C_UNK func_002B5470(s32, M2C_UNK *, s32);         /* extern */
 M2C_UNK func_002CA520();                            /* extern */
-M2C_UNK func_00922060();                            /* extern */
+M2C_UNK func_00922060(s32, s32);
 M2C_UNK func_00956460();                            /* extern */
 M2C_UNK func_0099FF00();                            /* extern */
 M2C_UNK func_009A0DA0();                            /* extern */
 M2C_UNK func_009E1D30(M2C_UNK, M2C_UNK);            /* extern */
-M2C_UNK func_00BC69A0();                            /* extern */
+M2C_UNK func_00BC69A0(void *, s32, s32, void *);
 extern char D_00591A90[];
+extern u8 D_00591BCE[];
 extern char D_00591C09[];
 extern char D_00591DB4[];
 extern char D_00591DCC[];
@@ -37,12 +38,12 @@ extern char D_005E2C30[];
 extern char D_00CBBE00[];
 
 void func_00271720(void) {
-    M2C_UNK *var_a1;
-    M2C_UNK *var_a3;
-    M2C_UNK *var_s0;
-    M2C_UNK *var_s1;
-    M2C_UNK *var_s2;
-    M2C_UNK *var_s3;
+    char *var_a1;
+    char *var_a3;
+    char *var_s0;
+    char *var_s1;
+    char *var_s2;
+    char *var_s3;
     s32 var_a1_2;
     s32 var_a2;
     s32 var_a2_2;
@@ -54,8 +55,8 @@ void func_00271720(void) {
     void *temp_a0_2;
 
     if (func_00152130(1, 0x10) != 0) {
-        func_00287640();
-        func_00922060();
+        func_00287640(*D_00591BCE);
+        func_00922060(*D_00591BCE, 0x10);
         func_00956460();
         func_001AA620(func_00188A50());
         (*(s8 *)D_00591DB4) = 0;
@@ -126,7 +127,7 @@ loop_10:
         (*(s8 *)D_00591DCC) = (s8) var_v1;
         func_00287800();
         func_002CA520();
-        func_00BC69A0();
+        func_00BC69A0(temp_a0_2, var_a1_2, var_a2_2, var_a3);
         func_0099FF00();
         func_00186260();
         if (func_002DCA30() != 0) {

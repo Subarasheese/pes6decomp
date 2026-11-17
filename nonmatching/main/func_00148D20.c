@@ -33,7 +33,7 @@ s32 func_00148D20(s32 arg0, s32 *arg1) {
                     } while (var_s3 < 2);
                 }
                 var_s0 += 1;
-                var_s1 += 4;
+                var_s1 += 1;
             } while (var_s0 < arg0);
         }
         var_s1_2 = 0;

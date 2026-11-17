@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-M2C_UNK func_009B0610(void *, M2C_UNK, s32);        /* extern */
+void func_009B0610(void *, void *, s32);
 extern char D_00CBA9EF[];
 
 void func_009AB6D0(void *arg0, void *arg1) {
@@ -155,7 +155,7 @@ void func_009AB6D0(void *arg0, void *arg1) {
         M2C_FIELD(temp_v1_9, f32 *, 0x140) = 0.0f;
         M2C_FIELD(temp_v1_9, f32 *, 0x144) = 0.0f;
         M2C_FIELD(temp_v1_9, f32 *, 0x148) = 0.0f;
-        func_009B0610(arg1, 1, var_a3);
+        func_009B0610(arg1, arg1, 1);
         M2C_FIELD(arg0, s8 *, 3) = 0;
         M2C_FIELD(arg0, s8 *, 0xD6) = 0;
         (*(s8 *)D_00CBA9EF) = 0;

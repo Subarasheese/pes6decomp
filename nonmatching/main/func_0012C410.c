@@ -3,179 +3,82 @@
 #include "pes6/m2c.h"
 
 void func_0012C410(s32 arg0, void * arg1) {
-    s32 temp_a0_2;
-    s32 temp_a2_2;
-    s32 temp_t1;
-    s32 temp_t3;
-    s32 var_a0;
-    s32 var_a5;
-    s32 var_v1;
-    u32 temp_a0;
-    void **var_t0;
-    void *temp_a0_3;
-    void *temp_a0_4;
-    void *temp_a0_5;
-    void *temp_a2;
-    void *temp_a2_3;
-    void *temp_a2_4;
-    void *temp_a2_5;
-    void *temp_a2_6;
-    void *temp_a2_7;
-    void *temp_a3;
-    void *temp_a3_10;
-    void *temp_a3_11;
-    void *temp_a3_2;
-    void *temp_a3_3;
-    void *temp_a3_4;
-    void *temp_a3_5;
-    void *temp_a3_6;
-    void *temp_a3_7;
-    void *temp_a3_8;
-    void *temp_a3_9;
-    void *temp_a4;
-    void *temp_a4_2;
-    void *temp_a4_3;
-    void *temp_a4_4;
-    void *temp_a4_5;
-    void *temp_a4_6;
-    void *temp_a4_7;
-    void *temp_a4_8;
-    void *temp_a4_9;
-    void *temp_a5;
-    void *temp_a5_2;
-    void *temp_a6;
-    void *temp_t1_2;
-    void *temp_t1_3;
-    void *temp_t2;
-    void *temp_t2_2;
-    void *temp_v1;
-    void *temp_v1_2;
-    void *var_a7;
+    u8 *base = arg1;
+    u8 *bin;
+    u8 *end;
+    u8 *a4;
+    u8 *chunk;
+    u8 *next;
+    u8 *nn;
+    u8 *t2;
+    u8 *t1;
+    s32 size;
+    s32 nsize;
+    s32 i;
+    u32 flags = *(u32 *)base;
 
-    temp_a0 = M2C_FIELD(arg1, u32 *, 0);
-    if (temp_a0 != 0) {
-        temp_a4 = arg1 + 0x38;
-        var_t0 = arg1 + 4;
-        M2C_FIELD(arg1, u32 *, 0) = (u32) (temp_a0 & ~2);
+    if (flags != 0) {
+        a4 = base + 0x38;
+        bin = base + 4;
+        *(u32 *)base = flags & ~2;
+        end = base + (((*(u32 *)base >> 3) - 2) * 4) + 4;
         do {
-            var_a7 = *var_t0;
-            if (var_a7 != NULL) {
-                *var_t0 = NULL;
+            chunk = *(u8 **)bin;
+            if (chunk != NULL) {
+                *(u8 **)bin = NULL;
                 do {
-                    temp_a0_2 = M2C_FIELD(var_a7, s32 *, 4);
-                    temp_a6 = M2C_FIELD(var_a7, void **, 8);
-                    var_a5 = temp_a0_2 & ~1;
-                    temp_a0_3 = var_a7 + var_a5;
-                    temp_t3 = M2C_FIELD(temp_a0_3, s32 *, 4) & ~3;
-                    if (!(temp_a0_2 & 1)) {
-                        temp_t1 = M2C_FIELD(var_a7, s32 *, 0);
-                        var_a5 += temp_t1;
-                        var_a7 += (s64) ((0 - ((u64) ((u64) ((s64) temp_t1 ) << 0x20) >> 0x20)) << 0x20) >> 0x20;
-                        temp_t2 = M2C_FIELD(var_a7, void **, 8);
-                        temp_t1_2 = M2C_FIELD(var_a7, void **, 0xC);
-                        M2C_FIELD(temp_t2, void **, 0xC) = temp_t1_2;
-                        M2C_FIELD(temp_t1_2, void **, 8) = temp_t2;
+                    u8 *following = *(u8 **)(chunk + 8);
+                    s32 hdr = *(s32 *)(chunk + 4);
+                    size = hdr & ~1;
+                    next = chunk + size;
+                    nsize = *(s32 *)(next + 4) & ~3;
+                    if (!(hdr & 1)) {
+                        s32 prev = *(s32 *)chunk;
+                        size += prev;
+                        chunk += (s32)(0 - (u32)prev);
+                        t2 = *(u8 **)(chunk + 8);
+                        t1 = *(u8 **)(chunk + 0xC);
+                        *(u8 **)(t2 + 0xC) = t1;
+                        *(u8 **)(t1 + 8) = t2;
                     }
-                    if (temp_a0_3 != M2C_FIELD(arg1, void **, 0x30)) {
-                        M2C_FIELD(temp_a0_3, s32 *, 4) = temp_t3;
-                        if (!(M2C_FIELD((temp_a0_3 + temp_t3), s32 *, 4) & 1)) {
-                            temp_t1_3 = M2C_FIELD(temp_a0_3, void **, 8);
-                            var_a5 += temp_t3;
-                            temp_a0_4 = M2C_FIELD(temp_a0_3, void **, 0xC);
-                            M2C_FIELD(temp_t1_3, void **, 0xC) = temp_a0_4;
-                            M2C_FIELD(temp_a0_4, void **, 8) = temp_t1_3;
+                    if (next != *(u8 **)(base + 0x30)) {
+                        *(s32 *)(next + 4) = nsize;
+                        if (!(*(s32 *)(next + nsize + 4) & 1)) {
+                            t1 = *(u8 **)(next + 8);
+                            size += nsize;
+                            nn = *(u8 **)(next + 0xC);
+                            *(u8 **)(t1 + 0xC) = nn;
+                            *(u8 **)(nn + 8) = t1;
                         }
-                        temp_t2_2 = M2C_FIELD(temp_a4, void **, 8);
-                        M2C_FIELD(temp_a4, void **, 8) = var_a7;
-                        M2C_FIELD(temp_t2_2, void **, 0xC) = var_a7;
-                        M2C_FIELD(var_a7, s32 *, 4) = (s32) (var_a5 | 1);
-                        M2C_FIELD(var_a7, void **, 0xC) = temp_a4;
-                        M2C_FIELD(var_a7, void **, 8) = temp_t2_2;
-                        *((M2C_UNK *)(var_a7 + var_a5)) = var_a5;
+                        t2 = *(u8 **)(a4 + 8);
+                        *(u8 **)(a4 + 8) = chunk;
+                        *(u8 **)(t2 + 0xC) = chunk;
+                        *(s32 *)(chunk + 4) = size | 1;
+                        *(u8 **)(chunk + 0xC) = a4;
+                        *(u8 **)(chunk + 8) = t2;
+                        *(s32 *)(chunk + size) = size;
                     } else {
-                        M2C_FIELD(var_a7, s32 *, 4) = (s32) ((var_a5 + temp_t3) | 1);
-                        M2C_FIELD(arg1, void **, 0x30) = var_a7;
+                        *(s32 *)(chunk + 4) = (size + nsize) | 1;
+                        *(u8 **)(base + 0x30) = chunk;
                     }
-                    var_a7 = temp_a6;
-                } while (temp_a6 != NULL);
+                    chunk = following;
+                } while (chunk != NULL);
             }
-            var_t0 += 4;
-        } while (var_t0 != (arg1 + ((((u32) M2C_FIELD(arg1, u32 *, 0) >> 3) - 2) * 4) + 4));
+            bin += 4;
+        } while (bin - 4 != end);
     } else {
-        var_a0 = 1;
-        var_v1 = 2;
-        do {
-            temp_a5 = arg1 + (var_v1 * 4);
-            temp_a4_2 = arg1 + ((var_a0 + 1) * 8);
-            temp_a2 = temp_a5 + 0x30;
-            temp_a3 = temp_a4_2 + 0x30;
-            M2C_FIELD(temp_a5, void **, 0x3C) = temp_a2;
-            M2C_FIELD(temp_a5, void **, 0x38) = temp_a2;
-            M2C_FIELD(temp_a4_2, void **, 0x3C) = temp_a3;
-            M2C_FIELD(temp_a4_2, void **, 0x38) = temp_a3;
-            temp_a4_3 = arg1 + ((var_a0 + 2) * 8);
-            temp_a3_2 = temp_a4_3 + 0x30;
-            M2C_FIELD(temp_a4_3, void **, 0x3C) = temp_a3_2;
-            M2C_FIELD(temp_a4_3, void **, 0x38) = temp_a3_2;
-            temp_a4_4 = arg1 + ((var_a0 + 3) * 8);
-            temp_a3_3 = temp_a4_4 + 0x30;
-            M2C_FIELD(temp_a4_4, void **, 0x3C) = temp_a3_3;
-            M2C_FIELD(temp_a4_4, void **, 0x38) = temp_a3_3;
-            temp_a4_5 = arg1 + ((var_a0 + 4) * 8);
-            temp_a3_4 = temp_a4_5 + 0x30;
-            M2C_FIELD(temp_a4_5, void **, 0x3C) = temp_a3_4;
-            M2C_FIELD(temp_a4_5, void **, 0x38) = temp_a3_4;
-            temp_a4_6 = arg1 + ((var_a0 + 5) * 8);
-            temp_a3_5 = temp_a4_6 + 0x30;
-            M2C_FIELD(temp_a4_6, void **, 0x3C) = temp_a3_5;
-            M2C_FIELD(temp_a4_6, void **, 0x38) = temp_a3_5;
-            temp_a4_7 = arg1 + ((var_a0 + 6) * 8);
-            temp_a3_6 = temp_a4_7 + 0x30;
-            M2C_FIELD(temp_a4_7, void **, 0x3C) = temp_a3_6;
-            temp_a2_2 = (var_a0 + 7) * 8;
-            M2C_FIELD(temp_a4_7, void **, 0x38) = temp_a3_6;
-            var_a0 += 8;
-            temp_a3_7 = arg1 + temp_a2_2;
-            temp_a2_3 = temp_a3_7 + 0x30;
-            M2C_FIELD(temp_a3_7, void **, 0x3C) = temp_a2_3;
-            M2C_FIELD(temp_a3_7, void **, 0x38) = temp_a2_3;
-            var_v1 += 0x10;
-        } while (var_a0 < 0x58);
-        temp_a4_8 = arg1 + (var_a0 * 8);
-        temp_a3_8 = arg1 + ((var_a0 + 1) * 8);
-        temp_v1 = temp_a4_8 + 0x30;
-        temp_a2_4 = temp_a3_8 + 0x30;
-        M2C_FIELD(temp_a4_8, void **, 0x3C) = temp_v1;
-        M2C_FIELD(temp_a4_8, void **, 0x38) = temp_v1;
-        M2C_FIELD(temp_a3_8, void **, 0x3C) = temp_a2_4;
-        M2C_FIELD(temp_a3_8, void **, 0x38) = temp_a2_4;
-        temp_a3_9 = arg1 + ((var_a0 + 2) * 8);
-        temp_a2_5 = temp_a3_9 + 0x30;
-        M2C_FIELD(temp_a3_9, void **, 0x3C) = temp_a2_5;
-        M2C_FIELD(temp_a3_9, void **, 0x38) = temp_a2_5;
-        temp_a3_10 = arg1 + ((var_a0 + 3) * 8);
-        temp_a2_6 = temp_a3_10 + 0x30;
-        M2C_FIELD(temp_a3_10, void **, 0x3C) = temp_a2_6;
-        temp_a5_2 = arg1 + ((var_a0 + 4) * 8);
-        M2C_FIELD(temp_a3_10, void **, 0x38) = temp_a2_6;
-        temp_a4_9 = temp_a5_2 + 0x30;
-        M2C_FIELD(temp_a5_2, void **, 0x3C) = temp_a4_9;
-        temp_a2_7 = arg1 + ((var_a0 + 5) * 8);
-        M2C_FIELD(temp_a5_2, void **, 0x38) = temp_a4_9;
-        temp_a0_5 = temp_a2_7 + 0x30;
-        temp_a3_11 = arg1 + ((var_a0 + 6) * 8);
-        M2C_FIELD(temp_a2_7, void **, 0x3C) = temp_a0_5;
-        temp_v1_2 = temp_a3_11 + 0x30;
-        M2C_FIELD(temp_a2_7, void **, 0x38) = temp_a0_5;
-        M2C_FIELD(temp_a3_11, void **, 0x3C) = temp_v1_2;
-        M2C_FIELD(temp_a3_11, void **, 0x38) = temp_v1_2;
-        M2C_FIELD(arg1, s32 *, 0x34C) = 0;
-        M2C_FIELD(arg1, s32 *, 0x358) = 0;
-        M2C_FIELD(arg1, s32 *, 0x350) = 0x40000;
-        M2C_FIELD(arg1, s32 *, 0x348) = 0x40000;
-        M2C_FIELD(arg1, s32 *, 0x364) = (s32) (M2C_FIELD(arg1, s32 *, 0x364) | 1);
-        M2C_FIELD(arg1, u32 *, 0) = (u32) ((M2C_FIELD(arg1, u32 *, 0) & 3) | 0x50);
-        M2C_FIELD(arg1, void **, 0x30) = (void *) (arg1 + 0x38);
-        M2C_FIELD(arg1, s32 *, 0x360) = 0x1000;
+        for (i = 0; i < 0x58 + 7; i++) {
+            u8 *p = base + (i + 1) * 8;
+            *(u8 **)(p + 0x3C) = p + 0x30;
+            *(u8 **)(p + 0x38) = p + 0x30;
+        }
+        *(s32 *)(base + 0x34C) = 0;
+        *(s32 *)(base + 0x358) = 0;
+        *(s32 *)(base + 0x350) = 0x40000;
+        *(s32 *)(base + 0x348) = 0x40000;
+        *(s32 *)(base + 0x364) |= 1;
+        *(u32 *)base = (*(u32 *)base & 3) | 0x50;
+        *(u8 **)(base + 0x30) = base + 0x38;
+        *(s32 *)(base + 0x360) = 0x1000;
     }
 }

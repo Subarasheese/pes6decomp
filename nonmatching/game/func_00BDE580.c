@@ -7,7 +7,7 @@ extern void func_001A58E0(void *, signed char);
 extern u8 func_00BF6270(void);
 M2C_UNK func_00209A00(void **, s32, M2C_UNK);       /* extern */
 void **func_00B2A420(u8);                           /* extern */
-M2C_UNK func_00B347F0(void **, void **, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+M2C_UNK func_00B347F0(void **, void **, s32, s32, f32, f32);
 s32 func_00BB1310(M2C_UNK);                         /* extern */
 s32 func_00BBB7F0(M2C_UNK);                         /* extern */
 
@@ -40,9 +40,9 @@ void func_00BDE580(void) {
     M2C_FIELD(*temp_s1, f32 *, 0xE8) = (f32) M2C_FIELD(M2C_FIELD(temp_s0, void **, 0), f32 *, 0xE8);
     M2C_FIELD(M2C_FIELD(M2C_FIELD(temp_s0, void **, 0), void **, 4), u8 *, 0x2D) = (u8) M2C_FIELD(M2C_FIELD(*temp_s1, void ***, 4), u8 *, 0x2D);
     if (M2C_FIELD(M2C_FIELD(temp_s0, void **, 4), u8 *, 0x4C) != 0x49) {
-        func_00B347F0(temp_s0, temp_s1, 0x32, 0, 0x3FAF5C29, 0x40B09375);
+        func_00B347F0(temp_s0, temp_s1, 0x32, 0, 1.37f, 5.518f);
     } else {
-        func_00B347F0(temp_s0, temp_s1, 0x1E, 0, 0x3FA70A3D, 0x40A61CAC);
+        func_00B347F0(temp_s0, temp_s1, 0x1E, 0, 1.305f, 5.191f);
     }
     M2C_FIELD(*temp_s1, s8 *, 0x16) = 0x4E;
     M2C_FIELD(*temp_s1, s16 *, 0x18) = 0;

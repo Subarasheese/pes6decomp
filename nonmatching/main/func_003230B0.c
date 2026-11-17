@@ -3,10 +3,10 @@
 #include "pes6/m2c.h"
 
 extern s32 func_00235B60(void);
-extern u8 func_00238590(s32);
-u8 func_00233260(u8, u8, u8);                       /* extern */
+extern s32 func_00238590(s32);
+s32 func_00233260(s32, s32, s32);                       /* extern */
 s32 func_00236680(s32);                             /* extern */
-extern s32 D_003E77B0;
+extern char *D_003E77B0;
 
 s32 func_003230B0(void *arg0) {
     s32 temp_s5;
@@ -44,8 +44,8 @@ s32 func_003230B0(void *arg0) {
                 M2C_FIELD(temp_s0, s8 *, 3) = 0;
             } else {
                 temp_s7 = var_s3 % 2;
-                M2C_FIELD(temp_s0, u8 *, 1) = func_00233260((temp_v0 - 1) & 0xFF, M2C_FIELD(arg0, u8 *, 0x2C), M2C_FIELD((D_003E77B0 + temp_s7), u8 *, 0x2C));
-                M2C_FIELD(var_s1, u8 *, 0x6C) = func_00233260(M2C_FIELD(arg0, u8 *, 0xD), M2C_FIELD(arg0, u8 *, 0x2C), M2C_FIELD((D_003E77B0 + temp_s7), u8 *, 0x2C));
+                M2C_FIELD(temp_s0, u8 *, 1) = func_00233260((temp_v0 - 1) & 0xFF, M2C_FIELD(arg0, u8 *, 0x2C), M2C_FIELD(D_003E77B0 + temp_s7, u8 *, 0x2C));
+                M2C_FIELD(var_s1, u8 *, 0x6C) = func_00233260(M2C_FIELD(arg0, u8 *, 0xD), M2C_FIELD(arg0, u8 *, 0x2C), M2C_FIELD(D_003E77B0 + temp_s7, u8 *, 0x2C));
                 if (M2C_FIELD(var_s1, u8 *, 0x6C) == M2C_FIELD(temp_s0, u8 *, 1)) {
                     if (M2C_FIELD(temp_s0, u8 *, 2) == 0x80) {
                         M2C_FIELD(temp_s0, u8 *, 2) = 0U;
@@ -78,7 +78,7 @@ s32 func_003230B0(void *arg0) {
                 M2C_FIELD(temp_s0, s8 *, 3) = 0;
                 if (var_s2 < temp_s6) {
                     do {
-                        temp_v1_4 = M2C_FIELD((temp_s7 + D_003E77B0), u8 *, 0x2C);
+                        temp_v1_4 = M2C_FIELD(D_003E77B0 + temp_s7, u8 *, 0x2C);
                         if ((temp_v1_4 != var_s2) && (temp_v1_4 != 0xFF)) {
                             temp_s5_2 = M2C_FIELD(var_s1, u8 *, 0x6C);
                             if (temp_s5_2 == (func_00233260((M2C_FIELD(arg0, u8 *, 0xD) - 1) & 0xFF, M2C_FIELD(arg0, u8 *, 0x2C), var_s2 & 0xFF) & 0xFF)) {

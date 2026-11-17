@@ -1,0 +1,295 @@
+/* compiler: ee-gcc-2.9 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s64 Pes6BitSet_Initialize(s64, s64, s64);
+s64 Pes6BitSet_Lookup(s64, s64);
+s64 Pes6BitSet_Write(s64, s64, s64);
+s64 Pes6Job_CopyPayloadOut(s64, s64, s64);
+s64 Pes6Job_Create(s64, s64, s64);
+s64 Pes6Job_GetArg(s64, s64);
+s64 Pes6Job_SendMessage(s64, s64, s64, s64, s64, s64, s64);
+s64 Pes6Job_SetArg(s64, s64, s64);
+s64 Pes6Job_SetDone(s64);
+s64 Pes6Job_SetField4(s64, s64);
+s64 Pes6MatchClock_GetRemaining(void);
+s64 Pes6MatchContext_GetHalf(void);
+s64 Pes6MatchPlayer_GetSquadIndex(s64);
+s64 func_0030F380(void);
+s64 func_003102A0(s64, s64, s64);
+s64 func_00310340(s64, s64);
+s64 func_003139C0(s64, s64);
+s64 func_00326040(s64, s64);
+s64 func_00332FA0(s64, s64, s64, s64, s64, s64, s64);
+s64 func_00333030(s64, s64, s64, s64, s64, s64, s64);
+s64 func_003333C0(void);
+s64 func_003335A0(void);
+s64 func_00333600(s64);
+s64 func_003336E0(s64, s64);
+s64 func_00333740(s64, s64);
+s64 func_00335CB0(s64, s64, s64, s64, s64, f32, f32);
+s64 func_00336160(s64, s64, f32, f32);
+s64 func_003362F0(s64, s64, s64, s64);
+s64 func_003384E0(s64, s64);
+s64 func_00338530(s64);
+s64 func_00338720(s64, s64);
+s64 func_00338940(s64);
+s64 func_00341910(s64, s64, s64, s64, s64, s64, s64, s64);
+
+s64 func_00336490(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7, f32 fa12, f32 fa13) {
+    s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0, fp = 0;
+    u64 qh_v0 = 0;
+    u64 qh_a0 = 0;
+    s64 gp = 0x3ef370;
+    union { f32 f; s32 i; } f12 = { fa12 };
+    union { f32 f; s32 i; } f13 = { fa13 };
+    s64 frame[42];
+    s64 sp = (s32) (u32) frame;
+
+    s0 = a0; v0 = func_0030F380();
+    s7 = v0;
+    v0 = (s32) 0x80000000U;
+    a0 = v0 | 0x40; v0 = func_00338530(a0);
+    if (v0 != 0) { a0 = s0; goto L_00336974; }
+    a0 = 44; v0 = func_00338530(a0);
+    if (v0 != 0) goto L_00336970;
+    v0 = func_003335A0();
+    if (v0 != 0) goto L_00336970;
+    if (s7 != 0) { v0 = (s32) 0x80000000U; goto L_00336520; }
+    v0 = func_00332FA0(a0, a1, a2, a3, a4, a5, a6);
+    if (v0 == 0) goto L_0033651C;
+    v0 = 1; goto L_00336980;
+L_0033651C:;
+    v0 = (s32) 0x80000000U;
+L_00336520:;
+    a1 = (s32) 0x330000U;
+    a1 = (s32) ((u32) a1 + 0x6e10U);
+    a0 = v0 | 0x3; v0 = func_003384E0(a0, a1);
+    if (v0 == 0) goto L_00336540;
+    v0 = 0; goto L_00336980;
+L_00336540:;
+    v0 = (s32) 0x5f0000U;
+    s3 = (*(volatile u8 *) (u32) (gp + -21568));
+    v0 = (s32) ((u32) v0 + 0x1c80U);
+    { u32 a_ = (u32) (sp + 208) & ~15U; *(volatile u64 *) a_ = (u64) v0; *(volatile u64 *) (a_ + 8) = qh_v0; }
+    v0 = (*(volatile s32 *) (u32) (s0 + 60));
+    a0 = s3;
+    { u32 a_ = (u32) (sp + 192) & ~15U; *(volatile u64 *) a_ = (u64) v0; *(volatile u64 *) (a_ + 8) = qh_v0; }
+    v0 = (*(volatile s32 *) (u32) (s0 + 76));
+    (*(volatile u32 *) (u32) (sp + 240)) = (u32) v0; v0 = Pes6MatchPlayer_GetSquadIndex(a0);
+    s4 = v0 & 0xff;
+    a0 = s0;
+    a1 = 3; v0 = Pes6Job_GetArg(a0, a1);
+    s1 = v0;
+    fp = s4 & 0xff;
+    v0 = (s32) ((u32) fp << 1);
+    a1 = s4;
+    v0 = (s32) ((u32) v0 + (u32) sp);
+    v0 = (s32) ((u32) v0 + 0x148U);
+    { u32 a_ = (u32) (sp + 176) & ~15U; *(volatile u64 *) a_ = (u64) v0; *(volatile u64 *) (a_ + 8) = qh_v0; }
+    { u64 x_[2], y_[2], z_[2]; s32 n_; x_[0] = (u64) v0; x_[1] = qh_v0; y_[0] = (u64) 0; y_[1] = (u64) 0; z_[0] = z_[1] = 0; for (n_ = 0; n_ < 16; n_++) { u32 b_ = (u32) ((x_[n_ >> 3] >> (8 * (n_ & 7))) & 0xFF) + (u32) ((y_[n_ >> 3] >> (8 * (n_ & 7))) & 0xFF); if (b_ > 0xFF) b_ = 0xFF; z_[n_ >> 3] |= (u64) b_ << (8 * (n_ & 7)); } a0 = (s64) z_[0]; qh_a0 = z_[1]; } v0 = func_00310340(a0, a1);
+    s2 = fp;
+    v1 = s2 ^ 0x1;
+    v0 = (s32) ((u32) v1 << 1);
+    a1 = v1 & 0xff;
+    v0 = (s32) ((u32) v0 + (u32) sp);
+    a0 = (s32) ((u32) v0 + 0x148U); v0 = func_00310340(a0, a1);
+    v1 = (*(volatile s16 *) (u32) (sp + 328));
+    s5 = (s32) ((u32) sp + 0x120U);
+    v0 = (*(volatile s16 *) (u32) (sp + 330));
+    a0 = s5;
+    a1 = 189;
+    a2 = (s32) ((u32) sp + 0x100U);
+    (*(volatile u32 *) (u32) (sp + 320)) = (u32) v1;
+    (*(volatile u32 *) (u32) (sp + 324)) = (u32) v0; v0 = Pes6BitSet_Initialize(a0, a1, a2);
+    { u32 a_ = (u32) (sp + 192) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    a1 = (*(volatile u8 *) (u32) (v0 + 52));
+    a0 = s5; v0 = func_003139C0(a0, a1);
+    if (s1 != 0) goto L_0033660C;
+    a0 = 24000; v0 = func_00333030(a0, a1, a2, a3, a4, a5, a6);
+    if (v0 != 0) goto L_0033660C;
+    a2 = 0; goto L_00336644;
+L_0033660C:;
+    if (s7 != 0) goto L_00336624;
+    a0 = 3; v0 = func_00333600(a0);
+    if (v0 == 0) { a2 = 0; goto L_00336644; }
+L_00336624:;
+    v0 = func_003333C0();
+    v1 = 12;
+    if (v0 == v1) goto L_00336640;
+    a2 = 1; goto L_00336644;
+L_00336640:;
+    a2 = 0;
+L_00336644:;
+    a0 = s5;
+    a1 = 0; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s5;
+    a1 = s0;
+    a2 = (s32) ((u32) sp + 0x140U);
+    a3 = s4;
+    a4 = s3; v0 = func_003362F0(a0, a1, a2, a3);
+    a0 = s0;
+    a1 = 3; v0 = Pes6Job_GetArg(a0, a1);
+    if (v0 == 0) { a0 = s0; goto L_0033675C; }
+    v0 = (*(volatile s32 *) (u32) (s0 + 76));
+    a0 = (s32) ((u32) sp + 0x14eU);
+    s6 = (*(volatile s32 *) (u32) (s0 + 72));
+    a1 = s4;
+    a2 = 1;
+    (*(volatile u32 *) (u32) (sp + 224)) = (u32) v0;
+    v0 = (*(volatile s32 *) (u32) (s0 + 60));
+    { u32 a_ = (u32) (sp + 160) & ~15U; *(volatile u64 *) a_ = (u64) v0; *(volatile u64 *) (a_ + 8) = qh_v0; } v0 = func_003102A0(a0, a1, a2);
+    a0 = s6;
+    a1 = s2; v0 = func_00333740(a0, a1);
+    s6 = v0; v0 = Pes6MatchContext_GetHalf();
+    v0 = v0 ^ 0x1;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 18; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = (*(volatile s32 *) (u32) (sp + 224));
+    a1 = s2; v0 = func_00326040(a0, a1);
+    v1 = (*(volatile s16 *) (u32) (sp + 334));
+    a0 = s5;
+    a1 = 19;
+    v1 = v1 ^ 0x1;
+    v1 = (u64) v1 < (u64) (s64) 1;
+    a2 = v1 & v0; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = Pes6MatchClock_GetRemaining();
+    v1 = (u64) 0 < (u64) v0;
+    a0 = s5;
+    v0 = s6 ^ 0x10;
+    v1 = v1 ^ 0x1;
+    v0 = (u64) v0 < (u64) (s64) 1;
+    a1 = 22;
+    a2 = v0 & v1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    { u32 a_ = (u32) (sp + 160) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    a0 = s5;
+    a1 = 25;
+    v1 = (s32) ((u32) fp + (u32) v0);
+    v1 = (*(volatile u8 *) (u32) (v1 + 56));
+    v0 = s6 < 14;
+    v0 = v0 ^ 0x1;
+    v1 = v1 ^ 0x3;
+    v1 = (u64) v1 < (u64) (s64) 1;
+    a2 = v0 & v1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s6 ^ 0x11;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 28; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s0;
+L_0033675C:;
+    a1 = 3; v0 = Pes6Job_GetArg(a0, a1);
+    if (v0 == 0) { a0 = s5; goto L_003367D8; }
+    s6 = (*(volatile s32 *) (u32) (s0 + 72));
+    a1 = s2;
+    a0 = s6; v0 = func_003336E0(a0, a1);
+    v0 = v0 ^ 0xd;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 34; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (*(volatile u8 *) (u32) (s6 + 53));
+    a0 = s5;
+    a1 = 35;
+    a2 = v0 ^ s2;
+    a2 = (u64) a2 < (u64) (s64) 1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s5;
+    a1 = 34; v0 = Pes6BitSet_Lookup(a0, a1);
+    s6 = v0;
+    a0 = s5;
+    a1 = 35; v0 = Pes6BitSet_Lookup(a0, a1);
+    a2 = s6 | v0;
+    a0 = s5;
+    a1 = 31; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s5;
+L_003367D8:;
+    a1 = s0;
+    a2 = (s32) ((u32) sp + 0x140U);
+    a3 = s4;
+    a4 = s3; v0 = func_00336160(a0, a1, f12.f, f13.f);
+    a3 = s4;
+    a4 = s3;
+    a0 = s5;
+    a1 = s0;
+    a2 = (s32) ((u32) sp + 0x140U); v0 = func_00335CB0(a0, a1, a2, a3, a4, f12.f, f13.f);
+    { u32 a_ = (u32) (sp + 176) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    v1 = (*(volatile s16 *) (u32) v0);
+    v0 = v1 < 5;
+    { s32 c_ = v0 != 0; a2 = 0; if (c_) goto L_00336828; }
+    at = v1 < 16;
+    if (at == 0) { a0 = s5; goto L_0033682C; }
+    a2 = 1;
+L_00336828:;
+    a0 = s5;
+L_0033682C:;
+    a1 = 183; v0 = Pes6BitSet_Write(a0, a1, a2);
+    { u32 a_ = (u32) (sp + 192) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    v0 = (*(volatile u8 *) (u32) (v0 + 58));
+    v1 = v0 ^ 0x6;
+    v0 = v0 ^ 0x7;
+    v1 = (u64) v1 < (u64) (s64) 1;
+    v0 = (u64) v0 < (u64) (s64) 1;
+    v0 = v1 | v0;
+    { s32 c_ = v0 == 0; a2 = 0; if (c_) goto L_00336870; }
+    { u32 a_ = (u32) (sp + 208) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
+    v1 = (*(volatile u8 *) (u32) (v0 + 5));
+    v0 = 16;
+    if (v1 == v0) { a0 = s5; goto L_00336874; }
+    a2 = 1;
+L_00336870:;
+    a0 = s5;
+L_00336874:;
+    a1 = 188; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a1 = s5;
+    a0 = 48;
+    a2 = 1; v0 = Pes6Job_SendMessage(a0, a1, a2, a3, a4, a5, a6);
+    if (v0 != 0) { v0 = (s32) 0x80000000U; goto L_00336908; }
+    a0 = 1;
+    a1 = 5;
+    a2 = 10; v0 = func_00341910(a0, a1, a2, a3, a4, a5, a6, a7);
+    if (v0 == 0) { v0 = 1; goto L_00336914; }
+    if (s1 != 0) goto L_00336910;
+    a0 = 6; v0 = func_00333600(a0);
+    s3 = v0;
+    a0 = 5; v0 = func_00333600(a0);
+    v0 = s3 | v0;
+    if (v0 != 0) goto L_00336910;
+    if (s7 == 0) goto L_00336910;
+    a1 = (s32) 0x350000U;
+    a2 = (s32) 0x3e0000U;
+    a0 = s0;
+    a1 = (s32) ((u32) a1 + 0xffff9d90U);
+    a2 = (s32) ((u32) a2 + 0x5f18U); v0 = Pes6Job_SetField4(a0, a1);
+    a0 = s0;
+    a1 = 5; v0 = func_00338720(a0, a1);
+    v0 = 1; goto L_00336980;
+L_00336908:;
+    a0 = v0 | 0x18; v0 = func_00338940(a0);
+L_00336910:;
+    v0 = 1;
+L_00336914:;
+    if (s1 != v0) goto L_00336970;
+    a0 = (*(volatile s32 *) (u32) (sp + 240));
+    a1 = s2; v0 = func_00326040(a0, a1);
+    if (v0 == 0) goto L_00336970;
+    a2 = (*(volatile s32 *) (u32) (s0 + 8));
+    v0 = (s32) 0x80000000U;
+    a1 = (s32) 0x330000U;
+    a3 = (s32) 0x3e0000U;
+    a1 = (s32) ((u32) a1 + 0x5400U);
+    a0 = v0 | 0x4c;
+    a3 = (s32) ((u32) a3 + 0x5f18U); v0 = Pes6Job_Create(a0, a1, a2);
+    s1 = v0;
+    a2 = s2;
+    a0 = s1;
+    a1 = 0; v0 = Pes6Job_SetArg(a0, a1, a2);
+    a0 = s1;
+    a1 = s0; v0 = Pes6Job_CopyPayloadOut(a0, a1, a2);
+L_00336970:;
+    a0 = s0;
+L_00336974:;
+    v0 = Pes6Job_SetDone(a0);
+    v0 = 1;
+L_00336980:;
+    return v0;
+}

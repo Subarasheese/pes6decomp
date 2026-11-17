@@ -37,7 +37,7 @@ loop_1:
             }
         }
         var_a2 += 1;
-        var_v0 += 8;
+        var_v0 += 2;
         if ((s32) var_a2 >= 0x17) {
             goto block_10;
         }

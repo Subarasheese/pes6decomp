@@ -21,7 +21,7 @@ s32 func_00991AB0(char *arg0) {
     s32 var_v1;
     u8 temp_t3;
     u8 temp_v0;
-    u8 var_a5_2;
+    s32 var_a5_2;
     char *temp_a0_2;
     char *var_a3;
     char *var_s0;
@@ -92,15 +92,15 @@ block_23:
                 var_a5_2 = (*(u8 *)D_00591BE4);
             }
             temp_a0_2 = Pes6BallOwnerRecord + 0x1C;
-            temp_v1 = *(temp_a0_2 + (var_a4 << 6));
-            var_v0 = temp_v1 - *(temp_a0_2 + (var_a3_2 << 6));
+            temp_v1 = *(s32 *)(temp_a0_2 + (var_a4 << 6));
+            var_v0 = temp_v1 - *(s32 *)(temp_a0_2 + (var_a3_2 << 6));
             if (var_v0 <= 0) {
                 var_v0 = -var_v0;
             }
             if ((s32) var_a5_2 >= var_v0) {
                 if (var_a1 != 0) {
                     if (var_a2 != 0xFF) {
-                        var_v1 = temp_v1 - *(temp_a0_2 + (var_a2 << 6));
+                        var_v1 = temp_v1 - *(s32 *)(temp_a0_2 + (var_a2 << 6));
                         if (var_v1 <= 0) {
                             var_v1 = -var_v1;
                         }

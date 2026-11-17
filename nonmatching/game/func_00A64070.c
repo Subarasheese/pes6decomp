@@ -2,14 +2,14 @@
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern u32 func_00A9B980(void *);
-s32 func_00AA3540();                                /* extern */
+extern s32 func_00A9B980(void *);
+extern s32 func_00AA3540(void *);
 
 s32 func_00A64070(void *arg0) {
     u16 temp_v0_2;
     u8 temp_v0;
 
-    if (func_00AA3540() < 0x01000001) {
+    if (func_00AA3540(arg0) < 0x01000001) {
         if (func_00A9B980(arg0) < 0x01900001) {
             goto block_16;
         }

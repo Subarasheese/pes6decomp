@@ -1,4 +1,4 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: mwcc-3.0.1b210 */
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
@@ -14,9 +14,9 @@ M2C_UNK func_00326E40(s16 *, void *, u8);           /* extern */
 s32 func_00341910(M2C_UNK, M2C_UNK, M2C_UNK);       /* extern */
 
 s32 func_00317650(s32 arg0, void *arg1, void *arg2) {
-    s16 sp9A;
-    s16 sp9C;
     s16 sp9E;
+    s16 sp9C;
+    s16 sp9A;
     s32 temp_s0;
     s32 temp_s2;
     s32 temp_s6;

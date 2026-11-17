@@ -9,10 +9,10 @@ extern s32 func_009B30B0(s32, s32);
 extern s32 func_00AB3B70(void *, s32, s32);
 M2C_UNK func_00207390(void *, M2C_UNK);             /* extern */
 M2C_UNK func_00209A00(void *, M2C_UNK, M2C_UNK);    /* extern */
-s32 func_00A19D40(void *, M2C_UNK, M2C_UNK, s16, s8, s32, f32); /* extern */
-s32 func_00A22C50(void *, M2C_UNK, s32, M2C_UNK, s32, s16, s32, M2C_UNK, f32); /* extern */
+s32 func_00A19D40(void *, M2C_UNK, M2C_UNK, s32, s8, s32, f32); /* extern */
+s32 func_00A22C50(void *, M2C_UNK, s32, M2C_UNK, s32, s32, s32, M2C_UNK, f32); /* extern */
 s32 func_00A9E080(void *, u16, u16, s32, M2C_UNK, M2C_UNK); /* extern */
-M2C_UNK func_00AADED0(void *, s16, M2C_UNK, s32);   /* extern */
+M2C_UNK func_00AADED0(void *, s32, M2C_UNK, s32);   /* extern */
 s32 func_00AB3590(void *, M2C_UNK);                 /* extern */
 extern void *Pes6Ball_Current;
 extern char Pes6MatchSquads[];
@@ -22,7 +22,7 @@ extern char Pes6MatchSquads[];
 s32 func_00A13BF0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     M2C_UNK var_s5;
     f32 temp_f0;
-    s16 var_s2;
+    s32 var_s2;
     s32 temp_s0;
     s32 temp_s6;
     s32 temp_s7;

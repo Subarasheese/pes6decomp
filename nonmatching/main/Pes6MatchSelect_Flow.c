@@ -1,0 +1,143 @@
+/* compiler: ee-gcc-2.9 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s32 Pes6File_AllChannelsIdle(s32);
+s32 Pes6HeapZone_Open(s32, s32, s32, s32);
+s32 Pes6MatchSelect_LoadPlayerModels(void);
+s32 Pes6MatchSelect_LoadSequence(s32, s32, s32, s32, s32, s32, s32, s32);
+s32 Pes6MatchSelect_Preload(s32, s32, s32, s32);
+s32 Pes6MatchSelect_UpdateLoader(s32, s32, s32, s32, s32, s32, s32);
+s32 Pes6Module_Load(s32);
+s32 func_001540E0(s32);
+s32 func_001A5E00(s32, s32, s32, s32, s32);
+s32 func_0026C310(s32, s32, s32, s32, s32, s32, s32);
+s32 func_002F75F0(void);
+s32 func_00342360(void);
+
+s32 Pes6MatchSelect_Flow(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7) {
+    s32 at = 0, v0 = 0, v1 = 0, s0 = 0;
+
+    s0 = a0; v0 = Pes6MatchSelect_UpdateLoader(a0, a1, a2, a3, a4, a5, a6);
+    if (v0 != 0) goto L_002F69E4;
+    v0 = 0; goto L_002F6C10;
+L_002F69E4:;
+    if (s0 == 0) goto L_002F6A34;
+    v0 = Pes6File_AllChannelsIdle(a0);
+    if (v0 != 0) goto L_002F6A10;
+    v1 = 3;
+    v0 = (s32) 0x5f0000U;
+    (*(volatile u32 *) (u32) (v0 + -27976)) = (u32) v1;
+    v0 = 0; goto L_002F6C10;
+L_002F6A10:;
+    v0 = (s32) 0x5f0000U;
+    v0 = (*(volatile s32 *) (u32) (v0 + -27976));
+    if (v0 == 0) goto L_002F6A34;
+    v1 = (s32) ((u32) v0 + 0xffffffffU);
+    v0 = (s32) 0x5f0000U;
+    (*(volatile u32 *) (u32) (v0 + -27976)) = (u32) v1;
+    v0 = 0; goto L_002F6C10;
+L_002F6A34:;
+    v0 = (s32) 0x5f0000U;
+    v0 = (*(volatile s32 *) (u32) (v0 + -27980));
+    at = (u64) v0 < (u64) (s64) 9;
+    if (at == 0) { v0 = 1; goto L_002F6C10; }
+    v1 = (s32) 0x3e0000U;
+    v0 = (s32) ((u32) v0 << 2);
+    v1 = (s32) ((u32) v1 + 0xffffc8e0U);
+    v0 = (s32) ((u32) v0 + (u32) v1);
+    v0 = (*(volatile s32 *) (u32) v0);
+    { u32 t_ = (u32) v0; ; if (t_ == 0x2f6a64U) goto L_002F6A64; if (t_ == 0x2f6a8cU) goto L_002F6A8C; if (t_ == 0x2f6ae8U) goto L_002F6AE8; if (t_ == 0x2f6b0cU) goto L_002F6B0C; if (t_ == 0x2f6b3cU) goto L_002F6B3C; if (t_ == 0x2f6b64U) goto L_002F6B64; if (t_ == 0x2f6b84U) goto L_002F6B84; if (t_ == 0x2f6ba4U) goto L_002F6BA4; if (t_ == 0x2f6bc4U) goto L_002F6BC4; }
+L_002F6A64:;
+    v0 = Pes6MatchSelect_Preload(a0, a1, a2, a3);
+    if (v0 == 0) goto L_002F6BF0;
+    v1 = (s32) 0x5f0000U;
+    v0 = (s32) 0x5f0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -27980));
+    v1 = (s32) ((u32) v1 + 0x1U);
+    (*(volatile u32 *) (u32) (v0 + -27980)) = (u32) v1; goto L_002F6BF0;
+L_002F6A8C:;
+    v0 = func_00342360();
+    v0 = (s32) 0x590000U;
+    v0 = (*(volatile s8 *) (u32) (v0 + -10332));
+    if (v0 == 0) goto L_002F6AB4;
+    v1 = 5;
+    v0 = (s32) 0x5f0000U;
+    (*(volatile u32 *) (u32) (v0 + -27980)) = (u32) v1; goto L_002F6BF0;
+L_002F6AB4:;
+    v1 = (s32) 0x5f0000U;
+    v0 = (s32) 0x5f0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -27980));
+    a0 = 12;
+    v1 = (s32) ((u32) v1 + 0x1U);
+    (*(volatile u32 *) (u32) (v0 + -27980)) = (u32) v1; v0 = func_001540E0(a0);
+    if (v0 != 0) goto L_002F6BF0;
+    a0 = 12; v0 = Pes6HeapZone_Open(a0, a1, a2, a3);
+    goto L_002F6BF0;
+L_002F6AE8:;
+    a0 = s0; v0 = Pes6MatchSelect_LoadSequence(a0, a1, a2, a3, a4, a5, a6, a7);
+    if (v0 == 0) goto L_002F6BF0;
+    v1 = (s32) 0x5f0000U;
+    v0 = (s32) 0x5f0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -27980));
+    v1 = (s32) ((u32) v1 + 0x1U);
+    (*(volatile u32 *) (u32) (v0 + -27980)) = (u32) v1;
+L_002F6B0C:;
+    v0 = Pes6File_AllChannelsIdle(a0);
+    if (v0 == 0) goto L_002F6BF0;
+    v0 = func_002F75F0();
+    v1 = (s32) 0x5f0000U;
+    v0 = (s32) 0x5f0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -27980));
+    v1 = (s32) ((u32) v1 + 0x1U);
+    (*(volatile u32 *) (u32) (v0 + -27980)) = (u32) v1; goto L_002F6BF0;
+L_002F6B3C:;
+    v0 = Pes6MatchSelect_LoadPlayerModels();
+    if (v0 == 0) goto L_002F6BF0;
+    v1 = (s32) 0x5f0000U;
+    v0 = (s32) 0x5f0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -27980));
+    v1 = (s32) ((u32) v1 + 0x1U);
+    (*(volatile u32 *) (u32) (v0 + -27980)) = (u32) v1; goto L_002F6BF0;
+L_002F6B64:;
+    v0 = func_0026C310(a0, a1, a2, a3, a4, a5, a6);
+    v1 = (s32) 0x5f0000U;
+    v0 = (s32) 0x5f0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -27980));
+    v1 = (s32) ((u32) v1 + 0x1U);
+    { s32 c_ = s0 != 0; (*(volatile u32 *) (u32) (v0 + -27980)) = (u32) v1; if (c_) goto L_002F6BF0; }
+L_002F6B84:;
+    a0 = 17; v0 = Pes6Module_Load(a0);
+    v1 = (s32) 0x5f0000U;
+    v0 = (s32) 0x5f0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -27980));
+    v1 = (s32) ((u32) v1 + 0x1U);
+    { s32 c_ = s0 != 0; (*(volatile u32 *) (u32) (v0 + -27980)) = (u32) v1; if (c_) goto L_002F6BF0; }
+L_002F6BA4:;
+    a0 = 2; v0 = func_001A5E00(a0, a1, a2, a3, a4);
+    v1 = (s32) 0x5f0000U;
+    v0 = (s32) 0x5f0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -27980));
+    v1 = (s32) ((u32) v1 + 0x1U);
+    (*(volatile u32 *) (u32) (v0 + -27980)) = (u32) v1; goto L_002F6BF0;
+L_002F6BC4:;
+    a0 = 3; v0 = func_001A5E00(a0, a1, a2, a3, a4);
+    v1 = (s32) 0x5f0000U;
+    v0 = (s32) 0x5f0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -27980));
+    v1 = (s32) ((u32) v1 + 0x1U);
+    (*(volatile u32 *) (u32) (v0 + -27980)) = (u32) v1; goto L_002F6BF0;
+    v0 = 1;
+    goto L_002F6C10;
+L_002F6BF0:;
+    if (s0 == 0) goto L_002F6C00;
+    v0 = 0; goto L_002F6C10;
+L_002F6C00:;
+    v0 = (s32) 0x5f0000U;
+    v0 = (*(volatile s32 *) (u32) (v0 + -27980));
+    v0 = v0 < 7;
+    v0 = v0 ^ 0x1;
+L_002F6C10:;
+    return v0;
+}

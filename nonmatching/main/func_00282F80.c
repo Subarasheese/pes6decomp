@@ -20,7 +20,7 @@ extern char D_00591F14[];
 extern char D_005926D8[];
 
 void func_00282F80(void) {
-    M2C_UNK *var_s2;
+    u8 *var_s2;
     s32 temp_a0_3;
     s32 temp_a2;
     s32 var_a0;

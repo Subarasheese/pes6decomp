@@ -5,7 +5,7 @@
 extern void Pes6Ball_Update(void);
 extern s32 func_00152130(s32, s8);
 extern int func_002DCA30(void);
-extern u8 func_00BF9E60(void);
+extern s32 func_00BF9E60(void);
 M2C_UNK func_00278440();                            /* extern */
 s32 func_008481D0();                                /* extern */
 s32 func_0084D0E0();                                /* extern */

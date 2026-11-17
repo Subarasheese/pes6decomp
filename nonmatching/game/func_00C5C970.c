@@ -5,7 +5,7 @@
 extern u8 func_00C132C0(void *);
 extern u8 func_00C132B0(void *);
 extern u32 func_00C137B0(u32);
-s32 func_002C18C0(s32, M2C_UNK);                    /* extern */
+s32 func_002C18C0(u32, s32, s32, s32);
 void *func_00C13280(void *);                        /* extern */
 u32 func_00C13390(s32);                             /* extern */
 u32 func_00C13400(void *);                          /* extern */
@@ -27,7 +27,7 @@ s32 func_00C5C970(u32 arg0, s32 arg1, s32 arg2, s32 (*arg3)(f32 *)) {
     temp_s1 = arg2 & 0xFF;
     temp_s0 = (temp_s1 >> 5) & 1;
     var_s3 = 0;
-    if ((arg0 == -1U) || (arg1 == -1) || (temp_v0 = func_002C18C0(temp_s0, 6), (temp_v0 == -1)) || (var_s2 = func_00C13390(temp_v0), (var_s2 == -1U)) || (arg0 >= var_s2) || ((func_00C132C0((void *) var_s2) & 0xFF) != 0xB) || ((temp_s0 & 0xFF) != (((s32) (func_00C132B0((void *) var_s2) & 0xFF) >> 5) & 1))) {
+    if ((arg0 == -1U) || (arg1 == -1) || (temp_v0 = func_002C18C0(arg0, arg1, temp_s0, 6), (temp_v0 == -1)) || (var_s2 = func_00C13390(temp_v0), (var_s2 == -1U)) || (arg0 >= var_s2) || ((func_00C132C0((void *) var_s2) & 0xFF) != 0xB) || ((temp_s0 & 0xFF) != (((s32) (func_00C132B0((void *) var_s2) & 0xFF) >> 5) & 1))) {
         var_s2 = -1U;
     }
     var_s0 = -1U;

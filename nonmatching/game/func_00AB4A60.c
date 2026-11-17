@@ -81,7 +81,7 @@ block_90:
                 if (temp_v0 < 0x1101) {
                     var_a2_2 = 0x400;
                 } else {
-                    var_a2_2 = (0x400 - (((temp_v0 - 0x1100) / 6) + ((u32) (temp_v0 - 0x1100) >> 0x1F))) & 0xFFFF;
+                    var_a2_2 = (0x400 - ((temp_v0 - 0x1100) / 6)) & 0xFFFF;
                 }
                 temp_v1_2 = M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x30);
                 if ((temp_v1_2 != 0xC5) && (temp_v1_2 != 0xC3) && (temp_v1_2 != 0x2D)) {
@@ -118,7 +118,7 @@ block_92:
         }
         temp_a0_2 = M2C_FIELD(arg0, s32 *, 0x1C);
         if (var_s2 < temp_a0_2) {
-            M2C_FIELD(arg0, s32 *, 0x1C) = (s32) (((temp_a0_2 * 0x5F) / 100) + ((u32) (temp_a0_2 * 0x5F) >> 0x1F));
+            M2C_FIELD(arg0, s32 *, 0x1C) = (s32) ((temp_a0_2 * 0x5F) / 100);
             return 0;
         }
 block_107:

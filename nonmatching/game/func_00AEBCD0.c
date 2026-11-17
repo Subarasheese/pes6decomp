@@ -37,11 +37,11 @@ s32 func_00AEBCD0(char *arg0) {
     temp_v1 = temp_s1 * 4;
     temp_a2 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (temp_a4 * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
     temp_a3 = temp_a2 * -0x60;
-    if (M2C_FIELD((temp_v1 + Pes6Ball_Current), f32 *, 0x7FC) < (f32) (((temp_a2 * -0x60) / 183) + (temp_a3 >> 0x1F))) {
+    if (M2C_FIELD((temp_v1 + Pes6Ball_Current), f32 *, 0x7FC) < (f32) (s32) (((temp_a2 * -0x60) / 183) + (temp_a3 >> 0x1F))) {
         return 0;
     }
     temp_a1 = Pes6Ball_Current + 0xB7C;
-    var_v0 = (s32) *(temp_a1 + ((temp_s1 + (*(u8 *)D_005926E0)) * 4));
+    var_v0 = (s32) *(f32 *)(temp_a1 + ((temp_s1 + (*(u8 *)D_005926E0)) * 4));
     var_a2 = 0;
     if (var_v0 > 0) {
 
@@ -51,7 +51,7 @@ s32 func_00AEBCD0(char *arg0) {
     if ((f32) var_v0 <= 8729.0f) {
         temp_a0 = temp_s0 & 0xFFFF;
         if ((temp_a0 >= 0x18) && (temp_a0 < 0x69)) {
-            var_v0_2 = (s32) *(temp_a1 + temp_v1);
+            var_v0_2 = (s32) *(f32 *)(temp_a1 + temp_v1);
             if (var_v0_2 <= 0) {
                 var_v0_2 = -var_v0_2;
             }

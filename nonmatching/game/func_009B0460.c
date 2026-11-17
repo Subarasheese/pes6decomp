@@ -1,0 +1,114 @@
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+
+s32 func_009B0460(s32 a0, s32 a1) {
+    s32 v0 = 0, v1 = 0;
+    volatile union { f32 f; s32 i; } f0 = { 0 };
+    volatile union { f32 f; s32 i; } f1 = { 0 };
+    volatile union { f32 f; s32 i; } f2 = { 0 };
+    volatile union { f32 f; s32 i; } f3 = { 0 };
+    volatile union { f32 f; s32 i; } f4 = { 0 };
+    volatile union { f32 f; s32 i; } f5 = { 0 };
+    volatile union { f32 f; s32 i; } f6 = { 0 };
+    volatile union { f32 f; s32 i; } f7 = { 0 };
+    s32 fcc = 0;
+    f32 acc = 0;
+    s64 frame[2];
+    s32 sp = (s32) (u32) frame;
+
+    v0 = (s32) 0x46520000U;
+    f5.f = (*(volatile f32 *) (u32) a1);
+    v0 = v0 | 0x6400;
+    f4.f = (*(volatile f32 *) (u32) (a1 + 24));
+    f3.i = (s32) v0;
+    f0.i = (s32) 0;
+    f1.f = f5.f - f3.f;
+    f2.f = f4.f - f3.f;
+    f1.f = f2.f * f1.f;
+    fcc = f1.f <= f0.f;
+    if (!fcc) goto L_009B05D4;
+    f1.f = f5.f - f4.f;
+    fcc = f0.f == f1.f;
+    if (fcc) goto L_009B05DC;
+    f0.f = f3.f - f4.f;
+    v0 = 1;
+    f0.f = f0.f / f1.f;
+    (*(volatile f32 *) (u32) (sp + 12)) = f0.f;
+L_009B04B4:;
+    if (v0 == 0) goto L_009B05E4;
+    f7.f = (*(volatile f32 *) (u32) (sp + 12));
+    v0 = (s32) 0x3f800000U;
+    f0.i = (s32) v0;
+    fcc = f7.f < f0.f;
+    if (!fcc) goto L_009B05EC;
+    f6.i = (s32) 0;
+    fcc = f7.f < f6.f;
+    if (fcc) goto L_009B05F4;
+    f5.f = (*(volatile f32 *) (u32) (a1 + 24));
+    v1 = (s32) ((u32) sp + 0x4U);
+    f4.f = (*(volatile f32 *) (u32) a1);
+    v0 = (s32) ((u32) sp + 0x8U);
+    f3.f = (*(volatile f32 *) (u32) (a1 + 28));
+    f0.f = (*(volatile f32 *) (u32) (a1 + 4));
+    f2.f = (*(volatile f32 *) (u32) (a1 + 32));
+    f1.f = (*(volatile f32 *) (u32) (a1 + 8));
+    acc = f6.f + f5.f;
+    f4.f = f4.f - f5.f;
+    f4.f = acc + f7.f * f4.f;
+    f0.f = f0.f - f3.f;
+    acc = f6.f + f3.f;
+    f0.f = acc + f7.f * f0.f;
+    (*(volatile f32 *) (u32) v1) = f0.f;
+    f0.f = (*(volatile f32 *) (u32) (sp + 4));
+    (*(volatile f32 *) (u32) a0) = f4.f;
+    f1.f = f1.f - f2.f;
+    acc = f6.f + f2.f;
+    f1.f = acc + f7.f * f1.f;
+    (*(volatile f32 *) (u32) v0) = f1.f;
+    (*(volatile f32 *) (u32) (a0 + 4)) = f0.f;
+    f1.f = (*(volatile f32 *) (u32) (sp + 8));
+    f0.f = (*(volatile f32 *) (u32) v0);
+    (*(volatile f32 *) (u32) sp) = f4.f;
+    (*(volatile f32 *) (u32) (a0 + 8)) = f1.f;
+    f1.i = f0.i & 0x7FFFFFFF;
+    v0 = (s32) 0x446a0000U;
+    v0 = v0 | 0xc000;
+    f0.i = (s32) v0;
+    fcc = f1.f <= f0.f;
+    if (!fcc) goto L_009B05B0;
+    f1.f = (*(volatile f32 *) (u32) v1);
+    v0 = (s32) 0xc41c0000U;
+    f0.i = (s32) v0;
+    fcc = f1.f < f0.f;
+    if (fcc) goto L_009B05B0;
+    f1.f = (*(volatile f32 *) (u32) a1);
+    f0.f = (*(volatile f32 *) (u32) (a1 + 24));
+    fcc = f1.f < f0.f;
+    { s32 c_ = !fcc; v0 = 1; if (c_) goto L_009B05F8; }
+    v0 = 0;
+    goto L_009B05FC;
+L_009B05B0:;
+    f1.f = (*(volatile f32 *) (u32) a1);
+    f0.f = (*(volatile f32 *) (u32) (a1 + 24));
+    fcc = f1.f < f0.f;
+    if (fcc) goto L_009B05CC;
+    v0 = 2; goto L_009B05F8;
+L_009B05CC:;
+    v0 = 3; goto L_009B05F8;
+L_009B05D4:;
+    v0 = 4; goto L_009B05F8;
+L_009B05DC:;
+    v0 = 0; goto L_009B04B4;
+L_009B05E4:;
+    v0 = 4; goto L_009B05F8;
+L_009B05EC:;
+    v0 = 4; goto L_009B05F8;
+L_009B05F4:;
+    v0 = 4;
+L_009B05F8:;
+L_009B05FC:;
+    return v0;
+}

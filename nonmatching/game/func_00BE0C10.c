@@ -31,12 +31,12 @@ void func_00BE0C10(void *arg0) {
     case 40:
         break;
     case 41:
-        var_v0 = func_00B35BF0(temp_a1);
+        var_v0 = func_00B35BF0(arg0);
 block_6:
         var_s1 = var_v0 & 0xFF;
         break;
     case 46:
-        var_v0 = func_00B35C60(temp_a1);
+        var_v0 = func_00B35C60(arg0);
         goto block_6;
     }
     func_00BD3B80(arg0, var_s1);

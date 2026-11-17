@@ -63,7 +63,7 @@ block_14:
     }
     if ((func_009B30B0((s32) M2C_FIELD(Pes6Ball_Current, u16 *, 0x58), arg1) & 0xFFFF) < 0x20) {
         temp_v1 = func_009B3070((s32) M2C_FIELD(Pes6Ball_Current, u16 *, 0x58), arg1) & 0xFFFF;
-        var_s0_2 = (var_s0_2 + ((((0x2000 - temp_v1) / 10) + ((u32) (0x2000 - temp_v1) >> 0x1F)) & 0xFFFF)) & 0xFFFF;
+        var_s0_2 = (var_s0_2 + (((0x2000 - temp_v1) / 10) & 0xFFFF)) & 0xFFFF;
     }
     temp_f3 = fabsf(M2C_FIELD(Pes6Ball_Current, f32 *, 0x30));
     if (var_s0_2 >= 0) {
@@ -82,18 +82,18 @@ block_14:
     if (!(M2C_FIELD(temp_v1_2, u8 *, 0x86) & 1)) {
         if (M2C_FIELD(arg0, s32 *, 0x1C) >= 0x1000) {
             temp_ret = func_00288670(M2C_FIELD(temp_v1_2, u8 *, 0x7A) & 0x7F, 0x1EU);
-            temp_s1 = 0x10 - ((temp_ret / 25) + (temp_ret >> 0x1F));
+            temp_s1 = 0x10 - ((s32) temp_ret / 25);
             var_v0_3 = var_s0_3 + (((func_009B30B0((s32) M2C_FIELD(arg0, u16 *, 0x26), (s32) M2C_FIELD(arg0, u16 *, 0x28)) & 0xFFFF) * temp_s1) & 0xFFFF);
             goto block_35;
         }
     } else {
         if (M2C_FIELD(arg0, s32 *, 0x1C) >= 0x1000) {
             temp_ret_2 = func_00288670(M2C_FIELD(temp_v1_2, u8 *, 0x7A) & 0x7F, 0x1EU);
-            temp_s1_2 = 0x10 - ((temp_ret_2 / 25) + (temp_ret_2 >> 0x1F));
+            temp_s1_2 = 0x10 - ((s32) temp_ret_2 / 25);
             var_s0_3 = (var_s0_3 + (((func_009B30B0((s32) M2C_FIELD(arg0, u16 *, 0x26), (s32) M2C_FIELD(arg0, u16 *, 0x28)) & 0xFFFF) * temp_s1_2) & 0xFFFF)) & 0xFFFF;
         }
         temp_a0 = var_s0_3 & 0xFFFF;
-        var_v0_3 = ((temp_a0 * 7) / 10) + ((u32) (temp_a0 * 7) >> 0x1F);
+        var_v0_3 = (temp_a0 * 7) / 10;
 block_35:
         var_s0_3 = var_v0_3 & 0xFFFF;
     }

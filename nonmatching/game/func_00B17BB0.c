@@ -66,7 +66,7 @@ void func_00B17BB0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
         } else {
             temp_s0 = var_s1;
             temp_v0 = func_00BBB8C0(0x3C) + 0x14;
-            var_s1 = ((var_s1 * temp_v0) / 100) + ((u32) (var_s1 * temp_v0) >> 0x1F);
+            var_s1 = (var_s1 * temp_v0) / 100;
             if (!(M2C_FIELD(Pes6Ball_Current, f32 *, 0x30) <= 0.0f) && (func_00BBB8C0(3) == 0)) {
                 var_s1 = -var_s1;
             }
@@ -95,7 +95,7 @@ void func_00B17BB0(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     } else {
 block_20:
         (*(u8 *)D_00591E4C) = 0;
-        M2C_FIELD(Pes6Ball_Current, s16 *, 0) = 0xB;
+        M2C_FIELD(Pes6Ball_Current, s16 *, 0x84) = 0xB;
         var_f0 = (f32) -func_002AE670(8 - func_00BBB8C0(4));
     }
     (*(f32 *)D_005926D8) = var_f0;
@@ -114,7 +114,7 @@ block_20:
     switch (temp_v1_4) {                            /* irregular */
     case 0x33F:
         temp_a1_2 = -0x1400 - func_00BBB8C0(0x800);
-        M2C_FIELD(Pes6Ball_Current, s32 *, 0x74) = (s32) (((temp_a1_2 * 7) / 10) + ((u32) (temp_a1_2 * 7) >> 0x1F));
+        M2C_FIELD(Pes6Ball_Current, s32 *, 0x74) = (s32) ((temp_a1_2 * 7) / 10);
         break;
     case 0x233:
         M2C_FIELD(Pes6Ball_Current, s32 *, 0x74) = (s32) (-0x200 - func_00BBB8C0(0x400));
@@ -135,7 +135,7 @@ block_20:
         M2C_FIELD(Pes6Ball_Current, s32 *, 0x74) = (s32) (-0x1400 - func_00BBB8C0(0x800));
         if (var_s2 < 0xC00) {
             temp_v1_5 = M2C_FIELD(Pes6Ball_Current, s32 *, 0x74);
-            M2C_FIELD(Pes6Ball_Current, s32 *, 0x74) = (s32) (((temp_v1_5 * var_s2) / 3072) + ((u32) (temp_v1_5 * var_s2) >> 0x1F));
+            M2C_FIELD(Pes6Ball_Current, s32 *, 0x74) = (s32) ((temp_v1_5 * var_s2) / 3072);
         }
         break;
     }

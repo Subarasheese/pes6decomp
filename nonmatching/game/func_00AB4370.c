@@ -9,7 +9,7 @@ s32 func_00AFBA70(u8);                              /* extern */
 extern void *Pes6Ball_Current;
 extern char Pes6MatchPlayers[];
 
-u8 func_00AB4370(u8 *arg0) {
+s32 func_00AB4370(u8 *arg0) {
     f32 temp_f20;
     f32 temp_f21;
     s32 var_a0;
@@ -36,5 +36,5 @@ u8 func_00AB4370(u8 *arg0) {
         M2C_FIELD(Pes6Ball_Current, f32 *, 0x145C) = temp_f20;
         return M2C_FIELD(Pes6Ball_Current, u8 *, 0x68);
     }
-    return 0x7FFFFFFFU;
+    return 0x7FFFFFFF;
 }

@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern u32 func_00A9B980(void *);
+extern s32 func_00A9B980(void *);
 s32 func_009B32D0(u16, u16, M2C_UNK);               /* extern */
 s32 func_00A20DC0(void *, s32, u16, u16, M2C_UNK, s32); /* extern */
 s32 func_00A21A90(void *, s32, u16, u16, s32, s32); /* extern */

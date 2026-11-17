@@ -7,7 +7,7 @@ s32 func_009B3070(u16, u16);                        /* extern */
 extern char D_0058E7F0[];
 
 s32 func_00A09EC0(void *arg0) {
-    M2C_UNK *var_a5;
+    u8 *var_a5;
     s32 temp_s0;
     s32 var_a4;
     u64 temp_v0;
@@ -32,7 +32,7 @@ block_8:
         return 0;
     }
     var_a4 = 0;
-    var_a5 = ((void *)D_0058E7F0);
+    var_a5 = (u8 *)D_0058E7F0;
 loop_14:
     if (arg0 != var_a5) {
         if (M2C_FIELD(var_a5, u8 *, 0x16) == 0xFB) {

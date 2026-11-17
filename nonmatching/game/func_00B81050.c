@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 
-M2C_UNK func_001C48E8(M2C_UNK, M2C_UNK);            /* extern */
+M2C_UNK func_001C48E8(void *, s32, s32);            /* extern */
 extern char D_00591A90[];
 extern char D_00591E00[];
 extern char Pes6MatchSquads[];
@@ -18,7 +18,7 @@ s32 func_00B81050(void *arg0) {
     s8 var_t8;
     u8 temp_a2;
     u8 var_s1;
-    u8 var_t9;
+    s32 var_t9;
     void *temp_a4;
     void *temp_a4_2;
     void *temp_a6_2;
@@ -26,7 +26,7 @@ s32 func_00B81050(void *arg0) {
     void *temp_s4_2;
     void *var_t3;
 
-    func_001C48E8(0, 0xC);
+    func_001C48E8(arg0, 0, 0xC);
     var_s1 = 0;
     M2C_FIELD(arg0, s32 *, 4) = -1;
     do {

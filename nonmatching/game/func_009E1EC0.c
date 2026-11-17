@@ -1,0 +1,126 @@
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+void func_0099D5E0(void);
+void func_009E20D0(s32);
+
+void func_009E1EC0(s32 a0, s32 a1, s32 a2, s32 a3) {
+    s32 v0 = 0, v1 = 0, s0 = 0, s1 = 0;
+    volatile union { f32 f; s32 i; } f0 = { 0 };
+    volatile union { f32 f; s32 i; } f1 = { 0 };
+    volatile union { f32 f; s32 i; } f2 = { 0 };
+    volatile union { f32 f; s32 i; } f20 = { 0 };
+    volatile union { f32 f; s32 i; } f21 = { 0 };
+    s32 fcc = 0;
+
+    func_0099D5E0();
+    s1 = (s32) 0x590000U;
+    v0 = (s32) 0xc3800000U;
+    s1 = (s32) ((u32) s1 + 0xffffea30U);
+    s0 = 0;
+    v1 = (*(volatile s16 *) (u32) (s1 + 20));
+    f0.i = (s32) v0;
+    f1.i = (s32) v1;
+    f21.f = (f32) f1.i;
+    f20.f = f0.f * f21.f;
+L_009E1F04:;
+    a0 = s1; func_009E20D0(a0);
+    v0 = (s32) 0xcb0000U;
+    v1 = (s32) 0xc3800000U;
+    f1.f = (*(volatile f32 *) (u32) (v0 + 21276));
+    f0.i = (s32) v1;
+    f1.f = f21.f * f1.f;
+    fcc = f1.f <= f0.f;
+    if (!fcc) goto L_009E2088;
+L_009E1F30:;
+    v0 = (s32) 0xcb0000U;
+    f1.f = (*(volatile f32 *) (u32) (v0 + 21276));
+    a2 = (*(volatile u8 *) (u32) (s1 + 18));
+    v1 = (*(volatile u8 *) (u32) s1);
+    a0 = (s32) 0x5a0000U;
+    a0 = (s32) ((u32) a0 + 0x2020U);
+    s0 = (s32) ((u32) s0 + 0x1U);
+    v0 = (s32) 0xcb0000U;
+    a1 = (s32) ((u32) a2 << 4);
+    f0.f = (*(volatile f32 *) (u32) (v0 + 21280));
+    a2 = (s32) ((u32) a1 - (u32) a2);
+    f1.f = f21.f * f1.f;
+    a1 = (s32) ((u32) a2 << 2);
+    a1 = (s32) ((u32) a1 - (u32) a2);
+    v1 = (s32) ((u32) v1 << 2);
+    a1 = (s32) ((u32) a1 << 3);
+    s1 = (s32) ((u32) s1 + 0x240U);
+    a0 = (s32) ((u32) a0 + (u32) a1);
+    a0 = (s32) ((u32) v1 + (u32) a0);
+    f0.f = f21.f * f0.f;
+    v0 = s0 < 10;
+    f1.i = (s32) f1.f;
+    v1 = f1.i;
+    f0.i = (s32) f0.f;
+    (*(volatile u16 *) (u32) (a0 + 276)) = (u16) v1;
+    v1 = f0.i;
+    { s32 c_ = v0 != 0; (*(volatile u16 *) (u32) (a0 + 278)) = (u16) v1; if (c_) goto L_009E1F04; }
+    s1 = (s32) 0x590000U;
+    v0 = (s32) 0xc5d20000U;
+    s1 = (s32) ((u32) s1 + 0x2f0U);
+    v0 = v0 | 0x6400;
+    a0 = (*(volatile s16 *) (u32) (s1 + 20));
+    f1.i = (s32) v0;
+    v1 = (s32) 0xc3800000U;
+    s0 = 0;
+    f0.i = (s32) v1;
+    v0 = (s32) 0x590000U;
+    f2.i = (s32) a0;
+    f20.f = (f32) f2.i;
+    f1.f = f1.f * f20.f;
+    f21.f = f0.f * f20.f;
+    (*(volatile f32 *) (u32) (v0 + 7768)) = f1.f;
+L_009E1FE0:;
+    a0 = s1; func_009E20D0(a0);
+    v1 = (s32) 0xcb0000U;
+    a0 = (s32) 0xc3800000U;
+    f1.f = (*(volatile f32 *) (u32) (v1 + 21276));
+    f0.i = (s32) a0;
+    f1.f = f20.f * f1.f;
+    fcc = f1.f <= f0.f;
+    if (!fcc) goto L_009E2098;
+L_009E2010:;
+    v1 = (s32) 0xcb0000U;
+    f1.f = (*(volatile f32 *) (u32) (v1 + 21276));
+    a3 = (*(volatile u8 *) (u32) (s1 + 18));
+    a0 = (*(volatile u8 *) (u32) s1);
+    a1 = (s32) 0x5a0000U;
+    a1 = (s32) ((u32) a1 + 0x2020U);
+    s0 = (s32) ((u32) s0 + 0x1U);
+    v1 = (s32) 0xcb0000U;
+    a2 = (s32) ((u32) a3 << 4);
+    f0.f = (*(volatile f32 *) (u32) (v1 + 21280));
+    a3 = (s32) ((u32) a2 - (u32) a3);
+    f1.f = f20.f * f1.f;
+    a2 = (s32) ((u32) a3 << 2);
+    a2 = (s32) ((u32) a2 - (u32) a3);
+    a0 = (s32) ((u32) a0 << 2);
+    a2 = (s32) ((u32) a2 << 3);
+    s1 = (s32) ((u32) s1 + 0x240U);
+    a1 = (s32) ((u32) a1 + (u32) a2);
+    a1 = (s32) ((u32) a0 + (u32) a1);
+    f0.f = f20.f * f0.f;
+    v1 = s0 < 10;
+    f1.i = (s32) f1.f;
+    a0 = f1.i;
+    f0.i = (s32) f0.f;
+    (*(volatile u16 *) (u32) (a1 + 232)) = (u16) a0;
+    a0 = f0.i;
+    { s32 c_ = v1 != 0; (*(volatile u16 *) (u32) (a1 + 234)) = (u16) a0; if (c_) goto L_009E1FE0; }
+    goto L_009E20A8;
+L_009E2088:;
+    v0 = (s32) 0xcb0000U;
+    (*(volatile f32 *) (u32) (v0 + 21276)) = f20.f; goto L_009E1F30;
+L_009E2098:;
+    v1 = (s32) 0xcb0000U;
+    (*(volatile f32 *) (u32) (v1 + 21276)) = f21.f; goto L_009E2010;
+L_009E20A8:;
+    return;
+}

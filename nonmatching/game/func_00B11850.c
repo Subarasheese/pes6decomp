@@ -17,13 +17,13 @@ M2C_UNK func_009B3500(void *, M2C_UNK, M2C_UNK);    /* extern */
 M2C_UNK func_00A9D570(void *);                      /* extern */
 M2C_UNK func_00AADED0(void *, u16, M2C_UNK, s32);   /* extern */
 M2C_UNK func_00AF8180(void *, u16);                 /* extern */
-s32 func_00B0B6B0(void *, s32, u16, s32, s8, s32, s32, M2C_UNK, f32, s64); /* extern */
+s32 func_00B0B6B0(void *, s32, u16, s32, s32, s32, s32, M2C_UNK, f32, s64); /* extern */
 extern void *D_003E74CC;
 extern s32 Pes6Ball_Current;
 extern char D_00591E70[];
 extern char D_00591E7C[];
 
-s32 func_00B11850(void *arg0, s32 arg1, s32 arg2, s32 arg3, s8 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg_sp0, s32 arg_sp8) {
+s32 func_00B11850(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7, s32 arg_sp0, s32 arg_sp8) {
     f32 temp_f20;
     f32 temp_f21;
     f32 temp_f21_2;
@@ -41,7 +41,7 @@ s32 func_00B11850(void *arg0, s32 arg1, s32 arg2, s32 arg3, s8 arg4, s32 arg5, s
     s32 var_v0_6;
     s32 var_v1;
     s32 var_v1_2;
-    s8 var_s1;
+    s32 var_s1;
     u16 temp_v1;
     u16 var_s2;
 
@@ -131,7 +131,7 @@ block_36:
         var_s3 = var_v0_5 & 0xFFFF;
     }
     temp_a0 = M2C_FIELD(arg0, s32 *, 0x1C);
-    if (func_00B0B6B0(arg0, var_s3, var_s2, ((temp_a0 * 9) / 10) + ((u32) (temp_a0 * 9) >> 0x1F), var_s1, arg7, arg5, 0, temp_f20, (s64) arg_sp0) != 0) {
+    if (func_00B0B6B0(arg0, var_s3, var_s2, ((temp_a0 * 9) / 10), var_s1, arg7, arg5, 0, temp_f20, (s64) arg_sp0) != 0) {
         func_00AF8180(arg0, var_s2);
         func_00209A00(M2C_FIELD(arg0, void **, 4), var_s3, arg7 & 0xFFFF);
         M2C_FIELD(M2C_FIELD(arg0, void **, 4), f32 *, 0x28) = func_00AB3C60(arg0, arg5);

@@ -14,7 +14,7 @@ u32 func_00C32A60(u32 arg0, s32 arg1) {
 
     temp_a1 = arg1 & 0xFF;
     var_v0 = -1U;
-    temp_a2 = *(((char *)D_00CCB350) + (temp_a1 * 2));
+    temp_a2 = *(u16 *)(((char *)D_00CCB350) + (temp_a1 * 2));
     if (arg0 != -1U) {
         var_a4 = 0;
         if ((s32) temp_a2 > 0) {
@@ -26,7 +26,6 @@ loop_3:
                 var_v0 = temp_a1_2;
                 var_a3 += 4;
                 if (var_a4 >= (s32) temp_a2) {
-                    /* Duplicate return node #8. Try simplifying control flow for better match */
                     return var_v0;
                 }
                 goto loop_3;

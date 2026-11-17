@@ -16,7 +16,7 @@ M2C_UNK *func_0098EC40(s32 arg0) {
     s32 var_a1;
 
     if ((*(u8 *)D_00591E67) != (*(u8 *)D_00591E68)) {
-        if ((((char *)D_00591E67))[(*(u8 *)D_0058EA42)] == (arg0 & 0xFF)) {
+        if (((u8 *)D_00591E67)[(*(u8 *)D_0058EA42)] == (arg0 & 0xFF)) {
             return ((char *)D_0058EA30);
         }
         return ((char *)D_005902F0);

@@ -41,7 +41,7 @@ void func_00C711D0(s32 arg0, s32 arg1) {
         sp54 = M2C_FIELD(temp_a0, f32 *, 4);
         sp58 = M2C_FIELD(temp_a0, f32 *, 8);
         sp5C = M2C_FIELD(temp_a0, f32 *, 0xC);
-        if (((var_s3 / 10) + ((u32) var_s3 >> 0x1F)) != 0) {
+        if ((var_s3 / 10) != 0) {
             var_s0 = 2;
         } else {
             var_s0 = 1;
@@ -59,8 +59,8 @@ void func_00C711D0(s32 arg0, s32 arg1) {
                 func_001EE630(*var_s1, &sp68, (*(s16 *)D_00CA8540), (*(s16 *)D_00CA8544));
                 func_001EF900(*var_s1, 1);
                 var_s2 += 1;
-                var_s1 += 4;
-                var_s3 = (var_s3 / 10) + ((u32) var_s3 >> 0x1F);
+                var_s1 += 1;
+                var_s3 = var_s3 / 10;
             } while (var_s2 < var_s0);
         }
     }

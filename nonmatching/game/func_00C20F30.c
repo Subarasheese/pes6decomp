@@ -11,7 +11,7 @@ s32 func_00C12A80(s32);                             /* extern */
 u16 func_00C13230(void *);                          /* extern */
 u32 func_00C137D0(u16);                             /* extern */
 void *func_00C13810();                              /* extern */
-M2C_UNK func_00C21050(M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+void func_00C21050(s32, f32, f32, f32); /* extern */
 M2C_UNK func_00C21800(M2C_UNK *);                   /* extern */
 M2C_UNK func_00C221A0(M2C_UNK *, u32, void *);      /* extern */
 extern s32 D_003E7ACC;
@@ -40,7 +40,7 @@ void func_00C20F30(void) {
             func_00C221A0(((void *)D_00CCB040), temp_s3, temp_v0);
             func_00C21800(((void *)D_00CCB040));
             M2C_FIELD(((void *)D_00CCAF80), u16 *, 0x90) = func_00C13230(temp_v0);
-            func_00C21050(0x14, 0x42700000, 0, 0x3F800000);
+            func_00C21050(0x14, 60.0f, 0.0f, 1.0f);
         }
     }
     D_003E7ACC = temp_s2;

@@ -2,9 +2,9 @@
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern u8 func_00BF6270(void);
+extern u32 func_00BF6270(void);
 extern u8 func_00B364A0(void);
-extern void func_0027A5B0(void *, s8);
+extern void func_0027A5B0(void *, u32);
 extern void * func_00B2A420(u32);
 extern void func_00B364B0(u32);
 M2C_UNK func_00207390(void *, M2C_UNK);             /* extern */
@@ -32,7 +32,7 @@ void func_00B9CF80(void **arg0) {
     void *temp_v0_2;
 
     temp_v0 = func_00B2A420(func_00BF6270());
-    func_0027A5B0(*arg0, (s8) **temp_v0);
+    func_0027A5B0(*arg0, **temp_v0);
     temp_v0_2 = *arg0;
     func_00BD3CF0(arg0, M2C_FIELD(temp_v0_2, f32 *, 0x6C), M2C_FIELD(temp_v0_2, f32 *, 0x70));
     if ((func_00B3AE50(arg0) != 0) && ((*(u8 *)D_00CBCD81) == 0)) {

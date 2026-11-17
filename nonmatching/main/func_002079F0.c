@@ -1,17 +1,15 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
+s32 func_00207AC0(u16, s32, s32, f32);               /* extern */
 
-s32 func_00207AC0(u16, M2C_UNK, f32);               /* extern */
-
-s32 func_002079F0(void *arg0) {
+s32 func_002079F0(void *arg0, s32 arg1) {
     f32 temp_f1;
     f32 temp_f2;
     s32 temp_v0;
     s32 var_v0;
 
-    temp_v0 = func_00207AC0(M2C_FIELD(arg0, u16 *, 0x30), 0, M2C_FIELD(arg0, f32 *, 0x28));
+    temp_v0 = func_00207AC0(M2C_FIELD(arg0, u16 *, 0x30), arg1, 0, M2C_FIELD(arg0, f32 *, 0x28));
     if (M2C_FIELD(arg0, u16 *, 0x30) == 0) {
         var_v0 = 0;
     } else if ((M2C_FIELD(arg0, u8 *, 0x4C) != 0) && (M2C_FIELD(arg0, u8 *, 0x4D) == 0)) {

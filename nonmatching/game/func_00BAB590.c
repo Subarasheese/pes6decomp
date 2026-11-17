@@ -22,7 +22,7 @@ s32 func_00BAB590(char *arg0) {
     }
     temp_v1 = M2C_FIELD(arg0, u8 *, 0);
     if ((*(u8 *)D_00CBBE21) != temp_v1) {
-        if (((s32) (*(u8 *)D_00CB5642) >= 3) && (*(((char *)D_00CBBE20) + (*(u8 *)D_00CB5642)) == temp_v1)) {
+        if (((s32) (*(u8 *)D_00CB5642) >= 3) && (*(u8 *)(D_00CBBE20 + (*(u8 *)D_00CB5642)) == temp_v1)) {
             var_s0 = 1;
         } else {
             var_s0 = 5;

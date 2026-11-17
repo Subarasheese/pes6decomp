@@ -19,7 +19,7 @@ s32 func_002D58A0(M2C_UNK *);                       /* extern */
 M2C_UNK func_00B25B60();                            /* extern */
 M2C_UNK func_00B25B70(s32, s32, u8);                /* extern */
 s32 func_00C8B210();                                /* extern */
-extern void *D_00CCBFA0;
+extern char D_00CCBFA0[];
 extern char D_00CCBFA4[];
 extern char D_00CCBFB0[];
 extern char D_00CCBFB4[];
@@ -43,7 +43,7 @@ void func_00C7D110(void) {
     if ((*(u8 *)D_00CCBFC9) & 1) {
         temp_s0 = (*(s32 *)D_00CCBFCC);
         if (temp_s0 < 7) {
-            func_001D7D80(func_002F9370(D_00CCBFA0), (s16) ((s64) ((s64) temp_s0 << 0x30) >> 0x30));
+            func_001D7D80(func_002F9370(*(void **)D_00CCBFA0), (s16) ((s64) ((s64) temp_s0 << 0x30) >> 0x30));
             (*(u8 *)D_00CCBFC9) = ((*(u8 *)D_00CCBFC9) & ~2) | 2;
             func_002D5630(((void *)D_00CCBFBC), (*(s32 *)D_00CCBFC4));
             func_002D5980(((void *)D_00CCBFA4), 0xFF);
@@ -61,7 +61,7 @@ void func_00C7D110(void) {
     if ((func_002D5870(((void *)D_00CCBFA4)) == 1) || ((*(s32 *)D_00CCBFB4) != (*(s32 *)D_00CCBFB0))) {
         temp_s0_2 = func_002D58A0(((void *)D_00CCBFA4));
         if ((*(u8 *)D_00CCBFC8) & 1) {
-            temp_v0 = func_002F9370(D_00CCBFA0);
+            temp_v0 = func_002F9370(*(void **)D_00CCBFA0);
             temp_a0 = temp_s0_2 * (*(s32 *)D_00CCBFB4);
             var_v1 = temp_a0 >> 8;
             if (temp_a0 < 0) {
@@ -81,7 +81,7 @@ void func_00C7D110(void) {
     }
     if (var_s0 != ((u64) ((s64) (*(u8 *)D_00CCBFC9) << 0x3D) >> 0x3F)) {
         if ((*(u8 *)D_00CCBFC8) & 1) {
-            func_001D7D60(func_002F9370(D_00CCBFA0), var_s0 & 0xFF);
+            func_001D7D60(func_002F9370(*(void **)D_00CCBFA0), var_s0 & 0xFF);
         }
         temp_a2 = (*(u8 *)D_00CCBFC9);
         temp_a1 = (var_s0 & 1) * 4;

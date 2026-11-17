@@ -8,7 +8,7 @@ extern f32 func_00AB4270(void *);
 extern s32 func_009B3070(s32, s32);
 extern s32 func_009B32D0(s32, s32, s32);
 s32 func_00A19D40(void *, M2C_UNK, M2C_UNK, s32, s32, s32, f32); /* extern */
-s32 func_00AB3590(void *, M2C_UNK, s32);            /* extern */
+s32 func_00AB3590(void *, s32, s32, s32);
 extern char D_0059225C[];
 extern char D_0059226E[];
 extern char Pes6MatchSquads[];
@@ -38,7 +38,7 @@ s32 func_00A94580(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
         temp_a2 = M2C_FIELD(arg0, u8 *, 0x12);
         if (((((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (temp_a2 * 0x6900))), u8 *, 0x84) << 0x3A) >> 0x3D) + 1) < 4) && (temp_v0 < 0x1801)) {
             (*(s32 *)D_0059225C) = temp_s0;
-            (*(s16 *)D_0059226E) = func_009B32D0(arg1, arg2, func_00AB3590(arg0, 0xF4, temp_a2 * 0x69) & 0xFFFF);
+            (*(s16 *)D_0059226E) = func_009B32D0(arg1, arg2, func_00AB3590(arg0, 0xF4, temp_a2 * 0x69, arg3) & 0xFFFF);
             return 0xF4;
         }
     }

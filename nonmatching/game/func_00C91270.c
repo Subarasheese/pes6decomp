@@ -15,8 +15,8 @@ extern char D_00CCD8C4[];
 extern char D_00CCD8C5[];
 extern char D_00CCD8C6[];
 extern char D_00CCD8C7[];
-extern u8 *D_00CCD8C8;
-extern u8 *D_00CCD8CC;
+extern char D_00CCD8C8[];
+extern char D_00CCD8CC[];
 
 void func_00C91270(u8 *arg0, u8 *arg1) {
     u8 sp18;
@@ -64,13 +64,13 @@ void func_00C91270(u8 *arg0, u8 *arg1) {
         (*(u8 *)D_00CCD8C6) = temp_a5;
         (*(u8 *)D_00CCD8C7) = temp_a1;
         if ((*(u8 *)D_00591DCC) == 0) {
-            D_00CCD8C8 = ((void *)D_00CCD8C0);
-            D_00CCD8CC = ((void *)D_00CCD8C4);
+            *(void **)D_00CCD8C8 = ((void *)D_00CCD8C0);
+            *(void **)D_00CCD8CC = ((void *)D_00CCD8C4);
         } else {
-            D_00CCD8C8 = ((void *)D_00CCD8C4);
-            D_00CCD8CC = ((void *)D_00CCD8C0);
+            *(void **)D_00CCD8C8 = ((void *)D_00CCD8C4);
+            *(void **)D_00CCD8CC = ((void *)D_00CCD8C0);
         }
         (*(s32 *)D_00CCD8A0) |= 8;
-        func_00C820A0(&D_00CCD8C8, temp_a1, ((void *)D_00CCD8C6), ((void *)D_00CCD8C5), ((void *)D_00CCD8C4), temp_a5, temp_a6, temp_a7);
+        func_00C820A0((u8 **)(D_00CCD8C7 + 0x2739), temp_a1, (u8 *)(D_00CCD8C6 + 0x273A), (u8 *)(D_00CCD8C5 + 0x273B), (u8 *)(D_00CCD8C4 + 0x273C), temp_a5, temp_a6, temp_a7);
     }
 }

@@ -64,7 +64,7 @@ s32 func_00947F60(char *arg0, char *arg1) {
             temp_a3 = func_00288670(M2C_FIELD(temp_s0, u8 *, 0x76) & 0x7F, 0x28, temp_a2 * 0x69) + 0x14;
             temp_a2_2 = (u64) ((s64) M2C_FIELD(temp_s0, u8 *, 0x7D) << 0x38) >> 0x3F;
             temp_a1 = temp_a3 + (temp_a2_2 * 0x14);
-            if ((func_00BBB780((s64) (((((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7C) << 0x38) >> 0x3F) * 0x14) + temp_a1) << 0x30) >> 0x30, temp_a1, temp_a2_2 * 5, temp_a3) != 0) && ((*(((char *)D_00591E90) + ((M2C_FIELD(arg0, u8 *, 0x13) ^ 1) * 4)) * temp_f20) < (M2C_FIELD(arg1, f32 *, 0xE0) * temp_f20))) {
+            if ((func_00BBB780((s64) (((((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7C) << 0x38) >> 0x3F) * 0x14) + temp_a1) << 0x30) >> 0x30, temp_a1, temp_a2_2 * 5, temp_a3) != 0) && ((*(f32 *)(((char *)D_00591E90) + ((M2C_FIELD(arg0, u8 *, 0x13) ^ 1) * 4)) * temp_f20) < (M2C_FIELD(arg1, f32 *, 0xE0) * temp_f20))) {
                 goto block_83;
             }
             temp_f2 = M2C_FIELD(arg1, f32 *, 0xE0);

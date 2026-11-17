@@ -7,7 +7,7 @@ s32 func_00333600(M2C_UNK);                         /* extern */
 M2C_UNK Pes6Job_SetDone(void *);                      /* extern */
 M2C_UNK Pes6Job_CopyPayloadOut(s32, void *);                 /* extern */
 s32 Pes6Job_Create(M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK *); /* extern */
-s32 func_00340C80(M2C_UNK);                         /* extern */
+s32 func_00340C80(s32, f32);                         /* extern */
 s32 func_00341220(s32 *);                           /* extern */
 s32 func_00341390(void *);                          /* extern */
 s32 func_00341480(u8, u8);                          /* extern */
@@ -33,7 +33,7 @@ s32 func_00329D70(void *arg0) {
     }
     if ((temp_s2 == 0) && (temp_s1 == 0) && (M2C_FIELD(temp_s3, u8 *, 8) == 0)) {
         temp_s0_2 = M2C_FIELD(arg0, s32 *, 0x2C);
-        if (func_00340C80(0x40400000) >= temp_s0_2) {
+        if (func_00340C80(6, 3.0f) >= temp_s0_2) {
             return 0;
         }
     }

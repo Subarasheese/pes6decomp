@@ -5,14 +5,14 @@
 extern u8 func_0030DBA0(void);
 extern s32 func_0030F050(void);
 extern s32 func_00338A60(void *, void *);
-void *func_00338AD0(M2C_UNK, M2C_UNK *, s32, M2C_UNK *); /* extern */
+extern void *func_00338AD0(s32, void *, s32, void *);
 M2C_UNK func_00345260(void *);                      /* extern */
 s32 func_00BD9830();                                /* extern */
 s32 func_00BD99D0();                                /* extern */
 extern char D_003E61B0[];
 extern u8 D_003E9F90;
-extern M2C_UNK func_00344FD0;
-extern M2C_UNK func_00345010;
+extern void func_00344FD0(void);
+extern void func_00345010(void);
 
 s32 func_00344EA0(void *arg0, s32 arg1) {
     s32 temp_v0;

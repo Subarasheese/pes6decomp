@@ -15,9 +15,7 @@ s32 func_00C2A050(void *arg0, s32 arg1, s32 arg2) {
     u8 *spA0;
     s32 spB0;
     s32 spCC;
-    s32 spD0;
-    s32 spD4;
-    s32 spD8;
+    s32 spD0[3];
     s32 temp_s0;
     s32 var_a4;
     s32 var_s1;
@@ -42,9 +40,9 @@ s32 func_00C2A050(void *arg0, s32 arg1, s32 arg2) {
     spA0 = ((void *)D_00CB3868);
     spCC = arg2;
     spB0 = 0;
-    spD8 = 0x80000;
-    spD0 = 0;
-    spD4 = 0;
+    spD0[2] = 0x80000;
+    spD0[0] = 0;
+    spD0[1] = 0;
     temp_s7 = ((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0) * 0x6900);
 loop_1:
     if ((spB0 < 2) && (var_s3 == -1)) {
@@ -59,12 +57,12 @@ loop_1:
                 temp_s6 = *spA0;
                 if (temp_s6 == (func_00292F00(M2C_FIELD(temp_a0, u8 *, 0xC0)) & 0xFF)) {
                     temp_a2 = temp_s7 + temp_s0;
-                    var_a4 = (s32) M2C_FIELD(temp_a2, s32 *, 0xD8) / (s32) ((M2C_FIELD(temp_a2, u32 *, 0x18) / 100) + ((u32) M2C_FIELD(temp_a2, u32 *, 0x18) >> 0x1F));
+                    var_a4 = M2C_FIELD(temp_a2, s32 *, 0xD8) / (M2C_FIELD(temp_a2, s32 *, 0x18) / 100);
                     if (var_a4 >= 0x3D) {
                         var_a4 = 0x64;
                     }
                     temp_s0_2 = temp_s0 + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0) * 0x6900));
-                    var_s1 = func_0028F230(arg1, temp_s0_2 + 0x68, 3, &spD0, var_a4);
+                    var_s1 = func_0028F230(arg1, temp_s0_2 + 0x68, 3, spD0, var_a4);
                     if (func_00C32010(arg0, temp_s1) == 0) {
                         goto block_17;
                     }

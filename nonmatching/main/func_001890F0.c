@@ -3,15 +3,15 @@
 #include "pes6/m2c.h"
 
 
-extern void *D_00520090;
+extern char D_00520090[];
 
 s32 func_001890F0(s32 arg0, void *arg1, f32 *arg2, s16 *arg3, s16 *arg4) {
     s32 *temp_a5;
     void *temp_a0;
 
-    temp_a5 = M2C_FIELD(D_00520090, s32 **, 0x20);
+    temp_a5 = M2C_FIELD(*(void **)D_00520090, s32 **, 0x20);
     if (*temp_a5 != 0) {
-        temp_a0 = temp_a5 + (arg0 * 0x14);
+        temp_a0 = (char *)temp_a5 + (arg0 * 0x14);
         M2C_FIELD(arg1, f32 *, 0) = (f32) M2C_FIELD(temp_a0, f32 *, 0xC);
         M2C_FIELD(arg1, f32 *, 4) = (f32) M2C_FIELD(temp_a0, f32 *, 0x10);
         M2C_FIELD(arg1, f32 *, 8) = (f32) M2C_FIELD(temp_a0, f32 *, 0x14);

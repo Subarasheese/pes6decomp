@@ -12,8 +12,8 @@ extern char D_00591F24[];
 
 void func_00BD0A40(void) {
     f32 sp10;
-    M2C_UNK *var_a7;
-    M2C_UNK *var_t0;
+    u8 *var_a7;
+    u8 *var_t0;
     s32 var_a0;
     s32 var_a1;
     s32 var_a1_2;

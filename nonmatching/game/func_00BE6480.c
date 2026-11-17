@@ -3,11 +3,11 @@
 #include "pes6/m2c.h"
 
 extern void func_00BD3BA0(void *, s32, s32);
-extern u8 func_00BF6270(void);
+extern s32 func_00BF6270(void);
 extern u32 func_00B363E0(s32);
 extern s32 func_009B3070(s32, s32);
 extern s32 func_009B3480(void *, f32, f32);
-extern void * func_00B2A420(u32);
+extern void * func_00B2A420(s32);
 extern s32 func_009B33A0(void *, s32, s32);
 extern s32 func_00B36450(void);
 M2C_UNK func_00B34F70(void **, void **);            /* extern */
@@ -25,11 +25,11 @@ void func_00BE6480(void **arg0) {
     s16 var_a0;
     s32 temp_s0;
     s32 temp_s0_2;
-    s32 temp_s3;
+    u32 temp_s3;
     s32 temp_s3_2;
     s32 temp_v0_2;
     s32 temp_v1;
-    s32 var_v1;
+    u32 var_v1;
     void **temp_v0;
     void *temp_a0;
     void *temp_a0_2;

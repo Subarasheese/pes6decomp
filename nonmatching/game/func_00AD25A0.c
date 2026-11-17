@@ -1,4 +1,4 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: mwcc-3.0.1b210 */
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -7,7 +7,7 @@ u32 func_009B3350(void *, s32, s32);                /* extern */
 s32 func_009B34C0(f32, f32, f32, f32);              /* extern */
 extern void *Pes6Ball_Current;
 
-s16 func_00AD25A0(M2C_UNK arg0, s16 arg1, s32 arg2, s32 arg3, u32 arg4) {
+s32 func_00AD25A0(M2C_UNK arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4) {
     s32 var_s0;
     s32 var_v0;
     s32 var_v0_2;

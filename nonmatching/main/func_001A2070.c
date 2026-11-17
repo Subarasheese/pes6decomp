@@ -9,8 +9,8 @@ extern int func_001CE770(void);
 extern s32 func_001515E0(s32, s32, s32, s32, s32);
 extern int func_001CE720(void);
 M2C_UNK func_00145750(s32);                         /* extern */
-s32 func_0017F9A0(s32, M2C_UNK *, s32 *, M2C_UNK, M2C_UNK *); /* extern */
-s32 func_0017FA00(M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
+s32 func_0017F9A0(s32, void (*)(void), s32 *, s32, void *);
+s32 func_0017FA00(s32, void (*)(void), s32, s32);
 M2C_UNK func_001A27A0(M2C_UNK);                     /* extern */
 M2C_UNK func_001A2B30(M2C_UNK);                     /* extern */
 s32 func_001CE6E0();                                /* extern */
@@ -30,10 +30,10 @@ extern char D_00520358[];
 extern char D_0052035C[];
 extern char D_00520360[];
 extern char D_00520376[];
-extern M2C_UNK func_001A25E0;
-extern M2C_UNK func_001A2D00;
-extern M2C_UNK func_001A2F10;
-extern M2C_UNK func_001A30D0;
+extern void func_001A25E0(void);
+extern void func_001A2D00(void);
+extern void func_001A2F10(void);
+extern void func_001A30D0(void);
 
 void func_001A2070(void) {
     s32 sp28;

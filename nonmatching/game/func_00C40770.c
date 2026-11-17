@@ -62,7 +62,7 @@ block_6:
     if ((*(u8 *)D_00591E4C) == 0) {
         temp_s1 = M2C_FIELD(((func_002AE670(0xC) * 4) + Pes6Ball_Current), s32 *, 0xFC);
         temp_a0 = (func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x83) & 0x7F, 0x14U) << 5) + 0x5000;
-        if (temp_s1 >= (((temp_a0 * 7) / 10) + ((u32) (temp_a0 * 7) >> 0x1F))) {
+        if (temp_s1 >= ((temp_a0 * 7) / 10)) {
             temp_v0 = M2C_FIELD(arg0, s32 *, 0xA4);
             switch (temp_v0) {                      /* irregular */
             case 0x3B8:

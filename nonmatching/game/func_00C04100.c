@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern void func_001A58E0(void *, signed char);
+extern void func_001A58E0(void *, s32);
 extern void func_001AFD70(int);
 extern void func_00207360(int);
 M2C_UNK func_0027A600(void *, M2C_UNK);             /* extern */
@@ -50,13 +50,13 @@ block_12:
                     M2C_FIELD(M2C_FIELD(temp_s1, void **, 4), u8 *, 0x2C) = 0U;
                 }
                 temp_v0 = M2C_FIELD(temp_s1, void **, 4);
-                func_001A58E0(M2C_FIELD(temp_v0, void **, 0), (s8) M2C_FIELD(temp_v0, u8 *, 0x2C));
+                func_001A58E0(M2C_FIELD(temp_v0, void **, 0), M2C_FIELD(temp_v0, u8 *, 0x2C));
                 func_00207360((s32) M2C_FIELD(temp_s1, void **, 4));
                 func_001AFD70((s32) M2C_FIELD(M2C_FIELD(temp_s1, void **, 4), void **, 0));
                 func_0027A600(temp_s1, 0);
             } else {
                 temp_v0_2 = M2C_FIELD(temp_s1, void **, 4);
-                func_001A58E0(M2C_FIELD(temp_v0_2, void **, 0), (s8) M2C_FIELD(temp_v0_2, u8 *, 0x2C));
+                func_001A58E0(M2C_FIELD(temp_v0_2, void **, 0), M2C_FIELD(temp_v0_2, u8 *, 0x2C));
             }
         }
         var_s0 = (var_s0 + 1) & 0xFF;

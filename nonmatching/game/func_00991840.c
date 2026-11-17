@@ -52,7 +52,7 @@ u8 func_00991840(void) {
                 } else {
                     var_a1 = (char *)1;
                 }
-                if (var_a2_2 == *(((char *)D_0058E5C3) + ((s32) (((s32) var_a1 * 8) + var_a1) << 6))) {
+                if (var_a2_2 == *(u8 *)(((char *)D_0058E5C3) + ((s32) (((s32) var_a1 * 8) + var_a1) << 6))) {
                     goto block_14;
                 }
             }

@@ -4,20 +4,20 @@
 
 
 s32 func_00367E20(void *);                          /* extern */
-s32 func_00C5A7D0(s32, s32, s32, M2C_UNK *);        /* extern */
-s32 func_00C5A9D0(s32, s32, s32, M2C_UNK *);        /* extern */
-s32 func_00C5ABB0(s32, s32, s32, M2C_UNK *);        /* extern */
-s32 func_00C5ADD0(s32, s32, s32, M2C_UNK *);        /* extern */
-s32 func_00C5AF80(s32, s32, s32, M2C_UNK *);        /* extern */
+s32 func_00C5A7D0(s32, s32, s32, void (*)(void));        /* extern */
+s32 func_00C5A9D0(s32, s32, s32, void (*)(void));        /* extern */
+s32 func_00C5ABB0(s32, s32, s32, void (*)(void));        /* extern */
+s32 func_00C5ADD0(s32, s32, s32, void (*)(void));        /* extern */
+s32 func_00C5AF80(s32, s32, s32, void (*)(void));        /* extern */
 s32 func_00C5B1F0(s32, s32, s32);                   /* extern */
 s32 func_00C5B3C0(s32, s32, s32);                   /* extern */
 s32 func_00C5B530(s32, s32, s32);                   /* extern */
-extern M2C_UNK func_0036FE30;
-extern M2C_UNK func_0036FEC0;
-extern M2C_UNK func_0036FF40;
-extern M2C_UNK func_0036FFA0;
-extern M2C_UNK func_0036FFD0;
-extern M2C_UNK func_00370000;
+extern void func_0036FE30(void);
+extern void func_0036FEC0(void);
+extern void func_0036FF40(void);
+extern void func_0036FFA0(void);
+extern void func_0036FFD0(void);
+extern void func_00370000(void);
 
 s32 func_00367E90(void *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     if (arg1 != -1) {

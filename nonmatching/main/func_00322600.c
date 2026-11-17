@@ -1,34 +1,27 @@
-/* compiler: mwcc-3.0.1b210 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
+/* compiler: ee-gcc-2.9-G0 */
 #include "pes6/m2c.h"
 
+extern u8 *D_00CB3300;
 
-extern void *D_00CB3300;
+s32 func_00322600(u8 *arg0, u8 *arg1) {
+    s16 a3;
+    s16 a2;
 
-s32 func_00322600(void *arg0, void *arg1) {
-    s16 temp_a2;
-    s16 temp_a3;
-    s16 var_v0;
-
-    M2C_FIELD(arg0, s8 *, 0xA) = 1;
-    M2C_FIELD(arg1, s8 *, 0xA) = 1;
-    temp_a3 = M2C_FIELD(D_00CB3300, s16 *, 8);
-    temp_a2 = M2C_FIELD(D_00CB3300, s16 *, 0x2FC);
-    if (temp_a3 != temp_a2) {
-        if (temp_a2 >= temp_a3) {
-            var_v0 = M2C_FIELD(arg1, s16 *, 2) + 3;
-            goto block_9;
-        }
-        M2C_FIELD(arg0, s16 *, 2) = (s16) (M2C_FIELD(arg0, s16 *, 2) + 3);
+    arg0[0xA] = 1;
+    arg1[0xA] = 1;
+    a3 = *(s16 *)(D_00CB3300 + 8);
+    a2 = *(s16 *)(D_00CB3300 + 0x2FC);
+    if (a3 == a2) {
+        *(s16 *)(arg0 + 2) = *(s16 *)(arg0 + 2) + 1;
+        *(s16 *)(arg1 + 2) = *(s16 *)(arg1 + 2) + 1;
+    } else if (a2 < a3) {
+        *(s16 *)(arg0 + 2) = *(s16 *)(arg0 + 2) + 3;
     } else {
-        M2C_FIELD(arg0, s16 *, 2) = (s16) (M2C_FIELD(arg0, s16 *, 2) + 1);
-        var_v0 = M2C_FIELD(arg1, s16 *, 2) + 1;
-block_9:
-        M2C_FIELD(arg1, s16 *, 2) = var_v0;
+        *(s16 *)(arg1 + 2) = *(s16 *)(arg1 + 2) + 3;
     }
-    M2C_FIELD(arg0, s16 *, 6) = (s16) (M2C_FIELD(arg0, s16 *, 6) + temp_a3);
-    M2C_FIELD(arg0, s16 *, 8) = (s16) (M2C_FIELD(arg0, s16 *, 8) + temp_a2);
-    M2C_FIELD(arg1, s16 *, 6) = (s16) (M2C_FIELD(arg1, s16 *, 6) + temp_a2);
-    M2C_FIELD(arg1, s16 *, 8) = (s16) (M2C_FIELD(arg1, s16 *, 8) + temp_a3);
+    *(s16 *)(arg0 + 6) = *(s16 *)(arg0 + 6) + a3;
+    *(s16 *)(arg0 + 8) = *(s16 *)(arg0 + 8) + a2;
+    *(s16 *)(arg1 + 6) = *(s16 *)(arg1 + 6) + a2;
+    *(s16 *)(arg1 + 8) = *(s16 *)(arg1 + 8) + a3;
     return 1;
 }

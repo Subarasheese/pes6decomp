@@ -65,7 +65,7 @@ s32 func_00C296B0(void *arg0, s32 arg1) {
             if (M2C_FIELD((temp_s2 + temp_s0), u8 *, 0xD4) != 0) {
                 if ((func_00292F00(M2C_FIELD(temp_a0_2, u8 *, 0xC0)) & 0xFF) == 2) {
                     temp_a2 = temp_s2 + temp_s0;
-                    var_a4 = (s32) M2C_FIELD(temp_a2, s32 *, 0xD8) / (s32) ((M2C_FIELD(temp_a2, u32 *, 0x18) / 100) + ((u32) M2C_FIELD(temp_a2, u32 *, 0x18) >> 0x1F));
+                    var_a4 = (s32) M2C_FIELD(temp_a2, s32 *, 0xD8) / (M2C_FIELD(temp_a2, s32 *, 0x18) / 100);
                     if (var_a4 >= 0x3D) {
                         var_a4 = 0x64;
                     }

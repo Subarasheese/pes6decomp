@@ -3,13 +3,13 @@
 #include "pes6/m2c.h"
 
 extern void Pes6Ball_Update(void);
-extern s32 func_00152130(s32, s8);
-extern u8 func_00BF6270(void);
+extern s32 func_00152130(s32, s32);
+extern s32 func_00BF6270(void);
 M2C_UNK func_009E1CB0(M2C_UNK, u32, u8);            /* extern */
 M2C_UNK func_00AD0A20();                            /* extern */
 M2C_UNK func_00B252E0(u32, u32, u8);                /* extern */
 s32 func_00BA91C0();                                /* extern */
-M2C_UNK func_00BA92A0(u8);                          /* extern */
+M2C_UNK func_00BA92A0(s32);                          /* extern */
 extern u8 D_003EA7A9;
 extern char D_00591BE4[];
 extern char D_00591E14[];

@@ -3,7 +3,8 @@
 #include "pes6/m2c.h"
 
 extern void func_00B364D0(u32);
-extern s32 func_002079F0(void *);
+extern s32 func_002079F0(void *, u16);
+extern char D_00CBCD50[];
 M2C_UNK func_001CD9E0(f32);                         /* extern */
 M2C_UNK func_00207390(void *, M2C_UNK);             /* extern */
 M2C_UNK func_00209A00(void *, M2C_UNK, M2C_UNK);    /* extern */
@@ -51,7 +52,7 @@ void func_00B92170(void **arg0) {
     temp_s0_2 = temp_s0 & 0xFF;
     if ((u32) (temp_s0_2 - 1) >= 2U) {
 
-    } else if (func_002079F0(M2C_FIELD(*arg0, void **, 4)) != 0) {
+    } else if (func_002079F0(M2C_FIELD(*arg0, void **, 4), *(u16 *)D_00CBCD50) != 0) {
         if ((func_00B36450() != 0) && (func_00B3B740(arg0) == 0)) {
             if (func_00B36450() != 0) {
                 if (temp_s0_2 == 2) {

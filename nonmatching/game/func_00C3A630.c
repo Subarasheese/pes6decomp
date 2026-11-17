@@ -7,7 +7,7 @@ extern void func_00207360(int);
 M2C_UNK func_00209A00(void *, u16, M2C_UNK);        /* extern */
 void **func_00B2A420(s32);                          /* extern */
 s32 func_00BB1310(s32, u16);                        /* extern */
-M2C_UNK func_00BD3CF0(void *, f32, f32);            /* extern */
+M2C_UNK func_00BD3CF0(void *, s32, s32, s32, f32, f32);            /* extern */
 M2C_UNK func_00C37130(u8, s32, M2C_UNK, u16);       /* extern */
 M2C_UNK func_00C373B0(u8, s32, s32);                /* extern */
 void *func_00C375E0(u8);                            /* extern */
@@ -16,7 +16,7 @@ s32 func_00C37790(u8, void *);                      /* extern */
 s32 func_00C37850(u8);                              /* extern */
 extern u8 D_003EA7F6;
 
-void func_00C3A630(void *arg0) {
+void func_00C3A630(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 var_f1;
     f32 var_f1_2;
     s32 temp_s1_2;
@@ -37,7 +37,7 @@ void func_00C3A630(void *arg0) {
     temp_s0_2 = M2C_FIELD(temp_s0, s32 *, 4) + (func_00C37790(M2C_FIELD(M2C_FIELD(arg0, void **, 4), u8 *, 0x54), arg0) * 0x14);
     temp_s1 = func_00B2A420(func_00C37850(M2C_FIELD(M2C_FIELD(arg0, void **, 4), u8 *, 0x54)));
     temp_v0 = M2C_FIELD(arg0, void **, 0);
-    func_00BD3CF0(arg0, M2C_FIELD(temp_v0, f32 *, 0x6C), M2C_FIELD(temp_v0, f32 *, 0x70));
+    func_00BD3CF0(arg0, (s32)arg0, arg2, arg3, M2C_FIELD(temp_v0, f32 *, 0x6C), M2C_FIELD(temp_v0, f32 *, 0x70));
     temp_a0 = *temp_s1;
     if ((s32) M2C_FIELD(M2C_FIELD(arg0, void **, 0), u8 *, 0) >= (s32) M2C_FIELD(temp_a0, u8 *, 0)) {
         var_a1 = M2C_FIELD(temp_s0_2, u16 *, 0xE);

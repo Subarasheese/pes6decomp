@@ -96,7 +96,7 @@ block_7:
             M2C_FIELD((Pes6Ball_Current + temp_a6_2), u8 *, 0x96) = (u8) M2C_FIELD((Pes6Ball_Current + temp_a7_2), u8 *, 0x96);
         } while (var_a2_2 < 9);
         M2C_FIELD(Pes6Ball_Current, s8 *, 0x8C) = arg0;
-        M2C_FIELD(Pes6Ball_Current, u8 *, 0) = (u8) (*(u8 *)D_00591E19);
+        M2C_FIELD(Pes6Ball_Current, u8 *, 0x96) = (u8) (*(u8 *)D_00591E19);
     }
     temp_a1 = arg0 & 0xFF;
     if (M2C_FIELD(Pes6Ball_Current, u16 *, 0x84) != temp_a1) {

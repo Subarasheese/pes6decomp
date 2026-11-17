@@ -5,6 +5,8 @@
 
 void func_00C22390(void *arg0, void *arg1) {
     f32 temp_f2;
+    f32 nx;
+    f32 ny;
     s32 var_a5;
     s32 var_v1;
     u8 temp_a2;
@@ -30,8 +32,10 @@ void func_00C22390(void *arg0, void *arg1) {
         var_a6 = arg0 + (temp_a3 * 8);
         M2C_FIELD(arg0, u8 *, 0x300) = (u8) (M2C_FIELD(arg0, u8 *, 0x300) + 1);
 block_3:
-        M2C_FIELD(var_a6, f32 *, 0) = (f32) M2C_FIELD(arg1, f32 *, 0);
-        M2C_FIELD(var_a6, f32 *, 4) = (f32) M2C_FIELD(arg1, f32 *, 4);
+        nx = M2C_FIELD(arg1, f32 *, 0);
+        ny = M2C_FIELD(arg1, f32 *, 4);
+        M2C_FIELD(var_a6, f32 *, 0) = nx;
+        M2C_FIELD(var_a6, f32 *, 4) = ny;
         if (temp_f2 <= fabsf(M2C_FIELD(var_t0, f32 *, 4))) {
             var_a5 = 1;
             if ((s32) temp_a3 >= 2) {
@@ -63,8 +67,10 @@ block_11:
             M2C_FIELD(arg0, u8 *, 0x301) = var_a7;
         }
     } else {
-        M2C_FIELD(arg0, f32 *, 0) = (f32) M2C_FIELD(arg1, f32 *, 0);
-        M2C_FIELD(arg0, f32 *, 4) = (f32) M2C_FIELD(arg1, f32 *, 4);
+        nx = M2C_FIELD(arg1, f32 *, 0);
+        ny = M2C_FIELD(arg1, f32 *, 4);
+        M2C_FIELD(arg0, f32 *, 0) = nx;
+        M2C_FIELD(arg0, f32 *, 4) = ny;
         M2C_FIELD(arg0, u8 *, 0x300) = 1U;
         M2C_FIELD(arg0, u8 *, 0x301) = 0U;
         M2C_FIELD(arg0, u8 *, 0x302) = 0U;

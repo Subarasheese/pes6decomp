@@ -1,58 +1,47 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern s32 func_001DD4E0(s32);
-extern s32 D_003E9960;
+extern u8 *D_003E9960;
 
-void *func_001E0540(s32 arg0, s32 arg1, s32 arg2, void *arg3) {
-    s32 temp_a0;
-    s32 temp_v1_2;
-    s32 var_a2;
-    s32 var_a5;
-    void *temp_a3;
-    void *temp_v0;
-    void *temp_v1;
-    void *var_a1;
-    void *var_a4;
+void *func_001E0540(s32 arg0, s32 arg1, s32 arg2, u8 *arg3) {
+    s32 idx;
+    u8 *entry;
+    u8 *node;
+    s32 count;
+    s32 i;
+    u8 *items;
+    s32 match;
+    s32 key;
 
-    temp_a0 = arg2 & 0xFF;
-    temp_v1 = D_003E9960 + (func_001DD4E0(arg0) * 0x30) + (temp_a0 * 0xC);
-    var_a1 = M2C_FIELD(temp_v1, void **, 4);
-    temp_v0 = temp_v1 + 4;
-    if (var_a1 != NULL) {
-        temp_v1_2 = M2C_FIELD(temp_v0, u8 *, 0xA) * M2C_FIELD(temp_v0, u8 *, 0xB);
-loop_2:
-        if (temp_a0 == 0) {
-            var_a2 = 1;
-        } else if ((M2C_FIELD(var_a1, u8 *, 0x20) == M2C_FIELD(arg3, u8 *, 0)) && (M2C_FIELD(var_a1, u8 *, 0x21) == M2C_FIELD(arg3, u8 *, 1)) && (M2C_FIELD(var_a1, u8 *, 0x22) == M2C_FIELD(arg3, u8 *, 2)) && (M2C_FIELD(var_a1, u8 *, 0x23) == M2C_FIELD(arg3, u8 *, 3)) && (M2C_FIELD(var_a1, u8 *, 0x24) == M2C_FIELD(arg3, u8 *, 4)) && (M2C_FIELD(var_a1, u8 *, 0x25) == M2C_FIELD(arg3, u8 *, 5)) && (M2C_FIELD(var_a1, u8 *, 0x26) == M2C_FIELD(arg3, u8 *, 6)) && (M2C_FIELD(var_a1, u8 *, 0x27) == M2C_FIELD(arg3, u8 *, 7))) {
-            var_a2 = 1;
+    idx = func_001DD4E0(arg0);
+    key = arg2 & 0xFF;
+    entry = D_003E9960 + idx * 0x30 + key * 0xC;
+    node = *(u8 **)(entry + 4);
+    if (node == NULL) {
+        return NULL;
+    }
+    count = (entry + 4)[0xA] * (entry + 4)[0xB];
+    while (1) {
+        if (key == 0) {
+            match = 1;
+        } else if (node[0x20] == arg3[0] && node[0x21] == arg3[1] && node[0x22] == arg3[2] && node[0x23] == arg3[3]
+                   && node[0x24] == arg3[4] && node[0x25] == arg3[5] && node[0x26] == arg3[6] && node[0x27] == arg3[7]) {
+            match = 1;
         } else {
-            var_a2 = 0;
+            match = 0;
         }
-        if (var_a2 != 0) {
-            var_a5 = 0;
-            if (temp_v1_2 > 0) {
-                temp_a3 = M2C_FIELD(var_a1, void **, 0xC);
-                var_a4 = temp_a3;
-loop_16:
-                if (arg1 != M2C_FIELD(var_a4, s32 *, 0x30)) {
-                    var_a5 += 1;
-                    var_a4 += 0x40;
-                    if (var_a5 >= temp_v1_2) {
-                        goto block_22;
-                    }
-                    goto loop_16;
+        if (match != 0 && count > 0) {
+            items = *(u8 **)(node + 0xC);
+            for (i = 0; i < count; i++) {
+                if (*(s32 *)(items + i * 0x40 + 0x30) == arg1) {
+                    return items + i * 0x40;
                 }
-                return temp_a3 + (var_a5 << 6);
             }
         }
-block_22:
-        var_a1 = M2C_FIELD(var_a1, void **, 4);
-        if (var_a1 == NULL) {
+        node = *(u8 **)(node + 4);
+        if (node == NULL) {
             return NULL;
         }
-        goto loop_2;
     }
-    return NULL;
 }

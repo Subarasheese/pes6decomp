@@ -1,4 +1,4 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -77,15 +77,17 @@ void func_00C84740(void) {
                                 if (temp_f2 < 0.0f) {
                                     M2C_FIELD(temp_s1, f32 *, 4) = (f32) (M2C_FIELD(temp_s1, f32 *, 4) - (temp_f1_2 + temp_f24));
                                     temp_f20 = M2C_FIELD(M2C_FIELD(var_s3, void **, 0x7C), f32 *, 0x30);
+                                    temp_f2 = temp_f20 + (-func_001E5410() / 2.0f);
                                     temp_f1_3 = M2C_FIELD(temp_s1, f32 *, 4);
-                                    if ((temp_f1_3 + M2C_FIELD(temp_s0, f32 *, 4)) < (temp_f20 + (-func_001E5410() / 2.0f))) {
+                                    if ((temp_f1_3 + M2C_FIELD(temp_s0, f32 *, 4)) < temp_f2) {
                                         M2C_FIELD(temp_s1, f32 *, 4) = (f32) (temp_f1_3 + (temp_f22 + (temp_f20 + temp_f21)));
                                     }
                                 } else {
                                     M2C_FIELD(temp_s1, f32 *, 4) = (f32) (M2C_FIELD(temp_s1, f32 *, 4) - (temp_f24 + (temp_f22 + (temp_f24 - temp_f1_2))));
                                     temp_f20_2 = M2C_FIELD(M2C_FIELD(var_s3, void **, 0x7C), f32 *, 0x30);
+                                    temp_f2 = temp_f20_2 + (-func_001E5410() / 2.0f);
                                     temp_f1_4 = M2C_FIELD(temp_s1, f32 *, 4);
-                                    if ((temp_f1_4 + M2C_FIELD(temp_s0, f32 *, 4)) < (temp_f20_2 + (-func_001E5410() / 2.0f))) {
+                                    if ((temp_f1_4 + M2C_FIELD(temp_s0, f32 *, 4)) < temp_f2) {
                                         M2C_FIELD(temp_s1, f32 *, 4) = (f32) (temp_f1_4 + (temp_f22 + (temp_f20_2 + temp_f21)));
                                     }
                                 }

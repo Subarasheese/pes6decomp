@@ -38,10 +38,10 @@ void func_009D7080(void *arg0) {
         case 0x26E:
             if (!(temp_f1 < (f32) (M2C_FIELD(temp_a2, u8 *, 2) * 2))) {
                 temp_a1_3 = M2C_FIELD(arg0, s32 *, 0x1C);
-                var_v1 = ((temp_a1_3 * 0x5E) / 100) + ((u32) (temp_a1_3 * 0x5E) >> 0x1F);
+                var_v1 = (temp_a1_3 * 0x5E) / 100;
             } else {
                 temp_a1_4 = M2C_FIELD(arg0, s32 *, 0x1C);
-                var_v1 = ((temp_a1_4 * 0x63) / 100) + ((u32) (temp_a1_4 * 0x63) >> 0x1F);
+                var_v1 = (temp_a1_4 * 0x63) / 100;
             }
 block_33:
             M2C_FIELD(arg0, s32 *, 0x1C) = var_v1;
@@ -49,10 +49,10 @@ block_33:
         case 0x272:
             if (!(temp_f1 < (f32) (M2C_FIELD(temp_a2, u8 *, 2) * 2))) {
                 temp_a1_5 = M2C_FIELD(arg0, s32 *, 0x1C);
-                var_v1 = ((temp_a1_5 * 0x5E) / 100) + ((u32) (temp_a1_5 * 0x5E) >> 0x1F);
+                var_v1 = (temp_a1_5 * 0x5E) / 100;
             } else {
                 temp_a1_6 = M2C_FIELD(arg0, s32 *, 0x1C);
-                var_v1 = ((temp_a1_6 * 0x63) / 100) + ((u32) (temp_a1_6 * 0x63) >> 0x1F);
+                var_v1 = (temp_a1_6 * 0x63) / 100;
             }
             goto block_33;
         case 0x26A:
@@ -61,7 +61,7 @@ block_33:
             temp_a0 = M2C_FIELD(arg0, void **, 4);
             if (M2C_FIELD(temp_a0, f32 *, 0x38) == (f32) (M2C_FIELD(M2C_FIELD(temp_a0, void **, 4), u8 *, 2) * 2)) {
                 temp_a1_7 = M2C_FIELD(arg0, s32 *, 0x1C);
-                var_v1 = ((temp_a1_7 * 0x5F) / 100) + ((u32) (temp_a1_7 * 0x5F) >> 0x1F);
+                var_v1 = (temp_a1_7 * 0x5F) / 100;
                 goto block_33;
             }
             break;
@@ -73,7 +73,7 @@ block_33:
             temp_a0_2 = M2C_FIELD(arg0, void **, 4);
             if (!(M2C_FIELD(temp_a0_2, f32 *, 0x38) < (f32) (M2C_FIELD(M2C_FIELD(temp_a0_2, void **, 4), u8 *, 2) * 2))) {
                 temp_a1_8 = M2C_FIELD(arg0, s32 *, 0x1C);
-                var_v1 = ((temp_a1_8 * 0x5C) / 100) + ((u32) (temp_a1_8 * 0x5C) >> 0x1F);
+                var_v1 = (temp_a1_8 * 0x5C) / 100;
                 goto block_33;
             }
             break;
@@ -84,7 +84,7 @@ block_33:
             temp_a0_3 = M2C_FIELD(arg0, void **, 4);
             if (!(M2C_FIELD(temp_a0_3, f32 *, 0x38) < (f32) (M2C_FIELD(M2C_FIELD(temp_a0_3, void **, 4), u8 *, 2) * 2))) {
                 temp_a1_9 = M2C_FIELD(arg0, s32 *, 0x1C);
-                var_v1 = ((temp_a1_9 * 0x5A) / 100) + ((u32) (temp_a1_9 * 0x5A) >> 0x1F);
+                var_v1 = (temp_a1_9 * 0x5A) / 100;
                 goto block_33;
             }
             break;
@@ -98,7 +98,7 @@ block_33:
             temp_a0_4 = M2C_FIELD(arg0, void **, 4);
             if (!(M2C_FIELD(temp_a0_4, f32 *, 0x38) < (f32) (M2C_FIELD(M2C_FIELD(temp_a0_4, void **, 4), u8 *, 2) * 2))) {
                 temp_a1_10 = M2C_FIELD(arg0, s32 *, 0x1C);
-                var_v1 = ((temp_a1_10 * 0x5F) / 100) + ((u32) (temp_a1_10 * 0x5F) >> 0x1F);
+                var_v1 = (temp_a1_10 * 0x5F) / 100;
                 goto block_33;
             }
             break;
@@ -108,7 +108,7 @@ block_33:
             temp_a0_5 = M2C_FIELD(arg0, void **, 4);
             if (!(M2C_FIELD(temp_a0_5, f32 *, 0x38) < (f32) (M2C_FIELD(M2C_FIELD(temp_a0_5, void **, 4), u8 *, 2) * 2))) {
                 temp_a1_11 = M2C_FIELD(arg0, s32 *, 0x1C);
-                var_v1 = ((temp_a1_11 * 0x5C) / 100) + ((u32) (temp_a1_11 * 0x5C) >> 0x1F);
+                var_v1 = (temp_a1_11 * 0x5C) / 100;
                 goto block_33;
             }
             break;
@@ -121,6 +121,6 @@ block_33:
             }
         }
     } else {
-        func_00A00960((void *) M2C_FIELD(arg0, u16 *, 0x38), (u16) temp_a2);
+        func_00A00960(arg0, M2C_FIELD(arg0, u16 *, 0x38));
     }
 }

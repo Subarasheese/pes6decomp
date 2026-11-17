@@ -5,7 +5,7 @@
 
 M2C_UNK func_001F2530(s32, M2C_UNK, f32 *);         /* extern */
 M2C_UNK func_001F2770(s32, f32);                    /* extern */
-M2C_UNK func_001F3D80(s32, M2C_UNK);                /* extern */
+M2C_UNK func_001F3D80(s32, void *, s32);
 
 void func_002DB600(void *arg0, void *arg1) {
     f32 sp38;
@@ -16,7 +16,7 @@ void func_002DB600(void *arg0, void *arg1) {
             return;
         }
         if (M2C_FIELD(arg0, s16 *, 2) < M2C_FIELD(arg0, s16 *, 0)) {
-            func_001F3D80(M2C_FIELD(arg0, s32 *, 0x3C), 0);
+            func_001F3D80(M2C_FIELD(arg0, s32 *, 0x3C), arg1, 0);
             sp38 = M2C_FIELD(arg1, f32 *, 8);
             sp3C = M2C_FIELD(arg1, f32 *, 0xC);
             func_001F2530(M2C_FIELD(arg0, s32 *, 0x3C), 0, &sp38);

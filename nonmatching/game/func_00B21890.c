@@ -27,15 +27,15 @@ s32 func_00B21890(void *arg0) {
     }
     temp_f1 = M2C_FIELD(Pes6Ball_Current, f32 *, 0x14);
     temp_a3 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
-    if (temp_f1 < (f32) (((temp_a3 * -0x190) / 183) + ((u32) (temp_a3 * -0x190) >> 0x1F))) {
+    if (temp_f1 < (f32) (((temp_a3 * -0x190) / 183))) {
         return 0;
     }
-    if (temp_f1 < (f32) (((temp_a3 * -0xE0) / 183) + ((u32) (temp_a3 * -0xE0) >> 0x1F))) {
+    if (temp_f1 < (f32) (((temp_a3 * -0xE0) / 183))) {
         var_s0 = 0xFF;
         temp_a3_2 = M2C_FIELD(arg0, u8 *, 0x12);
         temp_v0 = func_009B30B0(M2C_FIELD(arg0, u16 *, 0x28), M2C_FIELD(Pes6Ball_Current, u16 *, 0x58), Pes6Ball_Current, temp_a3) & 0xFFFF;
         temp_a0 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (temp_a3_2 * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
-        if (M2C_FIELD(Pes6Ball_Current, f32 *, 0x14) < (f32) (((temp_a0 * -0x100) / 183) + ((u32) (temp_a0 * -0x100) >> 0x1F))) {
+        if (M2C_FIELD(Pes6Ball_Current, f32 *, 0x14) < (f32) (((temp_a0 * -0x100) / 183))) {
             temp_v0_2 = temp_v0 & 0xFFFF;
             if ((temp_v0_2 < 0x70) && (temp_v0_2 >= 0x28)) {
                 var_s0 = 0;

@@ -27,7 +27,7 @@ s32 func_009C3FE0(void *arg0, void *arg1) {
             if ((func_009B30B0(temp_s2, M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0) * 2) + arg1), u16 *, 0x128)) & 0xFFFF) < 0x39) {
                 func_0027D0B0(arg0, 0x10);
                 temp_v1_2 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
-                if (!((*(f32 *)D_00591E70) < (f32) (((temp_v1_2 * -0x100) / 183) + ((u32) (temp_v1_2 * -0x100) >> 0x1F)))) {
+                if (!((*(f32 *)D_00591E70) < (f32) ((temp_v1_2 * -0x100) / 183))) {
                     M2C_FIELD(arg1, s32 *, 0x20) = (s32) M2C_FIELD(arg1, s32 *, 0x1C);
                     func_00209A00(M2C_FIELD(arg1, void **, 4), 0x1CC, 0);
                     func_00207390(M2C_FIELD(arg0, s32 *, 4), 4);

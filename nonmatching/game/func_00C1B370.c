@@ -4,7 +4,7 @@
 
 
 f32 func_001CD9E0(f32);                             /* extern */
-M2C_UNK func_0027A600(M2C_UNK);                     /* extern */
+M2C_UNK func_0027A600(void *, s32);                     /* extern */
 M2C_UNK func_0090BA30(void *);                      /* extern */
 s32 func_00979270(void *, M2C_UNK);                 /* extern */
 s32 func_009B30B0(u16, s32);                        /* extern */
@@ -54,7 +54,7 @@ void func_00C1B370(void *arg0) {
     u8 temp_v1;
 
     var_s3 = 0;
-    func_0027A600(1);
+    func_0027A600(arg0, 1);
     temp_a0 = M2C_FIELD(arg0, u8 *, 0);
     if ((temp_a0 != 1) && (temp_a0 != 0xC)) {
         goto block_2;

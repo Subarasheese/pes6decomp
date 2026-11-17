@@ -2,26 +2,26 @@
 /* Non-matching reconstruction; types and call contracts remain provisional. */
 #include "pes6/m2c.h"
 
-s32 func_001C4698(s32 *, s32 *, M2C_UNK);           /* extern */
+s32 func_001C4698(void *, void *, s32);           /* extern */
 s8 func_001CDA50(M2C_UNK);                          /* extern */
-s32 *func_00221140();                               /* extern */
-s32 *func_00221150();                               /* extern */
-s32 *func_002212E0();                               /* extern */
-s32 *func_002212F0();                               /* extern */
+u8 *func_00221140();                               /* extern */
+u8 *func_00221150();                               /* extern */
+u8 *func_002212E0();                               /* extern */
+u8 *func_002212F0();                               /* extern */
 s32 func_002E9360();                                /* extern */
 M2C_UNK func_002E9370(M2C_UNK);                     /* extern */
 
 s32 func_002E8560(void) {
-    s32 *temp_s0;
-    s32 *temp_s1;
-    s32 *temp_s2;
-    s32 *temp_s6;
-    s32 *var_s3;
-    s32 *var_s4;
-    s32 *var_s4_2;
-    s32 *var_s4_3;
-    s32 *var_s5_2;
-    s32 *var_s5_3;
+    u8 *temp_s0;
+    u8 *temp_s1;
+    u8 *temp_s2;
+    u8 *temp_s6;
+    u8 *var_s3;
+    u8 *var_s4;
+    u8 *var_s4_2;
+    u8 *var_s4_3;
+    u8 *var_s5_2;
+    u8 *var_s5_3;
     s32 temp_v0;
     s32 temp_v1;
     s32 var_s3_2;
@@ -76,7 +76,7 @@ loop_7:
     var_s5_3 = temp_s1;
     var_s4_3 = temp_s2;
     do {
-        if (*var_s4_3 != *var_s5_3) {
+        if (*(s32 *)var_s4_3 != *(s32 *)var_s5_3) {
             func_002E9370(8);
         }
         var_s3_3 += 1;

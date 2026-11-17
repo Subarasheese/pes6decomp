@@ -9,10 +9,10 @@ extern s32 func_00338A60(void *, void *);
 extern int func_0030E830(void);
 extern int func_003336F0(int);
 extern s32 func_003389F0(void *, s32, s32);
-void *func_00338AD0(M2C_UNK, M2C_UNK *, s32, M2C_UNK *); /* extern */
+void *func_00338AD0(M2C_UNK, void (*)(void), s32, void *);
 extern char D_003E61B0[];
-extern M2C_UNK func_00345500;
-extern M2C_UNK func_00345670;
+extern void func_00345500(void);
+extern void func_00345670(void);
 
 s32 func_00345580(void *arg0) {
     s32 temp_s1;

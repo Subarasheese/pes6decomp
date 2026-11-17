@@ -38,7 +38,7 @@ s32 func_002D75E0(void) {
             } else {
                 var_a1 = (s32) (*(u8 *)D_00591E19) % 23;
             }
-            if (!((M2C_FIELD(Pes6Ball_Current, f32 *, 0x10) * (f32) *(((char *)D_0058E5C4) + (var_a1 * 0x240))) <= -2693.0f)) {
+            if (!((M2C_FIELD(Pes6Ball_Current, f32 *, 0x10) * (f32) *(s16 *)(((char *)D_0058E5C4) + (var_a1 * 0x240))) <= -2693.0f)) {
                 temp_f1 = D_003E9DA8 + -0.13333334f;
                 D_003E9DA8 = temp_f1;
                 if (temp_f1 < 0.0f) {

@@ -62,7 +62,7 @@ void func_00A64850(void *arg0, s32 arg1, s32 arg2, s32 arg3, u32 arg4) {
             if (temp_v1_4 < 0) {
                 var_v0 = (s32) (temp_v1_4 + 1) >> 1;
             }
-            if (!(func_00BBB780((s64) ((var_v0 - 0x3C) << 0x30) >> 0x30) & 0xFF)) {
+            if (!(func_00BBB780((s64)(s16)(var_v0 - 0x3C)) & 0xFF)) {
                 temp_v0 = func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7E) & 0x7F, 0x32U);
                 var_v1 = -temp_v0;
                 var_v0_2 = temp_v0 * -2;

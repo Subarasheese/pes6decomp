@@ -1,9 +1,9 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_00285080(s32);
-s32 func_00A72D50(s32, s32, M2C_UNK);               /* extern */
+s32 func_00A72D50(s32, s32, s32, s32);               /* extern */
 extern void *Pes6Ball_Current;
 extern char D_005926E0[];
 
@@ -24,7 +24,7 @@ loop_2:
     M2C_FIELD(Pes6Ball_Current, s16 *, 0x1450) = 0;
     M2C_FIELD(Pes6Ball_Current, s16 *, 0x144C) = 0;
     M2C_FIELD(Pes6Ball_Current, s32 *, 0x1444) = var_s0;
-    M2C_FIELD(Pes6Ball_Current, f32 *, 0x1448) = (f32) func_00A72D50(arg0, arg1, 0x180);
+    M2C_FIELD(Pes6Ball_Current, f32 *, 0x1448) = (f32) func_00A72D50(arg0, arg1, 0x180, arg3);
     M2C_FIELD(Pes6Ball_Current, f32 *, 0x1448) = (f32) (M2C_FIELD(Pes6Ball_Current, f32 *, 0x1448) * -188.0f);
     M2C_FIELD(Pes6Ball_Current, s8 *, 0x144F) = 1;
     M2C_FIELD(Pes6Ball_Current, s32 *, 0x1440) = arg3;

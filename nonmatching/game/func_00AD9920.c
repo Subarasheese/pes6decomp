@@ -7,7 +7,7 @@ typedef unsigned int u128 __attribute__((mode(TI)));
 
 s64 func_00288670(s32, M2C_UNK, s32);               /* extern */
 s32 func_009B30B0(u16, u16);                        /* extern */
-u16 func_009B33F0(char *, char *);                  /* extern */
+u16 func_009B33F0(char *, char *, s32);                  /* extern */
 u16 func_00A9C660(char *);                          /* extern */
 s32 func_00AFBA70(u8);                              /* extern */
 s32 func_00BBB780(s64);                             /* extern */
@@ -57,7 +57,7 @@ block_7:
     temp_a2_2 = M2C_FIELD(temp_s2, u8 *, 0x12);
     temp_s0_2 = func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (temp_a2 * 0x6900))), u8 *, 0x6C) & 0x7F, 0x32, temp_a2 * 0x69);
     if (func_00BBB780((s64) (((temp_s0_2 - func_00288670(M2C_FIELD(((M2C_FIELD(temp_s2, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (temp_a2_2 * 0x6900))), u8 *, 0x6C) & 0x7F, 0x32, temp_a2_2 * 0x69)) - 0x14) << 0x30) >> 0x30) == 0) {
-        temp_s1 = func_009B30B0(M2C_FIELD(arg0, u16 *, 0x26), func_009B33F0(arg0, temp_s2)) & 0xFFFF;
+        temp_s1 = func_009B30B0(M2C_FIELD(arg0, u16 *, 0x26), func_009B33F0(arg0, temp_s2, temp_a2_2 * 0x69)) & 0xFFFF;
         temp_f1 = (s32) (M2C_FIELD(arg0, f32 *, 0xE0) - M2C_FIELD(temp_s2, f32 *, 0xE0));
         temp_f0 = (s32) (M2C_FIELD(arg0, f32 *, 0xE8) - M2C_FIELD(temp_s2, f32 *, 0xE8));
         temp_s0_3 = (temp_f1 * temp_f1) + (temp_f0 * temp_f0);

@@ -40,7 +40,7 @@ s32 func_00C31D10(char *arg0, s32 arg1, s32 arg2, s8 arg3) {
     temp_s3 = M2C_FIELD((arg2 + arg0), u8 *, 0x8C);
     temp_s0 = ((char *)D_00591EF6) + temp_s1;
     temp_a0 = *temp_s0;
-    temp_s6 = temp_a0 + *(((char *)D_00591EF8) + temp_s1);
+    temp_s6 = temp_a0 + *(((u8 *)D_00591EF8) + temp_s1);
     if (temp_s6 < (s32) (*(u8 *)D_00591BC3)) {
         if (((s32) temp_s4 < 0x20) && ((s32) temp_s3 < 0x20)) {
             var_v1 = 0;
@@ -85,9 +85,9 @@ block_23:
                         }
                         temp_a1 = M2C_FIELD(arg0, u8 *, 0) * 0x6900;
                         temp_a0_2 = ((char *)D_00592A44) + temp_a1;
-                        if (*(temp_a0_2 + (temp_s3 * 0x348)) == 0) {
+                        if (*(u8 *)(temp_a0_2 + (temp_s3 * 0x348)) == 0) {
                             var_v0 = 1;
-                        } else if (*(temp_a0_2 + (temp_s4 * 0x348)) != 0) {
+                        } else if (*(u8 *)(temp_a0_2 + (temp_s4 * 0x348)) != 0) {
                             var_v0 = 1;
                         } else {
                             var_s2 = 0;

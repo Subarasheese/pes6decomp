@@ -2,7 +2,7 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern u32 func_00288670(u32, u32);
+extern s32 func_00288670(u32, u32);
 M2C_UNK func_00207390(void *, M2C_UNK, s32, u16);   /* extern */
 M2C_UNK func_00209A00(void *, M2C_UNK, M2C_UNK);    /* extern */
 s32 func_009B30B0(u16, u16);                        /* extern */
@@ -51,7 +51,7 @@ s32 func_00AE6040(void *arg0, void *arg1) {
                 if ((temp_v1 != 0xB) && (temp_v1 != 6) && (temp_v1 != 9) && (temp_v1 != 5) && (temp_v1 != 8) && (func_00BBB8C0(3) != 0)) {
                     return 0;
                 }
-                if ((func_00BBB780((s64) (func_00288670(M2C_FIELD(((M2C_FIELD(arg1, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg1, u8 *, 0x12) * 0x6900))), u8 *, 0x6C) & 0x7F, 0x32U) << 0x30) >> 0x30) == 0) && (func_00BBB780((s64) (func_00288670(M2C_FIELD(((M2C_FIELD(arg1, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg1, u8 *, 0x12) * 0x6900))), u8 *, 0x70) & 0x7F, 0x32U) << 0x30) >> 0x30) == 0)) {
+                if ((func_00BBB780((s16) (func_00288670(M2C_FIELD(((M2C_FIELD(arg1, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg1, u8 *, 0x12) * 0x6900))), u8 *, 0x6C) & 0x7F, 0x32U))) == 0) && (func_00BBB780((s16) (func_00288670(M2C_FIELD(((M2C_FIELD(arg1, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg1, u8 *, 0x12) * 0x6900))), u8 *, 0x70) & 0x7F, 0x32U))) == 0)) {
                     return 0;
                 }
 block_28:

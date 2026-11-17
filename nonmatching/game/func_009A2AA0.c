@@ -13,7 +13,7 @@ extern char D_00591C09[];
 extern char D_00591DD6[];
 
 s32 func_009A2AA0(void) {
-    M2C_UNK *var_s1_2;
+    char *var_s1_2;
     s32 var_s0;
     s32 var_s1;
     s32 var_s2;
@@ -61,7 +61,7 @@ s32 func_009A2AA0(void) {
         if (var_s3 != 0) {
             M2C_FIELD(temp_s1, s32 *, 0x6C) = 0;
             var_s2_2 = 0;
-            var_s1_2 = ((void *)Pes6MatchPlayers);
+            var_s1_2 = Pes6MatchPlayers;
             do {
                 temp_a0 = M2C_FIELD(var_s1_2, void **, 4);
                 temp_v1 = M2C_FIELD(temp_a0, u16 *, 0x30);

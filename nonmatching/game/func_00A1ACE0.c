@@ -5,10 +5,10 @@
 typedef int s128 __attribute__((mode(TI)));
 typedef unsigned int u128 __attribute__((mode(TI)));
 
-u32 func_00288670(s32, M2C_UNK, s32);               /* extern */
+s32 func_00288670(s32, M2C_UNK, s32);               /* extern */
 s32 func_002AE670(s32);                             /* extern */
 u16 func_0099DFF0(char *);                          /* extern */
-s32 func_009B30B0(u16, u16);                        /* extern */
+s32 func_009B30B0(s32, s32);                        /* extern */
 u32 func_009B33A0(char *, s32, s32);                /* extern */
 s32 func_00A14EC0(char *, char *);                  /* extern */
 M2C_UNK func_00A15540(char *, char *);              /* extern */
@@ -33,7 +33,7 @@ extern char D_005926EC[];
 extern char D_00592943[];
 extern char Pes6MatchSquads[];
 
-s32 func_00A1ACE0(char *arg0, u16 arg1) {
+s32 func_00A1ACE0(char *arg0, s32 arg1) {
     f32 temp_f20;
     f32 temp_f21;
     f32 var_f0;
@@ -42,7 +42,7 @@ s32 func_00A1ACE0(char *arg0, u16 arg1) {
     s32 var_a0_2;
     s32 var_a0_3;
     s32 var_v0;
-    u32 temp_ret;
+    s32 temp_ret;
     u32 temp_v1;
     u8 temp_a2;
     u8 temp_s1;
@@ -87,7 +87,7 @@ block_9:
             if (var_v0 != 0) {
                 temp_a2 = M2C_FIELD(arg0, u8 *, 0x12);
                 temp_ret = func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (temp_a2 * 0x6900))), u8 *, 0x70) & 0x7F, 0x32, temp_a2 * 0x69);
-                if ((*(f32 *)D_005926D8) <= (f32) func_002AE670(0x10 - ((temp_ret / 20) + (temp_ret >> 0x1F)))) {
+                if ((*(f32 *)D_005926D8) <= (f32) func_002AE670(0x10 - (temp_ret / 20))) {
                     return 0;
                 }
                 if ((M2C_FIELD(M2C_FIELD(temp_s1_2, char **, 4), u16 *, 0x30) == 0x6F) && ((u32) M2C_FIELD(temp_s1_2, u32 *, 0x114) < (u32) M2C_FIELD(arg0, u32 *, 0x114)) && ((func_009B30B0(M2C_FIELD(arg0, u16 *, 0x10C), M2C_FIELD(((M2C_FIELD(temp_s1_2, u8 *, 0) * 2) + arg0), u16 *, 0x128)) & 0xFFFF) < 0x31)) {

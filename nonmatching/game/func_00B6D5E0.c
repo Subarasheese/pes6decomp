@@ -7,9 +7,9 @@ M2C_UNK func_00207390(void *, M2C_UNK);             /* extern */
 M2C_UNK func_002075B0(void *, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
 s32 func_00979270(void *, M2C_UNK);                 /* extern */
 s32 func_009B3070(u16, u16);                        /* extern */
-s32 func_009B3480(void *, M2C_UNK, M2C_UNK);        /* extern */
+s32 func_009B3480(void *, f32, f32);        /* extern */
 M2C_UNK func_00B6D3E0(void **);                     /* extern */
-M2C_UNK func_00BA90E0(void **, u16, u16, f32);      /* extern */
+M2C_UNK func_00BA90E0(void **, u16, f32);      /* extern */
 s32 func_00BBB7F0(M2C_UNK);                         /* extern */
 extern s32 D_003E74CC;
 extern char D_0058E7F0[];
@@ -73,11 +73,11 @@ block_18:
         } else {
 block_14:
             func_002075B0(M2C_FIELD(*arg0, void **, 4), 0x384, 0, 8);
-            temp_s2 = func_009B3480(*arg0, 0xC6526400, 0) & 0xFFFF;
+            temp_s2 = func_009B3480(*arg0, -13465.0f, 0.0f) & 0xFFFF;
             M2C_FIELD(*arg0, u16 *, 0x2C) = (u16) (temp_s2 + func_00BBB7F0(0x100));
             M2C_FIELD(*arg0, s16 *, 0x18) = 5;
             temp_a2 = M2C_FIELD(M2C_FIELD(temp_s0, void **, 4), u16 *, 0x30);
-            func_00BA90E0(arg0, M2C_FIELD(*arg0, u16 *, 0x2C), temp_a2, (f32) (M2C_FIELD(((temp_a2 * 4) + D_003E74CC), s32 *, 0x2FD8) - 2));
+            func_00BA90E0(arg0, M2C_FIELD(*arg0, u16 *, 0x2C), (f32) (M2C_FIELD(((temp_a2 * 4) + D_003E74CC), s32 *, 0x2FD8) - 2));
             temp_v1_3 = *arg0;
             M2C_FIELD(M2C_FIELD(temp_v1_3, void **, 4), s8 *, 0x2D) = (s8) ((((M2C_FIELD(temp_v1_3, u16 *, 0x2C) - M2C_FIELD(temp_v1_3, u16 *, 0x26)) + 0x10000) & 0xFFFF) < 0x8001);
             M2C_FIELD(*arg0, s32 *, 0x1C) = 0;

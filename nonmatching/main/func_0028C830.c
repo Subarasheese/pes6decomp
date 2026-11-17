@@ -1,0 +1,172 @@
+/* compiler: mwcc-3.0.1b210 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+
+void func_0028C830(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
+    s64 at = 0, v0 = 0, v1 = 0, t4 = 0, t5 = 0, t6 = 0, t7 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, t8 = 0, t9 = 0;
+    s64 hi = 0, lo = 0;
+    s64 frame[40];
+    s64 sp = (s32) (u32) frame;
+
+    t8 = -1;
+    v0 = (s64) ((u64) 0 + (u64) (s64) 255);
+    a3 = (s32) ((u32) sp + 0x40U);
+    a2 = 61;
+L_0028C854:;
+    v1 = (*(volatile s32 *) (u32) a0);
+    a2 = (s32) ((u32) a2 + 0xffffffffU);
+    (*(volatile u32 *) (u32) a3) = (u32) v1;
+    a0 = (s32) ((u32) a0 + 0x4U);
+    a3 = (s32) ((u32) a3 + 0x4U);
+    if (a2 > 0) goto L_0028C854;
+    v1 = (s32) ((u32) a1 + (u32) sp);
+    a6 = 4;
+    v1 = (s32) ((u32) v1 + 0x40U);
+    a5 = 1;
+    t4 = (s32) ((u32) v1 + 0xc0U);
+    a4 = 3;
+    v1 = (s32) 0x66660000U;
+    a3 = 2;
+    a2 = v1 | 0x6667;
+    t9 = -2;
+    v1 = (s32) 0x55550000U;
+    t6 = (s32) ((u32) sp + 0x40U);
+    a0 = v1 | 0x5556;
+    s0 = 255;
+L_0028C8A8:;
+    at = a1 < 5;
+    if (at == 0) goto L_0028C8E8;
+    a7 = (*(volatile u8 *) (u32) t4);
+    s1 = 0;
+    t7 = t6;
+L_0028C8C0:;
+    t5 = (*(volatile u8 *) (u32) t7);
+    v1 = (s32) ((u32) t5 + (u32) sp);
+    v1 = (*(volatile u8 *) (u32) (v1 + 224));
+    if (v1 == 0) goto L_0028CA98;
+    if (a7 != t5) goto L_0028CA98;
+    v0 = (s32) ((u32) a1 + (u32) sp);
+    v0 = (*(volatile u8 *) (u32) (v0 + 256)); goto L_0028CAFC;
+L_0028C8E8:;
+    t5 = 0;
+L_0028C8EC:;
+    t7 = t6;
+L_0028C8F0:;
+    a7 = (*(volatile u8 *) (u32) t7);
+    v1 = (s32) ((u32) a7 + (u32) sp);
+    v1 = (*(volatile u8 *) (u32) (v1 + 224));
+    if (v1 == 0) goto L_0028CA68;
+    v1 = (s32) ((u32) a7 << 2);
+    v1 = (s32) ((u32) v1 + (u32) sp);
+    { s32 c_ = a1 == a6; v1 = (*(volatile s32 *) (u32) (v1 + 96)); if (c_) goto L_0028C9C8; }
+    if (a1 == a5) goto L_0028C990;
+    if (a1 == a4) goto L_0028C938;
+    if (a1 == a3) goto L_0028C938;
+    goto L_0028CA08;
+L_0028C938:;
+    s1 = (*(volatile u8 *) (u32) (t7 + 197));
+    if (s1 == 0) goto L_0028CA68;
+    at = s1 < 36;
+    if (at == 0) goto L_0028CA68;
+    s2 = (*(volatile u8 *) (u32) (v1 + 14));
+    s1 = (*(volatile u8 *) (u32) (v1 + 20));
+    s2 = s2 & 0x7f;
+    v1 = (*(volatile u8 *) (u32) (v1 + 15));
+    s1 = s1 & 0x7f;
+    s2 = (s32) ((u32) s2 + (u32) s1);
+    v1 = v1 & 0x7f;
+    { s64 m_ = (s64) (s32) a2 * (s64) (s32) v1; lo = (s32) m_; hi = (s32) (m_ >> 32); }
+    s1 = (s32) ((u32) v1 >> 31);
+    v1 = hi;
+    v1 = (s32) v1 >> 1;
+    v1 = (s32) ((u32) v1 + (u32) s1);
+    v1 = (s32) ((u32) s2 + (u32) v1); goto L_0028CA50;
+L_0028C990:;
+    s2 = (*(volatile u8 *) (u32) (v1 + 19));
+    s1 = (*(volatile u8 *) (u32) (v1 + 20));
+    s2 = s2 & 0x7f;
+    v1 = (*(volatile u8 *) (u32) (v1 + 16));
+    s1 = s1 & 0x7f;
+    s2 = (s32) ((u32) s2 + (u32) s1);
+    v1 = v1 & 0x7f;
+    { s64 m_ = (s64) (s32) a0 * (s64) (s32) v1; lo = (s32) m_; hi = (s32) (m_ >> 32); }
+    s1 = (s32) ((u32) v1 >> 31);
+    v1 = hi;
+    v1 = (s32) ((u32) v1 + (u32) s1);
+    v1 = (s32) ((u32) s2 + (u32) v1); goto L_0028CA50;
+L_0028C9C8:;
+    s3 = (*(volatile u8 *) (u32) (v1 + 26));
+    s1 = (*(volatile u8 *) (u32) (v1 + 14));
+    s2 = (*(volatile u8 *) (u32) (v1 + 16));
+    s3 = s3 & 0x7f;
+    s1 = (s64) ((u64) s1 << 56);
+    v1 = s2 & 0x7f;
+    s2 = (s64) ((u64) s1 >> 63);
+    v1 = (s32) ((u32) s3 + (u32) v1);
+    s1 = (s32) ((u32) s2 << 4);
+    s2 = (s32) ((u32) s1 - (u32) s2);
+    s1 = (s32) ((u32) s2 << 2);
+    s1 = (s32) ((u32) s1 - (u32) s2);
+    s1 = (s32) ((u32) s1 << 1);
+    v1 = (s32) ((u32) v1 + (u32) s1); goto L_0028CA50;
+L_0028CA08:;
+    s3 = (*(volatile u8 *) (u32) (v1 + 17));
+    s2 = (*(volatile u8 *) (u32) (v1 + 14));
+    s1 = (*(volatile u8 *) (u32) (v1 + 19));
+    s3 = s3 & 0x7f;
+    s2 = s2 & 0x7f;
+    v1 = (*(volatile u8 *) (u32) (v1 + 20));
+    s2 = (s32) ((u32) s3 + (u32) s2);
+    s1 = s1 & 0x7f;
+    s2 = (s32) ((u32) s2 + (u32) s1);
+    v1 = v1 & 0x7f;
+    { s64 m_ = (s64) (s32) a2 * (s64) (s32) v1; lo = (s32) m_; hi = (s32) (m_ >> 32); }
+    s1 = (s32) ((u32) v1 >> 31);
+    v1 = hi;
+    v1 = (s32) v1 >> 1;
+    v1 = (s32) ((u32) v1 + (u32) s1);
+    v1 = (s32) ((u32) s2 + (u32) v1);
+L_0028CA50:;
+    at = t8 < v1;
+    if (at == 0) goto L_0028CA68;
+    t8 = v1;
+    v0 = a7 & 0xff;
+L_0028CA68:;
+    t5 = (s32) ((u32) t5 + 0x1U);
+    v1 = t5 < 11;
+    { s32 c_ = v1 != 0; t7 = (s32) ((u32) t7 + 0x1U); if (c_) goto L_0028C8F0; }
+    a7 = v0 & 0xff;
+    if (a7 == s0) goto L_0028CAB0;
+L_0028CA88:;
+    if (a7 == s0) goto L_0028C8A8;
+    goto L_0028CB00;
+L_0028CA98:;
+    s1 = (s32) ((u32) s1 + 0x1U);
+    v1 = s1 < 11;
+    { s32 c_ = v1 != 0; t7 = (s32) ((u32) t7 + 0x1U); if (c_) goto L_0028C8C0; }
+    t5 = 0; goto L_0028C8EC;
+L_0028CAB0:;
+    if (t8 == t9) goto L_0028CAF8;
+    t5 = 0;
+    t7 = t6;
+L_0028CAC0:;
+    (*(volatile u8 *) (u32) (t7 + 160)) = (u8) a5;
+    (*(volatile u8 *) (u32) (t7 + 161)) = (u8) a5;
+    t5 = (s32) ((u32) t5 + 0x8U);
+    (*(volatile u8 *) (u32) (t7 + 162)) = (u8) a5;
+    v1 = t5 < 32;
+    (*(volatile u8 *) (u32) (t7 + 163)) = (u8) a5;
+    (*(volatile u8 *) (u32) (t7 + 164)) = (u8) a5;
+    (*(volatile u8 *) (u32) (t7 + 165)) = (u8) a5;
+    (*(volatile u8 *) (u32) (t7 + 166)) = (u8) a5;
+    (*(volatile u8 *) (u32) (t7 + 167)) = (u8) a5;
+    { s32 c_ = v1 != 0; t7 = (s32) ((u32) t7 + 0x8U); if (c_) goto L_0028CAC0; }
+    t8 = t9; goto L_0028CA88;
+L_0028CAF8:;
+    v0 = 0;
+L_0028CAFC:;
+L_0028CB00:;
+    return;
+}

@@ -1,0 +1,26 @@
+/* compiler: ee-gcc-2.9 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+
+s32 func_0012BF70(s32 a0, s32 a1, s32 a2) {
+    s32 v0 = 0;
+
+    __asm__ volatile("lqc2 $vf4, 0(%0)" : : "r"((u32) a1) : "memory");
+    __asm__ volatile("lqc2 $vf5, 0(%0)" : : "r"((u32) a2) : "memory");
+    __asm__ volatile("vmul.xyz $vf7, $vf4, $vf5");
+    __asm__ volatile("vmulw.w $vf8, $vf4, $vf4w");
+    __asm__ volatile("vopmula.xyz ACC, $vf5, $vf4");
+    __asm__ volatile("vopmsub.xyz $vf9, $vf4, $vf5");
+    __asm__ volatile("vmulax.w ACC, $vf0, $vf7x");
+    __asm__ volatile("vmadday.w ACC, $vf0, $vf7y");
+    __asm__ volatile("vmaddz.w $vf7, $vf0, $vf7z");
+    __asm__ volatile("vmulaw.xyz ACC, $vf5, $vf8w");
+    __asm__ volatile("vmaddaw.xyz ACC, $vf4, $vf7w");
+    __asm__ volatile("vmsubw.xyz $vf10, $vf9, $vf4w");
+    __asm__ volatile("vadda.xyz ACC, $vf10, $vf10");
+    __asm__ volatile("vmsubw.xyz $vf10, $vf5, $vf0w");
+    __asm__ volatile("vmulw.w $vf10, $vf5, $vf0w");
+    __asm__ volatile("sqc2 $vf10, 0(%0)" : : "r"((u32) a0) : "memory"); return v0;
+}

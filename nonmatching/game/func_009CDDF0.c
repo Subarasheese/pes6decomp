@@ -59,7 +59,7 @@ block_9:
         var_s1 = M2C_FIELD(arg0, s32 *, 0x1C) + (temp_s0 * 2);
         break;
     default:
-        if (func_00BBB780((s64) ((func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x83) & 0x7F, 0x14U) - 0x14) << 0x30) >> 0x30) != 0) {
+        if (func_00BBB780((s64) (s16) (func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x83) & 0x7F, 0x14U) - 0x14)) != 0) {
             goto block_21;
         }
         if ((*(f32 *)D_005926D8) < (f32) ((*(u8 *)D_005926F4) + func_009B9BA0(arg0))) {

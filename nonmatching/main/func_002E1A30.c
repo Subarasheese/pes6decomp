@@ -2,15 +2,15 @@
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern void func_001EDAE0(void *, s8);
+extern void func_001EDAE0(void *, s32);
 extern void func_001ED880(void *, f32);
 extern void * func_001F2330(s32);
 extern s32 func_001ED820(void *);
-extern void func_002E18C0(void *);
+extern void func_002E18C0(void *, void *);
 extern f32 func_001ED860(void *);
 extern void func_001EDA30(void *, s32);
 extern void * func_001EDD00(void *);
-extern void func_001ED840(void *, s8);
+extern void func_001ED840(void *, s32);
 extern void func_001F2290(void *, s32);
 extern s32 func_001F3D10(s32, u8);
 extern s32 func_001F2410(void *);
@@ -46,14 +46,10 @@ void func_002E1A30(void *arg0, s32 arg1) {
             func_001F2290(temp_v0, M2C_FIELD(arg0, s32 *, 0x18));
             func_001F3D10((s32) M2C_FIELD(arg0, void **, 0x1C), 1U);
             var_s0 = 9;
-            switch (arg1) {                         /* switch 1; irregular */
-            case 15:                                /* switch 1 */
+            if (arg1 == 15) {
                 var_s0 = 1;
-                break;
-            case 3:                                 /* switch 1 */
-            case 1:                                 /* switch 1 */
+            } else if (arg1 == 3 || arg1 == 1) {
                 var_s0 = 3;
-                break;
             }
             M2C_FIELD(arg0, s32 *, 0x14) = var_s0;
             var_s1 = 0;
@@ -74,14 +70,10 @@ void func_002E1A30(void *arg0, s32 arg1) {
             func_001EDA30(temp_v0_2, M2C_FIELD(arg0, s32 *, 0x18));
             func_001EDAE0(M2C_FIELD(arg0, void **, 0x1C), 1);
             var_s1_2 = 9;
-            switch (arg1) {                         /* switch 2; irregular */
-            case 15:                                /* switch 2 */
+            if (arg1 == 15) {
                 var_s1_2 = 1;
-                break;
-            case 3:                                 /* switch 2 */
-            case 1:                                 /* switch 2 */
+            } else if (arg1 == 3 || arg1 == 1) {
                 var_s1_2 = 3;
-                break;
             }
             M2C_FIELD(arg0, s32 *, 0x14) = var_s1_2;
             var_s4 = 0;
@@ -95,6 +87,6 @@ void func_002E1A30(void *arg0, s32 arg1) {
             func_001ED840(M2C_FIELD(arg0, void **, 0x1C), temp_s0 & 0xFF);
             func_001ED880(M2C_FIELD(arg0, void **, 0x1C), temp_f20);
         }
-        func_002E18C0(arg0);
+        func_002E18C0(arg0, (char *)arg0 + 4);
     }
 }

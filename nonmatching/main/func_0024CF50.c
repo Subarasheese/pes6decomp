@@ -22,7 +22,7 @@ extern char D_0053CD1C[];
 extern char D_00591C09[];
 
 void func_0024CF50(void *arg0) {
-    M2C_UNK *var_s1;
+    u8 *var_s1;
     s32 *var_a3;
     s32 temp_s0;
     s32 var_a2;
@@ -36,7 +36,7 @@ void func_0024CF50(void *arg0) {
     var_a4 = 0;
     if ((u32) ((*(u8 *)D_00591C09) - 1) < 2U) {
         var_s2 = 0;
-        var_s1 = ((void *)Pes6PadAssign);
+        var_s1 = (u8 *)Pes6PadAssign;
         do {
             temp_s0 = var_s2 % 2;
             if (func_00225940(M2C_FIELD((D_003E77B0 + temp_s0), u8 *, 0x2C)) & 0xFF) {
@@ -59,7 +59,7 @@ void func_0024CF50(void *arg0) {
             var_a4 = 1;
         }
         var_a2 += 1;
-        var_a3 += 4;
+        var_a3 += 1;
     } while (var_a2 < 8);
     if (var_a4 != 1) {
         var_s0 = arg0;

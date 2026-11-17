@@ -1,10 +1,8 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-
-extern void *D_003FB788;
-extern void *D_003FB78C;
+extern char D_003FB788[];
+extern char D_003FB78C[];
 
 void func_00130970(void *arg0) {
     s32 sp8;
@@ -13,13 +11,13 @@ void func_00130970(void *arg0) {
     s32 sp14;
     s32 sp18;
     s32 sp1C;
-    void *temp_a4;
-    void *temp_v1;
+    u8 *temp_a4;
+    u8 *temp_v1;
 
-    temp_a4 = D_003FB788;
-    temp_v1 = D_003FB78C;
-    D_003FB788 = temp_a4 + 0xC;
-    D_003FB78C = temp_v1 + 0xC;
+    temp_a4 = *(u8 **)D_003FB788;
+    temp_v1 = *(u8 **)D_003FB78C;
+    *(u8 **)D_003FB788 = temp_a4 + 0xC;
+    *(u8 **)D_003FB78C = temp_v1 + 0xC;
     sp1C = M2C_FIELD(temp_a4, u16 *, 0) | (M2C_FIELD(temp_a4, u16 *, 2) << 0x10);
     M2C_FIELD(arg0, s32 *, 0xA0) = sp1C;
     sp18 = M2C_FIELD(temp_a4, u16 *, 4) | (M2C_FIELD(temp_a4, u16 *, 6) << 0x10);

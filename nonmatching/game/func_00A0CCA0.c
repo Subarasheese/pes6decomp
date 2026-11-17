@@ -1,11 +1,9 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-
-s32 func_009B30B0(u16, u16);                        /* extern */
-u16 func_009B3480(void *, f32, f32);                /* extern */
-s32 func_00AA3540();                                /* extern */
+s32 func_009B30B0(s32, s32);
+s32 func_009B3480(void *, f32, f32);
+s32 func_00AA3540();
 extern void *Pes6Ball_Current;
 extern char D_005926EC[];
 extern char Pes6MatchSquads[];
@@ -27,7 +25,7 @@ s32 func_00A0CCA0(void *arg0) {
         }
 block_5:
         temp_a0 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
-        if (!(M2C_FIELD(Pes6Ball_Current, f32 *, 0x7FC) < (f32) (((temp_a0 * -0x40) / 183) + ((u32) (temp_a0 * -0x40) >> 0x1F)))) {
+        if (!(M2C_FIELD(Pes6Ball_Current, f32 *, 0x7FC) < (f32) ((temp_a0 * -0x40) / 183))) {
             var_v0 = (s32) M2C_FIELD(Pes6Ball_Current, f32 *, 0x30);
             if (var_v0 <= 0) {
                 var_v0 = -var_v0;

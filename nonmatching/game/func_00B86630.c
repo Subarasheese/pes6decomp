@@ -22,7 +22,7 @@ void func_00B86630(void **arg0) {
     if (M2C_FIELD(*arg0, s32 *, 0x1C) >= 0x681) {
         func_00BD4040(arg0, 2);
     } else {
-        func_00BD4040(temp_a0_2, 1);
+        func_00BD4040(arg0, 1);
         func_00BD3BA0(arg0, 4, 1);
     }
     func_00BD3BA0(arg0, 5, 1);

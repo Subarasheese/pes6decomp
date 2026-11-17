@@ -3,14 +3,14 @@
 #include "pes6/m2c.h"
 
 extern s32 func_002AE670(s32);
-s32 func_00952910(u16);                             /* extern */
+s32 func_00952910(void *, u16);                             /* extern */
 M2C_UNK func_0096D0A0(void *, u16, M2C_UNK);        /* extern */
 s32 func_00C0CBF0(void *, u16, void *);             /* extern */
 
 s32 func_00C0CB10(void *arg0, void *arg1) {
     u16 var_s0;
 
-    var_s0 = func_00952910(M2C_FIELD(arg1, u16 *, 0x28)) & 0xFFFF;
+    var_s0 = func_00952910(arg0, M2C_FIELD(arg1, u16 *, 0x28)) & 0xFFFF;
     if (M2C_FIELD(arg1, u16 *, 0x34) != 0xFFFF) {
         if (((u32) M2C_FIELD(arg1, u32 *, 0xC) % func_002AE670(4)) != 0) {
             var_s0 = M2C_FIELD(arg1, u16 *, 0x34);

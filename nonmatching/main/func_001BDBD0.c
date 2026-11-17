@@ -1,19 +1,18 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_001B4B90(void *, s32);
 extern void func_001ED880(void *, f32);
-extern void func_001ED840(void *, s8);
+extern void func_001ED840(void *, s32);
 M2C_UNK func_001BDE00(void *);                      /* extern */
 M2C_UNK func_001BDF00(void *);                      /* extern */
-M2C_UNK func_001BE320(M2C_UNK, s32);                /* extern */
+M2C_UNK func_001BE320(void *, s32, s32, s32);            /* extern */
 M2C_UNK func_001EDBA0(void *, s32);                 /* extern */
 M2C_UNK func_001EDD90(void *);                      /* extern */
 extern char D_003F7790[];
 extern char D_003FB10C[];
 
-s32 func_001BDBD0(void *arg0) {
+s32 func_001BDBD0(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 temp_f1;
     s32 temp_s3;
     s32 temp_v0;
@@ -25,28 +24,7 @@ s32 func_001BDBD0(void *arg0) {
 
     var_s0 = M2C_FIELD(arg0, s32 *, 0);
     var_s1 = 0;
-    switch (var_s0) {                               /* irregular */
-    case 1:
-        temp_v0 = M2C_FIELD(arg0, s32 *, 0x28) + 1;
-        M2C_FIELD(arg0, s32 *, 0x28) = temp_v0;
-        if ((temp_v0 >= 0x15) && (M2C_FIELD(arg0, u8 *, 0x38) & 1)) {
-            M2C_FIELD(arg0, s32 *, 0x20) = 0;
-            var_s0 += 1;
-        }
-        break;
-    default:
-        var_s1 = 1;
-        break;
-    case 0:
-        M2C_FIELD(arg0, s32 *, 0x24) = (s32) (*(s32 *)D_003F7790);
-        M2C_FIELD(arg0, s32 *, 0x1C) = 0;
-        M2C_FIELD(arg0, s32 *, 0x20) = 0xFF;
-        M2C_FIELD(arg0, s32 *, 0x30) = 0xC3580000;
-        M2C_FIELD(arg0, s32 *, 0x34) = 0x43380000;
-        func_001BE320(0xFF, (*(s32 *)D_003F7790));
-        var_s0 += 1;
-        break;
-    case 2:
+    if (var_s0 == 2) {
         if (M2C_FIELD(arg0, s32 *, 0x1C) == 0) {
             var_s4 = 0;
             var_s3 = arg0;
@@ -61,7 +39,23 @@ s32 func_001BDBD0(void *arg0) {
             var_s0 += 1;
             M2C_FIELD(arg0, void **, 0x14) = NULL;
         }
-        break;
+    } else if (var_s0 == 1) {
+        temp_v0 = M2C_FIELD(arg0, s32 *, 0x28) + 1;
+        M2C_FIELD(arg0, s32 *, 0x28) = temp_v0;
+        if ((temp_v0 >= 0x15) && (M2C_FIELD(arg0, u8 *, 0x38) & 1)) {
+            M2C_FIELD(arg0, s32 *, 0x20) = 0;
+            var_s0 += 1;
+        }
+    } else if (var_s0 == 0) {
+        M2C_FIELD(arg0, s32 *, 0x24) = (s32) (*(s32 *)D_003F7790);
+        M2C_FIELD(arg0, s32 *, 0x1C) = 0;
+        M2C_FIELD(arg0, s32 *, 0x20) = 0xFF;
+        M2C_FIELD(arg0, s32 *, 0x30) = 0xC3580000;
+        M2C_FIELD(arg0, s32 *, 0x34) = 0x43380000;
+        func_001BE320(arg0, 0xFF, (*(s32 *)D_003F7790), arg3);
+        var_s0 += 1;
+    } else {
+        var_s1 = 1;
     }
     if (M2C_FIELD(arg0, void **, 4) != NULL) {
         temp_f1 = (f32) ((*(s32 *)D_003F7790) - M2C_FIELD(arg0, s32 *, 0x24));

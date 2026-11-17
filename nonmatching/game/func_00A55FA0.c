@@ -1,4 +1,4 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -6,10 +6,10 @@ extern s32 func_00BBB7F0(s32);
 extern s32 func_00BBB8C0(s32);
 extern s32 func_00BBB780(s64);
 extern s32 func_00A1FE80(s32, s32);
-extern u32 func_00288670(u32, u32);
+extern s32 func_00288670(s32, s32);
 extern s32 func_00A13E50(s32, s32);
 extern s32 func_009B30B0(s32, s32);
-extern u32 func_00A9BA00(void *);
+extern s32 func_00A9BA00(void *);
 f32 func_001CD9E0(f32);                             /* extern */
 s32 func_00952420(void *, u16, M2C_UNK, M2C_UNK);   /* extern */
 extern void *Pes6Ball_Current;
@@ -37,15 +37,15 @@ s32 func_00A55FA0(void *arg0, s32 arg1) {
     s32 var_v0;
     s32 var_v0_2;
     u16 temp_v1;
-    u32 temp_v0_2;
-    u32 temp_v0_4;
+    s32 temp_v0_2;
+    s32 temp_v0_4;
 
-    temp_v0_2 = func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7D) & 0x7F, 0x32U);
-    temp_s2 = func_00BBB8C0(((0x63 - temp_v0_2) / 3) + ((u32) (0x63 - temp_v0_2) >> 0x1F));
+    temp_v0_2 = func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7D) & 0x7F, 0x32);
+    temp_s2 = func_00BBB8C0((0x63 - temp_v0_2) / 3);
     temp_s0 = (s32) func_001CD9E0((f32) func_00A9BA00(arg0));
-    temp_s1 = temp_s0 / (s32) (0x300 - func_00BBB8C0(0x63 - func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7D) & 0x7F, 0x32U)));
+    temp_s1 = temp_s0 / (s32) (0x300 - func_00BBB8C0(0x63 - func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7D) & 0x7F, 0x32)));
     var_s2_2 = temp_s2 + (func_00BBB8C0(8) - 8 + temp_s1);
-    temp_v0_3 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
+    temp_v0_3 = ((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x8C) << 0x38) >> 0x3A) + 0x94;
     if (temp_v0_3 >= 0xB5) {
         var_s2_2 -= (s32) (temp_v0_3 - 0xB4) / (s32) (func_00BBB8C0(3) + 3);
     }
@@ -145,7 +145,7 @@ block_37:
                 if (var_s1 >= 0x24) {
                     goto block_16;
                 }
-                if (func_00BBB780((s64) ((M2C_FIELD(arg0, u8 *, 0x5F) - 0x50) << 0x30) >> 0x30) != 0) {
+                if (func_00BBB780((s16) (M2C_FIELD(arg0, u8 *, 0x5F) - 0x50)) != 0) {
                     goto block_17;
                 }
 block_16:
@@ -155,7 +155,7 @@ block_17:
                 if (var_s1 < 0x10) {
                     goto block_18;
                 }
-                if (func_00BBB780((s64) (func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7D) & 0x7F, 0x32U) << 0x30) >> 0x30) == 0) {
+                if (func_00BBB780((s16) func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7D) & 0x7F, 0x32)) == 0) {
                     if (var_s1 >= 0x10) {
                         if (var_s1 < 0x18) {
                             var_v0_2 = var_s1 + func_00BBB8C0(var_s1 * 2);
@@ -168,8 +168,8 @@ block_17:
                     }
                 } else {
 block_18:
-                    temp_v0_4 = func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7D) & 0x7F, 0x32U);
-                    var_v0_2 = var_s1 + func_00BBB8C0(((0x63 - temp_v0_4) / 10) + ((u32) (0x63 - temp_v0_4) >> 0x1F));
+                    temp_v0_4 = func_00288670(M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7D) & 0x7F, 0x32);
+                    var_v0_2 = var_s1 + func_00BBB8C0((0x63 - temp_v0_4) / 10);
                 }
             }
             var_s2 = temp_s0_2 + var_v0_2;
@@ -180,7 +180,7 @@ block_18:
                 var_a1_3 = (s32) (temp_v0_5 + 1) >> 1;
             }
             temp_s2_3 = func_00A13E50(var_s2_2, var_a1_3);
-            if ((var_s1 < -8) && ((var_s1 < -0x18) || (func_00BBB780((s64) ((M2C_FIELD(arg0, u8 *, 0x5F) - 0x28) << 0x30) >> 0x30) != 0))) {
+            if ((var_s1 < -8) && ((var_s1 < -0x18) || (func_00BBB780((s16) (M2C_FIELD(arg0, u8 *, 0x5F) - 0x28)) != 0))) {
                 var_s2 = temp_s2_3 + (func_00BBB8C0(0xC) - 0x1C);
                 if ((var_s2 >= -0xF) && (temp_s0 < 0x800) && (M2C_FIELD(arg0, u8 *, 0x25) == 0) && (func_00952420(arg0, M2C_FIELD(Pes6Ball_Current, u16 *, 0x5C), 0x2000, 0x40000) != 0)) {
                     temp_v0_6 = func_00BBB8C0(8);
@@ -190,7 +190,7 @@ block_18:
                     }
                     var_s2 -= (0x10 - var_a0) + temp_v0_6;
                 }
-            } else if ((var_s1 < -8) && (func_00BBB780((s64) ((M2C_FIELD(arg0, u8 *, 0x5F) - 0x28 + (((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((void *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7E) << 0x38) >> 0x3F) * 0xA)) << 0x30) >> 0x30) != 0)) {
+            } else if ((var_s1 < -8) && (func_00BBB780((s16) (M2C_FIELD(arg0, u8 *, 0x5F) - 0x28 + (((u64) ((s64) M2C_FIELD(((M2C_FIELD(arg0, u8 *, 0x11) * 0x348) + (((char *)Pes6MatchSquads) + (M2C_FIELD(arg0, u8 *, 0x12) * 0x6900))), u8 *, 0x7E) << 0x38) >> 0x3F) * 0xA))) != 0)) {
                 var_s2 = temp_s2_3 - func_00BBB8C0(0xC);
             } else {
                 var_s2 = temp_s2_3 + (func_00BBB8C0(8) + 4);

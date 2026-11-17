@@ -1,8 +1,8 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-extern int func_0030F240(void *);
+extern int func_0030F240(u8 *);
 extern int func_003387D0(void *, int);
 extern int func_00333600(int);
 extern int func_003395B0(void *);
@@ -21,10 +21,11 @@ extern M2C_UNK func_00344410;
 extern M2C_UNK func_003448F0;
 
 s32 func_00344BA0(void *arg0) {
+    u8 sp6C[4];
     s32 sp60;
     f32 sp64;
     f32 sp68;
-    u8 sp6F;
+
     s32 temp_s0;
     s32 temp_s1;
     s32 temp_s4;
@@ -32,10 +33,10 @@ s32 func_00344BA0(void *arg0) {
     void *temp_s2;
 
     if (func_00333600(4) == 0) {
-        if (func_0030F240(&sp6F) != 0) {
+        if (func_0030F240(&sp6C[3]) != 0) {
             if (func_0030FE30(&sp60, 0) != 0) {
                 if (func_00341090(sp60) == 0) {
-                    func_0030DCC0(&sp68, &sp64, (s32) sp6F);
+                    func_0030DCC0(&sp68, &sp64, (s32) sp6C[3]);
                     if (func_00340880(sp68, sp64) != 0) {
                         if ((func_00341910(0, 5, 0xA) != 0) && (func_00340BF0(sp68, sp64) == 0)) {
                             var_v0 = 0;

@@ -21,101 +21,68 @@ extern char D_00CB37C0[];
 extern char D_00CB37E8[];
 
 s32 func_00C2F9B0(char *arg0, s32 arg1) {
-    s8 sp88;
-    s32 temp_v0;
-    s32 var_s0;
-    s32 var_s0_2;
-    s32 var_s1;
-    s32 var_s2;
-    s32 var_s3;
-    s32 var_v0;
-    s32 var_v0_2;
-    s32 var_v1;
-    s64 temp_a2;
-    s8 *var_a0;
-    s8 *var_a1;
-    u8 temp_s6;
-    u8 temp_v1;
-    char *temp_s0;
+    u8 sp88[8];
+    s32 s0;
+    s32 sel;
+    s32 i;
+    s32 cnt1;
+    s32 cnt2;
+    u8 *src;
+    u8 s6;
+    u8 flags;
+    u8 *tbl;
+    s32 v;
+    s32 tail;
 
-    temp_s6 = M2C_FIELD(arg0, u8 *, 0);
-    var_s0 = 0;
-    temp_v0 = func_00C2E7B0();
-    switch (temp_v0) {                              /* irregular */
-    case 4:
-        var_s0_2 = func_00C2B780(arg0, arg1);
-        var_v0_2 = func_00C2CE90(arg0, arg1);
-block_22:
-        var_s0 = var_s0_2 | var_v0_2;
-        break;
-    case 2:
-        var_s0 = func_00C2CE90(arg0, arg1);
-        break;
-    case 1:
-        var_s0 = func_00C2D6F0(arg0, arg1);
-        break;
-    case 3:
-        var_a0 = &sp88;
-        var_a1 = ((char *)D_00CA6FC8);
-        var_v1 = 5;
-        do {
-            var_v1 -= 1;
-            *var_a0 = *var_a1;
-            var_a1 += 1;
-            var_a0 += 1;
-        } while (var_v1 > 0);
-        temp_v1 = M2C_FIELD(arg0, u8 *, 3);
-        if (((u64) ((s64) temp_v1 << 0x3D) >> 0x3F) != 0) {
-            if (((u64) ((s64) temp_v1 << 0x3C) >> 0x3F) != 0) {
-                var_s2 = 0;
-                var_s1 = 0;
-                var_s3 = 1;
-                temp_s0 = ((char *)D_005E2C30) + (M2C_FIELD(arg0, u8 *, 0) * 0x166) + 0x84;
-                do {
-                    if ((func_00292F00(M2C_FIELD((arg0 + var_s3), u8 *, 0xC0)) & 0xFF) == 3) {
-                        var_s1 += 1;
-                    }
-                    if ((func_00292F00(*(temp_s0 + var_s3)) & 0xFF) == 3) {
-                        var_s2 += 1;
-                    }
-                    var_s3 += 1;
-                } while (var_s3 < 0xB);
-                if ((var_s1 - var_s2) <= 0) {
-                    if (((s64) (func_00C2E6A0(arg1, M2C_FIELD(arg0, u8 *, 0), &sp88, NULL) << 0x38) >> 0x38) >= 0) {
-                        var_s0_2 = func_00C2B970(arg0, arg1);
-                    } else {
-                        goto block_19;
-                    }
-                } else {
-                    goto block_19;
+    s6 = M2C_FIELD(arg0, u8 *, 0);
+    s0 = 0;
+    sel = func_00C2E7B0();
+    if (sel == 4) {
+        s0 = func_00C2B780(arg0, arg1);
+        s0 |= func_00C2CE90(arg0, arg1);
+    } else if (sel == 3) {
+        src = (u8 *)D_00CA6FC8;
+        for (i = 0; i < 5; i++) {
+            sp88[i] = src[i];
+        }
+        flags = M2C_FIELD(arg0, u8 *, 3);
+        s0 = 0;
+        if (((flags >> 2) & 1) != 0 && ((flags >> 3) & 1) != 0) {
+            cnt2 = 0;
+            cnt1 = 0;
+            tbl = (u8 *)D_005E2C30 + (M2C_FIELD(arg0, u8 *, 0) * 0x166) + 0x84;
+            for (i = 1; i < 0xB; i++) {
+                if ((func_00292F00(M2C_FIELD((arg0 + i), u8 *, 0xC0)) & 0xFF) == 3) {
+                    cnt1 += 1;
                 }
-            } else {
-                goto block_19;
+                if ((func_00292F00(tbl[i]) & 0xFF) == 3) {
+                    cnt2 += 1;
+                }
             }
-        } else {
-block_19:
-            var_s0_2 = 0;
+            if ((cnt1 - cnt2) <= 0) {
+                v = (s8) func_00C2E6A0(arg1, M2C_FIELD(arg0, u8 *, 0), (s8 *)sp88, NULL);
+                if (v >= 0) {
+                    s0 = func_00C2B970(arg0, arg1);
+                }
+            }
         }
-        var_v0_2 = func_00C2D6F0(arg0, arg1);
-        goto block_22;
+        s0 |= func_00C2D6F0(arg0, arg1);
+    } else if (sel == 2) {
+        s0 = func_00C2CE90(arg0, arg1);
+    } else if (sel == 1) {
+        s0 = func_00C2D6F0(arg0, arg1);
     }
-    if (((*(u8 *)D_00591BC3) - (*(((char *)D_00591EF6) + temp_s6) + *(((char *)D_00591EF8) + temp_s6))) <= 0) {
-        return var_s0;
+    if (((*(u8 *)D_00591BC3) - (*((u8 *)D_00591EF6 + s6) + *((u8 *)D_00591EF8 + s6))) <= 0) {
+        return s0;
     }
+    tail = 0;
     if (((*(u8 *)Pes6MatchContext_Half) != 0) && ((*(u8 *)D_00591F13) == 0)) {
-        if (((u64) ((s64) M2C_FIELD(arg0, u8 *, 3) << 0x3D) >> 0x3F) != 0) {
-            temp_a2 = (s64) (func_00C2E6A0(arg1, M2C_FIELD(arg0, u8 *, 0), ((char *)D_00CB37E8), ((char *)D_00CB37C0)) << 0x38) >> 0x38;
-            if (temp_a2 >= 0) {
-                var_v0 = func_00C2E420(arg0, arg1, temp_a2);
-            } else {
-                goto block_31;
+        if (((M2C_FIELD(arg0, u8 *, 3) >> 2) & 1) != 0) {
+            v = (s8) func_00C2E6A0(arg1, M2C_FIELD(arg0, u8 *, 0), (s8 *)D_00CB37E8, (void *)D_00CB37C0);
+            if (v >= 0) {
+                tail = func_00C2E420(arg0, arg1, v);
             }
-        } else {
-            goto block_31;
         }
-    } else {
-block_31:
-        var_v0 = 0;
     }
-    return var_s0 | var_v0;
+    return s0 | tail;
 }

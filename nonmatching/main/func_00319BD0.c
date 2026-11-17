@@ -11,9 +11,9 @@ void *func_00338AD0(M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK *); /* extern */
 s32 func_00991F40(void *, s8 *);                    /* extern */
 extern char D_003E1510[];
 extern char Pes6MatchPlayers[];
-extern M2C_UNK func_003198C0;
-extern M2C_UNK func_0031B0E0;
-extern M2C_UNK func_00329560;
+extern void func_003198C0(void);
+extern void func_0031B0E0(void);
+extern void func_00329560(void);
 
 s32 func_00319BD0(void *arg0) {
     s8 sp3F;

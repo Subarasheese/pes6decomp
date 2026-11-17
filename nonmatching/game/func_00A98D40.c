@@ -30,7 +30,7 @@ s32 func_00A98D40(void *arg0, s32 arg1) {
             goto block_9;
         }
         temp_a0_3 = M2C_FIELD(arg0, s32 *, 0x58);
-        return ((temp_a0_3 * 0x61) / 100) + ((u32) (temp_a0_3 * 0x61) >> 0x1F);
+        return ((temp_a0_3 * 0x61) / 100);
     }
 block_9:
     if ((temp_s0 < 0x29) && !(M2C_FIELD(Pes6Ball_Current, f32 *, 0x7FC) <= -160.0f)) {
@@ -40,21 +40,21 @@ block_9:
         }
         if (var_v0_2 < 0xEB0) {
             temp_a0_2 = M2C_FIELD(arg0, s32 *, 0x58);
-            return ((temp_a0_2 * 0x61) / 100) + ((u32) (temp_a0_2 * 0x61) >> 0x1F);
+            return ((temp_a0_2 * 0x61) / 100);
         }
         goto block_15;
     }
 block_15:
     if (temp_s0 < 0x11) {
         temp_a0 = M2C_FIELD(arg0, s32 *, 0x58);
-        return ((temp_a0 * 0x61) / 100) + ((u32) (temp_a0 * 0x61) >> 0x1F);
+        return ((temp_a0 * 0x61) / 100);
     }
     if (temp_s0 < 0x71) {
         temp_a0_4 = M2C_FIELD(arg0, s32 *, 0x1C);
-        var_v0 = func_00A1FE80(((temp_a0_4 * 0x61) / 100) + ((u32) (temp_a0_4 * 0x61) >> 0x1F), 0x1900);
+        var_v0 = func_00A1FE80(((temp_a0_4 * 0x61) / 100), 0x1900);
     } else {
         temp_a0_5 = M2C_FIELD(arg0, s32 *, 0x58);
-        var_v0 = ((temp_a0_5 * 0x61) / 100) + ((u32) (temp_a0_5 * 0x61) >> 0x1F);
+        var_v0 = ((temp_a0_5 * 0x61) / 100);
     }
     if (temp_s0 >= 0x61) {
         temp_a0_6 = temp_s0 - 0x60;

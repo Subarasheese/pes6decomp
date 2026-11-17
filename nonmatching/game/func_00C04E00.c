@@ -15,8 +15,8 @@ extern char D_00CB537A[];
 extern char D_00CB537B[];
 
 s32 func_00C04E00(void *arg0, s32 arg1) {
-    M2C_UNK *var_a3;
-    M2C_UNK *var_v1;
+    char *var_a3;
+    char *var_v1;
     s32 var_a2;
     s32 var_a4;
     s32 var_v0;

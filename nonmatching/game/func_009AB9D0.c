@@ -1,13 +1,13 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
-
 
 void *func_0018D4E0(s32);                           /* extern */
 void *func_0018D4F0(s32);                           /* extern */
 M2C_UNK func_009ABC10(void *);                      /* extern */
 
-s32 func_009AB9D0(void **arg0) {
+typedef struct { f32 *h; f32 x, y, z; char pad[12]; s8 flag; char pad2[3]; } Ent;
+
+s32 func_009AB9D0(char *arg0) {
     s32 temp_v1;
     s32 temp_v1_2;
     s32 var_s0_2;
@@ -17,21 +17,27 @@ s32 func_009AB9D0(void **arg0) {
     s32 var_v0;
     s32 var_v0_2;
     s8 var_s0;
-    void **var_s1_3;
+    char *var_s1_3;
     void *temp_v0;
     void *temp_v0_2;
-    void *var_s2;
+    Ent *e;
+    Ent *ents;
+    f32 fa, fb, fc;
 
-    var_s2 = arg0 + 0x70;
+    ents = (Ent *)(arg0 + 0x70);
+    e = ents;
     var_s1 = 0;
 loop_1:
     var_s0 = 1;
-    M2C_FIELD(var_s2, void **, 0) = func_0018D4F0(var_s1 & 0xFFFF);
-    temp_v0 = M2C_FIELD(var_s2, void **, 0);
+    ents[var_s1].h = func_0018D4F0(var_s1 & 0xFFFF);
+    temp_v0 = e->h;
     if (temp_v0 != NULL) {
-        M2C_FIELD(var_s2, f32 *, 4) = (f32) M2C_FIELD(temp_v0, f32 *, 0);
-        M2C_FIELD(var_s2, f32 *, 8) = (f32) M2C_FIELD(temp_v0, f32 *, 4);
-        M2C_FIELD(var_s2, f32 *, 0xC) = (f32) M2C_FIELD(temp_v0, f32 *, 8);
+        fa = *(f32 *)temp_v0;
+        fb = *(f32 *)((char *)temp_v0 + 4);
+        fc = *(f32 *)((char *)temp_v0 + 8);
+        ents[var_s1].x = fa;
+        ents[var_s1].y = fb;
+        ents[var_s1].z = fc;
         if (var_s1 < 0x77) {
             if ((var_s1 % 7) == 6) {
                 var_s0 = 0;
@@ -69,32 +75,36 @@ block_39:
                 var_s0 = 0;
             }
         }
+        e->flag = var_s0;
         var_s1 += 1;
-        M2C_FIELD(var_s2, s8 *, 0x1C) = var_s0;
-        var_s2 += 0x20;
+        e += 1;
+
         if (var_s1 >= 0xEB) {
             var_s0_2 = 0;
             var_s1_2 = 0;
 loop_26:
-            M2C_FIELD(var_s2, void **, 0) = func_0018D4E0(var_s1_2 & 0xFFFF);
-            temp_v0_2 = M2C_FIELD(var_s2, void **, 0);
+            e->h = func_0018D4E0(var_s1_2 & 0xFFFF);
+            temp_v0_2 = e->h;
             if (temp_v0_2 != NULL) {
-                M2C_FIELD(var_s2, f32 *, 4) = (f32) M2C_FIELD(temp_v0_2, f32 *, 0);
-                M2C_FIELD(var_s2, f32 *, 8) = (f32) M2C_FIELD(temp_v0_2, f32 *, 4);
-                M2C_FIELD(var_s2, f32 *, 0xC) = (f32) M2C_FIELD(temp_v0_2, f32 *, 8);
+                fa = *(f32 *)temp_v0_2;
+                fb = *(f32 *)((char *)temp_v0_2 + 4);
+                fc = *(f32 *)((char *)temp_v0_2 + 8);
+                e->x = fa;
+                e->y = fb;
+                e->z = fc;
                 if ((var_s0_2 != 0) && (var_s0_2 != 3)) {
-                    M2C_FIELD(var_s2, s8 *, 0x1C) = 1;
+                    e->flag = 1;
                 } else {
-                    M2C_FIELD(var_s2, s8 *, 0x1C) = 0;
+                    e->flag = 0;
                 }
                 var_s0_2 += 1;
-                var_s2 += 0x20;
+                e += 1;
                 var_s1_2 += 4;
                 if (var_s0_2 >= 4) {
                     var_s0_3 = 0;
                     var_s1_3 = arg0;
                     do {
-                        *var_s1_3 = func_0018D4E0(var_s0_3 & 0xFFFF);
+                        *(void **)var_s1_3 = func_0018D4E0(var_s0_3 & 0xFFFF);
                         var_s0_3 += 1;
                         var_s1_3 += 4;
                     } while (var_s0_3 < 0x1C);

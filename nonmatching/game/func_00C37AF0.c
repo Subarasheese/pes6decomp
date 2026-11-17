@@ -13,8 +13,8 @@ M2C_UNK func_00C38EE0(void *);                      /* extern */
 void func_00C37AF0(void *arg0) {
     f32 var_f1;
     s32 temp_s0;
-    u16 temp_v0_2;
-    u16 var_a1;
+    u32 temp_v0_2;
+    s32 var_a1;
     void **temp_s3;
     void *temp_a0;
     void *temp_s1;
@@ -35,7 +35,7 @@ void func_00C37AF0(void *arg0) {
         } else {
             var_f1 = (f32) temp_v0_2;
         }
-        var_a1 = (u16) (s32) (var_f1 - M2C_FIELD(M2C_FIELD(temp_a0, void **, 4), f32 *, 0x28));
+        var_a1 = (s32) (var_f1 - M2C_FIELD(M2C_FIELD(temp_a0, void **, 4), f32 *, 0x28));
     }
     if (func_00207D80(M2C_FIELD(temp_a0, void **, 4), (s32) var_a1) != 0) {
         func_00C38EE0(arg0);

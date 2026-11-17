@@ -8,10 +8,10 @@ extern char D_00CBBEEC[];
 extern char D_00CBBEF0[];
 
 void func_00B271C0(s32 arg0, void *arg1, void *arg2, void *arg3) {
-    M2C_UNK *var_a6_2;
-    s32 *var_a2;
-    s32 *var_a5_3;
-    s32 *var_a7_2;
+    char *var_a6_2;
+    char *var_a2;
+    char *var_a5_3;
+    char *var_a7_2;
     s32 temp_a4;
     s32 temp_a4_2;
     s32 var_a0;
@@ -19,10 +19,10 @@ void func_00B271C0(s32 arg0, void *arg1, void *arg2, void *arg3) {
     s32 var_a5;
     s32 var_a6;
     s32 var_t0;
-    void *var_a4_2;
-    void *var_a5_2;
-    void *var_a6_3;
-    void *var_a7;
+    char *var_a4_2;
+    char *var_a5_2;
+    char *var_a6_3;
+    char *var_a7;
 
     var_a0 = arg0;
     if (var_a0 >= 3) {
@@ -47,10 +47,10 @@ void func_00B271C0(s32 arg0, void *arg1, void *arg2, void *arg3) {
                 }
             }
             if (var_a6 != 0) {
-                var_a7 = arg1;
-                var_a6_2 = ((void *)D_00CBBE60);
-                var_a5_2 = arg2;
-                var_a4_2 = arg3;
+                var_a7 = (char *)arg1;
+                var_a6_2 = D_00CBBE60;
+                var_a5_2 = (char *)arg2;
+                var_a4_2 = (char *)arg3;
                 do {
                     var_t0 += 8;
                     M2C_FIELD(var_a6_2, s32 *, 0x94) = (s32) M2C_FIELD(var_a7, s32 *, 0);
@@ -86,17 +86,17 @@ void func_00B271C0(s32 arg0, void *arg1, void *arg2, void *arg3) {
         }
         if (var_t0 < var_a0) {
             temp_a4_2 = var_t0 * 4;
-            var_a5_3 = arg2 + temp_a4_2;
-            var_a7_2 = arg1 + temp_a4_2;
-            var_a6_3 = ((void *)D_00CBBE60) + temp_a4_2;
-            var_a2 = arg3 + temp_a4_2;
+            var_a5_3 = (char *)arg2 + temp_a4_2;
+            var_a7_2 = (char *)arg1 + temp_a4_2;
+            var_a6_3 = D_00CBBE60 + temp_a4_2;
+            var_a2 = (char *)arg3 + temp_a4_2;
             do {
                 var_t0 += 1;
-                M2C_FIELD(var_a6_3, s32 *, 0x94) = (s32) *var_a7_2;
+                M2C_FIELD(var_a6_3, s32 *, 0x94) = *(s32 *)var_a7_2;
                 var_a7_2 += 4;
-                M2C_FIELD(var_a6_3, s32 *, 0x9C) = (s32) *var_a5_3;
+                M2C_FIELD(var_a6_3, s32 *, 0x9C) = *(s32 *)var_a5_3;
                 var_a5_3 += 4;
-                M2C_FIELD(var_a6_3, s32 *, 0xA4) = (s32) *var_a2;
+                M2C_FIELD(var_a6_3, s32 *, 0xA4) = *(s32 *)var_a2;
                 var_a2 += 4;
                 var_a6_3 += 4;
             } while (var_t0 < var_a0);

@@ -4,7 +4,7 @@
 
 extern s32 func_00C8B150(void);
 extern void * func_001E6E10(s32);
-M2C_UNK func_00C88EC0(M2C_UNK, M2C_UNK, M2C_UNK *); /* extern */
+void func_00C88EC0(s32, s32, void (*)(void)); /* extern */
 M2C_UNK func_00C897C0(M2C_UNK, M2C_UNK);            /* extern */
 M2C_UNK func_00C89CB0(M2C_UNK, M2C_UNK *, s32, void *, f32, f32, f32, f32); /* extern */
 extern char D_00CA87F0[];
@@ -12,7 +12,7 @@ extern char D_00CA87F4[];
 extern char D_00CA87F8[];
 extern char D_00CA87FC[];
 extern char D_00CA8800[];
-extern M2C_UNK func_00C81FA0;
+extern void func_00C81FA0(void);
 
 void func_00C81FB0(void) {
     void *temp_s0;

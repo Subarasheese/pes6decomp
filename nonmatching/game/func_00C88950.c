@@ -4,9 +4,9 @@
 
 extern void func_002D5610(void *);
 extern void func_001F1EA0(void *);
-M2C_UNK func_001DF7B0(s32);                         /* extern */
+extern void func_001DF7B0(s32);
 extern char D_00CCCDF0[];
-extern void *D_00CCCDF4;
+extern char D_00CCCDF4[];
 extern char D_00CCCDF8[];
 extern char D_00CCCE04[];
 extern char D_00CCCE08[];
@@ -14,8 +14,8 @@ extern char D_00CCCE0C[];
 extern char D_00CCCE10[];
 
 void func_00C88950(void) {
-    func_001F1EA0(D_00CCCDF4);
-    D_00CCCDF4 = NULL;
+    func_001F1EA0(*(void **)D_00CCCDF4);
+    *(void **)D_00CCCDF4 = NULL;
     (*(s32 *)D_00CCCDF8) = 0;
     if ((*(s32 *)D_00CCCDF0) != 0) {
         func_001DF7B0((*(s32 *)D_00CCCDF0));

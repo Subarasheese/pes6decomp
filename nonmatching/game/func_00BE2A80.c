@@ -32,7 +32,8 @@ void func_00BE2A80(char **arg0) {
             func_00B84160(arg0, M2C_FIELD(temp_a2, u16 *, 0x26), (s32) temp_f1, 0, 0, 1);
         }
     } else {
-        func_00209A00(M2C_FIELD(*arg0, char **, 4), func_00BE7FB0(arg0) & 0xFFFF, 0);
+        s32 tmp = func_00BE7FB0(arg0) & 0xFFFF;
+        func_00209A00(M2C_FIELD(*arg0, char **, 4), tmp, 0);
         M2C_FIELD(*arg0, s16 *, 0x18) = 0x60;
     }
 }

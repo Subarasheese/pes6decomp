@@ -1,18 +1,18 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern void func_001AFD20(void);
 extern void func_0027A770(void);
 M2C_UNK func_009A7540();                            /* extern */
-M2C_UNK func_009B6630(M2C_UNK, u16, u16, M2C_UNK);  /* extern */
+M2C_UNK func_009B6630(s32, u16, u16, s32, f32);  /* extern */
 extern char D_00CBAA00[];
 extern char D_00CBAA02[];
 extern char D_00CBAA04[];
 extern char D_00CBAA14[];
 extern char D_00CBAA18[];
 
-void func_009B6420(s32 arg0) {
+void func_009B6420(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 var_f0;
     f32 var_f0_2;
     f32 var_f0_3;
@@ -49,7 +49,7 @@ block_6:
                 var_f0 = 2.0f * (f32) (((u16) (*(u16 *)D_00CBAA00) >> 1) | ((*(u16 *)D_00CBAA00) & 1));
             }
             (*(f32 *)D_00CBAA14) = var_f0;
-            func_009B6630(0, (*(u16 *)D_00CBAA04), (*(u16 *)D_00CBAA02), 0xBF800000);
+            func_009B6630(0, (*(u16 *)D_00CBAA04), (*(u16 *)D_00CBAA02), arg3, -1.0f);
         } else {
             if (var_a0 != 0) {
                 var_v1_2 = var_a0 - 1;
@@ -63,7 +63,7 @@ block_6:
                 var_f0_2 = 2.0f * (f32) (((u16) (*(u16 *)D_00CBAA00) >> 1) | ((*(u16 *)D_00CBAA00) & 1));
             }
             (*(f32 *)D_00CBAA14) = var_f0_2;
-            func_009B6630(0, (*(u16 *)D_00CBAA04), (*(u16 *)D_00CBAA02), 0x3F800000);
+            func_009B6630(0, (*(u16 *)D_00CBAA04), (*(u16 *)D_00CBAA02), arg3, 1.0f);
         }
         if (temp_s0 >= 0) {
             var_f0_3 = (f32) temp_s0;

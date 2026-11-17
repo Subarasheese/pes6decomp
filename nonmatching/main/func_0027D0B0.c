@@ -1,0 +1,138 @@
+/* compiler: ee-gcc-2.9 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s64 func_00103BB8(s64, s64, s64);
+s64 func_001040A0(s64, s64, s64, s64, f32);
+s64 func_00141000(s64);
+s64 func_00141390(s64);
+s64 func_00270530(s64, s64, s64, s64);
+s64 func_00270570(void);
+
+s64 func_0027D0B0(s64 a0, s64 a1, s64 a2, s64 a3, f32 fa12) {
+    s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0;
+    union { f32 f; s32 i; } f0 = { 0 };
+    union { f32 f; s32 i; } f1 = { 0 };
+    union { f32 f; s32 i; } f2 = { 0 };
+    union { f32 f; s32 i; } f3 = { 0 };
+    union { f32 f; s32 i; } f4 = { 0 };
+    union { f32 f; s32 i; } f12 = { fa12 };
+    union { f32 f; s32 i; } f20 = { 0 };
+    s64 frame[36];
+    s64 sp = (s32) (u32) frame;
+
+    v1 = 2;
+    s4 = a1;
+    a1 = (*(volatile s32 *) (u32) (a0 + 4));
+    s3 = (*(volatile s32 *) (u32) a1);
+    a1 = (*(volatile u8 *) (u32) (s3 + 1));
+    { s32 c_ = a1 != v1; s5 = a0; if (c_) goto L_0027D2B8; }
+    s2 = (*(volatile s32 *) (u32) (s3 + 16));
+    v0 = (*(volatile s32 *) (u32) (s2 + 40));
+    v0 = (*(volatile s32 *) (u32) (v0 + 4));
+    s1 = (*(volatile s32 *) (u32) v0);
+    a1 = (s32) ((u32) sp + 0x90U); v0 = func_00270530(a0, a1, a2, a3);
+    s0 = (s32) ((u32) sp + 0x94U);
+    s6 = (s32) ((u32) sp + 0x98U);
+    v0 = (s32) 0xbe4c0000U;
+    v1 = v0 | 0xcccd;
+    v0 = (s32) 0x3e4c0000U;
+    v0 = v0 | 0xcccd;
+    f3.f = (*(volatile f32 *) (u32) (sp + 144));
+    f4.i = (s32) v1;
+    f1.f = (*(volatile f32 *) (u32) s0);
+    f2.i = (s32) v0;
+    f0.f = (*(volatile f32 *) (u32) s6);
+    f3.f = f3.f * f4.f;
+    f1.f = f1.f * f2.f;
+    f0.f = f0.f * f2.f;
+    (*(volatile f32 *) (u32) (sp + 144)) = f3.f;
+    (*(volatile f32 *) (u32) s0) = f1.f;
+    (*(volatile f32 *) (u32) s6) = f0.f; v0 = func_00270570();
+    if (v0 == 0) { v0 = (*(volatile u16 *) (u32) (s5 + 38)); goto L_0027D160; }
+    v0 = 0;
+L_0027D160:;
+    v1 = v0 & 0xffff;
+    a1 = (s32) 0x370000U;
+    v0 = (s32) 0x38c90000U;
+    v1 = (s32) ((u32) v1 + 0x4000U);
+    v0 = v0 | 0xfdb;
+    a0 = (s32) ((u32) sp + 0xa0U);
+    f1.i = (s32) v0;
+    a1 = (s32) ((u32) a1 + 0x5b30U);
+    v0 = (s64) ((u64) v1 << 48);
+    v0 = v0 >> 48;
+    f0.i = (s32) v0;
+    f0.f = (f32) f0.i;
+    f0.f = f1.f * f0.f;
+    f12.i = f0.i ^ (s32) 0x80000000U; v0 = func_001040A0(a0, a1, a2, a3, f12.f);
+    f1.f = (*(volatile f32 *) (u32) s0);
+    v0 = (s32) 0x3f800000U;
+    f2.f = (*(volatile f32 *) (u32) (sp + 144));
+    (*(volatile u32 *) (u32) (sp + 220)) = (u32) v0;
+    f0.f = (*(volatile f32 *) (u32) s6);
+    f20.i = (s32) v0;
+    (*(volatile f32 *) (u32) (sp + 212)) = f1.f;
+    (*(volatile f32 *) (u32) (sp + 208)) = f2.f;
+    (*(volatile f32 *) (u32) (sp + 216)) = f0.f;
+    v0 = (*(volatile s32 *) (u32) (s2 + 48));
+    a0 = (*(volatile s32 *) (u32) v0); v0 = func_00141390(a0);
+    v1 = 13;
+    if (v0 == v1) goto L_0027D1E8;
+    v1 = 8;
+    if (v0 != v1) goto L_0027D1EC;
+L_0027D1E8:;
+    v0 = (s32) ((u32) v0 + 0xffffffffU);
+L_0027D1EC:;
+    at = s4 < v0;
+    if (at == 0) { v0 = (s32) ((u32) s4 << 4); goto L_0027D220; }
+    v0 = (*(volatile s32 *) (u32) (s2 + 48));
+    a0 = (*(volatile s32 *) (u32) (v0 + 4)); v0 = func_00141000(a0);
+    v1 = (s32) ((u32) s4 << 6);
+    a0 = (s32) ((u32) sp + 0xe0U);
+    a2 = (s32) ((u32) v0 + (u32) v1);
+    a1 = (s32) ((u32) sp + 0xa0U); v0 = func_00103BB8(a0, a1, a2);
+    v1 = (s32) 0xc0a00000U; goto L_0027D27C;
+L_0027D220:;
+    a0 = (s32) ((u32) sp + 0xe0U);
+    v1 = (s32) ((u32) v0 + (u32) s4);
+    v1 = (s32) ((u32) v1 << 4);
+    v0 = (s32) ((u32) s3 + (u32) v0);
+    v1 = (s32) ((u32) s1 + (u32) v1);
+    __asm__ volatile("lqc2 $vf8, 128(%0)" : : "r"((u32) v0) : "memory");
+    __asm__ volatile("lqc2 $vf4, 0(%0)" : : "r"((u32) v1) : "memory");
+    __asm__ volatile("lqc2 $vf5, 16(%0)" : : "r"((u32) v1) : "memory");
+    __asm__ volatile("lqc2 $vf6, 32(%0)" : : "r"((u32) v1) : "memory");
+    __asm__ volatile("lqc2 $vf7, 48(%0)" : : "r"((u32) v1) : "memory");
+    __asm__ volatile("vmulx.xyzw $vf4, $vf4, $vf8x");
+    __asm__ volatile("vmuly.xyzw $vf5, $vf5, $vf8y");
+    __asm__ volatile("vmulz.xyzw $vf6, $vf6, $vf8z");
+    __asm__ volatile("vmulw.xyzw $vf7, $vf7, $vf8w");
+    __asm__ volatile("sqc2 $vf4, 0(%0)" : : "r"((u32) a0) : "memory");
+    __asm__ volatile("sqc2 $vf5, 16(%0)" : : "r"((u32) a0) : "memory");
+    __asm__ volatile("sqc2 $vf6, 32(%0)" : : "r"((u32) a0) : "memory");
+    __asm__ volatile("sqc2 $vf7, 48(%0)" : : "r"((u32) a0) : "memory");
+    a1 = (s32) ((u32) sp + 0xa0U);
+    a2 = a0;
+    (*(volatile f32 *) (u32) (sp + 284)) = f20.f; v0 = func_00103BB8(a0, a1, a2);
+    v1 = (s32) 0xc0a00000U;
+L_0027D27C:;
+    a1 = (s32) 0x590000U;
+    f4.i = (s32) v1;
+    a0 = (s32) 0x590000U;
+    f3.f = (*(volatile f32 *) (u32) (sp + 272));
+    v1 = (s32) 0x40a00000U;
+    f2.i = (s32) v1;
+    f1.f = (*(volatile f32 *) (u32) (sp + 276));
+    f0.f = (*(volatile f32 *) (u32) (sp + 280));
+    v1 = (s32) 0x590000U;
+    f3.f = f4.f * f3.f;
+    f1.f = f2.f * f1.f;
+    f0.f = f2.f * f0.f;
+    (*(volatile f32 *) (u32) (a1 + 7788)) = f3.f;
+    (*(volatile f32 *) (u32) (a0 + 7792)) = f1.f;
+    (*(volatile f32 *) (u32) (v1 + 7796)) = f0.f;
+L_0027D2B8:;
+    return v0;
+}

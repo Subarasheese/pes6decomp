@@ -1,10 +1,10 @@
-/* compiler: mwcc-3.0.1b151 */
+/* compiler: mwcc-3.0.1b210 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern s32 func_001BC3D0(s32, s32, s32, s32);
 extern s32 func_002F7970(void);
-extern void func_001BC360(void);
+extern void func_001BC360(s32);
 extern char D_003AB4A8[];
 extern char D_003AE970[];
 extern char D_003AE998[];
@@ -13,10 +13,10 @@ extern char D_00592800[];
 extern char D_0059295B[];
 extern char D_0059295C[];
 extern char D_0087F2C0[];
-extern M2C_UNK func_0026B7E0;
+extern void func_0026B7E0(void);
 
 s32 func_0026BC60(void) {
-    M2C_UNK *var_s0_2;
+    char *var_s0_2;
     s16 var_s1;
     s32 var_a0;
     s32 var_a0_2;
@@ -70,7 +70,7 @@ loop_7:
     var_s1_2 = 0;
     var_s0_2 = ((void *)D_003AE970);
     do {
-        func_001BC360();
+        func_001BC360(M2C_FIELD(var_s0_2, s32 *, 0x3C));
         if (func_002F7970() != 0) {
             if (var_s1_2 == 0) {
                 var_a0_2 = 0;

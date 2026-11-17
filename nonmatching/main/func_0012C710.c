@@ -3,6 +3,7 @@
 #include "pes6/m2c.h"
 
 extern char D_003FB420[];
+extern void func_0012C410(s32, void *, u32, void *, void *, void *, void *, void *);
 
 void func_0012C710(s32 arg0, void * arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, void * arg7) {
     s32 temp_a3_2;
@@ -42,10 +43,10 @@ void func_0012C710(s32 arg0, void * arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5
                     var_a4 = M2C_FIELD(var_a2, s32 *, 8);
                     temp_a3_3 = M2C_FIELD(var_a2, void **, 0xC);
                     M2C_FIELD(var_a4, void **, 0xC) = temp_a3_3;
-                    M2C_FIELD(temp_a3_3, s32 *, 8) = var_a4;
+                    M2C_FIELD(temp_a3_3, void **, 8) = (void *) var_a4;
                 }
                 if (var_a6 != M2C_FIELD(temp_v1_2, void **, 0x30)) {
-                    M2C_FIELD(var_a6, s32 *, 4) = var_a5;
+                    M2C_FIELD(var_a6, void **, 4) = (void *) var_a5;
                     if (!(M2C_FIELD((var_a6 + var_a5), s32 *, 4) & 1)) {
                         temp_a4_2 = M2C_FIELD(var_a6, void **, 8);
                         var_a1 += var_a5;
@@ -58,20 +59,20 @@ void func_0012C710(s32 arg0, void * arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5
                     var_a4 = var_a1 | 1;
                     var_a3 = var_a2 + var_a1;
                     M2C_FIELD(var_a2, void **, 0xC) = var_a6;
-                    M2C_FIELD(var_a2, s32 *, 8) = var_a5;
-                    M2C_FIELD(temp_v1_2, s32 *, 0x40) = (s32) var_a2;
+                    M2C_FIELD(var_a2, void **, 8) = (void *) var_a5;
+                    M2C_FIELD(temp_v1_2, void **, 0x40) = var_a2;
                     M2C_FIELD(var_a5, void **, 0xC) = var_a2;
-                    M2C_FIELD(var_a2, s32 *, 4) = var_a4;
-                    *var_a3 = var_a1;
+                    M2C_FIELD(var_a2, void **, 4) = (void *) var_a4;
+                    *(void **) var_a3 = (void *) var_a1;
                 } else {
                     var_a1 += var_a5;
                     var_a3 = (u32 *) (var_a1 | 1);
-                    M2C_FIELD(var_a2, s32 *, 4) = (s32) var_a3;
+                    M2C_FIELD(var_a2, void **, 4) = (void *) var_a3;
                     M2C_FIELD(temp_v1_2, void **, 0x30) = var_a2;
                 }
                 temp_a2 = (u64) ((u64) ((s64) var_a1 ) << 0x20) >> 0x20;
                 if ((temp_a2 >= 0x20000U) && (M2C_FIELD(temp_v1, u32 *, 0x20) & 2)) {
-                    func_0012C410((void *) arg0, temp_v1_2, (void *) temp_a2, var_a3, (void *) var_a4, (void *) var_a5, var_a6, arg7);
+                    func_0012C410(arg0, temp_v1_2, (u32) temp_a2, var_a3, (void *) var_a4, (void *) var_a5, var_a6, arg7);
                 }
             }
         } else {

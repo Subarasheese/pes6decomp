@@ -1,27 +1,21 @@
 /* compiler: mwcc-3.0.1b151 */
-/* Non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-s32 Pes6Texture_GetClut();                                /* extern */
-s32 Pes6Texture_GetPsm(s32);                             /* extern */
+s32 Pes6Texture_GetClut(s32);
+s32 Pes6Texture_GetPsm(s32);
 extern char D_00376A50[];
 
 s32 func_00151440(s32 arg0, s32 arg1) {
     s32 temp_s0;
     s32 temp_v0;
-    s32 var_v0;
 
-    temp_s0 = Pes6Texture_GetClut();
+    temp_s0 = Pes6Texture_GetClut(arg0);
     temp_v0 = Pes6Texture_GetPsm(arg0);
-    switch (temp_v0) {                              /* irregular */
-    case 20:
-        var_v0 = arg1 * 4;
-block_6:
-        return temp_s0 + var_v0;
-    case 19:
-        var_v0 = ((arg1 & ~0x1F) | *(((u8 *)D_00376A50) + (arg1 & 0x1F))) * 4;
-        goto block_6;
-    default:
-        return 0;
+    if (temp_v0 == 20) {
+        return temp_s0 + arg1 * 4;
     }
+    if (temp_v0 == 19) {
+        return temp_s0 + ((arg1 & ~0x1F) | *(s8 *)(D_00376A50 + (arg1 & 0x1F))) * 4;
+    }
+    return 0;
 }

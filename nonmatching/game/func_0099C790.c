@@ -1,4 +1,4 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: ee-gcc-2.9-G0 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
@@ -8,9 +8,9 @@ extern char D_0058E7F0[];
 extern char D_00592800[];
 
 void func_0099C790(void) {
-    M2C_UNK *var_a2;
-    M2C_UNK *var_a3;
-    M2C_UNK *var_a6;
+    u8 *var_a2;
+    u8 *var_a3;
+    u8 *var_a6;
     s32 var_a1;
     s32 var_a2_2;
     s32 var_a5;

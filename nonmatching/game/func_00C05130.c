@@ -1,24 +1,20 @@
 /* compiler: mwcc-3.0.1b210 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
-
 
 extern char D_00CB52A0[];
 
 s32 func_00C05130(u8 *arg0) {
-    M2C_UNK *var_a0;
-    s32 var_a1;
+    char *p;
+    s32 i;
+    u32 v;
 
-    var_a1 = 0;
-    var_a0 = ((void *)D_00CB52A0);
-loop_1:
-    if (M2C_FIELD(var_a0, u8 *, 0x444) != *arg0) {
-        var_a1 += 1;
-        var_a0 += 0x40;
-        if (var_a1 >= 0xA) {
-            return 0;
+    v = *arg0;
+    p = D_00CB52A0;
+    for (i = 0; i < 10; i++) {
+        if (*(u8 *)(p + 0x444) == v) {
+            return 1;
         }
-        goto loop_1;
+        p += 0x40;
     }
-    return 1;
+    return 0;
 }

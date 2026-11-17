@@ -26,11 +26,11 @@ extern char D_00CCB8F6[];
 extern char D_00CCB8F8[];
 extern char D_00CCB8FC[];
 extern char D_00CCB8FE[];
-extern M2C_UNK *D_00CCB900;
+extern char D_00CCB900[];
 extern char D_00CCB908[];
 extern char D_00CCB910[];
 extern char D_00CCB94C[];
-extern M2C_UNK func_00C39770;
+void func_00C39770(void);
 
 s32 func_00C39E50(void) {
     s32 temp_a1;
@@ -131,7 +131,7 @@ block_29:
     if (func_00152130(1, (0x3C0 / (s32) (*(u8 *)D_00591BE4)) & 0xFF) == 0) {
         goto block_31;
     }
-    D_00CCB900 = &func_00C39770;
+    *(s32 *)D_00CCB900 = (s32)func_00C39770;
     return 1;
 block_31:
     return 0;

@@ -15,17 +15,17 @@ extern s32 func_0030EA70(void);
 extern int func_0030E830(void);
 extern s32 func_003389F0(void *, s32, s32);
 void *func_00338AD0(M2C_UNK, M2C_UNK *, M2C_UNK, M2C_UNK *); /* extern */
-s32 func_00C7B820();                                /* extern */
+s32 func_00C7B820(s32, s32, s32, s32);                                /* extern */
 extern char D_003E6408[];
 extern u8 D_003E9F7C;
 extern u8 D_003E9F80;
 extern u8 D_003E9F84;
 extern char D_0059237B[];
-extern M2C_UNK func_00350180;
-extern M2C_UNK func_003502B0;
-extern M2C_UNK func_003503F0;
+extern void func_00350180(void);
+extern void func_003502B0(void);
+extern void func_003503F0(void);
 
-s32 func_00350A70(void *arg0) {
+s32 func_00350A70(void *arg0, s32 arg1, s32 arg2, s32 arg3) {
     f32 sp30;
     s32 temp_hi;
     void *temp_v0;
@@ -49,7 +49,7 @@ s32 func_00350A70(void *arg0) {
         }
         temp_hi = func_0030EA70() % 45;
         if ((temp_hi != 0x28) && (temp_hi != 0x1E) && (temp_hi != 0x1C) && (temp_hi != 0xF) && (func_0030E780() != 0)) {
-            if (func_00C7B820() != 0) {
+            if (func_00C7B820(temp_hi, arg1, arg2, arg3) != 0) {
                 if (D_003E9F84 == 0) {
                     D_003E9F84 = 1;
                     func_00338AD0(0x80000042, &func_003502B0, 0x11, ((void *)D_003E6408));

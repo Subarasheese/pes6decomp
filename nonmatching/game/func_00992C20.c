@@ -1,9 +1,7 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-
-s32 func_00BD96F0();                                /* extern */
+s32 func_00BD96F0();
 extern char Pes6MatchPlayers[];
 extern char D_00CBCDE2[];
 
@@ -26,27 +24,19 @@ s32 func_00992C20(void) {
         } else {
             temp_v1 = M2C_FIELD(temp_a0, u8 *, 0x13);
             if (temp_v1 == 0) {
-                if (!(M2C_FIELD(temp_a0, f32 *, 0xE0) <= 0.0f)) {
-                    var_s0 = 3;
+                if (M2C_FIELD(temp_a0, f32 *, 0xE0) < 0.0f) {
+                    var_s0 = 2;
                 } else {
-                    goto block_11;
+                    var_s0 = 3;
+                }
+            } else if (temp_v1 == 1) {
+                if (!(M2C_FIELD(temp_a0, f32 *, 0xE0) <= 0.0f)) {
+                    var_s0 = 2;
+                } else {
+                    var_s0 = 3;
                 }
             } else {
-block_11:
-                switch (temp_v1) {                  /* irregular */
-                case 0:
-                    if (M2C_FIELD(temp_a0, f32 *, 0xE0) < 0.0f) {
-                        goto block_16;
-                    }
-                    if ((temp_v1 == 1) && !(M2C_FIELD(temp_a0, f32 *, 0xE0) <= 0.0f)) {
-block_16:
-                        var_s0 = 2;
-                    } else {
-                    default:
-                        var_s0 = 3;
-                    }
-                    break;
-                }
+                var_s0 = 3;
             }
         }
     }

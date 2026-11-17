@@ -1,13 +1,13 @@
-/* compiler: ee-gcc-2.9 */
+/* compiler: mwcc-3.0.1b151 */
 /* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
 extern u8 func_009B4050(void);
-u16 Pes6Random_Below(M2C_UNK);                         /* extern */
-M2C_UNK func_001C48E8(void *, M2C_UNK, M2C_UNK);    /* extern */
-M2C_UNK func_00851E70(void *);                      /* extern */
-M2C_UNK func_00853240(void *, s32);                 /* extern */
-void *func_00853430(M2C_UNK, s32 *, M2C_UNK);       /* extern */
+u16 Pes6Random_Below(s32);                         /* extern */
+void func_001C48E8(void *, s32, s32);    /* extern */
+void func_00851E70(void *);                      /* extern */
+void func_00853240(void *, s32);                 /* extern */
+void *func_00853430(s32, s32 *, s32);       /* extern */
 extern void *Pes6Ball_Current;
 extern char D_00591E0C[];
 extern char D_00591E19[];
@@ -55,7 +55,7 @@ s32 func_009B0E60(void) {
         M2C_FIELD(temp_s0, f32 *, 0x328) = (f32) (*(f32 *)D_00591E58);
         M2C_FIELD(temp_s0, f32 *, 0x32C) = (f32) (*(f32 *)D_00591E5C);
         M2C_FIELD(temp_s0, f32 *, 0x330) = (f32) (*(f32 *)D_00591E60);
-        M2C_FIELD(temp_s0, u16 *, 0x334) = (u16) M2C_FIELD(Pes6Ball_Current, u16 *, 0);
+        M2C_FIELD(temp_s0, u16 *, 0x334) = (u16) M2C_FIELD(Pes6Ball_Current, u16 *, 0xA0);
         M2C_FIELD(temp_s0, u16 *, 0x336) = (u16) M2C_FIELD(Pes6Ball_Current, u16 *, 0xA2);
         M2C_FIELD(temp_s0, u16 *, 0x338) = (u16) M2C_FIELD(Pes6Ball_Current, u16 *, 0xA4);
         M2C_FIELD(temp_s0, s32 *, 0x33C) = (s32) M2C_FIELD(Pes6Ball_Current, s32 *, 0x1470);
@@ -73,6 +73,6 @@ s32 func_009B0E60(void) {
         M2C_FIELD(temp_s0, s32 *, 0x348) = (s32) (*(s32 *)D_00591E0C);
         (*(s32 *)D_008B14F4) = M2C_FIELD(temp_s0, s32 *, 0x348);
     }
-    func_00853240(temp_s0, ((temp_s0 + 0x31C) - temp_s0) + 0x30);
+    func_00853240(temp_s0, 0x34C);
     return 0;
 }

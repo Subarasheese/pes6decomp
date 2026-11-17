@@ -20,11 +20,13 @@ f32 func_002A84C0(u8 arg0, void *arg1, s16 arg2, s16 arg3, s32 arg4, void *arg5,
     u8 temp_s0;
     u8 temp_v1_3;
     u8 var_a0;
+    s16 var_a0s;
     void *temp_v1_2;
     void *var_a1;
     void *var_a5;
 
     var_a0 = arg0;
+    var_a0s = arg0;
     var_a1 = arg1;
     var_a2 = arg2;
     var_a3 = arg3;
@@ -43,14 +45,19 @@ f32 func_002A84C0(u8 arg0, void *arg1, s16 arg2, s16 arg3, s32 arg4, void *arg5,
             var_a5 = ((void *)D_005E19A0) + (temp_v1 * 0x10);
             temp_v1_2 = ((void *)D_005E19A0) + (temp_v1 * 4);
             var_t0 = (var_t0 + 1) & 0xFF;
-            M2C_FIELD(var_a5, f32 *, 0x3E0) = (f32) M2C_FIELD(var_a1, s16 *, 0);
-            M2C_FIELD(var_a5, f32 *, 0x3E4) = (f32) M2C_FIELD(var_a1, s16 *, 2);
-            M2C_FIELD(var_a5, f32 *, 0x3E8) = (f32) M2C_FIELD(var_a1, s16 *, 4);
+            {
+                s16 x0 = M2C_FIELD(var_a1, s16 *, 0);
+                s16 x1 = M2C_FIELD(var_a1, s16 *, 2);
+                s16 x2 = M2C_FIELD(var_a1, s16 *, 4);
+                M2C_FIELD(var_a5, f32 *, 0x3E0) = (f32) x0;
+                M2C_FIELD(var_a5, f32 *, 0x3E4) = (f32) x1;
+                M2C_FIELD(var_a5, f32 *, 0x3E8) = (f32) x2;
+            }
             M2C_FIELD(var_a5, s32 *, 0x3EC) = 0x3F800000;
             var_a3 = M2C_FIELD(var_a1, s16 *, 0xA);
             var_a2 = M2C_FIELD(var_a1, s16 *, 8);
-            var_a0 = (u8) M2C_FIELD(var_a1, s16 *, 6);
-            M2C_FIELD(var_a5, f32 *, 0x3A0) = (f32) var_a0;
+            var_a0s = M2C_FIELD(var_a1, s16 *, 6);
+            M2C_FIELD(var_a5, f32 *, 0x3A0) = (f32) var_a0s;
             M2C_FIELD(var_a5, f32 *, 0x3A4) = (f32) var_a2;
             M2C_FIELD(var_a5, f32 *, 0x3A8) = (f32) var_a3;
             M2C_FIELD(var_a5, s32 *, 0x3AC) = 0x3F800000;
@@ -59,7 +66,7 @@ f32 func_002A84C0(u8 arg0, void *arg1, s16 arg2, s16 arg3, s32 arg4, void *arg5,
             var_a1 += 0x14;
         } while (var_t0 < temp_a7);
     }
-    temp_v1_3 = (temp_s0 & 0xFF & 0xF0) | ((func_002A8600((s16) var_a0, var_a1, var_a2, var_a3, var_a4, var_a5, var_a6, temp_a7) & 0xFF) - 1);
+    temp_v1_3 = (temp_s0 & 0xFF & 0xF0) | ((func_002A8600(var_a0s, var_a1, var_a2, var_a3, var_a4, var_a5, var_a6, temp_a7) & 0xFF) - 1);
     (*(s32 *)D_005E1DF4) = 0;
     (*(u8 *)D_005E1D32) = temp_v1_3;
     return (*(f32 *)D_005E1F38);

@@ -1,0 +1,122 @@
+/* compiler: mwcc-3.0.1b210 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s32 Pes6BitSet_Write(s32, s32, s32);
+s32 Pes6Job_GetManager(void);
+s32 func_00311550(s32);
+s32 func_00333740(s32, s32);
+
+s32 func_0033AC90(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7) {
+    s32 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0;
+    s64 frame[16];
+    s32 sp = (s32) (u32) frame;
+
+    s5 = a0;
+    s3 = (*(volatile s32 *) (u32) (a1 + 84));
+    s0 = a2;
+    a0 = (*(volatile s32 *) (u32) (a1 + 72));
+    s4 = s0 & 0xff;
+    a1 = s4; v0 = func_00333740(a0, a1);
+    s2 = v0;
+    v1 = 11;
+    v0 = s4;
+    (*(volatile u32 *) (u32) (sp + 120)) = (u32) v1;
+    s1 = (s32) ((u32) v0 << 2);
+    (*(volatile u32 *) (u32) (sp + 124)) = (u32) v1;
+    v1 = (s32) ((u32) s1 + (u32) sp);
+    a3 = (s32) ((u32) s1 + (u32) s3);
+    v1 = (s32) ((u32) v1 + 0x78U);
+    v0 = s4 ^ 0x1;
+    a2 = (*(volatile s32 *) (u32) v1);
+    v0 = (s32) ((u32) v0 << 2);
+    a1 = (*(volatile u8 *) (u32) (a3 + 9));
+    a7 = (s32) ((u32) v0 + (u32) s3);
+    v0 = (s32) ((u32) v0 + (u32) sp);
+    a0 = (*(volatile u8 *) (u32) (a7 + 9));
+    v0 = (s32) ((u32) v0 + 0x78U);
+    a6 = (*(volatile u8 *) (u32) (a3 + 10));
+    a1 = (s32) ((u32) a2 - (u32) a1);
+    a5 = (*(volatile u8 *) (u32) (a7 + 10));
+    (*(volatile u32 *) (u32) v1) = (u32) a1;
+    s0 = (s32) ((u32) a3 + 0x9U);
+    a1 = (*(volatile s32 *) (u32) v0);
+    a4 = (*(volatile u8 *) (u32) (a3 + 11));
+    a2 = (*(volatile u8 *) (u32) (a3 + 12));
+    a0 = (s32) ((u32) a1 - (u32) a0);
+    (*(volatile u32 *) (u32) v0) = (u32) a0;
+    a0 = (*(volatile s32 *) (u32) v1);
+    a3 = (*(volatile u8 *) (u32) (a7 + 11));
+    a1 = (*(volatile u8 *) (u32) (a7 + 12));
+    a0 = (s32) ((u32) a0 - (u32) a6);
+    (*(volatile u32 *) (u32) v1) = (u32) a0;
+    a0 = (*(volatile s32 *) (u32) v0);
+    a0 = (s32) ((u32) a0 - (u32) a5);
+    (*(volatile u32 *) (u32) v0) = (u32) a0;
+    a0 = (*(volatile s32 *) (u32) v1);
+    a0 = (s32) ((u32) a0 - (u32) a4);
+    (*(volatile u32 *) (u32) v1) = (u32) a0;
+    a0 = (*(volatile s32 *) (u32) v0);
+    a0 = (s32) ((u32) a0 - (u32) a3);
+    (*(volatile u32 *) (u32) v0) = (u32) a0;
+    a0 = (*(volatile s32 *) (u32) v1);
+    a0 = (s32) ((u32) a0 - (u32) a2);
+    (*(volatile u32 *) (u32) v1) = (u32) a0;
+    a0 = (*(volatile s32 *) (u32) v0);
+    a0 = (s32) ((u32) a0 - (u32) a1);
+    (*(volatile u32 *) (u32) v0) = (u32) a0;
+    v1 = (*(volatile s32 *) (u32) v1);
+    v1 = v1 ^ 0xa;
+    a2 = (u64) v1 < (u64) (s64) 1;
+    if (a2 == 0) { a0 = s5; goto L_0033ADAC; }
+    v0 = (*(volatile s32 *) (u32) v0);
+    v0 = v0 ^ 0xb;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a0 = s5;
+L_0033ADAC:;
+    a1 = 267; v0 = Pes6BitSet_Write(a0, a1, a2);
+    if (v0 == 0) { v0 = (*(volatile u8 *) (u32) s0); goto L_0033ADCC; }
+    v0 = Pes6Job_GetManager();
+    (*(volatile u32 *) (u32) (v0 + 4104)) = (u32) s4;
+    v0 = (*(volatile u8 *) (u32) s0);
+L_0033ADCC:;
+    a0 = s5;
+    a1 = 269;
+    v0 = v0 ^ 0x1;
+    a2 = (u64) v0 < (u64) (s64) 1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = (s32) ((u32) s1 + (u32) s3);
+    a0 = s5;
+    v0 = (*(volatile u8 *) (u32) (v0 + 10));
+    a1 = 272;
+    v0 = v0 ^ 0x1;
+    a2 = (u64) v0 < (u64) (s64) 1; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s2 < 14;
+    a0 = s5;
+    a2 = v0 ^ 0x1;
+    a1 = 277; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s2 ^ 0xd;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 278; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a2 = s2 < 13;
+    a0 = s5;
+    a1 = 279; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s2 < 14;
+    a0 = s5;
+    a2 = v0 ^ 0x1;
+    a1 = 281; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = s2 ^ 0xd;
+    a0 = s5;
+    a2 = (u64) v0 < (u64) (s64) 1;
+    a1 = 282; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a0 = s4; v0 = func_00311550(a0);
+    a2 = v0;
+    a0 = s5;
+    a1 = 283; v0 = Pes6BitSet_Write(a0, a1, a2);
+    a2 = s2 < 13;
+    a0 = s5;
+    a1 = 285; v0 = Pes6BitSet_Write(a0, a1, a2);
+    v0 = 1;
+    return v0;
+}

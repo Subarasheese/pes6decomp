@@ -6,7 +6,7 @@ extern s32 func_00A426D0(void *);
 extern s32 func_00AB98A0(void *, s8, s32);
 M2C_UNK func_00207390(void *, M2C_UNK, s32, u16);   /* extern */
 M2C_UNK func_00209A00(void *, M2C_UNK, M2C_UNK);    /* extern */
-extern s8 *Pes6Ball_Current;
+extern void *Pes6Ball_Current;
 extern char Pes6MatchState_Current[];
 
 s32 func_00A42380(void *arg0) {
@@ -27,7 +27,7 @@ s32 func_00A42380(void *arg0) {
                 }
                 if (M2C_FIELD(arg0, u8 *, 0) == (*(u8 *)Pes6MatchState_Current)) {
                     (*(u8 *)Pes6MatchState_Current) = 0;
-                    *Pes6Ball_Current = 1;
+                    M2C_FIELD(Pes6Ball_Current, u8 *, 0x62) = 1;
                 }
                 M2C_FIELD(arg0, s8 *, 0x4A) = 0;
                 M2C_FIELD(arg0, s8 *, 0x16) = 0x40;
@@ -51,7 +51,7 @@ block_9:
                         }
                         if (M2C_FIELD(arg0, u8 *, 0) == (*(u8 *)Pes6MatchState_Current)) {
                             (*(u8 *)Pes6MatchState_Current) = 0;
-                            *Pes6Ball_Current = 1;
+                            M2C_FIELD(Pes6Ball_Current, u8 *, 0x62) = 1;
                         }
                         M2C_FIELD(arg0, s8 *, 0x4A) = 2;
                         M2C_FIELD(arg0, s8 *, 0x16) = 0x40;
@@ -80,7 +80,7 @@ block_9:
                     }
                     if (M2C_FIELD(arg0, u8 *, 0) == (*(u8 *)Pes6MatchState_Current)) {
                         (*(u8 *)Pes6MatchState_Current) = 0;
-                        *Pes6Ball_Current = 1;
+                        M2C_FIELD(Pes6Ball_Current, u8 *, 0x62) = 1;
                     }
                     M2C_FIELD(arg0, u16 *, 0x2C) = (u16) M2C_FIELD(arg0, u16 *, 0x26);
                     M2C_FIELD(arg0, s8 *, 0x16) = 0x12;
@@ -90,7 +90,7 @@ block_52:
                 }
                 if (M2C_FIELD(arg0, u8 *, 0) == (*(u8 *)Pes6MatchState_Current)) {
                     (*(u8 *)Pes6MatchState_Current) = 0;
-                    *Pes6Ball_Current = 1;
+                    M2C_FIELD(Pes6Ball_Current, u8 *, 0x62) = 1;
                 }
                 M2C_FIELD(arg0, s8 *, 0x4A) = 5;
                 M2C_FIELD(arg0, s8 *, 0x16) = 0x40;
@@ -100,7 +100,7 @@ block_52:
             }
             if (M2C_FIELD(arg0, u8 *, 0) == (*(u8 *)Pes6MatchState_Current)) {
                 (*(u8 *)Pes6MatchState_Current) = 0;
-                *Pes6Ball_Current = 1;
+                M2C_FIELD(Pes6Ball_Current, u8 *, 0x62) = 1;
             }
             func_00209A00(M2C_FIELD(arg0, void **, 4), 0x238, 0);
             temp_a3 = M2C_FIELD(arg0, u16 *, 0x2C);
@@ -114,7 +114,7 @@ block_52:
         }
         if (M2C_FIELD(arg0, u8 *, 0) == (*(u8 *)Pes6MatchState_Current)) {
             (*(u8 *)Pes6MatchState_Current) = 0;
-            *Pes6Ball_Current = 1;
+            M2C_FIELD(Pes6Ball_Current, u8 *, 0x62) = 1;
         }
         M2C_FIELD(arg0, s8 *, 0x4A) = 3;
         M2C_FIELD(arg0, s8 *, 0x16) = 0x40;

@@ -8,7 +8,7 @@ extern char D_00CB52A0[];
 extern char D_00CB5382[];
 
 s32 func_00C04990(void *arg0, s32 arg1, s16 arg2) {
-    M2C_UNK *var_v1;
+    u8 *var_v1;
     s32 var_a3;
     u8 var_v0;
     void *var_v1_2;
@@ -17,7 +17,7 @@ s32 func_00C04990(void *arg0, s32 arg1, s16 arg2) {
         return 0;
     }
     var_a3 = 0;
-    var_v1 = ((void *)D_00CB52A0);
+    var_v1 = (u8 *)D_00CB52A0;
 loop_4:
     if (M2C_FIELD(var_v1, s32 *, 0x43C) != 0) {
         var_a3 += 1;

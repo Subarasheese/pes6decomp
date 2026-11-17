@@ -8,12 +8,12 @@ extern char D_0058E7F0[];
 extern char D_00592800[];
 
 void func_00BBB260(void) {
-    u8 sp38;
-    M2C_UNK *var_a0_2;
-    M2C_UNK *var_a3_2;
-    M2C_UNK *var_a4;
-    M2C_UNK *var_a5_2;
-    M2C_UNK *var_a7;
+    u8 sp38[8];
+    u8 *var_a0_2;
+    u8 *var_a3_2;
+    u8 *var_a4;
+    u8 *var_a5_2;
+    u8 *var_a7;
     s32 temp_t9_2;
     s32 var_a1;
     s32 var_a2;
@@ -30,7 +30,7 @@ void func_00BBB260(void) {
     u8 temp_t9;
 
     var_v1 = 8;
-    var_a0 = &sp38;
+    var_a0 = sp38;
     if (var_a0 != NULL) {
         do {
             *var_a0 = 0;
@@ -40,14 +40,14 @@ void func_00BBB260(void) {
     }
     var_a5 = 0;
     var_t1 = 0;
-    var_a4 = ((void *)D_00592800);
-    var_a3 = &sp38;
+    var_a4 = (u8 *)D_00592800;
+    var_a3 = sp38;
     do {
         if (((u8) M2C_FIELD(var_a4, u8 *, 3) < 2U) && (M2C_FIELD(var_a4, u8 *, 0) != 8)) {
             var_a5 = 1;
             var_a6 = 0;
             var_t0 = 0;
-            var_a7 = ((void *)D_0058E7F0);
+            var_a7 = (u8 *)D_0058E7F0;
             do {
                 temp_t9 = M2C_FIELD(var_a7, u8 *, 0);
                 if (temp_t9 == M2C_FIELD(var_a4, u8 *, 0x10)) {
@@ -67,7 +67,7 @@ void func_00BBB260(void) {
                 } else {
                     var_s2 = 0;
                     if (var_t1 > 0) {
-                        var_s1 = &sp38;
+                        var_s1 = sp38;
                         do {
                             if ((s8) *var_s1 == temp_t9) {
                                 var_a6 = 1;
@@ -90,7 +90,7 @@ void func_00BBB260(void) {
     } while (var_t1 < 8);
     if (var_a5 == 0) {
         var_a1 = 0;
-        var_a0_2 = ((void *)Pes6MatchPlayers);
+        var_a0_2 = (u8 *)Pes6MatchPlayers;
         do {
             M2C_FIELD(var_a0_2, s32 *, 0x214) = 0;
             var_a1 += 7;
@@ -124,11 +124,11 @@ void func_00BBB260(void) {
         M2C_FIELD(var_a0_2, s8 *, 0x458) = 0;
     }
     var_a4_2 = 0;
-    var_a3_2 = ((void *)D_0058E7F0);
+    var_a3_2 = (u8 *)D_0058E7F0;
     do {
         if (M2C_FIELD(var_a3_2, u8 *, 0x218) == 0) {
             var_a2 = 0;
-            var_a5_2 = ((void *)D_0058E7F0);
+            var_a5_2 = (u8 *)D_0058E7F0;
             do {
                 if (M2C_FIELD(var_a5_2, u8 *, 0x21A) == M2C_FIELD(var_a3_2, u8 *, 0)) {
                     M2C_FIELD(var_a5_2, s8 *, 0x21B) = 0;

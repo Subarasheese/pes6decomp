@@ -3,21 +3,21 @@
 #include "pes6/m2c.h"
 
 
-s32 func_009B30B0(u16, u16);                        /* extern */
+s32 func_009B30B0(s32, s32);
 s32 func_00A09950(void *);                          /* extern */
-s32 func_00C20350(s32, M2C_UNK);                    /* extern */
-M2C_UNK func_00C20600(void *, u16, u16, s32, s32);  /* extern */
+s32 func_00C20350(void *, s32, s32);
+M2C_UNK func_00C20600(void *, s32, s32, s32, s32);  /* extern */
 extern void *Pes6Ball_Current;
 extern char D_00591BEC[];
 extern char D_00591E4C[];
 extern char D_005926DC[];
 
-void func_00C1F8F0(void *arg0, u16 arg1, s32 arg2) {
+void func_00C1F8F0(void *arg0, s32 arg1, s32 arg2) {
     s16 var_v0;
     s32 var_a3;
     u16 temp_s0;
 
-    if ((M2C_FIELD(arg0, u8 *, 0x3E) == (*(u8 *)D_005926DC)) && (func_00C20350(arg2, 0) != 0)) {
+    if ((M2C_FIELD(arg0, u8 *, 0x3E) == (*(u8 *)D_005926DC)) && (func_00C20350(arg0, arg2, 0) != 0)) {
         M2C_FIELD(arg0, s8 *, 0x45) = 0x90;
         return;
     }

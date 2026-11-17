@@ -1,46 +1,28 @@
 /* compiler: ee-gcc-2.9 */
-/* Low-confidence non-matching reconstruction; types, layouts and ABI remain provisional. */
 #include "pes6/m2c.h"
 
-
-M2C_UNK func_0017F9A0(M2C_UNK *, void *, M2C_UNK, s8 *, void *); /* extern */
+M2C_UNK func_0017F9A0(s32, void *, void *, s32, void *, void *); /* extern */
 extern void *D_003E9944;
-extern M2C_UNK func_001D6150;
+extern void func_001D6150(void);
 
 void func_001D5EE0(s32 arg0, void *arg1) {
-    s8 sp10;
-    s32 sp1C;
-    s32 sp20;
-    s32 var_v1;
-    s8 *var_a1;
-    void *var_a1_2;
+    s32 sp10[5];
+    s32 i;
+    u8 *p;
+    void *node;
 
-    var_a1 = &sp10;
-    var_v1 = 0x14;
-    if (var_a1 != NULL) {
-        do {
-            *var_a1 = 0;
-            var_v1 -= 1;
-            var_a1 += 1;
-        } while (var_v1 != 0);
+    p = (u8 *)sp10;
+    for (i = 0; i < 20; i++) {
+        p[i] = 0;
     }
-    var_a1_2 = D_003E9944;
-    if (var_a1_2 != NULL) {
-loop_3:
-        if (M2C_FIELD(var_a1_2, s32 *, 8) != arg0) {
-            var_a1_2 = M2C_FIELD(var_a1_2, void **, 4);
-            if (var_a1_2 == NULL) {
-                goto block_8;
-            }
-            goto loop_3;
+    node = D_003E9944;
+    while (node != NULL) {
+        if (M2C_FIELD(node, s32 *, 8) == arg0) {
+            return;
         }
-    } else {
-block_8:
-        var_a1_2 = NULL;
+        node = M2C_FIELD(node, void **, 4);
     }
-    if (var_a1_2 == NULL) {
-        sp1C = M2C_FIELD(arg1, s32 *, 0);
-        sp20 = M2C_FIELD(arg1, s32 *, 4);
-        func_0017F9A0(&func_001D6150, arg1 + 4, 4, &sp10, arg1);
-    }
+    sp10[3] = M2C_FIELD(arg1, s32 *, 0);
+    sp10[4] = M2C_FIELD(arg1, s32 *, 4);
+    func_0017F9A0(arg0, (void *)func_001D6150, (u8 *)arg1 + 4, 4, sp10, arg1);
 }

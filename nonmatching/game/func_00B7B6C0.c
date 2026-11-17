@@ -5,7 +5,7 @@
 extern void func_001AFBF0(s32, s32);
 extern void func_0027AA00(int);
 M2C_UNK func_001B43B0(s32, s32);                    /* extern */
-s32 func_00B29CB0(u8, s32, M2C_UNK *);              /* extern */
+s32 func_00B29CB0(void);
 M2C_UNK func_00BF4000(M2C_UNK);                     /* extern */
 s32 func_00C5A620(u8);                              /* extern */
 s32 func_00C5A6D0(u8);                              /* extern */
@@ -21,9 +21,9 @@ extern char D_00CBCC68[];
 extern char D_00CBCC6C[];
 
 void func_00B7B6C0(void) {
-    M2C_UNK *var_a0;
-    M2C_UNK *var_a2;
-    M2C_UNK *var_s1;
+    char *var_a0;
+    char *var_a2;
+    char *var_s1;
     s32 temp_s2;
     s32 temp_s3;
     s32 var_a1;
@@ -32,7 +32,7 @@ void func_00B7B6C0(void) {
 
     func_0027AA00(0);
     var_v1 = 0;
-    var_a0 = ((void *)D_0058E7F0);
+    var_a0 = D_0058E7F0;
     do {
         M2C_FIELD(var_a0, s8 *, 0x103) = 0;
         var_v1 += 7;
@@ -46,7 +46,7 @@ void func_00B7B6C0(void) {
     } while (var_v1 < 0xF);
     M2C_FIELD(var_a0, s8 *, 0x103) = 0;
     (*(u8 *)D_00CBCC68) = 0x80;
-    var_a2 = ((void *)Pes6MatchPlayers);
+    var_a2 = Pes6MatchPlayers;
     var_a1 = 0;
     (*(u8 *)D_00CBCC60) = (*(u8 *)D_00CBCC68);
     (*(s8 *)D_00CBCC62) = 0;
@@ -69,10 +69,10 @@ void func_00B7B6C0(void) {
     if ((*(u8 *)D_00591C09) != 5) {
         goto block_5;
     }
-    if (func_00B29CB0((*(u8 *)D_00CBCC68), var_a1, var_a2) == 0) {
+    if (func_00B29CB0() == 0) {
 block_5:
         var_s0 = 0;
-        var_s1 = ((void *)D_0058E7F0);
+        var_s1 = D_0058E7F0;
         do {
             temp_s3 = func_00C5A620(M2C_FIELD(var_s1, u8 *, 0));
             temp_s2 = func_00C5A6D0(M2C_FIELD(var_s1, u8 *, 0));
