@@ -15,6 +15,8 @@ typedef struct Pes6PlayerAppearance {
 typedef struct Pes6PlayerInfo {
     u8 pad00[0x4];
     Pes6PlayerAppearance *appearance; /* 0x04 */
+    u8 pad08[0x28];
+    u16 unk30;        /* 0x30 */
 } Pes6PlayerInfo;
 
 /* Match player entries (0x240 bytes each) at 0x58E5B0, indexed by match object id (see

@@ -1,9 +1,11 @@
 /* compiler: mwcc-3.0.1b151 */
-#include "pes6/m2c.h"
-extern void *Pes6Ball_Current;
-void Pes6Ball_ClearTouchHistory(void) {
-    unsigned char index;
-    for (index = 0; index < 10; ++index) {
-        M2C_FIELD((char *)Pes6Ball_Current + index * 2, unsigned short *, 0xA4) = 0xFF;
+#include "pes6/ball.h"
+
+void Pes6Ball_ClearTouchHistory(void)
+{
+    u8 i;
+
+    for (i = 0; i < PES6_TOUCH_HISTORY_LENGTH; i++) {
+        Pes6Ball_Current->previousActions[i] = 0xFF;
     }
 }
