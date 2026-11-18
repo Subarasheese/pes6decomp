@@ -2133,21 +2133,6 @@
    ]
   },
   {
-   "image": "league_common",
-   "address": "009BE770",
-   "symbol": "func_009BE770",
-   "source": "nonmatching/league_common/func_009BE770.c",
-   "compiler": "mwcc-3.0.1b198",
-   "source_sha256": "2c853e525fcaf27b6d27bb9a1c47742543bd2345fc63ff2f09d7e14b6dbf5d06",
-   "original_sha256": "76e63a38a220008596c6311db7035bd78c057df3cc9a9e4d18f615d214d2fb43",
-   "minimum_similarity": 50,
-   "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review."
-   ]
-  },
-  {
    "image": "leaguecup",
    "address": "00AE2C60",
    "symbol": "func_00AE2C60",
@@ -2305,21 +2290,6 @@
    "compiler": "mwcc-3.0.1b198",
    "source_sha256": "acbf427b64fb888ad7bc37e80232bff88a445f753b29a60f1ebe262b45719838",
    "original_sha256": "40ff4a9c59013d51c502ddab095e140f4e4ef4e09a2c5149f0b1403b1af81dff",
-   "minimum_similarity": 50,
-   "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review."
-   ]
-  },
-  {
-   "image": "leaguecup",
-   "address": "00AFDB80",
-   "symbol": "func_00AFDB80",
-   "source": "nonmatching/leaguecup/func_00AFDB80.c",
-   "compiler": "mwcc-3.0.1b151",
-   "source_sha256": "8c81455068c8aa02efa3beb71685c71bdcdff5ddf2df545bca5e921ec39f49eb",
-   "original_sha256": "ce6576f845b229d97b1860ba27b74546625a1031f3469d40875933bd1b6ee1fe",
    "minimum_similarity": 50,
    "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
    "known_issues": [
