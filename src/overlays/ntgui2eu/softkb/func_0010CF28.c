@@ -1,0 +1,9 @@
+/* compiler: ee-gcc-2.96-G0 */
+#include "pes6/m2c.h"
+
+extern void *D_011B5D30;
+extern char D_011B5D38[];
+
+void func_0010CF28(void) {
+    M2C_FIELD(D_011B5D30, M2C_UNK (**)(M2C_UNK *), 0x114)(((void *)D_011B5D38));
+}
