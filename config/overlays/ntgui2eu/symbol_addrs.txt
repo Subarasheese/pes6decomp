@@ -1,0 +1,9 @@
+# newlib routines independently linked at these NTGUI2EU addresses.
+_vfiprintf_r = 0x001B0F10; // type:func
+__svfscanf = 0x001B1B08; // type:func
+__sccl = 0x001B2798; // type:func
+_vfprintf_r = 0x001B54E0; // type:func
+cvt = 0x001B6B50; // type:func
+exponent = 0x001B6D10; // type:func
+quorem = 0x001B6EA8; // type:func
+_dtoa_r = 0x001B70D8; // type:func

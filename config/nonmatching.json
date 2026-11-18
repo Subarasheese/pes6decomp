@@ -161313,22 +161313,6 @@
   },
   {
    "image": "ntgui2eu",
-   "address": "001B6EA8",
-   "symbol": "func_001B6EA8",
-   "original_sha256": "31704361554afd2e0c3840f7cc9ae6647508f1d66c625d128668abfeca69d15e",
-   "source": "nonmatching/ntgui2eu/func_001B6EA8.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "558c746242f999848d7364034db89bf15fea57716fd66c681a6370d8d9408956",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "ntgui2eu",
    "address": "001B8340",
    "symbol": "func_001B8340",
    "original_sha256": "9f302df35c02856728f75b20c8126e753a4ff43546905324cb6ec31f0f01a7c0",
