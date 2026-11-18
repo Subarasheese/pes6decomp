@@ -905,3 +905,43 @@ SoundUpload_Step = 0x0058C604; // type:data
 // The vertical-blank field counter (advanced once per field by the vblank handler) and its read.
 Vsync_GetFieldCount = 0x0014AAA0; // type:func
 Vsync_FieldCount = 0x003E9830; // type:data
+// VIF1 packet ring (graphics). Packets are allocated in a ring at 0x43C880; each committed packet carries
+// a MARK in its DMA tag's upper half, and the allocator waits on VIF1_MARK (0x10003C30) until VIF1 has
+// consumed the packets whose space it needs. Reset sets VIF1_MARK to 0 and the first entry's mark to 1.
+Pes6GfxRing_Alloc = 0x001398B0; // type:func
+Pes6GfxRing_Commit = 0x00139C70; // type:func
+Pes6GfxRing_Reset = 0x00139E40; // type:func
+// Per-channel DMA packet queue: the first packet is started directly; the DMA-end handler (registered for
+// cause 1, VIF1) pops the finished packet and starts the next queued one.
+Pes6DmaQueue_DmacHandler = 0x00145020; // type:func
+Pes6DmaQueue_OnTransferEnd = 0x00145050; // type:func
+// libdma: sceDmaSync(chan, mode): mode 1 returns the channel's STR bit, otherwise waits for it to clear.
+// The wait polls CHCR.STR and prints "libdma: sync timeout" every 16M polls; addresses in the scratchpad
+// (0x7xxxxxxx) get bit 31 for the DMAC.
+sceDmaSync = 0x001024C8; // type:func
+DmaWaitChannelIdle = 0x00101DA0; // type:func
+DmaToPhysicalAddress = 0x00101E98; // type:func
+// libgcc: 64-bit integer to float. The unsigned one halves values with the top bit set (keeping the
+// sticky bit) and doubles the signed conversion's result.
+__floatundisf = 0x00100230; // type:func
+__floatdisf = 0x0011EFD0; // type:func
+// Leaving the title for the menus: releases module 8's (the title's) memory region and clears its state.
+Pes6Title_Unload = 0x002D6A00; // type:func
+// Memory regions and modules: a region's entry (16 bytes), whether it is resident (state 2), a module's
+// entry (8 bytes: OVER.AFS file id, region).
+Pes6MemRegion_Get = 0x001FC920; // type:func
+Pes6MemRegion_IsResident = 0x001FC7A0; // type:func
+Pes6Module_Get = 0x001FCCE0; // type:func
+// Camera path player (keyframed paths, one frame per call; the entrance's camera). Update runs it while
+// the enable byte at 0x3E9A1C is set and stores whether it has finished in 0x592754; Play returns 1 once
+// every path has played, PlayLoop wraps to the first path.
+Pes6CameraPath_Update = 0x00203180; // type:func
+Pes6CameraPath_Play = 0x0019F650; // type:func
+Pes6CameraPath_PlayLoop = 0x0019F4D0; // type:func
+// enter.ovl (addresses unique to enter): the entrance's shot list (bytes at 0x92F0FF, bit numbers + 1)
+// becomes the pending mask at 0x92F0DC; the sequencer advances to the next shot when the current one's
+// bit clears. Cross or Start on any pad skips the entrance (flag 0x1000 in 0x92F0D0).
+Pes6Enter_BuildShotMask = 0x00908D10; // type:func
+Pes6Enter_ShotSequencer = 0x009089C0; // type:func
+Pes6Enter_CheckSkipButtons = 0x009087F0; // type:func
+Pes6Enter_UpdateSkip = 0x009088C0; // type:func

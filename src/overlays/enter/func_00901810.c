@@ -5,7 +5,7 @@ extern void func_00182AE0(s32);
 extern void func_00182B20(int);
 extern void func_0019FBA0(void);
 extern void func_00182B30(int);
-M2C_UNK func_0019F4D0();                            /* extern */
+M2C_UNK Pes6CameraPath_PlayLoop();                            /* extern */
 M2C_UNK func_001A2330(M2C_UNK);                     /* extern */
 
 s32 func_00901810(void) {
@@ -14,6 +14,6 @@ s32 func_00901810(void) {
     func_00182AE0(1);
     func_001A2330(2);
     func_0019FBA0();
-    func_0019F4D0();
+    Pes6CameraPath_PlayLoop();
     return 1;
 }

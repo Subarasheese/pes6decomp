@@ -2,14 +2,14 @@
 #include "pes6/m2c.h"
 
 
-M2C_UNK func_00101DA0(void *);                      /* extern */
-s32 func_00101E98(s32);                             /* extern */
+M2C_UNK DmaWaitChannelIdle(void *);                      /* extern */
+s32 DmaToPhysicalAddress(s32);                             /* extern */
 
 void sceDmaRecvI(void *arg0, s32 arg1, s32 arg2) {
     s32 temp_s1;
 
-    temp_s1 = func_00101E98(arg1);
-    func_00101DA0(arg0);
+    temp_s1 = DmaToPhysicalAddress(arg1);
+    DmaWaitChannelIdle(arg0);
     if (M2C_FIELD(arg0, s32 *, 0x10) != 0xFFFFFFFF) {
         M2C_FIELD(arg0, s32 *, 0x10) = temp_s1;
     }

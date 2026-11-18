@@ -6,7 +6,7 @@ extern s32 func_00342AF0(void);
 extern void func_00359F60(void);
 extern void func_00255EF0(void);
 extern void func_002D6340(void);
-M2C_UNK func_009089C0();                            /* extern */
+M2C_UNK Pes6Enter_ShotSequencer();                            /* extern */
 M2C_UNK func_0090B290();                            /* extern */
 M2C_UNK func_0090B330();                            /* extern */
 M2C_UNK func_0090D640();                            /* extern */
@@ -24,7 +24,7 @@ s32 func_0090EB30(void) {
         func_009176A0();
         func_00911560();
     }
-    func_009089C0();
+    Pes6Enter_ShotSequencer();
     if (!((*(s32 *)D_0092F0D0) & 4)) {
         func_0090D640();
     }

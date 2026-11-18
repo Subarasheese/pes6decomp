@@ -10,7 +10,7 @@ extern s32 D_004FD084[];
 extern s32 D_004FC884[];
 extern s32 D_004FD088[];
 
-void func_00139E40(void) {
+void Pes6GfxRing_Reset(void) {
     D_004FD08C[0] = D_0043C880;
     D_004FD090[0] = D_004FC880;
     D_004FD080[0] = 0;

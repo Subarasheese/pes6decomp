@@ -5,7 +5,7 @@
 extern char Pes6MemRegion_Count[];
 extern char Pes6MemRegion_Table[];
 
-s32 func_001FC920(s32 arg0) {
+s32 Pes6MemRegion_Get(s32 arg0) {
     if (arg0 >= (*(s32 *)Pes6MemRegion_Count)) {
         return 0;
     }
