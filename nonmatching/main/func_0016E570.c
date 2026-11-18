@@ -3,7 +3,7 @@
 #include "pes6/m2c.h"
 
 extern void func_00105D98(unsigned int, unsigned int);
-extern void open(unsigned int, unsigned int);
+extern void SyncDCache(unsigned int, unsigned int);
 s32 sceSifSetDma(void *, M2C_UNK);                 /* extern */
 extern char D_0038592C[];
 extern char D_00385938[];
@@ -29,7 +29,7 @@ void func_0016E570(void *arg0) {
         temp_a1_2 = M2C_FIELD(arg0, u32 *, 0xC);
         M2C_FIELD(arg0, s32 *, 8) = temp_v1;
         M2C_FIELD(M2C_FIELD(arg0, void **, 0x14), s32 *, 0x3C) = temp_v1;
-        open(temp_a1_2, (temp_a1_2 + M2C_FIELD(arg0, s32 *, 0x10)) - 1);
+        SyncDCache(temp_a1_2, (temp_a1_2 + M2C_FIELD(arg0, s32 *, 0x10)) - 1);
         temp_a1_3 = M2C_FIELD(arg0, u32 *, 0xC);
         func_00105D98(temp_a1_3, temp_a1_3 + M2C_FIELD(arg0, s32 *, 0x10) + 0x3F);
         M2C_FIELD(arg0, s32 *, 0x34) = (s32) M2C_FIELD(arg0, s32 *, 0x18);

@@ -8,7 +8,7 @@ void func_001453E0(s32);
 s32 func_001DD4E0(s32, s32);
 s32 func_001E0540(s32, s32, s32, s32);
 s32 func_001E06D0(s32, s32, s32, s32, s32, s32, s32, s32);
-void open(s32, s32);
+void SyncDCache(s32, s32);
 
 s32 func_001E0160(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7) {
     s32 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0;
@@ -110,7 +110,7 @@ L_001E02F0:;
     v0 = (*(volatile s32 *) (u32) (v0 + 4));
     a0 = (*(volatile s32 *) (u32) v0);
     v0 = (*(volatile s32 *) (u32) (a0 + 8));
-    a1 = (s32) ((u32) a0 + (u32) v0); open(a0, a1);
+    a1 = (s32) ((u32) a0 + (u32) v0); SyncDCache(a0, a1);
     v0 = (*(volatile s32 *) (u32) (s0 + 4));
     v0 = (*(volatile s32 *) (u32) v0);
     a0 = (*(volatile s32 *) (u32) (v0 + 12)); func_001453E0(a0);
