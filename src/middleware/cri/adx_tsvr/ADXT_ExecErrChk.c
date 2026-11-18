@@ -217,13 +217,13 @@ typedef struct {
         Sint32 lpend;
 } ADXHINFO;
 ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize);
-void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
+void adxt_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
 void ADXT_StartFname(ADXT adxt, Char8 *fname);
 void ADXT_StartSj(ADXT adxt, SJ sj);
 void ADXT_StartMem(ADXT adxt, void *adxdat);
 void ADXT_StartMem2(ADXT adxt, void *adxdat, Sint32 datlen);
 void ADXT_StartMemIdx(ADXT adxt, void *acx, Sint32 no);
-void func_00165968(ADXT adxt);
+void ADXT_Stop(ADXT adxt);
 void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale);
 void ADXT_SetOutPan(ADXT adxt, Sint32 ch, Sint32 pan);
 Sint32 ADXT_GetOutPan(ADXT adxt, Sint32 ch);
@@ -483,7 +483,7 @@ void ADXT_SetTimeOfst(ADXT adxt, Sint32 ofst);
 void ADXT_SetWaitPlayStart(ADXT adxt, Sint32 flg);
 void adxt_start_sj(ADXT adxt, SJ sj);
 void ADXT_StartSj(ADXT adxt, SJ sj);
-void func_00165968(ADXT adxt);
+void ADXT_Stop(ADXT adxt);
 void func_00169870(ADXT adxt);
 void ADXT_ExecErrChk(ADXT adxt)
 {
@@ -510,7 +510,7 @@ void ADXT_ExecErrChk(ADXT adxt)
         {
             if ((adxt->autorcvr == (1)) || (adxt->autorcvr == (2)))
             {
-                func_00165968(adxt);
+                ADXT_Stop(adxt);
             }
             if (adxt->autorcvr != (0))
             {
@@ -544,7 +544,7 @@ void ADXT_ExecErrChk(ADXT adxt)
             {
                 if (adxt->autorcvr == (1))
                 {
-                    func_00165968(adxt);
+                    ADXT_Stop(adxt);
                 }
                 else if (adxt->autorcvr == (2))
                 {
@@ -570,7 +570,7 @@ void ADXT_ExecErrChk(ADXT adxt)
     {
         if (adxt->autorcvr == (1))
         {
-            func_00165968(adxt);
+            ADXT_Stop(adxt);
         }
         else if (adxt->autorcvr == (2))
         {

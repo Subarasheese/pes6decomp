@@ -217,7 +217,7 @@ typedef struct {
         Sint32 lpend;
 } ADXHINFO;
 ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize);
-void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
+void adxt_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
 void ADXT_StartFname(ADXT adxt, Char8 *fname);
 void ADXT_StartSj(ADXT adxt, SJ sj);
 void ADXT_StartMem(ADXT adxt, void *adxdat);

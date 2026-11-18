@@ -1258,7 +1258,7 @@ ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize);
 void ADXT_Destroy(ADXT adxt);
 
 /* $func$ FID 指定による再生の開始
- * [書　式] void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
+ * [書　式] void adxt_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
  * [入　力] adxt	: ADXTハンドル
  *			patid	: パーティション識別子
  *			fid		: ファイル識別子
@@ -1274,7 +1274,7 @@ void ADXT_Destroy(ADXT adxt);
  * [Return  ] None
  * [Function] Starts to play ADX file when you specify partition ID and file ID.
  */
-void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
+void adxt_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
 
 /* $func$ ファイル名指定による再生の開始
  * [書　式] void ADXT_StartFname(ADXT adxt, Sint8 *fname);

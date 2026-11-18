@@ -5,7 +5,7 @@ extern int D_00372A90;
 extern int D_00374638;
 extern u8 D_003F3858[];
 extern unsigned int func_00115258(unsigned int, unsigned int, void *, int, const u8 *);
-extern void func_001063D8(int);
+extern void DelayThread(int);
 extern void printf(const char *, ...);
 extern void sceSifWriteBackDCache(void *, int);
 
@@ -39,7 +39,7 @@ int func_00114FE0(unsigned int sector_count, unsigned int *buffer, unsigned int 
                     printf("sceCdStRead BLK Read cur_size= %d read_size= %d req_size= %d err 0x%x\n",
                                   sectors_read, sectors_returned, sector_count, error_code);
             } else if (sectors_returned == 0) {
-                func_001063D8(600);
+                DelayThread(600);
             }
         } while (sectors_read != sector_count && (error_code == 0 || sectors_returned != 0));
         if (*debug_level > 0)

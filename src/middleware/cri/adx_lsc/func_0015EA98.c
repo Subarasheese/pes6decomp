@@ -1,9 +1,9 @@
 /* compiler: ee-gcc-2.96 */
-extern int func_00159EB8(int);
+extern int ADXCRS_Lock(int);
 extern int ADXT_StartSeamless(int);
-extern int func_00159EC0(void);
+extern int ADXCRS_Unlock(void);
 int func_0015EA98(int arg0) {
-    func_00159EB8(arg0);
+    ADXCRS_Lock(arg0);
     ADXT_StartSeamless(arg0);
-    return func_00159EC0();
+    return ADXCRS_Unlock();
 }

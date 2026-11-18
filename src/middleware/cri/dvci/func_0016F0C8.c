@@ -109,7 +109,7 @@ Sint32 SVM_SetCbSvr(Sint32, Sint32 (*)(void*), void*);
 void SVM_SetCbSvrId(Sint32, Sint32, Sint32 (*)(void*), void*);
 void SVM_SetCbLock(void (*func)(void*), void* object);
 void SVM_SetCbUnlock(void (*func)(void*), void* object);
-void func_00105D98(void*, void*);extern void D_0016EBA8(void (*func)(void*, const Char8*, void*), void* obj);
+void InvalidDCache(void*, void*);extern void D_0016EBA8(void (*func)(void*, const Char8*, void*), void* obj);
 DVG_CI D_0016EDE8(Char8* fname, void* arg1, Sint32 rw);
 Sint32 D_0016EFC8(DVG_CI handl, Sint32 offset, Sint32 whence);
 Sint32 func_0016F0C8(DVG_CI handl, Sint32 nsct, void* buf);
@@ -148,7 +148,7 @@ Sint32 func_0016F0C8(DVG_CI handl, Sint32 nsct, void* buf) {
     handl->cdrmode.datapattern = D_00387250.datapattern;
     handl->unk18 = buf;
     handl->unk10 = ((nsct) < (handl->unk8 - handl->unkC) ? (nsct) : (handl->unk8 - handl->unkC));
-    func_00105D98(buf, buf + (handl->unk10 << 11) - 1);
+    InvalidDCache(buf, buf + (handl->unk10 << 11) - 1);
     if (func_0016C7B8(handl->srd, handl->unk20.lsn + handl->unkC, handl->unk10, handl->unk18, &handl->cdrmode) == 0) {
         func_0016C718(handl->srd);
         return 0;

@@ -2,13 +2,13 @@
 #include "pes6/m2c.h"
 M2C_UNK func_00155A00();                            /* extern */
 M2C_UNK func_00155A10();                            /* extern */
-s32 func_0015DC50(s32);                             /* extern */
+s32 ADXF_GetFsizeSct(s32);                             /* extern */
 
 s32 func_00181020(s32 arg0) {
     s32 temp_s0;
 
     func_00155A10();
-    temp_s0 = func_0015DC50(arg0);
+    temp_s0 = ADXF_GetFsizeSct(arg0);
     func_00155A00();
     return temp_s0;
 }

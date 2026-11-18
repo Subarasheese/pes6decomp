@@ -31,8 +31,8 @@ typedef Sint32 Bool;
 
 #endif
 
-extern void func_00159EB8(void);
-extern void func_00159EC0(void);
+extern void ADXCRS_Lock(void);
+extern void ADXCRS_Unlock(void);
 extern void func_004cd918(void *buffer);
 extern void *func_004cd930(void);
 void func_0015E4A0(void *buffer);
@@ -47,9 +47,9 @@ void *func_0015E4B8(void)
 {
 	void *buffer;
 
-	func_00159EB8();
+	ADXCRS_Lock();
 	buffer = func_0015E4F0();
-	func_00159EC0();
+	ADXCRS_Unlock();
 	return buffer;
 }
 // FUN_004D62A8

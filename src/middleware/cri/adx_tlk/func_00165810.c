@@ -6,7 +6,7 @@ extern void func_0015B478(void *);
 extern void func_00159E88(void);
 extern void func_00159EA0(void);
 M2C_UNK func_00165608(void *, s32);                 /* extern */
-M2C_UNK func_00165998();                            /* extern */
+M2C_UNK adxt_Stop();                            /* extern */
 extern char D_003C8940[];
 
 void func_00165810(void *arg0, s32 arg1) {
@@ -14,7 +14,7 @@ void func_00165810(void *arg0, s32 arg1) {
         func_0015B478(((void *)D_003C8940));
         return;
     }
-    func_00165998();
+    adxt_Stop();
     func_00159E88();
     func_00165608(arg0, arg1);
     M2C_FIELD(arg0, s8 *, 2) = 3;

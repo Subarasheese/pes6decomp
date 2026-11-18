@@ -128,13 +128,13 @@ typedef struct {
         Sint32 lpend;
 } ADXHINFO;
 ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize);
-void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
+void adxt_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
 void ADXT_StartFname(ADXT adxt, Char8 *fname);
 void ADXT_StartSj(ADXT adxt, SJ sj);
 void ADXT_StartMem(ADXT adxt, void *adxdat);
 void ADXT_StartMem2(ADXT adxt, void *adxdat, Sint32 datlen);
 void ADXT_StartMemIdx(ADXT adxt, void *acx, Sint32 no);
-void func_00165968(ADXT adxt);
+void ADXT_Stop(ADXT adxt);
 void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale);
 void ADXT_SetOutPan(ADXT adxt, Sint32 ch, Sint32 pan);
 Sint32 ADXT_GetOutPan(ADXT adxt, Sint32 ch);
@@ -211,7 +211,7 @@ ADXF ADXF_Open(Char8 *fname, void *atr);
 ADXF ADXF_OpenAfs(Sint32 ptid, Sint32 flid);
 Sint32 ADXF_GetFnameRange(Sint32 ptid, Sint32 flid, Char8 *fname, Sint32 *ofst, Sint32 *fnsct);
 Sint32 ADXF_GetFnameRangeEx(Sint32 ptid, Sint32 flid, Char8 *fname, void **dir, Sint32 *ofst, Sint32 *fnsct);
-void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
+void adxt_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
 void ADXT_StartFname(ADXT adxt, Char8* fname);
 void ADXT_StartMem(ADXT adxt, void* adxdat);
 void ADXT_StartMem2(ADXT adxt, void* adxdat, Sint32 datlen) {
@@ -220,7 +220,7 @@ void ADXT_StartMem2(ADXT adxt, void* adxdat, Sint32 datlen) {
         func_0015B478(D_003C90D8);
         return;
     }
-    func_00165968(adxt);
+    ADXT_Stop(adxt);
     func_00159E88();
     sj = func_001765A8((Sint8*)adxdat, datlen);
     if (sj == 0) {

@@ -3,7 +3,7 @@
 
 extern s32 D_003E9B34;
 extern s32 D_00583330[];
-extern s32 func_00165A58(s32 a);
+extern s32 ADXT_GetStat(s32 a);
 
 s32 func_0024F280(s32 idx) {
     s32 *p;
@@ -14,8 +14,8 @@ s32 func_0024F280(s32 idx) {
         goto fail;
     }
     p = &D_00583330[idx];
-    if (func_00165A58(*p) != 0) {
-        if (func_00165A58(*p) != 5) {
+    if (ADXT_GetStat(*p) != 0) {
+        if (ADXT_GetStat(*p) != 5) {
             goto fail;
         }
     }

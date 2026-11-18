@@ -20,7 +20,7 @@ struct Request {
     int f10, f14, pad18, f1c, f20, f24, f28, f2c, f30;
     struct Server *server;
 };
-extern void func_00106228(int);
+extern void iWakeupThread(int);
 extern void func_00109218(struct Request *r) {
     struct Server *s = r->server;
     struct Queue *q = s->queue;
@@ -38,5 +38,5 @@ extern void func_00109218(struct Request *r) {
     s->f2c = r->f2c;
     s->f30 = r->f30;
     s->f34 = r->f10;
-    if (q->thread >= 0 && q->active == 0) func_00106228(q->thread);
+    if (q->thread >= 0 && q->active == 0) iWakeupThread(q->thread);
 }

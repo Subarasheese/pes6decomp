@@ -411,13 +411,13 @@ typedef struct {
         Sint32 lpend;
 } ADXHINFO;
 ADXT ADXT_Create(Sint32 maxnch, void *work, Sint32 worksize);
-void ADXT_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
+void adxt_StartAfs(ADXT adxt, Sint32 patid, Sint32 fid);
 void ADXT_StartFname(ADXT adxt, Char8 *fname);
 void ADXT_StartSj(ADXT adxt, SJ sj);
 void ADXT_StartMem(ADXT adxt, void *adxdat);
 void ADXT_StartMem2(ADXT adxt, void *adxdat, Sint32 datlen);
 void ADXT_StartMemIdx(ADXT adxt, void *acx, Sint32 no);
-Sint32 func_00165A58(ADXT adxt);
+Sint32 ADXT_GetStat(ADXT adxt);
 void ADXT_GetTime(ADXT adxt, Sint32 *ncount, Sint32 *tscale);
 void ADXT_SetOutPan(ADXT adxt, Sint32 ch, Sint32 pan);
 Sint32 ADXT_GetOutPan(ADXT adxt, Sint32 ch);
@@ -494,7 +494,7 @@ Sint32 LSC_EntryFileRange(LSC lsc, const Char8* fname, void* dir, Sint32 ofst, S
 void LSC_SetStmHndl(LSC lsc, ADXSTM);
 void ADXT_ExecRdCompChk(ADXT adxt) {
     Sint8 pmode;
-    if ((adxt->stm == 0) || (func_00165A58(adxt) == 0)) {
+    if ((adxt->stm == 0) || (ADXT_GetStat(adxt) == 0)) {
         return;
     }
     pmode = adxt->pmode;

@@ -402,12 +402,12 @@ ADXT_StartSeamless = 0x0015EAC8; // type:func
 ADXT_GetTimeSfreq = 0x00165B78; // type:func
 ADXT_IsHeader = 0x00167E98; // type:func
 ADXT_IsEndcode = 0x00167F30; // type:func
-ADXT_StartAfs = 0x001683C8; // type:func
+adxt_StartAfs = 0x001683C8; // type:func
 ADXT_StartMem2 = 0x001686E0; // type:func
 htci_is_bgn_host = 0x001711F0; // type:func
 
 // Shared SDK/runtime code ported from the GT4 decompilation (fourth pass).
-open = 0x00105C58; // type:func
+SyncDCache = 0x00105C58; // type:func (cache 0x14, hit writeback-invalidate, per 64-byte line)
 dpadd = 0x0011F930; // type:func
 dptoli = 0x0011FFE0; // type:func
 abort = 0x001C02D8; // type:func
@@ -840,3 +840,68 @@ Pes6StripSelect_State = 0x003EA490; // type:data
 Pes6FormationMenu_State = 0x003EA4EC; // type:data
 // A function placed right after the indirect tail call of func_001AAF50, found by no call.
 func_001AAF70 = 0x001AAF70; // type:func
+// Names found while porting the exhibition path (native_port, rl-test). CRI's public ADXF_/ADXT_ calls are
+// lock / inner adxf_ or adxt_ call / unlock; each inner one is named by the error strings it prints
+// ("E9040825:'adxf' is NULL.(adxf_Seek)", "E02080813 adxt_Stop: parameter error", ...).
+ADXCRS_Lock = 0x00159EB8; // type:func
+ADXCRS_Unlock = 0x00159EC0; // type:func
+ADXF_Lock = 0x0015E370; // type:func
+ADXF_Unlock = 0x0015E388; // type:func
+ADXF_LoadPartition = 0x0015C038; // type:func
+adxf_LoadPartition = 0x0015C0C0; // type:func
+ADXF_GetPtStat = 0x0015C5A0; // type:func
+adxf_GetPtStat = 0x0015C5D8; // type:func
+ADXF_Open = 0x0015CBF8; // type:func
+adxf_Open = 0x0015CC40; // type:func
+ADXF_OpenAfs = 0x0015CF60; // type:func
+adxf_OpenAfs = 0x0015CFA8; // type:func
+ADXF_Close = 0x0015D0B8; // type:func
+adxf_Close = 0x0015D0E8; // type:func
+ADXF_ReadNw = 0x0015D668; // type:func
+adxf_ReadNw = 0x0015D6C0; // type:func
+ADXF_Seek = 0x0015DA78; // type:func
+adxf_Seek = 0x0015DAD0; // type:func
+ADXF_GetFsizeSct = 0x0015DC50; // type:func
+adxf_GetFsizeSct = 0x0015DC88; // type:func
+ADXF_GetStat = 0x0015DE78; // type:func
+adxf_GetStat = 0x0015DEB0; // type:func
+ADXT_Create = 0x00164EB0; // type:func
+adxt_Create = 0x00164F08; // type:func
+ADXT_Destroy = 0x00165338; // type:func
+adxt_Destroy = 0x00165368; // type:func
+ADXT_Stop = 0x00165968; // type:func
+adxt_Stop = 0x00165998; // type:func
+ADXT_GetStat = 0x00165A58; // type:func
+adxt_GetStat = 0x00165A90; // type:func
+ADXT_GetNumSmpl = 0x001661A8; // type:func
+adxt_GetNumSmpl = 0x001661E0; // type:func
+ADXT_SetOutVol = 0x00166770; // type:func
+adxt_SetOutVol = 0x001667B0; // type:func
+ADXT_Pause = 0x001676B0; // type:func
+adxt_Pause = 0x001676F0; // type:func
+ADXT_StartAfs = 0x00168378; // type:func
+// libdma: the send calls set the channel's CHCR mode (0x105 chain, 0x101 normal, 0x109 interleave; 0x108
+// interleave from the device).
+sceDmaSend = 0x00102228; // type:func
+sceDmaSendN = 0x00102290; // type:func
+sceDmaSendI = 0x00102308; // type:func
+sceDmaRecvI = 0x00102448; // type:func
+// libkernel / sifcmd
+InvalidDCache = 0x00105D98; // type:func
+iWakeupThread = 0x00106228; // type:func
+DelayThread = 0x001063D8; // type:func
+sceSifCheckStatRpc = 0x001094A8; // type:func
+// The game's sound driver: one command entry (type in bits 29-31, a set is code|0x10, its get is code), the
+// RPC-busy check it waits on, and the sound-bank upload request (started by 0x254BE0, walked by the
+// frame's sound update).
+SoundDriver_Command = 0x0024FA00; // type:func
+SoundDriver_IsBusy = 0x00255DB0; // type:func
+SoundDriver_RpcClient = 0x0058C690; // type:data
+SoundUpload_Start = 0x00254BE0; // type:func
+SoundUpload_IsActive = 0x00254BD0; // type:func
+SoundUpload_Bank = 0x0058C5F8; // type:data
+SoundUpload_Active = 0x0058C5FC; // type:data
+SoundUpload_Step = 0x0058C604; // type:data
+// The vertical-blank field counter (advanced once per field by the vblank handler) and its read.
+Vsync_GetFieldCount = 0x0014AAA0; // type:func
+Vsync_FieldCount = 0x003E9830; // type:data

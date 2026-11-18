@@ -31,7 +31,7 @@ typedef Sint32 Bool;
 
 #endif
 
-extern void func_00165968();
+extern void ADXT_Stop();
 extern void func_00160690();
 extern void func_001606A8();
 extern void func_00173970();
@@ -48,7 +48,7 @@ void PL2LINK_DetachDolbyProLogicII(Uint8 *arg0)
     if (v == 0) {
         return;
     }
-    func_00165968();
+    ADXT_Stop();
     func_00160690();
     func_00173970(v);
     *(Uint32 *)(q + 0xe8) = 0;

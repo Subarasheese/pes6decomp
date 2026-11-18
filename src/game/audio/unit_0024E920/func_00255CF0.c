@@ -7,7 +7,7 @@ extern s32 D_0058C680[];
 extern s32 D_0058C684[];
 extern s32 D_0058C688[];
 extern s32 D_0058C68C[];
-extern s32 D_0058C690[];
+extern s32 SoundDriver_RpcClient[];
 extern void sceSifCallRpc(s32 *a, s32 b, s32 c, s32 *d, s32 e, s32 f, s32 g, s32 h, s32 i);
 
 void func_00255CF0(s32 a0, s32 a1, s32 a2, s32 a3) {
@@ -20,6 +20,6 @@ void func_00255CF0(s32 a0, s32 a1, s32 a2, s32 a3) {
         D_0058C680[0] = a0;
         D_0058C688[0] = a2;
         D_0058C68C[0] = a3;
-        sceSifCallRpc(D_0058C690, a0 | 0x200000, 1, D_0058C680, 0x10, 0, 0, 0, 0);
+        sceSifCallRpc(SoundDriver_RpcClient, a0 | 0x200000, 1, D_0058C680, 0x10, 0, 0, 0, 0);
     }
 }

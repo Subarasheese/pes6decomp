@@ -1,11 +1,11 @@
 /* compiler: ee-gcc-2.96 */
-extern int func_0015E370(int);
+extern int ADXF_Lock(int);
 extern int func_0015CA40(int);
-extern int func_0015E388(void);
+extern int ADXF_Unlock(void);
 int func_0015CA08(int arg0) {
     int r;
-    func_0015E370(arg0);
+    ADXF_Lock(arg0);
     r = func_0015CA40(arg0);
-    func_0015E388();
+    ADXF_Unlock();
     return r;
 }

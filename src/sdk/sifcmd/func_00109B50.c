@@ -3,7 +3,7 @@
  * from the GT4 decompilation (MIT, see THIRD_PARTY.md). */
 extern int sceSifCallRpc(void *, int, int, void *, int, void *, int,
                        void (*)(void *), void *);
-extern int func_001063D8(int);
+extern int DelayThread(int);
 
 /* Retry failed RPC submissions with a capped exponential delay. The return
  * value reports failure, rather than returning the RPC routine's error code. */
@@ -19,7 +19,7 @@ unsigned int func_00109B50(void *client, int command, int mode,
             send_size, receive, receive_size, callback, callback_argument) < 0;
         if (!failed || no_retry)
             break;
-        func_001063D8(delay_scale * 1000);
+        DelayThread(delay_scale * 1000);
         if (delay_scale < 127)
             delay_scale *= 2;
         ++attempt;

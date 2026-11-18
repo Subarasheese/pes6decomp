@@ -19,7 +19,7 @@ struct ThreadParam {
     int wakeupCount;
 };
 int func_00105270(int, struct ThreadParam*);
-int func_00106228(int);
+int iWakeupThread(int);
 extern Sint32 (*adxm_old_cbf)(Sint32 arg);
 void func_0015F948(Sint32 tid);
 void adxm_goto_svr_border(Sint32 tid, Sint32 priority);
@@ -28,7 +28,7 @@ void func_0015F948(Sint32 tid) {
     if (tid != 0) {
         func_00105270(tid, &param);
         if ((param.status == 0x04) || (param.status == 0x0c)) {
-            func_00106228(tid);
+            iWakeupThread(tid);
         }
     }
 }
