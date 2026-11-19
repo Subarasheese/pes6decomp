@@ -37,7 +37,8 @@ typedef struct Pes6MatchPlayer {
 
 /* A squad player's record (0x348 bytes); the bytes from 0x96 hold 7-bit ability values. */
 typedef struct Pes6SquadPlayer {
-    u8 pad00[0x96];
+    s32 value00;      /* 0x00: checked against -1 by func_00311390 */
+    u8 pad04[0x92];
     u8 ability[0x39]; /* 0x96 */
     u8 flagCF0 : 1;   /* 0xCF bit 0 */
     u8 flagCF1 : 1;   /* 0xCF bit 1 */
