@@ -41,6 +41,7 @@ sceGsSetDefClear = 0x00100C10; // type:func
 sceGsPutDrawEnv = 0x00100D18; // type:func
 sceGsSetDefDBuff = 0x00100E00; // type:func
 sceGsSwapDBuff = 0x00101098; // type:func
+sceGsExecStoreImage = 0x001015E8; // type:func
 sceGsSyncVCallback = 0x00101C78; // type:func
 sceDmaGetEnv = 0x001021D8; // type:func
 sceVuCheckBusy = 0x00102A80; // type:func
