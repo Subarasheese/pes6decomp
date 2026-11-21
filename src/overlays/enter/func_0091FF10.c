@@ -1,0 +1,29 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "types.h"
+
+s32 func_001EE790(s32, s32);
+s32 func_001EEAC0(s32, s32);
+s32 func_001EF900(s32, s32);
+s32 func_0020B730(s32, s32 *, s32);
+s32 func_002F96F0(s32, s32);
+s32 func_002FA280(s32, s32, s32, s32, s32);
+extern s32 D_003EA5CC;
+extern s32 *D_003EA5D0[2];
+
+void func_0091FF10(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 localValue1;
+    s32 value;
+    s32 value2;
+
+    value = func_002F96F0(*D_003EA5D0[D_003EA5CC], 0);
+    value2 = arg1 >> 1;
+    if (arg1 < 0) {
+        value2 = (s32)(arg1 + 1) >> 1;
+    }
+    func_001EEAC0(arg0, func_0020B730(value2 + 6, &localValue1, 0));
+    func_001EE790(arg0, localValue1);
+    func_001EF900(arg0, 1);
+    if (value != 0) {
+        func_002FA280(arg0, value, arg2, arg3, 0);
+    }
+}
