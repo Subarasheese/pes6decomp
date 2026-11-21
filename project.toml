@@ -144,6 +144,12 @@ command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -Os -G0 -fno-exceptions -Iinclud
 dir = "toolchains/ee-gcc2.9-991111"
 command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"
 
+# The HTTPS overlay RC2 round functions were compiled without optimization.
+# ee-as 2.10 fills their return delay slot with the stack adjustment.
+[compilers."ee-gcc-2.9-O0-as210-G0"]
+dir = "toolchains/ee-gcc2.9-991111"
+command = "{dir}/bin/ee-gcc -c -B {dir}/../ee-gcc2.96/ee/bin/ -B {dir}/bin/ee- -O0 -G0 -fno-exceptions -Iinclude"
+
 # Sony SDK objects assembled by SCE's later assembler: ee-gcc 2.9's compiler with the ee-as 2.10
 # shipped with ee-gcc 2.96, which fills branch and return delay slots that ee-as 2.9 leaves empty
 # (`jr $ra` followed by the result's sign extension in ftoi). The kernel printf object also keeps
