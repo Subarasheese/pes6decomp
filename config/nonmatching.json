@@ -4819,21 +4819,6 @@
   },
   {
    "image": "main",
-   "address": "001D4E00",
-   "symbol": "func_001D4E00",
-   "source": "nonmatching/main/func_001D4E00.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "46bca2fca80767890fce7bae8fef22775a970ce5990a16a4dd0401f9d1a24252",
-   "original_sha256": "26a53495740c15c0c179ceb68b990df3b5355435e55914681d05a907de1419c9",
-   "minimum_similarity": 50,
-   "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review."
-   ]
-  },
-  {
-   "image": "main",
    "address": "001D6640",
    "symbol": "func_001D6640",
    "source": "nonmatching/main/func_001D6640.c",
@@ -123951,22 +123936,6 @@
    "known_issues": [
     "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
     "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "netlib",
-   "address": "00824FD0",
-   "symbol": "func_00824FD0",
-   "original_sha256": "ca52c674a1fccc984e19703cb42eee2b06dee93915b98a4440369b4065c7ee63",
-   "source": "nonmatching/netlib/func_00824FD0.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "fad625fd5ed469d1ce2d5d4c8aec8ac3aaaa79f93d57297be1548b5e20b08e80",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
    ]
   },
   {
