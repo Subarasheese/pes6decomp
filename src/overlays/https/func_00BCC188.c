@@ -1,0 +1,9 @@
+/* compiler: ee-gcc-2.9-G0 */
+#include "pes6/m2c.h"
+
+s32 func_00BCC188(void *arg0) {
+    if (M2C_FIELD(arg0, s32 *, 0x38) == 0xF1) {
+        return 0;
+    }
+    return M2C_FIELD(M2C_FIELD(arg0, void **, 0x54), s32 *, 0xB8);
+}
