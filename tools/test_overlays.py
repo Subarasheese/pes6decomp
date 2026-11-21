@@ -11,6 +11,21 @@ import project
 
 
 class OverlayTests(unittest.TestCase):
+    def test_referenced_local_label_inside_compiled_function(self):
+        import build
+        assembly = ["    /* 40 00001040 00000000 */ b .L00001008",
+                    "    /* 44 00001044 00000000 */ b .L00001010",
+                    "    /* 48 00001048 00000000 */ b .L00001004",
+                    "    /* 4C 0000104C 00000000 */ nop # b .L0000100C"]
+        body = ["  .L00001004:", "    /* 00 00001000 00000000 */ nop",
+                "  .L00001008:", "    /* 08 00001008 00000000 */ nop",
+                "  .L0000100C:", "    /* 0C 0000100C 00000000 */ nop",
+                "  .L00001010:", "    /* 10 00001010 00000000 */ nop"]
+        functions = {0x1000: (0x14, body)}
+        self.assertEqual(build.gap_labels_in_objects(assembly, functions, {0x1000: 0x10}),
+                         {".L00001008": 0x1008})
+        self.assertEqual(build.gap_labels_in_objects(assembly, functions, {}), {})
+
     def test_text_splits_use_only_assembly_in_each_address_range(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(overlays, 'ROOT', Path(directory)):
             root = Path(directory)
