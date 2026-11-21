@@ -103,3 +103,9 @@ real PS2 results recorded by
 [ps2autotests](https://github.com/unknownbrackets/ps2autotests) (ISC licence) with
 `tools/ee_float_check.py` and `tools/r5900_check.py`; those results are read from a local copy and
 are not included here.
+
+The NTGUI2EU SDK and runtime ports retain their source notices. The GT4
+sources are covered by the [gt4-decomp MIT license](LICENSES/GT4-MIT.txt).
+The CRI CVFS functions carry the [3s-decomp AGPL license](LICENSES/3s-AGPL-3.0.txt).
+The resident inflate code is adapted from zlib 1.1.4, including the
+[original zlib license](LICENSES/zlib-1.1.4.txt).
