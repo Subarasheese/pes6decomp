@@ -28,10 +28,12 @@ import json
 import os
 import re
 import struct
+from pathlib import Path
 import subprocess
 import sys
 
 import match
+import overlays
 import project
 import symbols
 
@@ -61,13 +63,16 @@ def splat_functions():
     """{address: (size, assembly lines)} for every function splat wrote (tools/splat.sh), with
     alignment directives dropped: functions are placed by address, not by alignment."""
     out = {}
-    if not os.path.isdir(SPLAT_DIR):
-        return out
-    for name in os.listdir(SPLAT_DIR):
-        m = re.match(r"func_([0-9A-F]{8})\.s$", name)
+    if project.TARGET == "main":
+        paths = Path(SPLAT_DIR).glob("func_*.s")
+    else:
+        paths = overlays.assembly_paths(overlays.target(project.TARGET),
+                                        Path(project.BUILD)/"splat/asm/matchings")
+    for path in paths:
+        m = re.fullmatch(r"func_([0-9A-Fa-f]{8})\.s", path.name)
         if not m:
             continue
-        lines = open(os.path.join(SPLAT_DIR, name)).read().splitlines()
+        lines = path.read_text().splitlines()
         # Size from the instructions themselves: each one carries "/* offset vram word */".
         size = 4 * sum(1 for l in lines if INSN.match(l))
         if size:
