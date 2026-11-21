@@ -454,36 +454,6 @@
   },
   {
    "image": "edit",
-   "address": "00BD2D40",
-   "symbol": "func_00BD2D40",
-   "source": "nonmatching/edit/func_00BD2D40.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "577ce3f639b6ca1cd606c1a597d9d437dfafcd7ef7cbc7241377070f09607a74",
-   "original_sha256": "bef0253dc7ba73b428895e7ef85f089a92f2e9974051c2a5687a7d3bd019ee2b",
-   "minimum_similarity": 50,
-   "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review."
-   ]
-  },
-  {
-   "image": "edit",
-   "address": "00BD5D00",
-   "symbol": "func_00BD5D00",
-   "source": "nonmatching/edit/func_00BD5D00.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "3349811b8c73f2148830e1b21f29e12b36178ec6fe23d2c302c577f869f03f42",
-   "original_sha256": "3326797ffeed3c1ee9d2f36d87c6a1fef180095d857f517528bf33db02d6c28f",
-   "minimum_similarity": 50,
-   "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review."
-   ]
-  },
-  {
-   "image": "edit",
    "address": "00BDBE60",
    "symbol": "func_00BDBE60",
    "source": "nonmatching/edit/func_00BDBE60.c",
@@ -580,21 +550,6 @@
    "compiler": "mwcc-3.0.1b151",
    "source_sha256": "e1122d52d141c81beb548cf23090f326b8b5e052b4ac0b7b9a2a0b83dd5aa771",
    "original_sha256": "4f7d797b5b918c744dd3e0a4a05aa2a689c2372ba9aa7ca57b4727455ea8bee9",
-   "minimum_similarity": 50,
-   "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review."
-   ]
-  },
-  {
-   "image": "edit",
-   "address": "00BE3F70",
-   "symbol": "func_00BE3F70",
-   "source": "nonmatching/edit/func_00BE3F70.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "3f891bf94c0153787bf14314ab43497f363aa4d91a069b9da4f554e3af9afd26",
-   "original_sha256": "a75f892fde9b16732fa5a2e960ccbdf1d04378050e094a322fa3d22b16f05742",
    "minimum_similarity": 50,
    "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
    "known_issues": [
@@ -14982,22 +14937,6 @@
    "known_issues": [
     "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
     "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "edit",
-   "address": "00BD5F20",
-   "symbol": "func_00BD5F20",
-   "original_sha256": "c822dbcd0dbe06bc3dbbeb4e05e1067bcaabf5d6fcf5ff69af5ed9ec13f97e1a",
-   "source": "nonmatching/edit/func_00BD5F20.c",
-   "compiler": "mwcc-3.0.1b151",
-   "source_sha256": "5aee69aabb011eb19ef70c224c1273e880228630b797b200bcf942d22394a64f",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
    ]
   },
   {
