@@ -14894,22 +14894,6 @@
   },
   {
    "image": "edit",
-   "address": "00BD3350",
-   "symbol": "func_00BD3350",
-   "original_sha256": "218f26dc099626a5916dc12cf94cb511156e643ccacb0995f4fdb874fb0cb129",
-   "source": "nonmatching/edit/func_00BD3350.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "e2e885ed0b3ea33b32b95e24ae25af174e43414ca543593ea0d401904e53334a",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "edit",
    "address": "00BD4FC0",
    "symbol": "func_00BD4FC0",
    "original_sha256": "bc56094577bff969565125ee09a98a0d4c394955c563d3c09a5cbb249849ca98",

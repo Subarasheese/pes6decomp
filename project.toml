@@ -87,6 +87,11 @@ command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1-020123/mwccps2.exe -O3 -c -Iinc
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O4,p -c -Iinclude"
 
+# The edit overlay inlines the dimension-copy, comparison and preset search.
+[compilers."mwcc-3.0.1b210-inline-depth8"]
+dir = "toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O4,p -inline auto,level=8,bottomup -c -Iinclude"
+
 # Same compiler at -O2. A minority of the game's leaves were built with -O2: they keep the
 # returned load before `jr` instead of moving it into the delay slot and do not if-convert a
 # store into a `bnel`/`beql` delay slot.
