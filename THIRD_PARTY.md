@@ -234,3 +234,7 @@ definitions are adapted from SSLeay 0.9.1b. This product includes cryptographic
 software written by Eric Young (eay@cryptsoft.com).
 [SSLeay 0.9.1b source](https://github.com/openssl/openssl/tree/SSLeay_0_9_1b),
 [SSLeay license](LICENSES/SSLeay.txt).
+
+The network overlay's MD5 block transform is derived from the RSA Data
+Security, Inc. MD5 Message-Digest Algorithm. The implementation retains the
+original copyright and license. [RFC 1321, Appendix A.3](https://www.rfc-editor.org/rfc/rfc1321#appendix-A.3).

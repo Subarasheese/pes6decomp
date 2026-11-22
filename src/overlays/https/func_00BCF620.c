@@ -1,5 +1,5 @@
 /* compiler: ee-gcc-2.9-as210-G0 */
-/* OpenSSL_0_9_1c, ssl/ssl_rsa.c (SSL_CTX_use_PrivateKey). See THIRD_PARTY.md. */
+/* OpenSSL_0_9_1c, ssl/ssl_rsa.c (SSL_CTX_use_certificate). See THIRD_PARTY.md. */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
  * copied and put under another distribution licence
  * [including the GNU Public Licence.]
  */
-typedef struct evp_pkey_st EVP_PKEY;
+typedef struct x509_st X509;
 extern void func_00BB3380(int lib, int func, int reason, char *file, int line);
 typedef struct ssl_ctx_st {
     unsigned char reserved_00[160];
@@ -65,11 +65,11 @@ typedef struct ssl_ctx_st {
 } SSL_CTX;
 typedef struct cert_st CERT;
 extern CERT *func_00BCD378(void);
-extern int func_00BCF6A8(CERT *c, EVP_PKEY *pkey);
+extern int func_00BCF6A8(CERT *c, X509 *cert);
 
-int func_00BCF620(SSL_CTX *ctx, EVP_PKEY *pkey) {
+int func_00BCF620(SSL_CTX *ctx, X509 *cert) {
     CERT *c;
-    if (pkey == ((void *)0)) {
+    if (cert == ((void *)0)) {
         func_00BB3380(20, 171, 3 | 32, (void *)0, 0);
         return 0;
     }
@@ -82,5 +82,5 @@ int func_00BCF620(SSL_CTX *ctx, EVP_PKEY *pkey) {
         ctx->default_cert = c;
     }
     c = ctx->default_cert;
-    return func_00BCF6A8(c, pkey);
+    return func_00BCF6A8(c, cert);
 }
