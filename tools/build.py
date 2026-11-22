@@ -56,7 +56,8 @@ STRIP = "-R .eh_frame -R .rel.eh_frame -R .mdebug -R .mdebug.eabi64"
 
 SPLAT_DIR = os.path.join(project.BUILD, "splat", "asm", "nonmatchings" if project.TARGET == "main" else "matchings", "core", "text")
 SPLAT_SYMBOL = re.compile(r"\b(?:func|D|jtbl)_[0-9A-F]{8}\b")
-INSN = re.compile(r"^\s*/\* [0-9A-F]+ [0-9A-F]{8} [0-9A-F]{8} \*/")
+INSN = re.compile(r"^\s*/\* [0-9A-F]+ ([0-9A-F]{8}) [0-9A-F]{8} \*/")
+LOCAL_LABEL = re.compile(r"(?<![\w.])\.L[0-9A-Fa-f]{8}(?![\w.])")
 
 
 def splat_functions():
@@ -78,6 +79,29 @@ def splat_functions():
         if size:
             out[int(m.group(1), 16)] = (size, [l for l in lines if not l.startswith(".align")])
     return out
+
+
+def gap_labels_in_objects(assembly, functions, objects):
+    """Find referenced splat labels whose original instruction is supplied by a C object."""
+    used = set()
+    for line in assembly:
+        if ".L" in line and INSN.match(line):
+            used.update(LOCAL_LABEL.findall(line.partition("#")[0]))
+    labels = {}
+    for entry, size in objects.items():
+        if entry not in functions:
+            continue
+        body = functions[entry][1]
+        for definition, instruction in zip(body, body[1:]):
+            label = definition.strip().removesuffix(":")
+            if label not in used or not definition.rstrip().endswith(":"):
+                continue
+            original = INSN.match(instruction)
+            if original:
+                address = int(original[1], 16)
+                if entry <= address < entry + size and int(label[2:], 16) == address:
+                    labels[label] = address
+    return labels
 
 
 def elf_section(path, name):
@@ -742,7 +766,8 @@ cd "$d/src"
     data_body.append(f"    gaps.o(.data.g{pos:08x})")
     open(os.path.join(OUT, "gaps.s"), "w", newline="\n").write("\n".join(asm) + "\n")
 
-    syms = []
+    syms = [f'PROVIDE("{label}" = 0x{address:08x});'
+            for label, address in sorted(gap_labels_in_objects(asm, splat_funcs, objects).items())]
     referenced = set(undefined)
     for _, body in splat_funcs.values():
         for line in body:

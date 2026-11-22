@@ -1,0 +1,110 @@
+#ifndef PES6_EDIT_APPEARANCE_H
+#define PES6_EDIT_APPEARANCE_H
+
+#include "types.h"
+
+/* Signed editor values referenced by the conversion to the packed player record. */
+typedef struct {
+    s32 reserved_000[3];
+    s32 faceType;
+    s32 skin;
+    s32 field_014;
+    s32 field_018;
+    s32 field_01C;
+    s32 field_020;
+    s32 field_024;
+    s32 field_028;
+    s32 field_02C;
+    s32 field_030;
+    s32 field_034;
+    s32 reserved_038[1];
+    s32 field_03C;
+    s32 field_040;
+    s32 field_044;
+    s32 field_048;
+    s32 reserved_04C[1];
+    s32 field_050;
+    s32 field_054;
+    s32 field_058;
+    s32 field_05C;
+    s32 field_060;
+    s32 field_064;
+    s32 field_068;
+    s32 reserved_06C[1];
+    s32 field_070;
+    s32 field_074;
+    s32 field_078;
+    s32 reserved_07C[1];
+    s32 field_080;
+    s32 field_084;
+    s32 reserved_088[1];
+    s32 field_08C;
+    s32 field_090;
+    s32 field_094;
+    s32 reserved_098[1];
+    s32 field_09C;
+    s32 field_0A0;
+    s32 field_0A4;
+    s32 reserved_0A8[5];
+    s32 hairStyle;
+    s32 hairModel;
+    s32 hairDetail0;
+    s32 hairDetail1;
+    s32 hairDetail2;
+    s32 reserved_0D0[1];
+    s32 field_0D4;
+    s32 field_0D8;
+    s32 field_0DC;
+    s32 field_0E0;
+    s32 field_0E4;
+    s32 field_0E8;
+    s32 reserved_0EC[1];
+    s32 hairDetail3;
+    s32 field_0F4;
+    s32 reserved_0F8[1];
+    s32 field_0FC;
+    s32 field_100;
+    s32 reserved_104[1];
+    s32 field_108;
+    s32 field_10C;
+    s32 reserved_110[1];
+    s32 field_114;
+    s32 field_118;
+    s32 reserved_11C[2];
+    s32 height;
+    s32 weight;
+    s32 appearancePreset;
+    s32 dimensions[10];
+    s32 reserved_158[2];
+    s32 field_160;
+    s32 field_164;
+    s32 reserved_168[2];
+    s32 field_170;
+    s32 reserved_174[1];
+    s32 field_178;
+    s32 field_17C;
+    s32 reserved_180[1];
+    s32 field_184;
+    s32 field_188;
+    s32 reserved_18C[1];
+    s32 field_190;
+    s32 field_194;
+    s32 field_198;
+    s32 field_19C;
+    s32 field_1A0;
+    s32 field_1A4;
+    s32 reserved_1A8[1];
+    s32 field_1AC;
+    s32 field_1B0;
+    s32 field_1B4;
+    s32 field_1B8;
+} Pes6EditAppearance;
+
+typedef struct {
+    s8 style;
+    s8 pad;
+    s16 model;
+    s8 detail[4];
+} Pes6HairPreset;
+
+#endif

@@ -139,3 +139,21 @@ real PS2 results recorded by
 [ps2autotests](https://github.com/unknownbrackets/ps2autotests) (ISC licence) with
 `tools/ee_float_check.py` and `tools/r5900_check.py`; those results are read from a local copy and
 are not included here.
+
+The NTGUI2EU SDK and runtime ports retain their source notices. The GT4
+sources are covered by the [gt4-decomp MIT license](LICENSES/GT4-MIT.txt).
+The CRI CVFS functions carry the [3s-decomp AGPL license](LICENSES/3s-AGPL-3.0.txt).
+The resident inflate code is adapted from zlib 1.1.4, including the
+[original zlib license](LICENSES/zlib-1.1.4.txt).
+
+The resident Huffman table builder and tree-header writer use zlib 1.1.4
+`inftrees.c` and `trees.c`. The ADXF sector reader, ADX stream header parser,
+and CVFS device registration adapt `adx_fs.c`, `adx_sjd.c`, and `cri_cvfs.c`
+from the 3s-decomp CRI sources cited above. Their local tables and diagnostic
+strings were verified at the addresses used by the PAL executable.
+
+The HTTPS overlay's RC2, DES, Base64, MD2 and SSL routines and their type
+definitions are adapted from SSLeay 0.9.1b. This product includes cryptographic
+software written by Eric Young (eay@cryptsoft.com).
+[SSLeay 0.9.1b source](https://github.com/openssl/openssl/tree/SSLeay_0_9_1b),
+[SSLeay license](LICENSES/SSLeay.txt).

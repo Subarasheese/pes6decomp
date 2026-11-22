@@ -87,6 +87,11 @@ command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1-020123/mwccps2.exe -O3 -c -Iinc
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O4,p -c -Iinclude"
 
+# The edit overlay inlines the dimension-copy, comparison and preset search.
+[compilers."mwcc-3.0.1b210-inline-depth8"]
+dir = "toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O4,p -inline auto,level=8,bottomup -c -Iinclude"
+
 # Same compiler at -O2. A minority of the game's leaves were built with -O2: they keep the
 # returned load before `jr` instead of moving it into the delay slot and do not if-convert a
 # store into a `bnel`/`beql` delay slot.
@@ -102,11 +107,25 @@ command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O2 -c -
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b151-050317/mwccps2.exe -O4,p -c -Iinclude"
 
+# Link the independently aligned switch tables emitted by CodeWarrior into one
+# relocatable .rodata section for the game overlay's paired ID lookups.
+[compilers."mwcc-3.0.1b151-merged-sections"]
+dir = "toolchains"
+command = "bash {tools}/cc_merged_sections.sh {dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b151-050317/mwccps2.exe -O4,p -c -Iinclude"
+
+[compilers."mwcc-3.0.1b151-O3"]
+dir = "toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b151-050317/mwccps2.exe -O3 -c -Iinclude"
+
 # b198 reproduces the transition state's branch schedule in func_002D6860.
 # b205 emits the same code there; b210 additionally fills an outer guard delay slot.
 [compilers."mwcc-3.0.1b198"]
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b198-051011/mwccps2.exe -O4,p -c -Iinclude"
+
+[compilers."mwcc-3.0.1b198-O3"]
+dir = "toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b198-051011/mwccps2.exe -O3 -c -Iinclude"
 
 # NTGUI2EU's network code was built for size without small data: `-Os` gives the plain
 # `lui $v0; lw $v0,lo($v0)` loads and call-delay-slot `mflo` that `-O2` never produces.
@@ -124,6 +143,12 @@ command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -Os -G0 -fno-exceptions -Iinclud
 [compilers."ee-gcc-2.9-G0"]
 dir = "toolchains/ee-gcc2.9-991111"
 command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"
+
+# The HTTPS overlay RC2 round functions were compiled without optimization.
+# ee-as 2.10 fills their return delay slot with the stack adjustment.
+[compilers."ee-gcc-2.9-O0-as210-G0"]
+dir = "toolchains/ee-gcc2.9-991111"
+command = "{dir}/bin/ee-gcc -c -B {dir}/../ee-gcc2.96/ee/bin/ -B {dir}/bin/ee- -O0 -G0 -fno-exceptions -Iinclude"
 
 # Sony SDK objects assembled by SCE's later assembler: ee-gcc 2.9's compiler with the ee-as 2.10
 # shipped with ee-gcc 2.96, which fills branch and return delay slots that ee-as 2.9 leaves empty

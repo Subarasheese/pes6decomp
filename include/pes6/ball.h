@@ -13,7 +13,10 @@ typedef struct Pes6Ball {
     u8 pad2C[0x4];
     float vy;          /* 0x30 vertical velocity, 1/256 unit per tick, negative = up */
     u8 pad34[0x1C];
-    u8 speed[0x8];     /* 0x50 s32 horizontal speed, 1/256 unit per tick */
+    union {
+        u8 speed[0x8];
+        s32 horizontalSpeed; /* 0x50, 1/256 unit per tick */
+    };
     u16 dir;           /* 0x58 direction of travel, 0x10000 = full turn */
     u16 prevDir;       /* 0x5A */
     s16 unk5C;         /* 0x5C */
@@ -52,7 +55,10 @@ typedef struct Pes6MatchState {
     u8 touchActors[PES6_TOUCH_HISTORY_LENGTH]; /* 0x01, newest first */
     u8 pad0B;
     s32 touchFrames[PES6_TOUCH_HISTORY_LENGTH]; /* 0x0C, entry zero counts frames since the touch */
-    u8 pad34[0xB];
+    u8 actor34;        /* 0x34 */
+    u8 pad35[2];
+    u8 sideActors[2][2]; /* 0x37 */
+    u8 pad3B[4];
     u8 lastTouch;      /* 0x3F 0x591E57 */
     u8 pad40[0xC];
     u8 lastSide[3];    /* 0x4C 0x591E64 */
