@@ -178,6 +178,7 @@ The PES6 symbol keeps its address-based name where its identity is uncertain.
 
 | Reference | Material used |
 | --- | --- |
+| [LucasPicoli/god-hand-decomp](https://github.com/LucasPicoli/god-hand-decomp/tree/4607c6865368f1b9c631b5b36e5adf00fafea5f1) | CRI audio and streaming, controller and MPEG routines. Each adapted function cites its source file. [MIT notice](LICENSES/God-Hand-MIT.txt). |
 | [DW4_Decomp](https://github.com/crashbashash/DW4_Decomp/tree/3b641e92c62d38ed27939ad3d8e197a3db6ac28b) | Shared CRI middleware and library routines. The project's [notice](https://github.com/crashbashash/DW4_Decomp/blob/3b641e92c62d38ed27939ad3d8e197a3db6ac28b/NOTICE) limits its CC0 dedication to tools and documentation. |
 | [OpenThievius/sly2-decomp](https://github.com/OpenThievius/sly2-decomp/tree/aaa56f74e5855af382d5ec1dd6a553e3220085f0) | MPEG, pad and compiler runtime sources. Files carry their GPL-3.0-or-later attribution. |
 | [Komasia/sly2-decomp](https://github.com/Komasia/sly2-decomp/tree/be803ab8801df098639c83be51366b8d094b78f5) | CD/DVD, MPEG, C library and runtime helpers. The GCC frame-unwinding helper uses the libgcc terms above. |
@@ -238,3 +239,5 @@ software written by Eric Young (eay@cryptsoft.com).
 The network overlay's MD5 block transform is derived from the RSA Data
 Security, Inc. MD5 Message-Digest Algorithm. The implementation retains the
 original copyright and license. [RFC 1321, Appendix A.3](https://www.rfc-editor.org/rfc/rfc1321#appendix-A.3).
+
+The NTGUI frame deregistration routine uses GCC’s `__deregister_frame_info` from the 2000-10-03 runtime snapshot, with its GCC runtime linking exception. The semaphore calls and frame list are specific to NTGUI. [GCC source via GT4](https://github.com/gustavocanepa/gt4-decomp/blob/0bf836499a295edd7e087f90e8ca01961e639da2/src/runtime/unit_0059BE80/func_005BED78.c).
