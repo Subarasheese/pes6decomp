@@ -1,6 +1,7 @@
 /* compiler: ee-gcc-2.9-G0 */
 /* SPDX-License-Identifier: GPL-3.0-or-later */
-/* Adapted from OpenThievius/sly2-decomp, src/sdk/fun_00241368.c. See THIRD_PARTY.md. */
+/* Adapted from OpenThievius/sly2-decomp, src/sdk/fun_00241368.c. The reference name refers to the comparison source.
+ * The PAL name remains provisional. See THIRD_PARTY.md. */
 #include "types.h"
 
 void func_0019DBD0(const char *);

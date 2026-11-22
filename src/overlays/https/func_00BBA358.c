@@ -57,105 +57,27 @@
  * copied and put under another distribution licence
  * [including the GNU Public Licence.]
  */
-typedef struct stack_st {
-    int num;
-    char **data;
-    int sorted;
-    int num_alloc;
-    int (*comp)();
-} STACK;
-typedef struct crypto_ex_data_st {
-    STACK *sk;
-    int dummy;
-} CRYPTO_EX_DATA;
 extern void func_00BB3380(int lib, int func, int reason, char *file, int line);
-typedef struct bignum_st {
-    unsigned long *d;
-    int top;
-    int max;
-    int neg;
-    int flags;
-} BIGNUM;
-typedef struct bn_blinding_st {
-    int init;
-    BIGNUM *A;
-    BIGNUM *Ai;
-    BIGNUM *mod;
-} BN_BLINDING;
+typedef struct bignum_st BIGNUM;
 extern void func_00BA4338(BIGNUM *a);
 extern BIGNUM *func_00BA4690(BIGNUM *a);
-typedef struct rsa_meth_st {
-    char *name;
-    int (*rsa_pub_enc)();
-    int (*rsa_pub_dec)();
-    int (*rsa_priv_enc)();
-    int (*rsa_priv_dec)();
-    int (*rsa_mod_exp)();
-    int (*bn_mod_exp)();
-    int (*init)();
-    int (*finish)();
-    int flags;
-    char *app_data;
-} RSA_METHOD;
-typedef struct rsa_st {
-    int pad;
-    int version;
-    RSA_METHOD *meth;
-    BIGNUM *n;
-    BIGNUM *e;
-    BIGNUM *d;
-    BIGNUM *p;
-    BIGNUM *q;
-    BIGNUM *dmp1;
-    BIGNUM *dmq1;
-    BIGNUM *iqmp;
-    CRYPTO_EX_DATA ex_data;
-    int references;
-    int flags;
-    char *method_mod_n;
-    char *method_mod_p;
-    char *method_mod_q;
-    char *bignum_data;
-    BN_BLINDING *blinding;
-} RSA;
 typedef struct dsa_st {
-    int pad;
-    int version;
-    int write_params;
+    unsigned char reserved_00[12];
     BIGNUM *p;
     BIGNUM *q;
     BIGNUM *g;
-    BIGNUM *pub_key;
-    BIGNUM *priv_key;
-    BIGNUM *kinv;
-    BIGNUM *r;
-    int flags;
-    char *method_mont_p;
-    int references;
+    unsigned char reserved_18[28];
 } DSA;
-typedef struct dh_st {
-    int pad;
-    int version;
-    BIGNUM *p;
-    BIGNUM *g;
-    int length;
-    BIGNUM *pub_key;
-    BIGNUM *priv_key;
-    int flags;
-    char *method_mont_p;
-} DH;
 typedef struct evp_pkey_st {
     int type;
-    int save_type;
-    int references;
+    unsigned char reserved_04[8];
     union {
         char *ptr;
         struct rsa_st *rsa;
         struct dsa_st *dsa;
         struct dh_st *dh;
     } pkey;
-    int save_parameters;
-    STACK *attributes;
+    unsigned char reserved_10[8];
 } EVP_PKEY;
 extern int func_00BBA490(EVP_PKEY *pkey);
 

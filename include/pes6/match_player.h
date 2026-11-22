@@ -22,7 +22,8 @@ typedef struct Pes6PlayerInfo {
 /* Match player entries (0x240 bytes each) at 0x58E5B0, indexed by match object id (see
    match_objects.h: ids 1-22 are the players). */
 typedef struct Pes6MatchPlayer {
-    u8 pad00[0x4];
+    u8 id;            /* 0x00: match object id */
+    u8 pad01[3];
     Pes6PlayerInfo *info; /* 0x04 */
     u8 pad08[0x9];
     u8 slot;          /* 0x11: squad slot */
@@ -42,7 +43,11 @@ typedef struct Pes6MatchPlayer {
 /* A squad player's record (0x348 bytes); the bytes from 0x96 hold 7-bit ability values. */
 typedef struct Pes6SquadPlayer {
     s32 value00;      /* 0x00: checked against -1 by func_00311390 */
-    u8 pad04[0x92];
+    u8 pad04[0x85];
+    u8 : 3;
+    u8 responseStyle : 2; /* 0x89 bits 3 and 4, used by func_00B68390 */
+    u8 : 3;
+    u8 pad8A[0xC];
     u8 ability[0x39]; /* 0x96 */
     u8 flagCF0 : 1;   /* 0xCF bit 0 */
     u8 flagCF1 : 1;   /* 0xCF bit 1 */

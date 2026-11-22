@@ -56,202 +56,30 @@
  * copied and put under another distribution licence
  * [including the GNU Public Licence.]
  */
-typedef struct buf_mem_st {
-    int length;
-    char *data;
-    int max;
-} BUF_MEM;
-typedef struct stack_st {
-    int num;
-    char **data;
-    int sorted;
-    int num_alloc;
-    int (*comp)();
-} STACK;
-typedef struct crypto_ex_data_st {
-    STACK *sk;
-    int dummy;
-} CRYPTO_EX_DATA;
-typedef struct bignum_st {
-    unsigned long *d;
-    int top;
-    int max;
-    int neg;
-    int flags;
-} BIGNUM;
-typedef struct bn_blinding_st {
-    int init;
-    BIGNUM *A;
-    BIGNUM *Ai;
-    BIGNUM *mod;
-} BN_BLINDING;
-typedef struct asn1_object_st {
-    char *sn;
-    char *ln;
-    int nid;
-    int length;
-    unsigned char *data;
-    int flags;
-} ASN1_OBJECT;
-typedef struct asn1_string_st {
-    int length;
-    int type;
-    unsigned char *data;
-    long flags;
-} ASN1_STRING;
-typedef struct asn1_type_st {
-    int type;
-    union {
-        char *ptr;
-        ASN1_STRING *asn1_string;
-        ASN1_OBJECT *object;
-        ASN1_STRING *integer;
-        ASN1_STRING *bit_string;
-        ASN1_STRING *octet_string;
-        ASN1_STRING *printablestring;
-        ASN1_STRING *t61string;
-        ASN1_STRING *ia5string;
-        ASN1_STRING *generalstring;
-        ASN1_STRING *bmpstring;
-        ASN1_STRING *universalstring;
-        ASN1_STRING *utctime;
-        ASN1_STRING *generalizedtime;
-        ASN1_STRING *set;
-        ASN1_STRING *sequence;
-    } value;
-} ASN1_TYPE;
-typedef struct rsa_meth_st {
-    char *name;
-    int (*rsa_pub_enc)();
-    int (*rsa_pub_dec)();
-    int (*rsa_priv_enc)();
-    int (*rsa_priv_dec)();
-    int (*rsa_mod_exp)();
-    int (*bn_mod_exp)();
-    int (*init)();
-    int (*finish)();
-    int flags;
-    char *app_data;
-} RSA_METHOD;
-typedef struct rsa_st {
-    int pad;
-    int version;
-    RSA_METHOD *meth;
-    BIGNUM *n;
-    BIGNUM *e;
-    BIGNUM *d;
-    BIGNUM *p;
-    BIGNUM *q;
-    BIGNUM *dmp1;
-    BIGNUM *dmq1;
-    BIGNUM *iqmp;
-    CRYPTO_EX_DATA ex_data;
-    int references;
-    int flags;
-    char *method_mod_n;
-    char *method_mod_p;
-    char *method_mod_q;
-    char *bignum_data;
-    BN_BLINDING *blinding;
-} RSA;
+typedef struct rsa_st RSA;
 extern int func_00BC6BC8(int flen, unsigned char *from, unsigned char *to, RSA *rsa, int padding);
-typedef struct dsa_st {
-    int pad;
-    int version;
-    int write_params;
-    BIGNUM *p;
-    BIGNUM *q;
-    BIGNUM *g;
-    BIGNUM *pub_key;
-    BIGNUM *priv_key;
-    BIGNUM *kinv;
-    BIGNUM *r;
-    int flags;
-    char *method_mont_p;
-    int references;
-} DSA;
-typedef struct dh_st {
-    int pad;
-    int version;
-    BIGNUM *p;
-    BIGNUM *g;
-    int length;
-    BIGNUM *pub_key;
-    BIGNUM *priv_key;
-    int flags;
-    char *method_mont_p;
-} DH;
 typedef struct evp_pkey_st {
     int type;
-    int save_type;
-    int references;
+    unsigned char reserved_04[8];
     union {
         char *ptr;
         struct rsa_st *rsa;
         struct dsa_st *dsa;
         struct dh_st *dh;
     } pkey;
-    int save_parameters;
-    STACK *attributes;
+    unsigned char reserved_10[8];
 } EVP_PKEY;
-typedef struct X509_algor_st {
-    ASN1_OBJECT *algorithm;
-    ASN1_TYPE *parameter;
-} X509_ALGOR;
-typedef struct X509_val_st {
-    ASN1_STRING *notBefore;
-    ASN1_STRING *notAfter;
-} X509_VAL;
-typedef struct X509_pubkey_st {
-    X509_ALGOR *algor;
-    ASN1_STRING *public_key;
-    struct evp_pkey_st *pkey;
-} X509_PUBKEY;
-typedef struct X509_name_st {
-    STACK *entries;
-    int modified;
-    BUF_MEM *bytes;
-    unsigned long hash;
-} X509_NAME;
-typedef struct x509_cinf_st {
-    ASN1_STRING *version;
-    ASN1_STRING *serialNumber;
-    X509_ALGOR *signature;
-    X509_NAME *issuer;
-    X509_VAL *validity;
-    X509_NAME *subject;
-    X509_PUBKEY *key;
-    ASN1_STRING *issuerUID;
-    ASN1_STRING *subjectUID;
-    STACK *extensions;
-} X509_CINF;
-typedef struct x509_st {
-    X509_CINF *cert_info;
-    X509_ALGOR *sig_alg;
-    ASN1_STRING *signature;
-    int valid;
-    int references;
-    char *name;
-} X509;
+typedef struct x509_st X509;
 extern EVP_PKEY *func_00BAC160(X509 *x);
 extern void func_00BB3380(int lib, int func, int reason, char *file, int line);
 typedef struct cert_pkey_st {
     X509 *x509;
-    EVP_PKEY *privatekey;
+    unsigned char reserved_04[4];
 } CERT_PKEY;
 typedef struct cert_st {
-    int cert_type;
+    unsigned char reserved_00[4];
     CERT_PKEY *key;
-    int valid;
-    unsigned long mask;
-    unsigned long export_mask;
-    RSA *rsa_tmp;
-    DH *dh_tmp;
-    RSA *(*rsa_tmp_cb)();
-    DH *(*dh_tmp_cb)();
-    CERT_PKEY pkeys[5];
-    STACK *cert_chain;
-    int references;
+    unsigned char reserved_08[88];
 } CERT;
 
 int func_00BC9B70(CERT *c, int len, unsigned char *from, unsigned char *to, int padding) {

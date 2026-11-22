@@ -71,41 +71,8 @@ typedef struct asn1_ctx_st {
     unsigned char **pp;
     int line;
 } ASN1_CTX;
-typedef struct asn1_object_st {
-    char *sn;
-    char *ln;
-    int nid;
-    int length;
-    unsigned char *data;
-    int flags;
-} ASN1_OBJECT;
-typedef struct asn1_string_st {
-    int length;
-    int type;
-    unsigned char *data;
-    long flags;
-} ASN1_STRING;
-typedef struct asn1_type_st {
-    int type;
-    union {
-        char *ptr;
-        ASN1_STRING *asn1_string;
-        ASN1_OBJECT *object;
-        ASN1_STRING *integer;
-        ASN1_STRING *bit_string;
-        ASN1_STRING *octet_string;
-        ASN1_STRING *printablestring;
-        ASN1_STRING *t61string;
-        ASN1_STRING *ia5string;
-        ASN1_STRING *generalstring;
-        ASN1_STRING *bmpstring;
-        ASN1_STRING *universalstring;
-        ASN1_STRING *utctime;
-        ASN1_STRING *generalizedtime;
-        ASN1_STRING *set;
-        ASN1_STRING *sequence;
-    } value;
-} ASN1_TYPE;
+typedef struct asn1_object_st ASN1_OBJECT;
+typedef struct asn1_type_st ASN1_TYPE;
 extern void func_00BA0AB0(ASN1_TYPE *a);
 extern ASN1_TYPE *func_00BA0730(ASN1_TYPE **a, unsigned char **pp, long length);
 extern ASN1_OBJECT *func_00B9E720(ASN1_OBJECT **a, unsigned char **pp, long length);

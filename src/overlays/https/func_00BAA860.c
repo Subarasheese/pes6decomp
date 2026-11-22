@@ -57,92 +57,15 @@
  * [including the GNU Public Licence.]
  */
 extern char *func_001C34D0(const char *__string);
-typedef struct stack_st {
-    int num;
-    char **data;
-    int sorted;
-    int num_alloc;
-    int (*comp)();
-} STACK;
-typedef struct crypto_ex_data_st {
-    STACK *sk;
-    int dummy;
-} CRYPTO_EX_DATA;
-typedef struct buf_mem_st {
-    int length;
-    char *data;
-    int max;
-} BUF_MEM;
 extern void func_00BB3380(int lib, int func, int reason, char *file, int line);
-typedef struct lhash_node_st {
-    char *data;
-    struct lhash_node_st *next;
-    unsigned long hash;
-} LHASH_NODE;
-typedef struct lhash_st {
-    LHASH_NODE **b;
-    int (*comp)();
-    unsigned long (*hash)();
-    unsigned int num_nodes;
-    unsigned int num_alloc_nodes;
-    unsigned int p;
-    unsigned int pmax;
-    unsigned long up_load;
-    unsigned long down_load;
-    unsigned long num_items;
-    unsigned long num_expands;
-    unsigned long num_expand_reallocs;
-    unsigned long num_contracts;
-    unsigned long num_contract_reallocs;
-    unsigned long num_hash_calls;
-    unsigned long num_comp_calls;
-    unsigned long num_insert;
-    unsigned long num_replace;
-    unsigned long num_delete;
-    unsigned long num_no_delete;
-    unsigned long num_retrieve;
-    unsigned long num_retrieve_miss;
-    unsigned long num_hash_comps;
-    int error;
-} LHASH;
-typedef struct x509_lookup_method_st {
-    char *name;
-    int (*new_item)();
-    void (*free)();
-    int (*init)();
-    int (*shutdown)();
-    int (*ctrl)();
-    int (*get_by_subject)();
-    int (*get_by_issuer_serial)();
-    int (*get_by_fingerprint)();
-    int (*get_by_alias)();
-} X509_LOOKUP_METHOD;
-typedef struct x509_store_st {
-    int cache;
-    LHASH *certs;
-    STACK *get_cert_methods;
-    int (*verify)();
-    int (*verify_cb)();
-    CRYPTO_EX_DATA ex_data;
-    int references;
-    int depth;
-} X509_STORE;
 typedef struct x509_lookup_st {
-    int init;
-    int skip;
-    X509_LOOKUP_METHOD *method;
+    unsigned char reserved_00[12];
     char *method_data;
-    X509_STORE *store_ctx;
+    unsigned char reserved_10[4];
 } X509_LOOKUP;
 extern char *func_00BDE230(void);
 extern char *func_00BDE250(void);
-typedef struct lookup_dir_st {
-    BUF_MEM *buffer;
-    int num_dirs;
-    char **dirs;
-    int *dirs_type;
-    int num_dirs_alloced;
-} BY_DIR;
+typedef struct lookup_dir_st BY_DIR;
 extern int func_00BAAA48(BY_DIR *ctx, char *dir, int type);
 
 int func_00BAA860(X509_LOOKUP *ctx, int cmd, char *argp, long argl, char **retp) {

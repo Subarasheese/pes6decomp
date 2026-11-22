@@ -57,13 +57,7 @@
  * copied and put under another distribution licence
  * [including the GNU Public Licence.]
  */
-typedef struct stack_st {
-    int num;
-    char **data;
-    int sorted;
-    int num_alloc;
-    int (*comp)();
-} STACK;
+typedef struct stack_st STACK;
 extern void func_00BB3380(int lib, int func, int reason, char *file, int line);
 typedef struct asn1_ctx_st {
     unsigned char *p;
@@ -78,39 +72,18 @@ typedef struct asn1_ctx_st {
     unsigned char **pp;
     int line;
 } ASN1_CTX;
-typedef struct asn1_object_st {
-    char *sn;
-    char *ln;
-    int nid;
-    int length;
-    unsigned char *data;
-    int flags;
-} ASN1_OBJECT;
-typedef struct asn1_string_st {
-    int length;
-    int type;
-    unsigned char *data;
-    long flags;
-} ASN1_STRING;
+typedef struct asn1_string_st ASN1_STRING;
 extern ASN1_STRING *func_00B9DD38(ASN1_STRING **a, unsigned char **pp, long length);
 extern ASN1_STRING *func_00B9EBE8(ASN1_STRING **a, unsigned char **pp, long length);
 extern STACK *func_00BA0268(STACK **a, unsigned char **pp, long length, char *(*func)(),
                             void (*free_func)(), int ex_tag, int ex_class);
 extern int func_00B9F3D0(ASN1_CTX *c);
-typedef struct X509_extension_st {
-    ASN1_OBJECT *object;
-    short critical;
-    short netscape_hack;
-    ASN1_STRING *value;
-    long argl;
-    char *argp;
-    void (*ex_free)();
-} X509_EXTENSION;
+typedef struct X509_extension_st X509_EXTENSION;
 typedef struct X509_revoked_st {
     ASN1_STRING *serialNumber;
     ASN1_STRING *revocationDate;
     STACK *extensions;
-    int sequence;
+    unsigned char reserved_0c[4];
 } X509_REVOKED;
 extern void D_00BE20F0(X509_EXTENSION *a);
 extern X509_EXTENSION *D_00BE1E10(X509_EXTENSION **a, unsigned char **pp, long length);

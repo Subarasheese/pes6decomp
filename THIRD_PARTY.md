@@ -93,6 +93,37 @@ GameCube decompilations whose CRI ADX code is platform-independent C. They were 
 compiling those sources with the PES6 compiler profiles and comparing normalized code, and each
 adapted file names its origin in its first comment.
 
+## Other shared PS2 library sources
+
+Each adapted file identifies the reference implementation. The PAL compiler,
+call and data targets, and linked function extent were checked in the PES6
+image. A reference function name identifies the source used for comparison.
+The PES6 symbol keeps its address-based name where its identity is uncertain.
+
+| Reference | Material used |
+| --- | --- |
+| [DW4_Decomp](https://github.com/crashbashash/DW4_Decomp/tree/3b641e92c62d38ed27939ad3d8e197a3db6ac28b) | Shared CRI middleware and library routines. The project's [notice](https://github.com/crashbashash/DW4_Decomp/blob/3b641e92c62d38ed27939ad3d8e197a3db6ac28b/NOTICE) limits its CC0 dedication to tools and documentation. |
+| [OpenThievius/sly2-decomp](https://github.com/OpenThievius/sly2-decomp/tree/aaa56f74e5855af382d5ec1dd6a553e3220085f0) | MPEG, pad and compiler runtime sources. Files carry their GPL-3.0-or-later attribution. |
+| [Komasia/sly2-decomp](https://github.com/Komasia/sly2-decomp/tree/be803ab8801df098639c83be51366b8d094b78f5) | CD/DVD, MPEG, C library and runtime helpers. The GCC frame-unwinding helper uses the libgcc terms above. |
+| [rez-decomp](https://github.com/new-coke/rez-decomp/tree/b58dc0169c348604cf1e520cb260cd90bd024181) | CRI and SDK source. [MIT notice](LICENSES/Rez-MIT.txt). |
+| [Syphon Filter Omega Strain](https://github.com/zm2283145/syphon-filter-omega-strain-decomp/tree/b8ecd7b81d0a52f58912404e5a565e08070edc92) | CRI library source. |
+| [rac5-sm-decomp](https://github.com/OpenRAC/rac5-sm-decomp/tree/5c5a33d1b992fa9176b8f9223d7452b1a2b1bbd4) | Sony RPC client implementations. The project distributes its source under the [GPLv3](LICENSES/GPL-3.0.txt). |
+| [Lombyte](https://github.com/lombyte-project/Lombyte/tree/1901ffd94eba6f53f2de2a7c6101bb44f2b5f25e) | Reconstructed runtime and middleware source. The project records the underlying components in its [third-party notices](https://github.com/lombyte-project/Lombyte/blob/1901ffd94eba6f53f2de2a7c6101bb44f2b5f25e/THIRD_PARTY_NOTICES.md). |
+| [twewy](https://github.com/Yotona/twewy/tree/3f916f1a2d31f29bd7ec6fd89f3a87b696e79b9b) | Platform-independent CRI source. |
+
+### SSL library in the HTTPS overlay
+
+The PAL overlay identifies its library as RSA SSL-C 2.1.0. Individual ASN.1,
+BIO, bignum, DES, RSA, SSL and X.509 functions correspond to historical
+SSLeay or OpenSSL C. Their comments identify the source file and revision.
+Record fields, diagnostic strings and function targets were checked against
+the PAL library. [SSLeay sources](https://github.com/openssl/openssl/tree/SSLeay_0_9_1b)
+and [OpenSSL sources](https://github.com/openssl/openssl/tree/OpenSSL_0_9_1c).
+
+This product includes cryptographic software written by Eric Young (eay@cryptsoft.com).
+This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit.
+See the [OpenSSL and SSLeay notices](LICENSES/OpenSSL-SSLeay.txt).
+
 ## R5900 simulator
 
 `tools/r5900sim.py` is an Emotion Engine interpreter written for behaviour checks of decompiled C.

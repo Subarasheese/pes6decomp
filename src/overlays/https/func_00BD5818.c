@@ -61,72 +61,15 @@ extern void func_00BC0A88(void *);
 extern void *func_00BC0A38(size_t __size);
 extern int func_001C4698(const void *, const void *, size_t);
 extern void *memset(void *, int, size_t);
-typedef struct stack_st {
-    int num;
-    char **data;
-    int sorted;
-    int num_alloc;
-    int (*comp)();
-} STACK;
-typedef struct crypto_ex_data_st {
-    STACK *sk;
-    int dummy;
-} CRYPTO_EX_DATA;
 extern void func_00BB3380(int lib, int func, int reason, char *file, int line);
-typedef struct bignum_st {
-    unsigned long *d;
-    int top;
-    int max;
-    int neg;
-    int flags;
-} BIGNUM;
-typedef struct bn_blinding_st {
-    int init;
-    BIGNUM *A;
-    BIGNUM *Ai;
-    BIGNUM *mod;
-} BN_BLINDING;
-typedef struct rsa_meth_st {
-    char *name;
-    int (*rsa_pub_enc)();
-    int (*rsa_pub_dec)();
-    int (*rsa_priv_enc)();
-    int (*rsa_priv_dec)();
-    int (*rsa_mod_exp)();
-    int (*bn_mod_exp)();
-    int (*init)();
-    int (*finish)();
-    int flags;
-    char *app_data;
-} RSA_METHOD;
-typedef struct rsa_st {
-    int pad;
-    int version;
-    RSA_METHOD *meth;
-    BIGNUM *n;
-    BIGNUM *e;
-    BIGNUM *d;
-    BIGNUM *p;
-    BIGNUM *q;
-    BIGNUM *dmp1;
-    BIGNUM *dmq1;
-    BIGNUM *iqmp;
-    CRYPTO_EX_DATA ex_data;
-    int references;
-    int flags;
-    char *method_mod_n;
-    char *method_mod_p;
-    char *method_mod_q;
-    char *bignum_data;
-    BN_BLINDING *blinding;
-} RSA;
+typedef struct rsa_st RSA;
 extern int func_00BC68D0(RSA *);
 extern int func_00BC6CF8(int flen, unsigned char *from, unsigned char *to, RSA *rsa, int padding);
 typedef struct asn1_string_st {
     int length;
-    int type;
+    unsigned char reserved_04[4];
     unsigned char *data;
-    long flags;
+    unsigned char reserved_0c[12];
 } ASN1_STRING;
 extern void func_00B9F690(ASN1_STRING *a);
 extern ASN1_STRING *func_00BA00F8(ASN1_STRING **a, unsigned char **pp, long length);

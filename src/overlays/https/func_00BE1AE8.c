@@ -58,18 +58,6 @@
  */
 typedef unsigned int size_t;
 extern void *func_00BC0A38(size_t __size);
-typedef struct stack_st {
-    int num;
-    char **data;
-    int sorted;
-    int num_alloc;
-    int (*comp)();
-} STACK;
-typedef struct buf_mem_st {
-    int length;
-    char *data;
-    int max;
-} BUF_MEM;
 extern void func_00BB3380(int lib, int func, int reason, char *file, int line);
 typedef struct asn1_ctx_st {
     unsigned char *p;
@@ -84,61 +72,10 @@ typedef struct asn1_ctx_st {
     unsigned char **pp;
     int line;
 } ASN1_CTX;
-typedef struct asn1_object_st {
-    char *sn;
-    char *ln;
-    int nid;
-    int length;
-    unsigned char *data;
-    int flags;
-} ASN1_OBJECT;
-typedef struct asn1_string_st {
-    int length;
-    int type;
-    unsigned char *data;
-    long flags;
-} ASN1_STRING;
-typedef struct asn1_type_st {
-    int type;
-    union {
-        char *ptr;
-        ASN1_STRING *asn1_string;
-        ASN1_OBJECT *object;
-        ASN1_STRING *integer;
-        ASN1_STRING *bit_string;
-        ASN1_STRING *octet_string;
-        ASN1_STRING *printablestring;
-        ASN1_STRING *t61string;
-        ASN1_STRING *ia5string;
-        ASN1_STRING *generalstring;
-        ASN1_STRING *bmpstring;
-        ASN1_STRING *universalstring;
-        ASN1_STRING *utctime;
-        ASN1_STRING *generalizedtime;
-        ASN1_STRING *set;
-        ASN1_STRING *sequence;
-    } value;
-} ASN1_TYPE;
+typedef struct asn1_string_st ASN1_STRING;
 extern ASN1_STRING *func_00B9F628(int type);
-typedef struct X509_algor_st {
-    ASN1_OBJECT *algorithm;
-    ASN1_TYPE *parameter;
-} X509_ALGOR;
-typedef struct X509_name_st {
-    STACK *entries;
-    int modified;
-    BUF_MEM *bytes;
-    unsigned long hash;
-} X509_NAME;
-typedef struct X509_crl_info_st {
-    ASN1_STRING *version;
-    X509_ALGOR *sig_alg;
-    X509_NAME *issuer;
-    ASN1_STRING *lastUpdate;
-    ASN1_STRING *nextUpdate;
-    STACK *revoked;
-    STACK *extensions;
-} X509_CRL_INFO;
+typedef struct X509_algor_st X509_ALGOR;
+typedef struct X509_crl_info_st X509_CRL_INFO;
 typedef struct X509_crl_st {
     X509_CRL_INFO *crl;
     X509_ALGOR *sig_alg;
