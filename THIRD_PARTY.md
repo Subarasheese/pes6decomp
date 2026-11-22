@@ -110,6 +110,7 @@ The PES6 symbol keeps its address-based name where its identity is uncertain.
 | [rac5-sm-decomp](https://github.com/OpenRAC/rac5-sm-decomp/tree/5c5a33d1b992fa9176b8f9223d7452b1a2b1bbd4) | Sony RPC client implementations. The project distributes its source under the [GPLv3](LICENSES/GPL-3.0.txt). |
 | [Lombyte](https://github.com/lombyte-project/Lombyte/tree/1901ffd94eba6f53f2de2a7c6101bb44f2b5f25e) | Reconstructed runtime and middleware source. The project records the underlying components in its [third-party notices](https://github.com/lombyte-project/Lombyte/blob/1901ffd94eba6f53f2de2a7c6101bb44f2b5f25e/THIRD_PARTY_NOTICES.md). |
 | [twewy](https://github.com/Yotona/twewy/tree/3f916f1a2d31f29bd7ec6fd89f3a87b696e79b9b) | Platform-independent CRI source. |
+| [dreamingmoths/memory-of-alessa](https://github.com/dreamingmoths/memory-of-alessa/tree/0d12473f368e7f7699732257bdad1372cc2a09af) | MPEG video-input buffers, timestamps and wrapped copies. [MIT notice](LICENSES/memory-of-alessa-MIT.txt). |
 
 ### SSL library in the HTTPS overlay
 

@@ -1,6 +1,5 @@
 /* compiler: ee-gcc-2.9-as210-G0 */
-#include "types.h"
-typedef void (*RcomApiFunction)(void);
+#include "pes6/rcom_certificate.h"
 extern RcomApiFunction D_00CC9340[];
 extern RcomApiFunction D_00CC9344[];
 extern RcomApiFunction D_00CC9348[];
