@@ -1,0 +1,151 @@
+/* compiler: ee-gcc-2.9 */
+/* Sony SDK / C runtime code; source adapted from crashwoc-decomp-ps2 (src/sdk/sce/sifcmd.c). */
+
+typedef struct SifCmdHeader {
+    unsigned int psize : 8;
+    unsigned int dsize : 24;
+    unsigned int dest;
+    int cid;
+    unsigned int opt;
+} SifCmdHeader;
+
+typedef struct SifCmdSRegData {
+    SifCmdHeader header;
+    int index;
+    unsigned int value;
+} SifCmdSRegData;
+
+typedef struct SifCmdChangeAddrData {
+    SifCmdHeader header;
+    void *newaddr;
+} SifCmdChangeAddrData;
+
+typedef struct sceSifDmaData {
+    unsigned int data;
+    unsigned int addr;
+    unsigned int size;
+    unsigned int mode;
+} sceSifDmaData;
+
+typedef void (*SifCmdHandler)(void *packet, void *data);
+
+typedef struct SifCmdHandlerData {
+    SifCmdHandler func;
+    void *data;
+} SifCmdHandlerData;
+
+typedef struct SifCmdData {
+    void *pktbuf;
+    void *cbuf;
+    void *iopbuf;
+    SifCmdHandlerData *sys_cmd_handlers;
+    int nr_sys_handlers;
+    SifCmdHandlerData *usr_cmd_handlers;
+    int nr_usr_handlers;
+    unsigned int *sregs;
+} SifCmdData;
+
+extern int D_00613374[];
+extern unsigned char D_007036C0[];
+extern unsigned char D_00703740[];
+extern SifCmdChangeAddrData D_00703780;
+extern int D_00703794[];
+extern SifCmdData D_01201898;
+extern SifCmdHandlerData D_007037C0[];
+extern unsigned int D_007038C0[];
+
+#define sif_cmd_initialized   D_00613374
+#define sif_pktbuf            D_007036C0
+#define sif_cbuf              D_00703740
+#define sif_change_addr_pkt   D_00703780
+#define sif_dmac_handler_id   D_00703794
+#define sif_cmd_data          D_01201898
+#define sif_sys_cmd_handlers  D_007037C0
+#define sif_sregs             D_007038C0
+
+#define UNCACHED(p) ((void *)((unsigned int)(p) | 0x20000000))
+
+#define DMAC_SIF0_CHCR (*(volatile unsigned int *)0x1000C000)
+#define DMAC_STAT      (*(volatile unsigned int *)0x1000E010)
+
+#define SIF_CMD_CHANGE_SADDR 0x80000000
+#define SIF_CMD_INIT_CMD     0x80000002
+#define SIF_SYSREG_SUBADDR   0x80000000
+#define SIF_SYSREG_MAINADDR  0x80000001
+#define SIF_REG_SUBADDR      2
+#define SIF_REG_SMFLAG       4
+#define SIF_STAT_CMDINIT     0x20000
+
+extern int DIntr(void);
+extern int EIntr(void);
+extern void FlushCache(int mode);
+extern void sceSifSetDChain(void);
+extern int AddDmacHandler(int channel, int (*handler)(int), int next);
+extern int EnableDmac(int channel);
+extern int DisableDmac(int channel);
+extern int RemoveDmacHandler(int channel, int handler_id);
+extern void func_0019E3F8(void *ptr, int size);
+extern unsigned int func_0019B4E0(sceSifDmaData *sdd, int len);
+extern unsigned int func_0019B4F0(sceSifDmaData *sdd, int len);
+extern unsigned int sceSifGetReg(unsigned int reg);
+extern int sceSifSetReg(unsigned int reg, unsigned int value);
+extern int _sceSifCmdIntrHdlr(int channel);
+extern unsigned int sceSifSendCmd(int cid, void *packet, int packet_size,
+                                  void *src, void *dest, int size);void _set_sreg(SifCmdSRegData *packet, SifCmdData *cmd);
+void _change_addr(SifCmdChangeAddrData *packet, SifCmdData *cmd);
+unsigned int sceSifGetSreg(int index);
+unsigned int sceSifSetSreg(int index, unsigned int value);
+SifCmdData *sceSifGetDataTable(void);
+void sceSifInitCmd(void);
+void sceSifExitCmd(void);
+SifCmdHandlerData *sceSifSetCmdBuffer(SifCmdHandlerData *buffer, int count);
+SifCmdHandlerData *sceSifSetSysCmdBuffer(SifCmdHandlerData *buffer, int count);
+void sceSifAddCmdHandler(int cid, SifCmdHandler handler, void *data);
+void sceSifRemoveCmdHandler(int cid);
+
+unsigned int func_0019E0F8(int cid, int mode, void *packet, int packet_size,
+                            void *src, void *dest, int size) {
+    sceSifDmaData dmat[2];
+    SifCmdHeader *header;
+    int count;
+
+    header = packet;
+    if ((unsigned int)(packet_size - 16) > 96) {
+        return 0;
+    }
+
+    count = 0;
+    if (size > 0) {
+        dmat[0].data = (unsigned int)src;
+        dmat[0].addr = (unsigned int)dest;
+        dmat[0].size = size;
+        dmat[0].mode = 0;
+        header->dsize = size;
+        header->dest = (unsigned int)dest;
+        count = 1;
+        if (mode & 4) {
+            func_0019E3F8(src, size);
+        }
+    } else {
+        header->dsize = 0;
+        header->dest = 0;
+    }
+
+    dmat[count].data = (unsigned int)packet;
+    dmat[count].addr = (unsigned int)sif_cmd_data.iopbuf;
+    dmat[count].size = packet_size;
+    header->cid = cid;
+    header->psize = packet_size;
+    dmat[count].mode = 0x44;
+    count++;
+    func_0019E3F8(packet, packet_size);
+
+    if (mode & 1) {
+        return func_0019B4F0(dmat, count);
+    }
+    return func_0019B4E0(dmat, count);
+}
+unsigned int sceSifSendCmd(int cid, void *packet, int packet_size, void *src,
+                           void *dest, int size);
+unsigned int isceSifSendCmd(int cid, void *packet, int packet_size, void *src,
+                            void *dest, int size);

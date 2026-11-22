@@ -111,6 +111,9 @@ The PES6 symbol keeps its address-based name where its identity is uncertain.
 | [Lombyte](https://github.com/lombyte-project/Lombyte/tree/1901ffd94eba6f53f2de2a7c6101bb44f2b5f25e) | Reconstructed runtime and middleware source. The project records the underlying components in its [third-party notices](https://github.com/lombyte-project/Lombyte/blob/1901ffd94eba6f53f2de2a7c6101bb44f2b5f25e/THIRD_PARTY_NOTICES.md). |
 | [twewy](https://github.com/Yotona/twewy/tree/3f916f1a2d31f29bd7ec6fd89f3a87b696e79b9b) | Platform-independent CRI source. |
 | [dreamingmoths/memory-of-alessa](https://github.com/dreamingmoths/memory-of-alessa/tree/0d12473f368e7f7699732257bdad1372cc2a09af) | MPEG video-input buffers, timestamps and wrapped copies. [MIT notice](LICENSES/memory-of-alessa-MIT.txt). |
+| [Patt92/recvx-native](https://github.com/Patt92/recvx-native/tree/3e73e1ac67655152fe9e591167edbdfc8cd8b001) | CRI streaming flow limits. [MIT notice](LICENSES/recvx-native-MIT.txt). |
+| [kira-502/dotr-decomp](https://github.com/kira-502/dotr-decomp/tree/03cd12eb3a78228b10277a1fdb161998e1c37778) | MPEG read buffers, video DMA tags and VIF packet setup. [CC0 dedication](https://github.com/kira-502/dotr-decomp/blob/03cd12eb3a78228b10277a1fdb161998e1c37778/LICENSE). |
+| [Dorgengoa/RGDecomp](https://github.com/Dorgengoa/RGDecomp/tree/c8c8b3cd9e36826b5378731b93819e1a23fecbfb) | Movie audio buffer write regions. [CC0 dedication](https://github.com/Dorgengoa/RGDecomp/blob/c8c8b3cd9e36826b5378731b93819e1a23fecbfb/LICENSE). |
 
 ### SSL library in the HTTPS overlay
 
