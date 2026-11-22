@@ -85,6 +85,15 @@ class OverlayTests(unittest.TestCase):
         struct.pack_into('<I', data, 0x80, 0x03e00008)
         return data
 
+    def test_gap_label_in_compiled_function(self):
+        import build
+        gap = ['bnel $10, $5, .L00C1113C', 'beq $2, $0, .L00C11140', '  .L00C11140:',
+               'b .L00C11148', 'b .L00C1114C', 'b .L00C22200']
+        funcs = {0xC11130: (0x20, ['  .L00C1113C:', '  .L00C11140:', '  .L00C11148:']),
+                 0xC22200: (8, ['  .L00C22200:'])}
+        self.assertEqual(build.gap_local_bindings(gap, funcs, {0xC11130: 0x18}),
+                         ['PROVIDE(.L00C1113C = 0x00c1113c);'])
+
     def test_mapping_and_archive_padding(self):
         data = self.member()
         t = overlays.parse_mwo3(data,0,0x800,[(0,)*8,(1,0,0x900000,0,0,0x800,7,0x800)])

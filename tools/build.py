@@ -56,6 +56,8 @@ STRIP = "-R .eh_frame -R .rel.eh_frame -R .mdebug -R .mdebug.eabi64"
 
 SPLAT_DIR = os.path.join(project.BUILD, "splat", "asm", "nonmatchings" if project.TARGET == "main" else "matchings", "core", "text")
 SPLAT_SYMBOL = re.compile(r"\b(?:func|D|jtbl)_[0-9A-F]{8}\b")
+SPLAT_LOCAL = re.compile(r"(?<![\w.])\.L([0-9A-F]{8})\b")
+SPLAT_LOCAL_DEF = re.compile(r"\s*\.L([0-9A-F]{8}):\s*")
 INSN = re.compile(r"^\s*/\* [0-9A-F]+ [0-9A-F]{8} [0-9A-F]{8} \*/")
 
 
@@ -78,6 +80,30 @@ def splat_functions():
         if size:
             out[int(m.group(1), 16)] = (size, [l for l in lines if not l.startswith(".align")])
     return out
+
+
+def gap_local_bindings(assembly, splat_funcs, objects):
+    """Resolve gap operands naming a splat label inside a compiled function."""
+    referenced, defined = set(), set()
+    for line in assembly:
+        if '.L' not in line:
+            continue
+        operand = line.split('#', 1)[0]
+        referenced.update(SPLAT_LOCAL.findall(operand))
+        label = SPLAT_LOCAL_DEF.fullmatch(operand)
+        if label:
+            defined.add(label[1])
+    missing = referenced - defined
+    bindings = []
+    if missing:
+        for start, length in objects.items():
+            for line in splat_funcs.get(start, (0, []))[1]:
+                label = SPLAT_LOCAL_DEF.fullmatch(line)
+                if label and label[1] in missing:
+                    address = int(label[1], 16)
+                    if start <= address < start + length:
+                        bindings.append(f'PROVIDE(.L{label[1]} = 0x{address:08x});')
+    return bindings
 
 
 def elf_section(path, name):
@@ -816,7 +842,7 @@ cd "$d/src"
     data_body.append(f"    gaps.o(.data.g{pos:08x})")
     open(os.path.join(OUT, "gaps.s"), "w", newline="\n").write("\n".join(asm) + "\n")
 
-    syms = []
+    syms = gap_local_bindings(asm, splat_funcs, objects)
     referenced = set(undefined)
     for _, body in splat_funcs.values():
         for line in body:
