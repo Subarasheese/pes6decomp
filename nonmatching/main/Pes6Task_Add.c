@@ -6,7 +6,7 @@ extern s32 D_003E9780;
 extern char D_003FAAD0[];
 extern char D_003FAE50[];
 
-void func_00120F70(s32 arg0, u8 arg1, u8 arg2, u8 arg3) {
+void Pes6Task_Add(s32 arg0, u8 arg1, u8 arg2, u8 arg3) {
     u8 pri;
     s32 i;
     char *p;

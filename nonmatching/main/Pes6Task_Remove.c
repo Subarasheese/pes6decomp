@@ -6,7 +6,7 @@ extern char D_003FAE50[];
 extern void *D_003FAE54;
 extern s32 D_003E9780;
 
-void func_00120D00(s32 arg0) {
+void Pes6Task_Remove(s32 arg0) {
     void *n;
 
     if (arg0 != 0) {

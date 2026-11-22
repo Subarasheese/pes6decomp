@@ -42,6 +42,7 @@ sceGsPutDrawEnv = 0x00100D18; // type:func
 sceGsSetDefDBuff = 0x00100E00; // type:func
 sceGsSwapDBuff = 0x00101098; // type:func
 sceGsExecStoreImage = 0x001015E8; // type:func
+sceVu0MulMatrix = 0x00103BB8; // type:func
 sceGsSyncVCallback = 0x00101C78; // type:func
 sceDmaGetEnv = 0x001021D8; // type:func
 sceVuCheckBusy = 0x00102A80; // type:func
@@ -583,6 +584,22 @@ Pes6Settings_Set_B01_b4_w1 = 0x00227E20; // type:func
 Pes6Settings_Get_B01_b3_w1 = 0x00227EB0; // type:func
 Pes6Settings_Set_B01_b3_w1 = 0x00227F30; // type:func
 Pes6Settings_Set_B01_b0_w3 = 0x00228030; // type:func
+
+// Per-frame task list (descriptive names; established from code and from the native port's runtime).
+// Pes6Task_List is the sentinel of a priority-sorted doubly linked list of 16-byte nodes taken from
+// Pes6Task_Pool (0x38 nodes): +0 prev, +4 next, +8 function, +0xC priority (u8), +0xD draw flag (u8).
+// Pes6Task_RunFrame calls every node once a frame, but skips the draw-flagged ones while
+// Pes6Task_SkipDraw is set (Pes6Task_SkipDrawThisFrame; frame-rate fallback in func_00121180).
+Pes6Task_List = 0x003FAE50; // type:data
+Pes6Task_Pool = 0x003FAAD0; // type:data
+Pes6Task_Count = 0x003E9780; // type:data
+Pes6Task_SkipDraw = 0x003E9784; // type:data
+Pes6Task_RunFrame = 0x00120E80; // type:func
+Pes6Task_Add = 0x00120F70; // type:func
+Pes6Task_AddDraw = 0x00120D90; // type:func
+Pes6Task_Remove = 0x00120D00; // type:func
+Pes6Task_Init = 0x00120DA0; // type:func
+Pes6Task_SkipDrawThisFrame = 0x00120CF0; // type:func
 
 // Scene and module management (established from code and runtime state; descriptive, not original symbols).
 // Pes6SceneStack holds three {scene id, frame count} levels; level 0 picks the top-level handler:

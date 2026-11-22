@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern void func_00120450(void);
-extern void func_00120E80(void);
+extern void Pes6Task_RunFrame(void);
 extern void func_00120290(s32, s32);
 extern void func_00120240(void);
 extern void Pes6Scene_Dispatch(void);
@@ -22,7 +22,7 @@ s32 func_001201B0(s32 arg0, s32 arg1) {
         if (D_003F77A4[0] == 0) {
             Pes6Scene_Dispatch();
         }
-        func_00120E80();
+        Pes6Task_RunFrame();
         func_001210E0();
         func_00120450();
     }

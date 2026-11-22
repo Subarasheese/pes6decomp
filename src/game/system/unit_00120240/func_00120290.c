@@ -8,7 +8,7 @@ M2C_UNK func_001204C0();                            /* extern */
 M2C_UNK func_001206C0();                            /* extern */
 M2C_UNK func_001207C0();                            /* extern */
 M2C_UNK func_00120B20();                            /* extern */
-M2C_UNK func_00120DA0();                            /* extern */
+M2C_UNK Pes6Task_Init();                            /* extern */
 M2C_UNK func_00121160();                            /* extern */
 M2C_UNK func_0012FF30();                            /* extern */
 M2C_UNK func_00152340();                            /* extern */
@@ -58,7 +58,7 @@ void func_00120290(s32 arg0, s32 arg1) {
     Pes6Scene_Reset();
     func_00154120();
     func_002E9380();
-    func_00120DA0();
+    Pes6Task_Init();
     func_00153CE0();
     func_002CE1D0();
     func_00112D80();

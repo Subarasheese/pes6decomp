@@ -16,7 +16,7 @@ typedef struct DrawNode {
 /* The four lists' head nodes (only next is used). */
 extern DrawNode D_005E5EC0[4];
 
-void func_00120D90(void (*fn)(void), s32 priority);
+void Pes6Task_AddDraw(void (*fn)(void), s32 priority);
 void func_002D8D80(void);
 void func_002D8CF0(void);
 void func_002D8C60(void);
@@ -24,8 +24,8 @@ void func_002D8BD0(void);
 
 void func_002D8FB0(void)
 {
-    func_00120D90(func_002D8D80, 10);
-    func_00120D90(func_002D8CF0, 10);
-    func_00120D90(func_002D8C60, 10);
-    func_00120D90(func_002D8BD0, 10);
+    Pes6Task_AddDraw(func_002D8D80, 10);
+    Pes6Task_AddDraw(func_002D8CF0, 10);
+    Pes6Task_AddDraw(func_002D8C60, 10);
+    Pes6Task_AddDraw(func_002D8BD0, 10);
 }

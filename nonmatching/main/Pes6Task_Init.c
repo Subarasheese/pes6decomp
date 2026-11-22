@@ -13,7 +13,7 @@ extern M2C_UNK *D_003FAAD0;
 extern M2C_UNK *D_003FAE50;
 extern M2C_UNK *D_003FAE54;
 
-void func_00120DA0(void) {
+void Pes6Task_Init(void) {
     M2C_UNK *var_s0;
     M2C_UNK *var_s0_2;
     s32 var_s1;
