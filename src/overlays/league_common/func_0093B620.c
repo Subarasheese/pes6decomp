@@ -27,14 +27,14 @@ typedef struct {
     Pes6EditPlayerParams params;
 } LeaguePlayer;
 extern LeaguePlayer D_009C9700[];
-extern LeagueSave *func_00228A80(void);
+extern LeagueSave *Pes6SaveData_GetBlockE970(void);
 extern void func_00937C00(u16 slot);
 extern void func_00220240(LeaguePlayer *players, s32 group);
 void func_0093B620(void) {
     u16 slot;
     LeagueSave *save;
     for (slot = 1; slot < 0x11f5; slot++) {
-        save = func_00228A80();
+        save = Pes6SaveData_GetBlockE970();
         if (save) {
             func_00937C00(slot);
             D_009C9700[slot].params.attack = save->players[slot].physical.first;

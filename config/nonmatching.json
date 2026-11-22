@@ -20815,22 +20815,6 @@
   },
   {
    "image": "game",
-   "address": "00992770",
-   "symbol": "func_00992770",
-   "original_sha256": "9aca9e23ecbfe4eec8a9a9071eb5d053b456343c86c90f1cb70e3bd8209a012c",
-   "source": "nonmatching/game/func_00992770.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "203e16c7850c8ab9d6d351792460297c243cd5ff1dbc2d0bd47d3d8724a313d4",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "game",
    "address": "00992900",
    "symbol": "func_00992900",
    "original_sha256": "b54d8bfad30b53816f7454a21d629886e0d59d326a6ab0dc3f2a30594933471e",
@@ -165983,21 +165967,6 @@
    "original_sha256": "3428c5c559e404a971fd743e136ef70bf5a8d457985c3346819cf7ec743ae483",
    "minimum_similarity": 0,
    "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "game",
-   "address": "00B61BD0",
-   "symbol": "func_00B61BD0",
-   "source": "nonmatching/game/func_00B61BD0.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "a577f5c8168cf736738a7b79de5c47a15867619d669edfb56ee0750a65aa9e15",
-   "original_sha256": "691883e758deadee7ebbc18d6bfabdc563b44e340608fc18490d8e1879560978",
-   "minimum_similarity": 0,
-   "review": "Written from the original assembly by an agent (no working draft existed), judged equivalent by tools/equiv.py from the exhibition snapshot and independently re-judged (docs/equivalent.md has cases and coverage); behavioural evidence on test cases, not a semantic-equivalence proof.",
    "known_issues": [
     "Compiled instruction layout differs from the original.",
     "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."

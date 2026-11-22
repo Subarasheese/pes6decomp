@@ -5,7 +5,7 @@ typedef struct {
     Pes6EditPlayerParams added[37];
 } LeagueSave;
 extern Pes6EditPlayerParams *D_003EADCC;
-extern LeagueSave *func_00228A80(void);
+extern LeagueSave *Pes6SaveData_GetBlockE970(void);
 extern const Pes6EditPlayerParams *Pes6Player_GetParams(u16 playerId), *func_00970770(u16 playerId);
 extern void *func_001C4730(void *dest, const void *source, u32 bytes);
 void func_00AF7080(void) {
@@ -73,7 +73,7 @@ void func_00AF7080(void) {
                 table[slot].age = 2;
         }
     }
-    save = func_00228A80();
+    save = Pes6SaveData_GetBlockE970();
     if (!save)
         return;
     for (extra = 0; extra < 37; ++extra) {

@@ -29,10 +29,12 @@ typedef struct {
     CupEntry entries[CUP_TEAMS][CUP_ROUNDS];
     u8 selected[CUP_TEAMS];
     float tabDepth[2];
-    u8 beforeMargins[16];
+    u8 offsetCount;
+    u8 beforeMargins[15];
     float margin, left, right;
     u8 beforeSelection[3];
     u8 selection;
+    u8 mode;
 } CupSetup;
 extern CupSetup *CUP_GET_PAGE(void);
 extern void *func_00973CD0(void *, s32), *func_00973AA0(void *, s32, ...);
@@ -45,9 +47,39 @@ extern float func_001D79A0(void *, u16);
 extern s32 func_001D7A20(void *, BracketPoint *, u16);
 extern void *func_001F08B0(s32), *func_00220EF0(s32, s32);
 extern void *func_009722D0(void *, s32, s32, s32, s32, s32), *func_001B9B30(void *, s32, s32, s32);
-extern void CUP_SET_PHASE(s8), func_0095A980(void), CUP_UPDATE_PAGE(void), CUP_SET_SELECTION(s32),
-    CUP_FINISH_PAGE(void);
+extern void CUP_SET_PHASE(s8), func_0095A980(void), CUP_UPDATE_PAGE(void), CUP_FINISH_PAGE(void);
+#if CUP_ROUNDS > 2
+extern void CUP_SET_SELECTION(s32);
+#endif
+#if CUP_ROUNDS == 2
+extern void func_009720E0(void *, s32);
+extern void func_00972040(void *, u8, s32);
+extern void func_009721F0(void *, BracketPoint *);
+static inline void setBracketSelection(s32 selection) {
+    CupSetup *page;
+    s16 offset = 0;
+    s32 i;
+    BracketPoint position;
+    page = CUP_GET_PAGE();
+    if (!page)
+        return;
+    func_009720E0(page->cursor, page->mode);
+    func_00972040(page->cursor, selection, 0);
+    for (i = 0; i < page->offsetCount; ++i)
+        offset = (s16)(page->tabDepth[i] * -1.0f + (float)offset + 0.0f);
+    position.x = 0.0f;
+    position.y = (float)offset;
+    func_009721F0(page->cursor, &position);
+}
+#endif
 extern const char CUP_TEAM_TEXT[], CUP_SIDE_TEXT[], CUP_CAPTION_TEXT[];
+#if CUP_ROUNDS == 2
+#define CUP_STAGE2_START CUP_FIRST_STAGE
+#define CUP_STAGE2_COUNT (CUP_TEAMS - CUP_FIRST_STAGE - 7)
+#else
+#define CUP_STAGE2_START (2 * CUP_FIRST_STAGE)
+#define CUP_STAGE2_COUNT 2
+#endif
 void CUP_SETUP(void) {
     CupSetup *page = CUP_GET_PAGE();
     BracketPoint point;
@@ -127,6 +159,7 @@ void CUP_SETUP(void) {
             func_001D7880(page->team[i], z);
             func_001D7880(page->marker[i], z);
         }
+#if CUP_ROUNDS > 2
         for (i = 0; i < CUP_FIRST_STAGE; i++) {
             float z;
             func_00973940(page->root, 12, (u16)(i + 19 + CUP_FIRST_STAGE), &point);
@@ -136,32 +169,35 @@ void CUP_SETUP(void) {
             func_001D7880(page->team[i + CUP_FIRST_STAGE], z);
             func_001D7880(page->marker[i + CUP_FIRST_STAGE], z);
         }
-        for (i = 0; i < 2; i++) {
+#endif
+        for (i = 0; i < CUP_STAGE2_COUNT; i++) {
             float z;
-            func_00973940(page->root, 13, (u16)(i + 19 + 2 * CUP_FIRST_STAGE), &point);
-            func_00973C70(page->team[i + 2 * CUP_FIRST_STAGE], &point);
-            func_00973C70(page->marker[i + 2 * CUP_FIRST_STAGE], &point);
-            z = func_001D79A0(page->stages[2], (u16)(i + 19 + 2 * CUP_FIRST_STAGE));
-            func_001D7880(page->team[i + 2 * CUP_FIRST_STAGE], z);
-            func_001D7880(page->marker[i + 2 * CUP_FIRST_STAGE], z);
+            func_00973940(page->root, 13, (u16)(i + 19 + CUP_STAGE2_START), &point);
+            func_00973C70(page->team[i + CUP_STAGE2_START], &point);
+            func_00973C70(page->marker[i + CUP_STAGE2_START], &point);
+            z = func_001D79A0(page->stages[2], (u16)(i + 19 + CUP_STAGE2_START));
+            func_001D7880(page->team[i + CUP_STAGE2_START], z);
+            func_001D7880(page->marker[i + CUP_STAGE2_START], z);
         }
         for (i = 0; i < 3; i++) {
             float z;
-            func_00973940(page->root, 17, (u16)(i + 21 + 2 * CUP_FIRST_STAGE), &point);
-            func_00973C70(page->team[i + 2 * CUP_FIRST_STAGE + 2], &point);
-            func_00973C70(page->marker[i + 2 * CUP_FIRST_STAGE + 2], &point);
-            z = func_001D79A0(page->stages[6], (u16)(i + 21 + 2 * CUP_FIRST_STAGE));
-            func_001D7880(page->team[i + 2 * CUP_FIRST_STAGE + 2], z);
-            func_001D7880(page->marker[i + 2 * CUP_FIRST_STAGE + 2], z);
+            func_00973940(page->root, 17, (u16)(i + 19 + CUP_STAGE2_START + CUP_STAGE2_COUNT),
+                          &point);
+            func_00973C70(page->team[i + CUP_STAGE2_START + CUP_STAGE2_COUNT], &point);
+            func_00973C70(page->marker[i + CUP_STAGE2_START + CUP_STAGE2_COUNT], &point);
+            z = func_001D79A0(page->stages[6], (u16)(i + 19 + CUP_STAGE2_START + CUP_STAGE2_COUNT));
+            func_001D7880(page->team[i + CUP_STAGE2_START + CUP_STAGE2_COUNT], z);
+            func_001D7880(page->marker[i + CUP_STAGE2_START + CUP_STAGE2_COUNT], z);
         }
         for (i = 0; i < 4; i++) {
             float z;
-            func_00973940(page->root, 18, (u16)(i + 24 + 2 * CUP_FIRST_STAGE), &point);
-            func_00973C70(page->team[i + 2 * CUP_FIRST_STAGE + 5], &point);
-            func_00973C70(page->marker[i + 2 * CUP_FIRST_STAGE + 5], &point);
-            z = func_001D79A0(page->stages[7], (u16)(i + 24 + 2 * CUP_FIRST_STAGE));
-            func_001D7880(page->team[i + 2 * CUP_FIRST_STAGE + 5], z);
-            func_001D7880(page->marker[i + 2 * CUP_FIRST_STAGE + 5], z);
+            func_00973940(page->root, 18, (u16)(i + 22 + CUP_STAGE2_START + CUP_STAGE2_COUNT),
+                          &point);
+            func_00973C70(page->team[i + CUP_STAGE2_START + CUP_STAGE2_COUNT + 3], &point);
+            func_00973C70(page->marker[i + CUP_STAGE2_START + CUP_STAGE2_COUNT + 3], &point);
+            z = func_001D79A0(page->stages[7], (u16)(i + 22 + CUP_STAGE2_START + CUP_STAGE2_COUNT));
+            func_001D7880(page->team[i + CUP_STAGE2_START + CUP_STAGE2_COUNT + 3], z);
+            func_001D7880(page->marker[i + CUP_STAGE2_START + CUP_STAGE2_COUNT + 3], z);
         }
         tab = func_00973CD0(page->root, 10);
         for (i = 0; i < 2; i++) {
@@ -183,7 +219,11 @@ void CUP_SETUP(void) {
         page->background = func_001B9B30(page->root, 0, 0, 1);
         func_0095A980();
         CUP_UPDATE_PAGE();
+#if CUP_ROUNDS == 2
+        setBracketSelection(page->selection);
+#else
         CUP_SET_SELECTION(page->selection);
+#endif
         CUP_FINISH_PAGE();
     }
 }
