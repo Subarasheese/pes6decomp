@@ -620,6 +620,16 @@ Pes6MatchFlow_SetState = 0x009E1D30; // type:func
 Pes6MatchFlow_UpdateLevel2 = 0x00BE9C30; // type:func
 Pes6MatchFlow_SetUpForMode = 0x00BEA1D0; // type:func
 
+// Frame timing: Timer 1 counts the bus clock / 256 (576000 Hz). Pes6FrameTimer_TicksPerFrame is a 2x2
+// table of ticks per video frame (9609.6 = 59.94 Hz, 11520 = 50 Hz, and a slower variant of each);
+// Pes6FrameTimer_Measure turns the Timer 1 count into whole video frames elapsed.
+Pes6FrameTimer_TicksPerFrame = 0x003D28A0; // type:data
+Pes6FrameTimer_ElapsedFrames = 0x00529AB0; // type:data
+Pes6FrameTimer_FramesPerTick = 0x00529AB4; // type:data
+Pes6FrameTimer_GetElapsedFrames = 0x001CDB50; // type:func
+Pes6FrameTimer_Measure = 0x001CDB60; // type:func
+Pes6FrameTimer_SetRate = 0x001CDBD0; // type:func
+
 // Scene and module management (established from code and runtime state; descriptive, not original symbols).
 // Pes6SceneStack holds three {scene id, frame count} levels; level 0 picks the top-level handler:
 // 4 = menus (Pes6Scene_Menu), 8 = match (Pes6Scene_Match).
