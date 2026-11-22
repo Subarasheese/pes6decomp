@@ -1,3 +1,9 @@
 # Compiler-generated runtime calls in the resident newlib objects.
 __floatdidf = 0x0011EF28; // type:func
 __fixdfdi = 0x0011F1D0; // type:func
+# GCC emits these libc and libm calls in the resident CRI middleware. The
+# memcmp target matches the R5900 newlib member. The float wrappers lead
+# to fdlibm's cosine kernel and __ieee754_sqrtf.
+memcmp = 0x001C4698; // type:func
+cosf = 0x0011D138; // type:func
+sqrtf = 0x0011D688; // type:func
