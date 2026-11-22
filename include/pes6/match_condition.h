@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* Fields read by the match condition publishers at 0031C380 and 0031D080. */
+/* Shared state read by the match condition bitset publishers. */
 typedef struct {
     u8 reserved[0x37], side;
 } ConditionSides;
@@ -14,10 +14,12 @@ typedef struct {
 
 typedef struct {
     u8 reserved[5], side;
+    u8 reserved6[0xa], state;
 } ConditionPossession;
 
 typedef struct {
-    u8 reserved[0x44];
+    u8 reserved[0x40];
+    void *clock;
     ConditionSides *sides;
     u8 reserved48[4];
     ConditionMode *event;
