@@ -1,0 +1,3 @@
+// The complete status-name switch includes a branch delay slot and two case
+// return blocks that splat previously split out as separate functions.
+func_00C0FF80 = 0x00C0FF80; // type:func size:0x1A4C

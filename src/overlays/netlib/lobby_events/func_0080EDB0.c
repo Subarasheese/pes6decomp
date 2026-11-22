@@ -1,0 +1,106 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "pes6/m2c.h"
+
+extern s32 func_002DCA50(void);
+s32 func_003710E0(u8, u8, u8, u8, u8);
+s32 func_00842670(u8);
+s32 func_00842680(u8);
+s32 func_00842690(u8, u8, u8, u8, u8, u8, u8, u8);
+s32 func_008426A0(s8);
+s32 func_008426B0(s8);
+s32 func_008426C0(s8);
+extern s32 * func_008472D0(void);
+s32 func_008583E0(s16, s32);
+extern u8 D_003E9E88;
+extern u8 D_003E9E89;
+extern char Pes6MatchContext_Stadium[];
+extern char D_00591BB6[];
+extern char D_00591BB7[];
+extern char D_00591BB8[];
+extern char D_00591BB9[];
+extern char D_00591BBB[];
+extern char D_00591BBD[];
+extern char D_00591BBE[];
+extern char D_00591BBF[];
+extern char D_00591BC0[];
+extern char D_00591BC1[];
+extern char D_00591BC2[];
+extern char D_00591BC3[];
+extern char D_00591BC4[];
+extern char D_00591BC5[];
+extern char D_00591BC6[];
+extern char D_00591BC7[];
+extern char D_00591BC8[];
+extern char D_00591BC9[];
+extern char D_00591BCA[];
+extern char D_00591BCB[];
+extern char D_00591BCE[];
+extern char D_00591DED[];
+extern char D_008B140F[];
+extern char D_008B145C[];
+extern char D_008B1460[];
+
+s32 func_0080EDB0(s32 arg0, char *arg1) {
+    u8 temp_a1;
+    u8 temp_a1_2;
+    u8 temp_a2;
+    u8 temp_a2_2;
+    u8 temp_a3;
+    u8 temp_a3_2;
+    u8 temp_a4;
+    u8 temp_a4_2;
+    u8 temp_a5;
+    u8 temp_a6;
+    u8 temp_a7;
+
+    *(((char *)D_008B140F) + arg0) = M2C_FIELD(arg1, u8 *, 0x22);
+    if (func_002DCA50() == 0) {
+        D_003E9E88 = M2C_FIELD(arg1, u8 *, 8);
+        D_003E9E89 = M2C_FIELD(arg1, u8 *, 9);
+        temp_a4 = M2C_FIELD(arg1, u8 *, 0xA);
+        (*(u8 *)Pes6MatchContext_Stadium) = temp_a4;
+        temp_a3 = M2C_FIELD(arg1, u8 *, 0xB);
+        (*(u8 *)D_00591BB6) = temp_a3;
+        temp_a2 = M2C_FIELD(arg1, u8 *, 0xC);
+        (*(u8 *)D_00591BB7) = temp_a2;
+        temp_a1 = M2C_FIELD(arg1, u8 *, 0xD);
+        (*(u8 *)D_00591BB8) = temp_a1;
+        (*(u8 *)D_00591BB9) = M2C_FIELD(arg1, u8 *, 0xE);
+        (*(u8 *)D_00591BBB) = M2C_FIELD(arg1, u8 *, 0xF);
+        func_003710E0(M2C_FIELD(arg1, u8 *, 0x10), temp_a1, temp_a2, temp_a3, temp_a4);
+        (*(u8 *)D_00591BBD) = M2C_FIELD(arg1, u8 *, 0x11);
+        (*(u8 *)D_00591BBE) = M2C_FIELD(arg1, u8 *, 0x12);
+        (*(u8 *)D_00591BBF) = M2C_FIELD(arg1, u8 *, 0x13);
+        (*(u8 *)D_00591BC0) = M2C_FIELD(arg1, u8 *, 0x14);
+        (*(u8 *)D_00591BC1) = M2C_FIELD(arg1, u8 *, 0x15);
+        (*(u8 *)D_00591BC2) = M2C_FIELD(arg1, u8 *, 0x16);
+        (*(u8 *)D_00591BC3) = M2C_FIELD(arg1, u8 *, 0x17);
+        (*(u8 *)D_00591BC4) = M2C_FIELD(arg1, u8 *, 0x18);
+        temp_a7 = M2C_FIELD(arg1, u8 *, 0x19);
+        (*(u8 *)D_00591BC5) = temp_a7;
+        temp_a6 = M2C_FIELD(arg1, u8 *, 0x1A);
+        (*(u8 *)D_00591BC6) = temp_a6;
+        temp_a5 = M2C_FIELD(arg1, u8 *, 0x1B);
+        (*(u8 *)D_00591BC7) = temp_a5;
+        temp_a4_2 = M2C_FIELD(arg1, u8 *, 0x1C);
+        (*(u8 *)D_00591BC8) = temp_a4_2;
+        temp_a3_2 = M2C_FIELD(arg1, u8 *, 0x1D);
+        (*(u8 *)D_00591BC9) = temp_a3_2;
+        temp_a2_2 = M2C_FIELD(arg1, u8 *, 0x1E);
+        (*(u8 *)D_00591BCA) = temp_a2_2;
+        temp_a1_2 = M2C_FIELD(arg1, u8 *, 0x1F);
+        (*(u8 *)D_00591BCB) = temp_a1_2;
+        (*(u8 *)D_00591BCE) = M2C_FIELD(arg1, u8 *, 0x20);
+        (*(u8 *)D_00591DED) = M2C_FIELD(arg1, u8 *, 0x21);
+        func_00842690(M2C_FIELD(arg1, u8 *, 0x23), temp_a1_2, temp_a2_2, temp_a3_2, temp_a4_2, temp_a5, temp_a6, temp_a7);
+        func_00842680(M2C_FIELD(arg1, u8 *, 0x24));
+        func_00842670(M2C_FIELD(arg1, u8 *, 0x25));
+        func_008426C0(M2C_FIELD(arg1, s8 *, 0x26));
+        func_008426B0(M2C_FIELD(arg1, s8 *, 0x27));
+        func_008426A0(M2C_FIELD(arg1, s8 *, 0x28));
+        (*(s32 *)D_008B1460) = M2C_FIELD(arg1, s32 *, 0x2C);
+        (*(s32 *)D_008B145C) = M2C_FIELD(arg1, s32 *, 0x30);
+    }
+    func_008583E0(*func_008472D0(), 1);
+    return 0;
+}

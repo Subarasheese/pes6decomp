@@ -26,6 +26,46 @@ class OverlayTests(unittest.TestCase):
                          {".L00001008": 0x1008})
         self.assertEqual(build.gap_labels_in_objects(assembly, functions, {}), {})
 
+    def test_separate_jump_tables_require_matching_code_entries_and_padding(self):
+        import build
+        import match
+
+        def words(*values):
+            return struct.pack('<' + 'I' * len(values), *values)
+
+        def section(name, data):
+            return dict(name=name, data=data, size=len(data), alignment=16)
+
+        entry, base = 0x100000, 0x128000
+        addresses = words(0x3c020000, 0x24420000, 0x3c030000, 0x24630000)
+        high, low = match.R_MIPS_HI16, match.R_MIPS_LO16
+        obj = dict(
+            sections=[section('', b''), section('.text', addresses),
+                      section('.rodata', words(0)), section('.rodata', words(8, 12))],
+            symbols=[('', 0, 0, True), ('handler', 0, 1, False),
+                     ('.rodata', 0, 2, True), ('.rodata', 0, 3, True)],
+            relocs={1: [(0, high, 2), (4, low, 2), (8, high, 3), (12, low, 3)],
+                    2: [(0, build.R_MIPS_32, 1)],
+                    3: [(0, build.R_MIPS_32, 1), (4, build.R_MIPS_32, 1)]})
+        code = words(0x3c020013, 0x24428000, 0x3c030013, 0x24638010)
+        tables = words(entry, 0, 0, 0, entry + 8, entry + 12)
+
+        def place(text, data):
+            return build.jump_table_group(obj, [2, 3], entry, entry, text, base, data)
+
+        self.assertEqual(place(code, tables), base)
+        for offset in (0, 4, 16, 20):
+            with self.subTest(table_offset=offset):
+                changed = bytearray(tables)
+                changed[offset] ^= 4
+                self.assertIsNone(place(code, changed))
+        for offset in (4, 12):
+            with self.subTest(code_offset=offset):
+                changed = bytearray(code)
+                changed[offset] ^= 4
+                self.assertIsNone(place(changed, tables))
+        self.assertIsNone(place(code, tables[:-1]))
+
     def test_text_splits_use_only_assembly_in_each_address_range(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(overlays, 'ROOT', Path(directory)):
             root = Path(directory)
@@ -43,6 +83,11 @@ class OverlayTests(unittest.TestCase):
                     (assembly/unit/f'func_{address:08X}.s').touch()
             files = [path.relative_to(assembly).as_posix() for path in overlays.assembly_paths(target, assembly)]
             self.assertEqual(sorted(files), ['core/text/func_00001000.s', 'core/text_00001020/func_00001020.s'])
+            (config/'symbol_addrs.txt').write_text('func_00001020 = 0x1020; // type:func size:0x20\n')
+            for address in (0x1024, 0x103c, 0x1040):
+                (assembly/'core/text_00001020'/f'func_{address:08X}.s').touch()
+            self.assertEqual(sorted(path.name for path in overlays.assembly_paths(target, assembly)),
+                             ['func_00001000.s', 'func_00001020.s', 'func_00001040.s'])
             for invalid in ('0x1000', '0x1011', '0x1060', '0x1040\n0x1020'):
                 with self.subTest(invalid=invalid), self.assertRaises(ValueError):
                     splits.write_text(invalid)
@@ -54,6 +99,15 @@ class OverlayTests(unittest.TestCase):
         data[32:40] = b'test.ovl'
         struct.pack_into('<I', data, 0x80, 0x03e00008)
         return data
+
+    def test_gap_label_in_compiled_function(self):
+        import build
+        gap = ['bnel $10, $5, .L00C1113C', 'beq $2, $0, .L00C11140', '  .L00C11140:',
+               'b .L00C11148', 'b .L00C1114C', 'b .L00C22200']
+        funcs = {0xC11130: (0x20, ['  .L00C1113C:', '  .L00C11140:', '  .L00C11148:']),
+                 0xC22200: (8, ['  .L00C22200:'])}
+        self.assertEqual(build.gap_local_bindings(gap, funcs, {0xC11130: 0x18}),
+                         ['PROVIDE(.L00C1113C = 0x00c1113c);'])
 
     def test_mapping_and_archive_padding(self):
         data = self.member()

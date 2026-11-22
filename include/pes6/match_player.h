@@ -29,7 +29,7 @@ typedef struct Pes6PlayerInfo {
 /* Match player entries (0x240 bytes each) at 0x58E5B0, indexed by match object id (see
    match_objects.h: ids 1-22 are the players). */
 typedef struct Pes6MatchPlayer {
-    u8 id;
+    u8 id;            /* 0x00: match object id */
     u8 pad01[3];
     Pes6PlayerInfo *info; /* 0x04 */
     u8 pad08[0x9];
@@ -38,11 +38,15 @@ typedef struct Pes6MatchPlayer {
     u8 side;          /* 0x13 */
     s16 goalDirection; /* 0x14: signed team-relative direction; see docs/pc_gameplay.md */
     u8 role;          /* 0x16 */
-    u8 pad17[0x13];
+    u8 pad17[5];
+    s32 speed;        /* 0x1C */
+    u8 pad20[0xA];
     u16 angle;        /* 0x2A */
     u8 pad2C[0x3A];
     u8 actionGroup;   /* 0x66 */
-    u8 pad67[0xAD];
+    u8 pad67[0x79];
+    float x, y, z;    /* 0xE0: match-space position */
+    u8 padEC[0x28];
     u32 distance114;  /* 0x114 */
     u8 pad118[0x128];
 } Pes6MatchPlayer;
@@ -50,7 +54,11 @@ typedef struct Pes6MatchPlayer {
 /* A squad player's record (0x348 bytes); the bytes from 0x96 hold 7-bit ability values. */
 typedef struct Pes6SquadPlayer {
     s32 value00;      /* 0x00: checked against -1 by func_00311390 */
-    u8 pad04[0x92];
+    u8 pad04[0x85];
+    u8 : 3;
+    u8 responseStyle : 2; /* 0x89 bits 3 and 4, used by func_00B68390 */
+    u8 : 3;
+    u8 pad8A[0xC];
     u8 ability[0x39]; /* 0x96 */
     u8 flagCF0 : 1;   /* 0xCF bit 0 */
     u8 flagCF1 : 1;   /* 0xCF bit 1 */

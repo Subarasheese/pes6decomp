@@ -1,0 +1,414 @@
+/* compiler: ee-gcc-2.96-G0 */
+/* crashbashash/DW4_Decomp, src/cri/adxt.c (ADXT_StartMemIdx). See THIRD_PARTY.md. */
+
+typedef struct SfdSj SfdSj;
+typedef struct SfdSjChunk {
+    char *data;
+    int len;
+} SfdSjChunk;
+typedef struct SfdSjVtbl {
+    void *queryInterface;
+    void *addRef;
+    void *release;
+    void (*destroy)(SfdSj *sj);
+    int (*getUuid)(SfdSj *sj);
+    void (*reset)(SfdSj *sj);
+    void (*getChunk)(SfdSj *sj, int id, int n, SfdSjChunk *ck);
+    void (*ungetChunk)(SfdSj *sj, int id, SfdSjChunk *ck);
+    void (*putChunk)(SfdSj *sj, int id, SfdSjChunk *ck);
+    int (*getNumData)(SfdSj *sj, int id);
+} SfdSjVtbl;
+struct SfdSj {
+    SfdSjVtbl *vtbl;
+};
+typedef struct SjxObj SjxObj;
+extern SfdSj *func_001765A8(char *buf, int bsize);
+typedef struct LscStm {
+    int id;
+    const char *fname;
+    int fname_sum;
+    void *dir;
+    int ofst;
+    int nsct;
+    int stat;
+    int rdsct;
+} LscStm;
+typedef struct LscObj {
+    signed char used;
+    signed char stat;
+    signed char reading;
+    signed char loop;
+    signed char pause;
+    char rsv1;
+    short rsv2;
+    SfdSj *sj;
+    SfdSjChunk ck;
+    int flow_min;
+    int flow_max;
+    int wpos;
+    int rpos;
+    int nstm;
+    void *stm;
+    int stm_size;
+    int reqsct;
+    int errcnt;
+    LscStm stms[16];
+} LscObj;
+typedef struct AdxPdObj {
+    int used;
+    int id;
+    int mode;
+    int stat;
+    int nblk_decoded;
+    int channels;
+    unsigned char *ibuf;
+    int nblk;
+    short *obufl;
+    short *obufr;
+    short dly[2][2];
+    short k0;
+    short k1;
+    short seed;
+    short mul;
+    short add;
+} AdxPdObj;
+typedef struct AdxDecPara {
+    char *ibuf;
+    int niblk;
+    int nch;
+    int blksize;
+    int blknsmpl;
+    short *pcmbuf;
+    int pcmbsize;
+    int pcmbdist;
+    int wpos;
+    int nroom;
+    int lp_nsmpl;
+    int ndecsmpl;
+} AdxDecPara;
+typedef struct AdxbObj AdxbObj;
+typedef short *(*AdxbGetWrFunc)(void *obj, int *wpos, int *room, int *rest);
+typedef void (*AdxbAddWrFunc)(void *obj, int nbyte, int nsmpl);
+struct AdxbObj {
+    short used;
+    short hdcdflag;
+    int stat;
+    AdxPdObj *xpd;
+    signed char code;
+    signed char bps;
+    signed char nch;
+    signed char blklen;
+    int blknsmpl;
+    int sfreq;
+    int total_nsmpl;
+    short cof;
+    short rsv1;
+    int lp_ins_nsmpl;
+    short nloop;
+    short lp_type;
+    int lp_spos;
+    int lp_sofst;
+    int lp_epos;
+    int lp_eofst;
+    int maxnch;
+    short *pcmbuf;
+    int pcmbsize;
+    int pcmbdist;
+    AdxDecPara dp;
+    AdxbGetWrFunc getwrfunc;
+    void *getwrobj;
+    AdxbAddWrFunc addwrfunc;
+    void *addwrobj;
+    int total_ndecsmpl;
+    int curwpos;
+    int ndecsmpl;
+    int ndeclen;
+    short fmttype;
+    unsigned short def_fmttype;
+    short cdctype;
+    short f158;
+    short k0;
+    short km;
+    short ka;
+    unsigned short xp_key;
+    unsigned short xp_km;
+    unsigned short xp_ka;
+    unsigned short dly1[2];
+    unsigned short dly2[2];
+    void *ahx;
+    int ahx_dec_nsmpl;
+    int ahx_dec_nfrm;
+    void *ac3;
+    int ac3_dec_nsmpl;
+    int ac3_dec_nfrm;
+    int ainf_len;
+    char dataid[16];
+    short def_outvol;
+    short def_pan[2];
+    char pad230[2];
+    struct Pl2Enc *pl2;
+    int pl2_x;
+    int pl2_y;
+    int cb_ndeclen;
+    int rsv;
+    void (*decfunc)(void *context, int count, int bytes);
+    void *decobj;
+};
+typedef struct AdxSjdObj {
+    signed char used;
+    signed char stat;
+    signed char maxnch;
+    signed char empty_end;
+    AdxbObj *adxb;
+    SfdSj *sji;
+    SfdSj *sjo[2];
+    SfdSjChunk cki;
+    SfdSjChunk cko[2];
+    int total_decsmpl;
+    int total_decdtlen;
+    int decpos;
+    int maxdecsmpl;
+    int dtrpsmpl;
+    int dtrpcnt;
+    int dtrpdtlen;
+    void (*dtrpfunc)(void *context);
+    void *dtrpobj;
+    void (*dfltfunc)(void *context, int ch, char *data, int len);
+    void *dfltobj;
+    char hdr[64];
+    int hdrlen;
+    int lnksw;
+    int fill;
+    int skip;
+} AdxSjdObj;
+typedef void (*CvFsErrFn)(void *obj, const char *msg, int code);
+typedef void (*CvFsEntryErrFuncFn)(CvFsErrFn func, void *obj);
+typedef int (*CvFsPathFn)(const char *path);
+typedef int (*CvFsGetFreeSizeFn)(void);
+typedef int (*CvFsOpenFn)(const char *fname, void *atr, int rw);
+typedef void (*CvFsFdFn)(int fd);
+typedef int (*CvFsFdIntFn)(int fd);
+typedef int (*CvFsSeekFn)(int fd, int offset, int origin);
+typedef int (*CvFsXferFn)(int fd, int nsct, void *buf);
+typedef void (*CvFsSetSctLenFn)(int fd, int len);
+typedef int (*CvFsGetNumFilesFn)(void);
+typedef int (*CvFsLoadDirInfoFn)(const char *path, void *work, int nfile);
+typedef int (*CvFsGetFileSizeExFn)(const char *path, int arg);
+typedef int (*CvFsOptFn2)(int fd, int code, int arg);
+typedef struct CvFsVtbl {
+    void (*exec_server)(void);
+    CvFsEntryErrFuncFn entry_err_func;
+    CvFsPathFn get_file_size;
+    CvFsGetFreeSizeFn get_free_size;
+    CvFsOpenFn open;
+    CvFsFdFn close;
+    CvFsSeekFn seek;
+    CvFsFdIntFn tell;
+    CvFsXferFn req_rd;
+    CvFsXferFn req_wr;
+    CvFsFdFn stop_tr;
+    CvFsFdIntFn get_stat;
+    CvFsFdIntFn get_sct_len;
+    CvFsSetSctLenFn set_sct_len;
+    CvFsFdIntFn get_num_tr;
+    CvFsPathFn change_dir;
+    CvFsPathFn is_exist_file;
+    CvFsGetNumFilesFn get_num_files;
+    CvFsLoadDirInfoFn load_dir_info;
+    CvFsFdIntFn get_max_byte_rate;
+    CvFsPathFn make_dir;
+    CvFsPathFn remove_dir;
+    CvFsPathFn delete_file;
+    CvFsGetFileSizeExFn get_file_size_ex;
+    int (*opt_fn1)();
+    CvFsOptFn2 opt_fn2;
+} CvFsVtbl;
+typedef struct CvFsHandle {
+    CvFsVtbl *vtbl;
+    int fd;
+} CvFsHandle;
+typedef struct AdxStmObj {
+    signed char used;
+    signed char stat;
+    signed char rdflg;
+    signed char rtrycnt;
+    SfdSj *sj;
+    CvFsHandle *fd;
+    int fofst;
+    int fsize;
+    int fsctsz;
+    int maxrdsz;
+    int minrdsz;
+    int rdsct;
+    SfdSjChunk rdck;
+    int reqrdsct;
+    int eos;
+    int rdbyte;
+    void (*eosfunc)(void *obj);
+    void *eosobj;
+    int buflen;
+    signed char pause;
+    signed char open_req;
+    signed char close_req;
+    signed char start_req;
+    signed char stop_req;
+    signed char opened;
+    signed char nrmlflg;
+    char f75[5];
+    const char *fname;
+    void *dir;
+    int curpos;
+    int maxsct;
+} AdxStmObj;
+typedef struct AdxAmpObj AdxAmpObj;
+typedef struct DtrObj DtrObj;
+typedef struct Ps2RnaPsj {
+    char used;
+    void *sjrmt;
+    SfdSj *sjuni;
+    SjxObj *sjx;
+    SfdSjChunk ck;
+} Ps2RnaPsj;
+typedef struct Ps2Rna {
+    signed char used;
+    int maxnch;
+    Ps2RnaPsj *psj[2];
+    DtrObj *dtr[2];
+    SfdSj *sjo[2];
+    void *id;
+    int pad36;
+    int ring_size;
+    int psj_bufsize;
+    int sfreq;
+    int sent_sfreq;
+    int outvol;
+    int sent_outvol;
+    int outpan[2];
+    int sent_outpan[2];
+    signed char playsw;
+    signed char sent_playsw;
+    signed char nch;
+    signed char sent_nch;
+    signed char auxsw;
+    signed char sent_auxsw;
+    signed char dualsw;
+    signed char sent_dualsw;
+    signed char transsw;
+    signed char trans_stopped;
+    signed char sent_stopflag;
+    signed char stopflag;
+    int outbalance;
+    int sent_outbalance;
+} Ps2Rna;
+enum AdxtPmode {
+    ADXT_PMODE_FNAME = 0,
+    ADXT_PMODE_AFS = 1,
+    ADXT_PMODE_MEM = 2,
+    ADXT_PMODE_SJ = 3,
+    ADXT_PMODE_SLFILE = 4
+};
+typedef struct AdxtObj {
+    signed char used;
+    signed char stat;
+    signed char pmode;
+    signed char maxnch;
+    AdxSjdObj *sjd;
+    AdxStmObj *stm;
+    Ps2Rna *rna;
+    SfdSj *sjf;
+    SfdSj *sji;
+    SfdSj *sjo[2];
+    char *ibuf;
+    int ibufbsize;
+    int ibufxsize;
+    char *obuf;
+    int obufsize;
+    int obufdist;
+    int svrfreq;
+    short maxsct;
+    short minsct;
+    short outvol;
+    short outpan[2];
+    short outbalance;
+    int maxdecsmpl;
+    int lpcnt;
+    int lp_skiplen;
+    int trp;
+    int wpos;
+    int mofst;
+    short ercode;
+    int edecpos;
+    short edeccnt;
+    short eshrtcnt;
+    signed char lpflg;
+    signed char autorcvr;
+    signed char fltmode;
+    signed char execflag;
+    signed char pstwait_flag;
+    signed char pstready_flag;
+    signed char pause_flag;
+    AdxAmpObj *amp;
+    SfdSj *ampsji[2];
+    SfdSj *ampsjo[2];
+    int time_ofst;
+    int lesct;
+    int trpnsmpl;
+    LscObj *lsc;
+    signed char lnkflg;
+    unsigned int vtime;
+    int vbase;
+    int decofst;
+    int pad_nsmpl;
+    signed char stm_req;
+    char *fnbuf;
+    char *fname;
+    void *dir;
+    int ofst;
+    int nsct;
+} AdxtObj;
+typedef struct AcxEntry {
+    int ofst;
+    int len;
+} AcxEntry;
+typedef struct AcxHeader {
+    int id;
+    int count;
+    AcxEntry ent[1];
+} AcxHeader;
+extern void func_0015B478(const char *msg);
+extern void func_00159E88(void);
+extern void func_00159EA0(void);
+extern char D_003C9138[];
+extern char D_003C9168[];
+extern void func_00165608(AdxtObj *adxt, SfdSj *sji);
+extern void ADXT_Stop(AdxtObj *adxt);
+extern void func_00167C18(AdxtObj *adxt, int sw);
+void func_00168810(AdxtObj *adxt, AcxHeader *acx, int no) {
+    SfdSj *sj;
+    if (((adxt == 0) || (acx == 0)) || (no < 0)) {
+        func_0015B478(D_003C9138);
+        return;
+    }
+    ADXT_Stop(adxt);
+    if ((no >= (((((acx->count >> 24) & 0xff) | ((acx->count >> 8) & 0xff00)) |
+                 ((acx->count << 8) & 0xff0000)) |
+                (acx->count << 24))) ||
+        (no < 0)) {
+        return;
+    }
+    func_00159E88();
+    sj = func_001765A8(((char *)acx) + ((((((acx->ent + no)->ofst >> 24) & 0xff) |
+                                          (((acx->ent + no)->ofst >> 8) & 0xff00)) |
+                                         (((acx->ent + no)->ofst << 8) & 0xff0000)) |
+                                        ((acx->ent + no)->ofst << 24)),
+                       0x40000000);
+    if (sj == 0) {
+        func_00159EA0();
+        func_0015B478(D_003C9168);
+        return;
+    }
+    func_00165608(adxt, sj);
+    adxt->pmode = ADXT_PMODE_MEM;
+    func_00167C18(adxt, 0);
+    func_00159EA0();
+}

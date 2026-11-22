@@ -1,0 +1,8 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "types.h"
+
+extern void func_00809C80(s32, s32);
+
+void func_00809B90(s32 arg0, s32 arg1, s32 arg2) {
+    func_00809C80(arg0, arg2);
+}

@@ -58,6 +58,8 @@ SPLAT_DIR = os.path.join(project.BUILD, "splat", "asm", "nonmatchings" if projec
 SPLAT_SYMBOL = re.compile(r"\b(?:func|D|jtbl)_[0-9A-F]{8}\b")
 INSN = re.compile(r"^\s*/\* [0-9A-F]+ ([0-9A-F]{8}) [0-9A-F]{8} \*/")
 LOCAL_LABEL = re.compile(r"(?<![\w.])\.L[0-9A-Fa-f]{8}(?![\w.])")
+SPLAT_LOCAL = re.compile(r"(?<![\w.])\.L([0-9A-F]{8})\b")
+SPLAT_LOCAL_DEF = re.compile(r"\s*\.L([0-9A-F]{8}):\s*")
 
 
 def splat_functions():
@@ -102,6 +104,30 @@ def gap_labels_in_objects(assembly, functions, objects):
                 if entry <= address < entry + size and int(label[2:], 16) == address:
                     labels[label] = address
     return labels
+
+
+def gap_local_bindings(assembly, splat_funcs, objects):
+    """Resolve gap operands naming a splat label inside a compiled function."""
+    referenced, defined = set(), set()
+    for line in assembly:
+        if '.L' not in line:
+            continue
+        operand = line.split('#', 1)[0]
+        referenced.update(SPLAT_LOCAL.findall(operand))
+        label = SPLAT_LOCAL_DEF.fullmatch(operand)
+        if label:
+            defined.add(label[1])
+    missing = referenced - defined
+    bindings = []
+    if missing:
+        for start, length in objects.items():
+            for line in splat_funcs.get(start, (0, []))[1]:
+                label = SPLAT_LOCAL_DEF.fullmatch(line)
+                if label and label[1] in missing:
+                    address = int(label[1], 16)
+                    if start <= address < start + length:
+                        bindings.append(f'PROVIDE(.L{label[1]} = 0x{address:08x});')
+    return bindings
 
 
 def elf_section(path, name):
@@ -181,7 +207,7 @@ def select_source_objects(parsed, sources, text_end, section_places, resolve=sym
     return status, objects, undefined
 
 
-def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".rodata"):
+def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".rodata", grouped=None):
     """Place a data section only when all original code references agree on its base
     and every relocated byte equals the original loaded data. Supports constants,
     switch tables, callback arrays and GCC exception tables; unknown relocations reject placement."""
@@ -196,8 +222,17 @@ def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".ro
     out = {}
     for addr in addrs:
         path = os.path.join(local, f"func_{addr:08X}.o")
-        blob, srelocs, _ = match.read_object(path, want_symbols=True)
         elf = read_elf(path)
+        parts = ([i for i, s in enumerate(elf["sections"]) if s["name"] == section and s["size"]]
+                 if section == ".rodata" else [])
+        if len(parts) > 1:
+            base = jump_table_group(elf, parts, addr, text_addr, orig_text, data_addr, orig_data)
+            if base is not None:
+                out[addr] = base
+                if grouped is not None:
+                    grouped.add(addr)
+            continue
+        blob, srelocs, _ = match.read_object(path, want_symbols=True)
         indices = {s["name"]: i for i, s in enumerate(elf["sections"])}
         sec_index = indices[section]
         # Jump-table entries refer to this object's code. Callback entries can refer to
@@ -251,7 +286,7 @@ def read_elf(path):
     secs = [struct.unpack_from("<10I", d, shoff + i * shentsize) for i in range(shnum)]
     text = lambda base, off: d[base + off:d.index(b"\0", base + off)].decode()
     names = [text(secs[shstrndx][4], s[0]) for s in secs]
-    sections = [{"name": n, "flags": s[2], "size": s[5],
+    sections = [{"name": n, "flags": s[2], "size": s[5], "alignment": s[8],
                  "data": d[s[4]:s[4] + s[5]] if s[1] != 8 else bytes(s[5])} for n, s in zip(names, secs)]
     symbols, relocs = [], {}
     for s in secs:
@@ -301,6 +336,64 @@ def relocate(obj, index, place, resolve):
             return None
         struct.pack_into("<I", out, off, w)
     return bytes(out)
+
+
+def jump_table_group(obj, parts, addr, text_addr, orig_text, data_addr, orig_data):
+    """Place MWCC's individual switch tables using ELF section indices, including linker padding."""
+    from object_info import aligned_offset
+
+    sections = obj["sections"]
+    text_parts = [i for i, s in enumerate(sections) if s["name"] == ".text" and s["size"]]
+    if len(text_parts) != 1:
+        return None
+    text = text_parts[0]
+    code = sections[text]["data"]
+    start = addr - text_addr
+    if start < 0 or start + len(code) > len(orig_text):
+        return None
+    original_code = orig_text[start:start + len(code)]
+    offsets, size = {}, 0
+    for i in parts:
+        offsets[i] = aligned_offset(size, sections[i]["alignment"])
+        size = offsets[i] + sections[i]["size"]
+    references = obj["relocs"].get(text, [])
+    anchored, bases = set(), set()
+    for j, (hi, kind, symbol) in enumerate(references):
+        _, value, section, _ = obj["symbols"][symbol]
+        if section not in offsets or kind != match.R_MIPS_HI16:
+            continue
+        lo = next((off for off, ty, target in references[j + 1:]
+                   if ty == match.R_MIPS_LO16 and target == symbol), None)
+        if lo is None or max(hi, lo) + 4 > len(code):
+            return None
+        def pointer(raw):
+            upper = struct.unpack_from("<I", raw, hi)[0]
+            lower = struct.unpack_from("<h", raw, lo)[0]
+            return ((upper & 0xffff) << 16) + lower
+        if struct.unpack_from("<I", code, hi)[0] >> 26 != 0x0f:
+            return None
+        bases.add(pointer(original_code) - pointer(code) - value - offsets[section])
+        anchored.add(section)
+    if anchored != set(parts) or len(bases) != 1:
+        return None
+    base = bases.pop()
+    if base < data_addr or base - data_addr + size > len(orig_data):
+        return None
+    places = {text: addr, **{i: base + offset for i, offset in offsets.items()}}
+    data = bytearray(size)
+    for i in parts:
+        if places[i] % max(1, sections[i]["alignment"]):
+            return None
+        if any(kind != R_MIPS_32 or obj["symbols"][symbol][2] != text
+               for _, kind, symbol in obj["relocs"].get(i, [])):
+            return None
+        part = relocate(obj, i, places, symbols.address_of)
+        if part is None:
+            return None
+        data[offsets[i]:offsets[i] + len(part)] = part
+    if orig_data[base - data_addr:base - data_addr + size] != data:
+        return None
+    return base if relocate(obj, text, places, symbols.address_of) == original_code else None
 
 
 def companion_places(obj, addr, text_addr, orig_text, data_addr, orig_data, resolve=symbols.address_of):
@@ -657,10 +750,12 @@ cd "$d/src"
         for section in data_candidates:
             if parsed.get(addr, {}).get("sections", {}).get(section):
                 data_candidates[section].append(addr)
+    grouped_tables = set()
     section_places = {
         section: place_rodata(candidates, data_addr,
                               elf[data_off:data_off + data_size],
-                              elf[text_off:text_off + text_size], text_addr, section=section)
+                              elf[text_off:text_off + text_size], text_addr, section=section,
+                              grouped=grouped_tables)
         for section, candidates in data_candidates.items()
     }
     # C++ objects that bring a vtable bring its companions too (type-info function, implicit
@@ -682,7 +777,13 @@ cd "$d/src"
         for n, section in enumerate(sorted(c["noload"]) + sorted(c["data"])):
             if section.startswith((LINKONCE_CODE, LINKONCE_DATA)):
                 renamed[addr, section] = f".cmp{n}"  # no longer linkonce: ld keeps every copy
-    obj_path = lambda addr: f"{'cobj' if addr in companions else 'obj'}/func_{addr:08X}.o"
+    def obj_path(addr):
+        directory = "obj"
+        if addr in companions:
+            directory = "cobj"
+        elif addr in grouped_tables:
+            directory = "jobj"
+        return f"{directory}/func_{addr:08X}.o"
     ref = lambda addr, section: f"{obj_path(addr)}({renamed.get((addr, section), section)})"
     status, objects, undefined = select_source_objects(
         parsed, sources, text_addr + text_size, section_places)
@@ -747,8 +848,11 @@ cd "$d/src"
     data_body.append(f"    gaps.o(.data.g{pos:08x})")
     open(os.path.join(OUT, "gaps.s"), "w", newline="\n").write("\n".join(asm) + "\n")
 
-    syms = [f'PROVIDE("{label}" = 0x{address:08x});'
-            for label, address in sorted(gap_labels_in_objects(asm, splat_funcs, objects).items())]
+    local_labels = gap_labels_in_objects(asm, splat_funcs, objects)
+    syms = [f'PROVIDE("{label}" = 0x{address:08x});' for label, address in sorted(local_labels.items())]
+    # Labels referenced outside instructions (e.g. jump-table words) are bound by the second pass.
+    syms += [b for b in gap_local_bindings(asm, splat_funcs, objects)
+             if b.split("(", 1)[1].split(" ", 1)[0] not in local_labels]
     referenced = set(undefined)
     for _, body in splat_funcs.values():
         for line in body:
@@ -804,6 +908,14 @@ mips-linux-gnu-as {project.CONFIG['cpu']['as_flags']} gaps.s -o gaps.o 2>&1 | gr
                 lines[n - 1] = f"{m.group(1)}.word 0x{word:08X}  # {lines[n - 1].strip()}"
         open(os.path.join(OUT, "gaps.s"), "w", newline="\n").write("\n".join(lines) + "\n")
         print(f"  {len(bad)} instructions emitted as raw words", flush=True)
+    # The final .data uses SUBALIGN(1) to place independently verified data at exact addresses.
+    # First let ld preserve the natural alignment *between* the tables from a single function.
+    table_inputs = sorted(grouped_tables & (objects.keys() - companions.keys()))
+    if table_inputs:
+        wsl(f'cd "{WSL_DIR}" && mkdir -p jobj\n'
+            "echo 'SECTIONS { .rodata : { *(.rodata) } }' > jobj/tables.ld\n" +
+            "".join(f"mips-linux-gnu-ld -EL -r -T jobj/tables.ld obj/func_{addr:08X}.o "
+                    f"-o jobj/func_{addr:08X}.o\n" for addr in table_inputs))
     wsl(f"""
 d="{WSL_DIR}"
 cd "$d"
