@@ -20403,22 +20403,6 @@
   },
   {
    "image": "formation",
-   "address": "008BB260",
-   "symbol": "func_008BB260",
-   "original_sha256": "4bba8163f070b9ce266db645f12d37c2652bda07f36c73b06de801a72bf0c851",
-   "source": "nonmatching/formation/func_008BB260.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "610a409225fc066c645045cb8936db6b8ca0b74633ec892dba15df2ff260dcb8",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "formation",
    "address": "008BB2A0",
    "symbol": "func_008BB2A0",
    "original_sha256": "9a1447ae34f5d9f9aa910e89959b82e45c67ee53245e421e4a6c88e3809950b0",
