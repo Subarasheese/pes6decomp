@@ -12,17 +12,25 @@ typedef struct Pes6PlayerAppearance {
     u8 value : 7;  /* 0x0D bits 1-7 */
 } Pes6PlayerAppearance;
 
+typedef struct Pes6PlayerFieldState {
+    u8 pad00[3];
+    u8 flag03;
+} Pes6PlayerFieldState;
+
 typedef struct Pes6PlayerInfo {
-    u8 pad00[0x4];
+    Pes6PlayerFieldState *fieldState; /* 0x00 */
     Pes6PlayerAppearance *appearance; /* 0x04 */
-    u8 pad08[0x28];
+    u8 pad08[0x24];
+    u8 active;        /* 0x2C */
+    u8 pad2D[3];
     u16 unk30;        /* 0x30 */
 } Pes6PlayerInfo;
 
 /* Match player entries (0x240 bytes each) at 0x58E5B0, indexed by match object id (see
    match_objects.h: ids 1-22 are the players). */
 typedef struct Pes6MatchPlayer {
-    u8 pad00[0x4];
+    u8 id;
+    u8 pad01[3];
     Pes6PlayerInfo *info; /* 0x04 */
     u8 pad08[0x9];
     u8 slot;          /* 0x11: squad slot */
@@ -32,7 +40,11 @@ typedef struct Pes6MatchPlayer {
     u8 role;          /* 0x16 */
     u8 pad17[0x13];
     u16 angle;        /* 0x2A */
-    u8 pad2C[0x214];
+    u8 pad2C[0x3A];
+    u8 actionGroup;   /* 0x66 */
+    u8 pad67[0xAD];
+    u32 distance114;  /* 0x114 */
+    u8 pad118[0x128];
 } Pes6MatchPlayer;
 
 /* A squad player's record (0x348 bytes); the bytes from 0x96 hold 7-bit ability values. */

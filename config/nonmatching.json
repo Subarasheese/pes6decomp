@@ -97220,21 +97220,6 @@
   },
   {
    "image": "main",
-   "address": "00282F80",
-   "symbol": "func_00282F80",
-   "source": "nonmatching/main/func_00282F80.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "777fef5c21ca389771bc735ea01cad566b7d1ccf99ce99a1f6584fd2ce691b0f",
-   "original_sha256": "c20fed9b27aaccfc6246d4106512ff966e09fc1c3e1e021e87d2cf8d910d6240",
-   "minimum_similarity": 0,
-   "review": "Repaired by an agent from m2c output (the draft failed tools/equiv.py), then judged equivalent by the strengthened tools/equiv.py and independently re-judged (docs/equivalent.md has cases and coverage); compiler/structural checks as for every draft. Behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
    "address": "00284EA0",
    "symbol": "func_00284EA0",
    "source": "nonmatching/main/func_00284EA0.c",
