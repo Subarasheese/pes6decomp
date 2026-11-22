@@ -11,6 +11,28 @@ import project
 
 
 class OverlayTests(unittest.TestCase):
+    def test_text_splits_use_only_assembly_in_each_address_range(self):
+        with tempfile.TemporaryDirectory() as directory, patch.object(overlays, 'ROOT', Path(directory)):
+            root = Path(directory)
+            target = dict(name='sample', code_start=0x1000, code_end=0x1060)
+            config = root/'config/overlays/sample'
+            config.mkdir(parents=True)
+            self.assertEqual(overlays.text_ranges(target), [(0x1000, 0x1060, 'core/text')])
+            splits = config/'text_splits.txt'
+            splits.write_text('# First instruction after the mixed region\n0x1020\n')
+            assembly = root/'assembly'
+            for unit, addresses in [('core/text', [0x1000, 0x1020, 0x1040]),
+                                    ('core/text_00001020', [0x1010, 0x1020, 0x1060])]:
+                (assembly/unit).mkdir(parents=True)
+                for address in addresses:
+                    (assembly/unit/f'func_{address:08X}.s').touch()
+            files = [path.relative_to(assembly).as_posix() for path in overlays.assembly_paths(target, assembly)]
+            self.assertEqual(sorted(files), ['core/text/func_00001000.s', 'core/text_00001020/func_00001020.s'])
+            for invalid in ('0x1000', '0x1011', '0x1060', '0x1040\n0x1020'):
+                with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                    splits.write_text(invalid)
+                    overlays.text_ranges(target)
+
     def member(self):
         data = bytearray(0x180)  # archive padding beyond a 0x100-byte loaded image
         struct.pack_into('<8I', data, 0, 0x336f574d, 1, 0x900000, 0xc0, 0, 0x20, 0x900100, 0x900100)
