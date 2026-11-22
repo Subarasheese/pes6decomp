@@ -30,9 +30,13 @@ typedef struct Pes6MatchPlayer {
     u8 side;          /* 0x13 */
     s16 goalDirection; /* 0x14: signed team-relative direction; see docs/pc_gameplay.md */
     u8 role;          /* 0x16 */
-    u8 pad17[0x13];
+    u8 pad17[5];
+    s32 speed;        /* 0x1C */
+    u8 pad20[0xA];
     u16 angle;        /* 0x2A */
-    u8 pad2C[0x214];
+    u8 pad2C[0xB4];
+    float x, y, z;    /* 0xE0: match-space position */
+    u8 padEC[0x154];
 } Pes6MatchPlayer;
 
 /* A squad player's record (0x348 bytes); the bytes from 0x96 hold 7-bit ability values. */
