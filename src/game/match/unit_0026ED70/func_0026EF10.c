@@ -1,0 +1,313 @@
+/* compiler: mwcc-3.0.1b151 */
+#include "types.h"
+
+typedef struct {
+    u8 reserved00[28];
+    unsigned int : 6;
+    unsigned int skin : 2;
+    unsigned int : 7;
+    unsigned int bits1D_7 : 1;
+    unsigned int : 4;
+    unsigned int bits1E_4 : 4;
+    unsigned int bits1F_0 : 4;
+    unsigned int bits1F_4 : 4;
+    unsigned int hair : 11;
+    unsigned int bits21_3 : 4;
+    unsigned int bits21_7 : 1;
+    unsigned int bits22_0 : 6;
+    unsigned int bits22_6 : 2;
+    unsigned int bits23_0 : 7;
+    unsigned int bits23_7 : 1;
+    unsigned int bits24_0 : 6;
+    unsigned int modelVariant : 2;
+    unsigned int bits25_0 : 2;
+    unsigned int bits25_2 : 2;
+    unsigned int bits25_4 : 4;
+    unsigned int bits26_0 : 3;
+    unsigned int bits26_3 : 2;
+    unsigned int bits26_5 : 3;
+    unsigned int bits27_0 : 2;
+    unsigned int bits27_2 : 3;
+    unsigned int bits27_5 : 2;
+    unsigned int bits27_7 : 1;
+    unsigned int bits28_0 : 3;
+    unsigned int bits28_3 : 2;
+    unsigned int bits28_5 : 11;
+    unsigned int faceType : 2;
+    unsigned int bits2A_2 : 6;
+    unsigned int bits2B_0 : 6;
+    unsigned int bits2B_6 : 2;
+    unsigned int bits2C_0 : 6;
+    unsigned int bits2C_6 : 1;
+    unsigned int bits2C_7 : 1;
+    unsigned int bits2D_0 : 4;
+    unsigned int bits2D_4 : 4;
+    unsigned int bits2E_0 : 4;
+    unsigned int bits2E_4 : 4;
+    unsigned int bits2F_0 : 4;
+    unsigned int bits2F_4 : 4;
+    unsigned int bits30_0 : 4;
+    unsigned int bits30_4 : 4;
+    unsigned int bits31_0 : 4;
+    unsigned int bits31_4 : 3;
+    unsigned int : 1;
+    unsigned int bits32_0 : 3;
+    unsigned int bits32_3 : 3;
+    unsigned int : 2;
+    unsigned int modelIndex : 8;
+    unsigned int : 27;
+    unsigned int bits37_3 : 5;
+    unsigned int bits38_0 : 5;
+    unsigned int bits38_5 : 3;
+    unsigned int bits39_0 : 3;
+    unsigned int bits39_3 : 3;
+    unsigned int bits38_14 : 3;
+    unsigned int bits3A_1 : 3;
+    unsigned int bits3A_4 : 3;
+    unsigned int bits3A_7 : 3;
+    unsigned int bits3B_2 : 3;
+    unsigned int bits3B_5 : 3;
+    unsigned int bits3C_0 : 5;
+    unsigned int bits3C_5 : 3;
+    unsigned int bits3D_0 : 3;
+    unsigned int bits3D_3 : 3;
+    unsigned int bits3C_14 : 3;
+    unsigned int bits3E_1 : 3;
+    unsigned int bits3E_4 : 3;
+    unsigned int bits3E_7 : 3;
+    unsigned int bits3F_2 : 3;
+    unsigned int bits3F_5 : 3;
+    u8 reserved40[76];
+    unsigned int : 2;
+    unsigned int height : 6;
+    u8 reserved8D[4];
+    unsigned int weight : 7;
+    unsigned int : 1;
+    u8 tailToName[0x247 - 0x92];
+    char name[0x348 - 0x247];
+} SquadMember;
+typedef struct {
+    SquadMember players[32];
+} MatchSquad;
+typedef struct {
+    u8 reserved000[12];
+    s32 modelType;
+    u8 reserved010[8];
+    char *name;
+    u8 reserved01C[16];
+    s32 team;
+    u8 reserved030[1];
+    u8 skin;
+    u8 reserved032[1];
+    u8 faceType;
+    u16 hair;
+    u8 field036;
+    u8 field037;
+    u8 field038;
+    u8 height;
+    u8 weight;
+    u8 field03B;
+    u8 field03C;
+    u8 field03D;
+    u8 field03E;
+    u8 field03F;
+    u16 field040;
+    u8 reserved042[2];
+    u8 field044;
+    u8 field045;
+    u8 field046;
+    u8 field047;
+    u8 field048;
+    u8 field049;
+    u8 field04A;
+    u8 field04B;
+    u8 field04C;
+    u8 field04D;
+    u8 field04E;
+    u8 field04F;
+    u8 field050;
+    u8 field051;
+    u8 field052;
+    u8 field053;
+    u8 field054;
+    u8 field055;
+    u8 field056;
+    u8 field057;
+    u8 field058;
+    u8 reserved059[343];
+    u8 field1B0;
+    u8 field1B1;
+    u8 field1B2;
+    u8 field1B3;
+    u8 field1B4;
+    u8 field1B5;
+    u8 field1B6;
+    u8 field1B7;
+    u8 field1B8;
+    u8 field1B9;
+    u8 reserved1BA[56];
+    u8 field1F2;
+    u8 field1F3;
+    u8 reserved1F4[1];
+    u8 field1F5;
+    u8 field1F6;
+    u8 field1F7;
+    u8 reserved1F8[1];
+    u8 field1F9;
+    u8 field1FA;
+    u8 reserved1FB[2];
+    u8 field1FD;
+    u8 field1FE;
+    u8 field1FF;
+    u8 reserved200[1];
+    u8 field201;
+    u8 field202;
+    u8 field203;
+    u8 field204;
+    u8 field205;
+    u8 field206;
+    u8 isCaptain;
+    u8 field208;
+    u8 reserved209[1];
+    u8 field20A;
+    u8 reserved20B[6];
+    u8 field211;
+    u8 reserved212[1];
+    u8 field213;
+    u8 field214;
+    u8 field215;
+    u8 field216;
+    u8 field217;
+    u8 field218;
+    u8 field219;
+} PlayerModel;
+typedef struct {
+    PlayerModel *model;
+    u8 reserved04[5];
+    u8 dirty;
+} PlayerModelInfo;
+typedef struct {
+    u8 reserved00[4];
+    PlayerModelInfo *info;
+    u8 reserved08[9];
+    u8 slot, team;
+} MatchPlayer;
+typedef struct {
+    u8 slot;
+    u8 rest[0x8A];
+} CaptainSelection;
+extern CaptainSelection D_00591A96[];
+extern MatchSquad Pes6MatchSquads[2];
+#define SQUAD_RECORD(player) (Pes6MatchSquads[(player)->team].players[(player)->slot])
+extern u8 func_00295290(void);
+extern void func_0027A770(void);
+/* Expand the packed squad record into the live player appearance model. */
+void func_0026EF10(MatchPlayer *player) {
+    volatile PlayerModel *model;
+    PlayerModelInfo *info = player->info;
+    model = info->model;
+    model->team = player->team;
+    model->field03B = 0;
+    model->skin = SQUAD_RECORD(player).skin;
+    model->field040 = SQUAD_RECORD(player).bits28_5;
+    model->field037 = SQUAD_RECORD(player).bits23_0;
+    model->field038 = SQUAD_RECORD(player).bits24_0;
+    model->hair = SQUAD_RECORD(player).hair;
+    model->faceType = SQUAD_RECORD(player).faceType;
+    if (SQUAD_RECORD(player).modelVariant == 1)
+        model->field1FF = 0;
+    if (SQUAD_RECORD(player).modelVariant == 2)
+        model->field1FF = 1;
+    model->field201 = SQUAD_RECORD(player).bits1D_7;
+    model->field036 = SQUAD_RECORD(player).bits22_0;
+    model->field1F3 = SQUAD_RECORD(player).bits31_4;
+    model->field1F2 = SQUAD_RECORD(player).modelIndex + 1;
+    model->height = SQUAD_RECORD(player).height + 148;
+    model->weight = SQUAD_RECORD(player).weight;
+    model->field03C = SQUAD_RECORD(player).bits1F_0;
+    model->field03D = SQUAD_RECORD(player).bits1E_4;
+    model->field1B1 = SQUAD_RECORD(player).bits1F_4;
+    model->field1B0 = SQUAD_RECORD(player).bits2D_0;
+    model->field1B4 = SQUAD_RECORD(player).bits2D_4;
+    model->field1B6 = SQUAD_RECORD(player).bits2E_0;
+    model->field1B5 = SQUAD_RECORD(player).bits2E_4;
+    model->field1B7 = SQUAD_RECORD(player).bits2F_0;
+    model->field1B8 = SQUAD_RECORD(player).bits2F_4;
+    model->field1B9 = SQUAD_RECORD(player).bits30_0;
+    model->field1B2 = SQUAD_RECORD(player).bits30_4;
+    model->field1B3 = SQUAD_RECORD(player).bits31_0;
+    model->field1F5 = SQUAD_RECORD(player).bits23_7;
+    model->field1F6 = SQUAD_RECORD(player).bits32_3;
+    model->field211 = SQUAD_RECORD(player).bits25_0;
+    model->field1F7 = SQUAD_RECORD(player).bits32_0;
+    model->field208 = SQUAD_RECORD(player).bits26_3;
+    model->field213 = SQUAD_RECORD(player).bits26_5;
+    model->field215 = SQUAD_RECORD(player).bits27_2;
+    model->field206 = SQUAD_RECORD(player).bits27_7;
+    model->field216 = SQUAD_RECORD(player).bits28_0;
+    model->field214 = SQUAD_RECORD(player).bits26_0;
+    model->field205 = SQUAD_RECORD(player).bits2B_6;
+    model->field217 = SQUAD_RECORD(player).bits2A_2;
+    model->field218 = SQUAD_RECORD(player).bits2B_0;
+    model->field219 = SQUAD_RECORD(player).bits2C_0;
+    if (model->modelType == 0)
+        model->field1FE = 1;
+    else if (func_00295290())
+        model->field1FE = SQUAD_RECORD(player).bits2C_7;
+    else
+        model->field1FE = 0;
+    if (!model->field1FE && !model->field1FF)
+        model->field204 = SQUAD_RECORD(player).bits27_0;
+    else
+        model->field204 = 0;
+    if (model->field1FE)
+        model->field205 = 0;
+    else
+        model->field205 = SQUAD_RECORD(player).bits2B_6;
+    if (func_00295290())
+        model->field202 = SQUAD_RECORD(player).bits21_7;
+    else
+        model->field202 = 0;
+    if (model->field202)
+        model->field203 = 0;
+    else
+        model->field203 = SQUAD_RECORD(player).bits25_2;
+    model->field1FD = SQUAD_RECORD(player).bits28_3;
+    model->field20A = SQUAD_RECORD(player).bits2C_6;
+    model->field03E = SQUAD_RECORD(player).bits25_4;
+    model->field03F = SQUAD_RECORD(player).bits27_5;
+    model->field1F9 = SQUAD_RECORD(player).bits22_6;
+    model->field1FA = SQUAD_RECORD(player).bits21_3;
+    model->field044 = SQUAD_RECORD(player).bits38_0;
+    model->field045 = SQUAD_RECORD(player).bits37_3;
+    model->field046 = SQUAD_RECORD(player).bits3D_3;
+    model->field047 = SQUAD_RECORD(player).bits3B_2;
+    model->field048 = SQUAD_RECORD(player).bits3C_0;
+    model->field049 = SQUAD_RECORD(player).bits3E_4;
+    model->field04A = SQUAD_RECORD(player).bits3F_5;
+    model->field04B = SQUAD_RECORD(player).bits3A_1;
+    model->field04C = SQUAD_RECORD(player).bits3A_7;
+    model->field04D = SQUAD_RECORD(player).bits3A_4;
+    model->field04E = SQUAD_RECORD(player).bits38_5;
+    model->field04F = SQUAD_RECORD(player).bits39_0;
+    model->field050 = SQUAD_RECORD(player).bits39_3;
+    model->field051 = SQUAD_RECORD(player).bits38_14;
+    model->field052 = SQUAD_RECORD(player).bits3E_1;
+    model->field053 = SQUAD_RECORD(player).bits3C_14;
+    model->field054 = SQUAD_RECORD(player).bits3B_5;
+    model->field055 = SQUAD_RECORD(player).bits3D_0;
+    model->field056 = SQUAD_RECORD(player).bits3C_5;
+    model->field057 = SQUAD_RECORD(player).bits3F_2;
+    model->field058 = SQUAD_RECORD(player).bits3E_7;
+    if (model->field047 < 5)
+        model->field046 *= 2;
+    else
+        model->field046 = model->field046 * 2 + 1;
+    model->name = Pes6MatchSquads[model->team].players[player->slot].name;
+    if (player->slot == D_00591A96[model->team].slot)
+        model->isCaptain = 1;
+    else
+        model->isCaptain = 0;
+    info->dirty = 0;
+    func_0027A770();
+}
