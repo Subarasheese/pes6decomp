@@ -129,3 +129,17 @@ and describes its treatment of reconstructed SDK code and RAC3 contributions
 in its [third-party notices](https://github.com/OpenRAC/rac-deadlocked-decomp/blob/0860662c5e1c57c2e1f776dd84b7257cc734f22a/THIRD_PARTY_NOTICES.md).
 The PES packet reader also uses the ICO reconstruction of `sce/libmpeg/pack.c`
 and the MIT notice linked above.
+
+The CRI audio and virtual file routines also use the
+[3rd Strike reconstruction](https://github.com/crowded-street/3s-decomp/tree/be9b9bc69dc19822a8eca9ce3e72ba560d5a3835/src/anniversary/cri),
+the [Code Veronica X reconstruction](https://github.com/fmil95/recvx-decomp/tree/23bc6cb06c1b0e1093eeba0abca566dadec69a64/src/cri),
+and the [Persona 4 reconstruction](https://github.com/Raikaru/Persona4-Decompilation/tree/3a2814000d25d16a1aba5ece57d9a098814b0ccc/src/cri).
+The [3rd Strike AGPL notice](LICENSES/3s-decomp-AGPL-3.0.txt) and the
+[Code Veronica X MIT notice](LICENSES/recvx-MIT.txt) are included.
+The GCC exception-frame source identifies the original GCC runtime and the
+[Gran Turismo 4 source](https://github.com/gustavocanepa/gt4-decomp/tree/0bf836499a295edd7e087f90e8ca01961e639da2/src/runtime)
+used for comparison.
+
+The DMA channel and graphics functions credit the corresponding C units in the
+[King's Field IV reconstruction](https://github.com/Voicedrew11/kfiv-decomp/tree/09adc15974b2936b09943d2a55cc29fa472a79b2/src/sce).
+Its [MIT notice](LICENSES/kfiv-MIT.txt) is included.

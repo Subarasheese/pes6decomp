@@ -1,32 +1,6 @@
 /* compiler: ee-gcc-2.9-as210-G0 */
 /* libmpeg pack header, adapted from ico/sce/libmpeg/pack.c. See LICENSES/ico-MIT.txt. */
-#include "types.h"
-
-typedef struct {
-    s64 bits;
-    s64 position;
-    u8 *base, *next;
-    s32 remaining;
-    u8 *wrap, *end;
-    s32 ringSize;
-} MpegBitReader;
-static inline void flush_bits(MpegBitReader *bs, s32 n) {
-    bs->bits <<= n;
-    bs->remaining -= n;
-    while (bs->remaining < 57) {
-        bs->bits |= (s64)*bs->next++ << (56 - bs->remaining);
-        if (bs->next >= bs->end)
-            bs->next = bs->wrap;
-        bs->remaining += 8;
-    }
-    bs->position += n;
-}
-
-static inline u32 read_bits(MpegBitReader *bs, s32 n) {
-    u32 value = (u64)bs->bits >> (64 - n);
-    flush_bits(bs, n);
-    return value;
-}
+#include "pes6/mpeg_bit_reader.h"
 
 typedef struct {
     s32 scrExt;
@@ -55,13 +29,11 @@ int func_008FD960(MpegBitReader *bs, PackHeader *pkt) {
         read_bits(bs, 0x8);
     }
     last = (u32)((u64)bs->bits >> 32);
-    if (last != 0x1BB)
-        goto unset;
-    pkt->hasSysHdr = 1;
-    func_008FD790(bs, pkt);
-    goto end;
-unset:
-    pkt->hasSysHdr = 0;
-end:
+    if (last == 0x1BB) {
+        pkt->hasSysHdr = 1;
+        func_008FD790(bs, pkt);
+    } else {
+        pkt->hasSysHdr = 0;
+    }
     return 1;
 }

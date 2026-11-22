@@ -1,16 +1,8 @@
 /* compiler: ee-gcc-2.9-as210-G0 */
 /* The pack parser follows the libmpeg reconstruction in ico/sce/libmpeg/pack.c.
  * See LICENSES/ico-MIT.txt. */
-#include "types.h"
+#include "pes6/mpeg_bit_reader.h"
 
-typedef struct {
-    s64 bits;
-    s64 position;
-    u8 *base, *next;
-    s32 remaining;
-    u8 *wrap, *end;
-    s32 ringSize;
-} MpegBitReader;
 typedef struct {
     s64 id;
     s32 length, scramble;
@@ -19,24 +11,6 @@ typedef struct {
 } PesPkt;
 extern void func_00900500(void *mpeg, const char *message);
 extern char D_00902200[];
-
-static inline void flush_bits(MpegBitReader *bs, s32 n) {
-    bs->bits <<= n;
-    bs->remaining -= n;
-    while (bs->remaining < 57) {
-        bs->bits |= (s64)*bs->next++ << (56 - bs->remaining);
-        if (bs->next >= bs->end)
-            bs->next = bs->wrap;
-        bs->remaining += 8;
-    }
-    bs->position += n;
-}
-
-static inline u32 read_bits(MpegBitReader *bs, s32 n) {
-    u32 value = (u64)bs->bits >> (64 - n);
-    flush_bits(bs, n);
-    return value;
-}
 
 static inline void skip_bytes(MpegBitReader *bs, s32 bytes) {
     bs->bits = 0;
