@@ -11,6 +11,38 @@ import project
 
 
 class OverlayTests(unittest.TestCase):
+    def test_gp_literal_requires_consistent_loads_and_complete_pool(self):
+        import build
+        import match
+
+        entry, gp, pool = 0x800000, 0x3f0000, 0x3e8010
+        single = 0xc7800000  # lwc1 through gp
+        data = struct.pack("<ff", 1062.5, -3.75)
+
+        def place(displacements, loads=(single, single), literal=data, kind=match.R_MIPS_LITERAL,
+                  symbol_offset=4, alignment=4):
+            # The first use contains an addend and the second uses a symbol inside the pool.
+            compiled = struct.pack("<II", loads[0] | 4, loads[1])
+            original = struct.pack("<II", *(op | (offset & 0xffff)
+                                            for op, offset in zip(loads, displacements)))
+            sections = [dict(name=".text", data=compiled, size=8, alignment=4),
+                        dict(name=".lit4", data=data, size=8, alignment=alignment)]
+            obj = dict(sections=sections, symbols=[(".lit4", 0, 1, True), ("second", symbol_offset, 1, True)],
+                       relocs={0: [(0, kind, 0), (4, kind, 1)]})
+            return build.literal_pool_address(obj, 1, entry, entry, original, gp, [(pool, literal)])
+
+        offsets = (pool + 4 - gp,) * 2
+        for kind in (match.R_MIPS_LITERAL, match.R_MIPS_GPREL16):
+            self.assertEqual(place(offsets, kind=kind), pool)
+        self.assertIsNone(place((offsets[0], offsets[1] + 4)))
+        self.assertIsNone(place(offsets, literal=data[4:] + data[4:]))
+        self.assertIsNone(place(offsets, literal=data[:-1]))
+        self.assertIsNone(place(offsets, kind=match.R_MIPS_LO16))
+        self.assertIsNone(place(offsets, loads=(single, 0xc4400000)))  # different base register
+        self.assertIsNone(place(offsets, loads=(single, 0xd7800000)))  # doubleword exceeds pool
+        self.assertIsNone(place(offsets, symbol_offset=8))
+        self.assertIsNone(place(offsets, alignment=32))
+
     def test_referenced_local_label_inside_compiled_function(self):
         import build
         assembly = ["    /* 40 00001040 00000000 */ b .L00001008",

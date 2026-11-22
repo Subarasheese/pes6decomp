@@ -22,6 +22,7 @@ summary plus every function that does not survive the link.
 import argparse
 import csv
 import datetime
+import functools
 import glob
 import hashlib
 import json
@@ -207,6 +208,61 @@ def select_source_objects(parsed, sources, text_end, section_places, resolve=sym
     return status, objects, undefined
 
 
+@functools.lru_cache(maxsize=1)
+def resident_data_for_overlay():
+    """Only MWo3 members share the resident executable's literal pool."""
+    if project.TARGET == "main" or project.target["kind"] != "mwo3":
+        return []
+    game = project.RESIDENT_GAME
+    raw = Path(project.path(game["executable"])).read_bytes()
+    if overlays.sha(raw) != overlays.MAIN_SHA1:
+        raise ValueError("Expected the PAL resident executable for shared literals")
+    start = game["text_end"]
+    for kind, off, addr, _, size, _, _, _ in overlays.elf_segments(raw):
+        if kind == 1 and addr <= start < addr + size:
+            return [(start, raw[off + start - addr:off + size])]
+    raise ValueError("Resident data is outside the file-backed ELF segments")
+
+
+def literal_pool_address(obj, index, address, text_addr, orig_text, gp, data_ranges):
+    """Recover a pooled section's base from every GP-relative load and check its complete data."""
+    section = obj["sections"][index]
+    unit = {".lit4": 4, ".lit8": 8}[section["name"]]
+    if not section["size"] or section["size"] % unit or obj["relocs"].get(index):
+        return None
+    bases = set()
+    for code_index, relocs in obj["relocs"].items():
+        code = obj["sections"][code_index]
+        for offset, kind, symbol in relocs:
+            _, value, section_index, _ = obj["symbols"][symbol]
+            if section_index != index:
+                continue
+            pos = address - text_addr + offset
+            if (kind not in (match.R_MIPS_LITERAL, match.R_MIPS_GPREL16) or code["name"] != ".text" or offset % 4
+                    or offset + 4 > len(code["data"]) or not 0 <= pos <= len(orig_text) - 4):
+                return None
+            word = struct.unpack_from("<I", code["data"], offset)[0]
+            original = struct.unpack_from("<I", orig_text, pos)[0]
+            load_size = {0x23: 4, 0x27: 4, 0x31: 4, 0x35: 8, 0x37: 8}.get(word >> 26)
+            if word >> 16 != original >> 16 or (word >> 21) & 31 != 28 or load_size is None:
+                return None
+            addend = value + struct.unpack("<h", struct.pack("<H", word & 0xffff))[0]
+            displacement = struct.unpack("<h", struct.pack("<H", original & 0xffff))[0]
+            if addend % load_size or not 0 <= addend <= section["size"] - load_size:
+                return None
+            bases.add(gp + displacement - addend)
+    if len(bases) != 1:
+        return None
+    base = bases.pop()
+    if base % max(unit, section["alignment"]):
+        return None
+    for start, data in data_ranges:
+        offset = base - start
+        if offset >= 0 and data[offset:offset + section["size"]] == section["data"]:
+            return base
+    return None
+
+
 def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".rodata", grouped=None):
     """Place a data section only when all original code references agree on its base
     and every relocated byte equals the original loaded data. Supports constants,
@@ -219,10 +275,21 @@ def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".ro
     wsl(f'cd "{WSL_DIR}/obj" && cp {names} {to_wsl(local)}/\n')
     sext = lambda v: (v & 0xFFFF) - 0x10000 if v & 0x8000 else v & 0xFFFF
     word = lambda a: struct.unpack_from("<I", orig_text, a - text_addr)[0]
+    pools = section in (".lit4", ".lit8")
+    if pools:
+        data_ranges = [(data_addr, orig_data), *resident_data_for_overlay()]
     out = {}
     for addr in addrs:
         path = os.path.join(local, f"func_{addr:08X}.o")
         elf = read_elf(path)
+        if pools:
+            indices = [i for i, s in enumerate(elf["sections"]) if s["name"] == section and s["size"]]
+            if len(indices) == 1:
+                base = literal_pool_address(elf, indices[0], addr, text_addr, orig_text,
+                                            project.CONFIG["game"]["gp"], data_ranges)
+                if base is not None:
+                    out[addr] = base
+            continue
         parts = ([i for i, s in enumerate(elf["sections"]) if s["name"] == section and s["size"]]
                  if section == ".rodata" else [])
         if len(parts) > 1:
@@ -745,7 +812,7 @@ cd "$d/src"
 
     # Validate each current source's data before selecting covering groups. A
     # rejected parent must not suppress usable standalone sources that follow it.
-    data_candidates = {".rodata": [], ".data": [], ".gcc_except_table": []}
+    data_candidates = {".rodata": [], ".data": [], ".gcc_except_table": [], ".lit4": [], ".lit8": []}
     for addr in sources:
         for section in data_candidates:
             if parsed.get(addr, {}).get("sections", {}).get(section):
@@ -792,7 +859,7 @@ cd "$d/src"
                   for addr, base in placed.items() if addr in objects]
     data_plan, shared, end = [], [], data_addr
     for addr, section, base in sorted(placements, key=lambda item: item[2]):
-        if base < end:
+        if base < end or base >= data_addr + data_size:
             # Sharing is safe only after the independent original-byte check.
             shared.append((addr, section, base))
             continue
