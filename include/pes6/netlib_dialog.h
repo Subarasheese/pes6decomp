@@ -4,7 +4,8 @@
 #include "types.h"
 
 typedef struct {
-    u8 pad0[0x3C];
+    u8 missingMessage;
+    u8 pad01[0x3C - 1];
     s32 mode3C;
     u8 pad40[0x2C];
     s32 mode6C;
