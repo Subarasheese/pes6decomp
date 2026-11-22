@@ -2,7 +2,7 @@
 #include "types.h"
 
 extern s32 func_001540E0(s32);
-extern void func_0017E120(s32);
+extern void Pes6World_SetActive(s32);
 extern void func_0017E150(s32);
 extern s32 func_001BE5B0(s32);
 extern s32 func_002646D0(s32);
@@ -129,7 +129,7 @@ s32 func_00803E30(s32 arg0) {
         break;
     case 19:
         func_00B29E80(2);
-        func_0017E120(0);
+        Pes6World_SetActive(0);
         func_00C8AA10(0);
         func_00C82290();
         (*(s8 *)D_0059237C) = 1;

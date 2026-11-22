@@ -25,7 +25,7 @@ extern int func_002AE670(int arg0);
 extern void func_0093F720(void);
 extern void func_00996190(void);
 extern void func_009B21E0(void);
-extern int func_009E1C90(int arg0);
+extern int Pes6MatchFlow_GetState(int arg0);
 extern void func_00C6ACA0(void);
 
 static inline u8 *playerObject(u8 id) {
@@ -105,7 +105,7 @@ void Pes6Ball_Update(void) {
     }
     func_00C6ACA0();
     func_009B21E0();
-    if ((u8)func_009E1C90(1) != 1) {
+    if ((u8)Pes6MatchFlow_GetState(1) != 1) {
         func_0093F720();
     }
     func_00284EA0(func_002AE670(0xE0));

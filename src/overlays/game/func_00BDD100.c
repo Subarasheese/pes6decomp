@@ -5,7 +5,7 @@ extern void func_001AAF40(void *, signed char);
 extern void func_002A96D0(void);
 extern s32 func_00152130(s32, s32);
 M2C_UNK func_0027CB60(M2C_UNK);                     /* extern */
-s32 func_009E1C90(M2C_UNK);                         /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
 M2C_UNK func_00BDC5A0(s32);                         /* extern */
 M2C_UNK func_00BDC6F0(s32);                         /* extern */
 M2C_UNK func_00BDCE30(s32);                         /* extern */
@@ -19,7 +19,7 @@ void func_00BDD100(void) {
     s32 temp_a0;
     s32 var_s0;
 
-    temp_a0 = func_009E1C90(3) & 0xFF;
+    temp_a0 = Pes6MatchFlow_GetState(3) & 0xFF;
     switch (temp_a0) {                              /* irregular */
     case 0:
         func_00BDCF40(temp_a0);

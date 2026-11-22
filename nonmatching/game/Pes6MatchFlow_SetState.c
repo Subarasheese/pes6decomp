@@ -7,7 +7,7 @@ M2C_UNK func_001C48E8(void *, M2C_UNK, s32, s8 *);  /* extern */
 M2C_UNK func_00855120(M2C_UNK *);                   /* extern */
 extern char D_00CBBDE0[];
 
-void func_009E1D30(s32 arg0, s8 arg1) {
+void Pes6MatchFlow_SetState(s32 arg0, s8 arg1) {
     s8 *temp_a3;
 
     temp_a3 = ((void *)D_00CBBDE0) + arg0;

@@ -3,8 +3,8 @@
 #include "pes6/m2c.h"
 
 void func_001C48E8(u8 *, s32, s32); /* extern */
-extern char D_00CBBDE0[];
+extern char Pes6MatchFlow_State[];
 
 void func_009E1DA0(void) {
-    func_001C48E8(((u8 *)D_00CBBDE0), 0, 0xA);
+    func_001C48E8(((u8 *)Pes6MatchFlow_State), 0, 0xA);
 }

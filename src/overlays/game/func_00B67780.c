@@ -4,7 +4,7 @@
 extern s32 func_00997EB0(void *);
 extern int func_002A87C0(void);
 M2C_UNK func_002075B0(void *, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
-s32 func_009E1C90(M2C_UNK);                         /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
 extern char D_00591F24[];
 extern char D_00CBD2A0[];
 
@@ -69,7 +69,7 @@ void func_00B67780(void **arg0) {
         }
         break;
     }
-    if ((func_009E1C90(1) & 0xFF) == 0xE) {
+    if ((Pes6MatchFlow_GetState(1) & 0xFF) == 0xE) {
         M2C_FIELD(*arg0, u8 *, 0x16) = 0xFD;
         M2C_FIELD(*arg0, u16 *, 0x18) = 0U;
     }

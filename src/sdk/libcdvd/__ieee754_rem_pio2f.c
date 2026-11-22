@@ -26,7 +26,7 @@
 /* Original fdlibm word access and actual PS2 single-precision format. */
 #define _FLT_NO_DENORMALS
 #define _FLT_LARGEST_EXPONENT_IS_NORMAL
-#define __ieee754_rem_pio2f func_0011A318
+#define __ieee754_rem_pio2f __ieee754_rem_pio2f
 #define __kernel_rem_pio2f __kernel_rem_pio2f
 #define fabsf func_0011D210
 extern float func_0011D210(float);

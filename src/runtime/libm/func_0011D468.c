@@ -14,7 +14,7 @@
 #include "types.h"
 extern float __kernel_sinf(float, float, s32);
 extern float __kernel_cosf(float, float);
-extern s32 func_0011A318(float, float *);
+extern s32 __ieee754_rem_pio2f(float, float *);
 
 float func_0011D468(float x) {
     float y[2];
@@ -32,7 +32,7 @@ float func_0011D468(float x) {
     if (hx <= 0x3f490fd8) {
         return __kernel_sinf(x, 0.0f, 0);
     }
-    n = func_0011A318(x, y);
+    n = __ieee754_rem_pio2f(x, y);
     switch (n & 3) {
     case 0:
         return __kernel_sinf(y[0], y[1], 1);

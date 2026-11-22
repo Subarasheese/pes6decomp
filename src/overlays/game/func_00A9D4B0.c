@@ -4,13 +4,13 @@
 extern s32 func_00BF6280(void);
 extern void Pes6Ball_AttachToPlayer(void *);
 M2C_UNK func_0027D4E0(u8, u8);                      /* extern */
-s32 func_009E1C90(M2C_UNK);                         /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
 extern char Pes6MatchState_Current[];
 extern char D_00591E57[];
 extern char D_00591F24[];
 
 void func_00A9D4B0(u8 *arg0) {
-    if ((func_009E1C90(1) & 0xFF) != 0xC) {
+    if ((Pes6MatchFlow_GetState(1) & 0xFF) != 0xC) {
         if (((*(u8 *)D_00591F24) != 3) && ((*(u8 *)D_00591F24) != 6)) {
             goto block_3;
         }

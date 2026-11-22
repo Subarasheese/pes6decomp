@@ -21,9 +21,9 @@
 #define _FLT_LARGEST_EXPONENT_IS_NORMAL
 #define tanf func_0011D550
 #define __kernel_tanf func_0011C2B8
-#define __ieee754_rem_pio2f func_0011A318
+#define __ieee754_rem_pio2f __ieee754_rem_pio2f
 extern float func_0011C2B8(float, float, int);
-extern int func_0011A318(float, float *);
+extern int __ieee754_rem_pio2f(float, float *);
 typedef signed int __int32_t;
 typedef unsigned int __uint32_t;
 typedef union {

@@ -425,6 +425,7 @@ ADXB_DecodeHeaderAdx = 0x00158068; // type:func
 SRD_GetReadStatusDvd = 0x0016D3A0; // type:func
 __kernel_cosf = 0x0011B7F8; // type:func
 __kernel_rem_pio2f = 0x0011B948; // type:func
+__ieee754_rem_pio2f = 0x0011A318; // type:func
 __kernel_sinf = 0x0011C1B0; // type:func
 copysignf = 0x0011D0F8; // type:func
 scePadStateIntToStr = 0x00111FE8; // type:func
@@ -600,6 +601,24 @@ Pes6Task_AddDraw = 0x00120D90; // type:func
 Pes6Task_Remove = 0x00120D00; // type:func
 Pes6Task_Init = 0x00120DA0; // type:func
 Pes6Task_SkipDrawThisFrame = 0x00120CF0; // type:func
+
+// The 3D match world: Pes6World_Active gates the world's draw tasks (the render task at 0x17B2C0,
+// 0x2B88D0, 0x20A950 draw nothing while it is 0). The game overlay's Pes6Match_SetUpWorld sets it.
+Pes6World_Active = 0x00511610; // type:data
+Pes6World_IsActive = 0x0017E110; // type:func
+Pes6World_SetActive = 0x0017E120; // type:func
+Pes6World_ClearActive = 0x0017E160; // type:func
+// Game overlay: case 3 of the match setup dispatch (func_00BEA1D0, on the byte at 0x5926FF), the only
+// case that activates the world, then initializes match subsystems and clears per-player state.
+Pes6Match_SetUpWorld = 0x009F27C0; // type:func
+// Game overlay match flow: Pes6MatchFlow_State holds 10 hierarchical state levels; setting a level
+// clears the deeper ones (and is sent to the peer online). Level 2 runs while level 1 is in state 14.
+// The getter's address is a different function in the lobby overlay (except:lobby).
+Pes6MatchFlow_State = 0x00CBBDE0; // type:data
+Pes6MatchFlow_GetState = 0x009E1C90; // type:func except:lobby
+Pes6MatchFlow_SetState = 0x009E1D30; // type:func
+Pes6MatchFlow_UpdateLevel2 = 0x00BE9C30; // type:func
+Pes6MatchFlow_SetUpForMode = 0x00BEA1D0; // type:func
 
 // Scene and module management (established from code and runtime state; descriptive, not original symbols).
 // Pes6SceneStack holds three {scene id, frame count} levels; level 0 picks the top-level handler:

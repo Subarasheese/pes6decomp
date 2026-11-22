@@ -2,11 +2,11 @@
 #include "pes6/m2c.h"
 
 extern s32 func_00BF6280(void);
-s32 func_009E1C90(M2C_UNK);                         /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
 s32 func_00B5C480();                                /* extern */
 
 s32 func_00BD9770(void) {
-    if ((func_009E1C90(1) & 0xFF) != 0xC) {
+    if ((Pes6MatchFlow_GetState(1) & 0xFF) != 0xC) {
         goto block_1;
     }
     if ((func_00BF6280() == 2) && ((func_00B5C480() & 0xFF) == 1)) {

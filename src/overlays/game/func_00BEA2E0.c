@@ -4,7 +4,7 @@ extern s32 func_00152130(s32, s32);
 extern void func_00278440(void), Pes6Ball_Update(void);
 extern s32 func_002DCA30(void), func_008481D0(void), func_0084D0E0(void);
 extern void func_00999150(void), func_009A0B90(void);
-extern u8 func_009E1C90(s32);
+extern u8 Pes6MatchFlow_GetState(s32);
 extern void func_009E1CB0(s32), func_00AD0A20(void), func_00BEA440(void), func_00BF0580(s32);
 extern s32 func_00BF9E60(void);
 extern void func_00C32330(void);
@@ -21,7 +21,7 @@ void func_00BEA2E0(void) {
     if (func_00BF9E60() != 0) {
         func_00278440();
     }
-    phase = func_009E1C90(3) & 0xFF;
+    phase = Pes6MatchFlow_GetState(3) & 0xFF;
     switch (phase) {
     case 0:
         if (func_00152130(0, 0x10) != 0) {

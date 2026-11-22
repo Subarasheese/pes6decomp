@@ -12,7 +12,7 @@ void func_009F3EC0(s32, s32, s32, f32, f32, f32, f32);
 void func_00B79040(s32);
 void func_00B942B0(s32, s32, s32, s32, f32, f32, f32, f32);
 
-void func_00BEA1D0(s32 a0, s32 a1, s32 a2, s32 a3, f32 fa12, f32 fa13, f32 fa14, f32 fa15) {
+void Pes6MatchFlow_SetUpForMode(s32 a0, s32 a1, s32 a2, s32 a3, f32 fa12, f32 fa13, f32 fa14, f32 fa15) {
     s32 at = 0, v0 = 0, v1 = 0;
     volatile union { f32 f; s32 i; } f12 = { fa12 };
     volatile union { f32 f; s32 i; } f13 = { fa13 };

@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/m2c.h"
 
-extern void func_0017E120(int);
+extern void Pes6World_SetActive(int);
 extern int func_002646D0(int);
 extern void func_002648F0(int);
 extern void func_002648E0(int);
@@ -20,7 +20,7 @@ s32 func_00CF81B0(s32 arg0) {
     temp_v1 = func_002646D0(arg0) & 0xFF;
     switch (temp_v1) {                              /* irregular */
     case 0:
-        func_0017E120(0);
+        Pes6World_SetActive(0);
         func_00C8AA10(0);
         func_00C82290();
         (*(s32 *)D_00591CB8) = 0;

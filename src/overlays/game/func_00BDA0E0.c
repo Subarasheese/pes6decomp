@@ -2,15 +2,15 @@
 #include "pes6/m2c.h"
 
 
-s32 func_009E1C90(M2C_UNK);                         /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
 extern char D_005926FD[];
 extern char D_005926FF[];
 
 s32 func_00BDA0E0(void) {
-    if ((func_009E1C90(0) & 0xFF) != 4) {
+    if ((Pes6MatchFlow_GetState(0) & 0xFF) != 4) {
         return 0;
     }
-    if ((func_009E1C90(1) & 0xFF) == 0xE && (*(u8 *)D_005926FD) == 1 && (*(u8 *)D_005926FF) == 3) {
+    if ((Pes6MatchFlow_GetState(1) & 0xFF) == 0xE && (*(u8 *)D_005926FD) == 1 && (*(u8 *)D_005926FF) == 3) {
         return 1;
     }
     return 0;

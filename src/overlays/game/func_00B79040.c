@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern void func_00182B30(int);
-extern void func_0017E120(int);
+extern void Pes6World_SetActive(int);
 extern void func_00207360(int);
 M2C_UNK func_00B27010();                            /* extern */
 extern char Pes6MatchPlayers[];
@@ -12,7 +12,7 @@ void func_00B79040(s32 arg0) {
     s32 var_s0;
 
     func_00B27010();
-    func_0017E120(arg0);
+    Pes6World_SetActive(arg0);
     if (arg0 == 1) {
         var_s0 = 0;
         var_s1 = ((void *)Pes6MatchPlayers);

@@ -2,11 +2,11 @@
 #include "pes6/m2c.h"
 
 extern s32 func_00BF6280(void);
-s32 func_009E1C90(M2C_UNK);                         /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
 extern char D_00CBCB36[];
 
 s32 func_00BD97D0(void) {
-    if ((func_009E1C90(1) & 0xFF) != 0xC) {
+    if ((Pes6MatchFlow_GetState(1) & 0xFF) != 0xC) {
         goto block_1;
     }
     if ((func_00BF6280() == 2) && ((*(u8 *)D_00CBCB36) == 8)) {

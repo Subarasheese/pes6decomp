@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 
-s32 func_009E1C90(M2C_UNK);                         /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
 M2C_UNK func_00B69B30(s32);                         /* extern */
 M2C_UNK func_00B69CA0(s32);                         /* extern */
 M2C_UNK func_00B6A1D0(s32);                         /* extern */
@@ -11,7 +11,7 @@ M2C_UNK func_00B6A3C0(s32);                         /* extern */
 void func_00B6A4B0(void) {
     s32 temp_a0;
 
-    temp_a0 = func_009E1C90(3) & 0xFF;
+    temp_a0 = Pes6MatchFlow_GetState(3) & 0xFF;
     switch (temp_a0) {                              /* irregular */
     case 0:
         func_00B6A3C0(temp_a0);

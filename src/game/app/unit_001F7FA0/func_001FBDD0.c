@@ -8,15 +8,15 @@ extern void func_0020C370(void);
 extern s32 Pes6MatchSelect_UpdateLoader(void), func_0020D6D0(void);
 extern void Pes6Pausesetup_Start(void), func_0026C310(void), Pes6Resultsetup_Start(void);
 extern s32 func_00308540(void), Pes6SaveData_GetUnavailableFlag(void);
-extern u8 func_009E1C90(s32);
-extern void func_009E1CB0(s32), func_009E1D30(s32, s32);
+extern u8 Pes6MatchFlow_GetState(s32);
+extern void func_009E1CB0(s32), Pes6MatchFlow_SetState(s32, s32);
 extern s32 func_00C86770(void);
 extern void func_00C86850(void);
 s32 func_001FBDD0(void) {
     s32 ready = 0;
-    switch ((u8)func_009E1C90(2)) {
+    switch ((u8)Pes6MatchFlow_GetState(2)) {
     default:
-        func_009E1D30(2, 1); /* fall through */
+        Pes6MatchFlow_SetState(2, 1); /* fall through */
     case 0:
         if (Pes6SaveData_GetUnavailableFlag()) {
             if (func_00308540())

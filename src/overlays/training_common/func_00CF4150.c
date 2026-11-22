@@ -5,7 +5,7 @@ s32 func_0013E280();                                /* extern */
 M2C_UNK func_0013E2A0(M2C_UNK);                     /* extern */
 M2C_UNK func_001C48E8(M2C_UNK *, M2C_UNK, M2C_UNK); /* extern */
 s32 func_002631D0(M2C_UNK);                         /* extern */
-M2C_UNK func_009E1D30(M2C_UNK, M2C_UNK);            /* extern */
+M2C_UNK Pes6MatchFlow_SetState(M2C_UNK, M2C_UNK);            /* extern */
 M2C_UNK func_00CD7B80();                            /* extern */
 M2C_UNK func_00CDC7C0(s32);                         /* extern */
 s32 func_00CDCD70();                                /* extern */
@@ -51,8 +51,8 @@ void func_00CF4150(void) {
     case 6:
         break;
     }
-    func_009E1D30(1, 0);
-    func_009E1D30(2, 0);
+    Pes6MatchFlow_SetState(1, 0);
+    Pes6MatchFlow_SetState(2, 0);
     (*(s8 *)D_00591F2D) = 0;
     (*(s8 *)D_00591F2E) = 0;
     (*(s8 *)D_00591DD5) = 0;

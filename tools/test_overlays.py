@@ -137,6 +137,18 @@ class OverlayTests(unittest.TestCase):
                 paths=[Path(root,f).relative_to(d).as_posix() for root,_,fs in project.source_walk() for f in fs]
             self.assertEqual(paths,['func_00100000.c'])
 
+    def test_symbol_excluded_from_listed_overlay(self):
+        import symbols
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp)/'symbol_addrs.txt'
+            path.write_text('Pes6Game_Getter = 0x009E1C90; // type:func except:lobby\n')
+            for target, expected in (('game', 0x9E1C90), ('main', 0x9E1C90), ('lobby', None)):
+                with patch.object(symbols, 'SYMBOL_ADDRS', str(path)), patch.object(symbols, 'STL', ''), \
+                        patch.object(symbols, 'RESOLVED', ''), patch.object(symbols, 'LIB_SYMBOLS', ''), \
+                        patch.object(symbols, 'ADHOC', ''), patch.object(symbols, 'CLASSES', ''), \
+                        patch.object(symbols, '_table', None), patch.object(project, 'TARGET', target):
+                    self.assertEqual(symbols._load().names.get('Pes6Game_Getter', (None,))[0], expected, target)
+
     def test_gp_relocation_uses_selected_image(self):
         import match
         # A different executable can use the same addresses with a different GP.

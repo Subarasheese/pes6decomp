@@ -2,12 +2,12 @@
 #include "pes6/m2c.h"
 
 extern void func_00264790(void *, u8);
-extern void func_0017E120(int);
+extern void Pes6World_SetActive(int);
 M2C_UNK func_002D49B0(M2C_UNK);                     /* extern */
 M2C_UNK func_003425A0(M2C_UNK *);                   /* extern */
 M2C_UNK func_003710E0(M2C_UNK);                     /* extern */
 M2C_UNK func_0099B4F0();                            /* extern */
-M2C_UNK func_009E1D30(M2C_UNK, M2C_UNK);            /* extern */
+M2C_UNK Pes6MatchFlow_SetState(M2C_UNK, M2C_UNK);            /* extern */
 M2C_UNK func_00B29630(M2C_UNK);                     /* extern */
 M2C_UNK func_00B297C0(M2C_UNK);                     /* extern */
 M2C_UNK func_00B29950(M2C_UNK);                     /* extern */
@@ -20,8 +20,8 @@ void func_00804620(void *arg0) {
     u8 *var_a0;
     u32 var_v1;
 
-    func_009E1D30(0, 0);
-    func_0017E120(1);
+    Pes6MatchFlow_SetState(0, 0);
+    Pes6World_SetActive(1);
     func_00C8A470();
     func_00B29950(1);
     func_00B297C0(1);

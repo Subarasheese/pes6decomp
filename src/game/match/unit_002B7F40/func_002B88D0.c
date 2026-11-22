@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern int func_00270570(void);
-extern int func_0017E110(void);
+extern int Pes6World_IsActive(void);
 extern int func_0017E140(void);
 extern void func_002B88C0(float);
 M2C_UNK func_002B7F40();                            /* extern */
@@ -23,7 +23,7 @@ void func_002B88D0(void) {
         }
         func_002B82B0();
     }
-    if (func_0017E110() != 0) {
+    if (Pes6World_IsActive() != 0) {
         func_002B7F40();
     }
 }

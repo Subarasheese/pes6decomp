@@ -6,7 +6,7 @@ extern void func_00182B30(int);
 extern void func_00270580(int);
 extern void func_002727C0(s32);
 extern int func_002DCA30(void);
-extern void func_0017E120(int);
+extern void Pes6World_SetActive(int);
 extern void func_00287000();
 extern s16 *func_008472D0();
 extern void func_00853B50(s32, s32, s32, s32, s16, s32, s32, s32);
@@ -30,7 +30,7 @@ extern char D_00591E79[];
 extern char D_00591EFC[];
 extern char D_00591F14[];
 
-void func_009F27C0(void) {
+void Pes6Match_SetUpWorld(void) {
     s32 a4;
     s32 v1;
     u8 *p;
@@ -38,7 +38,7 @@ void func_009F27C0(void) {
     s32 n;
     s32 ff;
 
-    func_0017E120(1);
+    Pes6World_SetActive(1);
     func_009F1A40();
     func_0099FE40();
     func_00287000();

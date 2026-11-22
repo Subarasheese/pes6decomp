@@ -5,7 +5,7 @@ extern s32 func_00152130(s32, s8);
 extern int func_002DCA30(void);
 M2C_UNK func_0084CC80(u16);                         /* extern */
 M2C_UNK func_0084F7A0();                            /* extern */
-M2C_UNK func_009E1D30(M2C_UNK, M2C_UNK);            /* extern */
+M2C_UNK Pes6MatchFlow_SetState(M2C_UNK, M2C_UNK);            /* extern */
 extern char D_008B1470[];
 extern char D_008B14E6[];
 extern char D_008B14E7[];
@@ -41,6 +41,6 @@ void func_00BF06F0(void) {
                 (*(s8 *)D_008B14E6) -= 1;
             }
         }
-        func_009E1D30(1, 0xE);
+        Pes6MatchFlow_SetState(1, 0xE);
     }
 }

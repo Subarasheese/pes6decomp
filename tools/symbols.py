@@ -17,6 +17,10 @@ Names come from:
   config/adhoc_methods.txt  tools/registration.py: `Class method 0xADDR`, the native methods the
                             script engine registers, used as Class__method
 
+A config/symbol_addrs.txt line tagged `except:IMAGE[,IMAGE...]` is left out while PES6_TARGET is one of
+those overlays: overlays share addresses, and a name for one overlay's function must not label another
+overlay's different function at the same address (game's 0x9E1C90 vs lobby's).
+
 and the generic forms always work: func_ADDR, D_ADDR, jtbl_ADDR (also sub_/data_), with or
 without a C++ mangling suffix. gcc 2.96 mangling is understood too: `name__F...` (plain
 function), `method__NClass...` (member of Class, also Q2-nested names), `__NClass` and `_$_NClass`
@@ -96,6 +100,9 @@ def _load():
             continue
         for line in open(path):
             m = re.match(r"\s*([A-Za-z_$][\w$]*)\s*=\s*0x([0-9A-Fa-f]+)\s*;.*type:(func|data)", line)
+            ex = re.search(r"\bexcept:([\w,]+)", line) if m else None
+            if ex and project.TARGET in ex.group(1).split(","):
+                continue
             if m:
                 addr, kind = int(m.group(2), 16), m.group(3)
                 t.names[m.group(1)] = (addr, kind)

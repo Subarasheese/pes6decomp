@@ -5,7 +5,7 @@ extern void * func_002CA180(s32);
 extern int func_002DCA30(void);
 s32 func_002C7D80(s32);                             /* extern */
 s32 func_009A0270();                                /* extern */
-s32 func_009E1C90(M2C_UNK);                         /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
 s32 func_00C2FE10(s32, void *);                     /* extern */
 
 s32 func_00C301C0(void) {
@@ -15,8 +15,8 @@ s32 func_00C301C0(void) {
 
     var_s0 = 0;
     if (func_009A0270() & 0xFF) {
-        if ((func_009E1C90(0) & 0xFF) == 4) {
-            if ((func_009E1C90(1) & 0xFF) == 1) {
+        if ((Pes6MatchFlow_GetState(0) & 0xFF) == 4) {
+            if ((Pes6MatchFlow_GetState(1) & 0xFF) == 1) {
                 if (func_002DCA30() == 0) {
                     var_s2 = 0;
                     do {

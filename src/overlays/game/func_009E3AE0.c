@@ -8,8 +8,8 @@ extern s32 func_002DED00(s32);
 M2C_UNK func_0027CB60(M2C_UNK);                     /* extern */
 M2C_UNK func_0084F7A0();                            /* extern */
 M2C_UNK func_00855290(M2C_UNK, s32, M2C_UNK);       /* extern */
-s32 func_009E1C90(M2C_UNK);                         /* extern */
-M2C_UNK func_009E1D30(M2C_UNK, M2C_UNK);            /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
+M2C_UNK Pes6MatchFlow_SetState(M2C_UNK, M2C_UNK);            /* extern */
 M2C_UNK func_00B24A10();                            /* extern */
 M2C_UNK func_00B24A80(M2C_UNK);                     /* extern */
 M2C_UNK func_00B25220();                            /* extern */
@@ -41,8 +41,8 @@ void func_009E3AE0(void) {
     func_0027CB60(5);
     func_00C019F0();
     func_00C01540(0x2A, 0x17, 0x17, 0xC, 0);
-    func_009E1D30(1, 0xC);
+    Pes6MatchFlow_SetState(1, 0xC);
     if (func_002DCA30() != 0) {
-        func_00855290(3, func_009E1C90(1) & 0xFF, 0);
+        func_00855290(3, Pes6MatchFlow_GetState(1) & 0xFF, 0);
     }
 }

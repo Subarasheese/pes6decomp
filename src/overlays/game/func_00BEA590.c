@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b151 */
 #include "pes6/m2c.h"
 
-M2C_UNK func_009E1D30(M2C_UNK, M2C_UNK);
+M2C_UNK Pes6MatchFlow_SetState(M2C_UNK, M2C_UNK);
 M2C_UNK func_00B78E60(M2C_UNK, s32);
 s32 func_00B7B850();
 M2C_UNK func_00B7B890();
@@ -27,7 +27,7 @@ void func_00BEA590(M2C_UNK arg0, s32 arg1) {
                 var_s2 = 1;
             }
             if (var_s2 == 1) {
-                func_009E1D30(2, 0xE);
+                Pes6MatchFlow_SetState(2, 0xE);
                 break;
             } else {
                 func_00B7B890();

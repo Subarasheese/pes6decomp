@@ -11,7 +11,7 @@ extern void func_002D7590(s32);
 extern void func_0026E950(void);
 extern u32 Pes6Scene_Get(s32);
 M2C_UNK func_0021D3D0();                            /* extern */
-s32 func_009E1C90(M2C_UNK);                         /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
 extern s32 D_003E744C;
 
 void func_00153E20(void) {
@@ -21,7 +21,7 @@ void func_00153E20(void) {
         func_00145BB0(1);
         func_002D7590(0);
     } else {
-        temp_s0 = func_009E1C90(1) & 0xFF;
+        temp_s0 = Pes6MatchFlow_GetState(1) & 0xFF;
         if ((D_003E744C == 1) && (temp_s0 != 1)) {
             func_00145BB0(1);
             func_002D7590(0);

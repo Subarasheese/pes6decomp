@@ -2,8 +2,8 @@
 #include "pes6/m2c.h"
 
 
-extern char D_00CBBDE0[];
+extern char Pes6MatchFlow_State[];
 
 M2C_UNK *func_009E1BD0(void) {
-    return ((void *)D_00CBBDE0);
+    return ((void *)Pes6MatchFlow_State);
 }

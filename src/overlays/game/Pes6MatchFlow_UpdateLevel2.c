@@ -6,8 +6,8 @@ extern void func_00B7B8B0(void);
 M2C_UNK func_00288350();                            /* extern */
 s32 func_0093FD30();                                /* extern */
 M2C_UNK func_0093FDF0();                            /* extern */
-s32 func_009E1C90(M2C_UNK);                         /* extern */
-M2C_UNK func_009E1D30(M2C_UNK, M2C_UNK);            /* extern */
+s32 Pes6MatchFlow_GetState(M2C_UNK);                         /* extern */
+M2C_UNK Pes6MatchFlow_SetState(M2C_UNK, M2C_UNK);            /* extern */
 M2C_UNK func_00B78E60(M2C_UNK);                     /* extern */
 M2C_UNK func_00B78FC0(u8);                          /* extern */
 M2C_UNK func_00B793D0();                            /* extern */
@@ -16,7 +16,7 @@ M2C_UNK func_00B7B8C0(M2C_UNK);                     /* extern */
 M2C_UNK func_00B7B920(M2C_UNK);                     /* extern */
 s32 func_00BE86B0();                                /* extern */
 M2C_UNK func_00BE9F30();                            /* extern */
-M2C_UNK func_00BEA1D0();                            /* extern */
+M2C_UNK Pes6MatchFlow_SetUpForMode();                            /* extern */
 M2C_UNK func_00BEA2E0();                            /* extern */
 M2C_UNK func_00BEA590();                            /* extern */
 s32 func_00BEA660();                                /* extern */
@@ -27,19 +27,19 @@ extern char D_00591F24[];
 extern char D_005926FF[];
 extern char D_00CBCC6A[];
 
-void func_00BE9C30(void) {
+void Pes6MatchFlow_UpdateLevel2(void) {
     s32 temp_v1;
 
-    temp_v1 = func_009E1C90(2) & 0xFF;
+    temp_v1 = Pes6MatchFlow_GetState(2) & 0xFF;
     switch (temp_v1) {                              /* irregular */
     default:
-        func_009E1D30(2, 0);
+        Pes6MatchFlow_SetState(2, 0);
         /* fallthrough */
     case 0:
         if ((*(u8 *)D_00591F24) == 5) {
             (*(u8 *)D_00591F24) = 1;
         }
-        func_009E1D30(2, 1);
+        Pes6MatchFlow_SetState(2, 1);
         /* fallthrough */
     case 1:
         if ((*(u8 *)D_00CBCC6A) != 0) {
@@ -50,21 +50,21 @@ void func_00BE9C30(void) {
             func_00B78FC0((*(u8 *)D_005926FF));
         }
         func_00B78E60(0);
-        func_009E1D30(2, 2);
+        Pes6MatchFlow_SetState(2, 2);
         break;
     case 2:
         func_00BEA9D0(2);
-        func_009E1D30(2, 9);
+        Pes6MatchFlow_SetState(2, 9);
         break;
     case 7:
         func_00288350();
         func_002CA1B0();
         func_0093FDF0();
-        func_009E1D30(2, 8);
+        Pes6MatchFlow_SetState(2, 8);
         break;
     case 8:
         if (func_0093FD30() == 0) {
-            func_009E1D30(2, 0xE);
+            Pes6MatchFlow_SetState(2, 0xE);
         }
         break;
     case 9:
@@ -75,20 +75,20 @@ void func_00BE9C30(void) {
         if (func_00B79600() != 0) {
             if ((*(u8 *)D_005926FF) != 0) {
                 if (func_00BE86B0() != 0) {
-                    func_009E1D30(2, 0x13);
+                    Pes6MatchFlow_SetState(2, 0x13);
                 }
             } else {
-                func_009E1D30(2, 7);
+                Pes6MatchFlow_SetState(2, 7);
             }
         }
         break;
     case 11:
         if (func_00BEA660() != 0) {
-            func_009E1D30(2, 0xE);
+            Pes6MatchFlow_SetState(2, 0xE);
         }
         break;
     case 14:
-        func_00BEA1D0();
+        Pes6MatchFlow_SetUpForMode();
         break;
     case 15:
         func_00BE9F30();

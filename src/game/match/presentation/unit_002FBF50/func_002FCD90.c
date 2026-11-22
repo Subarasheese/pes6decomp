@@ -4,7 +4,7 @@
 extern void func_00305E50(int);
 extern void func_002D4970(s32);
 s32 func_0023A110();
-s32 func_009E1C90(M2C_UNK);
+s32 Pes6MatchFlow_GetState(M2C_UNK);
 s32 func_00B789F0();
 s32 func_00B78B60();
 extern s8 D_003E9E90;
@@ -16,7 +16,7 @@ s32 func_002FCD90(s32 arg0) {
     s32 var_s0;
 
     var_s0 = 0;
-    if ((func_009E1C90(3) & 0xFF) == 1) {
+    if ((Pes6MatchFlow_GetState(3) & 0xFF) == 1) {
         if (func_00B789F0() != 0) {
             D_003E9E90 = 1;
             temp_v0 = func_00B78B60();

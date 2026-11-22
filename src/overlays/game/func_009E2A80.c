@@ -2,7 +2,7 @@
 #include "types.h"
 
 extern s32 func_00BBB8C0(s32);
-extern u8 func_009E1C90(s32);
+extern u8 Pes6MatchFlow_GetState(s32);
 extern u8 D_005926E6[];
 
 void func_009E2A80(void *arg0) {
@@ -11,7 +11,7 @@ void func_009E2A80(void *arg0) {
 
     func_00BBB8C0(8);
     *(u8 *)((int)arg0 + 0x1dc) = 0xff;
-    value = func_009E1C90(1);
+    value = Pes6MatchFlow_GetState(1);
     if (value != '\x01') {
         return;
     }

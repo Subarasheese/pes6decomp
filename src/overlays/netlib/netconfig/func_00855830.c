@@ -6,12 +6,12 @@ M2C_UNK func_002AE950();                            /* extern */
 M2C_UNK func_002AF610();                            /* extern */
 M2C_UNK func_002B09A0();                            /* extern */
 M2C_UNK func_002B0B40();                            /* extern */
-M2C_UNK func_00BE9C30();                            /* extern */
+M2C_UNK Pes6MatchFlow_UpdateLevel2();                            /* extern */
 
 void func_00855830(void) {
     func_002B09A0();
     func_002AF610();
     func_002AE950();
     func_002B0B40();
-    func_00BE9C30();
+    Pes6MatchFlow_UpdateLevel2();
 }
