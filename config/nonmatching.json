@@ -191689,21 +191689,6 @@
   },
   {
    "image": "game",
-   "address": "00BAC710",
-   "symbol": "func_00BAC710",
-   "source": "nonmatching/game/func_00BAC710.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "5a6bef5ece28dc10bf9ac24d8d3d892a2a35e944bba8b6a0de7586ec9f46524b",
-   "original_sha256": "f70410d55acf1377703454e0ee757e4324bba79dd7cc765fe44b5a2077f6bb23",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "game",
    "address": "00BB0000",
    "symbol": "func_00BB0000",
    "source": "nonmatching/game/func_00BB0000.c",
@@ -192040,21 +192025,6 @@
    "compiler": "ee-gcc-2.9-G0",
    "source_sha256": "cb154f6dfd94ba40015ca2b0b46fda40d5119221f787ef3c64ea57d4baef2e76",
    "original_sha256": "aacd44bf9d987bb259c191c5847a6471400d0471c2278418a90244bbb7befec9",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "game",
-   "address": "00BB1310",
-   "symbol": "func_00BB1310",
-   "source": "nonmatching/game/func_00BB1310.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "02eb9b6a8b608c4528e1a60714b761b21ae07aec1b10ab365c2630dee353d0eb",
-   "original_sha256": "31ea58dea7dd7e88ad63a4268c6aad2c786107c790c3b87bd9a47f035f183a46",
    "minimum_similarity": 0,
    "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
    "known_issues": [

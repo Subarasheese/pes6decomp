@@ -102,6 +102,12 @@ command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -O2 -c -
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b151-050317/mwccps2.exe -O4,p -c -Iinclude"
 
+# Link the independently aligned switch tables emitted by CodeWarrior into one
+# relocatable .rodata section for the game overlay's paired ID lookups.
+[compilers."mwcc-3.0.1b151-merged-sections"]
+dir = "toolchains"
+command = "bash {tools}/cc_merged_sections.sh {dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b151-050317/mwccps2.exe -O4,p -c -Iinclude"
+
 [compilers."mwcc-3.0.1b151-O3"]
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b151-050317/mwccps2.exe -O3 -c -Iinclude"
