@@ -68,6 +68,11 @@ class OverlayTests(unittest.TestCase):
                     (assembly/unit/f'func_{address:08X}.s').touch()
             files = [path.relative_to(assembly).as_posix() for path in overlays.assembly_paths(target, assembly)]
             self.assertEqual(sorted(files), ['core/text/func_00001000.s', 'core/text_00001020/func_00001020.s'])
+            (config/'symbol_addrs.txt').write_text('func_00001020 = 0x1020; // type:func size:0x20\n')
+            for address in (0x1024, 0x103c, 0x1040):
+                (assembly/'core/text_00001020'/f'func_{address:08X}.s').touch()
+            self.assertEqual(sorted(path.name for path in overlays.assembly_paths(target, assembly)),
+                             ['func_00001000.s', 'func_00001020.s', 'func_00001040.s'])
             for invalid in ('0x1000', '0x1011', '0x1060', '0x1040\n0x1020'):
                 with self.subTest(invalid=invalid), self.assertRaises(ValueError):
                     splits.write_text(invalid)

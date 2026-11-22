@@ -140,6 +140,11 @@ command = "bash {tools}/cc_fpnop.sh {dir}/bin/ee-gcc -B {dir}/../ee-gcc2.96/ee/b
 dir = "toolchains/ee-gcc2.96"
 command = "{dir}/bin/ee-gcc -c -B {dir}/../ee-gcc3.2-040921/ee/bin/ -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"
 
+[compilers."ee-gcc-3.2-Os-G0"]
+name = "Sony ee-gcc 3.2-040921, optimized for size"
+dir = "toolchains/ee-gcc3.2-040921"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -Os -G0 -fno-exceptions -Iinclude"
+
 [compilers."ee-gcc-2.96-G0"]
 dir = "toolchains/ee-gcc2.96"
 command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"

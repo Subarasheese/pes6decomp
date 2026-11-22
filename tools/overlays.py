@@ -196,11 +196,23 @@ def text_ranges(t):
 
 
 def assembly_paths(t, directory):
+    # splat leaves old .s files in place when a known function size merges
+    # previously inferred entries. Use the same explicit extents on warm builds.
+    known = []
+    for filename in extra_symbols(t['name']):
+        for line in (ROOT/filename).read_text().splitlines():
+            if not re.search(r'\btype:func\b', line):
+                continue
+            entry = re.search(r'=\s*(0x[0-9a-fA-F]+)\s*;', line)
+            size = re.search(r'\bsize:(0x[0-9a-fA-F]+|[0-9]+)\b', line)
+            if entry and size:
+                address = int(entry[1], 0)
+                known.append((address, address + int(size[1], 0)))
     for start, end, unit in text_ranges(t):
         for path in (directory/unit).glob('func_*.s'):
             if re.fullmatch(r'func_[0-9A-Fa-f]{8}', path.stem):
                 address = int(path.stem[5:], 16)
-                if start <= address < end:
+                if start <= address < end and not any(lo < address < hi for lo, hi in known):
                     yield path
 
 

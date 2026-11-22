@@ -70,7 +70,7 @@ header caches and the Python package cache stay under ignored `build/`.
 | --- | --- |
 | Sony ee-gcc 2.9-991111 | `toolchains/ee-gcc2.9-991111/` |
 | Sony ee-gcc 2.96 | `toolchains/ee-gcc2.96/` |
-| Sony ee-gcc 3.2-040921 (its ee-as 2.12 only) | `toolchains/ee-gcc3.2-040921/` |
+| Sony ee-gcc 3.2-040921 and ee-as 2.12 | `toolchains/ee-gcc3.2-040921/` |
 | wibo | `toolchains/wibo/wibo` |
 | Metrowerks 3.0.1b210 | `toolchains/tc/mwcps2-3.0.1b210-060308/mwccps2.exe` |
 | Metrowerks 3.0.1b198 | `toolchains/tc/mwcps2-3.0.1b198-051011/mwccps2.exe` |
@@ -93,6 +93,8 @@ from the ee-gcc 2.96 toolchain (both must be installed). For the kernel printf o
 The libgcc 64-bit division objects use `ee-gcc-2.96-as212-G0`: ee-gcc 2.96 with the ee-as 2.12
 of the ee-gcc 3.2-040921 toolchain, which does not have ee-as 2.10's bug of leaving a load opcode
 on the `%hi` word of an indexed-load macro.
+The UPnP status-name lookup in the HTTPS overlay matches ee-gcc 3.2-040921 with
+`-Os -G0` (`ee-gcc-3.2-Os-G0`).
 Some game code needs an earlier 3.0.1 build: `Pes6Ball_Update` only matches with
 3.0.1b151 (`mwcc-3.0.1b151`), whose delay-slot filler does not hoist into branch
 targets with several predecessors (b198 and later do; see `docs/ball_physics.md`).
