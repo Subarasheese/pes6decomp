@@ -115,3 +115,9 @@ The resident Huffman table builder and tree-header writer use zlib 1.1.4
 and CVFS device registration adapt `adx_fs.c`, `adx_sjd.c`, and `cri_cvfs.c`
 from the 3s-decomp CRI sources cited above. Their local tables and diagnostic
 strings were verified at the addresses used by the PAL executable.
+
+The HTTPS overlay's RC2, DES, Base64, MD2 and SSL routines and their type
+definitions are adapted from SSLeay 0.9.1b. This product includes cryptographic
+software written by Eric Young (eay@cryptsoft.com).
+[SSLeay 0.9.1b source](https://github.com/openssl/openssl/tree/SSLeay_0_9_1b),
+[SSLeay license](LICENSES/SSLeay.txt).
