@@ -64,46 +64,6 @@ other programs, and to distribute those combinations without any restriction com
 this file. (The General Public License restrictions do apply in other respects; for example, they
 cover modification of the file, and distribution when not linked into a combine executable.)
 
-## Sources adapted from other PS2 decompilations
-
-Sony SDK functions (libgraph, libdma, libvu0, libdev, libpad, SIF/RPC, TTY, DECI2, interrupt
-handling and IOP reset in libkernel), libgcc soft-float helpers
-and newlib functions (malloc, stdio, printf, mprec, time) were found by compiling the sources of
-[kfiv-decomp](https://github.com/Voicedrew11/kfiv-decomp) and
-[crashwoc-decomp-ps2](https://github.com/denzi-gh/crashwoc-decomp-ps2) and comparing the
-normalized code with PES6. Each adapted file names its origin in its first comment and is
-verified against the PES6 executable.
-
-CRI middleware functions (ADX: ADXT, ADXF, ADXB, ADXSTM, ADXAMP; SVM; SJ stream joints; CVFS
-and its device interfaces) were found the same way in the CRI `libadxe` sources of
-[3s-decomp](https://github.com/crowded-street/3s-decomp) (Street Fighter III: 3rd Strike,
-AGPL-3.0) and of [recvx-decomp](https://github.com/fmil95/recvx-decomp) (Resident Evil Code:
-Veronica X, MIT). Each adapted file names its origin in its first comment; its headers were
-preprocessed and reduced to the declarations the function uses, and it is verified against the
-PES6 executable.
-
-More CRI functions (ADXB, ADXT, SRD, SVM, MFCI, Dolby Pro Logic II linking and others) and a
-few newlib libm routines (`__kernel_cosf`, `__kernel_sinf`, `__kernel_rem_pio2f`, `copysignf`)
-come from the C sources of
-[Persona4-Decompilation](https://github.com/Raikaru/Persona4-Decompilation) (PlayStation 2; no
-license file), [mk-deception](https://github.com/ShulkMaster/mk-deception) (CC0-1.0),
-[re4](https://github.com/adonis-singh/re4) (license not stated in a recognized form) and
-[shadow-decomp](https://github.com/dev-camo/shadow-decomp) (no license file); the last three are
-GameCube decompilations whose CRI ADX code is platform-independent C. They were found by
-compiling those sources with the PES6 compiler profiles and comparing normalized code, and each
-adapted file names its origin in its first comment.
-
-## R5900 simulator
-
-`tools/r5900sim.py` is an Emotion Engine interpreter written for behaviour checks of decompiled C.
-Its float arithmetic, `tools/ee_float.py`, is a Python port of `pcsx2/PS2Float.cpp` from
-[PCSX2](https://github.com/PCSX2/pcsx2) pull request #12001 ("Core/EE: Implements Soft-Floats for
-the interpreters", GPL-3.0+); the file carries a provenance comment. The simulator is checked against
-real PS2 results recorded by
-[ps2autotests](https://github.com/unknownbrackets/ps2autotests) (ISC licence) with
-`tools/ee_float_check.py` and `tools/r5900_check.py`; those results are read from a local copy and
-are not included here.
-
 ## PAL runtime source references
 
 The resident executable and NTGUI2EU each link their own copies of newlib and
@@ -143,3 +103,43 @@ used for comparison.
 The DMA channel and graphics functions credit the corresponding C units in the
 [King's Field IV reconstruction](https://github.com/Voicedrew11/kfiv-decomp/tree/09adc15974b2936b09943d2a55cc29fa472a79b2/src/sce).
 Its [MIT notice](LICENSES/kfiv-MIT.txt) is included.
+
+## Sources adapted from other PS2 decompilations
+
+Sony SDK functions (libgraph, libdma, libvu0, libdev, libpad, SIF/RPC, TTY, DECI2, interrupt
+handling and IOP reset in libkernel), libgcc soft-float helpers
+and newlib functions (malloc, stdio, printf, mprec, time) were found by compiling the sources of
+[kfiv-decomp](https://github.com/Voicedrew11/kfiv-decomp) and
+[crashwoc-decomp-ps2](https://github.com/denzi-gh/crashwoc-decomp-ps2) and comparing the
+normalized code with PES6. Each adapted file names its origin in its first comment and is
+verified against the PES6 executable.
+
+CRI middleware functions (ADX: ADXT, ADXF, ADXB, ADXSTM, ADXAMP; SVM; SJ stream joints; CVFS
+and its device interfaces) were found the same way in the CRI `libadxe` sources of
+[3s-decomp](https://github.com/crowded-street/3s-decomp) (Street Fighter III: 3rd Strike,
+AGPL-3.0) and of [recvx-decomp](https://github.com/fmil95/recvx-decomp) (Resident Evil Code:
+Veronica X, MIT). Each adapted file names its origin in its first comment; its headers were
+preprocessed and reduced to the declarations the function uses, and it is verified against the
+PES6 executable.
+
+More CRI functions (ADXB, ADXT, SRD, SVM, MFCI, Dolby Pro Logic II linking and others) and a
+few newlib libm routines (`__kernel_cosf`, `__kernel_sinf`, `__kernel_rem_pio2f`, `copysignf`)
+come from the C sources of
+[Persona4-Decompilation](https://github.com/Raikaru/Persona4-Decompilation) (PlayStation 2; no
+license file), [mk-deception](https://github.com/ShulkMaster/mk-deception) (CC0-1.0),
+[re4](https://github.com/adonis-singh/re4) (license not stated in a recognized form) and
+[shadow-decomp](https://github.com/dev-camo/shadow-decomp) (no license file); the last three are
+GameCube decompilations whose CRI ADX code is platform-independent C. They were found by
+compiling those sources with the PES6 compiler profiles and comparing normalized code, and each
+adapted file names its origin in its first comment.
+
+## R5900 simulator
+
+`tools/r5900sim.py` is an Emotion Engine interpreter written for behaviour checks of decompiled C.
+Its float arithmetic, `tools/ee_float.py`, is a Python port of `pcsx2/PS2Float.cpp` from
+[PCSX2](https://github.com/PCSX2/pcsx2) pull request #12001 ("Core/EE: Implements Soft-Floats for
+the interpreters", GPL-3.0+); the file carries a provenance comment. The simulator is checked against
+real PS2 results recorded by
+[ps2autotests](https://github.com/unknownbrackets/ps2autotests) (ISC licence) with
+`tools/ee_float_check.py` and `tools/r5900_check.py`; those results are read from a local copy and
+are not included here.
