@@ -112117,38 +112117,6 @@
   },
   {
    "image": "ntgui2eu",
-   "address": "001424F8",
-   "symbol": "func_001424F8",
-   "original_sha256": "fea480c0ff59e4c2ae928291187052eeaa7b21c11dcd7c52707e08b902e22e28",
-   "source": "nonmatching/ntgui2eu/func_001424F8.c",
-   "compiler": "mwcc-3.0.1b151",
-   "source_sha256": "0182b954c90d7ffe25cfcd56c2f4445663712607be14703c563851771035adeb",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "ntgui2eu",
-   "address": "00142558",
-   "symbol": "func_00142558",
-   "original_sha256": "046263ed002adf0e19af4451a716b7f74bd252d019061e2ced6934728dfffff7",
-   "source": "nonmatching/ntgui2eu/func_00142558.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "3ed5c3bff625de4bac46178165f8410c9c0b96a3ffb0fdc575b36f05579ca821",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "ntgui2eu",
    "address": "00143218",
    "symbol": "func_00143218",
    "original_sha256": "eec63d2247f9ecd6a1e6199806b2cfbe823da753c4b4e1c9f2f9a28ec3abdedc",
@@ -118747,22 +118715,6 @@
    "source": "nonmatching/ntgui2eu/func_001AC398.c",
    "compiler": "ee-gcc-2.9",
    "source_sha256": "46eb1a05f6c721cd248626d227a1bbb5a46e1546ff7e719ccedd0640eaf22907",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "ntgui2eu",
-   "address": "001AC708",
-   "symbol": "func_001AC708",
-   "original_sha256": "cc19783eafdd2c574434e6b278c7e23b33a44806b425cc24b15d8e8716a5ce9b",
-   "source": "nonmatching/ntgui2eu/func_001AC708.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "399c89d683436e2369b8fa185d7dda85acc57871956cd8f16b2b982e01109a3c",
    "minimum_similarity": 0,
    "confidence": "low",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",

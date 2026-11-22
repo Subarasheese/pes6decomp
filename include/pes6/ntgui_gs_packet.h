@@ -6,7 +6,25 @@
 typedef struct {
     u64 payload, reg;
 } GsCommand;
-typedef union {
+typedef union GsWidget GsWidget;
+typedef struct GsWidgetClass {
+    u8 reserved[0x12c];
+    void (*method12C)(GsWidget *);
+    void (*method130)(GsWidget *);
+} GsWidgetClass;
+union GsWidget {
+    struct {
+        u8 reserved[0x4c];
+        GsWidgetClass *type;
+    } object;
+    struct {
+        u8 reserved[0x2880];
+        s32 enabled;
+    } packetState;
+    struct {
+        u8 reserved[0xa30];
+        GsWidget *child;
+    } childState;
     u8 bytes[0x8000];
     struct {
         u8 reserved[0x4ec];
@@ -16,7 +34,8 @@ typedef union {
         u8 reserved[0x910];
         GsCommand *packet[2];
     } buffers;
-} GsWidget;
+};
+extern void func_0018C748(const void *packet);
 extern void func_00189AD0(GsCommand *tag, s32 count);
 extern void func_0018A148(GsCommand *command, s32 reg, ...);
 extern u32 D_005C5994[];
