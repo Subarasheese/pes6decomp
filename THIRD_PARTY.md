@@ -17,6 +17,21 @@ This repository grants no rights to the original game or third-party tools.
 Pro Evolution Soccer and the original game remain the property of their
 respective owners.
 
+## Resident compression and CRI audio sources
+
+The resident compressor and decompressor use zlib 1.1.4. The adapted files identify
+their original functions in the source comments. The PS2 sources retain the shared
+stream types and refer to the error messages and tables at their verified PAL
+addresses. [zlib 1.1.4 source](https://zlib.net/fossils/zlib-1.1.4.tar.gz),
+[zlib license](LICENSES/zlib-1.1.4.txt).
+
+The additional CRI audio and streaming sources cite the original file and function.
+They were compared with the resident PAL binary after compilation and relocation.
+[recvx-decomp source](https://github.com/fmil95/recvx-decomp/tree/23bc6cb06c1b0e1093eeba0abca566dadec69a64),
+[MIT license](LICENSES/recvx-MIT.txt),
+[3s-decomp source](https://github.com/crowded-street/3s-decomp/tree/be9b9bc69dc19822a8eca9ce3e72ba560d5a3835),
+[AGPL-3.0 license](LICENSES/3s-AGPL-3.0.txt).
+
 ## Sources ported from gt4-decomp
 
 PES6 and Gran Turismo 4 link the same Sony SDK release (libkernel, the SIF RPC

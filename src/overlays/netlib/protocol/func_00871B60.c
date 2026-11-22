@@ -1,0 +1,23 @@
+/* compiler: mwcc-3.0.1b151 */
+#include "types.h"
+
+extern s32 func_001C48E8(s32 *, s32, s32);
+extern s32 func_00873EE0(s32 *, void *, s32);
+extern s32 func_00873FD0(s32 *, s32 *);
+extern s32 func_00874460(s32 *);
+extern void func_00874470(void *);
+
+s32 func_00871B60(s32 *arg0, s32 arg1, s32 arg2) {
+    if (!((arg0 != 0) && (arg1 != 0))) {
+        return -0x18;
+    }
+    if (*arg0 != 0x4401) {
+        return -0x46;
+    }
+    func_00874470(arg0);
+    func_00873FD0(arg0, (s32 *)arg1);
+    func_001C48E8((s32 *)arg2, 0, 0x31);
+    func_00873EE0(arg0, (void *)arg2, 0x30);
+    func_00874460(arg0);
+    return 0x4402;
+}
