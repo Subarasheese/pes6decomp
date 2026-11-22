@@ -647,7 +647,7 @@ cd "$d/src"
 
     # Validate each current source's data before selecting covering groups. A
     # rejected parent must not suppress usable standalone sources that follow it.
-    data_candidates = {".rodata": [], ".gcc_except_table": []}
+    data_candidates = {".rodata": [], ".data": [], ".gcc_except_table": []}
     for addr in sources:
         for section in data_candidates:
             if parsed.get(addr, {}).get("sections", {}).get(section):
