@@ -120,3 +120,12 @@ have their respective notices in [LICENSES/ico-MIT.txt](LICENSES/ico-MIT.txt)
 and [LICENSES/ggx-CC0.txt](LICENSES/ggx-CC0.txt). The HTTPS ASN.1 and PEM
 sources retain the copyright, advertising and redistribution notices from
 [SSLeay / OpenSSL 0.9.1c](https://github.com/openssl/openssl/tree/OpenSSL_0_9_1c/crypto).
+
+The title overlay's MPEG decoder draws on the corresponding C functions in
+[OpenRAC's Deadlocked reconstruction](https://github.com/OpenRAC/rac-deadlocked-decomp/tree/0860662c5e1c57c2e1f776dd84b7257cc734f22a/src/core).
+Each source preserves the donor path and any earlier RAC3 attribution.
+OpenRAC licenses its original contributions under [GPLv3](LICENSES/OpenRAC-GPL-3.0.txt)
+and describes its treatment of reconstructed SDK code and RAC3 contributions
+in its [third-party notices](https://github.com/OpenRAC/rac-deadlocked-decomp/blob/0860662c5e1c57c2e1f776dd84b7257cc734f22a/THIRD_PARTY_NOTICES.md).
+The PES packet reader also uses the ICO reconstruction of `sce/libmpeg/pack.c`
+and the MIT notice linked above.
