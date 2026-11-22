@@ -103,3 +103,20 @@ real PS2 results recorded by
 [ps2autotests](https://github.com/unknownbrackets/ps2autotests) (ISC licence) with
 `tools/ee_float_check.py` and `tools/r5900_check.py`; those results are read from a local copy and
 are not included here.
+
+## PAL runtime source references
+
+The resident executable and NTGUI2EU each link their own copies of newlib and
+libgcc. The single-precision fdlibm sources and Doug Lea's allocator were
+compared with the [MVC2 PS2 reconstruction](https://github.com/g-guthrie/mvc2-port-and-decomp/tree/efcb017d57c6ba3acae5959e96af024b9a563a7b/src).
+The newlib files retain the applicable fdlibm notice or public-domain
+attribution. The GCC floating-point sources retain the runtime linking
+exception described above.
+
+The SDK sources credit the individual C files used for comparison. The
+[ICO SDK reconstruction](https://github.com/nathanialf/ico/tree/5ebb9a4bd285ff63dac17ad5689a41c1a8663442/sce)
+and the [Guilty Gear X Plus SDK reconstruction](https://github.com/devin-thomas/guilty-gear-x-plus/tree/88aa1b1a142f02e3e22c4686837a28f733d3b711/src/sdk)
+have their respective notices in [LICENSES/ico-MIT.txt](LICENSES/ico-MIT.txt)
+and [LICENSES/ggx-CC0.txt](LICENSES/ggx-CC0.txt). The HTTPS ASN.1 and PEM
+sources retain the copyright, advertising and redistribution notices from
+[SSLeay / OpenSSL 0.9.1c](https://github.com/openssl/openssl/tree/OpenSSL_0_9_1c/crypto).
