@@ -5,7 +5,7 @@ typedef unsigned char u_char;
 typedef char Sint8;
 typedef signed int Sint32;
 typedef signed long Sint64;
-extern void func_00108048(const char *fmt, ...);
+extern int printf(const char *fmt, ...);
 typedef struct {
     u_char trycount;
     u_char spindlctrl;
@@ -55,7 +55,7 @@ void func_0016C9B8(SRD srd) {
         func_0016C960();
         i++;
         if (i > 0x9000) {
-            func_00108048("SRD: srd_wait_hst timeout.\r\n");
+            printf("SRD: srd_wait_hst timeout.\r\n");
             break;
         }
     }

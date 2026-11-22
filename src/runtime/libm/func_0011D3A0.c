@@ -31,7 +31,7 @@
         (d) = sf_u.f;                                                                              \
     } while (0)
 
-extern float func_0011D0F8(float, float);
+extern float copysignf(float, float);
 
 float func_0011D3A0(float x, s32 n) {
     u32 ix;
@@ -43,7 +43,7 @@ float func_0011D3A0(float x, s32 n) {
         k += n;
         if (k >= 256) {
             t = 1.0e30f;
-            return func_0011D0F8(t, x) * t;
+            return copysignf(t, x) * t;
         }
         if (k > 0) {
             SET_FLOAT_WORD(x, (ix & 0x807FFFFF) | (k << 23));
@@ -51,10 +51,10 @@ float func_0011D3A0(float x, s32 n) {
         }
         if (n > 50000) {
             t = 1.0e30f;
-            return func_0011D0F8(t, x) * t;
+            return copysignf(t, x) * t;
         } else {
             t = 1.0e-30f;
-            return func_0011D0F8(t, x) * t;
+            return copysignf(t, x) * t;
         }
     }
     return x;

@@ -9,11 +9,11 @@ extern s32 D_00510B00[3];
 extern s32 D_00510C00[];
 
 void func_00178D40(s32 a, s32 b, s32 c, P8_a *out) {
-    extern s32 func_0016E848(s32, s32 *, s32, s32 *, s32);
+    extern s32 DTX_CallUrpc(unsigned int command, s32 *send, s32 sendCount, s32 *receive, s32 receiveCount);
     D_00510B00[0] = a;
     D_00510B00[1] = b;
     D_00510B00[2] = c;
-    func_0016E848(0x26, D_00510B00, 3, D_00510C00, 2);
+    DTX_CallUrpc(0x26, D_00510B00, 3, D_00510C00, 2);
     out->a = (void *)D_00510C00[0];
     out->b = (void *)D_00510C00[1];
 }

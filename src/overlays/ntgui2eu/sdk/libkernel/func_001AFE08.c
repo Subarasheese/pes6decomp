@@ -14,13 +14,11 @@
 #define __sfvwrite D_001C5E80
 #define __sinit D_001C5520
 #define __sprint func_001C9F08
-#define __svfscanf func_001B1B08
 #define _b2d func_005AD090
 #define _calloc_r D_00575F70
 #define _d2b func_005AD228
 #define _hi0bits func_005AC7E8
 #define _i2b func_005AC928
-#define D_005CC508 D_005CC508
 #define _lo0bits func_005AC868
 #define _lshift func_005ACC70
 #define _mprec_log10 func_005AD480

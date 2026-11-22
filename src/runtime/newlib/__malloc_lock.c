@@ -3,7 +3,7 @@
 
 typedef int s32;
 extern s32 func_00105250(void);
-extern void func_001053A0(s32);
+extern s32 WaitSema(s32);
 extern s32 D_00398E80[];
 extern s32 D_00398E84[];
 extern s32 D_00371A20[];
@@ -13,7 +13,7 @@ void __malloc_lock(void) {
     if (D_00398E80[0] == tid) {
         D_00398E84[0] = D_00398E84[0] + 1;
     } else {
-        func_001053A0(D_00371A20[0]);
+        WaitSema(D_00371A20[0]);
         D_00398E80[0] = tid;
         D_00398E84[0] = D_00398E84[0] + 1;
     }

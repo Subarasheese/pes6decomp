@@ -8,7 +8,7 @@ typedef struct {
     s32 d;
 } Q4;
 extern Q4 D_00510B00;
-extern s32 func_0016E848(s32, void *, s32, s32, s32);
+extern s32 DTX_CallUrpc(unsigned int command, s32 *send, s32 sendCount, s32 *receive, s32 receiveCount);
 
 s32 func_00178DB0(s32 a, s32 b, s32 *c) {
     s32 c0 = c[0];
@@ -16,5 +16,5 @@ s32 func_00178DB0(s32 a, s32 b, s32 *c) {
     D_00510B00.b = b;
     D_00510B00.c = c0;
     D_00510B00.d = c[1];
-    return func_0016E848(0x27, &D_00510B00, 4, 0, 0);
+    return DTX_CallUrpc(0x27, (s32 *)&D_00510B00, 4, 0, 0);
 }

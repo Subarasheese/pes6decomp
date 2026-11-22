@@ -12,8 +12,8 @@
  */
 /* fdlibm single-precision sf_sin.c for the EE floating-point format. */
 #include "types.h"
-extern float func_0011C1B0(float, float, s32);
-extern float func_0011B7F8(float, float);
+extern float __kernel_sinf(float, float, s32);
+extern float __kernel_cosf(float, float);
 extern s32 func_0011A318(float, float *);
 
 float func_0011D468(float x) {
@@ -30,17 +30,17 @@ float func_0011D468(float x) {
     } while (0);
     hx &= 0x7fffffff;
     if (hx <= 0x3f490fd8) {
-        return func_0011C1B0(x, 0.0f, 0);
+        return __kernel_sinf(x, 0.0f, 0);
     }
     n = func_0011A318(x, y);
     switch (n & 3) {
     case 0:
-        return func_0011C1B0(y[0], y[1], 1);
+        return __kernel_sinf(y[0], y[1], 1);
     case 1:
-        return func_0011B7F8(y[0], y[1]);
+        return __kernel_cosf(y[0], y[1]);
     case 2:
-        return -func_0011C1B0(y[0], y[1], 1);
+        return -__kernel_sinf(y[0], y[1], 1);
     default:
-        return -func_0011B7F8(y[0], y[1]);
+        return -__kernel_cosf(y[0], y[1]);
     }
 }

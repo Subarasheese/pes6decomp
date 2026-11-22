@@ -13,7 +13,7 @@ typedef struct Obj {
 
 extern u8 D_003C8D40[];
 extern void func_0015B478(u8 *);
-extern s32 func_00165A90(u8 *);
+extern s32 adxt_GetStat(u8 *);
 extern s32 func_001662F0(u8 *);
 extern s32 func_00166268(u8 *);
 
@@ -25,7 +25,7 @@ f32 func_00166F48(u8 *p) {
         func_0015B478(D_003C8D40);
         return -1.0f;
     }
-    if (func_00165A90(p) >= 2) {
+    if (adxt_GetStat(p) >= 2) {
         o = *(Obj **)(p + 0x14);
         if (o != 0) {
             a = o->vt->fn(o, 1);

@@ -18,7 +18,7 @@ typedef struct {
 } Context;
 extern u8 *func_00176300(u8 *, s32), *func_001762C0(u8 *, s32);
 extern s32 func_00178E50(s32, s32);
-extern void func_00108048(const char *, ...);
+extern int printf(const char *, ...);
 extern char D_003C8868[], D_003C8888[], D_003C88A8[];
 void func_00164DB0(Context *ctx) {
     u8 *base = ctx->base;
@@ -28,7 +28,7 @@ void func_00164DB0(Context *ctx) {
     s32 b = o->vt->f24(o, 0);
     s32 c = func_00178E50((s32)handle, 1);
     s32 d = func_00178E50((s32)handle, 0);
-    func_00108048(D_003C8868, a, b, a + b);
-    func_00108048(D_003C8888, c, d, c + d);
-    func_00108048(D_003C88A8, ctx->status, a + b + c + d);
+    printf(D_003C8868, a, b, a + b);
+    printf(D_003C8888, c, d, c + d);
+    printf(D_003C88A8, ctx->status, a + b + c + d);
 }
