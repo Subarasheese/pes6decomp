@@ -172,22 +172,56 @@ def prepare(iso):
             entry = t['entry']
         (d/'image.rom').write_bytes(payload)
         (d/'image.elf').write_bytes(synthetic_elf(payload, t['code_start'], entry, t['bss_bytes']))
-        import yaml
-        rel = str(d.relative_to(ROOT))
-        cfg = dict(name=t['disc_name'], sha1=sha(payload), options=dict(basename='pes6_'+t['name'],
-            base_path='../../..', target_path=rel+'/image.rom', elf_path=rel+'/image.elf',
-            platform='ps2', compiler='EEGCC', gp_value=t['gp'], asm_path=rel+'/splat/asm',
-            src_path=rel+'/splat/src', build_path=rel+'/splat/obj', ld_script_path=rel+'/splat/image.ld',
-            cache_path=rel+'/splat/.splat_cache', symbol_addrs_path=extra_symbols(t['name']),
-            undefined_funcs_auto_path=rel+'/splat/undefined_funcs_auto.txt',
-            undefined_syms_auto_path=rel+'/splat/undefined_syms_auto.txt', ld_dependencies=False,
-            create_c_files=False, generate_asm_macros_files=False, named_regs_for_c_funcs=False),
-            segments=[dict(name='core',type='code',start=0,vram=t['code_start'],bss_size=0,
-                subsegments=[[0,'c','core/text'],[t['code_end']-t['code_start'],'data','core/data']]), [len(payload)]])
-        (d/'splat.yaml').write_text(yaml.safe_dump(cfg,sort_keys=False))
+        write_splat_config(t, d, payload)
         c = ROOT/'config/overlays'/t['name'];c.mkdir(parents=True,exist_ok=True)
         if not (c/'units.txt').exists(): (c/'units.txt').write_text(f"0x{t['code_start']:08X} overlays/{t['name']}\n")
     print(f'Mapped {len(images)-1} MWo3 members and one auxiliary EE executable; prepared {sum(t["executable"] for t in images)} code targets')
+
+
+def text_ranges(t):
+    """Splat text units, bounded by independently known entry addresses in the overlay."""
+    starts = [t['code_start']]
+    path = ROOT/'config/overlays'/t['name']/'text_splits.txt'
+    if path.is_file():
+        for line in path.read_text().splitlines():
+            value = line.partition('#')[0].strip()
+            if not value:
+                continue
+            address = int(value, 0)
+            if address % 4 or not starts[-1] < address < t['code_end']:
+                raise ValueError(f'{path}: invalid text split {value}')
+            starts.append(address)
+    return [(start, end, 'core/text' if start == t['code_start'] else f'core/text_{start:08X}')
+            for start, end in zip(starts, [*starts[1:], t['code_end']])]
+
+
+def assembly_paths(t, directory):
+    for start, end, unit in text_ranges(t):
+        for path in (directory/unit).glob('func_*.s'):
+            if re.fullmatch(r'func_[0-9A-Fa-f]{8}', path.stem):
+                address = int(path.stem[5:], 16)
+                if start <= address < end:
+                    yield path
+
+
+def write_splat_config(t, d, payload):
+    import yaml
+    rel = str(d.relative_to(ROOT))
+    cfg = dict(name=t['disc_name'], sha1=sha(payload), options=dict(basename='pes6_'+t['name'],
+        base_path='../../..', target_path=rel+'/image.rom', elf_path=rel+'/image.elf',
+        platform='ps2', compiler='EEGCC', gp_value=t['gp'], asm_path=rel+'/splat/asm',
+        src_path=rel+'/splat/src', build_path=rel+'/splat/obj', ld_script_path=rel+'/splat/image.ld',
+        cache_path=rel+'/splat/.splat_cache', symbol_addrs_path=extra_symbols(t['name']),
+        undefined_funcs_auto_path=rel+'/splat/undefined_funcs_auto.txt',
+        undefined_syms_auto_path=rel+'/splat/undefined_syms_auto.txt', ld_dependencies=False,
+        create_c_files=False, generate_asm_macros_files=False, named_regs_for_c_funcs=False),
+        segments=[dict(name='core',type='code',start=0,vram=t['code_start'],bss_size=0,
+            subsegments=[[start-t['code_start'],'c',directory] for start, _, directory in text_ranges(t)]
+                + [[t['code_end']-t['code_start'],'data','core/data']]), [len(payload)]])
+    config_path = d/'splat.yaml'
+    contents = yaml.safe_dump(cfg, sort_keys=False)
+    if not config_path.is_file() or config_path.read_text() != contents:
+        config_path.write_text(contents)
 
 
 def extra_symbols(name):
@@ -207,17 +241,14 @@ def env_for(name):
 def inventory(name):
     t = target(name)
     d = ROOT/'build/targets'/name
+    payload = (d/'image.rom').read_bytes()
+    write_splat_config(t, d, payload)
     with (d/'splat.log').open('w') as log:
         subprocess.run([sys.executable,'-m','splat','split','--disassemble-all',str(d/'splat.yaml')],cwd=ROOT,check=True,stdout=log,stderr=subprocess.STDOUT)
-    starts = []
-    for path in (d/'splat/asm/matchings/core/text').glob('func_*.s'):
-        a = int(path.stem[5:],16)
-        if t['code_start'] <= a < t['code_end']:
-            starts.append(a)
-    starts = sorted(set(starts))
+    starts = sorted(int(path.stem[5:], 16) for path in assembly_paths(t, d/'splat/asm/matchings'))
     if not starts:
         raise ValueError(f'{name}: no functions found')
-    data = (d/'image.rom').read_bytes()[:t['code_end']-t['code_start']]
+    data = payload[:t['code_end']-t['code_start']]
     calls = {}
     for (w,) in struct.iter_unpack('<I',data):
         if w>>26 == 3:

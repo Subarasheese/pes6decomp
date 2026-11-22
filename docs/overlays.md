@@ -44,6 +44,13 @@ Inventory boundaries come from splat/spimdisasm and are estimates, as for the
 resident program. Regenerating inventories is explicit. `prepare` checks the
 supported disc and catalog before writing local game inputs.
 
+In `https.ovl`, embedded words at `0x00B90E54` decode as a branch before the
+start of the overlay. This causes spimdisasm to stop looking for functions and
+assign the rest of the text to `0x00B90AF0`. The addresses in
+`config/overlays/https/text_splits.txt` are destinations of PAL `jal`
+instructions. Starting a splat text unit at each address recovers the later
+boundaries. Running `tools/overlays.py inventory https` regenerates the CSV.
+
 An overlay build uses the same compilers, relocation checker and linker as the
 resident build. It compares code/data hashes and reconstructs the complete
 original member, including its unchanged header and archive padding, to verify
@@ -76,7 +83,7 @@ separate logical images and must not be concatenated or address-deduplicated.
 | `formation.ovl` | 9 | `0x008B2800` | 234,176 | 9,728 | 30,592 | 743 |
 | `game.ovl` | 17 | `0x00930000` | 3,580,480 | 110,464 | 100,096 | 4,570 |
 | `gameanime2_dummy.ovl` | 2 | `0x0061F800` | 0 | 0 | 1,976,320 | 0 |
-| `https.ovl` | 26 | `0x00B8F800` | 638,016 | 185,216 | 612,864 | 16 |
+| `https.ovl` | 26 | `0x00B8F800` | 638,016 | 185,216 | 612,864 | 2,353 |
 | `ime.ovl` | 35 | `0x00D07000` | 97,216 | 7,424 | 102,912 | 297 |
 | `leagueWork.ovl` | 3 | `0x00802800` | 0 | 0 | 706,560 | 0 |
 | `league_common.ovl` | 18 | `0x00930000` | 586,432 | 40,320 | 1,146,752 | 1,280 |

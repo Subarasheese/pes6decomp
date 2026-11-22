@@ -93,6 +93,27 @@ GameCube decompilations whose CRI ADX code is platform-independent C. They were 
 compiling those sources with the PES6 compiler profiles and comparing normalized code, and each
 adapted file names its origin in its first comment.
 
+## HTTPS and runtime library sources
+
+The HTTPS overlay sources carrying an SSLeay or OpenSSL provenance comment
+identify the public file and function used for reconstruction. The shared
+structures in `include/pes6/https/` come from the same SSLeay headers.
+Function and data references use the PAL addresses. The tags identify the
+source used for each function. [SSLeay 0.9.1b](https://github.com/openssl/openssl/tree/SSLeay_0_9_1b),
+[OpenSSL 0.9.3a](https://github.com/openssl/openssl/tree/OpenSSL_0_9_3a),
+[OpenSSL 0.9.5a](https://github.com/openssl/openssl/tree/OpenSSL_0_9_5a).
+
+This product includes cryptographic software written by Eric Young
+(eay@cryptsoft.com). This product includes software developed by the OpenSSL
+Project for use in the OpenSSL Toolkit (http://www.openssl.org/).
+[SSLeay terms](LICENSES/SSLeay.txt), [OpenSSL 0.9.3a terms](LICENSES/OpenSSL-0.9.3a.txt),
+[OpenSSL 0.9.5a terms](LICENSES/OpenSSL-0.9.5a.txt).
+
+The newlib functions identified by file name use the newlib 1.9.0 notices
+above. The resident Adler-32 checksum is adapted from Mark Adler’s
+`adler32.c` in zlib 1.1.4. [zlib 1.1.4](https://zlib.net/fossils/zlib-1.1.4.tar.gz),
+[zlib terms](LICENSES/zlib-1.1.4.txt).
+
 ## R5900 simulator
 
 `tools/r5900sim.py` is an Emotion Engine interpreter written for behaviour checks of decompiled C.
