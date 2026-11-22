@@ -11,6 +11,46 @@ import project
 
 
 class OverlayTests(unittest.TestCase):
+    def test_separate_jump_tables_require_matching_code_entries_and_padding(self):
+        import build
+        import match
+
+        def words(*values):
+            return struct.pack('<' + 'I' * len(values), *values)
+
+        def section(name, data):
+            return dict(name=name, data=data, size=len(data), alignment=16)
+
+        entry, base = 0x100000, 0x128000
+        addresses = words(0x3c020000, 0x24420000, 0x3c030000, 0x24630000)
+        high, low = match.R_MIPS_HI16, match.R_MIPS_LO16
+        obj = dict(
+            sections=[section('', b''), section('.text', addresses),
+                      section('.rodata', words(0)), section('.rodata', words(8, 12))],
+            symbols=[('', 0, 0, True), ('handler', 0, 1, False),
+                     ('.rodata', 0, 2, True), ('.rodata', 0, 3, True)],
+            relocs={1: [(0, high, 2), (4, low, 2), (8, high, 3), (12, low, 3)],
+                    2: [(0, build.R_MIPS_32, 1)],
+                    3: [(0, build.R_MIPS_32, 1), (4, build.R_MIPS_32, 1)]})
+        code = words(0x3c020013, 0x24428000, 0x3c030013, 0x24638010)
+        tables = words(entry, 0, 0, 0, entry + 8, entry + 12)
+
+        def place(text, data):
+            return build.jump_table_group(obj, [2, 3], entry, entry, text, base, data)
+
+        self.assertEqual(place(code, tables), base)
+        for offset in (0, 4, 16, 20):
+            with self.subTest(table_offset=offset):
+                changed = bytearray(tables)
+                changed[offset] ^= 4
+                self.assertIsNone(place(code, changed))
+        for offset in (4, 12):
+            with self.subTest(code_offset=offset):
+                changed = bytearray(code)
+                changed[offset] ^= 4
+                self.assertIsNone(place(changed, tables))
+        self.assertIsNone(place(code, tables[:-1]))
+
     def test_text_splits_use_only_assembly_in_each_address_range(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(overlays, 'ROOT', Path(directory)):
             root = Path(directory)

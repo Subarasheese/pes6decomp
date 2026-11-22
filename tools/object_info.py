@@ -11,6 +11,13 @@ import re
 import struct
 
 
+def aligned_offset(offset, alignment):
+    alignment = max(1, alignment)
+    if alignment & (alignment - 1):
+        raise ValueError(f"invalid ELF section alignment {alignment}")
+    return (offset + alignment - 1) & -alignment
+
+
 def read_info(path):
     data = Path(path).read_bytes()
     if len(data) < 52 or data[:6] != b"\x7fELF\x01\x01":
@@ -40,7 +47,11 @@ def read_info(path):
         if name:
             if name.startswith(".gnu.linkonce.t."):
                 name = ".text"
-            sizes[name] = sizes.get(name, 0) + section[5]
+            offset = sizes.get(name, 0)
+            if name == ".rodata" and section[5]:
+                # GNU ld lays out same-named input sections in file order, including alignment.
+                offset = aligned_offset(offset, section[8])
+            sizes[name] = offset + section[5]
         if section[1] != 2:
             continue
         if section[9] != 16 or section[5] % 16 or section[6] >= count:
