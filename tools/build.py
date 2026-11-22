@@ -160,7 +160,7 @@ def select_source_objects(parsed, sources, text_end, section_places, resolve=sym
 def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".rodata"):
     """Place a data section only when all original code references agree on its base
     and every relocated byte equals the original loaded data. Supports constants,
-    switch tables and GCC exception tables; unknown relocations reject placement."""
+    switch tables, callback arrays and GCC exception tables; unknown relocations reject placement."""
     if not addrs:
         return {}
     local = os.path.join(OUT, "robj")
@@ -169,41 +169,22 @@ def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".ro
     wsl(f'cd "{WSL_DIR}/obj" && cp {names} {to_wsl(local)}/\n')
     sext = lambda v: (v & 0xFFFF) - 0x10000 if v & 0x8000 else v & 0xFFFF
     word = lambda a: struct.unpack_from("<I", orig_text, a - text_addr)[0]
-    # Relocations of each object's .rodata: only R_MIPS_32 against its own .text (a switch's jump
-    # table) can be resolved here; any other kind leaves the object out.
-    rodata_relocs = {}
-    dump = wsl(f'cd "{to_wsl(local)}" && for f in {names}; do echo "@ $f"; '
-               f'mips-linux-gnu-objdump -r -j {section} "$f" 2>/dev/null | grep -E "^[0-9a-f]{{8}} " || true; done\n')
-    cur = None
-    for line in dump.splitlines():
-        if line.startswith("@ "):
-            cur = int(line[2:].split("_")[1][:8], 16)
-            rodata_relocs[cur] = []
-        elif cur is not None and rodata_relocs[cur] is not None:
-            off, rtype, sym = line.split()[:3]
-            # gcc relocates a jump table against .text; MWCC against the function's own symbol,
-            # which starts its .text (the byte comparison below confirms the result either way).
-            if rtype == "R_MIPS_32" and sym in (".text", f"func_{cur:08X}"):
-                rodata_relocs[cur].append(int(off, 16))
-            else:
-                rodata_relocs[cur] = None
-    addrs = [a for a in addrs if rodata_relocs.get(a) is not None]
     out = {}
     for addr in addrs:
         path = os.path.join(local, f"func_{addr:08X}.o")
         blob, srelocs, _ = match.read_object(path, want_symbols=True)
-        rodata = elf_section(path, section)
-        if rodata_relocs.get(addr):
-            # A jump table: each word is the function's own address plus the addend stored in place.
-            words = bytearray(rodata)
-            for roff in rodata_relocs[addr]:
-                struct.pack_into("<I", words, roff, (addr + struct.unpack_from("<I", words, roff)[0]) & 0xFFFFFFFF)
-            rodata = bytes(words)
-        mine = lambda off: struct.unpack_from("<I", blob, off)[0]
-        # MWCC addresses its data through local labels (`@32`) defined in the section: such a
-        # reference is the section plus the label's value.
         elf = read_elf(path)
-        sec_index = next((i for i, s in enumerate(elf["sections"]) if s["name"] == section), None)
+        indices = {s["name"]: i for i, s in enumerate(elf["sections"])}
+        sec_index = indices[section]
+        # Jump-table entries refer to this object's code. Callback entries can refer to
+        # other functions with known addresses. Both store an absolute word plus its addend.
+        if any(kind != R_MIPS_32 for _, kind, _ in elf["relocs"].get(sec_index, [])):
+            continue
+        rodata = relocate(elf, sec_index, {indices[".text"]: addr}, symbols.address_of)
+        if rodata is None:
+            continue
+        mine = lambda off: struct.unpack_from("<I", blob, off)[0]
+        # MWCC can refer to its table through a local symbol at an offset in the section.
         labels = {n: v for n, v, shndx, local in elf["symbols"] if local and shndx == sec_index and n}
         bases = set()
         offs = sorted(srelocs)

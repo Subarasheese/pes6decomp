@@ -83,6 +83,44 @@ class OverlayTests(unittest.TestCase):
         proof['target']='bank_a';self.assertTrue(overlay_report.valid_proof(t,proof))
         proof['text_sha1']='corrupt';self.assertFalse(overlay_report.valid_proof(t,proof))
 
+    def test_callback_table_requires_anchored_bytes_and_resolvable_targets(self):
+        import build
+        import match
+
+        code_addr, data_addr = 0x100000, 0x200000
+        table_addr, handler = data_addr + 12, 0x180030
+        instructions = struct.pack('<2I', 0x3c020000, 0x24420000)
+        original_text = struct.pack('<2I', 0x3c020020, 0x2442000c)
+        # The table contains an external callback, a local code label with a
+        # four-byte addend, and a null slot.
+        original_data = bytes(12) + struct.pack('<3I', handler, code_addr + 12, 0)
+        refs = {0: (match.R_MIPS_HI16, '.data', 0, False),
+                4: (match.R_MIPS_LO16, '.data', 0, False)}
+        obj = {
+            'sections': [{'name': ''}, {'name': '.text'},
+                         {'name': '.data', 'data': struct.pack('<3I', 0, 4, 0)}],
+            'symbols': [('callback', 0, 0, False), ('label', 8, 1, True)],
+            'relocs': {2: [(0, build.R_MIPS_32, 0), (4, build.R_MIPS_32, 1)]},
+        }
+        with tempfile.TemporaryDirectory() as tmp, patch.object(build, 'OUT', tmp), \
+                patch.object(build, 'wsl'), patch.object(build, 'read_elf', return_value=obj), \
+                patch.object(match, 'read_object', return_value=(instructions, refs, [])), \
+                patch.object(build.symbols, 'address_of') as resolve:
+            def placed(text=original_text, data=original_data):
+                return build.place_rodata([code_addr], data_addr, data, text, code_addr, '.data')
+
+            resolve.return_value = handler
+            self.assertEqual(placed(), {code_addr: table_addr})
+            resolve.assert_called_with('callback')
+            self.assertEqual(placed(data=original_data[:16] + bytes(8)), {})
+            self.assertEqual(placed(text=struct.pack('<2I', 0x3c020020, 0x24420008)), {})
+            for target in (None, handler + 4):
+                resolve.return_value = target
+                self.assertEqual(placed(), {})
+            resolve.return_value = handler
+            obj['relocs'][2][0] = (0, match.R_MIPS_26, 0)
+            self.assertEqual(placed(), {})
+
     def test_report_counts_overlapping_images_without_borrowing_matches(self):
         import json
         from report import measures
