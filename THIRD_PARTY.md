@@ -79,6 +79,46 @@ other programs, and to distribute those combinations without any restriction com
 this file. (The General Public License restrictions do apply in other respects; for example, they
 cover modification of the file, and distribution when not linked into a combine executable.)
 
+## PAL runtime source references
+
+The resident executable and NTGUI2EU each link their own copies of newlib and
+libgcc. The single-precision fdlibm sources and Doug Lea's allocator were
+compared with the [MVC2 PS2 reconstruction](https://github.com/g-guthrie/mvc2-port-and-decomp/tree/efcb017d57c6ba3acae5959e96af024b9a563a7b/src).
+The newlib files retain the applicable fdlibm notice or public-domain
+attribution. The GCC floating-point sources retain the runtime linking
+exception described above.
+
+The SDK sources credit the individual C files used for comparison. The
+[ICO SDK reconstruction](https://github.com/nathanialf/ico/tree/5ebb9a4bd285ff63dac17ad5689a41c1a8663442/sce)
+and the [Guilty Gear X Plus SDK reconstruction](https://github.com/devin-thomas/guilty-gear-x-plus/tree/88aa1b1a142f02e3e22c4686837a28f733d3b711/src/sdk)
+have their respective notices in [LICENSES/ico-MIT.txt](LICENSES/ico-MIT.txt)
+and [LICENSES/ggx-CC0.txt](LICENSES/ggx-CC0.txt). The HTTPS ASN.1 and PEM
+sources retain the copyright, advertising and redistribution notices from
+[SSLeay / OpenSSL 0.9.1c](https://github.com/openssl/openssl/tree/OpenSSL_0_9_1c/crypto).
+
+The title overlay's MPEG decoder draws on the corresponding C functions in
+[OpenRAC's Deadlocked reconstruction](https://github.com/OpenRAC/rac-deadlocked-decomp/tree/0860662c5e1c57c2e1f776dd84b7257cc734f22a/src/core).
+Each source preserves the donor path and any earlier RAC3 attribution.
+OpenRAC licenses its original contributions under [GPLv3](LICENSES/OpenRAC-GPL-3.0.txt)
+and describes its treatment of reconstructed SDK code and RAC3 contributions
+in its [third-party notices](https://github.com/OpenRAC/rac-deadlocked-decomp/blob/0860662c5e1c57c2e1f776dd84b7257cc734f22a/THIRD_PARTY_NOTICES.md).
+The PES packet reader also uses the ICO reconstruction of `sce/libmpeg/pack.c`
+and the MIT notice linked above.
+
+The CRI audio and virtual file routines also use the
+[3rd Strike reconstruction](https://github.com/crowded-street/3s-decomp/tree/be9b9bc69dc19822a8eca9ce3e72ba560d5a3835/src/anniversary/cri),
+the [Code Veronica X reconstruction](https://github.com/fmil95/recvx-decomp/tree/23bc6cb06c1b0e1093eeba0abca566dadec69a64/src/cri),
+and the [Persona 4 reconstruction](https://github.com/Raikaru/Persona4-Decompilation/tree/3a2814000d25d16a1aba5ece57d9a098814b0ccc/src/cri).
+The [3rd Strike AGPL notice](LICENSES/3s-decomp-AGPL-3.0.txt) and the
+[Code Veronica X MIT notice](LICENSES/recvx-MIT.txt) are included.
+The GCC exception-frame source identifies the original GCC runtime and the
+[Gran Turismo 4 source](https://github.com/gustavocanepa/gt4-decomp/tree/0bf836499a295edd7e087f90e8ca01961e639da2/src/runtime)
+used for comparison.
+
+The DMA channel and graphics functions credit the corresponding C units in the
+[King's Field IV reconstruction](https://github.com/Voicedrew11/kfiv-decomp/tree/09adc15974b2936b09943d2a55cc29fa472a79b2/src/sce).
+Its [MIT notice](LICENSES/kfiv-MIT.txt) is included.
+
 ## Sources adapted from other PS2 decompilations
 
 Sony SDK functions (libgraph, libdma, libvu0, libdev, libpad, SIF/RPC, TTY, DECI2, interrupt

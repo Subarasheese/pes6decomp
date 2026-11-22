@@ -1,0 +1,3 @@
+# Compiler-generated runtime calls in the resident newlib objects.
+__floatdidf = 0x0011EF28; // type:func
+__fixdfdi = 0x0011F1D0; // type:func

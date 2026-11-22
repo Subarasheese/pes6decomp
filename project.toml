@@ -184,3 +184,8 @@ command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -g -Iinc
 [compilers."ee-gcc-2.96-nsa-G0-g"]
 dir = "toolchains/ee-gcc2.96"
 command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -fno-strict-aliasing -g -Iinclude"
+
+# The league menu copies even its eight-byte initializers with absolute addresses.
+[compilers."mwcc-3.0.1b210-sdata0-merged-sections"]
+dir = "toolchains"
+command = "bash {tools}/cc_merged_sections.sh {dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -sdatathreshold 0 -O4,p -c -Iinclude"
