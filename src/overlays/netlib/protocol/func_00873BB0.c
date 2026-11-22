@@ -26,7 +26,7 @@ documentation and/or software.
  */
 /* Derived from the RSA Data Security, Inc. MD5 Message-Digest Algorithm, RFC 1321, Appendix A.3. */
 #include "pes6/net_md5.h"
-extern void func_001C4730(void *dst, const void *src, u32 bytes);
+extern void *func_001C4730(void *dst, const void *src, u32 bytes);
 void func_00873BB0(NetMd5Context *context, const u8 *input, u32 inputLen) {
     unsigned int i, index, partLen;
 
