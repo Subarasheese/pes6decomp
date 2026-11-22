@@ -83326,22 +83326,6 @@
   },
   {
    "image": "main",
-   "address": "0016A748",
-   "symbol": "func_0016A748",
-   "original_sha256": "c9137dafdc811336d48c6b586e9258d122de04b3e119eee01f2607d19d6d9a64",
-   "source": "nonmatching/main/func_0016A748.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "04bb5220d878ee36f3d0631375660bbd503a770e691a0bb96dcbce137d95b4b4",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
    "address": "0016A948",
    "symbol": "func_0016A948",
    "original_sha256": "afa26d674e6ffa0d32796d3dc3b7ff144bd74adb715a4f9aaf0b9abab249e31f",

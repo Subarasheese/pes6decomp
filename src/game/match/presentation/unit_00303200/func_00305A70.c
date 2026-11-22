@@ -27,7 +27,7 @@ extern s32 Pes6Random_Below(s32);
 extern s32 func_001CDAA0(void);
 extern u8 D_00591C09[];
 extern u8 D_00591BBA[];
-extern u16 D_00591BB0[];
+extern u16 Pes6MatchContext[];
 extern u8 D_003C54C0[];
 s32 func_00305A70(Presentation *presentation) {
     PresentationState *state;
@@ -41,7 +41,7 @@ s32 func_00305A70(Presentation *presentation) {
         func_00305E60(presentation, func_00304A00);
     state = presentation->state;
     for (i = 0; i < 2; i++) {
-        func_00303C40(D_00591BB0[i], &state->values[i]);
+        func_00303C40(Pes6MatchContext[i], &state->values[i]);
         if (state->values[i] == 0x154)
             state->limits[i] = 10;
         else

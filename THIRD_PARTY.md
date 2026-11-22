@@ -109,3 +109,9 @@ sources are covered by the [gt4-decomp MIT license](LICENSES/GT4-MIT.txt).
 The CRI CVFS functions carry the [3s-decomp AGPL license](LICENSES/3s-AGPL-3.0.txt).
 The resident inflate code is adapted from zlib 1.1.4, including the
 [original zlib license](LICENSES/zlib-1.1.4.txt).
+
+The resident Huffman table builder and tree-header writer use zlib 1.1.4
+`inftrees.c` and `trees.c`. The ADXF sector reader, ADX stream header parser,
+and CVFS device registration adapt `adx_fs.c`, `adx_sjd.c`, and `cri_cvfs.c`
+from the 3s-decomp CRI sources cited above. Their local tables and diagnostic
+strings were verified at the addresses used by the PAL executable.
