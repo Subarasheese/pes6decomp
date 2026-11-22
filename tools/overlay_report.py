@@ -24,6 +24,20 @@ def _source_key(path):
     return f'{address:08x}' if address is not None else path.stem[-8:].lower()
 
 
+def _source_keys(name, paths):
+    """_source_key for each of an overlay's sources, resolved under that overlay's own symbol table
+    (PES6_TARGET) as its build resolves them: a named overlay source (ntgui2eu's cvt.c) is unknown
+    to the resident executable's symbols."""
+    import os
+    import subprocess
+    import sys
+    code = ("import json, sys; sys.path.insert(0, sys.argv[1]); import project; "
+            "print(json.dumps([project.source_address(p) for p in json.load(sys.stdin)]))")
+    out = subprocess.run([sys.executable, "-c", code, str(ROOT/'tools')], input=json.dumps([str(p) for p in paths]),
+                         capture_output=True, text=True, check=True, env=dict(os.environ, PES6_TARGET=name))
+    return [f'{a:08x}' if a is not None else p.stem[-8:].lower() for p, a in zip(paths, json.loads(out.stdout))]
+
+
 def publication_errors(head):
     path = ROOT/'config/overlays.json'
     if not path.exists():
@@ -44,7 +58,7 @@ def publication_errors(head):
         proof = json.loads(path.read_text()) if path.exists() else {}
         if not valid_proof(target, proof) or proof.get('commit') != head or proof.get('dirty'):
             errors.append(f'{name}: requires a clean, current, matching overlay build')
-        elif any(proof.get('functions', {}).get(_source_key(s)) != 'linked' for s in sources):
+        elif any(proof.get('functions', {}).get(k) != 'linked' for k in _source_keys(name, sources)):
             errors.append(f'{name}: a recovered source did not link')
     return errors
 
