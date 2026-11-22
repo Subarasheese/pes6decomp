@@ -1,6 +1,10 @@
 # External references from the matched NTGUI2EU newlib objects.
+__divdi3 = 0x001A9540; // type:func
+__moddi3 = 0x001A9BD8; // type:func
 __udivdi3 = 0x001AA268; // type:func
 __umoddi3 = 0x001AA7E8; // type:func
+__fixunsdfdi = 0x001AAE38; // type:func
+fptodp = 0x001AB200; // type:func
 dpadd = 0x001AB4A0; // type:func
 dpsub = 0x001AB4F8; // type:func
 dpmul = 0x001AB560; // type:func
@@ -8,6 +12,7 @@ dpdiv = 0x001AB7E8; // type:func
 dpcmp = 0x001AB928; // type:func
 litodp = 0x001AB978; // type:func
 dptofp = 0x001ABA60; // type:func
+__muldi3 = 0x001AD0E8; // type:func
 strtol = 0x001B0D68; // type:func
 __swsetup = 0x001B2898; // type:func
 atof = 0x001B29A8; // type:func
@@ -39,3 +44,5 @@ __mb_cur_max = 0x005CC970; // type:data
 _ctype_ = 0x006012F0; // type:data
 __mprec_tens = 0x00601DF8; // type:data
 __mprec_bigtens = 0x00601EC0; // type:data
+__floatdidf = 0x001AD160; // type:func
+__fixdfdi = 0x001B95B8; // type:func
