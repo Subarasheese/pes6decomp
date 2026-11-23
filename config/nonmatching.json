@@ -21234,21 +21234,6 @@
   },
   {
    "image": "game",
-   "address": "009B5820",
-   "symbol": "func_009B5820",
-   "source": "nonmatching/game/func_009B5820.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "47b40acb0c87c2d778ee877dc9efc1d7a57a76c284d68d1d876fd1be1527c083",
-   "original_sha256": "a227cbb30fe80a07f7e2f78791a36341968c63dc8c549229fbe86a91335773ca",
-   "minimum_similarity": 0,
-   "review": "Repaired by an agent from m2c output (the draft failed tools/equiv.py), then judged equivalent by the strengthened tools/equiv.py and independently re-judged (docs/equivalent.md has cases and coverage); compiler/structural checks as for every draft. Behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "game",
    "address": "009B5C10",
    "symbol": "func_009B5C10",
    "original_sha256": "7efc4121717e8ef237378b411c8134a8da32e223642b3c94026ba3f899cd29bd",
@@ -80972,22 +80957,6 @@
    "known_issues": [
     "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
     "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "0036A5D0",
-   "symbol": "func_0036A5D0",
-   "original_sha256": "2641015aa8f5cadbab7848a7ba0b1c7ef89dec2a123e5e7a1e69b08f3e812b39",
-   "source": "nonmatching/main/func_0036A5D0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "79d1cf3bcfc88ee25d8de7801a65eee28be36020f17452ec53d943c7b2bf1d84",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
    ]
   },
   {
