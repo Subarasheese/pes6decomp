@@ -1,12 +1,5 @@
 /* compiler: ee-gcc-2.9-G0 */
-#include "types.h"
-typedef struct {
-    u8 bytes[32];
-} WindowRecord;
-typedef struct {
-    WindowRecord *items;
-    s32 capacity, initialCapacity, count, growth;
-} WindowRecords;
+#include "pes6/ntgui_array.h"
 extern void func_00130AF8(WindowRecords *, s32, s32);
 extern void func_00130C08(WindowRecords *, const WindowRecord *);
 extern void func_00130DC8(WindowRecords *, s32);

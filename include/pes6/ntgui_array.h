@@ -12,4 +12,12 @@ typedef struct {
     s32 growth;
 } WidgetArray;
 
+typedef struct {
+    u8 bytes[32];
+} WindowRecord;
+typedef struct {
+    WindowRecord *items;
+    s32 capacity, initialCapacity, count, growth;
+} WindowRecords;
+
 #endif

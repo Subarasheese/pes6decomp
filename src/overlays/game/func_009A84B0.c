@@ -1,27 +1,5 @@
 /* compiler: mwcc-3.0.1b151 */
-#include "types.h"
-typedef struct {
-    float x, y, z;
-} NetVector;
-typedef struct {
-    const NetVector *target;
-    NetVector rest, velocity;
-    u32 flags;
-} NetNode;
-typedef struct {
-    u16 from, to;
-    float length, lengthSquared;
-} NetLink;
-typedef struct {
-    u8 reserved00[0x70];
-    NetNode nodes[239];
-    NetLink edges[413];
-} NetMesh;
-typedef struct {
-    float damping, anchorDamping, stiffness;
-    u8 reserved0C[28];
-} NetProfile;
-extern const NetProfile D_00CAA42C[];
+#include "pes6/goal_net.h"
 extern const float D_00CAA4F0[2];
 void func_009A84B0(NetMesh *mesh, s32 profile) {
     s32 i;
