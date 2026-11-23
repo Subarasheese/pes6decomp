@@ -15,12 +15,17 @@ typedef struct {
 
 typedef struct Cert Cert;
 struct ssl_st {
-    u8 reserved00[8];
+    int version;
+    u8 reserved04[4];
     SSL_METHOD *method;
     BIO *rbio, *wbio, *bbio;
     u8 reserved18[0x3c - 0x18];
     void *initBuffer;
-    u8 reserved40[0x60 - 0x40];
+    u8 reserved40[8];
+    u8 *packet;
+    u32 packetLength;
+    SSL2_CTX *s2;
+    u8 reserved54[0x60 - 0x54];
     STACK *cipherList, *cipherListById;
     u8 reserved68[0x84 - 0x68];
     Cert *cert;
