@@ -1,4 +1,7 @@
-extern void func_001B9E40();
-void func_001B9E30(int a0, int a1) {
-    func_001B9E40(a0, 0);
+#include "types.h"
+
+extern void func_001B9E40(const void *list, s32 mode);
+
+void func_001B9E30(const void *list) {
+    func_001B9E40(list, 0);
 }

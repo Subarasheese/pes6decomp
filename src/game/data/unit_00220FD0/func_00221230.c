@@ -1,22 +1,17 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "pes6/pad_settings.h"
 
 typedef struct {
-    u8 data[24];
-} Entry18;
+    u8 reserved00[0x20C];
+    SavedPadSettings pads[8];
+} PadSettingsTable;
 
-typedef struct {
-    u8 pad0[0x20C];
-    Entry18 entries[8];
-} Table;
+extern void *Pes6OptionData_GetBase(void);
 
-Table *Pes6OptionData_GetBase(void);
+SavedPadSettings *func_00221230(s32 pad) {
+    PadSettingsTable *table = Pes6OptionData_GetBase();
 
-Entry18 *func_00221230(s32 index) {
-    Table *table = Pes6OptionData_GetBase();
-
-    if (index >= 8) {
-        return &table->entries[0];
-    }
-    return &table->entries[index];
+    if (pad >= 8)
+        return &table->pads[0];
+    return &table->pads[pad];
 }
