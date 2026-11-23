@@ -43,6 +43,37 @@ class OverlayTests(unittest.TestCase):
         self.assertIsNone(place(offsets, symbol_offset=8))
         self.assertIsNone(place(offsets, alignment=32))
 
+    def test_gp_byte_initializer_requires_all_bytes_and_only_local_loads(self):
+        import build
+        import match
+
+        entry, gp, table = 0x800000, 0x3f0000, 0x3e8010
+        data = bytes((6, 4, 3, 4))
+
+        def place(addends=(0, 1, 2, 3), opcodes=(0x93820000,) * 4, name="@15", local=True,
+                  original_data=data, placements=(table,) * 4, pointer_use=False):
+            compiled = struct.pack("<4I", *(op | n for op, n in zip(opcodes, addends)))
+            original = struct.pack("<4I", *(op | ((base + n - gp) & 0xffff)
+                                           for op, base, n in zip(opcodes, placements, addends)))
+            obj = dict(sections=[dict(name=".text", data=compiled, size=16, alignment=4),
+                                 dict(name=".sdata", data=data, size=4, alignment=4)],
+                       symbols=[(name, 0, 1, local)],
+                       relocs={0: [(i * 4, match.R_MIPS_GPREL16, 0) for i in range(4)]})
+            if pointer_use:
+                obj["sections"].append(dict(name=".data", data=bytes(4), size=4, alignment=4))
+                obj["relocs"][2] = [(0, build.R_MIPS_32, 0)]
+            return build.literal_pool_address(obj, 1, entry, entry, original, gp,
+                                              [(table - 1, b"\0" + original_data)])
+
+        self.assertEqual(place(), table)
+        self.assertIsNone(place(addends=(0, 1, 1, 3)))
+        self.assertIsNone(place(placements=(table, table, table + 4, table)))
+        self.assertIsNone(place(original_data=bytes((6, 4, 2, 4))))
+        self.assertIsNone(place(opcodes=(0x93820000,) * 3 + (0xa3820000,)))  # sb
+        self.assertIsNone(place(name="options"))
+        self.assertIsNone(place(local=False))
+        self.assertIsNone(place(pointer_use=True))
+
     def test_referenced_local_label_inside_compiled_function(self):
         import build
         assembly = ["    /* 40 00001040 00000000 */ b .L00001008",
