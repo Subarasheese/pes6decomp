@@ -1,18 +1,9 @@
-/* compiler: ee-gcc-2.96 */
-/* Adapted from newlib 1.9.0, libc/signal/signal.c (_init_signal_r).
- * licence: newlib (see THIRD_PARTY.md) */
-#include "newlib/pal_reent_types.h"
-
-extern void *func_001ADE68(struct _reent *, size_t);
-
-int func_001AFAA0(struct _reent *ptr) {
-    int i;
-    if (ptr->_sig_func == 0) {
-        ptr->_sig_func = (_sig_func_ptr *)func_001ADE68(ptr, (sizeof(_sig_func_ptr)) * 32);
-        if (ptr->_sig_func == 0)
-            return -1;
-        for (i = 0; i < 32; i++)
-            ptr->_sig_func[i] = (void (*)(int))0;
-    }
-    return 0;
-}
+/* compiler: ee-gcc-2.96-G0 */
+#define _init_signal_r func_001AFAA0
+#define _signal_r func_001AFB10
+#define _raise_r func_001AFB90
+#define __sigtramp_r func_001AFC68
+#define _malloc_r func_001ADE68
+#define _getpid_r func_001AFDE8
+#define _kill_r func_001AFD88
+#include "newlib/pal_signals.h"

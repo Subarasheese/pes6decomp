@@ -61,8 +61,23 @@ static inline LobbyChannelRecord *lobby_channel_at(s32 index) {
     return &list->records[index];
 }
 
+typedef struct {
+    s32 month;
+    char dayText[4];
+    s32 day;
+    char monthText[4];
+    s32 hour, minute;
+    char dateText[7];
+    char timeText[6];
+    u8 padding[3];
+} LobbyListingDateTime;
+
 typedef union {
     u8 bytes[0x1d0];
+    struct {
+        u8 reserved00[0x18];
+        LobbyListingDateTime times[2];
+    } schedule;
     struct {
 
         u8 reserved00[0x4];
