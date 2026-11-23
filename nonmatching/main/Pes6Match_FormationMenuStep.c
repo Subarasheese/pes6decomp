@@ -15,7 +15,7 @@ extern void func_00B27010(s32);
 extern char D_003A85B0[];
 extern u8 D_003E998C;
 
-s32 func_001F8DE0(void) {
+s32 Pes6Match_FormationMenuStep(void) {
     if (D_003E998C == 2) goto case2;
     if (D_003E998C == 1) goto case1;
     if (D_003E998C != 0) return 0;

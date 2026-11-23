@@ -747,6 +747,12 @@ Pes6FormationMenu_Close = 0x008B77A0; // type:func
 // (0x8EE750 + team * 0x3224) with Pes6FormationMenu_InitTeam; called before Pes6FormationMenu_Update runs.
 Pes6FormationMenu_Open = 0x008B7960; // type:func
 Pes6FormationMenu_InitTeam = 0x008B6850; // type:func
+// The formation menu opened from inside a match: Pes6Match_FormationMenuStep runs one step per call
+// (Pes6Match_FormationMenuState 0: deactivate the 3D world, load module 4 and the menu's file; 1: once file
+// reads are idle, Pes6FormationMenu_Open(1, -1); 2: Pes6FormationMenu_Update until done, close, restore the
+// module and reactivate the world) and returns 1 when it is finished.
+Pes6Match_FormationMenuStep = 0x001F8DE0; // type:func
+Pes6Match_FormationMenuState = 0x003E998C; // type:data
 // Stadium selection. Pes6StadiumTable has 36 entries of 20 bytes in menu order: +0 nonzero = not
 // selectable, +1 stadium id, +8 capacity, +0xC year built, +0x10 area (entry 0: id 6, 67000, 1910).
 // Pes6MatchSetup_ResolveRandomSettings (game modes 0, 5, 7) draws a random value for every setting whose

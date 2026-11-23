@@ -71323,10 +71323,10 @@
   {
    "image": "main",
    "address": "001F8DE0",
-   "symbol": "func_001F8DE0",
-   "source": "nonmatching/main/func_001F8DE0.c",
+   "symbol": "Pes6Match_FormationMenuStep",
+   "source": "nonmatching/main/Pes6Match_FormationMenuStep.c",
    "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "0ad145ec7fc4c6dae3a83377178dd4eac2414406e2c4ab290b3cc1c56981750d",
+   "source_sha256": "1c4f509cf11e406a2e675052c6d706ce17d4a47c3c4cb966fb3de9e253305693",
    "original_sha256": "4844ab9530951b2492158d582c903c38d5c9852adaeb7501d70532e6907761c3",
    "minimum_similarity": 0,
    "review": "Repaired by an agent from m2c output (the draft failed tools/equiv.py), then judged equivalent by the strengthened tools/equiv.py and independently re-judged (docs/equivalent.md has cases and coverage); compiler/structural checks as for every draft. Behavioural evidence on test cases, not a semantic-equivalence proof.",
