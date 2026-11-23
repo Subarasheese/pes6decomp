@@ -3,7 +3,7 @@
 
 extern u8 D_00CBCAD4[];
 
-u8 func_00B364C0(void)
+s32 func_00B364C0(void)
 {
-    return *(u8 *)D_00CBCAD4;
+    return D_00CBCAD4[0];
 }

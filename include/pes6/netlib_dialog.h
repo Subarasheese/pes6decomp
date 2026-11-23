@@ -66,4 +66,32 @@ static inline void close_dialog_008A3390(void) {
     if (func_00817B70() == 1)
         func_00817C00();
 }
+extern NetworkDialogState D_00A435D0;
+static inline void close_dialog_00A435D0(void) {
+    NetworkDialogState *state = &D_00A435D0;
+    if (state)
+        state->mode3C = 15;
+    if (func_00818740() == 1)
+        func_008187D0();
+    if (func_00817B70() == 1)
+        func_00817C00();
+}
+
+typedef struct {
+    s8 action;
+    u8 reserved01[0x3f];
+    u8 active;
+} LobbyNoticeInput;
+
+extern NetworkDialogState D_00A43380;
+static inline void close_dialog_00A43380(void) {
+    NetworkDialogState *state = &D_00A43380;
+    if (state)
+        state->mode3C = 15;
+    if (func_00818740() == 1)
+        func_008187D0();
+    if (func_00817B70() == 1)
+        func_00817C00();
+}
+
 #endif

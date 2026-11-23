@@ -3,7 +3,7 @@
 
 extern u8 D_00CBD766[];
 
-u8 func_00BF6270(void)
+u32 func_00BF6270(void)
 {
-    return *(u8 *)D_00CBD766;
+    return D_00CBD766[0];
 }
