@@ -742,6 +742,11 @@ Pes6MatchSelect_MenuState = 0x005E92C0; // type:data
 // made on exit. Both addresses are function starts only in formation.
 Pes6FormationMenu_Update = 0x008B96D0; // type:func
 Pes6FormationMenu_Close = 0x008B77A0; // type:func
+// Pes6FormationMenu_Open(mode, arg) sets the menu's mode flags (0xC0 when online, 0x40 for mode 8) and, for
+// each team, copies its settings from the match setup and sets up its 0x3224-byte work area
+// (0x8EE750 + team * 0x3224) with Pes6FormationMenu_InitTeam; called before Pes6FormationMenu_Update runs.
+Pes6FormationMenu_Open = 0x008B7960; // type:func
+Pes6FormationMenu_InitTeam = 0x008B6850; // type:func
 // Stadium selection. Pes6StadiumTable has 36 entries of 20 bytes in menu order: +0 nonzero = not
 // selectable, +1 stadium id, +8 capacity, +0xC year built, +0x10 area (entry 0: id 6, 67000, 1910).
 // Pes6MatchSetup_ResolveRandomSettings (game modes 0, 5, 7) draws a random value for every setting whose
