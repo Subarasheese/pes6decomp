@@ -63235,38 +63235,6 @@
   },
   {
    "image": "main",
-   "address": "001C51B8",
-   "symbol": "func_001C51B8",
-   "original_sha256": "9519b5e0a1be823052515f5f6fb3dab0d947c3c34ac0c1f92dd2b2c05ef88dfc",
-   "source": "nonmatching/main/func_001C51B8.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "de663b7a63a627943b75979169ef8bd60cbab3ee04a79a6b8e3084951a62a139",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "001C75A0",
-   "symbol": "func_001C75A0",
-   "original_sha256": "38b84d94b4e36f5ad75b3fb1366383491ccf6f33be8c6caf82590c665dcfd887",
-   "source": "nonmatching/main/func_001C75A0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "235e0b0afa66017e6b13296ad85f031b9d4864ec365c5e03c5a7dbad4dc239c5",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "main",
    "address": "001CDAD0",
    "symbol": "func_001CDAD0",
    "original_sha256": "561c633efbeb36e75ee02d19ccd0d17955fae1a0c6d2a5c2600bc5d9f1ffea1e",
@@ -110740,22 +110708,6 @@
   },
   {
    "image": "ntgui2eu",
-   "address": "001AFC68",
-   "symbol": "func_001AFC68",
-   "original_sha256": "a805a01f22065fc2693a7287a3fb630145930f4e00196ff7370b7222bc487e32",
-   "source": "nonmatching/ntgui2eu/func_001AFC68.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "9452df1418e12eb67bee94980f78eb694673dd00956a21f4430d98660f998b6c",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "ntgui2eu",
    "address": "001B4E70",
    "symbol": "func_001B4E70",
    "original_sha256": "1507038321c7ef911729bc1dc648287969bf855bea7e57d77460abc0f96e7e7d",
@@ -110768,22 +110720,6 @@
    "known_issues": [
     "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
     "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "ntgui2eu",
-   "address": "001B84D8",
-   "symbol": "func_001B84D8",
-   "original_sha256": "638ec2f38598026ac5ae27dda1b894b6375e8bf02c6f8f6d9c45984bcb8eb2ca",
-   "source": "nonmatching/ntgui2eu/func_001B84D8.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "b37245784d62c2fa2851808d4358c61e5c1a760dd2e8390e06e1ddf35c457d37",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
    ]
   },
   {
