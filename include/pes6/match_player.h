@@ -62,7 +62,9 @@ typedef struct Pes6SquadPlayer {
     u8 ability[0x39]; /* 0x96 */
     u8 flagCF0 : 1;   /* 0xCF bit 0 */
     u8 flagCF1 : 1;   /* 0xCF bit 1 */
-    u8 : 6;
+    u8 : 2;
+    u8 flagCF4 : 1;   /* 0xCF bit 4 */
+    u8 : 3;
     u8 padD0[0x5];
     u8 xD5;           /* 0xD5 */
     u8 xD6;           /* 0xD6 */

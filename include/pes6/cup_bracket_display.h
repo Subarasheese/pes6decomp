@@ -8,7 +8,8 @@ typedef struct {
     u16 teamId;
     u8 reserved6[2];
     s32 enabled;
-    u8 reservedC[0x24];
+    u8 reservedC[0x20];
+    s32 roundState;
     s32 status;
     u8 reserved34[0x14];
 } BracketEntry;
@@ -19,7 +20,11 @@ typedef struct {
     void *labels[CUP_TEAM_COUNT];
     void *teamIcons[CUP_TEAM_COUNT];
     u8 beforeRoundLabels[CUP_LABEL_PADDING];
+#ifdef CUP_EXTENDED_ROUND_LABELS
+    void *roundLabels[7];
+#else
     void *roundLabels[6];
+#endif
     u8 beforeEntries[CUP_ENTRY_PADDING];
     BracketEntry entries[CUP_TEAM_COUNT][CUP_SLOT_COUNT];
     u8 selected[CUP_TEAM_COUNT];
@@ -48,12 +53,29 @@ void CUP_UPDATE_BRACKET(void) {
         func_001D7D60(page->roundLabels[1], 1);
     if (page->entries[CUP_SECOND_ROUND][0].enabled == 1 && CUP_CHECK_SECOND() == 1 && func_0097D080(5) == 1)
         func_001D7D60(page->roundLabels[2], 1);
+#ifdef CUP_EXTENDED_ROUND_LABELS
+    if (!page->entries[10][0].roundState &&
+        ((page->entries[CUP_FIRST_ROUND][0].enabled == 1 && CUP_CHECK_FIRST() == 0) ||
+         (page->entries[CUP_SECOND_ROUND][0].enabled == 1 && CUP_CHECK_SECOND() == 1 &&
+          func_0097D080(5) == 1))) {
+        func_001D7D60(page->roundLabels[3], 1);
+        func_001D7D60(page->roundLabels[4], 1);
+    }
+    if (page->entries[10][0].roundState != 0 && page->entries[10][0].roundState != 1) {
+        func_001D7D60(page->roundLabels[4], 1);
+        func_001D7D60(page->roundLabels[3], 1);
+        func_001D7D60(page->roundLabels[5], 1);
+    }
+    if (page->entries[CUP_LAST_ROUND][0].enabled)
+        func_001D7D60(page->roundLabels[6], 1);
+#else
     if (func_00B19B30(&page->entries[CUP_FIRST_RESULT][page->selected[CUP_FIRST_RESULT]])) {
         func_001D7D60(page->roundLabels[3], 1);
         func_001D7D60(page->roundLabels[4], 1);
     }
     if (page->entries[CUP_LAST_ROUND][0].enabled && func_00B19B30(&page->entries[CUP_LAST_RESULT][page->selected[CUP_LAST_RESULT]]))
         func_001D7D60(page->roundLabels[5], 1);
+#endif
     {
         for (i = 0; i < CUP_TEAM_COUNT; i++) {
             u8 selected = page->selected[i];
