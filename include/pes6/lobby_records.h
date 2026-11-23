@@ -116,7 +116,8 @@ static inline LobbyEntryRecord *lobby_selected_entry(s32 index) {
 
 typedef struct {
     s32 field00;
-    u8 reserved04[0x4a];
+    s32 field04, field08;
+    u8 reserved0C[0x42];
     s16 field4E;
     u8 reserved50[0x8];
     s16 field58;
@@ -155,6 +156,21 @@ static inline LobbyMemberRecord *lobby_selected_member(u16 index) {
     if (row == 0)
         return 0;
     return row;
+}
+
+static inline s32 lobby_member_value04(u16 index) {
+    LobbyMemberRecord *row = lobby_selected_member(index);
+    if (row == 0)
+        return 0;
+    else
+        return row->field04;
+}
+static inline s32 lobby_member_value08(u16 index) {
+    LobbyMemberRecord *row = lobby_selected_member(index);
+    if (row == 0)
+        return 0;
+    else
+        return row->field08;
 }
 
 typedef struct {
