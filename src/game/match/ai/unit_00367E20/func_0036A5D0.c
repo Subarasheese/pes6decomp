@@ -2,7 +2,7 @@
 #include "types.h"
 #include "pes6/bitset.h"
 typedef struct {
-    u8 reserved18[6], rating, reserved1f[13];
+    u8 reserved18[6], minute, reserved1f[13];
     s32 mode;
     u8 player, side, enabled, reserved33[5];
     s32 phase, outcome;
@@ -29,7 +29,7 @@ s32 func_0036A5D0(struct Pes6BitSet *bits, const EventRecord *event) {
     Pes6BitSet_Write(bits, 0x44, detail->flags & 0x800);
     Pes6BitSet_Write(bits, 0x42,
                      (Pes6BitSet_Lookup(bits, 0x43) | Pes6BitSet_Lookup(bits, 0x44)) &
-                         (detail->rating >= 0x50) & detail->enabled &
+                         (detail->minute >= 0x50) & detail->enabled &
                          ((u32)(detail->phase - 2) < 3));
     Pes6BitSet_Write(bits, 0x46, detail->flags & 0x20);
     Pes6BitSet_Write(bits, 0x47, detail->flags & 0x80);
