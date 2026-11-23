@@ -10,7 +10,7 @@ typedef struct {
 extern char D_0051FF38[];
 void func_00142020(s32);
 
-void func_00181F20(s32 index) {
+void func_00181F20(s32 index, s32 mask, s32 value) {
     Slot60 *slot = &M2C_FIELD(D_0051FF38, Slot60 **, 0)[index];
 
     if (slot->active == 0) {

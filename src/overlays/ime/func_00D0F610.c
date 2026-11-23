@@ -5,7 +5,7 @@
 extern char D_00D376E8[];
 extern char D_00D3776D[];
 
-s8 func_00D0F610(void) {
+s32 func_00D0F610(void) {
     if ((*(s32 *)D_00D376E8) == 0) {
         return 0;
     }
