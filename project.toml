@@ -204,3 +204,9 @@ command = "bash {tools}/cc_merged_sections.sh {dir}/wibo/wibo {dir}/tc/mwcps2-3.
 [compilers."mwcc-3.0.1b210-sdata4"]
 dir = "toolchains"
 command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -sdatathreshold 4 -O4,p -c -Iinclude"
+
+# Match setup loads its eight-byte resource parameters by absolute address and its
+# four-byte state through GP. Keep the aligned initializers together for the linker.
+[compilers."mwcc-3.0.1b210-sdata4-merged-sections"]
+dir = "toolchains"
+command = "bash {tools}/cc_merged_sections.sh {dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -sdatathreshold 4 -O4,p -c -Iinclude"
