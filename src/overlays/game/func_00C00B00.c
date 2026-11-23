@@ -11,8 +11,8 @@ extern u8 D_00CBD8A5[];
 extern u8 D_00CBD8A6[];
 extern u8 D_00CBD8A7[];
 
-u8 func_00C00B00(u64 param_1) {
-    u8 value;
+s32 func_00C00B00(u64 param_1) {
+    s32 value;
 
     value = 0;
     switch (param_1) {
