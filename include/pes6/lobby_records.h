@@ -180,7 +180,8 @@ typedef struct {
     u16 field04;
     u8 reserved06[0x6];
     s32 field0C;
-    u8 reserved10[0x32];
+    u8 reserved10[0x31];
+    u8 field41;
     u16 field42;
 } LobbySlotRecord;
 typedef struct {

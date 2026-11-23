@@ -207,4 +207,29 @@ static inline LobbySummaryRow *lobby_summary_row(s32 index) {
     return row;
 }
 
+typedef struct {
+    s32 field00;
+    char text04[0x34];
+    s32 field38, field3C, field40;
+    char text44[1];
+    u8 reserved45[0x148 - 0x45];
+} LobbyListRow;
+typedef struct {
+    s32 field00;
+    u32 count;
+    u8 header08[0x24];
+    LobbyListRow rows[];
+} LobbyListPage;
+extern void *func_009F50A0(void *session);
+
+static inline LobbyListRow *lobby_list_row(s32 index) {
+    LobbyListRow *row = 0;
+    LobbyListPage *page = func_009F50A0(func_00985C70());
+    if (page && func_009F4250(func_00985C70()))
+        page = 0;
+    if (page && index >= 0 && (u32)index < page->count)
+        row = &page->rows[index];
+    return row;
+}
+
 #endif

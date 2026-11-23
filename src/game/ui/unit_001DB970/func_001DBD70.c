@@ -1,8 +1,9 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
-s32 func_001540C0();                                /* extern */
-M2C_UNK func_001DBB80(s32, s32, s32, s32, s32);     /* extern */
+#include "types.h"
 
-void func_001DBD70(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    func_001DBB80(arg0, arg1, arg2, arg3, func_001540C0());
+extern s32 func_001540C0(void);
+extern void *func_001DBB80(s32 font, s32 arg1, s32 arg2, const char *text, s32 context);
+
+void *func_001DBD70(s32 font, s32 arg1, s32 arg2, const char *text) {
+    return func_001DBB80(font, arg1, arg2, text, func_001540C0());
 }
