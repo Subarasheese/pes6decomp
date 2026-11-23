@@ -9,7 +9,9 @@ typedef struct {
     s16 state;
     u8 pad1a[2];
     s32 step;
-    u8 pad20[0x2e];
+    u8 pad20[0xc];
+    s16 targetHeading;
+    u8 pad2e[0x20];
     u8 repeats;
 } ClipTransitionActor;
 
