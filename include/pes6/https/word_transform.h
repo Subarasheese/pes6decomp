@@ -22,4 +22,23 @@ static inline u32 rotateWordRight8(u32 value) {
     return (((s32)value >> 8) & 0x00ffffffU) | ((value << 24) & 0xff000000U);
 }
 
+typedef s32 (*WordTransform)(u32 *word, const u32 *end, const u8 *base, s32 count,
+                             const s32 *excluded);
+
+static inline u32 shuffleWordBytes(u32 value) {
+    u32 result = (value << 16) & 0x00ff0000U;
+    result |= ((s32)value >> 8) & 0x000000ffU;
+    result |= (value << 8) & 0xff000000U;
+    result |= ((s32)value >> 16) & 0x0000ff00U;
+    return result;
+}
+
+static inline u32 unshuffleWordBytes(u32 value) {
+    u32 byte1 = (value << 8) & 0x0000ff00U;
+    u32 byte2 = ((s32)value >> 8) & 0x00ff0000U;
+    u32 byte0 = ((s32)value >> 16) & 0x000000ffU;
+    u32 byte3 = (value << 16) & 0xff000000U;
+    return byte1 | ((byte2 | byte3) | byte0);
+}
+
 #endif
