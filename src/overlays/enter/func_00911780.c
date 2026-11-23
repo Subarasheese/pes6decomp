@@ -20,7 +20,7 @@ typedef struct {
     u8 direction, speed;
 } MotionSample;
 extern float D_00591BEC[];
-extern u32 D_0092F0D0[];
+extern u32 Pes6Enter_Flags[];
 extern u8 *func_00208330(u16);
 extern s32 func_001A5F20(s32);
 static inline s32 mirror_sign(EntranceActor *actor) {
@@ -84,13 +84,13 @@ void func_00911780(EntranceActor *actor) {
     s32 directionOffset = 0;
     s32 globalScale = (s32)D_00591BEC[0];
     float scale = 1.0f;
-    u8 speedMultiplier = (D_0092F0D0[0] & 0x2000) ? 2 : 1;
+    u8 speedMultiplier = (Pes6Enter_Flags[0] & 0x2000) ? 2 : 1;
     u16 nominalSpeed;
     u16 clip;
     s32 frame;
     u8 *speedTrack;
     MotionSample *track;
-    if (!actor->motion->active && !(D_0092F0D0[0] & 0x10))
+    if (!actor->motion->active && !(Pes6Enter_Flags[0] & 0x10))
         return;
     speedTrack = func_00208330(actor->motion->clip);
     track = (MotionSample *)func_00208330(actor->motion->clip);

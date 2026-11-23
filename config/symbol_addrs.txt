@@ -1091,3 +1091,17 @@ Pes6Enter_BuildShotMask = 0x00908D10; // type:func
 Pes6Enter_ShotSequencer = 0x009089C0; // type:func
 Pes6Enter_CheckSkipButtons = 0x009087F0; // type:func
 Pes6Enter_UpdateSkip = 0x009088C0; // type:func
+// The entrance runs in phases (Pes6EnterOverlay_PhaseTable; Pes6EnterOverlay_Update advances when the phase's
+// function returns nonzero): phase 2, Pes6EnterOverlay_PhaseShots, plays the shots until Pes6Enter_ShotMask is
+// empty. Each shot id maps through Pes6EnterShot_HandlerIndex (u16) to a handler in Pes6EnterShot_Handlers,
+// called with 0 (start), 1 (update; its result says the shot is over) or 2 (end). Pes6Enter_FinishShot ends the
+// current shot (on a skip, or when the shot reports done); Pes6Enter_UpdateClosingShots keeps the two closing
+// shots (31, 32: mask bits 30 and 31) pending while the skip flag is set and clears them otherwise.
+Pes6Enter_Flags = 0x0092F0D0; // type:data
+Pes6Enter_ShotMask = 0x0092F0DC; // type:data
+Pes6EnterOverlay_PhaseShots = 0x0090EB30; // type:func
+Pes6Enter_FinishShot = 0x0090ABD0; // type:func
+Pes6Enter_UpdateClosingShots = 0x0090B460; // type:func except:result
+Pes6EnterOverlay_PhaseTable = 0x009293A0; // type:data except:training_free
+Pes6EnterShot_Handlers = 0x00929060; // type:data except:training_free
+Pes6EnterShot_HandlerIndex = 0x0092C680; // type:data except:training_free

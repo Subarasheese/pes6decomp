@@ -4,18 +4,18 @@
 extern void func_0029A000(s32);
 M2C_UNK func_0027B270(s32, M2C_UNK);                /* extern */
 s32 *func_00299FE0(s32);                            /* extern */
-extern char D_0092F0D0[];
+extern char Pes6Enter_Flags[];
 
 void func_00909D30(void) {
     s32 var_s0;
 
-    if ((*(s32 *)D_0092F0D0) & 0x80) {
+    if ((*(s32 *)Pes6Enter_Flags) & 0x80) {
         var_s0 = 0;
         do {
             func_0027B270(*func_00299FE0(var_s0), 0);
             func_0029A000(var_s0);
             var_s0 += 1;
         } while (var_s0 < 3);
-        (*(s32 *)D_0092F0D0) &= ~0x80;
+        (*(s32 *)Pes6Enter_Flags) &= ~0x80;
     }
 }

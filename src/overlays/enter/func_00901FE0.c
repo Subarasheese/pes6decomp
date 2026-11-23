@@ -8,7 +8,7 @@ M2C_UNK func_00901C00(M2C_UNK);                     /* extern */
 M2C_UNK func_0090A410(s32, M2C_UNK, M2C_UNK, f32);  /* extern */
 M2C_UNK func_0090B0E0(M2C_UNK);                     /* extern */
 TT *func_009177C0(s32);                           /* extern */
-extern char D_0092F0D0[];
+extern char Pes6Enter_Flags[];
 extern char D_0092F0FA[];
 
 s32 func_00901FE0(void) {
@@ -21,13 +21,13 @@ s32 func_00901FE0(void) {
     TT *temp_v0;
 
     func_0090B0E0(0x80);
-    if (!((*(s32 *)D_0092F0D0) & 0x20000)) {
+    if (!((*(s32 *)Pes6Enter_Flags) & 0x20000)) {
         func_0090B0E0(6);
     }
     func_00901C00(0);
     func_00901C00(1);
-    temp_v1 = (*(s32 *)D_0092F0D0) | 0x10;
-    (*(s32 *)D_0092F0D0) = temp_v1;
+    temp_v1 = (*(s32 *)Pes6Enter_Flags) | 0x10;
+    (*(s32 *)Pes6Enter_Flags) = temp_v1;
     if (temp_v1 & 0x800) {
         if (temp_v1 & 0x20000) {
             var_v0 = 8;

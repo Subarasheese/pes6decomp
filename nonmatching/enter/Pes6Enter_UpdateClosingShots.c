@@ -6,7 +6,7 @@
 extern char D_0092F0D0[];
 extern char D_0092F0DC[];
 
-void func_0090B460(void) {
+void Pes6Enter_UpdateClosingShots(void) {
     u64 var_a0;
 
     if ((*(s32 *)D_0092F0D0) & 0x1000) {

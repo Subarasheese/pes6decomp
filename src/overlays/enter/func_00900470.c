@@ -2,9 +2,9 @@
 #include "pes6/m2c.h"
 
 
-extern char D_0092F0D0[];
+extern char Pes6Enter_Flags[];
 
 s32 func_00900470(void) {
-    (*(s32 *)D_0092F0D0) &= ~0x1000;
+    (*(s32 *)Pes6Enter_Flags) &= ~0x1000;
     return 1;
 }

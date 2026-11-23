@@ -3,10 +3,10 @@
 
 extern void func_0013E2A0(int);
 extern void func_0013E2D0(int);
-extern char D_0092F0D0[];
+extern char Pes6Enter_Flags[];
 
 void func_0090B4D0(void) {
     func_0013E2A0(2);
     func_0013E2D0(1);
-    (*(s32 *)D_0092F0D0) &= ~0x2000;
+    (*(s32 *)Pes6Enter_Flags) &= ~0x2000;
 }

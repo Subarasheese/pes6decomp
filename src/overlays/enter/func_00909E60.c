@@ -6,14 +6,14 @@ M2C_UNK func_0027B450(void *, M2C_UNK, s32);        /* extern */
 void **func_00299FE0(s32);                          /* extern */
 M2C_UNK func_0029A020(s32);                         /* extern */
 s32 func_00BA9430(s32);                             /* extern */
-extern char D_0092F0D0[];
+extern char Pes6Enter_Flags[];
 
 void func_00909E60(void) {
     s32 var_s2;
     s32 temp_s1;
     s32 temp_s0;
 
-    if (((*(s32 *)D_0092F0D0) & 0x80)) {
+    if (((*(s32 *)Pes6Enter_Flags) & 0x80)) {
         return;
     }
     {

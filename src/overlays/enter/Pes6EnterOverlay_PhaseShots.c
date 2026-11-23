@@ -12,20 +12,20 @@ M2C_UNK func_0090B330();                            /* extern */
 M2C_UNK func_0090D640();                            /* extern */
 M2C_UNK func_009176A0();                            /* extern */
 M2C_UNK func_009176F0();                            /* extern */
-extern char D_0092F0D0[];
-extern char D_0092F0DC[];
+extern char Pes6Enter_Flags[];
+extern char Pes6Enter_ShotMask[];
 
-s32 func_0090EB30(void) {
+s32 Pes6EnterOverlay_PhaseShots(void) {
     s32 var_s0;
 
     var_s0 = 0;
-    if (!((*(s32 *)D_0092F0D0) & 0x20)) {
+    if (!((*(s32 *)Pes6Enter_Flags) & 0x20)) {
         func_009176F0();
         func_009176A0();
         func_00911560();
     }
     Pes6Enter_ShotSequencer();
-    if (!((*(s32 *)D_0092F0D0) & 4)) {
+    if (!((*(s32 *)Pes6Enter_Flags) & 4)) {
         func_0090D640();
     }
     func_0090B330();
@@ -34,7 +34,7 @@ s32 func_0090EB30(void) {
     func_00342AF0();
     func_00255EF0();
     func_002D6340();
-    if ((*(s32 *)D_0092F0DC) == 0) {
+    if ((*(s32 *)Pes6Enter_ShotMask) == 0) {
         var_s0 = 1;
     }
     return var_s0 & 0xFF;
