@@ -155,13 +155,14 @@ identify the public file and function used for reconstruction. The shared
 structures in `include/pes6/https/` come from the same SSLeay headers.
 Function and data references use the PAL addresses. The tags identify the
 source used for each function. [SSLeay 0.9.1b](https://github.com/openssl/openssl/tree/SSLeay_0_9_1b),
+[OpenSSL 0.9.2b](https://github.com/openssl/openssl/tree/OpenSSL_0_9_2b),
 [OpenSSL 0.9.3a](https://github.com/openssl/openssl/tree/OpenSSL_0_9_3a),
 [OpenSSL 0.9.5a](https://github.com/openssl/openssl/tree/OpenSSL_0_9_5a).
 
 This product includes cryptographic software written by Eric Young
 (eay@cryptsoft.com). This product includes software developed by the OpenSSL
 Project for use in the OpenSSL Toolkit (http://www.openssl.org/).
-[SSLeay terms](LICENSES/SSLeay.txt), [OpenSSL 0.9.3a terms](LICENSES/OpenSSL-0.9.3a.txt),
+[SSLeay terms](LICENSES/SSLeay.txt), [OpenSSL 0.9.2b and 0.9.3a terms](LICENSES/OpenSSL-0.9.3a.txt),
 [OpenSSL 0.9.5a terms](LICENSES/OpenSSL-0.9.5a.txt).
 
 The newlib functions identified by file name use the newlib 1.9.0 notices
