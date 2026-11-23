@@ -1,13 +1,13 @@
 /* compiler: mwcc-3.0.1b151 */
 #include "pes6/m2c.h"
 
-extern char D_003FB402[];
+extern char Pes6Camera_MatricesDirty[];
 extern char D_003FB2B0[];
-void func_0012A110(void);
+void Pes6Camera_UpdateMatrices(void);
 
 void *func_00129C20(void) {
-    if (D_003FB402[0] != 0) {
-        func_0012A110();
+    if (Pes6Camera_MatricesDirty[0] != 0) {
+        Pes6Camera_UpdateMatrices();
     }
     return D_003FB2B0;
 }

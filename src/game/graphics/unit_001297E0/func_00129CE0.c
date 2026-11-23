@@ -14,10 +14,10 @@ extern void func_0012A0B0(float, float, float);
 M2C_UNK func_00129ED0(M2C_UNK);                     /* extern */
 extern void func_00129FD0(float, float);            /* extern */
 extern char D_00375B70[];
-extern char D_003FB402[];
+extern char Pes6Camera_MatricesDirty[];
 
 void func_00129CE0(void) {
-    (*(s8 *)D_003FB402) = 1;
+    (*(s8 *)Pes6Camera_MatricesDirty) = 1;
     func_00129ED0(0xFF);
     func_0012A0B0(0.0f, 0.0f, 0.0f);
     func_00129FD0(100000.0f, 200000.0f);

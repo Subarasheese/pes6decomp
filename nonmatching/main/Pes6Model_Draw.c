@@ -29,7 +29,7 @@ extern char D_004FE050[];
 extern char D_004FE060[];
 extern char D_004FE070[];
 
-void func_00142ED0(void *arg0, s32 arg1, s32 arg2, M2C_UNK arg3, M2C_UNK arg4, s32 arg5) {
+void Pes6Model_Draw(void *arg0, s32 arg1, s32 arg2, M2C_UNK arg3, M2C_UNK arg4, s32 arg5) {
     func_001426C0();
     M2C_FIELD(D_003E97FC, s128 *, 0xD0) = (s128) (*(s128 *)D_004FDFD0);
     M2C_FIELD(D_003E97FC, s128 *, 0xE0) = (s128) (*(s128 *)D_004FDFE0);

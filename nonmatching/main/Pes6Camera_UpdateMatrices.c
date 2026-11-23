@@ -9,7 +9,7 @@ void func_00104398(s64, f32, f32, f32, f32, f32, f32, f32, f32);
 f32 func_0011D550(s64, s64, s64, s64, s64, f32);
 void memset(s64, s64, s64);
 
-void func_0012A110(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7, f32 fa12, f32 fa13, f32 fa14, f32 fa15, f32 fa16, f32 fa17, f32 fa18, f32 fa19) {
+void Pes6Camera_UpdateMatrices(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7, f32 fa12, f32 fa13, f32 fa14, f32 fa15, f32 fa16, f32 fa17, f32 fa18, f32 fa19) {
     s64 v0 = 0, v1 = 0, t4 = 0, t5 = 0, t6 = 0, t7 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0;
     u64 qh_v1 = 0;
     u64 qh_a2 = 0;

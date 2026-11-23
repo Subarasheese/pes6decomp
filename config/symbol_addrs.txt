@@ -43,6 +43,8 @@ sceGsSetDefDBuff = 0x00100E00; // type:func
 sceGsSwapDBuff = 0x00101098; // type:func
 sceGsExecStoreImage = 0x001015E8; // type:func
 sceVu0MulMatrix = 0x00103BB8; // type:func
+// libvu0 sceVu0CopyMatrix: four lq/sq quadword copies (the SDK routine, between MulMatrix and the vector ops).
+sceVu0CopyMatrix = 0x00103E48; // type:func
 sceGsSyncVCallback = 0x00101C78; // type:func
 sceDmaGetEnv = 0x001021D8; // type:func
 sceVuCheckBusy = 0x00102A80; // type:func
@@ -315,7 +317,6 @@ D_003CAC00 = 0x003CAC00; // type:data
 D_003CB450 = 0x003CB450; // type:data
 D_003CB4F0 = 0x003CB4F0; // type:data
 D_003CB4D8 = 0x003CB4D8; // type:data
-D_003FB270 = 0x003FB270; // type:data
 D_003FB1B0 = 0x003FB1B0; // type:data
 D_003FB330 = 0x003FB330; // type:data
 D_003FB2B0 = 0x003FB2B0; // type:data
@@ -328,7 +329,6 @@ D_005E2FBC = 0x005E2FBC; // type:data
 D_0051FF38 = 0x0051FF38; // type:data
 D_00591C09 = 0x00591C09; // type:data
 D_0058D3E0 = 0x0058D3E0; // type:data
-D_003FB402 = 0x003FB402; // type:data
 // CRI middleware (ADX, SVM, CVFS) and Sony SDK names, mapped from byte-identical functions in
 // 3s-decomp (Street Fighter III 3rd Strike) and recvx-decomp (Resident Evil Code Veronica X).
 ADXAMP_Init = 0x00155D28; // type:func
@@ -995,6 +995,30 @@ Pes6Vblank_Handler = 0x00134750; // type:func
 Pes6GfxRing_Alloc = 0x001398B0; // type:func
 Pes6GfxRing_Commit = 0x00139C70; // type:func
 Pes6GfxRing_Reset = 0x00139E40; // type:func
+// Camera matrices, rebuilt lazily: Pes6Camera_SetMatrix stores the camera matrix (0x3FB230) and sets
+// Pes6Camera_MatricesDirty; the getters call Pes6Camera_UpdateMatrices when it is set. The view matrix is the
+// camera matrix with each row scaled by the axis vector at 0x3FB3F0; the matrices at 0x3FB2B0 and 0x3FB2F0
+// are 0x3FB1B0 and 0x3FB1F0 times it.
+Pes6Camera_Matrix = 0x003FB230; // type:data
+Pes6Camera_ViewMatrix = 0x003FB270; // type:data
+Pes6Camera_MatricesDirty = 0x003FB402; // type:data
+Pes6Camera_SetMatrix = 0x0012A0D0; // type:func
+Pes6Camera_UpdateMatrices = 0x0012A110; // type:func
+Pes6Camera_GetViewMatrix = 0x00129C60; // type:func
+// Skinned models: Pes6Model_DrawSkinned(..., count, bones) allocates count matrices (64 bytes each) in the
+// graphics ring; Pes6BonePalette_Build fills them with view matrix x bone matrix (sceVu0MulMatrix through the
+// uncached alias, w = z per row) and records them for the VU1 batches; Pes6Model_Draw sends the model;
+// Pes6BonePalette_End clears the palette state.
+Pes6BonePalette_Active = 0x003E97EC; // type:data
+Pes6BonePalette_Matrices = 0x003E97F0; // type:data
+Pes6BonePalette_Count = 0x003E7434; // type:data
+Pes6BonePalette_IsActive = 0x00141C50; // type:func
+Pes6BonePalette_GetCount = 0x00141C60; // type:func
+Pes6BonePalette_GetMatrices = 0x00141C70; // type:func
+Pes6BonePalette_End = 0x00141C80; // type:func
+Pes6BonePalette_Build = 0x00141C90; // type:func
+Pes6Model_DrawSkinned = 0x00142E10; // type:func
+Pes6Model_Draw = 0x00142ED0; // type:func
 // Per-channel DMA packet queue: the first packet is started directly; the DMA-end handler (registered for
 // cause 1, VIF1) pops the finished packet and starts the next queued one.
 // Pes6DmaQueue_Send(ch, irq, chain, release) queues a DMA chain (every caller uses channel 1, VIF1) and

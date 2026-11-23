@@ -7,7 +7,7 @@ typedef struct {
 } Vec2;
 
 extern Vec2 D_003FB114[];
-void func_0012A110(void);
+void Pes6Camera_UpdateMatrices(void);
 void func_00142B80(void);
 
 void func_0017B010(Vec2 *v) {
@@ -16,6 +16,6 @@ void func_0017B010(Vec2 *v) {
 
     D_003FB114[0].x = x;
     D_003FB114[0].y = y;
-    func_0012A110();
+    Pes6Camera_UpdateMatrices();
     func_00142B80();
 }
