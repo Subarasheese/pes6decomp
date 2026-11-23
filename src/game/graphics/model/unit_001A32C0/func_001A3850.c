@@ -8,10 +8,10 @@ typedef struct {
     f32 z;
 } Obj5C;
 
-extern char D_005203B4[];
+extern char Pes6Camera_Current[];
 
 void func_001A3850(f32 *out) {
-    out[0] = M2C_FIELD(D_005203B4, Obj5C **, 0)->x;
-    out[1] = M2C_FIELD(D_005203B4, Obj5C **, 0)->y;
-    out[2] = M2C_FIELD(D_005203B4, Obj5C **, 0)->z;
+    out[0] = M2C_FIELD(Pes6Camera_Current, Obj5C **, 0)->x;
+    out[1] = M2C_FIELD(Pes6Camera_Current, Obj5C **, 0)->y;
+    out[2] = M2C_FIELD(Pes6Camera_Current, Obj5C **, 0)->z;
 }

@@ -8,7 +8,7 @@ M2C_UNK func_00144B50();                            /* extern */
 M2C_UNK func_00147020();                            /* extern */
 M2C_UNK func_001523A0();                            /* extern */
 M2C_UNK func_00153CD0();                            /* extern */
-M2C_UNK func_001A4150();                            /* extern */
+M2C_UNK Pes6Camera_UpdateFrame();                            /* extern */
 M2C_UNK func_00260CB0();                            /* extern */
 extern s32 Pes6Task_SkipDraw;
 extern s32 D_003E9C0C;
@@ -19,7 +19,7 @@ void Pes6Task_RunFrame(void) {
     void *var_s0;
 
     var_s0 = D_003FAE54[0];
-    func_001A4150();
+    Pes6Camera_UpdateFrame();
     if (Pes6Task_SkipDraw != 0) {
         do {
             if (!(M2C_FIELD(var_s0, u8 *, 0xD) & 1)) {

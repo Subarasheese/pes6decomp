@@ -14,8 +14,8 @@ typedef struct {
     QMat mat;
 } Cam;
 
-extern Cam *D_005203B4[];
+extern Cam *Pes6Camera_Current[];
 
 void func_001A3910(QMat *out) {
-    *out = D_005203B4[0]->mat;
+    *out = Pes6Camera_Current[0]->mat;
 }

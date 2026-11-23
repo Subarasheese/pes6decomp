@@ -8,7 +8,7 @@ s32 func_00103F50(s32, s32, s32, s32, f32);
 s32 func_001041C0(s32, s32, s32, s32);
 f32 sqrtf(f32);
 
-s32 func_001A3AC0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, f32 fa12) {
+s32 Pes6Camera_BuildMatrix(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, f32 fa12) {
     s32 v0 = 0, v1 = 0;
     s32 gp = 0x3ef370;
     union { f32 f; s32 i; } f0 = { 0 };

@@ -1,6 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
 extern int Pes6Ball_Current;
-void Pes6Ball_SetByte0(int a0) {
+void Pes6Ball_SetVisible(int a0) {
     int v3;
     v3 = Pes6Ball_Current;
     v3 = *( int *)((char *)v3 + 0x0);

@@ -45,6 +45,19 @@ sceGsExecStoreImage = 0x001015E8; // type:func
 sceVu0MulMatrix = 0x00103BB8; // type:func
 // libvu0 sceVu0CopyMatrix: four lq/sq quadword copies (the SDK routine, between MulMatrix and the vector ops).
 sceVu0CopyMatrix = 0x00103E48; // type:func
+// libvu0, in the SDK's order: sceVu0CameraMatrix (src/sdk, from the kfiv decomp's libvu0.c) calls UnitMatrix,
+// OuterProduct, Normalize, TransMatrix and InversMatrix exactly as the SDK source does; ApplyMatrix and
+// InnerProduct are the VU0 vector-times-matrix and dot product; TransposeMatrix swaps the 4x4 with
+// pextlw/pextuw/pcpyld/pcpyud.
+sceVu0ApplyMatrix = 0x00103B88; // type:func
+sceVu0OuterProduct = 0x00103C00; // type:func
+sceVu0InnerProduct = 0x00103C20; // type:func
+sceVu0Normalize = 0x00103C48; // type:func
+sceVu0TransposeMatrix = 0x00103C88; // type:func
+sceVu0InversMatrix = 0x00103CD0; // type:func
+sceVu0TransMatrix = 0x00103E08; // type:func
+sceVu0UnitMatrix = 0x00103EB0; // type:func
+sceVu0CameraMatrix = 0x001041C0; // type:func
 sceGsSyncVCallback = 0x00101C78; // type:func
 sceDmaGetEnv = 0x001021D8; // type:func
 sceVuCheckBusy = 0x00102A80; // type:func
@@ -502,7 +515,9 @@ Pes6Wind_Strength = 0x005A24AC; // type:data
 Pes6Wind_Vector = 0x005A24B0; // type:data
 Pes6Ball_AttachToPlayer = 0x00284A20; // type:func
 Pes6Ball_ClearOwnerAnchor = 0x002849D0; // type:func
-Pes6Ball_SetByte0 = 0x0027A880; // type:func
+// Pes6Ball_SetVisible: the ball's draw entry (Pes6Ball_Current->+0) on or off (its byte 0, the flag
+// Pes6World_DrawTask tests); the entrance hides the ball with it.
+Pes6Ball_SetVisible = 0x0027A880; // type:func
 Pes6MatchClock_GetRemaining = 0x0030E780; // type:func
 Pes6MatchClock_GetExtra = 0x0030E790; // type:func
 Pes6MatchContext_GetHalf = 0x0030E830; // type:func
@@ -1019,6 +1034,24 @@ Pes6BonePalette_End = 0x00141C80; // type:func
 Pes6BonePalette_Build = 0x00141C90; // type:func
 Pes6Model_DrawSkinned = 0x00142E10; // type:func
 Pes6Model_Draw = 0x00142ED0; // type:func
+// The world's draw task (task table 0x3D9010, priority 0x0B, draw flag): when the world is active it draws
+// the stadium and then each entry of Pes6World_ModelList (next at +304) whose byte 0 is set and whose model
+// (+52) is visible (+276 x +280 > 0) with Pes6Model_DrawSkinned.
+Pes6World_DrawTask = 0x0017B2C0; // type:func
+Pes6World_ModelList = 0x00510FF4; // type:data
+// The camera: Pes6Camera_UpdateFrame (each frame) updates the working camera Pes6Camera_Work (near, far,
+// focal length, eye +0x20, target +0x30, matrix +0x70; Pes6Camera_BuildMatrix makes the matrix with
+// sceVu0CameraMatrix and a roll), copies it into the next of two buffers (Pes6Camera_Buffers, 0xD0 apart,
+// Pes6Camera_Current points at the newest) and, when Pes6Camera_Enabled, Pes6Camera_ApplyCurrent hands it
+// to the Pes6Camera_* matrices.
+Pes6Camera_UpdateFrame = 0x001A4150; // type:func
+Pes6Camera_BuildMatrix = 0x001A3AC0; // type:func
+Pes6Camera_ApplyCurrent = 0x001A3940; // type:func
+Pes6Camera_BufferIndex = 0x005203B0; // type:data
+Pes6Camera_Current = 0x005203B4; // type:data
+Pes6Camera_Buffers = 0x005203C0; // type:data
+Pes6Camera_Enabled = 0x00520560; // type:data
+Pes6Camera_Work = 0x00520570; // type:data
 // Per-channel DMA packet queue: the first packet is started directly; the DMA-end handler (registered for
 // cause 1, VIF1) pops the finished packet and starts the next queued one.
 // Pes6DmaQueue_Send(ch, irq, chain, release) queues a DMA chain (every caller uses channel 1, VIF1) and

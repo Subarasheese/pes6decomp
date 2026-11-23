@@ -8,7 +8,7 @@ extern RestartContext *func_00B2A420(u32);
 extern u32 func_00BF6270(void);
 extern void func_00BEDBE0(RestartContext *), func_00BBB960(s32);
 extern void func_001AAF50(Pes6PlayerFieldState *, s32), func_001AAF40(Pes6PlayerFieldState *, s8);
-extern void func_00B27010(s32), func_00B25380(Pes6MatchPlayer *), Pes6Ball_SetByte0(int);
+extern void func_00B27010(s32), func_00B25380(Pes6MatchPlayer *), Pes6Ball_SetVisible(int);
 extern u8 Pes6MatchFlow_GetState(s32);
 extern void func_009E1CB0(s32), func_009B4450(s32), func_00AD0A20(void);
 extern s32 func_002DCA30(void), func_00152130(s32, u8);
@@ -33,7 +33,7 @@ void func_00C20DC0(void) {
         func_001AAF40(active->player->info->fieldState, 1);
         func_00B27010(0);
         func_00B25380(active->player);
-        Pes6Ball_SetByte0(0);
+        Pes6Ball_SetVisible(0);
         func_009E1CB0(3);
         break;
     case 3:

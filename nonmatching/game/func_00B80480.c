@@ -3,7 +3,7 @@
  * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
-void Pes6Ball_SetByte0(s32);
+void Pes6Ball_SetVisible(s32);
 void func_0017E120(s32);
 void func_00182B30(s32);
 void func_009A7540(void);
@@ -51,7 +51,7 @@ L_00B804C4:;
     v1 = (s32) 0xc7430000U;
     v1 = v1 | 0x5000;
     a0 = 0;
-    (*(volatile u32 *) (u32) (v0 + 20)) = (u32) v1; Pes6Ball_SetByte0(a0);
+    (*(volatile u32 *) (u32) (v0 + 20)) = (u32) v1; Pes6Ball_SetVisible(a0);
     a0 = 0; func_00B25C50(a0);
     v1 = (s32) 0xca0000U;
     v0 = (s32) 0xca0000U;

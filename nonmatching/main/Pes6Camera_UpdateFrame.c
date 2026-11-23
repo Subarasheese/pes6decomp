@@ -14,7 +14,7 @@ extern s128 *D_005203B4;
 extern char D_00520560[];
 extern char D_00520570[];
 
-void func_001A4150(void) {
+void Pes6Camera_UpdateFrame(void) {
     s128 *var_a0;
     s128 *var_a1;
     s32 var_v1;
