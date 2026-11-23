@@ -5,13 +5,16 @@
 typedef struct {
     u8 pad00[0x2d];
     u8 mirrored;
+    u8 pad2e[2];
+    u16 clip;
 } PairedPlayback;
 typedef struct {
     u8 pad00[4];
     PairedPlayback *playback;
     u8 pad08[0x10];
     s16 action;
-    u8 pad1a[12];
+    u16 previousAction;
+    u8 pad1c[10];
     u16 heading, previousHeading;
     u8 pad2a[0x24];
     u8 repeats;
