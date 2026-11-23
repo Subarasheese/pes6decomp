@@ -129,6 +129,44 @@ class OverlayTests(unittest.TestCase):
                 self.assertIsNone(place(changed, tables))
         self.assertIsNone(place(code, tables[:-1]))
 
+    def test_initializer_group_aligns_callbacks_at_their_loaded_address(self):
+        import build
+        import match
+
+        entry, base, callback = 0x100000, 0x128008, 0x101000
+        def words(*values):
+            return struct.pack("<" + "I" * len(values), *values)
+
+        def section(name, data, alignment):
+            return dict(name=name, data=data, size=len(data), alignment=alignment)
+
+        code = words(*(word for _ in range(3) for word in (0x3c020000, 0x24420000)))
+        original = words(*(word for low in (0x8008, 0x8010, 0x8020)
+                           for word in (0x3c020013, 0x24420000 | low)))
+        sizes = bytes((30,) * 5)
+        data = sizes + bytes(3) + sizes + bytes(11) + words(callback)
+        obj = dict(sections=[section("", b"", 1), section(".text", code, 4),
+                             section(".data", sizes, 8), section(".data", sizes, 8),
+                             section(".data", words(0), 16)],
+                   symbols=[("@10", 0, 2, True), ("@12", 0, 3, True), ("@23", 0, 4, True),
+                            ("func_00101000", 0, 0, False)],
+                   relocs={1: [(8 * i + off, kind, i) for i in range(3) for off, kind in
+                               ((0, match.R_MIPS_HI16), (4, match.R_MIPS_LO16))],
+                           4: [(0, build.R_MIPS_32, 3)]})
+
+        def place(raw, expected):
+            return build.initialized_data_group(obj, [2, 3, 4], entry, entry, raw, base, expected)
+
+        self.assertEqual(place(original, data), (base, len(data)))
+        for offset in (0, 5, 8, 20, 24):
+            with self.subTest(offset=offset):
+                changed = bytearray(data)
+                changed[offset] ^= 1
+                self.assertIsNone(place(original, changed))
+        self.assertIsNone(place(original[:20] + words(0x24428018), data))
+        obj["symbols"][-1] = ("unknown_callback", 0, 0, False)
+        self.assertIsNone(place(original, data))
+
     def test_text_splits_use_only_assembly_in_each_address_range(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(overlays, 'ROOT', Path(directory)):
             root = Path(directory)

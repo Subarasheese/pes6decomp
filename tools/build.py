@@ -310,14 +310,16 @@ def place_rodata(addrs, data_addr, orig_data, orig_text, text_addr, section=".ro
                 if base is not None:
                     out[addr] = base
             continue
-        parts = ([i for i, s in enumerate(elf["sections"]) if s["name"] == section and s["size"]]
-                 if section == ".rodata" else [])
+        parts = ([i for i, s in enumerate(elf["sections"]) if s["name"] == section and s["data"]]
+                 if section in (".rodata", ".data") else [])
         if len(parts) > 1:
-            base = jump_table_group(elf, parts, addr, text_addr, orig_text, data_addr, orig_data)
-            if base is not None:
-                out[addr] = base
+            group = initialized_data_group(elf, parts, addr, text_addr, orig_text, data_addr,
+                                           orig_data, project.CONFIG["game"]["gp"],
+                                           [(data_addr, orig_data), *resident_data_for_overlay()])
+            if group is not None:
+                out[addr] = group[0]
                 if grouped is not None:
-                    grouped.add(addr)
+                    grouped.setdefault(addr, {})[section] = group
             continue
         blob, srelocs, _ = match.read_object(path, want_symbols=True)
         indices = {s["name"]: i for i, s in enumerate(elf["sections"])}
@@ -389,7 +391,7 @@ def read_elf(path):
     return {"sections": sections, "symbols": symbols, "relocs": relocs}
 
 
-def relocate(obj, index, place, resolve):
+def relocate(obj, index, place, resolve, gp=None):
     """The bytes of one section once linked: every section of the object at `place` {index: address},
     every undefined symbol at `resolve(name)`. None when a symbol has no address or a relocation is
     of a kind this does not model (the caller then refuses the object)."""
@@ -419,6 +421,11 @@ def relocate(obj, index, place, resolve):
             w = (a & 0xFFFF0000) | (((v + 0x8000) >> 16) & 0xFFFF)
         elif rtype == match.R_MIPS_LO16:
             w = (a & 0xFFFF0000) | ((a + s) & 0xFFFF)
+        elif gp is not None and rtype in (match.R_MIPS_GPREL16, match.R_MIPS_LITERAL):
+            displacement = s + sext(a) - gp
+            if not -0x8000 <= displacement < 0x8000:
+                return None
+            w = (a & 0xffff0000) | (displacement & 0xffff)
         else:
             return None
         struct.pack_into("<I", out, off, w)
@@ -426,7 +433,14 @@ def relocate(obj, index, place, resolve):
 
 
 def jump_table_group(obj, parts, addr, text_addr, orig_text, data_addr, orig_data):
-    """Place MWCC's individual switch tables using ELF section indices, including linker padding."""
+    """Return the verified base of a group of switch tables."""
+    group = initialized_data_group(obj, parts, addr, text_addr, orig_text, data_addr, orig_data)
+    return group[0] if group is not None else None
+
+
+def initialized_data_group(obj, parts, addr, text_addr, orig_text, data_addr, orig_data,
+                           gp=None, gp_ranges=()):
+    """Verify the alignment, references, contents and padding of same-name input sections."""
     from object_info import aligned_offset
 
     sections = obj["sections"]
@@ -439,15 +453,11 @@ def jump_table_group(obj, parts, addr, text_addr, orig_text, data_addr, orig_dat
     if start < 0 or start + len(code) > len(orig_text):
         return None
     original_code = orig_text[start:start + len(code)]
-    offsets, size = {}, 0
-    for i in parts:
-        offsets[i] = aligned_offset(size, sections[i]["alignment"])
-        size = offsets[i] + sections[i]["size"]
     references = obj["relocs"].get(text, [])
-    anchored, bases = set(), set()
+    places = {text: addr}
     for j, (hi, kind, symbol) in enumerate(references):
         _, value, section, _ = obj["symbols"][symbol]
-        if section not in offsets or kind != match.R_MIPS_HI16:
+        if section not in parts or kind != match.R_MIPS_HI16:
             continue
         lo = next((off for off, ty, target in references[j + 1:]
                    if ty == match.R_MIPS_LO16 and target == symbol), None)
@@ -459,28 +469,52 @@ def jump_table_group(obj, parts, addr, text_addr, orig_text, data_addr, orig_dat
             return ((upper & 0xffff) << 16) + lower
         if struct.unpack_from("<I", code, hi)[0] >> 26 != 0x0f:
             return None
-        bases.add(pointer(original_code) - pointer(code) - value - offsets[section])
-        anchored.add(section)
-    if anchored != set(parts) or len(bases) != 1:
+        target = pointer(original_code) - pointer(code) - value
+        if places.setdefault(section, target) != target:
+            return None
+    if not parts or any(i not in places for i in parts):
         return None
-    base = bases.pop()
-    if base < data_addr or base - data_addr + size > len(orig_data):
+    base = end = places[parts[0]]
+    for i in parts:
+        if places[i] != aligned_offset(end, sections[i]["alignment"]):
+            return None
+        end = places[i] + sections[i]["size"]
+    if base < data_addr or end - data_addr > len(orig_data):
         return None
-    places = {text: addr, **{i: base + offset for i, offset in offsets.items()}}
+    size = end - base
     data = bytearray(size)
     for i in parts:
-        if places[i] % max(1, sections[i]["alignment"]):
-            return None
-        if any(kind != R_MIPS_32 or obj["symbols"][symbol][2] != text
+        # Jump tables point into this function. A data initializer may also
+        # contain a callback with a known address in the game.
+        targets = (text, 0) if sections[i]["name"] == ".data" else (text,)
+        if any(kind != R_MIPS_32 or obj["symbols"][symbol][2] not in targets
                for _, kind, symbol in obj["relocs"].get(i, [])):
             return None
         part = relocate(obj, i, places, symbols.address_of)
         if part is None:
             return None
-        data[offsets[i]:offsets[i] + len(part)] = part
+        offset = places[i] - base
+        data[offset:offset + len(part)] = part
     if orig_data[base - data_addr:base - data_addr + size] != data:
         return None
-    return base if relocate(obj, text, places, symbols.address_of) == original_code else None
+    if gp is not None:
+        for i, section in enumerate(sections):
+            if section["name"] in GP_DATA_SECTIONS and section["size"]:
+                pool = literal_pool_address(obj, i, addr, text_addr, orig_text, gp, gp_ranges)
+                if pool is None:
+                    return None
+                places[i] = pool
+    return (base, size) if relocate(obj, text, places, symbols.address_of, gp) == original_code else None
+
+
+def grouped_data_script(groups):
+    # ld aligns each input section at its actual load address. A neutral GP
+    # preserves the original addend of each GPREL16 relocation in this -r link.
+    sections = [".text 0 : { *(.text) }"]
+    for name, (base, _) in sorted(groups.items()):
+        sections.append(f"{name} 0x{base:x} : {{ *({name}) }}")
+    sections.append(".sdata 0 : { *(.sdata) }")
+    return "_gp = 0; SECTIONS { " + " ".join(sections) + " }"
 
 
 def companion_places(obj, addr, text_addr, orig_text, data_addr, orig_data, resolve=symbols.address_of):
@@ -837,7 +871,7 @@ cd "$d/src"
         for section in data_candidates:
             if parsed.get(addr, {}).get("sections", {}).get(section):
                 data_candidates[section].append(addr)
-    grouped_tables = set()
+    grouped_tables = {}
     section_places = {
         section: place_rodata(candidates, data_addr,
                               elf[data_off:data_off + data_size],
@@ -845,6 +879,9 @@ cd "$d/src"
                               grouped=grouped_tables)
         for section, candidates in data_candidates.items()
     }
+    for addr, groups in grouped_tables.items():
+        for section, (_, size) in groups.items():
+            parsed[addr]["sections"][section] = size
     # C++ objects that bring a vtable bring its companions too (type-info function, implicit
     # destructor, type name): all are placed where the original holds them, or the source is
     # refused. The function's own size leaves the companion code out; that code is linked NOLOAD
@@ -997,11 +1034,11 @@ mips-linux-gnu-as {project.CONFIG['cpu']['as_flags']} gaps.s -o gaps.o 2>&1 | gr
         print(f"  {len(bad)} instructions emitted as raw words", flush=True)
     # The final .data uses SUBALIGN(1) to place independently verified data at exact addresses.
     # First let ld preserve the natural alignment *between* the tables from a single function.
-    table_inputs = sorted(grouped_tables & (objects.keys() - companions.keys()))
+    table_inputs = sorted(grouped_tables.keys() & (objects.keys() - companions.keys()))
     if table_inputs:
-        wsl(f'cd "{WSL_DIR}" && mkdir -p jobj\n'
-            "echo 'SECTIONS { .rodata : { *(.rodata) } }' > jobj/tables.ld\n" +
-            "".join(f"mips-linux-gnu-ld -EL -r -T jobj/tables.ld obj/func_{addr:08X}.o "
+        wsl(f'cd "{WSL_DIR}" && mkdir -p jobj\n' +
+            "".join(f"echo '{grouped_data_script(grouped_tables[addr])}' > jobj/func_{addr:08X}.ld\n"
+                    f"mips-linux-gnu-ld -EL -r -T jobj/func_{addr:08X}.ld obj/func_{addr:08X}.o "
                     f"-o jobj/func_{addr:08X}.o\n" for addr in table_inputs))
     wsl(f"""
 d="{WSL_DIR}"
