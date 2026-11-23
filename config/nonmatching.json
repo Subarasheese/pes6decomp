@@ -113460,22 +113460,6 @@
   },
   {
    "image": "training_challenge",
-   "address": "0081BA70",
-   "symbol": "func_0081BA70",
-   "original_sha256": "b50b44e0beb47b5d64ef57c48f1cbcf626ff48e7cda4a94175fb485e238ce102",
-   "source": "nonmatching/training_challenge/func_0081BA70.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "724268295ffbc32420657f3e5c98286e998ea583bb23ded4da2e272dfd6d1c39",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "training_challenge",
    "address": "0081D4B0",
    "symbol": "func_0081D4B0",
    "original_sha256": "445ac528db06af94ba69413795e3a9820412adab1ef376529a1a66bb8b723c4b",
