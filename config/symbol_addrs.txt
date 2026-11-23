@@ -630,6 +630,18 @@ Pes6FrameTimer_GetElapsedFrames = 0x001CDB50; // type:func
 Pes6FrameTimer_Measure = 0x001CDB60; // type:func
 Pes6FrameTimer_SetRate = 0x001CDBD0; // type:func
 
+// 2D draw lists: Pes6DrawList_Layers holds four 36-byte layer entries (+0 item count, +4 item list, +20 sort
+// array, +32 packet space left). Pes6DrawList_Render(layer) sorts the layer's items, calls each one's draw
+// function (+8, argument +4) to write GS data into VIF packets, and sends them (Pes6VifPacket_EndAndSend).
+// The four Pes6DrawList_RenderLayerN are draw tasks of their own.
+Pes6DrawList_Layers = 0x0052B170; // type:data
+Pes6DrawList_Render = 0x001EC140; // type:func
+Pes6DrawList_RenderLayer0 = 0x001EC100; // type:func
+Pes6DrawList_RenderLayer1 = 0x001EC110; // type:func
+Pes6DrawList_RenderLayer3 = 0x001EC120; // type:func
+Pes6DrawList_RenderLayer2 = 0x001EC130; // type:func
+Pes6VifPacket_EndAndSend = 0x001F5040; // type:func
+
 // Scene and module management (established from code and runtime state; descriptive, not original symbols).
 // Pes6SceneStack holds three {scene id, frame count} levels; level 0 picks the top-level handler:
 // 4 = menus (Pes6Scene_Menu), 8 = match (Pes6Scene_Match).
