@@ -1,4 +1,6 @@
-int func_001BB370(int a0) {
-    int v2;
-    return ((a0) == (0)) ? (0) : (*( int *)((char *)a0 + 0x8));
-}
+#include "types.h"
+typedef struct {
+    u8 reserved[8];
+    const s16 *id;
+} WidgetNode;
+const s16 *func_001BB370(s32 node) { return node ? ((const WidgetNode *)node)->id : 0; }

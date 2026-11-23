@@ -1,13 +1,8 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
-
-void *Pes6Module_Get(void);
-
-s32 Pes6Module_GetRegion(void) {
-    void *entry = Pes6Module_Get();
-
-    if (entry == NULL) {
+#include "pes6/overlay_module.h"
+s32 Pes6Module_GetRegion(s32 moduleId) {
+    Pes6ModuleEntry *entry = Pes6Module_Get(moduleId);
+    if (entry == 0)
         return 0;
-    }
-    return M2C_FIELD(entry, s32 *, 0x4);
+    return entry->region;
 }

@@ -1,15 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "types.h"
-
+#include "pes6/kit.h"
 typedef struct {
-    u16 red : 5;
-    u16 green : 5;
-    u16 blue : 5;
-    u16 alpha : 1;
-} PaletteColor;
-
-typedef struct {
-    PaletteColor colors[21];
+    Pes6KitColor colors[21];
     u8 unknown[26];
 } EditorPalette;
 

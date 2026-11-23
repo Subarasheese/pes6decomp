@@ -36,7 +36,7 @@ CATEGORY = getattr(rabbitizer.InstrCategory, project.CONFIG["cpu"]["category"])
 FUNCTIONS = os.path.join(project.CONFIG_ROOT, "functions.csv") if project.TARGET != "main" else os.path.join(project.BUILD, "functions.csv")
 NOP = 0
 
-R_MIPS_26, R_MIPS_HI16, R_MIPS_LO16, R_MIPS_GPREL16 = 4, 5, 6, 7
+R_MIPS_26, R_MIPS_HI16, R_MIPS_LO16, R_MIPS_GPREL16, R_MIPS_LITERAL = 4, 5, 6, 7, 8
 
 
 _spans = {}
@@ -394,6 +394,34 @@ def link_problem(addr, src, sources=None):
     return None
 
 
+def resolve_literal_references(path, relocs, address, text_addr, text):
+    """Give each literal symbol its verified loaded address before applying its GP relocation."""
+    import build
+    elf = build.read_elf(path)
+    ranges = None
+    gp = project.CONFIG["game"]["gp"]
+    bases = {}
+    for index, section in enumerate(elf["sections"]):
+        if section["name"] in (".lit4", ".lit8") and section["size"]:
+            if ranges is None:
+                data_start = project.CONFIG["game"]["text_end"]
+                ranges = [(data_start, text[data_start - text_addr:]), *build.resident_data_for_overlay()]
+            base = build.literal_pool_address(elf, index, address, text_addr, text, gp, ranges)
+            if base is None:
+                return False
+            bases[index] = base
+    for index, refs in elf["relocs"].items():
+        if elf["sections"][index]["name"] != ".text":
+            continue
+        for off, kind, symbol in refs:
+            _, value, section, _ = elf["symbols"][symbol]
+            if section in bases:
+                relocs[off] = R_MIPS_GPREL16, f"D_{bases[section] + value:08X}", 0, False
+            elif kind == R_MIPS_LITERAL:
+                return False
+    return True
+
+
 def judge(addr, src, obj=None, sources=None):
     """The judge's verdict on src as the function at addr: (True, report) on MATCH, else (False,
     report), the report being what `match.py check` prints. obj: an object already compiled from
@@ -422,8 +450,15 @@ def judge(addr, src, obj=None, sources=None):
     text_addr, text = load_text()
     target = trim_padding(words_at(text_addr, text, addr, function_span(addr)))
     obj = obj or compile_c(src)
-    blob, srelocs, funcs = read_object(obj, want_symbols=True)
-    os.remove(obj)
+    try:
+        blob, srelocs, funcs = read_object(obj, want_symbols=True)
+        if funcs and any(kind == R_MIPS_LITERAL or
+                         (kind == R_MIPS_GPREL16 and not is_text and symbols.address_of(name) is None)
+                         for kind, name, value, is_text in srelocs.values()):
+            if not resolve_literal_references(obj, srelocs, addr - funcs[0][1], text_addr, text):
+                return False, "REJECTED: pooled literal address or contents differ from the original"
+    finally:
+        os.remove(obj)
     if not funcs:
         return False, "no function in the compiled object"
     fname, foff, fsize = funcs[0]

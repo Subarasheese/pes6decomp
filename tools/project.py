@@ -8,6 +8,7 @@ import tomllib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG = tomllib.load(open(os.path.join(ROOT, "project.toml"), "rb"))
+RESIDENT_GAME = CONFIG["game"].copy()
 
 # A virtual address is meaningful only together with its loaded image. Keep both
 # source discovery and generated artifacts isolated for overlapping overlays.

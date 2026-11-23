@@ -38,13 +38,17 @@ typedef struct Pes6MatchPlayer {
     u8 side;          /* 0x13 */
     s16 goalDirection; /* 0x14: signed team-relative direction; see docs/pc_gameplay.md */
     u8 role;          /* 0x16 */
-    u8 pad17[5];
+    u8 pad17;
+    s16 action;       /* 0x18 */
+    u8 pad1A[2];
     s32 speed;        /* 0x1C */
     u8 pad20[0xA];
     u16 angle;        /* 0x2A */
     u8 pad2C[0x3A];
     u8 actionGroup;   /* 0x66 */
-    u8 pad67[0x79];
+    u8 pad67[5];
+    float aimX, aimZ; /* 0x6C, 0x70 */
+    u8 pad74[0x6C];
     float x, y, z;    /* 0xE0: match-space position */
     u8 padEC[0x28];
     u32 distance114;  /* 0x114 */
@@ -62,7 +66,9 @@ typedef struct Pes6SquadPlayer {
     u8 ability[0x39]; /* 0x96 */
     u8 flagCF0 : 1;   /* 0xCF bit 0 */
     u8 flagCF1 : 1;   /* 0xCF bit 1 */
-    u8 : 6;
+    u8 : 2;
+    u8 flagCF4 : 1;   /* 0xCF bit 4 */
+    u8 : 3;
     u8 padD0[0x5];
     u8 xD5;           /* 0xD5 */
     u8 xD6;           /* 0xD6 */

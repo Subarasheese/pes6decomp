@@ -1,17 +1,12 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
-s16 *func_001BB370();                               /* extern */
-
-s16 func_001BAF70(s32 arg0) {
-    s16 *temp_v0;
-    s16 var_s0;
-
-    var_s0 = -1;
-    if (arg0 != 0) {
-        temp_v0 = func_001BB370();
-        if (temp_v0 != NULL) {
-            var_s0 = *temp_v0;
-        }
+#include "types.h"
+extern const s16 *func_001BB370(s32 node);
+s32 func_001BAF70(s32 node) {
+    s32 result = -1;
+    if (node) {
+        const s16 *id = func_001BB370(node);
+        if (id)
+            result = *id;
     }
-    return var_s0;
+    return result;
 }

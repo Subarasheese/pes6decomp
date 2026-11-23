@@ -1,17 +1,12 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
-
-M2C_UNK func_002CF640(s32, void *, s32);            /* extern */
-M2C_UNK func_002D07A0(s32, void *, s32, s32);       /* extern */
-void *func_002F82B0(s32, s32);                      /* extern */
-
-void func_002CF5C0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    void *temp_v0;
-
-    temp_v0 = func_002F82B0(arg1, arg2);
-    if (M2C_FIELD(temp_v0, u8 *, 0x3A) != 0) {
-        func_002D07A0(arg0, temp_v0, arg1, arg2);
+#include "pes6/kit.h"
+extern void func_002D07A0(void *model, const Pes6KitDefinition *kit, s32 team, s32 variant);
+extern void func_002CF640(void *model, const Pes6KitDefinition *kit, s32 side);
+void func_002CF5C0(void *model, s32 team, s32 variant, s32 side) {
+    const Pes6KitDefinition *kit = func_002F82B0(team, variant);
+    if (kit->type) {
+        func_002D07A0(model, kit, team, variant);
         return;
     }
-    func_002CF640(arg0, temp_v0, arg3);
+    func_002CF640(model, kit, side);
 }

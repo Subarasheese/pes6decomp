@@ -608,11 +608,12 @@ Pes6World_Active = 0x00511610; // type:data
 Pes6World_IsActive = 0x0017E110; // type:func
 Pes6World_SetActive = 0x0017E120; // type:func
 Pes6World_ClearActive = 0x0017E160; // type:func
-// Game overlay: case 3 of the match setup dispatch (func_00BEA1D0, on the byte at 0x5926FF), the only
-// case that activates the world, then initializes match subsystems and clears per-player state.
+// Game overlay: mode 0 of Pes6MatchFlow_SetUpForMode activates the world, initializes match
+// subsystems and clears per-player state. Entry 0 at 0xCB2640 branches to the call at 0xBEA240.
 Pes6Match_SetUpWorld = 0x009F27C0; // type:func
 // Game overlay match flow: Pes6MatchFlow_State holds 10 hierarchical state levels; setting a level
-// clears the deeper ones (and is sent to the peer online). Level 2 runs while level 1 is in state 14.
+// clears the deeper ones. Online, the first two levels are copied into the active network slot.
+// Level 2 runs while level 1 is in state 14.
 // The getter's address is a different function in the lobby overlay (except:lobby).
 Pes6MatchFlow_State = 0x00CBBDE0; // type:data
 Pes6MatchFlow_GetState = 0x009E1C90; // type:func except:lobby

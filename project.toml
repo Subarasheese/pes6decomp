@@ -144,6 +144,11 @@ command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -Os -G0 -fno-exceptions -Iinclud
 dir = "toolchains/ee-gcc2.9-991111"
 command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -Iinclude"
 
+# The PAL SSLv2 buffer reset preserves pointer aliases across memset and the SSL record.
+[compilers."ee-gcc-2.9-nsa-G0"]
+dir = "toolchains/ee-gcc2.9-991111"
+command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -fno-strict-aliasing -Iinclude"
+
 # The HTTPS overlay RC2 round functions were compiled without optimization.
 # ee-as 2.10 fills their return delay slot with the stack adjustment.
 [compilers."ee-gcc-2.9-O0-as210-G0"]

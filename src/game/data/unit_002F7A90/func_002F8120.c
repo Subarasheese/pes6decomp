@@ -1,3 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "types.h"
-void func_002F82D0(void *, void *, void *, s32); void func_002F8120(void *a0, void *a1) { func_002F82D0(0, a0, a1, 1); }
+#include "pes6/kit.h"
+extern Pes6KitDefinition *func_002F82D0(s32 group, s32 team, s32 variant, s32 original);
+const Pes6KitDefinition *func_002F8120(s32 team, s32 variant) {
+    return func_002F82D0(0, team, variant, 1);
+}

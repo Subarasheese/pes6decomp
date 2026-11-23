@@ -7,7 +7,12 @@
  * Field positions are relative to the attribute block. Names with confirmed
  * offsets and widths follow the PES Editor 6 option-file layout. */
 typedef struct {
-    unsigned int : 16;
+    unsigned int preferredFoot : 1;
+    unsigned int freeKickStyle : 4;
+    unsigned int penaltyStyle : 3;
+    unsigned int dribbleStyle : 2;
+    unsigned int dropKickStyle : 2;
+    unsigned int registeredPosition : 4;
     unsigned int attack : 7;
     unsigned int gk : 1;
     unsigned int defence : 7;
@@ -60,12 +65,12 @@ typedef struct {
     unsigned int middleShooting : 1;
     unsigned int gkAbil : 7;
     unsigned int side : 1;
-    unsigned int : 3;
+    unsigned int consistency : 3;
     unsigned int wff : 3;
-    unsigned int : 2;
+    unsigned int injuryTolerance : 2;
     unsigned int condition : 3;
     unsigned int wfa : 3;
-    unsigned int : 2;
+    unsigned int favoredSide : 2;
     unsigned int oneTouchPass : 1;
     unsigned int outside : 1;
     unsigned int marking : 1;
@@ -74,10 +79,13 @@ typedef struct {
     unsigned int defensiveLineControl : 1;
     unsigned int penaltyStopper : 1;
     unsigned int oneOnOneStopper : 1;
-    unsigned int : 8;
-    unsigned int : 7;
+    unsigned int field_1F_0 : 7;
+    unsigned int : 1;
+    unsigned int field_20_0 : 7;
     unsigned int longThrow : 1;
-    unsigned int : 24;
+    unsigned int : 8;
+    unsigned int field_22 : 8;
+    unsigned int : 8;
     unsigned int height : 6;
     unsigned int skin : 2;
     unsigned int weight : 7;
@@ -129,7 +137,9 @@ typedef struct {
     unsigned int field_3A_0 : 3;
     unsigned int field_3A_3 : 3;
     unsigned int : 10;
-    unsigned int : 27;
+    unsigned int : 9;
+    unsigned int age : 5;
+    unsigned int : 13;
     unsigned int field_3F_3 : 5;
     unsigned int field_40_0 : 5;
     unsigned int field_40_5 : 3;
@@ -152,5 +162,11 @@ typedef struct {
     unsigned int field_47_2 : 3;
     unsigned int field_47_5 : 3;
 } Pes6EditPlayerParams;
+
+/* The option-file identity and name fields occupy the first 0x34 bytes. */
+typedef struct {
+    u8 identity[0x34];
+    Pes6EditPlayerParams params;
+} Pes6EditPlayerRecord;
 
 #endif

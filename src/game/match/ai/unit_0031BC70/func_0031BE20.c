@@ -1,0 +1,67 @@
+/* compiler: mwcc-3.0.1b210 */
+#include "types.h"
+#include "pes6/bitset.h"
+extern s16 func_0030DAF0(s32 side);
+extern s32 func_00341910(s32, s32, s32);
+s32 func_0031BE20(struct Pes6BitSet *flags) {
+    s32 source = func_00341910(1, 2, 10);
+    s32 home = func_0030DAF0(0), away = func_0030DAF0(1);
+    s32 total = home + away, any, opposite;
+    any = (home == 0) || (away == 0);
+    Pes6BitSet_Write(flags, 0x11C, total == 1);
+    opposite = !source;
+    Pes6BitSet_Write(flags, 0x11D, opposite);
+    Pes6BitSet_Write(flags, 0x11E, source);
+    Pes6BitSet_Write(flags, 0x11F, (total == 2) && any);
+    Pes6BitSet_Write(flags, 0x120, opposite);
+    Pes6BitSet_Write(flags, 0x121, source);
+    Pes6BitSet_Write(flags, 0x122, (total == 3) && any);
+    Pes6BitSet_Write(flags, 0x123, opposite);
+    Pes6BitSet_Write(flags, 0x124, source);
+    Pes6BitSet_Write(flags, 0x125, (total == 4) && any);
+    Pes6BitSet_Write(flags, 0x126, opposite);
+    Pes6BitSet_Write(flags, 0x127, source);
+    Pes6BitSet_Write(flags, 0x128, (total == 5) && any);
+    Pes6BitSet_Write(flags, 0x129, opposite);
+    Pes6BitSet_Write(flags, 0x12A, source);
+    any = (home == 1) || (away == 1);
+    Pes6BitSet_Write(flags, 0x12B, (total == 2) && any);
+    Pes6BitSet_Write(flags, 0x12C, (total == 3) && any);
+    Pes6BitSet_Write(flags, 0x12D, opposite);
+    Pes6BitSet_Write(flags, 0x12E, source);
+    Pes6BitSet_Write(flags, 0x12F, (total == 4) && any);
+    Pes6BitSet_Write(flags, 0x130, opposite);
+    Pes6BitSet_Write(flags, 0x131, source);
+    Pes6BitSet_Write(flags, 0x132, (total == 5) && any);
+    Pes6BitSet_Write(flags, 0x133, opposite);
+    Pes6BitSet_Write(flags, 0x134, source);
+    Pes6BitSet_Write(flags, 0x135, (total == 6) && any);
+    Pes6BitSet_Write(flags, 0x136, opposite);
+    Pes6BitSet_Write(flags, 0x137, source);
+    any = (home == 2) || (away == 2);
+    Pes6BitSet_Write(flags, 0x138, (total == 4) && any);
+    Pes6BitSet_Write(flags, 0x139, (total == 5) && any);
+    Pes6BitSet_Write(flags, 0x13A, opposite);
+    Pes6BitSet_Write(flags, 0x13B, source);
+    Pes6BitSet_Write(flags, 0x13C, (total == 6) && any);
+    Pes6BitSet_Write(flags, 0x13D, opposite);
+    Pes6BitSet_Write(flags, 0x13E, source);
+    Pes6BitSet_Write(flags, 0x13F, (total == 7) && any);
+    Pes6BitSet_Write(flags, 0x140, opposite);
+    Pes6BitSet_Write(flags, 0x141, source);
+    any = (home == 3) || (away == 3);
+    Pes6BitSet_Write(flags, 0x142, (total == 6) && any);
+    Pes6BitSet_Write(flags, 0x143, (total == 7) && any);
+    Pes6BitSet_Write(flags, 0x144, opposite);
+    Pes6BitSet_Write(flags, 0x145, source);
+    Pes6BitSet_Write(flags, 0x146, (total == 8) && any);
+    Pes6BitSet_Write(flags, 0x147, opposite);
+    Pes6BitSet_Write(flags, 0x148, source);
+    any = (home == 4) || (away == 4);
+    Pes6BitSet_Write(flags, 0x149, (total == 8) && any);
+    Pes6BitSet_Write(flags, 0x14A, (total == 9) && any);
+    Pes6BitSet_Write(flags, 0x14B, opposite);
+    Pes6BitSet_Write(flags, 0x14C, source);
+    Pes6BitSet_Write(flags, 0x14D, home == 5 && away == 5);
+    return 1;
+}
