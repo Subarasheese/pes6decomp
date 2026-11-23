@@ -1,22 +1,15 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "types.h"
+#include "pes6/cup_score_rows.h"
+
 /* Scores are kept in team order. The first leg is stored separately from
    the return leg, extra time and penalties. A panel can reverse home and away. */
-enum CupScoreRow {
-    CUP_FIRST_LEG,
-    CUP_RETURN_LEG,
-    CUP_TOTAL,
-    CUP_EXTRA_TIME,
-    CUP_EXTRA_BEFORE_SHOOTOUT,
-    CUP_SHOOTOUT
-};
 
 typedef struct {
     u8 leg, extraTime, penalties;
 } CupTeamScore;
 typedef struct {
     u8 beforeScores[0x34];
-    void *values[6][2][2];
+    void *values[CUP_SCORE_ROW_COUNT][2][2];
     void *captions[4][2];
     u8 reversed[2];
     CupTeamScore scores[2][2];
@@ -27,7 +20,6 @@ typedef struct {
 extern CupScorePage *func_00B0BEF0(void);
 extern void func_009737C0(void *widget, s8 shown);
 extern void func_009737E0(void *widget, s32 id, ...);
-extern const char *func_001F08B0(s32 id);
 extern const char D_00B339F0[];
 static inline const u8 *scoreOrientation(const u8 *data, u8 side) { return data + side; }
 
@@ -37,36 +29,24 @@ void func_00B0ABD0(u8 panel) {
         const u8 *orientation = scoreOrientation(p->reversed, panel);
         s32 phase = p->stage[panel];
         if (phase == 0) {
-            func_009737C0(p->values[CUP_FIRST_LEG][panel][0], 0);
-            func_009737C0(p->values[CUP_FIRST_LEG][panel][1], 0);
-            func_009737C0(p->values[CUP_RETURN_LEG][panel][0], 0);
-            func_009737C0(p->values[CUP_RETURN_LEG][panel][1], 0);
-            func_009737C0(p->values[CUP_TOTAL][panel][0], 0);
-            func_009737C0(p->values[CUP_TOTAL][panel][1], 0);
-            func_009737C0(p->values[CUP_EXTRA_TIME][panel][0], 0);
-            func_009737C0(p->values[CUP_EXTRA_TIME][panel][1], 0);
-            func_009737C0(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel][0], 0);
-            func_009737C0(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel][1], 0);
-            func_009737C0(p->values[CUP_SHOOTOUT][panel][0], 0);
-            func_009737C0(p->values[CUP_SHOOTOUT][panel][1], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_FIRST_LEG][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_RETURN_LEG][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_TOTAL][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_EXTRA_TIME][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_SHOOTOUT][panel], 0);
             func_009737C0(p->captions[0][panel], 1);
             func_009737E0(p->captions[0][panel], 7, D_00B339F0);
             func_009737C0(p->captions[1][panel], 0);
             func_009737C0(p->captions[2][panel], 0);
             func_009737C0(p->captions[3][panel], 0);
         } else if (phase == 1) {
-            func_009737C0(p->values[CUP_FIRST_LEG][panel][0], 0);
-            func_009737C0(p->values[CUP_FIRST_LEG][panel][1], 0);
-            func_009737C0(p->values[CUP_RETURN_LEG][panel][0], 0);
-            func_009737C0(p->values[CUP_RETURN_LEG][panel][1], 0);
-            func_009737C0(p->values[CUP_TOTAL][panel][0], 1);
-            func_009737C0(p->values[CUP_TOTAL][panel][1], 1);
-            func_009737C0(p->values[CUP_EXTRA_TIME][panel][0], 0);
-            func_009737C0(p->values[CUP_EXTRA_TIME][panel][1], 0);
-            func_009737C0(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel][0], 0);
-            func_009737C0(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel][1], 0);
-            func_009737C0(p->values[CUP_SHOOTOUT][panel][0], 0);
-            func_009737C0(p->values[CUP_SHOOTOUT][panel][1], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_FIRST_LEG][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_RETURN_LEG][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_TOTAL][panel], 1);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_EXTRA_TIME][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_SHOOTOUT][panel], 0);
             func_009737C0(p->captions[0][panel], 1);
             func_009737E0(p->captions[0][panel], 7, D_00B339F0);
             func_009737C0(p->captions[1][panel], 0);
@@ -80,18 +60,12 @@ void func_00B0ABD0(u8 panel) {
                 func_009737E0(p->values[CUP_TOTAL][panel][1], 8, p->firstLeg[panel][0]);
             }
         } else {
-            func_009737C0(p->values[CUP_FIRST_LEG][panel][0], 1);
-            func_009737C0(p->values[CUP_FIRST_LEG][panel][1], 1);
-            func_009737C0(p->values[CUP_RETURN_LEG][panel][0], 1);
-            func_009737C0(p->values[CUP_RETURN_LEG][panel][1], 1);
-            func_009737C0(p->values[CUP_TOTAL][panel][0], 1);
-            func_009737C0(p->values[CUP_TOTAL][panel][1], 1);
-            func_009737C0(p->values[CUP_EXTRA_TIME][panel][0], 0);
-            func_009737C0(p->values[CUP_EXTRA_TIME][panel][1], 0);
-            func_009737C0(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel][0], 0);
-            func_009737C0(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel][1], 0);
-            func_009737C0(p->values[CUP_SHOOTOUT][panel][0], 0);
-            func_009737C0(p->values[CUP_SHOOTOUT][panel][1], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_FIRST_LEG][panel], 1);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_RETURN_LEG][panel], 1);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_TOTAL][panel], 1);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_EXTRA_TIME][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel], 0);
+            CUP_SHOW_SCORE_PAIR(p->values[CUP_SHOOTOUT][panel], 0);
             func_009737C0(p->captions[0][panel], 1);
             func_009737E0(p->captions[0][panel], 7, D_00B339F0);
             func_009737C0(p->captions[1][panel], 0);
@@ -121,10 +95,8 @@ void func_00B0ABD0(u8 panel) {
                 func_009737E0(p->values[CUP_RETURN_LEG][panel][1], 5, p->scores[panel][0].leg);
             }
             if (p->scores[panel][0].penalties || p->scores[panel][1].penalties) {
-                func_009737C0(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel][0], 1);
-                func_009737C0(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel][1], 1);
-                func_009737C0(p->values[CUP_SHOOTOUT][panel][0], 1);
-                func_009737C0(p->values[CUP_SHOOTOUT][panel][1], 1);
+                CUP_SHOW_SCORE_PAIR(p->values[CUP_EXTRA_BEFORE_SHOOTOUT][panel], 1);
+                CUP_SHOW_SCORE_PAIR(p->values[CUP_SHOOTOUT][panel], 1);
                 func_009737C0(p->captions[1][panel], 1);
                 func_009737C0(p->captions[2][panel], 1);
                 func_009737C0(p->captions[0][panel], 0);
@@ -156,8 +128,7 @@ void func_00B0ABD0(u8 panel) {
                         (p->firstLeg[panel][1] + (p->scores[panel][1].leg + awayExtra)) &&
                     p->decided[panel] != 1) {
                     if (homeExtra || awayExtra) {
-                        func_009737C0(p->values[CUP_EXTRA_TIME][panel][0], 1);
-                        func_009737C0(p->values[CUP_EXTRA_TIME][panel][1], 1);
+                        CUP_SHOW_SCORE_PAIR(p->values[CUP_EXTRA_TIME][panel], 1);
                         func_009737C0(p->captions[1][panel], 1);
                         func_009737C0(p->captions[2][panel], 1);
                         func_009737C0(p->captions[0][panel], 0);
@@ -178,8 +149,7 @@ void func_00B0ABD0(u8 panel) {
                         func_009737E0(p->captions[0][panel], 7, func_001F08B0(0x1a00a8));
                     }
                 } else if (p->scores[panel][0].extraTime || p->scores[panel][1].extraTime) {
-                    func_009737C0(p->values[CUP_EXTRA_TIME][panel][0], 1);
-                    func_009737C0(p->values[CUP_EXTRA_TIME][panel][1], 1);
+                    CUP_SHOW_SCORE_PAIR(p->values[CUP_EXTRA_TIME][panel], 1);
                     func_009737C0(p->captions[0][panel], 1);
                     func_009737E0(p->captions[0][panel], 10, func_001F08B0(0x1a00a7));
                     if (!*orientation) {
