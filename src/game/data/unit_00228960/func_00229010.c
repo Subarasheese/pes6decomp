@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/competition_records.h"
 
-s32 func_00229010(u8 index) {
+u8 func_00229010(u8 index) {
     LeagueCompetition *data = leagueTeamList();
     if (Pes6SaveData_IsUnavailable() == 1)
         return 0xff;
