@@ -1,12 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
 #pragma no_branch_likely on
-#include "types.h"
-typedef struct {
-    u16 stamp;
-    u8 kind;
-    u8 player;
-} MatchEvent;
-#define NO_EVENT ((MatchEvent *)-1)
+#include "pes6/match_event_record.h"
 extern MatchEvent *func_00C5BBC0(MatchEvent *, MatchEvent *, s32);
 extern MatchEvent *func_002C19F0(MatchEvent *, MatchEvent *, s32, s32, s32);
 extern MatchEvent *func_002C6130(MatchEvent *);
