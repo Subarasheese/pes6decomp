@@ -1,0 +1,13 @@
+/* compiler: mwcc-3.0.1b210 */
+#define CUP_PHASE_UPDATE func_00B2B670
+#define CUP_PHASE_GROUP_OFFSET 0x334
+#define CUP_PHASE_POSITION_OFFSET 0x1362
+#define CUP_PHASE_GET func_00B2BF70
+#define CUP_PHASE_STAGE func_00B2BCD0
+#define CUP_PHASE_VISIBLE func_00B296B0
+#define CUP_PHASE_OTHER func_00B29460
+#define CUP_PHASE_INIT func_00B27CC0
+#define CUP_PHASE_REDRAW func_00B2A010
+#define CUP_PHASE_STEP func_00B29EB0
+#define CUP_PHASE_FINISH func_00B29880
+#include "pes6/cup_bracket_phase.h"

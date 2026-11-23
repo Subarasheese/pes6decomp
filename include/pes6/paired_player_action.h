@@ -28,7 +28,9 @@ typedef struct {
     s16 countdown;
     u8 pad08[6];
     u8 flag0e;
-    u8 pad0f[0x35];
+    u8 pad0f[3];
+    u8 mode12;
+    u8 pad13[0x31];
     s8 triggers[3];
     u8 pad47[9];
     u8 enabled;

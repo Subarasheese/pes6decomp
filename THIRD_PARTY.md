@@ -244,3 +244,5 @@ original copyright and license. [RFC 1321, Appendix A.3](https://www.rfc-editor.
 The NTGUI frame deregistration routine uses GCC’s `__deregister_frame_info` from the 2000-10-03 runtime snapshot, with its GCC runtime linking exception. The semaphore calls and frame list are specific to NTGUI. [GCC source via GT4](https://github.com/gustavocanepa/gt4-decomp/blob/0bf836499a295edd7e087f90e8ca01961e639da2/src/runtime/unit_0059BE80/func_005BED78.c).
 
 The NTGUI float-to-unsigned-64 conversion and TTY line reader also use [RAC5 revision 4e0b1894](https://github.com/OpenRAC/rac5-sm-decomp/tree/4e0b1894eda7d6d97a121d76fd6032a6a99290ff). The TTY source also credits its RAC4 implementation. The RAC5 contributions are distributed under [GPLv3](LICENSES/GPL-3.0.txt).
+
+The resident 128-byte memory-card checksum follows McDataChecksum in PS2SDK. All three ECC bytes and the disc’s parity table agree. [PS2SDK source](https://github.com/ps2dev/ps2sdk/blob/d4b9943bd4a58dbe69800bf4ec9d81640df5bc5b/iop/memorycard/mcman/src/main.c), [Academic Free License 2.0](LICENSES/ps2sdk-AFL-2.0.txt).
