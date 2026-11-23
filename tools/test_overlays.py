@@ -11,6 +11,20 @@ import project
 
 
 class OverlayTests(unittest.TestCase):
+    def test_grouped_object_counts_each_function_and_byte_once(self):
+        rows = [dict(address=hex(address), size='16') for address in (0x1000, 0x1010, 0x1020, 0x1030)]
+        member = 'linked as part of func_00001000'
+        proof = dict(functions={'00001000': 'linked', '00001010': member, '00001020': member},
+                     sizes={'00001000': 44}, data_sizes={'00001000': 8})
+        rows.reverse()
+        fs = sorted(overlay_report.inventory_functions(rows, proof), key=lambda f: f['addr'])
+        self.assertEqual([f['size'] for f in fs], [16, 16, 12, 16])
+        self.assertEqual([f['fuzzy'] for f in fs], [100, 100, 100, 0])
+        self.assertEqual(sum(f['size'] for f in fs if f['complete']), 44)
+        self.assertEqual(sum(f['data'] for f in fs), 8)
+        proof['functions']['00001000'] = 'does not compile'
+        self.assertFalse(any(f['matched'] for f in overlay_report.inventory_functions(rows, proof)))
+
     def test_gp_literal_requires_consistent_loads_and_complete_pool(self):
         import build
         import match
