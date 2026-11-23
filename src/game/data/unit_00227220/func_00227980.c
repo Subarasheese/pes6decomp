@@ -14,7 +14,7 @@ static inline u8 *get_block(void) {
     return NULL;
 }
 
-u8 func_00227980(void) {
+s32 func_00227980(void) {
     u8 *p = get_block();
 
     if (Pes6SaveData_IsUnavailable() == 1) {

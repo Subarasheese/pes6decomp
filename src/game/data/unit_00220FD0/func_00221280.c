@@ -1,25 +1,18 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "pes6/match_option_slots.h"
 
 typedef struct {
-    u8 data[54];
-} Entry36;
+    u8 reserved00[0x5C];
+    MatchOptionSlot entries[MATCH_OPTION_SLOTS];
+} OptionTable;
 
-typedef struct {
-    u8 pad0[0x5C];
-    Entry36 entries[8];
-} Table;
+extern void *Pes6OptionData_GetBase(void);
 
-Table *Pes6OptionData_GetBase(void);
-
-Entry36 *func_00221280(s32 index) {
-    Table *table = Pes6OptionData_GetBase();
-
-    if (table == NULL) {
-        return NULL;
-    }
-    if (index >= 8) {
+MatchOptionSlot *func_00221280(s32 index) {
+    OptionTable *table = Pes6OptionData_GetBase();
+    if (!table)
+        return 0;
+    if (index >= MATCH_OPTION_SLOTS)
         return &table->entries[0];
-    }
     return &table->entries[index];
 }
