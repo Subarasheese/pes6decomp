@@ -1,12 +1,16 @@
 #ifndef PES6_ENTRY_PAGE_H
 #define PES6_ENTRY_PAGE_H
 
-#include "types.h"
+#include "pes6/entry_wait.h"
 
 typedef struct {
     union {
         u8 values[0x160];
         char text[0x160];
+        struct {
+            u8 reserved[0x118];
+            struct Counter counter;
+        } timing;
     } storage;
     s8 primary[16], secondary[16];
     u8 reserved180[4];
