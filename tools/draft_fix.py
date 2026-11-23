@@ -305,8 +305,14 @@ def _worker(args):
     return out
 
 
+def _image_of(root):
+    """the image whose sources a directory under src/ holds: an overlay's own directory, else main"""
+    parts = os.path.relpath(root, os.path.join(ROOT, "src")).split(os.sep)
+    return parts[1] if parts[0] == "overlays" and len(parts) > 1 else "main"
+
+
 def targets(list_path):
-    """{image: [(address, draft source or None)]} of listed functions without accepted C."""
+    """{image: [(address, draft source or None)]} of listed functions without accepted C, in any image."""
     import re as _re
     man = {(r["image"], r["address"]): r["source"] for r in json.load(open(os.path.join(ROOT, "config", "nonmatching.json")))["functions"]}
     eq = set()
@@ -316,7 +322,7 @@ def targets(list_path):
             eq.add((m.group(1), m.group(2)))
     exact = set()
     for root, _, files in os.walk(os.path.join(ROOT, "src")):
-        img = "game" if "overlays/game" in root else ("main" if "overlays" not in root else None)
+        img = _image_of(root)
         for f in files:
             m = _re.search(r"([0-9A-F]{8})\.c$", f)
             if img and m:
@@ -335,7 +341,7 @@ def targets(list_path):
     sys.path.insert(0, HERE)
     import project
     for root, _, files in os.walk(os.path.join(ROOT, "src")):
-        img = "game" if "overlays/game" in root else ("main" if "overlays" not in root else None)
+        img = _image_of(root)
         for f in files:
             if img and not _re.search(r"[0-9A-F]{8}\.c$", f) and f.endswith(".c"):
                 try:
@@ -349,7 +355,7 @@ def targets(list_path):
         if row.get("status") == "boundary":
             continue
         k = (row["image"], row["address"].upper().replace("0X", "").zfill(8))
-        if k in eq or k in exact or k[0] not in ("main", "game"):
+        if k in eq or k in exact:
             continue
         out.setdefault(k[0], []).append((k[1], man.get(k)))
     return out

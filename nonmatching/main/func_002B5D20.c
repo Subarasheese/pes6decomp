@@ -1,0 +1,208 @@
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s64 Pes6Random_Below(s64);
+void func_002727C0(s64, s64, s64, s64);
+void func_002871C0(s64);
+void func_002B6060(void);
+void func_002B61A0(void);
+void func_002B62A0(void);
+void func_002B7080(s64, s64);
+void func_002B7490(s64, s64, s64);
+s64 func_009B44E0(void);
+s64 func_009B4580(void);
+
+void func_002B5D20(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
+    s64 at = 0, v0 = 0, v1 = 0, t4 = 0, s0 = 0, s1 = 0;
+    s64 gp = 0x3ef370;
+    volatile union { f32 f; s32 i; } f0 = { 0 };
+    volatile union { f32 f; s32 i; } f1 = { 0 };
+    volatile union { f32 f; s32 i; } f2 = { 0 };
+    volatile union { f32 f; s32 i; } f3 = { 0 };
+    s64 hi = 0, lo = 0;
+    s32 fcc = 0;
+    s64 frame[8];
+    s64 sp = (s32) (u32) frame;
+
+    a0 = (s32) ((u32) sp + 0x30U);
+    func_002871C0(a0);
+    a0 = 10; func_002727C0(a0, a1, a2, a3);
+    a0 = 6; v0 = Pes6Random_Below(a0);
+    v0 = v0 & 0xffff;
+    v1 = (s32) 0x590000U;
+    a0 = (s32) ((u32) v0 + 0xeU);
+    (*(volatile u8 *) (u32) (v1 + 10050)) = (u8) a0;
+    v0 = (s32) 0x590000U;
+    v0 = (*(volatile u8 *) (u32) (v0 + 10050));
+    v1 = 14;
+    if (v0 == v1) goto L_002B602C;
+L_002B5D6C:;
+    v0 = func_009B44E0();
+    v1 = v0 & 0xffff;
+    v0 = 852;
+    { s64 m_ = (s64) (s32) v1 * (s64) (s32) v0; lo = (s32) m_; hi = (s32) (m_ >> 32); v1 = lo; }
+    v0 = (*(volatile s32 *) (u32) (gp + -32228));
+    v0 = (s32) ((u32) v1 + (u32) v0);
+    v0 = (*(volatile s16 *) (u32) (v0 + 840));
+    if (v0 >= 0) goto L_002B5D9C;
+    v0 = -1; goto L_002B5DA0;
+L_002B5D9C:;
+    v0 = 1;
+L_002B5DA0:;
+    a0 = (s64) ((u64) v0 << 56);
+    v0 = (s32) 0x590000U;
+    v1 = (*(volatile u8 *) (u32) (v0 + 10050));
+    v0 = 18;
+    { s32 c_ = v1 != v0; a0 = a0 >> 56; if (c_) goto L_002B5DF4; }
+    v0 = (s32) 0x44fa0000U;
+    f2.i = (s32) v0;
+    f0.i = (s32) a0;
+    v0 = (s32) 0x3e0000U;
+    f1.f = (*(volatile f32 *) (u32) (v0 + -23796));
+    f3.f = (f32) f0.i;
+    f1.f = f2.f + f1.f;
+    f0.f = (*(volatile f32 *) (u32) (sp + 48));
+    f1.f = f3.f * f1.f;
+    fcc = f0.f < f1.f;
+    if (!fcc) goto L_002B5DF4;
+    v1 = 1;
+    v0 = (s32) 0x590000U;
+    (*(volatile u16 *) (u32) (v0 + 10038)) = (u16) v1;
+L_002B5DF4:;
+    v0 = (s32) 0x590000U;
+    v0 = (*(volatile u16 *) (u32) (v0 + 10038));
+    if (v0 == 0) goto L_002B5E78;
+    a0 = 300; v0 = Pes6Random_Below(a0);
+    v1 = v0 & 0xffff;
+    v0 = 3;
+    if ((s32) v0 != 0) { s64 q_ = (s32) ((s32) v1 / (s32) v0); hi = (s32) ((s32) v1 % (s32) v0); lo = q_; }
+    v1 = hi;
+    v0 = 2;
+    if (v1 == v0) goto L_002B5E64;
+    v0 = 1;
+    if (v1 == v0) goto L_002B5E54;
+    if (v1 == 0) goto L_002B5E44;
+    goto L_002B5E70;
+L_002B5E44:;
+    v1 = 17;
+    v0 = (s32) 0x590000U;
+    (*(volatile u8 *) (u32) (v0 + 10050)) = (u8) v1; goto L_002B5E70;
+L_002B5E54:;
+    v1 = 19;
+    v0 = (s32) 0x590000U;
+    (*(volatile u8 *) (u32) (v0 + 10050)) = (u8) v1; goto L_002B5E70;
+L_002B5E64:;
+    v1 = 15;
+    v0 = (s32) 0x590000U;
+    (*(volatile u8 *) (u32) (v0 + 10050)) = (u8) v1;
+L_002B5E70:;
+    v0 = (s32) 0x590000U;
+    (*(volatile u16 *) (u32) (v0 + 10038)) = (u16) 0;
+L_002B5E78:;
+    v0 = func_009B4580();
+    s0 = (*(volatile s32 *) (u32) (gp + -32228));
+    s1 = v0 & 0xffff; v0 = func_009B44E0();
+    a0 = v0 & 0xffff;
+    v1 = 852;
+    { s64 m_ = (s64) (s32) a0 * (s64) (s32) v1; lo = (s32) m_; hi = (s32) (m_ >> 32); v1 = lo; }
+    v1 = (s32) ((u32) v1 + (u32) s0);
+    v1 = (*(volatile s16 *) (u32) (v1 + 840));
+    if (v1 >= 0) goto L_002B5EB0;
+    v1 = -1; goto L_002B5EB4;
+L_002B5EB0:;
+    v1 = 1;
+L_002B5EB4:;
+    a1 = (s64) ((u64) v1 << 48);
+    a0 = 0;
+    v1 = 0xffff;
+    a1 = a1 >> 48;
+    t4 = v1 & 0xffff;
+    a2 = 0;
+    a5 = 32767;
+    a6 = 852;
+    v1 = 300;
+    a7 = 4;
+L_002B5EDC:;
+    if ((u32) v1 != 0) { s64 q_ = (s32) ((u32) s1 / (u32) v1); hi = (s32) ((u32) s1 % (u32) v1); lo = q_; }
+    a4 = hi;
+    a3 = t4 & 0xffff;
+    { s32 c_ = a3 == a7; t4 = a4 & 0xffff; if (c_) goto L_002B5F20; }
+    a3 = t4 & 0xffff;
+    { s64 m_ = (s64) (s32) a3 * (s64) (s32) a6; lo = (s32) m_; hi = (s32) (m_ >> 32); a3 = lo; }
+    a4 = (s32) ((u32) s0 + (u32) a3);
+    a3 = (*(volatile u8 *) (u32) (a4 + 846));
+    if (a3 != a7) goto L_002B5F20;
+    a3 = (*(volatile s16 *) (u32) (a4 + 840));
+    if (a3 == a5) goto L_002B5F20;
+    a0 = (*(volatile s16 *) (u32) (a4 + 844));
+    a1 = a3;
+L_002B5F20:;
+    a3 = t4 & 0xffff;
+    { s64 m_ = (s64) (s32) a3 * (s64) (s32) a6; lo = (s32) m_; hi = (s32) (m_ >> 32); a4 = lo; }
+    a2 = (s32) ((u32) a2 + 0x1U);
+    a3 = (s32) ((u32) t4 + 0x1U);
+    a4 = (s32) ((u32) s0 + (u32) a4);
+    s1 = a3 & 0xffff;
+    a3 = a2 < 300;
+    { s32 c_ = a3 != 0; t4 = (*(volatile u8 *) (u32) (a4 + 846)); if (c_) goto L_002B5EDC; }
+    v1 = (s32) 0x590000U;
+    v1 = (*(volatile u8 *) (u32) (v1 + 10050));
+    v1 = (s32) ((u32) v1 + 0xfffffff2U);
+    at = (u64) v1 < (u64) (s64) 6;
+    if (at == 0) goto L_002B6048;
+    a2 = (s32) 0x3e0000U;
+    v1 = (s32) ((u32) v1 << 2);
+    a2 = (s32) ((u32) a2 + 0xffffa320U);
+    v1 = (s32) ((u32) v1 + (u32) a2);
+    v1 = (*(volatile s32 *) (u32) v1);
+    { u32 t_ = (u32) v1; ; if (t_ == 0x2b5f78U) goto L_002B5F78; if (t_ == 0x2b5fecU) goto L_002B5FEC; if (t_ == 0x2b5ffcU) goto L_002B5FFC; if (t_ == 0x2b600cU) goto L_002B600C; if (t_ == 0x2b601cU) goto L_002B601C; }
+L_002B5F78:;
+    v0 = (s64) ((u64) a0 << 48);
+    v0 = v0 >> 48;
+    if (v0 <= 0) goto L_002B5F90;
+    at = v0 < 64; goto L_002B5F98;
+L_002B5F90:;
+    v0 = (s32) ((u32) 0 - (u32) v0);
+    at = v0 < 64;
+L_002B5F98:;
+    if (at == 0) goto L_002B5FC8;
+    f0.f = (*(volatile f32 *) (u32) (sp + 56));
+    a0 = 1;
+    f0.i = (s32) f0.f;
+    v0 = f0.i;
+    a2 = (s64) ((u64) v0 << 48);
+    a2 = a2 >> 48; func_002B7490(a0, a1, a2);
+    goto L_002B6024;
+L_002B5FC8:;
+    v0 = (s64) ((u64) a0 << 48);
+    v0 = v0 >> 48;
+    a0 = 1;
+    v0 = (s32) ((u32) 0 - (u32) v0);
+    a2 = (s64) ((u64) v0 << 48);
+    a2 = a2 >> 48; func_002B7490(a0, a1, a2);
+    goto L_002B6024;
+L_002B5FEC:;
+    a0 = 1; func_002B7080(a0, a1);
+    goto L_002B6024;
+L_002B5FFC:;
+    func_002B62A0();
+    goto L_002B6024;
+L_002B600C:;
+    func_002B61A0();
+    goto L_002B6024;
+L_002B601C:;
+    func_002B6060();
+L_002B6024:;
+    goto L_002B604C;
+L_002B602C:;
+    a0 = 6; v0 = Pes6Random_Below(a0);
+    v1 = v0 & 0xffff;
+    v0 = (s32) 0x590000U;
+    v1 = (s32) ((u32) v1 + 0xeU);
+    (*(volatile u8 *) (u32) (v0 + 10050)) = (u8) v1; goto L_002B5D6C;
+L_002B6048:;
+L_002B604C:;
+    return;
+}

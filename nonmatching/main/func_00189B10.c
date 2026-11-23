@@ -1,0 +1,137 @@
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s32 Pes6Random_Below(s32);
+s32 func_00182020(s32);
+
+void func_00189B10(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4) {
+    s32 v0 = 0, v1 = 0, s0 = 0;
+    volatile union { f32 f; s32 i; } f0 = { 0 };
+    volatile union { f32 f; s32 i; } f1 = { 0 };
+
+    a0 = 12;
+    v0 = func_00182020(a0);
+    if (v0 == 0) goto L_00189D14;
+    a0 = (s32) 0x520000U;
+    v1 = (s32) 0x520000U;
+    a1 = (*(volatile u8 *) (u32) (a0 + 257));
+    v1 = (*(volatile u8 *) (u32) (v1 + 256));
+    if (v1 != a1) goto L_00189CC4;
+L_00189B44:;
+    v1 = (s32) 0x520000U;
+    a2 = (s32) 0x390000U;
+    a3 = (*(volatile u8 *) (u32) (v1 + 256));
+    a2 = (s32) ((u32) a2 + 0x7300U);
+    a0 = 2;
+    v1 = (s32) 0x520000U;
+    a1 = (*(volatile u8 *) (u32) (v1 + 258));
+    v1 = (s32) ((u32) a3 << 2);
+    v1 = (s32) ((u32) a2 + (u32) v1);
+    { s32 c_ = a1 == a0; s0 = (*(volatile s32 *) (u32) v1); if (c_) goto L_00189C54; }
+    v1 = 1;
+    if (a1 == v1) goto L_00189BAC;
+    if (a1 == 0) goto L_00189B8C;
+    goto L_00189CBC;
+L_00189B8C:;
+    v1 = (s32) 0x520000U;
+    { s32 c_ = a3 == a0; (*(volatile u8 *) (u32) (v1 + 259)) = (u8) 0; if (c_) goto L_00189CD8; }
+L_00189B98:;
+    a0 = (s32) 0x520000U;
+    v1 = (s32) 0x520000U;
+    a0 = (*(volatile u8 *) (u32) (a0 + 258));
+    a0 = (s32) ((u32) a0 + 0x1U);
+    (*(volatile u8 *) (u32) (v1 + 258)) = (u8) a0;
+L_00189BAC:;
+    v1 = (s32) 0x520000U;
+    v1 = (*(volatile u8 *) (u32) (v1 + 259));
+    v1 = (s32) ((u32) v1 << 2);
+    a4 = (s32) ((u32) s0 + (u32) v1);
+    v1 = (*(volatile u16 *) (u32) a4);
+    if (v1 == 0) goto L_00189CF4;
+L_00189BC8:;
+    a0 = (*(volatile u16 *) (u32) (a4 + 2));
+    v1 = (s32) 0x3f000000U;
+    f0.i = (s32) v1;
+    v1 = (s32) 0x520000U;
+    a2 = a0 & 0xf;
+    a1 = a2 & 0x1;
+    a0 = (s32) a2 >> 1;
+    f1.i = (s32) a1;
+    f1.f = (f32) f1.i;
+    f0.f = f0.f * f1.f;
+    { s32 c_ = a2 >= 0; (*(volatile f32 *) (u32) (v1 + 268)) = f0.f; if (c_) goto L_00189C04; }
+    v1 = (s32) ((u32) a2 + 0x1U);
+    a0 = (s32) v1 >> 1;
+L_00189C04:;
+    f1.i = (s32) a0;
+    v1 = (s32) 0x3f000000U;
+    f0.i = (s32) v1;
+    a2 = (s32) 0x520000U;
+    f1.f = (f32) f1.i;
+    a1 = (s32) 0x520000U;
+    v1 = (s32) 0x520000U;
+    a0 = (s32) 0x520000U;
+    (*(volatile u16 *) (u32) (v1 + 260)) = (u16) 0;
+    v1 = (s32) 0x520000U;
+    a3 = (*(volatile u8 *) (u32) (v1 + 258));
+    f0.f = f0.f * f1.f;
+    v1 = (s32) 0x520000U;
+    a3 = (s32) ((u32) a3 + 0x1U);
+    (*(volatile f32 *) (u32) (a2 + 272)) = f0.f;
+    a2 = (*(volatile u16 *) (u32) a4);
+    (*(volatile u16 *) (u32) (a1 + 262)) = (u16) a2;
+    a1 = (*(volatile u16 *) (u32) (a4 + 2));
+    (*(volatile u16 *) (u32) (a0 + 264)) = (u16) a1;
+    (*(volatile u8 *) (u32) (v1 + 258)) = (u8) a3;
+L_00189C54:;
+    v1 = (s32) 0x520000U;
+    v1 = (*(volatile u8 *) (u32) (v1 + -179));
+    if (v1 == 0) goto L_00189D14;
+    a0 = (s32) 0x520000U;
+    v1 = (s32) 0x520000U;
+    a0 = (*(volatile u16 *) (u32) (a0 + 260));
+    v1 = (*(volatile u16 *) (u32) (v1 + 262));
+    v1 = a0 < v1;
+    if (v1 != 0) goto L_00189D04;
+L_00189C80:;
+    a0 = (s32) 0x520000U;
+    v1 = (s32) 0x520000U;
+    a0 = (*(volatile u16 *) (u32) (a0 + 260));
+    v1 = (*(volatile u16 *) (u32) (v1 + 262));
+    v1 = a0 < v1;
+    if (v1 != 0) goto L_00189D14;
+    v1 = (s32) 0x520000U;
+    a1 = 1;
+    a2 = (*(volatile u8 *) (u32) (v1 + 259));
+    a0 = (s32) 0x520000U;
+    v1 = (s32) 0x520000U;
+    (*(volatile u8 *) (u32) (v1 + 258)) = (u8) a1;
+    v1 = (s32) ((u32) a2 + 0x1U);
+    (*(volatile u8 *) (u32) (a0 + 259)) = (u8) v1;
+L_00189CBC:;
+    goto L_00189D18;
+L_00189CC4:;
+    a0 = (s32) 0x520000U;
+    v1 = (s32) 0x520000U;
+    (*(volatile u8 *) (u32) (a0 + 256)) = (u8) a1;
+    (*(volatile u8 *) (u32) (v1 + 258)) = (u8) 0; goto L_00189B44;
+L_00189CD8:;
+    v0 = Pes6Random_Below(a0);
+    a0 = v0 & 0xffff;
+    v1 = (s32) 0x520000U;
+    a0 = (s32) ((u32) a0 << 4);
+    (*(volatile u8 *) (u32) (v1 + 259)) = (u8) a0; goto L_00189B98;
+L_00189CF4:;
+    v1 = (s32) 0x520000U;
+    a4 = s0;
+    (*(volatile u8 *) (u32) (v1 + 259)) = (u8) 0; goto L_00189BC8;
+L_00189D04:;
+    a0 = (s32) ((u32) a0 + 0x1U);
+    v1 = (s32) 0x520000U;
+    (*(volatile u16 *) (u32) (v1 + 260)) = (u16) a0; goto L_00189C80;
+L_00189D14:;
+L_00189D18:;
+    return;
+}

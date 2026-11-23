@@ -1,0 +1,110 @@
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s64 func_00101EF8(s64);
+void func_001032D8(s64, s64);
+s64 func_001032E8(s64);
+void func_00103340(s64, s64, s64, s64, s64, s64);
+void func_00103448(s64, s64);
+void func_001034A0(s64, s64);
+void func_00121670(s64, s64, s64, s64, s64, s64, s64, s64);
+void func_001216F0(s64, s64, s64, s64, s64, s64, s64, s64);
+s64 func_00121780(void);
+void sceDmaSendN(s64, s64, s64, s64, s64, s64, s64, s64);
+s64 sceDmaSync(s64, s64, s64, s64, s64, s64, s64, s64);
+
+void func_00141880(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
+    s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0;
+    s64 frame[20];
+    s64 sp = (s32) (u32) frame;
+
+    v1 = (s32) 0x500000U;
+    s3 = (*(volatile s32 *) (u32) (a0 + 68));
+    s0 = 0;
+    a1 = (*(volatile s32 *) (u32) (a0 + 72));
+    s2 = (*(volatile s32 *) (u32) (v1 + -8444));
+    at = 0 < s3;
+    { s32 c_ = at == 0; s6 = (s32) ((u32) a0 + (u32) a1); if (c_) goto L_00141A38; }
+L_001418C4:;
+    s4 = (s32) ((u32) s3 - (u32) s0);
+    at = s4 < 256;
+    if (at == 0) goto L_001419F4;
+L_001418D4:;
+    at = s0 < 512;
+    if (at == 0) goto L_001418E8;
+    v0 = s0; goto L_001418EC;
+L_001418E8:;
+    v0 = 512;
+L_001418EC:;
+    s1 = (s32) ((u32) v0 << 4); v0 = func_00121780();
+    s5 = v0;
+    a0 = (s32) ((u32) sp + 0x80U);
+    v1 = (s64) ((u64) s5 << 36);
+    v0 = (s32) 0x20000000U;
+    v1 = (s64) ((u64) v1 >> 36);
+    a1 = v1 | v0; func_001032D8(a0, a1);
+    v1 = (s32) ((u32) s0 << 1);
+    v0 = (s32) ((u32) s4 << 1);
+    v1 = (s32) ((u32) v1 + (u32) s0);
+    v0 = (s32) ((u32) v0 + (u32) s4);
+    v1 = (s32) ((u32) v1 << 1);
+    v0 = (s32) ((u32) v0 << 1);
+    a1 = (s32) ((u32) s6 + (u32) v1);
+    v0 = (s32) ((u32) v0 + 0xfU);
+    a2 = (s32) ((u32) v0 >> 4);
+    a0 = (s32) ((u32) s4 + 0xffffffffU);
+    v1 = (s32) 0x4000000U;
+    v0 = s4 & 0xff;
+    a3 = a0 | v1;
+    a5 = 0;
+    v1 = (s32) ((u32) v0 << 16);
+    a0 = (s32) ((u32) sp + 0x80U);
+    v0 = (s32) 0x69000000U;
+    a4 = v1 | v0; func_00103340(a0, a1, a2, a3, a4, a5);
+    a0 = (s32) ((u32) sp + 0x80U);
+    a1 = 0; func_00103448(a0, a1);
+    a0 = (s32) ((u32) sp + 0x80U);
+    a1 = (s32) 0x14000000U; func_001034A0(a0, a1);
+    a0 = (s32) ((u32) sp + 0x80U);
+    a1 = (s32) 0x10000000U; func_001034A0(a0, a1);
+    a0 = (s32) ((u32) sp + 0x80U); v0 = func_001032E8(a0);
+    a0 = s5;
+    a1 = 1; func_00121670(a0, a1, a2, a3, a4, a5, a6, a7);
+    func_001216F0(a0, a1, a2, a3, a4, a5, a6, a7);
+    a0 = 9; v0 = func_00101EF8(a0);
+    s5 = v0;
+    (*(volatile u32 *) (u32) (v0 + 128)) = (u32) s1;
+    v0 = (s32) 0x11000000U;
+    a0 = s5;
+    a1 = v0 | 0x4000;
+    a2 = s4; sceDmaSendN(a0, a1, a2, a3, a4, a5, a6, a7);
+    a0 = s5;
+    a1 = 0;
+    a2 = 0; v0 = sceDmaSync(a0, a1, a2, a3, a4, a5, a6, a7);
+    at = s0 < 512;
+    if (at == 0) goto L_001419FC;
+    s0 = (s32) ((u32) s0 + (u32) s4);
+L_001419E0:;
+    v1 = s0 < s3;
+    if (v1 != 0) goto L_001418C4;
+    goto L_00141A3C;
+L_001419F4:;
+    s4 = 256; goto L_001418D4;
+L_001419FC:;
+    a0 = 8; v0 = func_00101EF8(a0);
+    (*(volatile u32 *) (u32) (v0 + 128)) = (u32) s1;
+    a2 = s4;
+    s1 = v0;
+    v0 = (s32) ((u32) s0 << 4);
+    a0 = s1;
+    a1 = (s32) ((u32) s2 + (u32) v0); sceDmaSendN(a0, a1, a2, a3, a4, a5, a6, a7);
+    a0 = s1;
+    a1 = 0;
+    a2 = 0; v0 = sceDmaSync(a0, a1, a2, a3, a4, a5, a6, a7);
+    s0 = (s32) ((u32) s0 + (u32) s4); goto L_001419E0;
+L_00141A38:;
+L_00141A3C:;
+    return;
+}

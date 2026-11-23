@@ -1,0 +1,205 @@
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s32 Pes6File_AllChannelsIdle(void);
+s32 Pes6SaveData_GetUnavailableFlag(void);
+s32 Pes6Scene_Get(s32);
+s32 func_001B6A30(s32, s32, s32, s32);
+s32 func_001BE550(s32, s32);
+s32 func_001BE5B0(s32);
+void func_002206E0(void);
+void func_0023E0E0(s32, s32, s32, s32, s32, s32, s32, s32);
+s32 func_0023F330(void);
+void func_0023F3A0(s32, s32, s32, s32);
+void func_00241620(s32);
+void func_00241640(void);
+void func_002DED00(s32, s32, s32, s32);
+void func_002FC740(s32, s32);
+s32 func_00814FC0(s32, s32, s32, s32);
+void func_0081D200(s32, s32, s32, s32);
+void func_0081D240(s32, s32, s32, s32);
+s32 func_00825610(s32, s32, s32, s32);
+void func_008B2880(s32, s32, s32, s32);
+void func_008C7850(s32, s32, s32, s32, s32, s32, s32, s32);
+s32 func_0093D740(s32, s32, s32, s32);
+void func_009435B0(s32, s32, s32, s32);
+void func_00943660(s32, s32, s32, s32);
+void func_00D0C980(s32, s32, s32, s32);
+
+s32 func_008C8C00(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7) {
+    s32 at = 0, v0 = 0, v1 = 0, s0 = 0;
+    s32 gp = 0x3ef370;
+
+    v0 = 2;
+    v1 = (*(volatile s32 *) (u32) (gp + -20196));
+    s0 = (s32) 0x540000U;
+    { s32 c_ = v1 == v0; s0 = (s32) ((u32) s0 + 0xffffc300U); if (c_) goto L_008C8F24; }
+    v0 = 1;
+    if (v1 == v0) goto L_008C8DD0;
+    if (v1 == 0) { a0 = 0; goto L_008C8C3C; }
+    v0 = 0; goto L_008C8F9C;
+L_008C8C3C:;
+    v0 = Pes6Scene_Get(a0);
+    v1 = 4;
+    if (v0 != v1) goto L_008C8CC4;
+    v0 = (*(volatile s32 *) (u32) (gp + -18788));
+    v0 = (s32) ((u32) v0 + 0xfffffffeU);
+    at = (u64) v0 < (u64) (s64) 2;
+    if (at == 0) { v1 = (*(volatile s8 *) (u32) (s0 + 9)); goto L_008C8C98; }
+    v1 = (*(volatile s8 *) (u32) (s0 + 9));
+    v0 = 2;
+    if (v1 != v0) { v0 = (*(volatile s32 *) (u32) (gp + -20196)); goto L_008C8DC4; }
+    v0 = func_0023F330();
+    a0 = 0;
+    a1 = v0; v0 = func_001BE550(a0, a1);
+    if (v0 != 0) goto L_008C8DC0;
+    v0 = 0; goto L_008C8F9C;
+L_008C8C98:;
+    v0 = 2;
+    if (v1 != v0) goto L_008C8DC0;
+    v0 = func_0023F330();
+    a0 = v0; v0 = func_001B6A30(a0, a1, a2, a3);
+    if (v0 != 0) goto L_008C8DC0;
+    v0 = 0; goto L_008C8F9C;
+L_008C8CC4:;
+    v0 = Pes6SaveData_GetUnavailableFlag();
+    if (v0 == 0) { a0 = 0; goto L_008C8CFC; }
+    a0 = 1; v0 = func_001B6A30(a0, a1, a2, a3);
+    if (v0 != 0) goto L_008C8CEC;
+    v0 = 0; goto L_008C8F9C;
+L_008C8CEC:;
+    func_00D0C980(a0, a1, a2, a3);
+    goto L_008C8DC0;
+L_008C8CFC:;
+    v0 = Pes6Scene_Get(a0);
+    v1 = 8;
+    if (v0 == v1) goto L_008C8DC0;
+    v1 = (*(volatile s8 *) (u32) (s0 + 9));
+    v0 = 2;
+    if (v1 != v0) goto L_008C8D88;
+    v0 = (s32) 0x510000U;
+    v1 = 7;
+    v0 = (*(volatile s32 *) (u32) (v0 + 4048));
+    if (v0 != v1) { a0 = 0; goto L_008C8D4C; }
+    v0 = func_0093D740(a0, a1, a2, a3);
+    if (v0 != 0) { a0 = 31; goto L_008C8D68; }
+    v0 = 0; goto L_008C8F9C;
+L_008C8D4C:;
+    v0 = func_001BE5B0(a0);
+    if (v0 != 0) goto L_008C8D64;
+    v0 = 0; goto L_008C8F9C;
+L_008C8D64:;
+    a0 = 31;
+L_008C8D68:;
+    func_0023E0E0(a0, a1, a2, a3, a4, a5, a6, a7);
+    a0 = 0; func_00241620(a0);
+    a0 = 1; func_00241620(a0);
+    goto L_008C8DC0;
+L_008C8D88:;
+    v0 = (s32) 0x510000U;
+    v1 = 7;
+    v0 = (*(volatile s32 *) (u32) (v0 + 4048));
+    if (v0 != v1) { a0 = 30; goto L_008C8DB8; }
+    v0 = func_0093D740(a0, a1, a2, a3);
+    if (v0 != 0) goto L_008C8DB4;
+    v0 = 0; goto L_008C8F9C;
+L_008C8DB4:;
+    a0 = 30;
+L_008C8DB8:;
+    func_0023E0E0(a0, a1, a2, a3, a4, a5, a6, a7);
+L_008C8DC0:;
+    v0 = (*(volatile s32 *) (u32) (gp + -20196));
+L_008C8DC4:;
+    v0 = (s32) ((u32) v0 + 0x1U);
+    (*(volatile u32 *) (u32) (gp + -20196)) = (u32) v0; goto L_008C8F98;
+L_008C8DD0:;
+    v0 = Pes6File_AllChannelsIdle();
+    v1 = 1;
+    if (v0 != v1) goto L_008C8F98;
+    v0 = (s32) 0x510000U;
+    v1 = 7;
+    v0 = (*(volatile s32 *) (u32) (v0 + 4048));
+    if (v0 == v1) goto L_008C8E20;
+    v0 = Pes6SaveData_GetUnavailableFlag();
+    v1 = 1;
+    if (v0 != v1) goto L_008C8E28;
+    v0 = func_00825610(a0, a1, a2, a3);
+    v1 = 6;
+    if (v0 != v1) goto L_008C8E28;
+L_008C8E20:;
+    func_008B2880(a0, a1, a2, a3);
+L_008C8E28:;
+    v0 = Pes6SaveData_GetUnavailableFlag();
+    if (v0 != 0) { v1 = (*(volatile s8 *) (u32) (s0 + 9)); goto L_008C8E74; }
+    v0 = (s32) 0x8e0000U;
+    v1 = (s32) 0x8e0000U;
+    a2 = (*(volatile s32 *) (u32) (v0 + 30816));
+    a0 = 0;
+    v1 = (*(volatile s32 *) (u32) (v1 + 30832));
+    v0 = (s32) 0x8e0000U;
+    (*(volatile u8 *) (u32) (gp + -21736)) = (u8) a2;
+    a1 = (*(volatile u8 *) (u32) (v0 + 30820));
+    (*(volatile u8 *) (u32) (gp + -21735)) = (u8) v1; func_002FC740(a0, a1);
+    v0 = (s32) 0x8e0000U;
+    a1 = (*(volatile u8 *) (u32) (v0 + 30836));
+    a0 = 1; func_002FC740(a0, a1);
+    v1 = (*(volatile s8 *) (u32) (s0 + 9));
+L_008C8E74:;
+    v0 = 1;
+    if (v1 != v0) goto L_008C8EC8;
+    func_00241640();
+    v0 = (s32) 0x590000U;
+    v1 = 295;
+    v0 = (*(volatile u16 *) (u32) (v0 + 7090));
+    if (v0 != v1) goto L_008C8EA4;
+    func_002206E0();
+L_008C8EA4:;
+    v0 = (s32) 0x510000U;
+    v1 = 4;
+    v0 = (*(volatile s32 *) (u32) (v0 + 4048));
+    if (v0 != v1) goto L_008C8F0C;
+    a0 = 1; func_00943660(a0, a1, a2, a3);
+    goto L_008C8F0C;
+L_008C8EC8:;
+    v0 = (s32) 0x510000U;
+    v1 = 4;
+    v0 = (*(volatile s32 *) (u32) (v0 + 4048));
+    if (v0 == v1) goto L_008C8F04;
+    v0 = Pes6SaveData_GetUnavailableFlag();
+    v1 = 1;
+    if (v0 != v1) goto L_008C8F0C;
+    v0 = func_00825610(a0, a1, a2, a3);
+    v1 = 6;
+    if (v0 == v1) goto L_008C8F0C;
+L_008C8F04:;
+    func_009435B0(a0, a1, a2, a3);
+L_008C8F0C:;
+    func_008C7850(a0, a1, a2, a3, a4, a5, a6, a7);
+    v0 = (*(volatile s32 *) (u32) (gp + -20196));
+    v0 = (s32) ((u32) v0 + 0x1U);
+    (*(volatile u32 *) (u32) (gp + -20196)) = (u32) v0; goto L_008C8F98;
+L_008C8F24:;
+    v0 = Pes6SaveData_GetUnavailableFlag();
+    if (v0 == 0) { (*(volatile u32 *) (u32) (gp + -20196)) = (u32) 0; goto L_008C8F90; }
+    a0 = (s32) 0x8e0000U;
+    a0 = (s32) ((u32) a0 + 0xffffa9c0U); v0 = func_00814FC0(a0, a1, a2, a3);
+    v1 = 1;
+    if (v0 != v1) goto L_008C8F98;
+    v0 = Pes6SaveData_GetUnavailableFlag();
+    if (v0 == 0) goto L_008C8F98;
+    a0 = 0; func_0081D240(a0, a1, a2, a3);
+    a0 = 0; func_0081D200(a0, a1, a2, a3);
+    func_00D0C980(a0, a1, a2, a3);
+    func_0023F3A0(a0, a1, a2, a3);
+    a0 = (*(volatile s32 *) (u32) (gp + -20200)); func_002DED00(a0, a1, a2, a3);
+    (*(volatile u32 *) (u32) (gp + -20196)) = (u32) 0;
+    v0 = 1; goto L_008C8F9C;
+L_008C8F90:;
+    v0 = 1; goto L_008C8F9C;
+L_008C8F98:;
+    v0 = 0;
+L_008C8F9C:;
+    return v0;
+}

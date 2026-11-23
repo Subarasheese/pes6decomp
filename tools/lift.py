@@ -1062,6 +1062,7 @@ def _worker(args):
         except (Exception, SystemExit) as e:           # the tools exit on bad input: never lose a worker
             r = {"address": address, "verdict": "LIFT-FAILED", "detail": f"lift: {type(e).__name__}: {e}"}
         if r["verdict"] == "EQUIVALENT":
+            os.makedirs(os.path.dirname(os.path.join(ROOT, r["source"])), exist_ok=True)
             open(os.path.join(ROOT, r["source"]), "w").write(r.pop("text"))
             with open(os.path.join(ROOT, "build", "gen", f"{image}.jsonl"), "a") as fh:
                 fh.write(json.dumps(r) + "\n")
@@ -1103,7 +1104,8 @@ def main():
         if only and image != only:
             continue
         done = set()
-        for line in open(os.path.join(ROOT, "build", "gen", f"{image}.jsonl")):
+        prior = os.path.join(ROOT, "build", "gen", f"{image}.jsonl")
+        for line in (open(prior) if os.path.exists(prior) else ()):
             try:
                 r = json.loads(line)
             except ValueError:

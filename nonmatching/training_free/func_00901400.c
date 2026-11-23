@@ -1,0 +1,105 @@
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+s32 Pes6Heap_Alloc(s32, s32, s32, s32);
+s32 Pes6PauseEvSet_Start(s32, s32, s32);
+void SD_call(s32);
+void func_001BC300(s32, s32, s32, s32);
+s32 func_002623C0(void);
+void func_0026B610(s32, s32, s32, s32);
+void func_002DF0A0(s32, s32);
+void func_002DF640(s32, s32, s32, s32);
+s32 func_008FA910(s32, s32, s32, s32);
+void func_008FAA60(s32, s32, s32, s32);
+void func_008FAB10(s32, s32, s32, s32);
+void func_00C74D20(s32, s32, s32, s32);
+void func_00C75440(s32, s32, s32, s32);
+
+s32 func_00901400(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4) {
+    s32 v0 = 0, v1 = 0, a5 = 0;
+    volatile union { f32 f; s32 i; } f12 = { 0 };
+    volatile union { f32 f; s32 i; } f13 = { 0 };
+    s64 frame[4];
+    s32 sp = (s32) (u32) frame;
+
+    a0 = 1; func_008FAB10(a0, a1, a2, a3);
+    func_001BC300(a0, a1, a2, a3);
+    v0 = (s32) 0x84020000U;
+    a0 = v0 | 0x8400; SD_call(a0);
+    a0 = 1;
+    a1 = 80; v0 = Pes6Heap_Alloc(a0, a1, a2, a3);
+    v1 = (s32) 0x590000U;
+    a0 = (s32) 0x3b0000U;
+    v1 = (*(volatile u8 *) (u32) (v1 + 7177));
+    (*(volatile u32 *) (u32) (a0 + -5680)) = (u32) v0;
+    a0 = 5;
+    if (v1 != a0) goto L_00901464;
+    v0 = func_002623C0();
+    v1 = (s32) 0x3b0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -5680));
+    (*(volatile u32 *) (u32) (v1 + 24)) = (u32) v0; goto L_00901470;
+L_00901464:;
+    v1 = (s32) 0x590000U;
+    v1 = (*(volatile u8 *) (u32) (v1 + 7118));
+    (*(volatile u32 *) (u32) (v0 + 24)) = (u32) v1;
+L_00901470:;
+    v1 = (s32) 0x590000U;
+    v0 = (s32) 0x3b0000U;
+    a0 = (*(volatile s8 *) (u32) (v1 + 7606));
+    a2 = (s32) 0x930000U;
+    a1 = (*(volatile s32 *) (u32) (v0 + -5680));
+    a2 = (s32) ((u32) a2 + 0xffffdfa0U);
+    a3 = 6; func_0026B610(a0, a1, a2, a3);
+    v0 = (s32) 0x3b0000U;
+    a4 = (s32) 0x930000U;
+    v1 = (*(volatile s32 *) (u32) (v0 + -5680));
+    a2 = 0;
+    a4 = (s32) ((u32) a4 + 0xffffdd90U);
+    a5 = 5;
+    v0 = (s32) 0x3b0000U;
+    a0 = (s32) ((u32) v1 + 0x1cU);
+    a3 = (*(volatile s32 *) (u32) (v0 + -5732));
+    a1 = (s32) ((u32) v1 + 0x34U); func_00C75440(a0, a1, a2, a3);
+    a0 = (s32) ((u32) sp + 0x10U);
+    a1 = 2;
+    a2 = 5; func_008FAA60(a0, a1, a2, a3);
+    v0 = (s32) 0x3b0000U;
+    v0 = (*(volatile s32 *) (u32) (v0 + -5680));
+    a0 = (*(volatile s32 *) (u32) (v0 + 44));
+    a1 = (s32) ((u32) sp + 0x10U); func_002DF0A0(a0, a1);
+    a0 = (s32) ((u32) sp + 0x10U);
+    a1 = 3;
+    a2 = 5; func_008FAA60(a0, a1, a2, a3);
+    v0 = (s32) 0x3b0000U;
+    v0 = (*(volatile s32 *) (u32) (v0 + -5680));
+    f13.f = (*(volatile f32 *) (u32) (sp + 20));
+    a0 = (*(volatile s32 *) (u32) (v0 + 44));
+    f12.f = (*(volatile f32 *) (u32) (sp + 16)); func_002DF640(a0, a1, a2, a3);
+    v0 = (s32) 0x3b0000U;
+    a0 = (s32) 0x900000U;
+    v0 = (*(volatile s32 *) (u32) (v0 + -5680));
+    v1 = 1;
+    a1 = (s32) 0x900000U;
+    a0 = (s32) ((u32) a0 + 0x13e0U);
+    a1 = (s32) ((u32) a1 + 0x1390U);
+    a2 = 0;
+    (*(volatile u8 *) (u32) (v0 + 69)) = (u8) v1; v0 = Pes6PauseEvSet_Start(a0, a1, a2);
+    a0 = (s32) 0x3b0000U;
+    v1 = (s32) 0x3b0000U;
+    a2 = (*(volatile s32 *) (u32) (a0 + -5680));
+    (*(volatile u32 *) (u32) (a2 + 72)) = (u32) v0;
+    a0 = (s32) 0xc0000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + -5680));
+    a1 = a0 | 0x1f;
+    v0 = (*(volatile s32 *) (u32) (v1 + 24));
+    a0 = (s32) ((u32) v1 + 0x3cU);
+    a1 = (s32) ((u32) v0 + (u32) a1); func_00C74D20(a0, a1, a2, a3);
+    v0 = (s32) 0x3b0000U;
+    v0 = (*(volatile s32 *) (u32) (v0 + -5680));
+    a0 = (s32) ((u32) v0 + 0x1cU);
+    a1 = (s32) ((u32) v0 + 0x44U); v0 = func_008FA910(a0, a1, a2, a3);
+    v0 = 0;
+    return v0;
+}

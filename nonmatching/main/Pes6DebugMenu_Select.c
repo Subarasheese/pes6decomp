@@ -1,0 +1,110 @@
+/* compiler: ee-gcc-2.9-G0 */
+/* Lifted from the original instructions by tools/lift.py: registers are variables, each statement is
+ * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
+#include "pes6/m2c.h"
+
+void Pes6MatchContext_SetByteC08(s32);
+void Pes6Scene_Set(s32, s32);
+void func_0023A3F0(s32, s32);
+s32 func_002CBE20(s32, s32, s32, s32);
+s32 func_002E8AD0(s32, s32, s32, s32);
+
+void Pes6DebugMenu_Select(s32 a0, s32 a1, s32 a2, s32 a3) {
+    s32 at = 0, v0 = 0, v1 = 0;
+    s32 gp = 0x3ef370;
+
+    v1 = (s32) 0x510000U;
+    v1 = (*(volatile s32 *) (u32) (v1 + 4076));
+    at = (u64) v1 < (u64) (s64) 15;
+    if (at == 0) goto L_0017AD08;
+    a0 = (s32) 0x3d0000U;
+    v1 = (s32) ((u32) v1 << 2);
+    a0 = (s32) ((u32) a0 + 0xffffc970U);
+    v1 = (s32) ((u32) v1 + (u32) a0);
+    v1 = (*(volatile s32 *) (u32) v1);
+    { u32 t_ = (u32) v1; ; if (t_ == 0x17ad08U) goto L_0017AD08; if (t_ == 0x17ad14U) goto L_0017AD14; if (t_ == 0x17ad30U) goto L_0017AD30; if (t_ == 0x17ad6cU) goto L_0017AD6C; if (t_ == 0x17ada8U) goto L_0017ADA8; if (t_ == 0x17adc8U) goto L_0017ADC8; if (t_ == 0x17ade8U) goto L_0017ADE8; if (t_ == 0x17adfcU) goto L_0017ADFC; if (t_ == 0x17ae28U) goto L_0017AE28; if (t_ == 0x17ae54U) goto L_0017AE54; if (t_ == 0x17ae80U) goto L_0017AE80; if (t_ == 0x17ae94U) goto L_0017AE94; }
+L_0017AD08:;
+    v1 = (s32) 0x510000U;
+    (*(volatile u32 *) (u32) (v1 + 4072)) = (u32) 0; goto L_0017AE94;
+L_0017AD14:;
+    a0 = 0; Pes6MatchContext_SetByteC08(a0);
+    a0 = 0;
+    a1 = 8; Pes6Scene_Set(a0, a1);
+    goto L_0017AE98;
+L_0017AD30:;
+    v1 = (s32) 0x590000U;
+    v0 = (s32) 0x590000U;
+    (*(volatile u8 *) (u32) (v1 + 7095)) = (u8) 0;
+    a0 = 0;
+    (*(volatile u8 *) (u32) (v0 + 7094)) = (u8) 0;
+    v1 = 1;
+    v0 = (s32) 0x590000U;
+    a1 = 9;
+    (*(volatile u8 *) (u32) (v0 + 7092)) = (u8) v1; Pes6Scene_Set(a0, a1);
+    a0 = 1;
+    a1 = 10; Pes6Scene_Set(a0, a1);
+    goto L_0017AE94;
+L_0017AD6C:;
+    v0 = (s32) 0x590000U;
+    v1 = 1;
+    (*(volatile u8 *) (u32) (v0 + 7095)) = (u8) 0;
+    a0 = 5;
+    v0 = (s32) 0x590000U;
+    a1 = 0;
+    (*(volatile u8 *) (u32) (v0 + 7094)) = (u8) v1; func_0023A3F0(a0, a1);
+    v0 = 12;
+    a0 = 0;
+    (*(volatile u8 *) (u32) (gp + -22852)) = (u8) v0;
+    a1 = 13; Pes6Scene_Set(a0, a1);
+    goto L_0017AE94;
+L_0017ADA8:;
+    v1 = 4;
+    v0 = (s32) 0x590000U;
+    (*(volatile u8 *) (u32) (v0 + 7177)) = (u8) v1;
+    a0 = 0;
+    a1 = 7; Pes6Scene_Set(a0, a1);
+    goto L_0017AE94;
+L_0017ADC8:;
+    v1 = 1;
+    v0 = (s32) 0x590000U;
+    (*(volatile u8 *) (u32) (v0 + 7177)) = (u8) v1;
+    a0 = 0;
+    a1 = 7; Pes6Scene_Set(a0, a1);
+    goto L_0017AE94;
+L_0017ADE8:;
+    a0 = 0;
+    a1 = 4; Pes6Scene_Set(a0, a1);
+    goto L_0017AE94;
+L_0017ADFC:;
+    v0 = func_002E8AD0(a0, a1, a2, a3);
+    v1 = 1;
+    if (v0 != v1) goto L_0017AE94;
+    a0 = 0;
+    a1 = 100; Pes6Scene_Set(a0, a1);
+    v1 = (s32) 0x510000U;
+    (*(volatile u32 *) (u32) (v1 + 4072)) = (u32) 0; goto L_0017AE94;
+L_0017AE28:;
+    v0 = func_002CBE20(a0, a1, a2, a3);
+    v1 = 1;
+    if (v0 != v1) goto L_0017AE94;
+    a0 = 0;
+    a1 = 2; Pes6Scene_Set(a0, a1);
+    v1 = (s32) 0x510000U;
+    (*(volatile u32 *) (u32) (v1 + 4072)) = (u32) 0; goto L_0017AE94;
+L_0017AE54:;
+    v0 = func_002CBE20(a0, a1, a2, a3);
+    v1 = 1;
+    if (v0 != v1) goto L_0017AE94;
+    a0 = 0;
+    a1 = 100; Pes6Scene_Set(a0, a1);
+    v1 = (s32) 0x510000U;
+    (*(volatile u32 *) (u32) (v1 + 4072)) = (u32) 0; goto L_0017AE94;
+L_0017AE80:;
+    v0 = (s32) 0x510000U;
+    a0 = 0;
+    (*(volatile u32 *) (u32) (v0 + 4072)) = (u32) 0;
+    a1 = 101; Pes6Scene_Set(a0, a1);
+L_0017AE94:;
+L_0017AE98:;
+    return;
+}

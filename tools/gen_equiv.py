@@ -368,8 +368,7 @@ def admit(only_image):
             results[r["address"]] = r
         # only passes judged from the current starting memory are admitted (an older snapshot's do not count)
         import equiv
-        src = equiv.memory_source()
-        label = "ram:" + os.path.basename(src) if src else "image"
+        label = equiv.memory_label()        # the overlay's "+IMAGE as loaded" too, as the judging recorded it
         stale = [a for a, r in results.items() if r["verdict"] == "EQUIVALENT" and r.get("memory") != label]
         for a in stale:
             results[a] = dict(results[a], verdict="STALE")
