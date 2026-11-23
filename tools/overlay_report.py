@@ -63,6 +63,36 @@ def publication_errors(head):
     return errors
 
 
+def inventory_functions(rows, proof):
+    """Split a verified object's text between its inventoried functions."""
+    status = proof.get('functions', {})
+    sizes = proof.get('sizes', {})
+    data_sizes = proof.get('data_sizes', {})
+    functions = {}
+    covered = {}
+    for row in rows:
+        address = int(row['address'], 16)
+        key = f'{address:08x}'
+        state = status.get(key, '')
+        size = int(sizes.get(key, row['size']))
+        done = state == 'linked'
+        if state.startswith('linked as part of func_'):
+            owner = state.removeprefix('linked as part of func_').lower()
+            if status.get(owner) == 'linked':
+                start = int(owner, 16)
+                end = start + int(sizes.get(owner, 0))
+                if start < address < end:
+                    size = min(int(row['size']), end - address)
+                    covered[start] = covered.get(start, 0) + size
+                    done = True
+        functions[address] = dict(addr=address, size=size, matched=done, complete=done,
+                                  fuzzy=100.0 if done else 0.0,
+                                  data=int(data_sizes.get(key, 0)) if done else 0)
+    for start, size in covered.items():
+        functions[start]['size'] -= size
+    return list(functions.values())
+
+
 def add_images(report, meta, measure):
     catalog = ROOT/'config/overlays.json'
     if not catalog.exists():
@@ -81,16 +111,7 @@ def add_images(report, meta, measure):
         p = ROOT/'build/targets'/name/'full/report.json'
         proof = json.loads(p.read_text()) if p.exists() else {}
         verified = valid_proof(target, proof)
-        status = proof.get('functions', {}) if verified else {}
-        sizes = proof.get('sizes', {}) if verified else {}
-        data_sizes = proof.get('data_sizes', {}) if verified else {}
-        fs = []
-        for row in rows:
-            address = int(row['address'],16)
-            key = f'{address:08x}'
-            done = status.get(key) == 'linked'
-            fs.append(dict(addr=address,size=int(sizes.get(key,row['size'])),matched=done,complete=done,
-                           fuzzy=100.0 if done else 0.0,data=int(data_sizes.get(key,0)) if done else 0))
+        fs = inventory_functions(rows, proof if verified else {})
         data_total = target['data_bytes'] + target['bss_bytes']
         data_done = sum(f['data'] for f in fs)
         m = measure(fs,data_total,data_done)

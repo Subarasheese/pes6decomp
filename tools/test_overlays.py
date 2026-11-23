@@ -11,6 +11,20 @@ import project
 
 
 class OverlayTests(unittest.TestCase):
+    def test_grouped_object_counts_each_function_and_byte_once(self):
+        rows = [dict(address=hex(address), size='16') for address in (0x1000, 0x1010, 0x1020, 0x1030)]
+        member = 'linked as part of func_00001000'
+        proof = dict(functions={'00001000': 'linked', '00001010': member, '00001020': member},
+                     sizes={'00001000': 44}, data_sizes={'00001000': 8})
+        rows.reverse()
+        fs = sorted(overlay_report.inventory_functions(rows, proof), key=lambda f: f['addr'])
+        self.assertEqual([f['size'] for f in fs], [16, 16, 12, 16])
+        self.assertEqual([f['fuzzy'] for f in fs], [100, 100, 100, 0])
+        self.assertEqual(sum(f['size'] for f in fs if f['complete']), 44)
+        self.assertEqual(sum(f['data'] for f in fs), 8)
+        proof['functions']['00001000'] = 'does not compile'
+        self.assertFalse(any(f['matched'] for f in overlay_report.inventory_functions(rows, proof)))
+
     def test_gp_literal_requires_consistent_loads_and_complete_pool(self):
         import build
         import match
@@ -42,6 +56,37 @@ class OverlayTests(unittest.TestCase):
         self.assertIsNone(place(offsets, loads=(single, 0xd7800000)))  # doubleword exceeds pool
         self.assertIsNone(place(offsets, symbol_offset=8))
         self.assertIsNone(place(offsets, alignment=32))
+
+    def test_gp_byte_initializer_requires_all_bytes_and_only_local_loads(self):
+        import build
+        import match
+
+        entry, gp, table = 0x800000, 0x3f0000, 0x3e8010
+        data = bytes((6, 4, 3, 4))
+
+        def place(addends=(0, 1, 2, 3), opcodes=(0x93820000,) * 4, name="@15", local=True,
+                  original_data=data, placements=(table,) * 4, pointer_use=False):
+            compiled = struct.pack("<4I", *(op | n for op, n in zip(opcodes, addends)))
+            original = struct.pack("<4I", *(op | ((base + n - gp) & 0xffff)
+                                           for op, base, n in zip(opcodes, placements, addends)))
+            obj = dict(sections=[dict(name=".text", data=compiled, size=16, alignment=4),
+                                 dict(name=".sdata", data=data, size=4, alignment=4)],
+                       symbols=[(name, 0, 1, local)],
+                       relocs={0: [(i * 4, match.R_MIPS_GPREL16, 0) for i in range(4)]})
+            if pointer_use:
+                obj["sections"].append(dict(name=".data", data=bytes(4), size=4, alignment=4))
+                obj["relocs"][2] = [(0, build.R_MIPS_32, 0)]
+            return build.literal_pool_address(obj, 1, entry, entry, original, gp,
+                                              [(table - 1, b"\0" + original_data)])
+
+        self.assertEqual(place(), table)
+        self.assertIsNone(place(addends=(0, 1, 1, 3)))
+        self.assertIsNone(place(placements=(table, table, table + 4, table)))
+        self.assertIsNone(place(original_data=bytes((6, 4, 2, 4))))
+        self.assertIsNone(place(opcodes=(0x93820000,) * 3 + (0xa3820000,)))  # sb
+        self.assertIsNone(place(name="options"))
+        self.assertIsNone(place(local=False))
+        self.assertIsNone(place(pointer_use=True))
 
     def test_referenced_local_label_inside_compiled_function(self):
         import build
@@ -97,6 +142,44 @@ class OverlayTests(unittest.TestCase):
                 changed[offset] ^= 4
                 self.assertIsNone(place(changed, tables))
         self.assertIsNone(place(code, tables[:-1]))
+
+    def test_initializer_group_aligns_callbacks_at_their_loaded_address(self):
+        import build
+        import match
+
+        entry, base, callback = 0x100000, 0x128008, 0x101000
+        def words(*values):
+            return struct.pack("<" + "I" * len(values), *values)
+
+        def section(name, data, alignment):
+            return dict(name=name, data=data, size=len(data), alignment=alignment)
+
+        code = words(*(word for _ in range(3) for word in (0x3c020000, 0x24420000)))
+        original = words(*(word for low in (0x8008, 0x8010, 0x8020)
+                           for word in (0x3c020013, 0x24420000 | low)))
+        sizes = bytes((30,) * 5)
+        data = sizes + bytes(3) + sizes + bytes(11) + words(callback)
+        obj = dict(sections=[section("", b"", 1), section(".text", code, 4),
+                             section(".data", sizes, 8), section(".data", sizes, 8),
+                             section(".data", words(0), 16)],
+                   symbols=[("@10", 0, 2, True), ("@12", 0, 3, True), ("@23", 0, 4, True),
+                            ("func_00101000", 0, 0, False)],
+                   relocs={1: [(8 * i + off, kind, i) for i in range(3) for off, kind in
+                               ((0, match.R_MIPS_HI16), (4, match.R_MIPS_LO16))],
+                           4: [(0, build.R_MIPS_32, 3)]})
+
+        def place(raw, expected):
+            return build.initialized_data_group(obj, [2, 3, 4], entry, entry, raw, base, expected)
+
+        self.assertEqual(place(original, data), (base, len(data)))
+        for offset in (0, 5, 8, 20, 24):
+            with self.subTest(offset=offset):
+                changed = bytearray(data)
+                changed[offset] ^= 1
+                self.assertIsNone(place(original, changed))
+        self.assertIsNone(place(original[:20] + words(0x24428018), data))
+        obj["symbols"][-1] = ("unknown_callback", 0, 0, False)
+        self.assertIsNone(place(original, data))
 
     def test_text_splits_use_only_assembly_in_each_address_range(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(overlays, 'ROOT', Path(directory)):

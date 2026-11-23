@@ -402,7 +402,7 @@ def resolve_literal_references(path, relocs, address, text_addr, text):
     gp = project.CONFIG["game"]["gp"]
     bases = {}
     for index, section in enumerate(elf["sections"]):
-        if section["name"] in (".lit4", ".lit8") and section["size"]:
+        if section["name"] in build.GP_DATA_SECTIONS and section["size"]:
             if ranges is None:
                 data_start = project.CONFIG["game"]["text_end"]
                 ranges = [(data_start, text[data_start - text_addr:]), *build.resident_data_for_overlay()]

@@ -199,3 +199,8 @@ command = "{dir}/bin/ee-gcc -c -B {dir}/bin/ee- -O2 -G0 -fno-exceptions -fno-str
 [compilers."mwcc-3.0.1b210-sdata0-merged-sections"]
 dir = "toolchains"
 command = "bash {tools}/cc_merged_sections.sh {dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -sdatathreshold 0 -O4,p -c -Iinclude"
+
+# Cup and training use GP-relative loads for tables of up to four bytes.
+[compilers."mwcc-3.0.1b210-sdata4"]
+dir = "toolchains"
+command = "{dir}/wibo/wibo {dir}/tc/mwcps2-3.0.1b210-060308/mwccps2.exe -sdatathreshold 4 -O4,p -c -Iinclude"
