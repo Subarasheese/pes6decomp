@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 extern s64 func_00147D40(s32);
-M2C_UNK func_00146040(s32, void *, s32 *, M2C_UNK); /* extern */
+M2C_UNK Pes6TexCache_Bind(s32, void *, s32 *, M2C_UNK); /* extern */
 
 void func_00145FD0(s32 arg0, void *arg1, s32 *arg2) {
     s32 sp4C;
@@ -16,5 +16,5 @@ void func_00145FD0(s32 arg0, void *arg1, s32 *arg2) {
     if (var_s0 == NULL) {
         var_s0 = &sp4C;
     }
-    func_00146040(arg0, arg1, var_s0, 1);
+    Pes6TexCache_Bind(arg0, arg1, var_s0, 1);
 }

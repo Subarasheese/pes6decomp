@@ -5,7 +5,7 @@
 
 s64 func_00138F00(s64, s64, s64, s64, s64, s64);
 
-s64 func_00146040(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
+s64 Pes6TexCache_Bind(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
     s64 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0;
     s64 hi = 0, lo = 0;
 

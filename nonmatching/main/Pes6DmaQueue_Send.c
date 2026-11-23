@@ -7,7 +7,7 @@ extern void func_00145200(void *);
 extern char D_00500F80[];
 extern char D_00503028[];
 
-void func_00144CA0(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void Pes6DmaQueue_Send(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     u8 *temp_s0;
     u32 *node;
 

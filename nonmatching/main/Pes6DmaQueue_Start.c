@@ -5,7 +5,7 @@
 
 s32 func_00102228(s32, s32, s32, s32, s32, s32, s32, s32);
 
-s32 func_00145200(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7) {
+s32 Pes6DmaQueue_Start(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7) {
     s32 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0;
 
     s0 = (*(volatile s32 *) (u32) a0);
@@ -54,7 +54,7 @@ L_001452A0:;
     a0 = (s32) ((u32) v1 + 0x2000U);
     v1 = (*(volatile s32 *) (u32) (v1 + 8192));
     if (a2 != v1) goto L_00145330;
-    v0 = func_00145200(a0, a1, a2, a3, a4, a5, a6, a7);
+    v0 = Pes6DmaQueue_Start(a0, a1, a2, a3, a4, a5, a6, a7);
     goto L_00145330;
 L_001452E8:;
     v1 = (*(volatile s32 *) (u32) (s0 + 8));

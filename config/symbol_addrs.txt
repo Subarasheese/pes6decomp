@@ -967,11 +967,29 @@ Vsync_FieldCount = 0x003E9830; // type:data
 // VIF1 packet ring (graphics). Packets are allocated in a ring at 0x43C880; each committed packet carries
 // a MARK in its DMA tag's upper half, and the allocator waits on VIF1_MARK (0x10003C30) until VIF1 has
 // consumed the packets whose space it needs. Reset sets VIF1_MARK to 0 and the first entry's mark to 1.
+// Pes6GsPacket_AppendImageUpload(stream, bitbltbuf, trxreg, src, qwc, mode) appends a GS host-to-local
+// transfer (BITBLTBUF/TRXPOS/TRXREG/TRXDIR, an IMAGE GIF tag and a REF to the data), at most 32760 qw a part.
+Pes6GsPacket_AppendImageUpload = 0x00138F00; // type:func
+// Pes6TexCache_Bind looks a texture up in the VRAM slot cache (24-byte slots at 0x507A90), uploads it on a
+// miss and returns its TEX0 value.
+Pes6TexCache_Bind = 0x00146040; // type:func
+// Display: Pes6Display_SendFramePacket builds the frame's display GIF packet and sends it on the GIF channel
+// (Pes6Gif_Send waits for the channel to go idle first); Pes6Vblank_Handler (INTC cause 2, registered by
+// func_001354E0) swaps the double buffer for the field (sceGsSwapDBuff) and sends the next display packet.
+Pes6Gif_Channel = 0x003E9788; // type:data
+Pes6Gif_Send = 0x00121490; // type:func
+Pes6Display_SendFramePacket = 0x0013E310; // type:func
+Pes6Vblank_Handler = 0x00134750; // type:func
 Pes6GfxRing_Alloc = 0x001398B0; // type:func
 Pes6GfxRing_Commit = 0x00139C70; // type:func
 Pes6GfxRing_Reset = 0x00139E40; // type:func
 // Per-channel DMA packet queue: the first packet is started directly; the DMA-end handler (registered for
 // cause 1, VIF1) pops the finished packet and starts the next queued one.
+// Pes6DmaQueue_Send(ch, irq, chain, release) queues a DMA chain (every caller uses channel 1, VIF1) and
+// starts it when the queue was idle; Pes6DmaQueue_Start runs the head node by type (jump table 0x3C69B0:
+// type 1 calls sceDmaSend); a node flagged release has its packet block released when the transfer ends.
+Pes6DmaQueue_Send = 0x00144CA0; // type:func
+Pes6DmaQueue_Start = 0x00145200; // type:func
 Pes6DmaQueue_DmacHandler = 0x00145020; // type:func
 Pes6DmaQueue_OnTransferEnd = 0x00145050; // type:func
 // libdma: sceDmaSync(chan, mode): mode 1 returns the channel's STR bit, otherwise waits for it to clear.
