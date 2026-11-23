@@ -308,6 +308,29 @@ class Lifter:
                     "z_[0] = z_[1] = 0; for (n_ = 0; n_ < 16; n_++) { u32 b_ = (u32) ((x_[n_ >> 3] >> (8 * (n_ & 7))) & 0xFF) + "
                     "(u32) ((y_[n_ >> 3] >> (8 * (n_ & 7))) & 0xFF); if (b_ > 0xFF) b_ = 0xFF; z_[n_ >> 3] |= (u64) b_ << (8 * (n_ & 7)); } "
                     + setg(rd, "(s64) z_[0]") + f" qh_{GPR[rd]} = z_[1]; }}")
+        if m == "pextuw":                                    # rd = {rt.w2, rs.w2, rt.w3, rs.w3}
+            if not rd: return ";"
+            return (f"{{ u64 s_ = {Q(rs)}, t_ = {Q(rt)}; "
+                    + setg(rd, "(s64) ((t_ & 0xFFFFFFFFU) | (s_ << 32))") + f" qh_{GPR[rd]} = (t_ >> 32) | ((s_ >> 32) << 32); }}")
+        if m == "pcpyud":                                    # rd = {rs.hi, rt.hi}
+            if not rd: return ";"
+            return f"{{ u64 s_ = {Q(rs)}, t_ = {Q(rt)}; {setg(rd, '(s64) s_')} qh_{GPR[rd]} = t_; }}"
+        if m == "pcpyh":                                     # each half: its first halfword, four times
+            if not rd: return ";"
+            return (f"{{ u64 l_ = (u64) {g(rt)} & 0xFFFF, h_ = {Q(rt)} & 0xFFFF; l_ *= 0x0001000100010001ULL; h_ *= 0x0001000100010001ULL; "
+                    + setg(rd, "(s64) l_") + f" qh_{GPR[rd]} = h_; }}")
+        lanes = {"psubb": (8, False, "a_ - b_"), "psubw": (32, False, "a_ - b_"), "paddh": (16, False, "a_ + b_"),
+                 "pminh": (16, True, "a_ < b_ ? a_ : b_"), "psrlh": (16, False, f"b_ >> {i.sa & 15}")}
+        if m in lanes:                                       # lane by lane over the 128-bit registers, wrapping
+            if not rd: return ";"
+            bits, sgn, expr = lanes[m]
+            mask = (1 << bits) - 1
+            get = (lambda v: f"(s64) ((s64) ((({v}[w_ >> 6] >> (w_ & 63)) & {mask:#x}ULL) << {64 - bits}) >> {64 - bits})") if sgn else \
+                  (lambda v: f"(s64) (({v}[w_ >> 6] >> (w_ & 63)) & {mask:#x}ULL)")
+            return (f"{{ u64 x_[2], y_[2], z_[2]; s32 n_; x_[0] = (u64) {g(rs)}; x_[1] = {Q(rs)}; y_[0] = (u64) {g(rt)}; y_[1] = {Q(rt)}; "
+                    f"z_[0] = z_[1] = 0; for (n_ = 0; n_ < {128 // bits}; n_++) {{ s32 w_ = n_ * {bits}; s64 a_ = {get('x_')}, b_ = {get('y_')}; "
+                    f"z_[w_ >> 6] |= ((u64) ({expr}) & {mask:#x}ULL) << (w_ & 63); }} "
+                    + setg(rd, "(s64) z_[0]") + f" qh_{GPR[rd]} = z_[1]; }}")
         raise Unsupported(f"MMI {m}")
 
     def vu0(self, i):
