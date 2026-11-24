@@ -29,7 +29,7 @@ static inline Pes6MatchPlayer *preparePenaltyTaker(void) {
     Pes6Ball_Current->dir = angle;
     ((RestartMotion *)taker)->heading = angle;
     Pes6Ball_PlaceAtRest(Pes6Ball_Current->pos[0], Pes6Ball_Current->pos[2]);
-    taker->info->pad2D[0] = playerMirrored(taker);
+    taker->info->field2D = playerMirrored(taker);
     func_009EE050(taker, Pes6Ball_Current->dir);
     D_00591E4F[taker->side][0] = taker->id;
     taker->actionGroup = 0;
