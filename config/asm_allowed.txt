@@ -37,3 +37,21 @@ src/game/graphics/unit_0012BF70/func_0012BFC0.c # VU0 macro-mode instructions (l
 src/game/graphics/unit_00132800/func_001342D0.c # VU0 macro-mode instructions (lqc2/sqc2, vector ops): no C form
 src/game/graphics/unit_00132800/func_00134300.c # VU0 macro-mode instructions (lqc2/sqc2, vector ops): no C form
 src/game/graphics/unit_0012AD50/func_0012B610.c # VU0 macro-mode quaternion slerp (lqc2/sqc2, vector ops, and the mtc1/mfc1 moves between VU0 and the FPU in the same blocks): no C form
+# libvu0 (Sony's inline assembly, from the kfiv decomp's libvu0.c): VU0 macro-mode instructions
+src/sdk/libvifpk/sceVu0ApplyMatrix.c      # lqc2/sqc2, vmula/vmadda (VU0 macro mode)
+src/sdk/libvifpk/sceVu0OuterProduct.c     # lqc2/sqc2, vopmula/vopmsub (VU0 macro mode)
+src/sdk/libvifpk/sceVu0Normalize.c        # lqc2/sqc2, vsqrt/vdiv/vwaitq/vmulq (VU0 macro mode)
+src/sdk/libvifpk/sceVu0AddVector.c        # lqc2/sqc2, vadd (VU0 macro mode)
+src/sdk/libvifpk/sceVu0SubVector.c        # lqc2/sqc2, vsub (VU0 macro mode)
+src/sdk/libvifpk/sceVu0FTOI0Vector.c      # lqc2/sqc2, vftoi0 (VU0 macro mode)
+src/sdk/libvifpk/sceVu0UnitMatrix.c       # vsub/vadd/vmr32, sqc2 (VU0 macro mode)
+src/sdk/libvifpk/sceVu0RotTransPers.c     # lqc2/sqc2, vmula/vmadda, vdiv/vwaitq/vmulq, vftoi4/vftoi0 (VU0 macro mode)
+# libdev VU1 control (Sony's inline assembly, from crashwoc-decomp-ps2's devvu1.c)
+src/sdk/libvu0/sceDevVu1PutDBit.c         # cfc2/ctc2 $vi28 (FBRST)
+src/sdk/libvu0/sceDevVu1PutTBit.c         # cfc2/ctc2 $vi28 (FBRST)
+src/sdk/libvu0/sceDevVu1Exec.c            # ctc2 $vi31 (CMSAR1: starts a VU1 microprogram)
+src/sdk/libvifpk/sceVu0MulMatrix.c        # lqc2/sqc2, vmula/vmadda (VU0 macro mode)
+src/sdk/libvifpk/sceVu0InnerProduct.c     # lqc2, vmul/vadd, qmfc2 (VU0 macro mode)
+src/sdk/libvifpk/sceVu0TransMatrix.c      # lqc2/sqc2, vadd (VU0 macro mode)
+src/sdk/libvifpk/sceVu0TransposeMatrix.c  # lq/sq with pextlw/pextuw/pcpyld/pcpyud (128-bit, whole function in assembly)
+src/sdk/libvifpk/sceVu0InversMatrix.c     # lq/sq, MMI moves, qmtc2 and VU0 code (whole function in assembly)

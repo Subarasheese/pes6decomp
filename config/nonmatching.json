@@ -180121,36 +180121,6 @@
   },
   {
    "image": "main",
-   "address": "00103BB8",
-   "symbol": "sceVu0MulMatrix",
-   "source": "nonmatching/main/sceVu0MulMatrix.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "f80ae32bcb50e8a51ab586f7ba4dbe0b1f6af62198de2acb29139cb641f064ea",
-   "original_sha256": "9152d716fbaab8f225c0178f6fcac14ca885ae82d474a110b54542555727a431",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "00103C20",
-   "symbol": "sceVu0InnerProduct",
-   "source": "nonmatching/main/sceVu0InnerProduct.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "8dbc34056c8ae21020f599e99214888327825629c4f631a9d119b6074d25e8f2",
-   "original_sha256": "c35d6f5d487b1d196217262f0ff597a1a690b079a83a0f8787e03b7ca063219a",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
    "address": "00103D40",
    "symbol": "func_00103D40",
    "source": "nonmatching/main/func_00103D40.c",
@@ -180217,21 +180187,6 @@
    "compiler": "ee-gcc-2.9-G0",
    "source_sha256": "ac24886a694537d0b4530105d67cfacea292d7bd23f4402bd5515e1a28ff8b15",
    "original_sha256": "3ad4924f792f76d9c633f5f4b0e9351e15e6f8cd85c356388a3fc19f9b03eb70",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "00103E08",
-   "symbol": "sceVu0TransMatrix",
-   "source": "nonmatching/main/sceVu0TransMatrix.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "a35f8c985d329edb04016286fbd2f74897fbc2b28c495101b84314265ae91626",
-   "original_sha256": "2651a4243570c4b87a04920ea3831a6b5f62ae723adaa0fe57a63fbe3acd414b",
    "minimum_similarity": 0,
    "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
    "known_issues": [
