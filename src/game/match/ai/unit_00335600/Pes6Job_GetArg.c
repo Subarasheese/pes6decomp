@@ -1,7 +1,14 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "types.h"
-s32 Pes6Job_GetArg(s32 arg0, s32 arg1) {
-    if (arg0 == 0)
+
+#include "pes6/match_period_message.h"
+typedef struct {
+    u8 reserved00[0x2c];
+    s32 arguments[];
+} JobArguments;
+
+s32 Pes6Job_GetArg(void *job, s32 index) {
+    JobArguments *record = job;
+    if (record == 0)
         return 0;
-    return *(s32 *)((arg1 << 2) + arg0 + 0x2C);
+    return record->arguments[index];
 }
