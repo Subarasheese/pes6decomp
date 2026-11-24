@@ -11,20 +11,30 @@ typedef struct Pes6PlayerAppearance {
     u8 pad00[0xD];
     u8 flag : 1;   /* 0x0D bit 0 */
     u8 value : 7;  /* 0x0D bits 1-7 */
+    u8 pad0E[12];
+    u16 frameDataOffset; /* 0x1A */
 } Pes6PlayerAppearance;
 
 typedef struct Pes6PlayerFieldState {
     u8 pad00[3];
     u8 flag03;
+    u8 pad04[0x18];
+    s32 field1C;
+    u8 field20, field21, field22;
 } Pes6PlayerFieldState;
 
 typedef struct Pes6PlayerInfo {
     Pes6PlayerFieldState *fieldState; /* 0x00 */
     Pes6PlayerAppearance *appearance; /* 0x04 */
-    u8 pad08[0x24];
+    u8 pad08, poseStyle, poseValue, pad0B, poseActivity, poseFlag, pad0E[2];
+    u16 poseLow, poseHigh;
+    u8 pad14[0x18];
     u8 active;        /* 0x2C */
-    u8 pad2D[3];
+    u8 field2D, pad2E[2];
     u16 unk30;        /* 0x30 */
+    u8 pad32[6];
+    float animationFrame; /* 0x38 */
+    u8 pad3C[0x11], field4D, pad4E[0xD], field5B;
 } Pes6PlayerInfo;
 
 /* Match player entries (0x240 bytes each) at 0x58E5B0, indexed by match object id (see
@@ -33,7 +43,7 @@ typedef struct Pes6MatchPlayer {
     u8 id;            /* 0x00: match object id */
     u8 pad01[3];
     Pes6PlayerInfo *info; /* 0x04 */
-    u8 pad08[0x9];
+    u8 pad08[4], replaySlot, pad0D[4];
     u8 slot;          /* 0x11: squad slot */
     u8 team;          /* 0x12: squad (0 or 1) */
     u8 side;          /* 0x13 */
@@ -43,7 +53,8 @@ typedef struct Pes6MatchPlayer {
     s16 action;       /* 0x18 */
     u8 pad1A[2];
     s32 speed;        /* 0x1C */
-    u8 pad20[0xA];
+    u8 pad20[8];
+    u16 movementAngle; /* 0x28 */
     u16 angle;        /* 0x2A */
     u8 pad2C[0x3A];
     u8 actionGroup;   /* 0x66 */
@@ -51,10 +62,23 @@ typedef struct Pes6MatchPlayer {
     float aimX, aimZ; /* 0x6C, 0x70 */
     u8 pad74[0x6C];
     float x, y, z;    /* 0xE0: match-space position */
-    u8 padEC[0x28];
+    u8 padEC[4];
+    float velocityX, velocityY, velocityZ;
+    u8 padFC[0x18];
     u32 distance114;  /* 0x114 */
-    u8 pad118[0x128];
+    u8 pad118[8];
+    u16 referenceHeading; /* 0x120 */
+    u8 pad122[6];
+    u16 headingTo[23];  /* 0x128, indexed by match object id */
+    u8 pad156[2];
+    u32 distanceSquaredTo[23]; /* 0x158 */
+    u8 pad1B4[0x8C];
 } Pes6MatchPlayer;
+
+typedef struct {
+    u8 reserved00[3], active, reserved04[20];
+    s32 serial;
+} Pes6SquadPlayerStatus;
 
 /* A squad player's record (0x348 bytes); the bytes from 0x96 hold 7-bit ability values. */
 typedef struct Pes6SquadPlayer {
@@ -77,7 +101,9 @@ typedef struct Pes6SquadPlayer {
     u8 padD0[0x5];
     u8 xD5;           /* 0xD5 */
     u8 xD6;           /* 0xD6 */
-    u8 padD7[0x271];
+    u8 padD7[0x19];
+    Pes6SquadPlayerStatus status; /* 0xF0 */
+    u8 pad10C[0x23C];
 } Pes6SquadPlayer;
 
 /* Both views address the same 32 retail player records. */
@@ -89,6 +115,14 @@ typedef union Pes6Squad {
 extern Pes6MatchPlayer Pes6MatchPlayers[];
 /* The two squads in the match: 32 player records each. */
 extern Pes6Squad Pes6MatchSquads[2];
+
+extern Pes6PlayerAppearance *func_00208310(s32 clip);
+extern void func_0027A5B0(Pes6MatchPlayer *, u8), func_0027A550(Pes6MatchPlayer *, u16, u16),
+    func_0027A600(Pes6MatchPlayer *, u8), func_0027A520(Pes6MatchPlayer *, u8),
+    func_0027A4A0(Pes6MatchPlayer *, s32);
+extern u8 func_0027A5F0(Pes6MatchPlayer *), func_0027A5A0(Pes6MatchPlayer *),
+    func_0027A510(Pes6MatchPlayer *);
+extern u16 func_0027A540(Pes6MatchPlayer *), func_0027A530(Pes6MatchPlayer *);
 
 /* Index of match player id in Pes6MatchPlayers (0xFF stands for player 1). */
 static inline int Pes6MatchPlayer_Index(int id)

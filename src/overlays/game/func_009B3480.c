@@ -1,9 +1,8 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
 
+#include "pes6/match_player.h"
+extern s32 Pes6Math_Atan2Fixed(s32, s32);
 
-s32 Pes6Math_Atan2Fixed(s32, s32);                        /* extern */
-
-s32 func_009B3480(void *arg0, f32 fparg0, f32 fparg1) {
-    return Pes6Math_Atan2Fixed(-(s32) (fparg1 - M2C_FIELD(arg0, f32 *, 0xE8)), (s32) (fparg0 - M2C_FIELD(arg0, f32 *, 0xE0))) & 0xFFFF;
+s32 func_009B3480(Pes6MatchPlayer *player, f32 x, f32 z) {
+    return Pes6Math_Atan2Fixed(-(s32)(z - player->z), (s32)(x - player->x)) & 0xffff;
 }

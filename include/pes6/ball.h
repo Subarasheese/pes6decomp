@@ -3,10 +3,13 @@
 
 #include "types.h"
 
-enum { PES6_TOUCH_HISTORY_LENGTH = 10 };
+enum { PES6_TOUCH_HISTORY_LENGTH = 10, PES6_BALL_TRAJECTORY_SAMPLES = 224 };
+
+struct Pes6BallModel;
 
 typedef struct Pes6Ball {
-    u8 pad00[0x10];
+    struct Pes6BallModel *model;
+    u8 pad04[8], replayDisplay, pad0D[3];
     float pos[3];      /* 0x10 */
     u8 pad1C[0x4];
     float prevPos[3];  /* 0x20 */
@@ -43,9 +46,17 @@ typedef struct Pes6Ball {
     s32 previousActionFrames[PES6_TOUCH_HISTORY_LENGTH]; /* 0xB8 */
     u8 actorActions[PES6_TOUCH_HISTORY_LENGTH]; /* 0xE0, action at each change of actor */
     u8 padEA[0x392];
-    float unk47C;      /* 0x47C */
-    u8 pad480[0x6FC];
-    float unkB7C;      /* 0xB7C */
+    union {
+        float unk47C;
+        float trajectoryX[PES6_BALL_TRAJECTORY_SAMPLES]; /* 0x47C */
+    };
+    float trajectoryY[PES6_BALL_TRAJECTORY_SAMPLES]; /* 0x7FC */
+    union {
+        float unkB7C;
+        float trajectoryZ[PES6_BALL_TRAJECTORY_SAMPLES]; /* 0xB7C */
+    };
+    u8 padEFC[0x574];
+    s32 field1470; /* Used to weight a recorded shot. */
 } Pes6Ball;
 
 extern Pes6Ball *Pes6Ball_Current;
@@ -61,7 +72,7 @@ typedef struct Pes6MatchState {
     u8 pad3B[4];
     u8 lastTouch;      /* 0x3F 0x591E57 */
     u8 pad40[0xC];
-    u8 lastSide[3];    /* 0x4C 0x591E64 */
+    u8 lastSide[3];    /* 0x4C, three match actor IDs in touch order */
     u8 pad4F[0xAD];
     u8 unkFC;          /* 0xFC 0x591F14 */
 } Pes6MatchState;

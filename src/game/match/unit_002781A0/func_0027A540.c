@@ -1,5 +1,5 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
-u16 func_0027A540(void *arg0) {
-    return M2C_FIELD(M2C_FIELD(arg0, void **, 4), u16 *, 0x10);
-}
+
+#include "pes6/match_player.h"
+
+u16 func_0027A540(Pes6MatchPlayer *actor) { return actor->info->poseLow; }
