@@ -1,32 +1,26 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
-
-extern s32 D_003DA3A0[];
-extern u8 D_003E9D53;
-extern u8 D_003E9D50;
-extern u8 D_003E9D52;
-extern s32 func_00C13840(void);
-extern s32 func_00C32B50(s32);
-extern s32 func_00C137F0(void);
-extern void func_00C131A0(s32, s32, s32);
-
-void func_002C2100(s32 a0, s32 a1, s32 a2, s32 a3) {
-    s32 t;
-    s32 y;
-    s32 x;
+#include "pes6/match_stat_report.h"
+extern MatchEventPredicate D_003DA3A0[];
+extern u8 D_003E9D50, D_003E9D51, D_003E9D52, D_003E9D53;
+extern MatchEvent *func_00C13840(void), *func_00C137F0(void), *func_00C32B50(s32);
+extern s32 func_00C131A0(MatchEvent *, MatchEvent *, MatchEventPredicate);
+s32 func_002C2100(s32 first, s32 last, u8 selection, s32 filter) {
+    MatchEventPredicate predicate;
+    MatchEvent *end;
+    MatchEvent *start;
     D_003E9D53 = 0xFF;
-    D_003E9D50 = a2;
-    t = D_003DA3A0[a3];
-    D_003E9D52 = a0;
-    if ((a0 & 0xFF) == 0) {
-        x = func_00C13840();
+    D_003E9D50 = selection;
+    predicate = D_003DA3A0[filter];
+    D_003E9D52 = first;
+    if ((first & 0xFF) == 0) {
+        start = func_00C13840();
     } else {
-        x = func_00C32B50(a0);
+        start = func_00C32B50(first);
     }
-    if ((a1 & 0xFF) == 0xFF) {
-        y = func_00C137F0();
+    if ((last & 0xFF) == 0xFF) {
+        end = func_00C137F0();
     } else {
-        y = func_00C32B50(a1);
+        end = func_00C32B50(last);
     }
-    func_00C131A0(x, y, t);
+    return func_00C131A0(start, end, predicate);
 }
