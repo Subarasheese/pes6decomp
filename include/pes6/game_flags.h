@@ -48,9 +48,11 @@ extern Pes6GameFlagByte D_00CBBE9C[];
 extern s32 D_00CBBEA0[];
 extern Pes6GameFlagByte D_00CBBEA4[];
 extern Pes6GameFlagByte D_00CBBEAC[];
+extern s32 D_00CBBEB4[];
 extern Pes6GameFlagByte D_00CBBEB8[];
 extern Pes6GameFlagByte D_00CBBEBC[];
 extern Pes6GameFlagByte D_00CBBEC0[];
+extern s32 D_00CBBEC4[];
 extern Pes6GameFlagByte D_00CBBEC8[];
 extern Pes6GameFlagByte D_00CBBECC[];
 extern s32 D_00CBBED0[];
@@ -68,7 +70,14 @@ extern Pes6GameFlagByte D_00CBBF0C[];
 extern Pes6GameFlagByte D_00CBBF0D[];
 extern Pes6GameFlagByte D_00CBBF0E[];
 extern Pes6GameFlagByte D_00CBBF0F[];
-extern Pes6GameFlagByte D_00CBBF10[];
+/* Each of the first three bit pairs has one bit per side. */
+typedef struct {
+    u8 first : 2;
+    u8 second : 2;
+    u8 present : 2;
+    u8 pending : 1;
+} Pes6MatchSideEvents;
+extern Pes6MatchSideEvents D_00CBBF10[];
 extern Pes6GameFlagByte D_00CBBF1D[];
 extern Pes6GameFlagByte D_00CBBF21[];
 extern Pes6GameFlagByte D_00CBBF24[];
