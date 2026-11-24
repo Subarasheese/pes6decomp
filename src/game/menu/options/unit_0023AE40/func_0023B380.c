@@ -1,9 +1,9 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "types.h"
 
 extern s32 D_0053C320[];
-s32 func_001D7980(s32);
+extern s32 func_001D7980(void *node);
 
-u8 func_0023B380(s32 index) {
-    return func_001D7980(D_0053C320[index]);
+s32 func_0023B380(s32 index) {
+    return (u8)func_001D7980((void *)D_0053C320[index]);
 }
