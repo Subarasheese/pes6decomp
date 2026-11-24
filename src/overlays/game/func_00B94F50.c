@@ -3,7 +3,4 @@
 
 extern u8 D_00CBCDB1[];
 
-u8 func_00B94F50(void)
-{
-    return *(u8 *)D_00CBCDB1;
-}
+s32 func_00B94F50(void) { return D_00CBCDB1[0]; }
