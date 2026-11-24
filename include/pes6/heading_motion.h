@@ -9,15 +9,29 @@ typedef struct {
     u8 pad0C, flags, pad0E[12];
     u16 frameDataOffset;
 } HeadingDescriptor;
+struct MotionPlaybackOwner;
 typedef struct {
-    u8 pad00[4];
+    struct MotionPlaybackOwner *owner;
     HeadingDescriptor *descriptor;
     u8 pad08[32];
     float rate;
     u8 pad2C[4];
     u16 clip;
-    u8 pad32[6];
+    u8 pad32[2];
+    s16 ticks;
+    u8 pad36[2];
     float frame;
+    u16 previousClip;
+    u8 pad3E[2];
+    f32 previousFrame;
+    u16 previousKey;
+    u8 previousFlag, pad47;
+    f32 blend;
+    u8 blendTicks, advance, active, queued, changed, wrapped;
+    u16 backupClip;
+    f32 backupFrame;
+    u16 backupKey;
+    u8 backupFlag, pad5B, sideChanged;
 } HeadingMotion;
 typedef struct {
     u8 pad00[4];

@@ -2,7 +2,7 @@
 #include "types.h"
 
 char *func_002C7D80(s32);
-s32 func_00B24320(s32, s32, s32, s32);
+void func_00B24320(s32, s32, s32);
 extern char D_00591DCC[];
 extern char D_00CB37A8[];
 
@@ -28,9 +28,9 @@ void func_00C32330(void) {
         if (value5 == 1) {
             value3 = value6;
             value3 = value3 & value;
-            func_00B24320(value3, 0, 1, value2);
+            func_00B24320(value3, 0, 1);
         } else if (value5 == 2) {
-            func_00B24320(value6 & value, 1, 1, value2);
+            func_00B24320(value6 & value, 1, 1);
         }
         value4 += 1;
         *((u8 *)((entry = (s8 *)entry3) + 0x17)) = 0U;
