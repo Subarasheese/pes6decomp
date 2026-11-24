@@ -9,15 +9,15 @@ typedef struct {
     u8 field0D;
     u8 reserved0E[18];
 } SavedPlayerRecord;
-extern u8 func_00229600(u16 player);
+extern u8 func_00229600(s32 player);
 
-static inline SavedPlayerRecord *savedPlayerRecord(u16 player) {
+static inline SavedPlayerRecord *savedPlayerRecord(s32 player) {
     s32 index;
     u8 *extra;
     if (Pes6SaveData_IsUnavailable() == 1)
         return 0;
-    if (player < 5000)
-        return (SavedPlayerRecord *)(Pes6SaveData_Current + player * sizeof(SavedPlayerRecord) +
+    if ((u16)player < 5000)
+        return (SavedPlayerRecord *)(Pes6SaveData_Current + (u16)player * sizeof(SavedPlayerRecord) +
                                      0x62D70);
     index = (u8)func_00229600(player);
     if (index != 0xff) {

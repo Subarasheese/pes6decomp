@@ -2,6 +2,7 @@
 #define PES6_MATCH_PLAYER_H
 
 #include "types.h"
+#include "pes6/match_squad_setup.h"
 
 /* Views of the match player table and the two squads' player records, as far as the accessors
    around 0x30E2E0 use them; field names are provisional. */
@@ -79,8 +80,10 @@ typedef struct Pes6SquadPlayer {
     u8 padD7[0x271];
 } Pes6SquadPlayer;
 
-typedef struct Pes6Squad {
+/* Both views address the same 32 retail player records. */
+typedef union Pes6Squad {
     Pes6SquadPlayer players[32];
+    Pes6SquadSetupPlayer setupPlayers[32];
 } Pes6Squad;
 
 extern Pes6MatchPlayer Pes6MatchPlayers[];
