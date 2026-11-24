@@ -300,7 +300,7 @@ def verified_records():
     return records
 
 
-def add_to_report(report, meta):
+def add_to_report(report, meta, *, assembly_functions=()):
     records = verified_records()
     lookup = {(r["image"], int(r["address"], 16)): r for r in records}
     found = set()
@@ -333,8 +333,12 @@ def add_to_report(report, meta):
                     section["fuzzy_match_percent"] = round(weight / code, 4)
         weighted += weight
         total += code
-    if found != set(lookup):
-        raise ValueError(f"reconstruction absent from code inventory: {set(lookup) - found}")
+    # The main inventory keeps original assembly out of the C progress denominator.
+    # Its verified drafts still carry instruction comparisons and equivalence evidence.
+    outside = lookup.keys() - found
+    assembly_drafts = outside.intersection(assembly_functions)
+    if unknown := outside - assembly_drafts:
+        raise ValueError(f"reconstruction absent from code inventory: {unknown}")
     report["measures"]["fuzzy_match_percent"] = round(weighted / total, 4) if total else 0
     for category in report["categories"]:
         units = [u for u in report["units"] if category["id"] in u["metadata"].get("progress_categories", [])]
@@ -354,8 +358,10 @@ def add_to_report(report, meta):
                "total_code_bytes": total, "reconstructed_code_percent": round(100 * source_bytes / total, 4),
                "instruction_similarity_percent": report["measures"]["fuzzy_match_percent"],
                "limitations": "Reconstructed C coverage is not proof of semantic equivalence or a runnable C build. Exact-match coverage is unchanged.",
-               "functions": records}
-    meta["reconstruction"] = {k: v for k, v in summary.items() if k != "functions"}
+               "assembly_draft_count": len(assembly_drafts),
+               "assembly_drafts": [lookup[key] for key in sorted(assembly_drafts)],
+               "functions": [row for key, row in lookup.items() if key in found]}
+    meta["reconstruction"] = {k: v for k, v in summary.items() if k not in ("functions", "assembly_drafts")}
     (ROOT / "progress/reconstruction.json").write_text(json.dumps(summary, indent=1) + "\n")
     percent = f"{summary['reconstructed_code_percent']:.2f}%"
     (ROOT / "progress/reconstruction.svg").write_text(

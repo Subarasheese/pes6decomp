@@ -99,9 +99,11 @@ def main():
     partial_path = os.path.join(ROOT, "build", "auto", "partial.json")
     partial = json.load(open(partial_path)) if os.path.exists(partial_path) else {}
     funcs = []
+    assembly_functions = set()
     for r in rows:
         addr = int(r["address"], 16)
         if addr in asm:
+            assembly_functions.add(("main", addr))
             continue
         key = f"{addr:08x}"
         span = min(int(r["max_size"]), max(0, text_end - addr))
@@ -212,7 +214,7 @@ def main():
         import overlay_report
         overlay_report.add_images(report, meta, measures)
         import nonmatching
-        nonmatching.add_to_report(report, meta)
+        nonmatching.add_to_report(report, meta, assembly_functions=assembly_functions)
     json.dump(report, open(OUT, "w"), indent=1)
     json.dump(meta, open(META, "w"), indent=1)
     if not (build.get("text_matches") and build.get("data_matches")):

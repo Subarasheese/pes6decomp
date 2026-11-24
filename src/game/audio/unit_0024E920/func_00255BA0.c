@@ -1,17 +1,14 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
-M2C_UNK FlushCache(M2C_UNK);                     /* extern */
-M2C_UNK sceSifSetDma(s32 *, M2C_UNK);              /* extern */
-extern char D_0058C620[];
-extern char D_0058C624[];
-extern char D_0058C628[];
-extern char D_0058C62C[];
+#include "pes6/sound_bank.h"
 
-void func_00255BA0(s32 arg0, s32 arg1, s32 arg2) {
+extern u32 sceSifSetDma(sceSifDmaData *list, s32 count);
+extern sceSifDmaData D_0058C620;
+
+u32 func_00255BA0(s32 source, s32 destination, s32 size) {
     FlushCache(0);
-    (*(s32 *)D_0058C620) = arg0;
-    (*(s32 *)D_0058C624) = arg1;
-    (*(s32 *)D_0058C628) = arg2;
-    (*(s32 *)D_0058C62C) = 0;
-    sceSifSetDma(((void *)D_0058C620), 1);
+    D_0058C620.data = (void *)source;
+    D_0058C620.addr = (void *)destination;
+    D_0058C620.size = size;
+    D_0058C620.mode = 0;
+    return sceSifSetDma(&D_0058C620, 1);
 }
