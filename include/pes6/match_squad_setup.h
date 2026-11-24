@@ -5,7 +5,10 @@
 
 /* The match setup copies the first 0x24 parameter bytes and repacks the identity fields. */
 typedef struct {
-    u8 base[0x24];
+    union {
+        u8 base[0x24];
+        struct { u8 kickingFoot : 1; u8 : 7; };
+    };
     union {
         struct {
             u32 : 8;

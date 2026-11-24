@@ -4,9 +4,14 @@
 #include "types.h"
 
 typedef struct {
-    u8 flags0, phase1, phase2, pad03[5];
+    u8 flags0, phase1, phase2, recoveryFrame, pad04[4];
     u16 eventFrame, duration;
-    u8 pad0C, flags, pad0E[12];
+    u8 pad0C;
+    union {
+        u8 flags;
+        struct { u8 : 1; u8 clipKind : 7; };
+    };
+    u8 pad0E[12];
     u16 frameDataOffset;
 } HeadingDescriptor;
 typedef struct {
@@ -14,7 +19,7 @@ typedef struct {
     HeadingDescriptor *descriptor;
     u8 pad08[32];
     float rate;
-    u8 pad2C[4];
+    u8 pad2C, mirrored, pad2E[2];
     u16 clip;
     u8 pad32[6];
     float frame;
