@@ -1,21 +1,10 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "types.h"
-#include "pes6/bitset.h"
-typedef struct {
-    u8 reserved18[6], minute, reserved1f[13];
-    s32 mode;
-    u8 player, side, enabled, reserved33[5];
-    s32 phase, outcome;
-    s16 home, away;
-    u32 flags;
-} EventDetail;
-typedef struct {
-    u8 reserved00[2], kind, reserved03[21];
-    EventDetail match;
-} EventRecord;
-extern s32 func_0030D710(s32, s32);
-s32 func_0036A5D0(struct Pes6BitSet *bits, const EventRecord *event) {
-    const EventDetail *detail = &event->match;
+
+#include "pes6/match_score_event.h"
+extern s32 func_0030D710(s32 side, s32 slot);
+
+s32 func_0036A5D0(struct Pes6BitSet *bits, const MatchScoreEvent *event) {
+    const MatchScoreDetail *detail = &event->match;
     s32 special = event->match.mode == 3, outcome = event->match.outcome;
     s16 home = event->match.home, away = event->match.away;
     s32 difference, oneGoal;
@@ -30,7 +19,7 @@ s32 func_0036A5D0(struct Pes6BitSet *bits, const EventRecord *event) {
     Pes6BitSet_Write(bits, 0x42,
                      (Pes6BitSet_Lookup(bits, 0x43) | Pes6BitSet_Lookup(bits, 0x44)) &
                          (detail->minute >= 0x50) & detail->enabled &
-                         ((u32)(detail->phase - 2) < 3));
+                         ((u32)(detail->phase20 - 2) < 3));
     Pes6BitSet_Write(bits, 0x46, detail->flags & 0x20);
     Pes6BitSet_Write(bits, 0x47, detail->flags & 0x80);
     Pes6BitSet_Write(bits, 0x48, detail->flags & 0x100);
@@ -47,15 +36,15 @@ s32 func_0036A5D0(struct Pes6BitSet *bits, const EventRecord *event) {
                      Pes6BitSet_Lookup(bits, 0x4a) | Pes6BitSet_Lookup(bits, 0x4b) |
                          Pes6BitSet_Lookup(bits, 0x4c) | Pes6BitSet_Lookup(bits, 0x4d) |
                          Pes6BitSet_Lookup(bits, 0x4e) | Pes6BitSet_Lookup(bits, 0x4f));
-    Pes6BitSet_Write(bits, 0x51, func_0030D710(detail->player, detail->side));
+    Pes6BitSet_Write(bits, 0x51, func_0030D710(detail->playerSide, detail->playerSlot));
     Pes6BitSet_Write(bits, 0x52, outcome == 8);
     Pes6BitSet_Write(bits, 0x53, event->kind == 2);
-    Pes6BitSet_Write(bits, 0x55, detail->phase == 4 && (detail->flags & 0x1000));
-    Pes6BitSet_Write(bits, 0x56, detail->phase == 4);
-    Pes6BitSet_Write(bits, 0x57, detail->phase == 7);
+    Pes6BitSet_Write(bits, 0x55, detail->phase20 == 4 && (detail->flags & 0x1000));
+    Pes6BitSet_Write(bits, 0x56, detail->phase20 == 4);
+    Pes6BitSet_Write(bits, 0x57, detail->phase20 == 7);
     Pes6BitSet_Write(bits, 0x58, home + away == 0);
     oneGoal = 0;
-    if (detail->phase == 2) {
+    if (detail->phase20 == 2) {
         difference = home - away;
         if ((difference > 0 ? difference : -difference) == 1)
             oneGoal = 1;

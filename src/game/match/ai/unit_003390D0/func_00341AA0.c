@@ -1,23 +1,23 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "pes6/match_period_message.h"
 
-M2C_UNK func_003119B0(u8 *);                        /* extern */
-s32 func_00311BA0(s32);                             /* extern */
+extern s32 func_003119B0(u8 *firstPlayer, s32 side);
+extern s32 func_00311BA0(s32 player);
 
-s32 func_00341AA0(s32 *arg0) {
-    u8 sp4F;
-    s32 var_s1;
-    s32 var_s0;
+s32 func_00341AA0(s32 *playerCount, s32 side) {
+    u8 firstPlayer;
+    s32 i;
+    s32 count;
 
-    func_003119B0(&sp4F);
-    var_s1 = 0;
-    var_s0 = 0;
+    func_003119B0(&firstPlayer, side);
+    i = 0;
+    count = 0;
     do {
-        if (func_00311BA0(sp4F + var_s1) != 0) {
-            var_s0 += 1;
+        if (func_00311BA0(firstPlayer + i) != 0) {
+            count += 1;
         }
-        var_s1 += 1;
-    } while (var_s1 < 0xB);
-    *arg0 = var_s0;
+        i += 1;
+    } while (i < 11);
+    *playerCount = count;
     return 1;
 }

@@ -8,7 +8,7 @@ typedef struct {
 extern char Pes6MatchPlayers[];
 extern Ent D_00592A54[][32];
 
-u8 func_00311BA0(s32 index) {
+s32 func_00311BA0(s32 index) {
     u8 *rec;
 
     if (index != 0xFF) {
