@@ -1,1 +1,3 @@
-void func_001A58E0(int *a0, signed char a1) { *( signed char *)((char *)a0 + 0x2) = a1; }
+#include "pes6/match_player.h"
+
+void func_001A58E0(Pes6PlayerFieldState *field, u8 active) { field->pad00[2] = active; }
