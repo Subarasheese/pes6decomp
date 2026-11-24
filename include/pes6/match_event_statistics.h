@@ -27,4 +27,14 @@ static inline u8 match_event_player(MatchEvent *record) {
     return func_00C132B0((u8 *)record);
 }
 
+static inline s32 match_event_for_side(MatchEvent *record, u8 kind) {
+    s32 selected = 0;
+    if (match_event_kind(record) == kind) {
+        int player = match_event_player(record);
+        if (D_003E9D51 == ((player >> 5) & 1))
+            selected = 1;
+    }
+    return selected;
+}
+
 #endif

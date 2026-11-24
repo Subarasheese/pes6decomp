@@ -1,10 +1,10 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
 
-void func_00264790(u8 *o, u8 v) {
+#include "pes6/match_score_columns.h"
+
+void func_00264790(MatchScoreColumns *score, u8 value) {
     u8 i;
-    o[o[0x14]] = v;
-    for (i = o[0x14] + 1; i < 10; i++) {
-        o[i] = 0;
-    }
+    score->value[0][score->cursor[0]] = value;
+    for (i = score->cursor[0] + 1; i < SCORE_COLUMNS; i++)
+        score->value[0][i] = 0;
 }

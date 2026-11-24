@@ -67,4 +67,16 @@ static inline void select_followup_clip(ClipTransitionActor **actor) {
     }
 }
 
+/* Three handlers keep 255 as a permanent repeat count. */
+static inline void rewind_repeated_clip(ClipTransitionActor **actor, s32 holdAt255) {
+    HeadingMotion *motion = (*actor)->playback;
+    u8 *count;
+    u8 remaining;
+    motion->frame = motion->descriptor->phase1 * 2;
+    count = &(*actor)->repeats;
+    remaining = *count;
+    if ((!holdAt255 || remaining != 255) && remaining != 0)
+        *count = remaining - 1;
+}
+
 #endif
