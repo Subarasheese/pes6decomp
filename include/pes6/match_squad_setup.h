@@ -3,6 +3,11 @@
 
 #include "types.h"
 
+typedef struct {
+    u8 kickingFoot : 1;
+    u8 : 7;
+} Pes6LineupFootFlags;
+
 /* The match setup copies the first 0x24 parameter bytes and repacks the identity fields. */
 typedef struct {
     u8 base[0x24];
@@ -25,6 +30,11 @@ typedef struct {
     u8 nationalityIs26 : 1;
     u8 : 2;
 } Pes6LineupProfile;
+
+static inline s32 pes6LineupKickingFoot(const Pes6LineupProfile *profile) {
+    return ((const Pes6LineupFootFlags *)profile->base)->kickingFoot & 1;
+}
+
 typedef struct {
     u8 base[0x24];
     u8 height : 6;

@@ -14,7 +14,7 @@ s32 func_00AD10C0(TouchActor *actor) {
         if (func_009B30B0(actor->touch.facing, (u16)angle) < 14) {
             const Pes6SquadSetupPlayer *player =
                 &Pes6MatchSquads[actor->player.team].setupPlayers[actor->player.slot];
-            actor->touch.chosenFoot = ((const TouchFootFlags *)player->current.base)->kickingFoot & 1;
+            actor->touch.chosenFoot = pes6LineupKickingFoot(&player->current);
         } else
             actor->touch.chosenFoot = (u16)(actor->touch.facing - (u16)angle + 0x10000) <= 0x8000;
         actor->player.role = 0x40;

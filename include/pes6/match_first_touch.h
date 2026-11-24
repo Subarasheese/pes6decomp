@@ -90,15 +90,10 @@ static inline s32 touchHeight(TouchActor *actor, s32 distance) {
         &Pes6MatchSquads[actor->player.team].setupPlayers[actor->player.slot];
     return distance * ((s32)entry->current.profile.low.height + 148) / 183;
 }
-typedef struct {
-    u8 kickingFoot : 1;
-    u8 : 7;
-} TouchFootFlags;
-
 static inline s32 touchFoot(TouchActor *actor) {
     const Pes6SquadSetupPlayer *player =
         &Pes6MatchSquads[actor->player.team].setupPlayers[actor->player.slot];
-    return ((const TouchFootFlags *)player->current.base)->kickingFoot & 1;
+    return pes6LineupKickingFoot(&player->current);
 }
 /* A frame index advances the X, Y and Z predictions by the same byte offset. */
 static inline const TouchBallFields *touchPredictionAt(s32 frame) {
