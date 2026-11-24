@@ -395,14 +395,19 @@ def link_problem(addr, src, sources=None):
 
 
 def resolve_literal_references(path, relocs, address, text_addr, text):
-    """Give each literal symbol its verified loaded address before applying its GP relocation."""
+    """Resolve GP-relative constants and function-local words at their verified target addresses."""
     import build
     elf = build.read_elf(path)
     ranges = None
     gp = project.CONFIG["game"]["gp"]
     bases = {}
     for index, section in enumerate(elf["sections"]):
-        if section["name"] in build.GP_DATA_SECTIONS and section["size"]:
+        if section["name"] == ".sbss" and section["size"]:
+            base = build.local_counter_address(elf, index, address, text_addr, text, gp, build.zero_fill_ranges())
+            if base is None:
+                return False
+            bases[index] = base
+        elif section["name"] in build.GP_DATA_SECTIONS and section["size"]:
             if ranges is None:
                 data_start = project.CONFIG["game"]["text_end"]
                 ranges = [(data_start, text[data_start - text_addr:]), *build.resident_data_for_overlay()]
@@ -456,7 +461,7 @@ def judge(addr, src, obj=None, sources=None):
                          (kind == R_MIPS_GPREL16 and not is_text and symbols.address_of(name) is None)
                          for kind, name, value, is_text in srelocs.values()):
             if not resolve_literal_references(obj, srelocs, addr - funcs[0][1], text_addr, text):
-                return False, "REJECTED: pooled literal address or contents differ from the original"
+                return False, "REJECTED: GP-relative data address, storage or contents differ from the original"
     finally:
         os.remove(obj)
     if not funcs:

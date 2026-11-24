@@ -88,6 +88,33 @@ class OverlayTests(unittest.TestCase):
         self.assertIsNone(place(local=False))
         self.assertIsNone(place(pointer_use=True))
 
+    def test_function_local_counter_requires_named_zero_fill_and_verified_load_and_store(self):
+        import build
+        import match
+
+        entry, gp, counter = 0x200000, 0x3ef370, 0x3e9b48
+        words = (0x8f820000, 0xaf820000)  # lw/sw v0,0(gp)
+        def place(name="D_003E9B48$4", local=True, kind=8, original=None,
+                  limits=(counter, counter + 4), code=words, ref_kind=match.R_MIPS_GPREL16):
+            if original is None:
+                original = [w | ((counter - gp) & 0xffff) for w in code]
+            obj = {"sections": [{"name": ".text", "data": struct.pack("<2I", *code)},
+                                {"name": ".sbss", "type": kind, "flags": 3, "size": 4, "alignment": 4}],
+                   "symbols": [(name, 0, 1, local)], "relocs": {0: [(0, ref_kind, 0), (4, ref_kind, 0)]}}
+            return build.local_counter_address(obj, 1, entry, entry, struct.pack("<2I", *original), gp, [limits])
+
+        self.assertEqual(place(), counter)
+        self.assertIsNone(place(name="D_003E9B4C$4"))
+        self.assertIsNone(place(name="D_003E9B48"))
+        self.assertIsNone(place(local=False))
+        self.assertIsNone(place(kind=1))  # initialized data
+        self.assertIsNone(place(limits=(counter - 4, counter + 2)))
+        self.assertIsNone(place(original=(0x8f82a7d8, 0xaf82a7dc)))  # store to the next word
+        self.assertIsNone(place(code=(words[0], words[0])))  # read-only references
+        self.assertIsNone(place(code=(0x8c820000, words[1])))  # a0-relative load
+        self.assertIsNone(place(code=(words[0] + 1, words[1])))
+        self.assertIsNone(place(ref_kind=match.R_MIPS_LO16))
+
     def test_referenced_local_label_inside_compiled_function(self):
         import build
         assembly = ["    /* 40 00001040 00000000 */ b .L00001008",
