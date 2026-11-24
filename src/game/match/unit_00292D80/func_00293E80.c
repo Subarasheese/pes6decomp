@@ -1,81 +1,72 @@
 /* compiler: mwcc-3.0.1b151 */
-#include "pes6/m2c.h"
 
-extern u8 D_003E9CD0;
-extern char D_005A249C[];
+#include "pes6/match_weather.h"
+extern f32 D_005A249C[];
 
-typedef struct { u8 a; u8 b; u8 c[4]; s16 d; } T2;
+void func_00293E80(MatchWeather *weather, const WeatherOptions *options,
+                   const StadiumClimate *stadium) {
+    f32 temperature;
+    f32 humidity;
+    u8 mode;
+    u8 precipitation;
 
-void func_00293E80(void *arg0, void *arg1, T2 *arg2) {
-    f32 temp_f5;
-    f32 temp_f4;
-    s32 temp_a1_2;
-    s32 temp_a1_3;
-    u8 temp_a1;
-    u8 temp_v1;
-    u8 var_v1;
+    mode = options->weather;
 
-    temp_a1 = M2C_FIELD(arg1, u8 *, 1);
-
-    temp_f4 = M2C_FIELD(arg0, f32 *, 4);
-    temp_f5 = M2C_FIELD(arg0, f32 *, 0);
-    if (temp_a1 == 3) {
-        if (temp_f4 < 20.0f) {
-            (*(f32 *)D_005A249C) = 0.55f;
+    humidity = weather->humidity;
+    temperature = weather->temperature;
+    if (mode == WEATHER_RANDOM) {
+        if (humidity < 20.0f) {
+            D_005A249C[0] = 0.55f;
         }
-        if (!(temp_f4 < 20.0f) && (temp_f4 < 30.0f)) {
-            (*(f32 *)D_005A249C) = 0.57f;
+        if (!(humidity < 20.0f) && (humidity < 30.0f)) {
+            D_005A249C[0] = 0.57f;
         }
-        if (!(temp_f4 < 30.0f) && (temp_f4 < 40.0f)) {
-            (*(f32 *)D_005A249C) = 0.6f;
+        if (!(humidity < 30.0f) && (humidity < 40.0f)) {
+            D_005A249C[0] = 0.6f;
         }
-        if (!(temp_f4 < 40.0f) && (temp_f4 < 50.0f)) {
-            (*(f32 *)D_005A249C) = 0.63f;
+        if (!(humidity < 40.0f) && (humidity < 50.0f)) {
+            D_005A249C[0] = 0.63f;
         }
-        if (!(temp_f4 < 50.0f) && (temp_f4 < 60.0f)) {
-            (*(f32 *)D_005A249C) = 0.66f;
+        if (!(humidity < 50.0f) && (humidity < 60.0f)) {
+            D_005A249C[0] = 0.66f;
         }
-        if (!(temp_f4 < 60.0f) && (temp_f4 < 70.0f)) {
-            (*(f32 *)D_005A249C) = 0.7f;
+        if (!(humidity < 60.0f) && (humidity < 70.0f)) {
+            D_005A249C[0] = 0.7f;
         }
-        if (!(temp_f4 < 70.0f) && (temp_f4 < 80.0f)) {
-            (*(f32 *)D_005A249C) = 0.76f;
+        if (!(humidity < 70.0f) && (humidity < 80.0f)) {
+            D_005A249C[0] = 0.76f;
         }
-        if (!(temp_f4 < 80.0f)) {
-            (*(f32 *)D_005A249C) = 0.81f;
+        if (!(humidity < 80.0f)) {
+            D_005A249C[0] = 0.81f;
         }
-        if (!(temp_f4 < 90.0f)) {
-            (*(f32 *)D_005A249C) = 127.0f;
+        if (!(humidity < 90.0f)) {
+            D_005A249C[0] = 127.0f;
         }
-        if (arg2->d == 2) {
-            (*(f32 *)D_005A249C) = 0.54f;
+        if (stadium->values.precipitationType == 2) {
+            D_005A249C[0] = 0.54f;
         }
-        if (arg2->d == 3) {
-            (*(f32 *)D_005A249C) = 0.74f;
+        if (stadium->values.precipitationType == 3) {
+            D_005A249C[0] = 0.74f;
         }
-        if (arg2->d == 1) {
-            (*(f32 *)D_005A249C) = 1.0f;
+        if (stadium->values.precipitationType == 1) {
+            D_005A249C[0] = 1.0f;
         }
-        if (arg2->a == 2) {
-            (*(f32 *)D_005A249C) = 0.0f;
+        if (stadium->values.kind == 2) {
+            D_005A249C[0] = 0.0f;
         }
-        temp_a1_2 = (D_003E9CD0 ^ (D_003E9CD0 << 5)) & 0xFF;
-        temp_a1_3 = (temp_a1_2 ^ (temp_a1_2 >> 3)) & 0xFF;
-        temp_v1 = temp_a1_3 ^ (temp_a1_3 << 5);
-        D_003E9CD0 = temp_v1;
-        if (((*(f32 *)D_005A249C) * ((f32) ((temp_v1 & 0xFF) - 1) / 254.0f)) < 0.5f) {
-            if ((temp_f5 < 5.0f) && (temp_f4 < 40.0f)) {
-                var_v1 = 2;
+        if ((D_005A249C[0] * weatherRandom()) < 0.5f) {
+            if ((temperature < 5.0f) && (humidity < 40.0f)) {
+                precipitation = WEATHER_SNOW;
             } else {
-                var_v1 = 0;
+                precipitation = WEATHER_CLEAR;
             }
-        } else if (!(temp_f5 <= 2.0f)) {
-            var_v1 = 1;
+        } else if (!(temperature <= 2.0f)) {
+            precipitation = WEATHER_RAIN;
         } else {
-            var_v1 = 2;
+            precipitation = WEATHER_SNOW;
         }
-        M2C_FIELD(arg0, u8 *, 8) = var_v1;
+        weather->precipitation = precipitation;
     } else {
-        M2C_FIELD(arg0, u8 *, 8) = temp_a1;
+        weather->precipitation = mode;
     }
 }

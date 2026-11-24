@@ -1,4 +1,5 @@
-extern char D_005A2488[];
-int func_00295280() {
-    return (int)D_005A2488;
-}
+
+#include "pes6/match_weather.h"
+
+extern WeatherOptions D_005A2488[];
+WeatherOptions *func_00295280(void) { return D_005A2488; }

@@ -1,36 +1,25 @@
 /* compiler: mwcc-3.0.1b151 */
-#include "types.h"
 
-typedef struct {
-    u8 pad_0[0x1];
-    u8 field_1;
-    u8 pad_2[0x1];
-    u8 field_3;
-    u8 field_4;
-    u8 field_5;
-} Fields;
+#include "pes6/match_weather.h"
 
-extern int func_00295280(void);
-s32 func_00295170(s32, void *, s32);
-
-void func_00295650(Fields *arg0, s32 arg1) {
-    if ((s32)arg0->field_1 >= 4) {
-        arg0->field_1 = 3U;
+void func_00295650(StadiumWeatherInput *input, const u8 *region) {
+    if ((s32)input->weather >= 4) {
+        input->weather = 3U;
     }
-    if ((s32)arg0->field_3 >= 0xD) {
-        arg0->field_3 = 0xCU;
+    if ((s32)input->month >= 0xD) {
+        input->month = 0xCU;
     }
-    if ((s32)arg0->field_3 <= 0) {
-        arg0->field_3 = 1U;
+    if ((s32)input->month <= 0) {
+        input->month = 1U;
     }
-    if ((s32)arg0->field_4 >= 0x19) {
-        arg0->field_4 = 0x18U;
+    if ((s32)input->time >= 0x19) {
+        input->time = 0x18U;
     }
-    if ((s32)arg0->field_4 <= 0) {
-        arg0->field_4 = 1U;
+    if ((s32)input->time <= 0) {
+        input->time = 1U;
     }
-    if (arg0->field_5 == 0) {
-        arg0->field_5 = 1U;
+    if (input->seed == 0) {
+        input->seed = 1U;
     }
-    func_00295170(func_00295280(), arg0, arg1);
+    func_00295170(func_00295280(), input, region);
 }
