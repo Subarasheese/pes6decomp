@@ -1,7 +1,3 @@
 /* compiler: mwcc-3.0.1b210 */
-extern char Pes6File_Channels[];
-int func_0017EE60() {
-    int v2;
-    v2 = *( int *)(Pes6File_Channels);
-    return v2;
-}
+#include "pes6/file_request_queue.h"
+FileJob *func_0017EE60(void) { return Pes6File_Channels[FILE_CHANNEL_IDLE].head; }
