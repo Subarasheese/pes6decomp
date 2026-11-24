@@ -169,6 +169,31 @@ class ReportTests(unittest.TestCase):
         for key, value in exact.items():
             self.assertEqual(report["measures"][key], value)
 
+    def test_assembly_draft_keeps_its_proof_outside_c_coverage(self):
+        address = 0x102600
+        row = {"image": "main", "address": f"{address:08X}", "source": "nonmatching/main/asm.c",
+               "instruction_similarity": 75}
+        unit = {"name": "game/core", "measures": {}, "sections": [{"name": ".text"}],
+                "functions": [{"name": "other_function", "size": "40", "fuzzy_match_percent": 0,
+                               "metadata": {"virtual_address": str(0x200000)}}]}
+        report = {"units": [unit], "categories": [],
+                  "measures": {"matched_code": "0", "matched_functions": 0, "total_functions": 1}}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "progress").mkdir()
+            with patch.object(nonmatching, "ROOT", root), patch.object(nonmatching, "MANIFEST", root / "missing"), \
+                    patch.object(nonmatching, "verified_records", return_value=[row]):
+                with self.assertRaisesRegex(ValueError, "absent from code inventory"):
+                    nonmatching.add_to_report(report, {"commit": "test"}, assembly_functions={("other", address)})
+                meta = {"commit": "test"}
+                nonmatching.add_to_report(report, meta, assembly_functions={("main", address)})
+            summary = json.loads((root / "progress/reconstruction.json").read_text())
+            self.assertEqual(summary["assembly_drafts"], [row])
+            self.assertEqual(summary["functions"], [])
+            self.assertEqual(summary["reconstructed_code_bytes"], 0)
+            self.assertEqual(summary["nonmatching_functions"], 0)
+            self.assertEqual(meta["reconstruction"]["assembly_draft_count"], 1)
+
     def test_manifest_rejects_changed_sources_and_duplicate_addresses(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
