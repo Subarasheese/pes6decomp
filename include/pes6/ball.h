@@ -41,7 +41,7 @@ typedef struct Pes6Ball {
     s32 actionFrames;  /* 0x88 */
     u8 touchActions[PES6_TOUCH_HISTORY_LENGTH]; /* 0x8C, paired with touchActors */
     u8 touchActors[PES6_TOUCH_HISTORY_LENGTH];  /* 0x96 */
-    u8 padA0[0x4];
+    union { u8 padA0[0x4]; u16 snapshotValues[2]; };
     u16 previousActions[PES6_TOUCH_HISTORY_LENGTH]; /* 0xA4 */
     s32 previousActionFrames[PES6_TOUCH_HISTORY_LENGTH]; /* 0xB8 */
     u8 actorActions[PES6_TOUCH_HISTORY_LENGTH]; /* 0xE0, action at each change of actor */

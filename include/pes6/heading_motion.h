@@ -3,17 +3,9 @@
 
 #include "types.h"
 
-typedef struct {
-    u8 flags0, phase1, phase2, recoveryFrame, pad04[4];
-    u16 eventFrame, duration;
-    u8 pad0C;
-    union {
-        u8 flags;
-        struct { u8 : 1; u8 clipKind : 7; };
-    };
-    u8 pad0E[12];
-    u16 frameDataOffset;
-} HeadingDescriptor;
+#include "pes6/player_appearance.h"
+
+typedef Pes6PlayerAppearance HeadingDescriptor;
 struct MotionPlaybackOwner;
 typedef struct {
     struct MotionPlaybackOwner *owner;
@@ -60,7 +52,7 @@ extern float *D_003E74CC;
 extern u16 D_00CBCD70[];
 extern const HeadingFrame8 *func_00208330(s32 clip);
 extern s32 func_00207D80(HeadingMotion *, s32 frame);
-extern void func_00209A00(HeadingMotion *, s32 clip, s32 frame);
+extern void func_00209A00(HeadingMotion *, u16 clip, s32 frame);
 extern s32 func_00B33F40(HeadingActor *, u16, s32, s32);
 extern s32 func_00B340A0(HeadingActor *, s32, s32);
 extern s32 func_00B34000(HeadingActor *, s32, s32, s32);
