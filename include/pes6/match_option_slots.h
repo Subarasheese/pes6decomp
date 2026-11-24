@@ -5,7 +5,17 @@
 
 enum { MATCH_OPTION_SLOTS = 8 };
 typedef struct {
+    u8 bank[2][8];
+    u8 extra[5];
+} MatchOptionBindings;
+typedef union {
     u8 bytes[36];
+    struct {
+        u8 mode;
+        u8 options[5];
+        u8 reserved06[9];
+        MatchOptionBindings bindings;
+    } fields;
 } MatchOptionPreset;
 typedef struct {
     MatchOptionPreset preset;
