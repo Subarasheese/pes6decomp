@@ -4,8 +4,8 @@
 extern s32 D_005924A0[];
 extern s32 D_005924A4[];
 extern s32 D_005924A8[];
-extern void (*D_005924AC[])(void);
-void Pes6Match_FormationMenuStep(void);
+extern s32 (*D_005924AC[])(void);
+s32 Pes6Match_FormationMenuStep(void);
 
 void func_001F8EE0(void) {
     D_005924A0[0] = 0;
