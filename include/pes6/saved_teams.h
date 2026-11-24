@@ -28,6 +28,7 @@ typedef struct {
     u8 reserved02[0x1F0];
     u8 records54[32][54];
     u8 records24[32][24];
+    u8 reservedBB2[2], listSettings[1];
 } SavedTeamList;
 extern u8 *Pes6SaveData_Current;
 extern s32 Pes6SaveData_IsUnavailable(void);
