@@ -14,7 +14,7 @@ typedef struct {
     HeadingDescriptor *descriptor;
     u8 pad08[32];
     float rate;
-    u8 pad2C[4];
+    u8 pad2C, mirrored, pad2E[2];
     u16 clip;
     u8 pad32[6];
     float frame;
