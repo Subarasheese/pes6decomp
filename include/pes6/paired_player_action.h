@@ -32,8 +32,14 @@ typedef struct {
     u8 mode12;
     u8 pad13[0x31];
     s8 triggers[3];
-    u8 pad47[9];
+    u8 pad47[5];
+    u8 command;      /* 0x4c: selector for the next paired action */
+    u8 pad4d[3];
     u8 enabled;
+    u8 alternate;    /* 0x51 */
+    u8 ready;        /* 0x52 */
+    u8 pad53;
+    u8 patternId;    /* 0x54 */
 } PairedControl;
 typedef struct {
     PairedActor *actor;
