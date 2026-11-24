@@ -33,7 +33,6 @@ struct MotionPlaybackOwner {
     u8 pad00[0x10];
     PlaybackFlags *flags;
 };
-extern u32 func_00208310(s32 clip);
 extern s32 func_00208280(s32 clip), func_002082C0(s32 clip), func_002082F0(s32 clip);
 extern s32 func_00207AC0(u16 clip, s32 percent, s32 fullClip, f32 rate);
 extern void func_00207390(HeadingMotion *motion, s32 ticks);
@@ -46,7 +45,7 @@ static inline void selectClip(HeadingMotion *playback, s32 clip, u32 frame) {
     playback->clip = clip;
     playback->frame = (f32)frame;
     playback->ticks = 0;
-    playback->descriptor = (HeadingDescriptor *)func_00208310((u16)clip);
+    playback->descriptor = func_00208310((u16)clip);
     current = playback->clip;
     if (!(playback->clip < 0x59a || clipLibrary()->clips[(u16)clip]))
         return;
@@ -61,7 +60,7 @@ static inline void startBlend(HeadingMotion *playback, u16 clip, s32 frame, s32 
     playback->previousFrame = playback->backupFrame;
     playback->previousKey = playback->backupKey;
     playback->previousFlag = playback->backupFlag;
-    playback->descriptor = (HeadingDescriptor *)func_00208310((u16)clip);
+    playback->descriptor = func_00208310((u16)clip);
     playback->clip = clip;
     playback->frame = (f32)(u32)frame;
     playback->ticks = 0;

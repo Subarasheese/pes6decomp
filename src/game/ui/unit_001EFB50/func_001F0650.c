@@ -1,11 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
-extern void func_001F0670();
-void func_001F0650(int a0, int a1, int a2) {
-    int v5;
-    int v6;
-    int v4;
-    v5 = *( int *)((char *)a0 + 0x44);
-    v6 = *( int *)((char *)a0 + 0x0);
-    v4 = *( int *)((char *)a0 + 0x40);
-    func_001F0670(v4, v5, v6);
+#include "pes6/resource_bank_load.h"
+extern void func_001F0670(s32 id, void *file, s32 heap);
+void func_001F0650(LoadedResource *resource) {
+    func_001F0670(resource->id, resource->file, resource->heap);
 }

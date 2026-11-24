@@ -23,8 +23,13 @@ typedef struct {
     u8 first[PITCH_CELLS], second[PITCH_CELLS];
 } MatchPitchPair;
 typedef struct {
+    PackedPitch first, second;
+} MatchPitchSlot;
+enum { PITCH_PERIODS = 8 };
+typedef struct {
     MatchPitchPair player[PITCH_ON_FIELD];
-    u8 reserved[0xd80 - PITCH_ON_FIELD * sizeof(MatchPitchPair)];
+    MatchPitchSlot slots[PITCH_PLAYERS];
+    FloatPitch periods[PITCH_PERIODS];
 } MatchPitchSide;
 typedef struct {
     u32 sideTotals[PITCH_SIDES];

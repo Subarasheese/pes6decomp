@@ -1,15 +1,10 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
-
-s32 func_00153FE0(s32, s32);                        /* extern */
-s32 func_0017F850(M2C_UNK);                         /* extern */
-M2C_UNK func_0017F950(M2C_UNK, char *, s32, M2C_UNK, M2C_UNK); /* extern */
-extern char D_0058D810[];
-extern char func_0026D420[];
-
-void func_0026D4B0(s32 arg0) {
-    if ((*(s32 *)D_0058D810) == 0) {
-        (*(s32 *)D_0058D810) = func_00153FE0(arg0, func_0017F850(0x1003A));
-    }
-    func_0017F950(0x1003A, func_0026D420, (*(s32 *)D_0058D810), 4, 1);
+#include "pes6/localized_player_names.h"
+#include "pes6/resource_bank_load.h"
+extern void *func_00153FE0(s32 heap, u32 bytes);
+extern void func_0026D420(LoadedResource *resource);
+void func_0026D4B0(s32 heap) {
+    if (!D_0058D810[0])
+        D_0058D810[0] = func_00153FE0(heap, func_0017F850(PLAYER_NAME_RESOURCE));
+    func_0017F950(PLAYER_NAME_RESOURCE, func_0026D420, (s32 *)D_0058D810[0], 4, 1);
 }

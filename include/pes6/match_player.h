@@ -3,17 +3,10 @@
 
 #include "types.h"
 #include "pes6/match_squad_setup.h"
+#include "pes6/player_appearance.h"
 
 /* Views of the match player table and the two squads' player records, as far as the accessors
    around 0x30E2E0 use them; field names are provisional. */
-
-typedef struct Pes6PlayerAppearance {
-    u8 pad00[0xD];
-    u8 flag : 1;   /* 0x0D bit 0 */
-    u8 value : 7;  /* 0x0D bits 1-7 */
-    u8 pad0E[12];
-    u16 frameDataOffset; /* 0x1A */
-} Pes6PlayerAppearance;
 
 typedef struct Pes6PlayerFieldState {
     u8 pad00[3];
@@ -116,7 +109,6 @@ extern Pes6MatchPlayer Pes6MatchPlayers[];
 /* The two squads in the match: 32 player records each. */
 extern Pes6Squad Pes6MatchSquads[2];
 
-extern Pes6PlayerAppearance *func_00208310(s32 clip);
 extern void func_0027A5B0(Pes6MatchPlayer *, u8), func_0027A550(Pes6MatchPlayer *, u16, u16),
     func_0027A600(Pes6MatchPlayer *, u8), func_0027A520(Pes6MatchPlayer *, u8),
     func_0027A4A0(Pes6MatchPlayer *, s32);
