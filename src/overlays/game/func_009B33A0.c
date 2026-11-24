@@ -1,12 +1,9 @@
 /* compiler: mwcc-3.0.1b151 */
-#include "pes6/m2c.h"
 
+#include "pes6/match_player.h"
 
-s32 func_009B33A0(void *arg0, s32 arg1, s32 arg2) {
-    s32 temp_f0;
-    s32 temp_f1;
-
-    temp_f1 = (s32) (M2C_FIELD(arg0, f32 *, 0xE0) - (f32) arg1);
-    temp_f0 = (s32) (M2C_FIELD(arg0, f32 *, 0xE8) - (f32) arg2);
-    return (temp_f1 * temp_f1) + (temp_f0 * temp_f0);
+s32 func_009B33A0(Pes6MatchPlayer *player, s32 x, s32 z) {
+    s32 dx = (s32)(player->x - (f32)x);
+    s32 dz = (s32)(player->z - (f32)z);
+    return dx * dx + dz * dz;
 }
