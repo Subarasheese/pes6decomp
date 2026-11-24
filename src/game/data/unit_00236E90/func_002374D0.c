@@ -1,11 +1,12 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
-u8 *func_00223960(void);
-u8 func_002374D0(void) {
-    u8 *p;
-    p = func_00223960();
-    if (p != 0) {
-        return *(u8 *)(p + 0x172);
-    }
+#include "types.h"
+typedef struct {
+    u8 reserved00[0x172], flag;
+} FormationTeamRecord;
+extern const FormationTeamRecord *func_00223960(u16);
+u8 func_002374D0(u16 team) {
+    const FormationTeamRecord *record = func_00223960(team);
+    if (record)
+        return record->flag;
     return 0;
 }
