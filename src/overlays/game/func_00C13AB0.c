@@ -1,17 +1,14 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
-
-
-void func_00C13AB0(void *arg0, s32 arg1, s32 arg2) {
-    void *var_s0;
-
-    if (arg0 != NULL) {
-        var_s0 = M2C_FIELD(arg0, void **, 8);
-        if (var_s0 != NULL) {
+#include "pes6/match_lineup_statistics.h"
+void func_00C13AB0(StatListeners *listeners, s32 event, const void *data) {
+    StatListenerNode *node;
+    if (listeners) {
+        node = listeners->head;
+        if (node) {
             do {
-                M2C_FIELD(var_s0, M2C_UNK (**)(s32, s32), 4)(arg1, arg2);
-                var_s0 = M2C_FIELD(var_s0, void **, 0);
-            } while (var_s0 != NULL);
+                node->notify(event, data);
+                node = node->next;
+            } while (node);
         }
     }
 }

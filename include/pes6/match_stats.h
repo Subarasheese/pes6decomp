@@ -33,6 +33,6 @@ typedef struct Pes6MatchTeamStats {
 } Pes6MatchTeamStats; /* stride 0x2F4 */
 
 extern Pes6MatchTeamStats *D_00CB3300[];
-s32 func_00C17E10(u8 team, u8 slot);
+u8 func_00C17E10(u8 team, u8 slot);
 
 #endif

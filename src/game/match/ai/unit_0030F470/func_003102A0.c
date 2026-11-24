@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/unit_0030f470.h"
+#include "pes6/match_stat_report.h"
 
-s32 func_003102A0(s16 *output, s32 value, s32 mode) {
+s32 func_003102A0(s16 *output, u8 side, s32 mode) {
     s32 lower;
     s32 upper = (s32)output;
 
@@ -24,6 +24,6 @@ s32 func_003102A0(s16 *output, s32 value, s32 mode) {
         upper = 120;
         break;
     }
-    *output = pes6_call_002C1D20(lower, upper, value);
+    *output = func_002C1D20((u8)lower & 0x7f, (u8)upper & 0x7f, side, 6);
     return 1;
 }
