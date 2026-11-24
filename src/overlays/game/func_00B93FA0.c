@@ -29,12 +29,12 @@ void func_00B93FA0(SetPieceActor *ctx) {
         ((SetPieceFacing *)ctx->actor)->heading =
             func_009B3220((u16)(heading - 1024), heading, 0x2000);
         ((SetPieceFacing *)ctx->actor)->target = ((SetPieceFacing *)ctx->actor)->heading;
-        ctx->actor->info->pad2D[0] = 1;
+        ctx->actor->info->field2D = 1;
     } else {
         ((SetPieceFacing *)ctx->actor)->heading =
             func_009B3220((u16)(heading + 1024), heading, 0x2000);
         ((SetPieceFacing *)ctx->actor)->target = ((SetPieceFacing *)ctx->actor)->heading;
-        ctx->actor->info->pad2D[0] = 0;
+        ctx->actor->info->field2D = 0;
     }
     func_00209A00(ctx->actor->info, 0x52b, 0);
     func_00207390(ctx->actor->info, 10);

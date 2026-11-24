@@ -28,7 +28,7 @@ void func_00B77210(ShootoutContext *ctx) {
         applyShootoutPose(ctx);
         return;
     } else {
-        ctx->actor->info->pad2D[0] = 0;
+        ctx->actor->info->field2D = 0;
         ctx->actor->speed = 0;
         ((PoseMotion *)ctx->actor)->heading = 0x8000;
         ctx->pose->event = 8;

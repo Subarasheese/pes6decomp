@@ -21,7 +21,7 @@ extern s32 func_0084A750(void), func_00B945E0(void), func_002DCA50(void),
     func_0084F8D0(s32, void *);
 extern void func_001AAF50(Pes6PlayerFieldState *, s32), func_001AAF40(Pes6PlayerFieldState *, s8),
     func_009832C0(Pes6MatchPlayer *, s8 action), func_00B254B0(Pes6MatchPlayer *),
-    func_00209A00(Pes6PlayerInfo *, s32 clip, s32 frame), func_0027A600(Pes6MatchPlayer *, s32),
+    func_00209A00(Pes6PlayerInfo *, s32 clip, s32 frame),
     func_0099FE40(void), func_00B25C50(s32), func_0027D650(s8), func_00850540(s8),
     func_0084CDD0(s32, s32, u8 *), func_0084F8A0(s8), func_002B2EF0(void),
     func_009983C0(Pes6MatchPlayer *, s32), func_0099C790(void), Pes6MatchFlow_SetState(s32, s8);
@@ -42,7 +42,7 @@ void func_009E4D10(void) {
     func_009E3990();
     taker = Pes6MatchPlayer_Get(D_00CBBE04[0]);
     func_009EE050(taker, 0x8000);
-    taker->info->pad2D[0] =
+    taker->info->field2D =
         ((const FootFlags *)Pes6MatchSquads[taker->team].setupPlayers[taker->slot].current.base)
             ->mirrored &
         1;

@@ -11,12 +11,11 @@ s32 func_00AD10C0(TouchActor *actor) {
         actor->touch.command = 1;
         actor->touch.targetFrame = 0;
         angle = func_0099DFF0(actor);
-        if (func_009B30B0(actor->touch.facing, (u16)angle) < 14)
-            actor->touch.chosenFoot = (Pes6MatchSquads[actor->player.team]
-                                           .setupPlayers[actor->player.slot]
-                                           .current.kickingFoot &
-                                       1);
-        else
+        if (func_009B30B0(actor->touch.facing, (u16)angle) < 14) {
+            const Pes6SquadSetupPlayer *player =
+                &Pes6MatchSquads[actor->player.team].setupPlayers[actor->player.slot];
+            actor->touch.chosenFoot = ((const TouchFootFlags *)player->current.base)->kickingFoot & 1;
+        } else
             actor->touch.chosenFoot = (u16)(actor->touch.facing - (u16)angle + 0x10000) <= 0x8000;
         actor->player.role = 0x40;
         actor->player.action = 0;

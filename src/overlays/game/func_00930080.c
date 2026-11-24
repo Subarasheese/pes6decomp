@@ -1,7 +1,6 @@
 /* compiler: mwcc-3.0.1b151 */
 #include "pes6/heading_motion.h"
 #include "pes6/match_player.h"
-extern const HeadingDescriptor *func_00208310(s32 clip);
 extern s32 D_00592260[];
 extern s32 func_00A08020(s32 clip), func_009F4DC0(s32 frames, f32 rate);
 typedef struct {
@@ -32,7 +31,7 @@ s32 func_00930080(const Pes6MatchPlayer *player, s32 clip, s32 end, f32 frame, f
                 break;
             /* Use the descriptor when no end frame was supplied. */
         default:
-            end = func_00208310((u16)clip)->eventFrame * 2;
+            end = ((const HeadingDescriptor *)func_00208310((u16)clip))->eventFrame * 2;
             break;
         }
         if (!func_00A08020(clip)) {
