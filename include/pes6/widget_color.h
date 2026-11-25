@@ -9,4 +9,7 @@ typedef struct ColorWidget ColorWidget;
 void func_001DF460(ColorWidget *widget, const WidgetColor *color);
 s32 func_0020E310(s32 index, WidgetColor *color);
 
+typedef struct ColoredQuad ColoredQuad;
+extern void func_001EEE60(ColoredQuad *quad, const WidgetColor *color);
+
 #endif

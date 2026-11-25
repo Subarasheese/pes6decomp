@@ -1,15 +1,14 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "pes6/texture_release.h"
 
 typedef struct {
-    s32 id;
-    s32 handle;
+    s32 owner;
+    void *handle;
 } Slot;
 
-void func_00140FE0(s32, s32);
-void Pes6Heap_Free(s32);
+void Pes6Heap_Free(void *);
 
 void func_00182770(Slot *slot) {
-    func_00140FE0(slot->id, slot->handle);
+    func_00140FE0(slot->owner, slot->handle);
     Pes6Heap_Free(slot->handle);
 }

@@ -1,24 +1,20 @@
 /* compiler: mwcc-3.0.1b151 */
-#include "types.h"
+#include "pes6/widget_color.h"
 
-typedef struct {
-    u8 r, g, b, a;
-} Color;
-
-typedef struct {
+struct ColoredQuad {
     u8 pad00[0xA0];
-    Color corners[4];
+    WidgetColor corners[4];
     u8 padB0[0x6E];
     u8 flags;
-} ColoredQuad;
+};
 
-static inline int has_color_inputs(ColoredQuad *quad, const Color *color) {
+static inline int has_color_inputs(ColoredQuad *quad, const WidgetColor *color) {
     if (!quad || !color)
         return 0;
     return 1;
 }
 
-void func_001EEE60(ColoredQuad *quad, const Color *color) {
+void func_001EEE60(ColoredQuad *quad, const WidgetColor *color) {
     if (!has_color_inputs(quad, color))
         return;
     if (quad->corners[0].r == color->r &&

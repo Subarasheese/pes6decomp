@@ -17,4 +17,10 @@ typedef struct {
     CompetitionEntry *entries[3];
 } CompetitionSlots;
 
+typedef struct {
+    u8 reserved00[0xfc];
+    s8 valueFC, valueFD;
+    u8 reservedFE[2], changed;
+} CompetitionSelection;
+
 #endif
