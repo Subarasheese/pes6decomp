@@ -117,14 +117,17 @@ static inline LobbyEntryRecord *lobby_selected_entry(s32 index) {
 typedef struct {
     s32 field00;
     s32 field04, field08;
-    u8 reserved0C[0x42];
+    u8 reserved0C[0x41];
+    s8 status;
     s16 field4E;
-    u8 reserved50[0x8];
+    char marks[5];
+    u8 reserved55[3];
     s16 field58;
     s8 field5A;
-    u8 reserved5B[0x1];
+    s8 field5B;
     s8 field5C;
-    u8 reserved5D[0x87];
+    u8 reserved5D[3];
+    u8 text60[0x84];
 } LobbyMemberRecord;
 typedef struct {
     u16 count;
@@ -158,6 +161,26 @@ static inline LobbyMemberRecord *lobby_selected_member(u16 index) {
     return row;
 }
 
+static inline LobbyMemberRecord *lobby_reverse_member_at(u16 index) {
+    LobbyMemberList *list = lobby_member_list();
+    u16 count, reverse;
+    if (!list)
+        return 0;
+    count = lobby_member_count();
+    if (!(count > index))
+        return 0;
+    reverse = (u16)(count - index - 1);
+    if (!(lobby_member_count() > reverse))
+        return 0;
+    return (LobbyMemberRecord *)((u8 *)list + reverse * sizeof(LobbyMemberRecord) + 4);
+}
+static inline LobbyMemberRecord *lobby_selected_reverse_member(u16 index) {
+    LobbyMemberRecord *row = lobby_reverse_member_at(index);
+    if (row == 0)
+        return 0;
+    return row;
+}
+
 static inline s32 lobby_member_value04(u16 index) {
     LobbyMemberRecord *row = lobby_selected_member(index);
     if (row == 0)
@@ -173,6 +196,21 @@ static inline s32 lobby_member_value08(u16 index) {
         return row->field08;
 }
 
+static inline s32 lobby_reverse_member_value04(u16 index) {
+    LobbyMemberRecord *row = lobby_selected_reverse_member(index);
+    if (row == 0)
+        return 0;
+    else
+        return row->field04;
+}
+static inline s32 lobby_reverse_member_value08(u16 index) {
+    LobbyMemberRecord *row = lobby_selected_reverse_member(index);
+    if (row == 0)
+        return 0;
+    else
+        return row->field08;
+}
+
 typedef struct {
     u8 field00;
     u8 reserved01[0x1];
@@ -180,7 +218,7 @@ typedef struct {
     u16 field04;
     u8 reserved06[0x6];
     s32 field0C;
-    u8 reserved10[0x31];
+    u8 details[0x31];
     u8 field41;
     u16 field42;
 } LobbySlotRecord;

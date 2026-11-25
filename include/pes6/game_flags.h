@@ -82,4 +82,6 @@ extern Pes6GameFlagByte D_00CBBF1D[];
 extern Pes6GameFlagByte D_00CBBF21[];
 extern Pes6GameFlagByte D_00CBBF24[];
 
+extern Pes6GameFlagByte D_00CCC1C0[];
+
 #endif

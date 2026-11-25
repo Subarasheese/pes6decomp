@@ -1,7 +1,4 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "pes6/lobby_profile.h"
 
-extern void * func_00947690(void);
-void func_0093CC10(void) {
-    func_00947690();
-}
+char *func_0093CC10(s32 index) { return func_00947690(index); }

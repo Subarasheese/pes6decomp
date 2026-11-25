@@ -1,5 +1,8 @@
 /* compiler: ee-gcc-2.96 */
-#include "types.h"
-extern s32 _impure_ptr[];
-void func_001C3698(s32, s32);
-void func_001C3678(s32 a) { func_001C3698(a, _impure_ptr[0] + 0x7C); }
+#include "newlib/pal_time.h"
+
+extern struct _reent *_impure_ptr __attribute__((section(".data")));
+
+struct tm *func_001C3678(const long *seconds) {
+    return func_001C3698(seconds, &_impure_ptr->_new._reent._localtime_buf);
+}

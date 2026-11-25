@@ -1,15 +1,9 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "pes6/lobby_profile.h"
 
-
-void *func_00835E50();                              /* extern */
-
-u16 func_00947790(void) {
-    void *temp_v0;
-
-    temp_v0 = func_00835E50();
-    if (temp_v0 == 0) {
-        return 0U;
-    }
-    return M2C_FIELD(temp_v0, u16 *, 0x7E);
+u16 func_00947790(s32 index) {
+    LobbyProfile *profile = func_00835E50(index);
+    if (profile == 0)
+        return 0;
+    return profile->field7E;
 }

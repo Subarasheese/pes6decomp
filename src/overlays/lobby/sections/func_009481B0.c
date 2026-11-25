@@ -1,0 +1,11 @@
+/* compiler: mwcc-3.0.1b210 */
+#pragma inline_depth(16)
+#include "pes6/lobby_directories.h"
+
+s32 func_009481B0(s32 value) {
+    LobbyContactList *list = lobby_contact_list();
+    if (list == 0)
+        return 0;
+    list->field7B78 = value;
+    return 1;
+}
