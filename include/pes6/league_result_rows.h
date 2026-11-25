@@ -5,7 +5,8 @@
 #include "pes6/league_fixture_schedule.h"
 
 typedef struct {
-    u8 reserved00[0x28], stage, division, reserved2A, day, reserved2C[8], view;
+    u8 reserved00[0x24], field24, field25, reserved26[2], stage, division, reserved2A, day;
+    u8 reserved2C[8], view;
 } LeagueFixtureSelection;
 
 extern LeagueFixtureSelection *D_003E7B0C;

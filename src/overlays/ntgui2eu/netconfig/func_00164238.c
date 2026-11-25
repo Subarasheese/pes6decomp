@@ -1,9 +1,8 @@
 /* compiler: ee-gcc-2.9 */
-#include "pes6/m2c.h"
+#include "pes6/ntgui_widget_changes.h"
 
+extern s32 func_001AE590(const void *a, const void *b, s32 size);
 
-extern s32 func_001AE590(s32, s32, s32);
-
-s32 func_00164238(s32 arg0, s32 arg1) {
-    return func_001AE590(arg0, arg1, 16) == 0;
+s32 func_00164238(const NtguiWidgetAttribute *a, const NtguiWidgetAttribute *b) {
+    return func_001AE590(a, b, sizeof(*a)) == 0;
 }

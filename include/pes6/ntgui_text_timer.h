@@ -1,7 +1,7 @@
 #ifndef PES6_NTGUI_TEXT_TIMER_H
 #define PES6_NTGUI_TEXT_TIMER_H
 
-#include "types.h"
+#include "pes6/ntgui_widget_timer.h"
 typedef struct {
     s32 x, y;
 } NtTextPoint;
@@ -45,11 +45,6 @@ typedef struct {
     s32 cursorEnabled;
     s32 reservedd04, scrollStep, reservedd0c, rowActive;
 } NtTextTimer;
-extern void *func_00165B00(NtTextTimer *);
-extern void func_00167C38(void *manager, s32 timer);
-typedef void (*NtTimerCallback)(s32 timer, s64 user);
-extern s32 func_00167BB8(void *manager, u64 delay, NtTextTimer *user, NtTimerCallback callback);
-extern void func_00189778(void *rect);
 extern void func_001747A0(NtTextTimer *widget);
 extern void func_00173718(NtTextTimer *widget, s32 active);
 extern void func_00173648(s32 timer, s64 user);

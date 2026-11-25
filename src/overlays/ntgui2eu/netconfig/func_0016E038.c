@@ -1,15 +1,6 @@
 /* compiler: ee-gcc-2.9-Os-G0 */
-#include "types.h"
-typedef struct {
-    u8 reserved00[0x4d0];
-    s32 cursor;
-    u8 reserved4D4[0x440];
-    s32 lineCount;
-    char *text, *secondary;
-    u32 reserved920;
-    const char *pendingText, *pendingSecondary;
-} NetworkTextBox;
-extern char *func_001896B8(const char *text);
+#include "pes6/ntgui_text_box.h"
+
 extern void func_0016E170(NetworkTextBox *box, s32 line, const char *text, s32 length);
 void func_0016E038(NetworkTextBox *box) {
     char *line, *cursor;
