@@ -2,18 +2,9 @@
 /* The original implementation was adapted from tzcode maintained by Arthur David Olson. */
 /* Adapted from newlib 1.9.0, libc/time/lcltime_r.c (localtime_r).
  * licence: newlib (see THIRD_PARTY.md) */
+#include "newlib/pal_time.h"
+
 typedef long time_t;
-struct tm {
-    int tm_sec;
-    int tm_min;
-    int tm_hour;
-    int tm_mday;
-    int tm_mon;
-    int tm_year;
-    int tm_wday;
-    int tm_yday;
-    int tm_isdst;
-};
 static const int mon_lengths[2][12] = {{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
                                        {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}};
 static const int year_lengths[2] = {365, 366};

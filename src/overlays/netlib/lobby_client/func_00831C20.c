@@ -1,9 +1,8 @@
 /* compiler: mwcc-3.0.1b151 */
 #include "pes6/m2c.h"
+#include "pes6/lobby_clock.h"
 
 extern s32 func_0082C2A0(void);
-void func_00827BF0(s32);
-s32 func_00828140(void);
 extern char D_008AA13C[];
 
 static inline void *get_base(void) {

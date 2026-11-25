@@ -155,6 +155,8 @@ typedef union {
 typedef struct {
     LobbyContactRecord records[100];
     s32 count;
+    s32 field7B74;
+    s32 field7B78;
 } LobbyContactList;
 static inline LobbyContactList *lobby_contact_list(void) {
     LobbyChannel *connection = func_0082C2A0();
