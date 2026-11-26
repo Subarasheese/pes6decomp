@@ -6,13 +6,18 @@
 /* The tag is the first word. Senders reserve 0x480 bytes on the stack. */
 typedef struct {
     s32 tag;
-    u8 payload_storage[0x480 - sizeof(s32)];
+    u8 reserved04[0x3c];
+    s8 payload[0x400];
+    u8 reserved440[0x14];
+    s32 cursor;
+    u8 reserved458[0x28];
 } NetlibPacket;
 
 enum {
     NETLIB_INVALID_ARGUMENT = -24,
     NETLIB_SEND_FAILED = -61,
-    NETLIB_UNEXPECTED_TAG = -70
+    NETLIB_UNEXPECTED_TAG = -70,
+    NETLIB_PACKET_BOUNDS = -501
 };
 
 extern void func_00874470(void *);
