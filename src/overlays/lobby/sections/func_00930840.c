@@ -1,7 +1,8 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "types.h"
 
-extern void * Pes6OptionData_GetPlayers(void);
-void func_00930840(void) {
-    Pes6OptionData_GetPlayers();
+extern void *Pes6OptionData_GetPlayers(void);
+
+void *func_00930840(void) {
+    return Pes6OptionData_GetPlayers();
 }

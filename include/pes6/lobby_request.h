@@ -19,6 +19,8 @@ extern void func_0082C980(s32 request);
 extern void func_0082C920(s32 request);
 extern void func_0082C840(s32 event);
 extern void func_0082C6D0(s32 event);
+extern s32 func_0082C800(s32 event, s32 value);
+extern s32 func_0082C8E0(s32 event, s32 value);
 extern void func_0082C690(s32 event, s32 value);
 extern s32 func_00862110(LobbyChannel *connection, s32 channel);
 

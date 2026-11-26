@@ -4,7 +4,7 @@
 
 void *func_00821780();                              /* extern */
 
-s8 func_00930C70(void) {
+s32 func_00930C70(void) {
     void *temp_v0;
 
     temp_v0 = func_00821780();
