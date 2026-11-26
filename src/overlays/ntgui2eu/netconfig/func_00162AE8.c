@@ -1,15 +1,8 @@
 /* compiler: ee-gcc-2.9 */
-#include "pes6/m2c.h"
+#include "pes6/ntgui_string_list.h"
 
-
-M2C_UNK func_00162B28(s32, s32);                    /* extern */
-s32 func_00163010();                                /* extern */
-
-void func_00162AE8(s32 arg0) {
-    s32 temp_v0;
-
-    temp_v0 = func_00163010();
-    if (temp_v0 >= 0) {
-        func_00162B28(arg0, temp_v0);
-    }
+void func_00162AE8(NtguiStringList *list, const char *name) {
+    s32 index = func_00163010(list, name);
+    if (index >= 0)
+        func_00162B28(list, index);
 }
