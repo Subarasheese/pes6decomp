@@ -4,14 +4,16 @@
 typedef struct {
     char name[49];
     s8 mode;
-    u8 reserved32[2];
+    s8 field32;
+    u8 reserved33;
     s32 id;
-    u8 reserved38[8];
+    s32 value38, value3C;
     s32 field40;
     s16 field44, field46, field48, field4A;
     char secondName[49];
     s8 status;
-    u8 reserved7E[3];
+    s16 value7E;
+    s8 field80;
     s8 field81;
     u8 reserved82[2];
 } LobbyProfile;

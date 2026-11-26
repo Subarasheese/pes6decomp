@@ -1,0 +1,25 @@
+/* compiler: mwcc-3.0.1b151-O3 */
+#pragma inline_depth(16)
+#include "pes6/netlib_profile_list.h"
+extern void *func_001C48E8(void *, s32, u32);
+extern s32 func_00873EE0(void *, void *, s32);
+s32 func_0087A7F0(NetlibPacket *packet, NetlibProfileCounter *counter, s32 *id, char *name,
+                  NetlibProfileList *list) {
+    s32 i;
+    if (!packet || !counter || !id || !name)
+        return NETLIB_INVALID_ARGUMENT;
+    if (packet->tag != 0x50b2)
+        return NETLIB_UNEXPECTED_TAG;
+    func_00874470(packet);
+    func_00873F60(packet, id);
+    func_001C48E8(name, 0, 49);
+    func_00873EE0(packet, name, 48);
+    func_00874460(packet);
+    for (i = 0; i < 30; i++) {
+        LobbyProfile *p = &list->profiles[i];
+        if (*id == p->field00 && *id != 0)
+            func_001C48E8(p, 0, sizeof(*p));
+    }
+    netlib_sort_profiles(counter, list);
+    return 0;
+}

@@ -1,28 +1,21 @@
 /* compiler: mwcc-3.0.1b151 */
-#include "pes6/m2c.h"
+#include "pes6/netlib_room_summary.h"
 
+extern void *func_001C48E8(void *, s32, u32);
+extern s32 func_00873EE0(void *, void *, s32);
 
-M2C_UNK func_001C48E8(void *, s32, s32);       /* extern */
-M2C_UNK func_00873EE0(s32 *, void *, s32);         /* extern */
-M2C_UNK func_00873FD0(s32 *, void *);                  /* extern */
-M2C_UNK func_00874460(s32 *);                       /* extern */
-M2C_UNK func_00874470(s32 *);                       /* extern */
-
-s32 func_00869240(s32 *arg0, s32 *arg1) {
-    if ((arg0 != NULL) && (arg1 != 0)) {
-        if (*arg0 != 0x6040) {
-            return -0x46;
-        }
+s32 func_00869240(NetlibPacket *packet, NetlibRoomSummary *summary) {
+    if (packet && summary) {
+        if (packet->tag != 0x6040)
+            return NETLIB_UNEXPECTED_TAG;
     } else {
-        return -0x18;
+        return NETLIB_INVALID_ARGUMENT;
     }
-    {
-        func_001C48E8(arg1 + 2, 0, 0x40);
-        func_00874470(arg0);
-        func_00873FD0(arg0, arg1);
-        func_00873FD0(arg0, arg1 + 1);
-        func_00873EE0(arg0, arg1 + 2, 0x40);
-        func_00874460(arg0);
-        return 0;
-    }
+    func_001C48E8(summary->data, 0, sizeof(summary->data));
+    func_00874470(packet);
+    func_00873FD0(packet, &summary->first);
+    func_00873FD0(packet, &summary->second);
+    func_00873EE0(packet, summary->data, sizeof(summary->data));
+    func_00874460(packet);
+    return 0;
 }
