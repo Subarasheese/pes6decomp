@@ -4,9 +4,19 @@
 #include "pes6/entry_wait.h"
 
 typedef struct {
+    void *widgets, *labels;
+    u8 transition[8];
+    u8 reserved10[0x100];
+    u32 phase;
+    u8 reserved114[0x0c];
+    unsigned char active : 1, labelsOpen : 1;
+} EntryPageDisplay;
+
+typedef struct {
     union {
         u8 values[0x160];
         char text[0x160];
+        EntryPageDisplay display;
         struct {
             u8 reserved[0x118];
             struct Counter counter;

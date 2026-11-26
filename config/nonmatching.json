@@ -2194,21 +2194,6 @@
   },
   {
    "image": "lobby",
-   "address": "0093A420",
-   "symbol": "func_0093A420",
-   "source": "nonmatching/lobby/func_0093A420.c",
-   "compiler": "mwcc-3.0.1b198",
-   "source_sha256": "ad27ce69bae97eca16b4b579a000c37771732b5789a5ad0eaff3e92d5c5d9bc9",
-   "original_sha256": "a068d2aee67fadca4cfa4c3ddc74b8d472d48aa77a854329eaad50ba9ff64235",
-   "minimum_similarity": 50,
-   "review": "Complete translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review."
-   ]
-  },
-  {
-   "image": "lobby",
    "address": "0093C740",
    "symbol": "func_0093C740",
    "source": "nonmatching/lobby/func_0093C740.c",
@@ -31951,22 +31936,6 @@
   },
   {
    "image": "league_common",
-   "address": "00966F20",
-   "symbol": "func_00966F20",
-   "original_sha256": "fec8c8384014bb3ea35fcca1f7550c6d953807a222064723789187e47a6b9b57",
-   "source": "nonmatching/league_common/func_00966F20.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "4c034581cb33533e7356dd00e75d472d396e780ce830f8170bf663e795bd0f3f",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "league_common",
    "address": "00966F80",
    "symbol": "func_00966F80",
    "original_sha256": "035a0aa48b378897a225c1ae64d280f20c592f5acf4f4440fd1c354609ccb960",
@@ -32293,22 +32262,6 @@
    "source": "nonmatching/league_common/func_00971850.c",
    "compiler": "ee-gcc-2.9",
    "source_sha256": "08b6182e0db12e8c04b2dcac08192334879f8817183ce9edce8b04a7b6896ccc",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "league_common",
-   "address": "00971A80",
-   "symbol": "func_00971A80",
-   "original_sha256": "314aca703f8ee595ccc7239edb144e954c18a3c3b9b1b7388ce0087a13dae331",
-   "source": "nonmatching/league_common/func_00971A80.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "9d27cc9d39e473b6277fe537cf17b5fc69b22a7062d62d69f9cfc49dae41a699",
    "minimum_similarity": 0,
    "confidence": "low",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
@@ -36559,22 +36512,6 @@
   },
   {
    "image": "leaguecup",
-   "address": "00AF71D0",
-   "symbol": "func_00AF71D0",
-   "original_sha256": "2dfc3219e964dac0d6f08165a5bd82818e26e38e23ddb8087df35092fa557b88",
-   "source": "nonmatching/leaguecup/func_00AF71D0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "dae88e60212f75bd785241874b31c1658cd5e377d9ed82a654ad5963a6a6d9a4",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "leaguecup",
    "address": "00AF7280",
    "symbol": "func_00AF7280",
    "original_sha256": "c81aac3e217d09857b7a4b201130c3da57ca68df16a70f779dc422c7fc1d0f19",
@@ -38047,22 +37984,6 @@
   },
   {
    "image": "leaguecup",
-   "address": "00B19EC0",
-   "symbol": "func_00B19EC0",
-   "original_sha256": "d960ee7f380d3d3770b2e4faf4ca9c8c80b89452a98828afef163a40033fd76c",
-   "source": "nonmatching/leaguecup/func_00B19EC0.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "6f907d72c53d3f24ce997702f38d337533778dfd03e1752d802515465e451849",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "leaguecup",
    "address": "00B19F30",
    "symbol": "func_00B19F30",
    "original_sha256": "fa6b57425a375c0c14fa863da588186dd65bf842dff9ba0df596be5325be4da4",
@@ -39247,22 +39168,6 @@
   },
   {
    "image": "lobby",
-   "address": "009382E0",
-   "symbol": "func_009382E0",
-   "original_sha256": "16d51e5e55e5dfa85d0e3a764970e813b1482c4b247726966224dbada7eff0c4",
-   "source": "nonmatching/lobby/func_009382E0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "23e56748454b10d879a6a7681a3708493608634992e748b46b14ec26d6187b19",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "lobby",
    "address": "00938790",
    "symbol": "func_00938790",
    "original_sha256": "36623b6c5d5e92992d29e84eabd2c03a1f711aaa6a2bb4efc4b33e9d29faf90f",
@@ -40399,22 +40304,6 @@
   },
   {
    "image": "lobby",
-   "address": "0094F970",
-   "symbol": "func_0094F970",
-   "original_sha256": "dcc0a1f54665f70da45a680b6f811251fd43eb3f24eee065acd424898d7fc7c9",
-   "source": "nonmatching/lobby/func_0094F970.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "7c75b7c3c8727ae080dac0af2b67c87078289c5958e498380d11f2d9a1ebcae3",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "lobby",
    "address": "0094FA60",
    "symbol": "func_0094FA60",
    "original_sha256": "a18b7a34e5bb0b49f75575bdd1d659fd7c4a73cce54d7ac5149187ecb9652746",
@@ -40581,22 +40470,6 @@
    "source": "nonmatching/lobby/func_00952510.c",
    "compiler": "ee-gcc-2.9",
    "source_sha256": "6a4613a3f5b38efb8e90498aff03de925932c7853db8cd9933a643cf2764b1c2",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "lobby",
-   "address": "00952CF0",
-   "symbol": "func_00952CF0",
-   "original_sha256": "9db712c6686cfba98e59f60a6d6045f8f3b0f977eec827556cfa1c080d68d997",
-   "source": "nonmatching/lobby/func_00952CF0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "0c47ac9f1d64d9b1af8f35bcb22f658e9c7b29015a171bd74fd0e9f54377bb1f",
    "minimum_similarity": 0,
    "confidence": "low",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
@@ -41301,22 +41174,6 @@
    "source": "nonmatching/lobby/func_00960A30.c",
    "compiler": "ee-gcc-2.9",
    "source_sha256": "f2cbcbe78cea57399c7a1839a6a759b37619c9fa376b05996f1cb289bd79844c",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "lobby",
-   "address": "00960BD0",
-   "symbol": "func_00960BD0",
-   "original_sha256": "99340313ba4628bfe5e775a06671d305a47d6cc0cc0a5bc82e897fb73de6580f",
-   "source": "nonmatching/lobby/func_00960BD0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "4174b86f1d71bcd8b48e80e8c99cbd4b2c418649110312055ddcc07e0552e6dd",
    "minimum_similarity": 0,
    "confidence": "low",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
@@ -71503,22 +71360,6 @@
    "source": "nonmatching/masterleague/func_00B319B0.c",
    "compiler": "mwcc-3.0.1b210",
    "source_sha256": "c0ff1055d1c4566ead3f0ad6172ec1272fcec52bed952038cd763866ea636b77",
-   "minimum_similarity": 0,
-   "confidence": "provisional",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "masterleague",
-   "address": "00B31AB0",
-   "symbol": "func_00B31AB0",
-   "original_sha256": "7c5b3c5ae51df5e3f01514cc904a03ad91d3d5161d874d52dc39506d98e56af1",
-   "source": "nonmatching/masterleague/func_00B31AB0.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "81b2c38d7a0f6f3c3dbf223d1f21b390e4b22395d6f810d6bf85eb44daf2038e",
    "minimum_similarity": 0,
    "confidence": "provisional",
    "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
@@ -109192,21 +109033,6 @@
    "compiler": "ee-gcc-2.9-G0",
    "source_sha256": "6c2121b177e1540ad912a054323096a29e1ce0d5d17874c3319eee555dca28c5",
    "original_sha256": "a59b4bc3ef6c2fbfdc35481ccb47bccee4b7e143d670065f515894c9db77dd22",
-   "minimum_similarity": 0,
-   "review": "Generated by tools/gen_equiv.py from m2c and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md for cases and coverage); compiler/structural checks as for every draft. Behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "00345F80",
-   "symbol": "func_00345F80",
-   "source": "nonmatching/main/func_00345F80.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "56ce117dc09f2476557469e6ebae414eb438ca5e3101ba25eb578a7ef316577e",
-   "original_sha256": "3ba28c237607a498ffce181a3d8cab82e75014bc5c94d637ac1c7011b07aa8c1",
    "minimum_similarity": 0,
    "review": "Generated by tools/gen_equiv.py from m2c and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md for cases and coverage); compiler/structural checks as for every draft. Behavioural evidence on test cases, not a semantic-equivalence proof.",
    "known_issues": [
@@ -153871,21 +153697,6 @@
   },
   {
    "image": "enter",
-   "address": "008FEFE0",
-   "symbol": "func_008FEFE0",
-   "source": "nonmatching/enter/func_008FEFE0.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "7ca4d3024279da3c6a087eab06efdc1f4c9bab5dbbc32fdfce9d382a831faecd",
-   "original_sha256": "70347924c8aa28347b868c3e440aa2d1460b1af57ca847e67644795e48a6fd3d",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
    "address": "008FF150",
    "symbol": "func_008FF150",
    "source": "nonmatching/enter/func_008FF150.c",
@@ -155146,51 +154957,6 @@
   },
   {
    "image": "enter",
-   "address": "00919CB0",
-   "symbol": "func_00919CB0",
-   "source": "nonmatching/enter/func_00919CB0.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "dfdf1b9469410b80753769c1d938ba0aade20b6d17673400c72f11faf9144233",
-   "original_sha256": "2ce029e2abd3e1397bb20993fe2c22d327b457277066554b112b73615f694d1b",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
-   "address": "00919FD0",
-   "symbol": "func_00919FD0",
-   "source": "nonmatching/enter/func_00919FD0.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "c47d4ccc7b6621e47800f87c11b7668fb6a975bdb36f7bcd7e30168815614cac",
-   "original_sha256": "c8d9d6f206ccd4888da8598dd6d66d61819acb00c19951285ee33ef3c347bded",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
-   "address": "0091A170",
-   "symbol": "func_0091A170",
-   "source": "nonmatching/enter/func_0091A170.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "1f16e12caae569cb099027cb2c87fccc689e45f1e67baabc20b1bc045c4e8b96",
-   "original_sha256": "1bbc4ae3e0ae1386fb7aa42843eb9fed5d6650c24a9c8a15a077147263a44eb7",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
    "address": "0091A2F0",
    "symbol": "func_0091A2F0",
    "source": "nonmatching/enter/func_0091A2F0.c",
@@ -155332,51 +155098,6 @@
    "compiler": "ee-gcc-2.9-G0",
    "source_sha256": "2d68bdd37cfda2e08e0ccc58a6c3d4d102d96c6bb3f2753e19a9e17879c1c0b8",
    "original_sha256": "054ba61aaaeb9dbfc14b1011add2005f919e0180c891650ea30a1d3192b5a5f5",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
-   "address": "0091B730",
-   "symbol": "func_0091B730",
-   "source": "nonmatching/enter/func_0091B730.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "f52ef1d20122d19b92549492157f1c3984bf73c77bfc69c514a6861dc881e9db",
-   "original_sha256": "83229a4dbd730153b74b21e15ac0dd74da88ebc1bc0f8e340784835291fd4c4d",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
-   "address": "0091BA40",
-   "symbol": "func_0091BA40",
-   "source": "nonmatching/enter/func_0091BA40.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "4ab363d6a0b0e488e27d0aa984c6cde45f82e4dbc6f86d40a5e6bda2a7d9211c",
-   "original_sha256": "00eec3598dc8283365c265cb58f09121401969130e43d9c9b7797a24bca906ac",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
-   "address": "0091BBD0",
-   "symbol": "func_0091BBD0",
-   "source": "nonmatching/enter/func_0091BBD0.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "0cd580c7ad3932cbc6d5c909954317a07ec617e71d5f36b77059d53c3854710c",
-   "original_sha256": "d47b3eb3f9786422431dbf6670097d34a7c02cd8fff59e42b65f7aebe1e1aa1d",
    "minimum_similarity": 0,
    "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
    "known_issues": [
@@ -155566,21 +155287,6 @@
   },
   {
    "image": "enter",
-   "address": "0091D990",
-   "symbol": "func_0091D990",
-   "source": "nonmatching/enter/func_0091D990.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "0a5a7a4b20e16da81262761c9d799ee986db02af3c0d41c9460e165e01c61aaf",
-   "original_sha256": "1d1c68413f1ff3ca8034473ba7eb5234ba5732dc72fd85dc49e95af5d97eb98b",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
    "address": "0091DC10",
    "symbol": "func_0091DC10",
    "source": "nonmatching/enter/func_0091DC10.c",
@@ -155761,51 +155467,6 @@
   },
   {
    "image": "enter",
-   "address": "00922220",
-   "symbol": "func_00922220",
-   "source": "nonmatching/enter/func_00922220.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "32a3bc2e64d8ed49561909b5ce631712354c50733e3d9796f07acc54712b4a4c",
-   "original_sha256": "9bde7f45273c9f45ca459b35e9e3e2d71222c6886904720496ae3df3a0da97ed",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
-   "address": "00922540",
-   "symbol": "func_00922540",
-   "source": "nonmatching/enter/func_00922540.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "a927affc62ac6b3c71bb7f6a7768d14df9c2cfab1e1805e2001a293ddf046b7f",
-   "original_sha256": "4ba86988d4a0c3cd44c2e23756aa07d0f474830fe8a6c6beafae356e7d1cf1e9",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
-   "address": "009226D0",
-   "symbol": "func_009226D0",
-   "source": "nonmatching/enter/func_009226D0.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "432d1f3bff5fe83d66709449f644d54496d896a804fbe5873027629321a04dfe",
-   "original_sha256": "b4e72f2d37ac2b446f24ae9e4e532091004315186b90ab2ec475f7a8182cc33b",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
    "address": "00922830",
    "symbol": "func_00922830",
    "source": "nonmatching/enter/func_00922830.c",
@@ -155977,51 +155638,6 @@
    "compiler": "ee-gcc-2.9-G0",
    "source_sha256": "226430ab216e12826fa65576714ddcbe63f4740e8f8cd77caf15f1544770b600",
    "original_sha256": "ed68724decdfac9e68412437c2bdabe993bac43388d001d43c2b6f2dbaab6cba",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
-   "address": "00924E30",
-   "symbol": "func_00924E30",
-   "source": "nonmatching/enter/func_00924E30.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "80fca53835695cf1dd7c4534347fcb522e843d565f910eec8c266304358aed0a",
-   "original_sha256": "79f2ce006f895046a3897c503b768a42977761b37193995f3a74505751c0906f",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
-   "address": "00925030",
-   "symbol": "func_00925030",
-   "source": "nonmatching/enter/func_00925030.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "971e41737685eb539d1c7db6e8d71b65de886a932d891f39a482c072ff5919fc",
-   "original_sha256": "c5d7f6a7b008080a3d9323f512a50ab8ffb413fa0431decb93dddeabbbfddd6d",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "enter",
-   "address": "00925250",
-   "symbol": "func_00925250",
-   "source": "nonmatching/enter/func_00925250.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "1a337464f37c12fd8c24a0aabfd8b1d6c8812ae5c14376ff2d5eeb7309440f96",
-   "original_sha256": "578c1e82cae3051a37e2b22b47a2a75eefcdd0a050c1becda82ab2529496a205",
    "minimum_similarity": 0,
    "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
    "known_issues": [
@@ -173146,21 +172762,6 @@
   },
   {
    "image": "main",
-   "address": "0035AEA0",
-   "symbol": "func_0035AEA0",
-   "source": "nonmatching/main/func_0035AEA0.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "3ceba66894ad8288621820c3bafcacbf29f710bd8c304c8a3a39aaf58ed8635d",
-   "original_sha256": "e19b07f1ae808f537a879d62a3aab57f4d08ed739b9f214842f0a693669478bf",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
    "address": "0035AFC0",
    "symbol": "func_0035AFC0",
    "source": "nonmatching/main/func_0035AFC0.c",
@@ -173227,21 +172828,6 @@
    "compiler": "ee-gcc-2.9-G0",
    "source_sha256": "313bfceb67d91c6e060552d7f531e655c390f826e694e4d7359a09652c27a9ed",
    "original_sha256": "b93904e6d30123a1e318c112b76acfa417068431399a6b5dd3c837ed13e22362",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "0035C380",
-   "symbol": "func_0035C380",
-   "source": "nonmatching/main/func_0035C380.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "ae2a821ef838663ea33af2e5a4463154f8f70c2f9ac434dc6f337fb7baf8d9d5",
-   "original_sha256": "fbb4050982841341b049c46076f1d5aadf74b2be06f933f5d55fe09f52dcb6ae",
    "minimum_similarity": 0,
    "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
    "known_issues": [
@@ -173527,51 +173113,6 @@
    "compiler": "ee-gcc-2.9-G0",
    "source_sha256": "103e88bcca1a52aa0960ec6bc493697c95c11af5ecd999b1291662500dfb62c3",
    "original_sha256": "e8c52524162b6f9474b90362be5499cb848c5524708bc22441c88c02d152bf54",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "0035FB40",
-   "symbol": "func_0035FB40",
-   "source": "nonmatching/main/func_0035FB40.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "ee2cb5eb44965b34c8f081c309296687c520f38904f9f3c213cc009dc45c71e3",
-   "original_sha256": "d7b24ef685c34bff0f0ddff3fe27037db7f5ba86765600d8bac3d7dfe9e7f1d1",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "0035FD90",
-   "symbol": "func_0035FD90",
-   "source": "nonmatching/main/func_0035FD90.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "567d7a4a4ca81c0bbf41c2ed1833fd92e07b8d8cb078d49a24e6843b157f3290",
-   "original_sha256": "4ddbae014f79774bd25bf4f1fc553115c70867f575093d6426d360d73e61f9d2",
-   "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "0035FF30",
-   "symbol": "func_0035FF30",
-   "source": "nonmatching/main/func_0035FF30.c",
-   "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "38f40c08bc53212bfbe457484f418259c63772663b6a499ebad966f9ae06e3aa",
-   "original_sha256": "34eeb79ba6919bc52c11fcdef9ae8977229b25d44cbea44f9311e0ed68b18c15",
    "minimum_similarity": 0,
    "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
    "known_issues": [
