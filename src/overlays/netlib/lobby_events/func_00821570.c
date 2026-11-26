@@ -1,7 +1,7 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "types.h"
 
 extern s32 func_002DC7A0(void);
-void func_00821570(void) {
-    func_002DC7A0();
+s32 func_00821570(void) {
+    return func_002DC7A0();
 }
