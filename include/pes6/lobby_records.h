@@ -77,7 +77,8 @@ static inline LobbyGroupRecord *lobby_group_at(u32 index) {
 typedef struct {
     u8 reserved00[0x2];
     u16 field02;
-    u8 reserved04[0x64];
+    u8 reserved04[0x22];
+    u8 text26[0x42];
 } LobbyEntryRecord;
 typedef struct {
     u16 count;
