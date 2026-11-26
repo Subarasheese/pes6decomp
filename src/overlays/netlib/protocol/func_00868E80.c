@@ -1,18 +1,12 @@
 /* compiler: mwcc-3.0.1b151 */
-#include "types.h"
+#include "pes6/netlib_packet.h"
 
-extern s32 func_00874460(s32 *);
-extern void func_00874470(void *);
-
-s32 func_00868E80(s32 *arg0, s32 arg1) {
-    if (!((arg0 != 0) && (arg1 != 0))) {
-        return -0x18;
-    } else {
-        if (*arg0 != 0x60C0) {
-            return -0x46;
-        }
-        func_00874470(arg0);
-        func_00874460(arg0);
-        return 0;
-    }
+s32 func_00868E80(NetlibPacket *packet, s32 *result) {
+    if (!(packet && result))
+        return NETLIB_INVALID_ARGUMENT;
+    if (packet->tag != 0x60c0)
+        return NETLIB_UNEXPECTED_TAG;
+    func_00874470(packet);
+    func_00874460(packet);
+    return 0;
 }
