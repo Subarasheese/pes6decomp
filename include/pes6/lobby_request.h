@@ -8,6 +8,7 @@ typedef struct {
 } LobbyChannel;
 
 extern LobbyChannel *func_0082C2A0(void);
+extern u8 func_008248F0(void);
 extern s32 func_0082B4C0(s32 channel);
 extern s32 func_0082CA10(s32 request);
 extern s32 func_0082C8A0(s32 event);

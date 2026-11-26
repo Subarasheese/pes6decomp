@@ -1,10 +1,8 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "pes6/lobby_request.h"
 
-
-M2C_UNK func_0082C2A0();                            /* extern */
-
-s32 func_0095B070(void) {
+s32 func_0095B070(s32 id) {
+    (void)id;
     func_0082C2A0();
     return 4;
 }

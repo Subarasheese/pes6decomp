@@ -1,7 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
 #include "pes6/lobby_request.h"
-extern s32 func_008248F0(void);
-extern s32 func_00868920(LobbyChannel *, s32);
+extern s32 func_00868920(void *, u8);
 s32 func_009400A0(void) {
     s32 pending;
     LobbyChannel *connection;
