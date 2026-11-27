@@ -4,7 +4,7 @@
 #include "pes6/m2c.h"
 
 
-s64 func_009835C0(f32 fa12, f32 fa13, f32 fa14) {
+f32 func_009835C0(f32 fa12, f32 fa13, f32 fa14) {
     s64 v0 = 0;
     union { f32 f; s32 i; } f0 = { 0 };
     union { f32 f; s32 i; } f1 = { 0 };
@@ -26,5 +26,5 @@ s64 func_009835C0(f32 fa12, f32 fa13, f32 fa14) {
     f0.f = acc + f13.f * f14.f;
     f0.f = f0.f / f1.f;
 L_00983608:;
-    return v0;
+    return f0.f;
 }

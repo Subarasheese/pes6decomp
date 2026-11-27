@@ -6,7 +6,7 @@
 void func_00188910(s32);
 s32 func_00B29CB0(void);
 
-void func_00B27820(s32 a0) {
+f32 func_00B27820(s32 a0) {
     s32 v0 = 0, s0 = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
     s64 frame[8];
@@ -25,5 +25,5 @@ L_00B27850:;
     if (v0 == 0) { f0.f = (*(volatile f32 *) (u32) (sp + 40)); goto L_00B27848; }
     f0.f = (*(volatile f32 *) (u32) (sp + 52)); goto L_00B27848;
 L_00B2786C:;
-    return;
+    return f0.f;
 }

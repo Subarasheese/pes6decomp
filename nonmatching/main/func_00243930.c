@@ -4,11 +4,11 @@
 #include "pes6/m2c.h"
 
 f32 dptofp(s64, s64);
-s64 fptodp(s64, s64, s64);
-void func_0011D5C8(s64, s64, s64, s64, s64, s64);
+s64 fptodp(f32);
+s64 func_0011D5C8(s64, s64, s64, s64, s64, s64);
 f32 func_0011D670(f32, f32);
 
-void func_00243930(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, f32 fa12, f32 fa13) {
+f32 func_00243930(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, f32 fa12, f32 fa13) {
     s64 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
     volatile union { f32 f; s32 i; } f1 = { 0 };
@@ -94,34 +94,34 @@ L_00243A8C:;
     v0 = (s32) 0x437f0000U;
     f0.i = (s32) v0;
     f20.f = f1.f / f0.f;
-    v0 = fptodp(a0, a1, a2);
+    v0 = fptodp(f12.f);
     a0 = (s32) 0x40010000U;
     v1 = 0xa000;
     a0 = a0 | 0x9999;
     v1 = (s64) ((u64) v1 << 16);
     a1 = (s64) ((u64) a0 << 32);
     a0 = v0;
-    a1 = v1 | a1; func_0011D5C8(a0, a1, a2, a3, a4, a5);
+    a1 = v1 | a1; v0 = func_0011D5C8(a0, a1, a2, a3, a4, a5);
     a0 = v0; f0.f = dptofp(a0, a1);
     f22.i = f0.i;
-    f12.i = f21.i; v0 = fptodp(a0, a1, a2);
+    f12.i = f21.i; v0 = fptodp(f12.f);
     a0 = (s32) 0x40010000U;
     v1 = 0xa000;
     a0 = a0 | 0x9999;
     v1 = (s64) ((u64) v1 << 16);
     a1 = (s64) ((u64) a0 << 32);
     a0 = v0;
-    a1 = v1 | a1; func_0011D5C8(a0, a1, a2, a3, a4, a5);
+    a1 = v1 | a1; v0 = func_0011D5C8(a0, a1, a2, a3, a4, a5);
     a0 = v0; f0.f = dptofp(a0, a1);
     f21.i = f0.i;
-    f12.i = f20.i; v0 = fptodp(a0, a1, a2);
+    f12.i = f20.i; v0 = fptodp(f12.f);
     a0 = (s32) 0x40010000U;
     v1 = 0xa000;
     a0 = a0 | 0x9999;
     v1 = (s64) ((u64) v1 << 16);
     a1 = (s64) ((u64) a0 << 32);
     a0 = v0;
-    a1 = v1 | a1; func_0011D5C8(a0, a1, a2, a3, a4, a5);
+    a1 = v1 | a1; v0 = func_0011D5C8(a0, a1, a2, a3, a4, a5);
     a0 = v0; f0.f = dptofp(a0, a1);
     v0 = (s32) 0x3daf0000U;
     v1 = v0 | 0xb7e9;
@@ -292,5 +292,5 @@ L_00243E44:;
 L_00243E5C:;
 L_00243E60:;
     f0.i = f1.i;
-    return;
+    return f0.f;
 }

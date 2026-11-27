@@ -7,7 +7,7 @@ void func_00188910(s32);
 s32 func_00AFBAB0(s32);
 s32 func_00B29CB0(void);
 
-void func_00B27880(s32 a0) {
+f32 func_00B27880(s32 a0) {
     s32 v0 = 0, v1 = 0, s0 = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
     volatile union { f32 f; s32 i; } f20 = { 0 };
@@ -42,5 +42,5 @@ L_00B278F0:;
     if (v0 == 0) { f20.f = (*(volatile f32 *) (u32) (sp + 48)); goto L_00B278A8; }
     f20.f = (*(volatile f32 *) (u32) (sp + 60)); goto L_00B278A8;
 L_00B2790C:;
-    return;
+    return f0.f;
 }
