@@ -6,7 +6,7 @@
 s64 func_00299FE0(s64);
 void func_002A0ED0(s64, s64, s64, s64, s64);
 
-void func_002A4F40(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, f32 fa12) {
+f32 func_002A4F40(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, f32 fa12) {
     s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
     volatile union { f32 f; s32 i; } f1 = { 0 };
@@ -202,5 +202,5 @@ L_002A5270:;
     s3 = (s32) ((u32) s3 + 0x1U);
     v1 = s3 < 29;
     if (v1 != 0) goto L_002A4FF4;
-    return;
+    return f0.f;
 }

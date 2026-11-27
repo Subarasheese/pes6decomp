@@ -5,12 +5,12 @@
 
 f32 func_0011D210(f32);
 
-s64 func_001530D0(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, f32 fa12) {
+f32 func_001530D0(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, f32 fa12) {
     s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0;
-    union { f32 f; s32 i; } f0 = { 0 };
+    volatile union { f32 f; s32 i; } f0 = { 0 };
     union { f32 f; s32 i; } f1 = { 0 };
     union { f32 f; s32 i; } f2 = { 0 };
-    union { f32 f; s32 i; } f3 = { 0 };
+    volatile union { f32 f; s32 i; } f3 = { 0 };
     union { f32 f; s32 i; } f4 = { 0 };
     union { f32 f; s32 i; } f12 = { fa12 };
     s32 fcc = 0;
@@ -145,5 +145,5 @@ L_001532F0:;
     f0.i = f0.i ^ (s32) 0x80000000U; goto L_0015332C;
 L_0015332C:;
 L_00153330:;
-    return v0;
+    return f0.f;
 }

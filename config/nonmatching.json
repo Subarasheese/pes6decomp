@@ -112166,10 +112166,10 @@
    "symbol": "func_001530D0",
    "source": "nonmatching/main/func_001530D0.c",
    "compiler": "ee-gcc-2.9",
-   "source_sha256": "a2256b43e31255176cd0691ae8d9cfaf54899d9dd9ffe7efed0c8b917b1bcafa",
+   "source_sha256": "323870b6824dbac1e61a3447f16cedf7b0ebf8180cc32ba4c2f4bcf9cdf69fb1",
    "original_sha256": "d283a86f5b977483060855e8197fabbc4ed42fb6f233e46a26738696a2657470",
    "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
+   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof. The original returns its result in f0 (its callers read f0, or pass it on to callers that do); the draft was typed s64 and returned v0, which tools/equiv.py then compared instead of f0. Typed f32 and returning f0, it is equivalent with the float return compared; f0 and f3 are volatile so that gcc keeps the original operand order of the 2.0 * x product (mul.s $f2, $f3, $f0), as the EE multiplier is not bit-commutative.",
    "known_issues": [
     "Compiled instruction layout differs from the original.",
     "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
@@ -116891,10 +116891,10 @@
    "symbol": "func_002A5630",
    "source": "nonmatching/main/func_002A5630.c",
    "compiler": "ee-gcc-2.9",
-   "source_sha256": "dd8fadcea5c6f971dc115367f31775c84ac7f6e30593925d751b4614a2b06cce",
+   "source_sha256": "8fe2d1ec63239746aa938aa9b5a79354f49da8a589114e4a6a2d1f32972d20aa",
    "original_sha256": "d8bf2e56ffee6eb2f3b939b3cfea4c9bdb682649273e5a23a2a6ec34df3d09a6",
    "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
+   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof. The original returns its result in f0 (its callers read f0, or pass it on to callers that do); the draft was typed s32 and returned v0, which tools/equiv.py then compared instead of f0. Typed f32 and returning f0 (its running minimum), it is equivalent with the float return compared.",
    "known_issues": [
     "Compiled instruction layout differs from the original.",
     "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
@@ -144101,10 +144101,10 @@
    "symbol": "func_002A2750",
    "source": "nonmatching/main/func_002A2750.c",
    "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "e6f2c150e06b85a9c886d380e22281ab73dc042f99e31a8655eeee0cef0418a0",
+   "source_sha256": "526d9f15f44232b45d355b1d6cb841980440e9f03a599646e4ca3c6e7958fb58",
    "original_sha256": "3904e564e543617ab3660ba630dda1375bbacedc9a05ec22b9e795f68bdc50d0",
    "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
+   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof. The original returns its result in f0 (its callers read f0, or pass it on to callers that do); the draft was typed void and returned nothing, which tools/equiv.py then compared instead of f0. It returns func_002A4F40's float result (the last call before its return; func_002A5630's on that path), which the draft dropped; with those kept and an f32 return it is equivalent with the float return compared.",
    "known_issues": [
     "Compiled instruction layout differs from the original.",
     "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
@@ -144116,10 +144116,10 @@
    "symbol": "func_002A4F40",
    "source": "nonmatching/main/func_002A4F40.c",
    "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "7d705028ba51cf3ad08dadcf2181fafe8ab68b04ef289cf23ec47635025dcc59",
+   "source_sha256": "555a498708e2704c29ff0dc1903017e143776e0c9cff4c7bed282862a7b63c17",
    "original_sha256": "a99c7dca5fe7995311348deceb82135f1cafdf3009c2da0f056874bfaff180cd",
    "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
+   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof. The original returns its result in f0 (its callers read f0, or pass it on to callers that do); the draft was typed void and returned nothing, which tools/equiv.py then compared instead of f0. Typed f32 and returning f0, it is equivalent with the float return compared.",
    "known_issues": [
     "Compiled instruction layout differs from the original.",
     "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."

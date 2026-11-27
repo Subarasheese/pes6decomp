@@ -4,12 +4,12 @@
 #include "pes6/m2c.h"
 
 void func_002A29B0(s32, s32, s32, f32, f32, f32);
-void func_002A4F40(s32, s32, s32, s32, f32);
+f32 func_002A4F40(s32, s32, s32, s32, f32);
 void func_002A52B0(s32, s32, f32, f32, f32);
 void func_002A54E0(s32, s32, s32);
-void func_002A5630(s32, s32, f32);
+f32 func_002A5630(s32, s32, f32);
 
-void func_002A2750(s32 a0, s32 a1, s32 a2, s32 a3, f32 fa12, f32 fa13, f32 fa14) {
+f32 func_002A2750(s32 a0, s32 a1, s32 a2, s32 a3, f32 fa12, f32 fa13, f32 fa14) {
     s32 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0;
     s32 gp = 0x3ef370;
     volatile union { f32 f; s32 i; } f0 = { 0 };
@@ -125,13 +125,13 @@ L_002A2908:;
     if (fcc) goto L_002A2940;
     a0 = (s32) 0x5e0000U;
     a1 = 29;
-    a0 = (s32) ((u32) a0 + 0x19b8U); func_002A5630(a0, a1, f12.f);
+    a0 = (s32) ((u32) a0 + 0x19b8U); f0.f = func_002A5630(a0, a1, f12.f);
 L_002A2940:;
     v0 = (s32) 0x5e0000U;
     a0 = (s32) 0x5e0000U;
     a1 = (*(volatile u8 *) (u32) (v0 + 6576));
     f12.f = (*(volatile f32 *) (u32) (gp + -32204));
-    a0 = (s32) ((u32) a0 + 0x19b8U); func_002A4F40(a0, a1, a2, a3, f12.f);
+    a0 = (s32) ((u32) a0 + 0x19b8U); f0.f = func_002A4F40(a0, a1, a2, a3, f12.f);
 L_002A2958:;
     if (s1 == 0) goto L_002A2970;
     v1 = (s32) 0x5e0000U;
@@ -147,5 +147,5 @@ L_002A2984:;
     f2.f = (*(volatile f32 *) (u32) (v0 + 8704)); goto L_002A287C;
 L_002A2990:;
 L_002A2994:;
-    return;
+    return f0.f;
 }
