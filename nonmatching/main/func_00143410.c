@@ -7,7 +7,7 @@ extern void func_00144460(void);
 extern s32 func_00142090(void *);
 extern u8 func_00142030(s32, s32);
 s32 func_00143550(s32);                             /* extern */
-s32 func_001435B0(void *, void *, s32, s32);        /* extern */
+s32 Pes6Model_BuildPartPacket(void *, void *, s32, s32);        /* extern */
 s32 func_00144100(M2C_UNK);                         /* extern */
 M2C_UNK func_00144200();                            /* extern */
 M2C_UNK func_001443D0();                            /* extern */
@@ -45,7 +45,7 @@ void func_00143410(void *arg0, s32 arg1, s32 arg2) {
         do {
             if (func_00142030(arg1, (s32) M2C_FIELD(var_s0, u8 *, 0x43)) != 0) {
                 if (func_00142090(var_s0) == 0) {
-                    var_s4 = func_001435B0(arg0, var_s0, var_s4, arg1);
+                    var_s4 = Pes6Model_BuildPartPacket(arg0, var_s0, var_s4, arg1);
                 }
             }
             var_s1 -= 1;

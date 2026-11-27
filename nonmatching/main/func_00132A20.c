@@ -6,7 +6,7 @@
 s32 func_00103E48(s32, s32);
 s32 func_00129C60(s32, s32, s32, s32, f32, f32, f32);
 s32 func_00132AE0(void);
-s32 func_00132C20(f32, f32, f32);
+s32 Pes6Lighting_Update(f32, f32, f32);
 s32 func_00132F60(void);
 s32 func_001342D0(s32, s32, s32);
 s32 func_00134300(s32, s32, s32);
@@ -41,7 +41,7 @@ L_00132A7C:;
     v0 = s1 < 3;
     { s32 c_ = v0 != 0; s0 = (s32) ((u32) s0 + 0xb0U); if (c_) goto L_00132A4C; }
     v0 = func_00132F60();
-    v0 = func_00132C20(f12.f, f13.f, f14.f);
+    v0 = Pes6Lighting_Update(f12.f, f13.f, f14.f);
     v0 = func_00132AE0();
     goto L_00132AD0;
 L_00132AA8:;

@@ -25,7 +25,7 @@ void *func_00129C60(s32, void *, char *, s32);
 void func_001C6158(void *, s32, s32, void *);
 void func_00133210(void);
 
-void func_00132C20(void) {
+void Pes6Lighting_Update(void) {
     f32 n[16];
     f32 m[16];
     f32 a[4];

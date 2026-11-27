@@ -1045,6 +1045,18 @@ Pes6BonePalette_End = 0x00141C80; // type:func
 Pes6BonePalette_Build = 0x00141C90; // type:func
 Pes6Model_DrawSkinned = 0x00142E10; // type:func
 Pes6Model_Draw = 0x00142ED0; // type:func
+// Pes6Model_BuildPartPacket(model, part, out, ...) builds one model part's VU1 packet in the scratchpad:
+// the vertex UNPACKs, the bone matrices, the 13-quadword constant block at VU1 0x1E0 and, for the lit
+// modes (part +64 = 2, 3, 4), a 3-quadword lighting block (two colours from part +0x60/+0x70, then
+// Pes6Lighting_GetLuminance and part +72/+76) followed by MSCAL 0x02 (0x2A with a bone palette); it then
+// copies the packet to the graphics ring with the fromSPR DMA.
+Pes6Model_BuildPartPacket = 0x001435B0; // type:func
+// Lighting: Pes6Lighting_Update scans the 3 light entries at 0x3FB790 (0xB0 bytes each) for type-4 lights,
+// sorts them and builds the light direction matrices (0x3FB9B0, 0x3FBB80, 0x3FBBC0) and the colour at
+// 0x3FBB70 from the first; the luminance of that colour, dot((r, g, b), (0.3, 0.6, 0.1)), is stored at
+// 0x3FBB60 and read by Pes6Lighting_GetLuminance.
+Pes6Lighting_Update = 0x00132C20; // type:func
+Pes6Lighting_GetLuminance = 0x00132990; // type:func
 // The world's draw task (task table 0x3D9010, priority 0x0B, draw flag): when the world is active it draws
 // the stadium and then each entry of Pes6World_ModelList (next at +304) whose byte 0 is set and whose model
 // (+52) is visible (+276 x +280 > 0) with Pes6Model_DrawSkinned.

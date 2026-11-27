@@ -5,7 +5,7 @@
 
 s64 Pes6BonePalette_IsActive(void);
 s64 Pes6GfxRing_Alloc(s64);
-f32 func_00132990(void);
+f32 Pes6Lighting_GetLuminance(void);
 void func_00142040(s64, s64, s64);
 s64 func_00143280(s64, s64);
 s64 func_00143290(s64, s64);
@@ -22,7 +22,7 @@ s64 func_001447B0(s64, s64);
 s64 func_00144920(s64, s64, s64, s64, s64, s64, s64);
 s64 sceDmaSync(s64, s64, s64, s64, s64, s64, s64, s64);
 
-s64 func_001435B0(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
+s64 Pes6Model_BuildPartPacket(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
     s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0, fp = 0;
     u64 qh_v0 = 0;
     u64 qh_v1 = 0;
@@ -161,7 +161,7 @@ L_00143784:;
     (*(volatile u32 *) (u32) (v0 + 12)) = (u32) v1; func_001440B0(a0, a1);
     a0 = (s32) ((u32) s0 + 0x20U);
     a1 = (s32) ((u32) s4 + 0x70U); func_001440B0(a0, a1);
-    f0.f = func_00132990();
+    f0.f = Pes6Lighting_GetLuminance();
     (*(volatile f32 *) (u32) (s0 + 48)) = f0.f;
     v0 = (s32) 0x500000U;
     f0.f = (*(volatile f32 *) (u32) (v0 + -8256));

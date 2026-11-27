@@ -12,7 +12,7 @@ extern u8 func_00142030(s32, s32);
 extern int func_00141C60(void);
 extern s32 func_00142090(void *);
 s32 func_00143550(void *);                          /* extern */
-void *func_001435B0(void *, void *, void *, s32);   /* extern */
+void *Pes6Model_BuildPartPacket(void *, void *, void *, s32);   /* extern */
 void *func_00144100(M2C_UNK);                       /* extern */
 M2C_UNK func_00144200();                            /* extern */
 M2C_UNK func_001443D0();                            /* extern */
@@ -70,7 +70,7 @@ void func_00144470(void *arg0, s32 arg1) {
             do {
                 if (func_00142030(arg1, (s32) M2C_FIELD(var_s2, u8 *, 0x43)) != 0) {
                     if (func_00142090(var_s2) == 0) {
-                        var_s4 = func_001435B0(arg0, var_s2, var_s4, arg1);
+                        var_s4 = Pes6Model_BuildPartPacket(arg0, var_s2, var_s4, arg1);
                     }
                 }
                 var_s3 -= 1;
@@ -117,7 +117,7 @@ void func_00144470(void *arg0, s32 arg1) {
                         if (func_00142030(arg1, (s32) M2C_FIELD(var_s4_2, u8 *, 0x43)) == 0) {
 
                         } else if (func_00142090(var_s4_2) == 0) {
-                            var_s5 = func_001435B0(arg0, var_s4_2, var_s5, arg1);
+                            var_s5 = Pes6Model_BuildPartPacket(arg0, var_s4_2, var_s5, arg1);
                         }
                         var_s3_2 += 1;
                         var_s4_2 += M2C_FIELD(var_s4_2, s32 *, 0);
