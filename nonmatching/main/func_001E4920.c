@@ -4,11 +4,11 @@
 #include "pes6/m2c.h"
 
 void func_001DCCF0(s32);
-s32 func_001E4360(s32, s32);
+f32 func_001E4360(s32, s32);
 void func_001E43B0(s32, s32);
 void func_001E44A0(s32, s32);
 
-s32 func_001E4920(s32 a0, s32 a1) {
+f32 func_001E4920(s32 a0, s32 a1) {
     s32 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
     s64 frame[12];
@@ -64,8 +64,8 @@ L_001E4A0C:;
     a0 = (s32) ((u32) s2 + (u32) v0); func_001DCCF0(a0);
     v0 = (s32) 0x530000U;
     a1 = (*(volatile s32 *) (u32) (v0 + -21000));
-    a0 = (s32) ((u32) sp + 0x40U); v0 = func_001E4360(a0, a1);
+    a0 = (s32) ((u32) sp + 0x40U); f0.f = func_001E4360(a0, a1);
 L_001E4A24:;
 L_001E4A28:;
-    return v0;
+    return f0.f;
 }

@@ -7,7 +7,7 @@ s64 func_00103BB8(s64, s64, s64);
 s64 func_00103F50(s64, s64, s64, s64, f32);
 s64 func_00103FF8(s64, s64, s64, s64, f32);
 s64 func_001040A0(s64, s64, s64, s64, f32);
-f32 func_0012BE80(s64, s64);
+s32 func_0012BE80(s64, s64);
 s64 func_00132500(s64, s64, s64, s64, f32, f32);
 s64 func_0017C2C0(s64, s64, s64, s64);
 s64 func_001AAF50(s64, s64, s64, s64);
@@ -147,7 +147,7 @@ L_002A4808:;
     v0 = (*(volatile s8 *) (u32) (v1 + 10));
     if (v0 == 0) { f0.f = (*(volatile f32 *) (u32) (v1 + 224)); goto L_002A4828; }
     a0 = (s32) ((u32) v1 + 0x50U);
-    a1 = (s32) ((u32) v1 + 0x40U); f0.f = func_0012BE80(a0, a1);
+    a1 = (s32) ((u32) v1 + 0x40U); func_0012BE80(a0, a1);
     v1 = (*(volatile s32 *) (u32) (s2 + 16)); goto L_002A48D8;
 L_002A4828:;
     f1.i = (s32) 0;
