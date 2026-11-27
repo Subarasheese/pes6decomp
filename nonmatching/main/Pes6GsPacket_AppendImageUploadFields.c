@@ -16,7 +16,7 @@ extern char D_00376848[];
 extern char D_00376850[];
 extern char D_00376858[];
 
-void *func_00146E90(void *arg0, s64 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5, s64 arg6, s64 arg7, s64 arg_sp0, s64 arg_sp8) {
+void *Pes6GsPacket_AppendImageUploadFields(void *arg0, s64 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5, s64 arg6, s64 arg7, s64 arg_sp0, s64 arg_sp8) {
     s64 temp_a6;
     s64 var_a4;
     s64 var_a5;
@@ -49,13 +49,13 @@ loop_1:
     }
     temp_a6 = (s64) (var_t2 << 0x20) >> 0x20;
     var_a5 -= temp_a6;
-    M2C_FIELD(var_v1, s64 *, 0) = (s64) (temp_a6 | (0x08000000 << 0x20));
+    M2C_FIELD(var_v1, s64 *, 0) = (s64) (temp_a6 | ((s64) 0x08000000 << 0x20));
     M2C_FIELD(var_v1, s64 *, 8) = 0;
     M2C_FIELD(var_v1, s64 *, 0x10) = (s64) (((s64) ((var_t2 | 0x30000000) << 0x20) >> 0x20) | (((s64) (var_a4 << 0x20) >> 0x20) << 0x20));
     M2C_FIELD(var_v1, s64 *, 0x18) = (s64) (((u64) ((var_t2 | 0x50000000) << 0x20) >> 0x20) << 0x20);
     if (var_a5 > 0) {
         M2C_FIELD(var_v1, s64 *, 0x20) = 0x10000001;
-        M2C_FIELD(var_v1, s64 *, 0x28) = (s64) (0x50000001 << 0x20);
+        M2C_FIELD(var_v1, s64 *, 0x28) = (s64) ((s64) 0x50000001 << 0x20);
         var_a4 += var_t2 * 0x10;
         var_v1 += 0x30;
         goto loop_1;

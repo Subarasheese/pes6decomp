@@ -3,7 +3,7 @@
  * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
-s64 func_00146E90(s64, s64, s64, s64, s64, s64, s64, s64);
+s64 Pes6GsPacket_AppendImageUploadFields(s64, s64, s64, s64, s64, s64, s64, s64);
 s64 func_00147D40(s64);
 
 s64 func_00145D70(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7) {
@@ -124,7 +124,7 @@ L_00145F40:;
     v0 = (*(volatile u8 *) (u32) (s4 + 31));
     (*(volatile u64 *) (u32) (sp + 8)) = (u64) v0;
     a3 = (*(volatile u8 *) (u32) (s4 + 28));
-    a2 = s0; v0 = func_00146E90(a0, a1, a2, a3, a4, a5, a6, a7);
+    a2 = s0; v0 = Pes6GsPacket_AppendImageUploadFields(a0, a1, a2, a3, a4, a5, a6, a7);
     a0 = (s64) ((u64) s1 << 37);
     v1 = (s64) ((u64) s0 << 51);
     a0 = a0 | v1;

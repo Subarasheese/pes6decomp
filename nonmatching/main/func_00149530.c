@@ -3,7 +3,7 @@
  * one instruction, branches are gotos. Behaviour-level C, not a readable reconstruction. */
 #include "pes6/m2c.h"
 
-s64 func_00146E90(s64, s64, s64, s64, s64, s64, s64, s64);
+s64 Pes6GsPacket_AppendImageUploadFields(s64, s64, s64, s64, s64, s64, s64, s64);
 s64 func_00147D70(s64);
 void func_0014A380(s64, s64);
 void func_0014A410(s64);
@@ -249,7 +249,7 @@ L_0014990C:;
     a6 = 0;
     a7 = 0;
     a1 = (s64) ((u64) v0 << 32);
-    a1 = a1 >> 32; v0 = func_00146E90(a0, a1, a2, a3, a4, a5, a6, a7);
+    a1 = a1 >> 32; v0 = Pes6GsPacket_AppendImageUploadFields(a0, a1, a2, a3, a4, a5, a6, a7);
     (*(volatile u32 *) (u32) (sp + 236)) = (u32) v0;
     { u32 a_ = (u32) (sp + 192) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }
     at = 0 < v0;
@@ -298,7 +298,7 @@ L_001499CC:;
     a7 = 0;
     v0 = (s32) ((u32) v0 + (u32) v1);
     a1 = (s64) ((u64) v0 << 32);
-    a1 = a1 >> 32; v0 = func_00146E90(a0, a1, a2, a3, a4, a5, a6, a7);
+    a1 = a1 >> 32; v0 = Pes6GsPacket_AppendImageUploadFields(a0, a1, a2, a3, a4, a5, a6, a7);
     (*(volatile u32 *) (u32) (sp + 236)) = (u32) v0;
     s7 = (s32) ((u32) s7 + 0x1U);
     { u32 a_ = (u32) (sp + 192) & ~15U; v0 = *(volatile s64 *) a_; qh_v0 = *(volatile u64 *) (a_ + 8); }

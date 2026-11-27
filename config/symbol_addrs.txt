@@ -1007,6 +1007,10 @@ Pes6GsPacket_AppendImageUpload = 0x00138F00; // type:func
 // Pes6TexCache_Bind looks a texture up in the VRAM slot cache (24-byte slots at 0x507A90), uploads it on a
 // miss and returns its TEX0 value.
 Pes6TexCache_Bind = 0x00146040; // type:func
+// Pes6GsPacket_AppendImageUploadFields(pkt, dbp, dpsm, dbw, src, qwc, dsax, dsay, rrw, rrh) is the same
+// transfer from separate fields: the A+D template at 0x376800 with BITBLTBUF/TRXPOS/TRXREG filled in, then
+// an IMAGE GIF tag and a REF to the data per part (16384 qw parts from 32768 qw up); returns the next qw.
+Pes6GsPacket_AppendImageUploadFields = 0x00146E90; // type:func
 // Display: Pes6Display_SendFramePacket builds the frame's display GIF packet and sends it on the GIF channel
 // (Pes6Gif_Send waits for the channel to go idle first); Pes6Vblank_Handler (INTC cause 2, registered by
 // func_001354E0) swaps the double buffer for the field (sceGsSwapDBuff) and sends the next display packet.
