@@ -12,7 +12,7 @@ extern char D_005E2220[];
 extern char D_005E2250[];
 extern char D_005E225C[];
 
-void func_002A2750(s32 a, void *b, s32 c, s32 d, s32 e, s32 f, s32 g, s32 g7, float h, float i, float j);
+void Pes6CameraFocus_Update(s32 a, void *b, s32 c, s32 d, s32 e, s32 f, s32 g, s32 g7, float h, float i, float j);
 void func_002A0270(void *a, void *b, void *c);
 void func_002A1D60(void *a, void *b, void *c, void *d, void *e, float f, float g);
 
@@ -48,7 +48,7 @@ void func_002A12B0(f32 *out, f32 *out2, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, 
     tab = D_005E19B0;
     *(s32 *)D_005E1A34 = 0x3f800000;
     if (!(*(u16 *)D_005E19B6 & 0x20)) {
-        func_002A2750(0x3f800000, out2, a2, a3, a4, a5, a6, a7, i12, i13, i14);
+        Pes6CameraFocus_Update(0x3f800000, out2, a2, a3, a4, a5, a6, a7, i12, i13, i14);
         *(u16 *)D_005E19B6 |= 0x20;
     }
     g = *(f32 *)D_005E2208;

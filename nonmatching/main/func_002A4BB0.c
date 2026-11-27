@@ -5,7 +5,7 @@
 
 void func_002A52B0(s32, s32, f32, f32, f32);
 void func_002A54E0(s32, s32, s32);
-f32 func_002A5630(s32, s32, f32);
+f32 Pes6CameraFocus_TrimByFill(s32, s32, f32);
 
 f32 func_002A4BB0(s32 a0, s32 a1, s32 a2, f32 fa12, f32 fa13, f32 fa14) {
     s32 v0 = 0, v1 = 0, s0 = 0;
@@ -97,7 +97,7 @@ L_002A4D04:;
     func_002A52B0(a0, a1, f12.f, f13.f, f14.f);
     f12.i = f20.i;
     a1 = s0;
-    a0 = (s32) ((u32) sp + 0x3cU); f0.f = func_002A5630(a0, a1, f12.f);
+    a0 = (s32) ((u32) sp + 0x3cU); f0.f = Pes6CameraFocus_TrimByFill(a0, a1, f12.f);
     goto L_002A4D3C;
 L_002A4D24:;
     v0 = (s32) 0x5e0000U;

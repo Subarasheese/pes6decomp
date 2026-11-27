@@ -5,7 +5,7 @@
 
 f32 func_0011D210(f32);
 
-f32 func_001530D0(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, f32 fa12) {
+f32 Pes6Math_Atanf(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, f32 fa12) {
     s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
     union { f32 f; s32 i; } f1 = { 0 };

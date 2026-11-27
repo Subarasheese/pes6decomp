@@ -294,6 +294,18 @@ Pes6MatchObj28_Position = 0x005E1A20; // type:data
 Pes6MatchObj28_Heading = 0x005E1A30; // type:data
 Pes6MatchObj28_SetPosition = 0x002A9380; // type:func
 Pes6MatchObj28_SetPositionScaled = 0x002A9340; // type:func
+// The match camera's focus group (0x5E19B0): 29 entities (0..22 players, then other match objects) with
+// positions at +0x104 (12 bytes each) and a mask of those to keep in frame at 0x5E19B8. Pes6CameraFocus_Update
+// runs the camera step (0x2A29B0) and, at most every 61 ticks, while the focus radius (0x5E19BC) is positive,
+// rebuilds the mask: candidates by kind (0x2A54E0), those within a box around the reference entity (0x2A52B0),
+// Pes6CameraFocus_TrimByFill (drops entities whose bounding box would fall below a fill ratio; returns the best
+// ratio kept) and Pes6CameraFocus_KeepOnScreen (drops entities outside the screen box the zoom at 0x5E2208
+// gives, projected through the view). Each returns its float result in f0.
+Pes6CameraFocus_Update = 0x002A2750; // type:func
+Pes6CameraFocus_TrimByFill = 0x002A5630; // type:func
+Pes6CameraFocus_KeepOnScreen = 0x002A4F40; // type:func
+// A game-local copy of fdlibm's atanf (atanhi table at 0x3C71C0); the C library's is atanf at 0x11CD90.
+Pes6Math_Atanf = 0x001530D0; // type:func
 Pes6Ball_Update = 0x00286A60; // type:func
 D_003E9898 = 0x003E9898; // type:data
 D_003E9DD0 = 0x003E9DD0; // type:data
