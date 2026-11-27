@@ -5,7 +5,7 @@
 
 void func_001040A0(s32, s32, s32, s32, f32);
 s32 func_00153FE0(s32, s32);
-f32 func_00186A60(f32, f32);
+f32 Pes6StadiumShadow_Sample(f32, f32);
 s32 func_001888D0(void);
 void func_00190890(s32, s32, f32);
 void func_00190AC0(s32);
@@ -55,7 +55,7 @@ L_00193194:;
     f1.i = (s32) v0;
     f2.i = f2.i ^ (s32) 0x80000000U;
     f12.f = f1.f * f2.f;
-    f13.f = f1.f * f0.f; f0.f = func_00186A60(f12.f, f13.f);
+    f13.f = f1.f * f0.f; f0.f = Pes6StadiumShadow_Sample(f12.f, f13.f);
     s3 = (s32) ((u32) s3 + 0x1U);
     s2 = (s32) ((u32) s2 + 0xcU);
     (*(volatile f32 *) (u32) s0) = f0.f;

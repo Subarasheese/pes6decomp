@@ -6,7 +6,7 @@
 f32 func_00186CE0(s32, s32, s32, f32, f32);
 s32 func_00186FE0(s32, s32, s32, f32, f32);
 
-s32 func_00186A60(f32 fa12, f32 fa13) {
+s32 Pes6StadiumShadow_Sample(f32 fa12, f32 fa13) {
     s32 v0 = 0, v1 = 0, a0 = 0, a1 = 0, a2 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0;
     union { f32 f; s32 i; } f0 = { 0 };
     union { f32 f; s32 i; } f1 = { 0 };

@@ -1057,6 +1057,19 @@ Pes6Model_BuildPartPacket = 0x001435B0; // type:func
 // 0x3FBB60 and read by Pes6Lighting_GetLuminance.
 Pes6Lighting_Update = 0x00132C20; // type:func
 Pes6Lighting_GetLuminance = 0x00132990; // type:func
+// Pes6Lighting_SetLight(index, direction, colour) clears light entry index and makes it a type-4 light:
+// the normalised direction at +0x40 (a default when it is zero), the colour at +0x60, its luminance at
+// +0xC and the luminance's absolute value at +4.
+Pes6Lighting_SetLight = 0x00133250; // type:func
+// Pes6World_DrawModelList(list): walks the model list at 0x510FF0 + 4 x list (next at +304); for each entry
+// whose byte 0 is set it blends the lights of its light set (0x511250 + 0x1E0 x set, count at +48, 0x60
+// bytes each from +0x40) by the entry's factor at +272, sets them up (Pes6Lighting_SetLight and others)
+// and draws the model.
+Pes6World_DrawModelList = 0x0017B6B0; // type:func
+// Pes6StadiumShadow_Sample(x, z): the stadium's shade at a ground position (0..1), from the grid at
+// *(0x51FFE0): 30 x 30 cells of 2000 units over -30000..30000; a cell is either a constant (u16 / 65535)
+// or a list of triangles, interpolated at the point. 0x186A30 returns 1 minus it as a light factor.
+Pes6StadiumShadow_Sample = 0x00186A60; // type:func
 // The world's draw task (task table 0x3D9010, priority 0x0B, draw flag): when the world is active it draws
 // the stadium and then each entry of Pes6World_ModelList (next at +304) whose byte 0 is set and whose model
 // (+52) is visible (+276 x +280 > 0) with Pes6Model_DrawSkinned.

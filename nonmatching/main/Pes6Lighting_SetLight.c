@@ -12,7 +12,7 @@ extern char D_00375C70[];
 extern char D_003767E0[];
 extern char D_003FB790[];
 
-void func_00133250(s32 arg0, void *arg1, M2C_UNK *arg2) {
+void Pes6Lighting_SetLight(s32 arg0, void *arg1, M2C_UNK *arg2) {
     f32 temp_f0;
     s32 temp_a0;
     void *temp_s0;

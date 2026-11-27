@@ -19,7 +19,7 @@ void func_00141E90(s32);
 void func_00141F20(void);
 void func_00141F50(s32);
 void func_00141FE0(s32);
-void func_0017B6B0(s32, s32, s32, s32, f32);
+void Pes6World_DrawModelList(s32, s32, s32, s32, f32);
 void func_0017CB90(s32, f32, f32, f32, f32);
 void func_001CEA60(s32, s32, s32, s32);
 void func_001CEAB0(void);
@@ -61,7 +61,7 @@ void Pes6World_DrawTask(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, 
     a0 = 4097; func_00141FE0(a0);
     a0 = 0; func_00141F50(a0);
     a0 = (s32) 0x30000U; func_00141E90(a0);
-    a0 = 0; func_0017B6B0(a0, a1, a2, a3, f12.f);
+    a0 = 0; Pes6World_DrawModelList(a0, a1, a2, a3, f12.f);
     a0 = (*(volatile s32 *) (u32) (gp + -23336)); func_001CECC0(a0);
     func_001CEB90();
     func_001CEBF0();

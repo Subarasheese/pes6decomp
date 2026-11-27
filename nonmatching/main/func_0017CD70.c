@@ -5,7 +5,7 @@
 
 s32 func_00103E38(s32, s32);
 s32 func_00132A20(s32, s32, s32, s32, f32, f32, f32);
-s32 func_00133250(s32, s32, s32, f32);
+s32 Pes6Lighting_SetLight(s32, s32, s32, f32);
 s32 func_00133390(s32, s32, s32, f32, f32);
 s32 func_00133560(s32, s32, s32, s32, f32);
 s32 func_001336D0(s32, s32, s32, f32);
@@ -77,12 +77,12 @@ L_0017CE58:;
 L_0017CE84:;
     a0 = s3;
     a1 = (s32) ((u32) s0 + 0x10U);
-    a2 = (s32) ((u32) s0 + 0x20U); v0 = func_00133250(a0, a1, a2, f12.f);
+    a2 = (s32) ((u32) s0 + 0x20U); v0 = Pes6Lighting_SetLight(a0, a1, a2, f12.f);
     goto L_0017CEAC;
 L_0017CE9C:;
     a0 = s3;
     a1 = (s32) ((u32) s0 + 0x10U);
-    a2 = (s32) ((u32) s0 + 0x20U); v0 = func_00133250(a0, a1, a2, f12.f);
+    a2 = (s32) ((u32) s0 + 0x20U); v0 = Pes6Lighting_SetLight(a0, a1, a2, f12.f);
 L_0017CEAC:;
     v0 = func_00132A20(a0, a1, a2, a3, f12.f, f13.f, f14.f);
     return v0;

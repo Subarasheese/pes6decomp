@@ -9,7 +9,7 @@ s32 func_00129BE0(s32, s32, s32, s32);
 s32 func_00129C20(s32, s32, s32, s32);
 void func_00129E00(void);
 void func_00132A20(s32, s32, s32, s32);
-void func_00133250(s32, s32, s32);
+void Pes6Lighting_SetLight(s32, s32, s32);
 void func_00133560(s32, s32, s32, s32);
 void func_001336D0(s32, s32, s32);
 s32 func_00133890(s32);
@@ -22,7 +22,7 @@ f32 sceVu0InnerProduct(s32, s32);
 s32 sceVu0MulMatrix(s32, s32, s32);
 f32 sqrtf(f32);
 
-void func_0017B6B0(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7, f32 fa12, f32 fa13, f32 fa14, f32 fa15, f32 fa16, f32 fa17, f32 fa18, f32 fa19) {
+void Pes6World_DrawModelList(s32 a0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6, s32 a7, f32 fa12, f32 fa13, f32 fa14, f32 fa15, f32 fa16, f32 fa17, f32 fa18, f32 fa19) {
     s32 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0, fp = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
     volatile union { f32 f; s32 i; } f1 = { 0 };
@@ -138,7 +138,7 @@ L_0017B848:;
     __asm__ volatile("vmaddw.xyzw $vf8, $vf7, $vf8w");
     __asm__ volatile("sqc2 $vf8, 0(%0)" : : "r"((u32) a1) : "memory");
     a0 = s1;
-    a2 = (s32) ((u32) sp + 0x190U); func_00133250(a0, a1, a2);
+    a2 = (s32) ((u32) sp + 0x190U); Pes6Lighting_SetLight(a0, a1, a2);
     a0 = s1; v0 = func_00133890(a0);
     __asm__ volatile("lqc2 $vf4, 64(%0)" : : "r"((u32) v0) : "memory");
     v1 = f23.i;

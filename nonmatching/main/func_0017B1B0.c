@@ -9,7 +9,7 @@ void func_00141DC0(s32, s32);
 void func_00141E10(void);
 void func_00141EE0(void);
 void func_00141FE0(s32);
-void func_0017B6B0(s32, s32, s32, s32, f32);
+void Pes6World_DrawModelList(s32, s32, s32, s32, f32);
 
 void func_0017B1B0(s32 a0, s32 a1, s32 a2, s32 a3, f32 fa12) {
     s32 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0;
@@ -65,8 +65,8 @@ L_0017B224:;
     v0 = (s32) ((u32) v0 + 0x2dd0U);
     (*(volatile u32 *) (u32) (gp + -23332)) = (u32) v0;
 L_0017B298:;
-    a0 = 1; func_0017B6B0(a0, a1, a2, a3, f12.f);
-    a0 = 2; func_0017B6B0(a0, a1, a2, a3, f12.f);
+    a0 = 1; Pes6World_DrawModelList(a0, a1, a2, a3, f12.f);
+    a0 = 2; Pes6World_DrawModelList(a0, a1, a2, a3, f12.f);
 L_0017B2A8:;
     return;
 }
