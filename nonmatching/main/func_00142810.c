@@ -5,7 +5,7 @@
 extern void func_00143170(void);
 extern void func_00142690(void *);
 extern void func_00143160(void);
-M2C_UNK func_00141470(void *, s32);                 /* extern */
+M2C_UNK Pes6Model_BuildMorphVertices(void *, s32);                 /* extern */
 M2C_UNK func_00143410(void *, s32, s32);            /* extern */
 extern s32 D_003E9800;
 extern s32 D_003E9804;
@@ -14,7 +14,7 @@ void func_00142810(void *arg0, s32 arg1, s32 arg2) {
     if (D_003E9800 != 0) {
         if (M2C_FIELD(arg0, s32 *, 0x44) != 0) {
             func_00142690(arg0);
-            func_00141470(arg0, arg1);
+            Pes6Model_BuildMorphVertices(arg0, arg1);
             D_003E9804 = 1;
         }
         func_00143170();

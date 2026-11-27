@@ -8,7 +8,7 @@ typedef char Check128Width[sizeof(s128)==16?1:-1];
 extern void func_00143170(void);
 extern void func_00143140(void);
 extern void func_00143160(void);
-M2C_UNK func_00141470(void *, s32);                 /* extern */
+M2C_UNK Pes6Model_BuildMorphVertices(void *, s32);                 /* extern */
 s32 func_001420F0(void *, s32);                     /* extern */
 M2C_UNK func_00142320(void *, s32);                 /* extern */
 M2C_UNK func_001423D0(void *, s32, s32, s128, s128, s128, s128, s128); /* extern */
@@ -47,7 +47,7 @@ void Pes6Model_Draw(void *arg0, s32 arg1, s32 arg2, M2C_UNK arg3, M2C_UNK arg4, 
         func_00142320(arg0, arg5);
         func_00143140();
         if (M2C_FIELD(arg0, s32 *, 0x44) != 0) {
-            func_00141470(arg0, arg1);
+            Pes6Model_BuildMorphVertices(arg0, arg1);
         }
         func_001424E0(0);
         func_00143170();

@@ -1051,6 +1051,12 @@ Pes6Model_Draw = 0x00142ED0; // type:func
 // Pes6Lighting_GetLuminance and part +72/+76) followed by MSCAL 0x02 (0x2A with a bone palette); it then
 // copies the packet to the graphics ring with the fromSPR DMA.
 Pes6Model_BuildPartPacket = 0x001435B0; // type:func
+// Pes6Model_BuildMorphVertices(model, weights): builds a model's morphed vertex positions for the frame in the
+// scratchpad (each morph target with a non-zero weight from weights +24), converts them to 12.4 fixed point
+// with VU0 (vftoi4) and sends them with the fromSPR DMA to a graphics-ring buffer whose address it keeps at
+// 0x4FDF04; Pes6Model_BuildPartPacket then unpacks them (masked V4-32, xyz only) over the parts' vertex
+// positions.
+Pes6Model_BuildMorphVertices = 0x00141470; // type:func
 // Lighting: Pes6Lighting_Update scans the 3 light entries at 0x3FB790 (0xB0 bytes each) for type-4 lights,
 // sorts them and builds the light direction matrices (0x3FB9B0, 0x3FBB80, 0x3FBBC0) and the colour at
 // 0x3FBB70 from the first; the luminance of that colour, dot((r, g, b), (0.3, 0.6, 0.1)), is stored at

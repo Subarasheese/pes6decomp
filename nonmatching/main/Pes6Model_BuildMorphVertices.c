@@ -14,7 +14,7 @@ void func_00141880(s64);
 void sceDmaSendN(s64, s64, s64, s64, s64, s64, s64, s64);
 s64 sceDmaSync(s64, s64, s64, s64, s64, s64, s64, s64);
 
-void func_00141470(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7, f32 fa12) {
+void Pes6Model_BuildMorphVertices(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5, s64 a6, s64 a7, f32 fa12) {
     s64 at = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0, s3 = 0, s4 = 0, s5 = 0, s6 = 0, s7 = 0;
     s64 gp = 0x3ef370;
     volatile union { f32 f; s32 i; } f0 = { 0 };
