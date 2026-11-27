@@ -112376,10 +112376,10 @@
    "symbol": "Pes6StadiumShadow_Sample",
    "source": "nonmatching/main/Pes6StadiumShadow_Sample.c",
    "compiler": "ee-gcc-2.9",
-   "source_sha256": "2d90eb179ed1def94f1d75702a693d410000f2bae21770216ca51fd69bffc4f9",
+   "source_sha256": "fca9f2e586fc60de1338a596f51a1deac0bc327d661b57c38a8193e12ae373e0",
    "original_sha256": "491b9ba71435529fcf0738e1bb6616115668717258c31eae48d66b02ae905987",
    "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
+   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof. The function returns its result in f0, as the original does (callers read f0); the lifted draft was typed s32 and returned v0, which tools/equiv.py then compared instead of f0. Typed f32 and returning f0, it is equivalent with the float return compared.",
    "known_issues": [
     "Compiled instruction layout differs from the original.",
     "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
