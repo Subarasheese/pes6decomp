@@ -4,7 +4,7 @@
 #include "pes6/m2c.h"
 
 
-void func_009A9B30(s32 a0, s32 a1, s32 a2, s32 a3, f32 fa12, f32 fa13, f32 fa14) {
+f32 func_009A9B30(s32 a0, s32 a1, s32 a2, s32 a3, f32 fa12, f32 fa13, f32 fa14) {
     s32 v0 = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
     volatile union { f32 f; s32 i; } f1 = { 0 };
@@ -48,21 +48,21 @@ void func_009A9B30(s32 a0, s32 a1, s32 a2, s32 a3, f32 fa12, f32 fa13, f32 fa14)
     f5.f = f5.f - f7.f;
     f8.f = f6.f - f12.f;
     f4.f = f4.f - f7.f;
-    acc = f11.f * f5.f;
-    f7.f = acc - f10.f * f8.f;
-    acc = f10.f * f9.f;
-    f6.f = acc - f13.f * f5.f;
+    __asm__ volatile("mula.s %0,%1" : : "f"(f11.f), "f"(f5.f));
+    __asm__ volatile("msub.s %0,%1,%2" : "=f"(f7.f) : "f"(f10.f), "f"(f8.f));
+    __asm__ volatile("mula.s %0,%1" : : "f"(f10.f), "f"(f9.f));
+    __asm__ volatile("msub.s %0,%1,%2" : "=f"(f6.f) : "f"(f13.f), "f"(f5.f));
     f2.f = f2.f - f12.f;
     f3.f = f3.f - f14.f;
     (*(volatile f32 *) (u32) (sp + 24)) = f5.f;
-    acc = f13.f * f8.f;
-    f5.f = acc - f11.f * f9.f;
-    acc = f6.f * f2.f;
-    acc = acc + f7.f * f3.f;
-    f3.f = acc + f5.f * f4.f;
-    acc = f6.f * f6.f;
-    acc = acc + f7.f * f7.f;
-    f2.f = acc + f5.f * f5.f;
+    __asm__ volatile("mula.s %0,%1" : : "f"(f13.f), "f"(f8.f));
+    __asm__ volatile("msub.s %0,%1,%2" : "=f"(f5.f) : "f"(f11.f), "f"(f9.f));
+    __asm__ volatile("mula.s %0,%1" : : "f"(f6.f), "f"(f2.f));
+    __asm__ volatile("madda.s %0,%1" : : "f"(f7.f), "f"(f3.f));
+    __asm__ volatile("madd.s %0,%1,%2" : "=f"(f3.f) : "f"(f5.f), "f"(f4.f));
+    __asm__ volatile("mula.s %0,%1" : : "f"(f6.f), "f"(f6.f));
+    __asm__ volatile("madda.s %0,%1" : : "f"(f7.f), "f"(f7.f));
+    __asm__ volatile("madd.s %0,%1,%2" : "=f"(f2.f) : "f"(f5.f), "f"(f5.f));
     f2.f = f1.f * f2.f;
     f1.f = f3.f * f3.f;
     fcc = f1.f <= f2.f;
@@ -82,5 +82,5 @@ void func_009A9B30(s32 a0, s32 a1, s32 a2, s32 a3, f32 fa12, f32 fa13, f32 fa14)
 L_009A9C10:;
     f0.i = f3.i;
 L_009A9C18:;
-    return;
+    return f0.f;
 }

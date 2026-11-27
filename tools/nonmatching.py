@@ -62,14 +62,16 @@ def fingerprint(records):
     return h.hexdigest()
 
 
-def source_problems(text):
+def source_problems(text, path=None):
     import asm_policy
     # drafts may use inline assembly made only of VU0 macro-mode instructions (tools/asm_policy.py);
-    # everything else in the source, and any other assembly, is checked as before
-    problems = asm_policy.violations(text, allow_vu0=True)
+    # everything else in the source, and any other assembly, is checked as before. A draft listed in
+    # config/asm_allowed.txt (approved by the maintainer: C cannot express it) may use other instructions.
+    allowed = path is not None and asm_policy.exempt(path)
+    problems = [] if allowed else asm_policy.violations(text, allow_vu0=True)
     rest = text
     statements = asm_policy.asm_statements(text)
-    if statements and all(asm_policy.vu0_only(t) for _, _, t in statements):
+    if statements and (allowed or all(asm_policy.vu0_only(t) for _, _, t in statements)):
         spliced = re.sub(r"\\\r?\n", "", text)
         for start, end, _ in reversed(statements):
             spliced = spliced[:start] + " " * (end - start) + spliced[end:]
@@ -235,7 +237,7 @@ def inspect(records, jobs=2):
         address = int(row["address"], 16)
         obj = objects[path]
         try:
-            problems = source_problems((ROOT / path).read_text())
+            problems = source_problems((ROOT / path).read_text(), ROOT / path)
             if problems:
                 raise ValueError("; ".join(problems))
             if project.source_for(address):

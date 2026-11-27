@@ -4,7 +4,7 @@
 #include "pes6/m2c.h"
 
 
-void func_00BB6BE0(s32 a0, f32 fa12) {
+f32 func_00BB6BE0(s32 a0, f32 fa12) {
     s32 v0 = 0, v1 = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
     volatile union { f32 f; s32 i; } f1 = { 0 };
@@ -43,11 +43,11 @@ void func_00BB6BE0(s32 a0, f32 fa12) {
     f1.f = f1.f - f4.f;
     f0.f = f0.f * f4.f;
     f2.i = (s32) v1;
-    acc = f6.f + f0.f;
-    f0.f = acc + f2.f * f1.f;
+    __asm__ volatile("adda.s %0,%1" : : "f"(f6.f), "f"(f0.f));
+    __asm__ volatile("madd.s %0,%1,%2" : "=f"(f0.f) : "f"(f2.f), "f"(f1.f));
     f0.f = f7.f * f0.f;
-    acc = f6.f + f0.f;
-    f12.f = acc + f12.f * f3.f; goto L_00BB6C90;
+    __asm__ volatile("adda.s %0,%1" : : "f"(f6.f), "f"(f0.f));
+    __asm__ volatile("madd.s %0,%1,%2" : "=f"(f12.f) : "f"(f12.f), "f"(f3.f)); goto L_00BB6C90;
 L_00BB6C6C:;
     v0 = (s32) 0x3f800000U;
     v1 = (s32) 0x40a00000U;
@@ -55,8 +55,8 @@ L_00BB6C6C:;
     f1.i = (s32) v1;
     f0.f = f0.f - f7.f;
     f0.f = f12.f * f0.f;
-    acc = f6.f + f0.f;
-    f12.f = acc + f1.f * f7.f;
+    __asm__ volatile("adda.s %0,%1" : : "f"(f6.f), "f"(f0.f));
+    __asm__ volatile("madd.s %0,%1,%2" : "=f"(f12.f) : "f"(f1.f), "f"(f7.f));
 L_00BB6C90:;
-    f0.i = f12.i; return;
+    f0.i = f12.i; return f0.f;
 }

@@ -55,3 +55,7 @@ src/sdk/libvifpk/sceVu0InnerProduct.c     # lqc2, vmul/vadd, qmfc2 (VU0 macro mo
 src/sdk/libvifpk/sceVu0TransMatrix.c      # lqc2/sqc2, vadd (VU0 macro mode)
 src/sdk/libvifpk/sceVu0TransposeMatrix.c  # lq/sq with pextlw/pextuw/pcpyld/pcpyud (128-bit, whole function in assembly)
 src/sdk/libvifpk/sceVu0InversMatrix.c     # lq/sq, MMI moves, qmtc2 and VU0 code (whole function in assembly)
+# Lifted drafts that use the EE FPU accumulator (approved 2026-11-27): ee-gcc 2.9 cannot emit mula.s/madda.s/
+# madd.s/msub.s from C, and mul.s + add.s saturate differently at the EE's +-max
+nonmatching/game/func_009A9B30.c          # mula.s, madda.s, madd.s, msub.s (cross product and dot products)
+nonmatching/game/func_00BB6BE0.c          # adda.s, madd.s
