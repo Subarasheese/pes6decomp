@@ -1,9 +1,8 @@
 /* compiler: ee-gcc-2.9-G0 */
-#include "pes6/m2c.h"
+#include "pes6/https/ssl_lifetime.h"
 
-s64 func_00BD91F0(void *arg0) {
-    if (arg0 == NULL) {
+s64 func_00BD91F0(SSL_SESSION *session) {
+    if (!session)
         return 0;
-    }
-    return M2C_FIELD(arg0, s64 *, 0xA0);
+    return session->timeout;
 }

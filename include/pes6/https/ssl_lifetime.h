@@ -13,6 +13,13 @@ typedef struct {
     STACK *contextMethods;
 } ExtraMethods;
 
+typedef struct ssl_session_st {
+    u8 reserved00[0x98];
+    int references;
+    u8 reserved9c[4];
+    s64 timeout;
+} SSL_SESSION;
+
 typedef struct Cert Cert;
 struct ssl_st {
     int version;
@@ -46,7 +53,9 @@ struct ssl_ctx_st {
     u8 reserved00[0x10];
     STACK *cipherList, *cipherListById;
     void *certStore, *sessions;
-    u8 reserved20[0x78 - 0x20];
+    u8 reserved20[0x38 - 0x20];
+    s64 sessionTimeout;
+    u8 reserved40[0x78 - 0x40];
     int references;
     u8 reserved7c[0xa0 - 0x7c];
     Cert *defaultCert;
