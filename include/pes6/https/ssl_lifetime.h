@@ -20,6 +20,16 @@ typedef struct ssl_session_st {
     s64 timeout;
 } SSL_SESSION;
 
+typedef struct {
+    u8 reserved00[0x160];
+    DH *temporaryDH;
+    u8 reserved164[0x17c - 0x164];
+    STACK *caNames;
+    u8 reserved180[4];
+    s32 keyBlockLength;
+    u8 *keyBlock;
+} PalSSL3State;
+
 typedef struct Cert Cert;
 struct ssl_st {
     int version;
@@ -32,7 +42,8 @@ struct ssl_st {
     u8 *packet;
     u32 packetLength;
     SSL2_CTX *s2;
-    u8 reserved54[0x60 - 0x54];
+    PalSSL3State *s3;
+    u8 reserved58[0x60 - 0x58];
     STACK *cipherList, *cipherListById;
     u8 reserved68[0x84 - 0x68];
     Cert *cert;
@@ -66,5 +77,8 @@ struct ssl_ctx_st {
     u8 reserved100[0x110 - 0x100];
     STACK *extraCerts;
 };
+
+extern void func_00BCB8C8(SSL *ssl);
+extern void func_00BCC458(SSL *ssl);
 
 #endif

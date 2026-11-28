@@ -1,8 +1,10 @@
 /* compiler: ee-gcc-2.9 */
-#include "types.h"
-void func_00BD9F80(s32 *);
-void func_00BDA038(s32 *);
-void func_00BDA010(s32 *p) {
-    func_00BD9F80(p);
-    func_00BDA038(p);
+#include "pes6/https/ssleay_091b_types.h"
+
+extern void func_00BD9F80(STACK *stack, void (*freeEntry)());
+extern void func_00BDA038(STACK *stack);
+
+void func_00BDA010(STACK *stack, void (*freeEntry)()) {
+    func_00BD9F80(stack, freeEntry);
+    func_00BDA038(stack);
 }

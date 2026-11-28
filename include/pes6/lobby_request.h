@@ -15,7 +15,7 @@ extern s32 func_0082C8A0(s32 event);
 extern s32 func_0082C7C0(s32 event);
 extern s32 func_0082C5B0(s32 event);
 extern s32 func_00827450(s32 channel);
-extern void func_0082CA50(s32 request, s32 state);
+extern s32 func_0082CA50(s32 request, s32 state);
 extern void func_0082C980(s32 request);
 extern void func_0082C920(s32 request);
 extern void func_0082C840(s32 event);

@@ -27340,22 +27340,6 @@
   },
   {
    "image": "game",
-   "address": "00C6C9D0",
-   "symbol": "func_00C6C9D0",
-   "original_sha256": "7e2938cd4f7b708ae940690e4152f3ece771a9025a3b171fe624bb0b69643384",
-   "source": "nonmatching/game/func_00C6C9D0.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "1a9e571ef2fd7d2b4b050ef666aaa42d6babc3c16bfb7b9ec28bc51cf7cdf6c1",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "game",
    "address": "00C6CA10",
    "symbol": "func_00C6CA10",
    "original_sha256": "3db99506699b5a51cb643aaf38498e2ec3d4cd81c65b10cb28d73e5a524beefa",

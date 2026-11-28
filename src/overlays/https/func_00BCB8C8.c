@@ -56,22 +56,16 @@
  * copied and put under another distribution licence
  * [including the GNU Public Licence.]
  */
-typedef struct {
-    unsigned char reserved00[0x184];
-    int key_block_length;
-    unsigned char *key_block;
-} SSL3_KEY_STATE;
-typedef struct {
-    unsigned char reserved00[0x54];
-    SSL3_KEY_STATE *s3;
-} SSL;
+#include "pes6/https/ssl_lifetime.h"
+
 extern void *memset(void *, int, unsigned int);
 extern void func_00BC0A88(void *);
-void func_00BCB8C8(SSL *s) {
-    if (s->s3->key_block != ((void *)0)) {
-        memset(s->s3->key_block, 0, s->s3->key_block_length);
-        func_00BC0A88((char *)s->s3->key_block);
-        s->s3->key_block = (void *)0;
+
+void func_00BCB8C8(SSL *ssl) {
+    if (ssl->s3->keyBlock) {
+        memset(ssl->s3->keyBlock, 0, ssl->s3->keyBlockLength);
+        func_00BC0A88(ssl->s3->keyBlock);
+        ssl->s3->keyBlock = 0;
     }
-    s->s3->key_block_length = 0;
+    ssl->s3->keyBlockLength = 0;
 }
