@@ -18704,51 +18704,6 @@
   },
   {
    "image": "game",
-   "address": "009AB650",
-   "symbol": "func_009AB650",
-   "source": "nonmatching/game/func_009AB650.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "df800177c72f4c2e9fcd155eef34a261b84c34a393acfd312a8052e2e6d5e088",
-   "original_sha256": "6e97599b9cacc9c125245fda81181467b72959e57698815ecdfe1bcedbe8d573",
-   "minimum_similarity": 0,
-   "review": "Repaired by an agent from m2c output (the draft failed tools/equiv.py), then judged equivalent by the strengthened tools/equiv.py and independently re-judged (docs/equivalent.md has cases and coverage); compiler/structural checks as for every draft. Behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "game",
-   "address": "009AB6D0",
-   "symbol": "func_009AB6D0",
-   "source": "nonmatching/game/func_009AB6D0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "8ad7e00ffab0030129921bfc9a63ba89204761bade4cf10dab09cdc4b3a747d6",
-   "original_sha256": "dee963d38cddc6a0930bf81aaaea1430db72caa2a39af762d4be0b2d31b42ef8",
-   "minimum_similarity": 0,
-   "review": "Repaired by an agent from m2c output (the draft failed tools/equiv.py), then judged equivalent by the strengthened tools/equiv.py and independently re-judged (docs/equivalent.md has cases and coverage); compiler/structural checks as for every draft. Behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "game",
-   "address": "009AB9D0",
-   "symbol": "func_009AB9D0",
-   "source": "nonmatching/game/func_009AB9D0.c",
-   "compiler": "ee-gcc-2.9",
-   "source_sha256": "dcc08b3c03b219f40f4997aa3247bb3cdfde41a8744e565d20805428f0c2c30c",
-   "original_sha256": "f5552679700ad95f994e14b74aa26edb85192ada9c57a5abfff666db15bf0d93",
-   "minimum_similarity": 0,
-   "review": "Repaired by an agent from m2c output (the draft failed tools/equiv.py), then judged equivalent by the strengthened tools/equiv.py and independently re-judged (docs/equivalent.md has cases and coverage); compiler/structural checks as for every draft. Behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "game",
    "address": "009AC830",
    "symbol": "func_009AC830",
    "original_sha256": "053f2fe806fdb9c26fe4ad4d742f45a5eef632460a3aefa2231d07b011543e34",
@@ -18777,22 +18732,6 @@
    "known_issues": [
     "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
     "Compiled instruction layout and ABI require independent review, even when instruction similarity reaches 100%."
-   ]
-  },
-  {
-   "image": "game",
-   "address": "009B0610",
-   "symbol": "func_009B0610",
-   "original_sha256": "ca8ca1deaf869a0e813ef96d839e5679392cd231d412a66f6982daf276da5b32",
-   "source": "nonmatching/game/func_009B0610.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "0fb9f6496282d1376e076cea7f0732e656e14e72f0b682330227bd41a1fe6515",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
    ]
   },
   {
