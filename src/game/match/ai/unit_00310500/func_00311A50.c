@@ -1,17 +1,15 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "pes6/match_player.h"
 
-extern char Pes6MatchPlayers[];
-
-s32 func_00311A50(u8 *a, u8 *b, s32 index) {
+s32 func_00311A50(u8 *side, u8 *squadSlot, u8 player) {
     s32 maskedIndex;
     s32 slot;
-    u8 *rec;
+    Pes6MatchPlayer *rec;
 
-    maskedIndex = index & 0xFF;
+    maskedIndex = player;
     if (maskedIndex == 0 || maskedIndex >= 23) {
-        *a = 0xFF;
-        *b = 0xFF;
+        *side = 0xFF;
+        *squadSlot = 0xFF;
         return 0;
     }
     if (maskedIndex != 0xFF) {
@@ -19,8 +17,8 @@ s32 func_00311A50(u8 *a, u8 *b, s32 index) {
     } else {
         slot = 1;
     }
-    rec = (u8 *)Pes6MatchPlayers + slot * 0x240;
-    *a = rec[0x12];
-    *b = rec[0x11];
+    rec = &Pes6MatchPlayers[slot];
+    *side = rec->team;
+    *squadSlot = rec->slot;
     return 1;
 }

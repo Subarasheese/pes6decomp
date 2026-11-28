@@ -1,5 +1,5 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "types.h"
+#include "pes6/match_player.h"
 #include "pes6/bitset.h"
 typedef struct {
     u8 reserved[0x1000];
@@ -8,7 +8,6 @@ typedef struct {
 extern EntryJobManager *Pes6Job_GetManager(void);
 extern void func_003414D0(u8 *selection, s32 mode, s32 fallback);
 extern s32 func_008F8B50(u8 *selection, s32 *status, s32 kind);
-extern void func_00311A50(u8 *group, u8 *slot, s32 selection);
 extern void func_00326AC0(s32 *status, s32 side, s32 kind, s32 slot);
 extern void func_00326A10(s32 *status, s32 side, s32 kind, s32 slot);
 extern void func_00326960(u8 *option, s32 side, s32 kind, s32 slot);

@@ -1,6 +1,6 @@
 /* compiler: mwcc-3.0.1b210 */
+#include "pes6/match_player_state_rows.h"
 #include "pes6/match_job_message.h"
-extern s32 func_00326E40(s16 *count, void *roster, u8 player);
 extern s32 func_0030E010(s16 *status, u8 player);
 
 s32 func_003640D0(RosterMessage *ctx) {

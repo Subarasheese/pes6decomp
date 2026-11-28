@@ -29,4 +29,6 @@ extern ModelVertexPosition *func_0018D4F0(u16 index);
 extern ModelVertexPosition *func_0019FCE0(ModelVertexBuffers *model, u16 index);
 extern ModelVertexPosition *func_0019FD00(ModelVertexBuffers *model, u16 index);
 
+extern void func_0019FD40(u16 corners[4], u16 face);
+
 #endif
