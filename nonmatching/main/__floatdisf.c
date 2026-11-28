@@ -4,12 +4,12 @@
 #include "pes6/m2c.h"
 
 s64 dpadd(s64, s64);
-s64 dpmul(s64, s64, s64, s64, s64, s64);
-s64 dptofp(s64);
+s64 dpmul(s64, s64);
+f32 dptofp(s64);
 s64 litodp(s64);
 
-void __floatdisf(s64 a0, s64 a1, s64 a2, s64 a3, s64 a4, s64 a5) {
-    s64 v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0;
+f32 __floatdisf(s64 a0) {
+    s64 a1 = 0, v0 = 0, v1 = 0, s0 = 0, s1 = 0, s2 = 0;
     volatile union { f32 f; s32 i; } f0 = { 0 };
 
     v0 = -1;
@@ -31,14 +31,13 @@ L_0011F018:;
     v0 = litodp(a0);
     a0 = v0;
     a1 = s0;
-    v0 = dpmul(a0, a1, a2, a3, a4, a5);
+    v0 = dpmul(a0, a1);
     a1 = s0;
     s0 = (s32) 0xffff0000U;
     s0 = (s64) ((u64) s0 >> 32);
     a0 = v0;
-    s0 = s1 & s0; v0 = dpmul(a0, a1, a2, a3, a4, a5);
-    s0 = (s64) ((u64) s0 << 32);
-    s0 = s0 >> 32;
+    s0 = s1 & s0; v0 = dpmul(a0, a1);
+    s0 = (s32) s0;
     s2 = v0;
     a0 = s0; v0 = litodp(a0);
     a1 = 0x83e0;
@@ -51,6 +50,6 @@ L_0011F084:;
     a0 = s2;
     v0 = dpadd(a0, a1);
     a0 = v0;
-    v0 = dptofp(a0);
-    return;
+    f0.f = dptofp(a0);
+    return f0.f;
 }

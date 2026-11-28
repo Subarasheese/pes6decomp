@@ -161981,10 +161981,10 @@
    "symbol": "__floatdisf",
    "source": "nonmatching/main/__floatdisf.c",
    "compiler": "ee-gcc-2.9-G0",
-   "source_sha256": "8a835e7f9a4eceb52523c22602cea988cb50a24ef80ebbb32345e7f2deea0945",
+   "source_sha256": "f6c031b0489cd896985cd4555e170d01049c55b612e4daea8ab73b6fb6bcf4fa",
    "original_sha256": "c970cd315562892e246171aa60e215f47d2123491fe633eec6b6866de713fea5",
    "minimum_similarity": 0,
-   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof.",
+   "review": "Lifted from the original instructions by tools/lift.py (registers as variables, one statement per instruction) and admitted because tools/equiv.py found it equivalent to the original on generated cases (see docs/equivalent.md); compiler/structural checks as for every draft. Not a readable reconstruction, and behavioural evidence on test cases, not a semantic-equivalence proof. The original returns its result in f0 (dptofp's float); the draft was typed void, dropped dptofp's f0 and returned nothing, which tools/equiv.py then compared instead of f0. Typed f32 and returning dptofp's result, with dpmul's two double arguments, and with the low word's sign extension written as (s32) s0 (ee-gcc 2.9 folds the dsll32/dsra32 pair written as 64-bit shifts, losing the sign the negative-low-word correction tests), it is equivalent with the float return compared.",
    "known_issues": [
     "Compiled instruction layout differs from the original.",
     "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
