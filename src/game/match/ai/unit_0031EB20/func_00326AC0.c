@@ -4,7 +4,7 @@
 s32 func_00326AC0(s32 *value, MatchPlayerStateRows *state, s32 side, s32 slot) {
     PlayerStateEntry *entry;
     if (findPlayerState(&entry, state, side, slot))
-        *value = entry->field14;
+        *value = entry->lineupStatus;
     else
         *value = 1;
     return 1;

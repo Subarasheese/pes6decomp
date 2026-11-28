@@ -14,10 +14,10 @@ s32 func_00327060(MatchPlayerStateRows *state, u8 side) {
     for (i = 0; i < 32; ++i) {
         if (findPlayerState(&entry, state, side, i)) {
             const Pes6SquadSetupPlayer *player = &Pes6MatchSquads[side].setupPlayers[i];
-            if (player->extra.match.active104 && !(entry->flags & 0x80000000)) {
-                if (player->extra.match.flag102)
+            if (player->extra.tail.match.active104 && !(entry->flags & 0x80000000)) {
+                if (player->extra.tail.match.flag102)
                     entry->flags |= 0x40000000;
-                if (player->extra.match.flag110)
+                if (player->extra.tail.match.flag110)
                     entry->flags |= 0x20000000;
             }
         }

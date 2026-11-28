@@ -37,8 +37,10 @@ typedef struct {
 typedef char check_lineup_maps_size[sizeof(LineupMaps) == 0xf4 ? 1 : -1];
 extern LineupMaps D_00CCAE40, *D_003EA7D4;
 typedef struct {
-    u8 reserved00[6], captain, startingSlots[11], reserved12[0x8b - 18];
+    u8 reserved00[6], captain, startingSlots[32];
+    u8 reserved27[0x47 - 0x27], selected[11], reserved52[0x8b - 0x52];
 } MatchTeamSheet;
+typedef char check_match_team_sheet_stride[sizeof(MatchTeamSheet) == 0x8b ? 1 : -1];
 extern MatchTeamSheet D_00591A90[];
 extern u8 func_00C17DC0(u8 team, u8 slot), func_00C17D70(u8 team, u8 index);
 extern void func_00C17160(s32 event, const LineupSample *sample);

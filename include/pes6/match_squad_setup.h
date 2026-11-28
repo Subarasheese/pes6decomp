@@ -86,7 +86,7 @@ typedef struct {
             s32 flag110;
             u8 reserved114[16];
         } match;
-    };
+    } tail;
 } Pes6SquadExtraState;
 typedef struct {
     u8 reserved00[0x10];

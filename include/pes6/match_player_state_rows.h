@@ -8,7 +8,7 @@ typedef struct {
     s16 field02, field04;
     s16 status, field08, field0A, count, field0E;
     u8 field10, field11, reserved12[2];
-    s32 field14, field18, flags;
+    s32 lineupStatus, field18, flags;
 } PlayerStateEntry;
 
 typedef struct {
@@ -20,11 +20,14 @@ typedef struct {
 
 typedef struct {
     s32 kind;
-    u8 reserved04[8], field0C, field0D, reserved0E[0x2c - 0x0e];
-    s32 mode;
+    u8 reserved04[8], field0C, field0D, reserved0E[0x14 - 0x0e];
+    s32 stage;
+    u8 reserved18[0x2c - 0x18];
+    s32 competition;
     u8 reserved30[0x50 - 0x30];
     MatchStateSide sides[2];
     PlayerStateEntry players[2][32];
+    s32 results[2];
 } MatchPlayerStateRows;
 
 typedef struct {
@@ -52,7 +55,7 @@ static inline s32 findPlayerState(PlayerStateEntry **row, MatchPlayerStateRows *
 }
 
 typedef char check_match_state_side[sizeof(MatchStateSide) == 0x3c ? 1 : -1];
-typedef char check_match_state_players[sizeof(MatchPlayerStateRows) == 0x8c8 ? 1 : -1];
+typedef char check_match_state_players[sizeof(MatchPlayerStateRows) == 0x8d0 ? 1 : -1];
 typedef char check_match_player_state_entry[sizeof(PlayerStateEntry) == 0x20 ? 1 : -1];
 
 #endif

@@ -10,7 +10,7 @@ s32 func_00322DB0(MatchPlayerStateRows *state, u8 side) {
         if (findPlayerState(&entry, state, side, i)) {
             const Pes6SquadSetupPlayer *player = &Pes6MatchSquads[side].setupPlayers[i];
             func_0030E170(&entry->status, side, i);
-            switch (entry->field14) {
+            switch (entry->lineupStatus) {
             case 2:
             case 6:
             case 5:

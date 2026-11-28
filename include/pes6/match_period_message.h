@@ -15,7 +15,9 @@ typedef struct {
     s32 kind;
     u8 reserved04[0x10];
     s32 stage;
-    u8 reserved18[0x14];
+    u8 reserved18[4];
+    s32 round;
+    u8 reserved20[0xc];
     s32 competition, mode;
     u8 reserved34[0x0c];
     s32 team[2];
@@ -45,6 +47,7 @@ s32 Pes6Job_GetArg(void *job, s32 index);
 s32 Pes6MatchContext_GetHalf(void);
 s32 func_0030EA70(void);
 s32 func_003414D0(u8 *side, s32 kind, s32 player);
+s32 func_00325930(const TeamCompetition *round);
 s32 func_00333710(void *match, s32 side);
 s32 func_00333740(void *match, s32 side);
 s32 func_003336F0(void *match);
