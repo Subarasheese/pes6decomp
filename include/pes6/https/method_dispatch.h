@@ -29,11 +29,24 @@ typedef struct {
     s32 (*method14)(void *, u32 *size);
 } SlotMethods;
 typedef struct {
-    u8 reserved00[12];
+    s32 reserved00, value;
+} KeyStatus;
+
+typedef struct {
+    u8 reserved00[4];
+    KeyStatus *status;
+    const SlotMethods **active;
     const SlotMethods *first, *second;
     u8 reserved14[8];
     void *firstContext, *secondContext;
+    u8 reserved24[8];
+    void *parameter;
+    u8 reserved30[0x10];
+    s32 *limits;
 } MethodPair;
+
+extern s32 func_00BE4078(MethodPair *pair, void *key, void **choices, void *options);
+extern s32 func_00BE40C8(MethodPair *pair, void *key, void **choices, void *options);
 extern s32 func_00BE61C0(s32 status);
 
 #endif
