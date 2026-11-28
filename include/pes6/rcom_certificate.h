@@ -9,10 +9,18 @@ typedef struct x509_store_ctx_st X509_STORE_CTX;
 typedef struct x509_object_st X509_OBJECT;
 typedef struct evp_md_st EVP_MD;
 typedef struct evp_pkey_st EVP_PKEY;
+typedef struct X509_pubkey_st X509_PUBKEY;
+typedef struct ssl_st SSL;
 typedef struct bio_st BIO;
 typedef struct stack_st STACK;
 typedef struct __sFILE RcomFile;
 typedef s32 (*RcomPasswordCallback)(char *out, s32 size, s32 writing);
+typedef struct {
+    s32 count;
+    X509 **certificates;
+} RcomCertificateChain;
+typedef s32 (*RcomChainCallback)(SSL *ssl, X509 **certificates, s32 count);
+typedef s32 (*RcomVerifyCallback)(X509_STORE_CTX *ctx, void *argument);
 typedef void (*RcomApiFunction)(void);
 extern void func_00BB3380(s32 library, s32 function, s32 reason, const char *file, s32 line);
 #define RCOM_MISSING_CERTIFICATE_CALLBACK(function) func_00BB3380(26, (function), 14, 0, 0)
