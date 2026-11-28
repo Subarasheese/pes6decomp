@@ -2,6 +2,7 @@
 #define PES6_NETLIB_DIRECTORY_DISPATCH_H
 
 #include "pes6/netlib_connection.h"
+#include "pes6/netlib_directory_page.h"
 #include "pes6/netlib_text_message.h"
 #include "pes6/lobby_result_entries.h"
 
@@ -27,6 +28,18 @@ typedef struct {
 } NetlibResultTotals;
 
 typedef struct {
+    char text[129];
+    u8 first, second;
+} NetlibBulletin;
+
+typedef struct {
+    NetlibDirectoryPage directory;
+    NetlibBulletin bulletins[7];
+    u8 reserved37D1[3];
+    s32 field37D4, field37D8;
+} NetlibDirectoryState;
+
+typedef struct {
     u8 reserved4834[8];
     s32 id;
     char first[17], second[17];
@@ -34,10 +47,21 @@ typedef struct {
     NetlibTextMessages *messages;
 } NetlibSignInData;
 
+static inline NetlibDirectoryState *netlib_directory_state(NetlibConnection *connection) {
+    return (NetlibDirectoryState *)(connection->pad015C + (0x238 - 0x15c));
+}
+
 static inline NetlibSignInData *netlib_sign_in_data(NetlibConnection *connection) {
     return (NetlibSignInData *)connection->pad4834;
 }
 
+extern s32 func_008688A0(NetlibPacket *packet, s32 *result);
+extern s32 func_00868770(NetlibPacket *packet, NetlibTextMessages *messages);
+extern s32 func_00868690(NetlibPacket *packet, s32 *id);
+extern s32 func_008685A0(NetlibPacket *packet, s32 *id, s32 *result);
+extern s32 func_008684C0(NetlibPacket *packet, NetlibBulletin *bulletins);
+extern s32 func_00868AD0(NetlibPacket *packet, NetlibDirectoryPage *page, s32 *result);
+extern s32 func_00868990(NetlibPacket *packet, NetlibDirectoryPage *page);
 extern s32 func_00868310(NetlibPacket *packet, NetlibBulletinPage *page);
 extern s32 func_00868430(NetlibPacket *packet, NetlibBulletinPage *page, s32 *result);
 extern s32 func_00877570(NetlibConnection *connection, NetlibPacket *packet, s32 *id, char *first,

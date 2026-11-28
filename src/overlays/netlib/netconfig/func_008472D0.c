@@ -1,9 +1,8 @@
 /* compiler: mwcc-3.0.1b210 */
-#include "pes6/m2c.h"
+#include "pes6/netlib_local_player.h"
 
+extern NetlibLocalPlayer D_008B0E20;
 
-extern char D_008B0E20[];
-
-M2C_UNK *func_008472D0(void) {
-    return ((void *)D_008B0E20);
+NetlibLocalPlayer *func_008472D0(void) {
+    return &D_008B0E20;
 }

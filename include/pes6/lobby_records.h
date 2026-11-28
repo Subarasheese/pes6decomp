@@ -46,7 +46,9 @@ typedef struct {
     u16 fieldAC[2];
     u8 reservedB0[0xa];
     s8 fieldBA;
-    u8 reservedBB[0x235];
+    u8 reservedBB;
+    u8 memberText[8][0x31];
+    u8 reserved244[0xac];
 } LobbyGroupRecord;
 typedef struct {
     u32 count;
