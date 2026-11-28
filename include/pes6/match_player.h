@@ -106,6 +106,7 @@ typedef union Pes6Squad {
 } Pes6Squad;
 
 extern Pes6MatchPlayer Pes6MatchPlayers[];
+extern s32 func_00311A50(u8 *side, u8 *slot, u8 player);
 /* The two squads in the match: 32 player records each. */
 extern Pes6Squad Pes6MatchSquads[2];
 

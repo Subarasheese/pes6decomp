@@ -1,13 +1,13 @@
 /* compiler: ee-gcc-2.9-G0 */
 #include "pes6/m2c.h"
+#include "pes6/https/ssl_lifetime.h"
 
 extern s32 func_001C48E8(s32 *, s32, s32);
-extern void func_00BCC458(s32);
 
 M2C_UNK func_00BB48D0(s32);
 M2C_UNK func_00BC0A88(s32 *);
 
-void func_00BCC268(void *arg0) {
+void func_00BCC268(SSL *arg0) {
     s32 *temp_a0;
     s32 *temp_v0_3;
     s32 *temp_v0_4;
@@ -34,7 +34,7 @@ void func_00BCC268(void *arg0) {
     if (temp_a0 != NULL) {
         func_00BC0A88(temp_a0);
     }
-    func_00BCC458((s32)arg0);
+    func_00BCC458(arg0);
     func_001C48E8(M2C_FIELD(arg0, s32 **, 0x54), 0, 0x198);
     func_00BC0A88(M2C_FIELD(arg0, s32 **, 0x54));
     M2C_FIELD(arg0, s32 **, 0x54) = NULL;

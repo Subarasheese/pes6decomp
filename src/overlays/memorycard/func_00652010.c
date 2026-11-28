@@ -2,7 +2,7 @@
 #include "pes6/m2c.h"
 
 
-s32 func_0063E160(s32, M2C_UNK);                    /* extern */
+extern u32 func_0063E160(s32 slot, s32 offset);
 extern char D_0065EF70[];
 
 s32 func_00652010(s32 arg0, s32 arg1) {

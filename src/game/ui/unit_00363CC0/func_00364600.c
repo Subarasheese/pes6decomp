@@ -1,8 +1,8 @@
 /* compiler: mwcc-3.0.1b210 */
+#include "pes6/match_player_state_rows.h"
 #include "pes6/match_job_message.h"
 extern s32 Pes6MatchPlayer_GetSquadIndex(u8 player);
 extern s32 func_003264D0(s32 *mode, void *roster, s32 squadIndex);
-extern s32 func_00326B70(s16 *status, void *roster, u8 player);
 
 s32 func_00364600(RosterMessage *ctx) {
     s16 status;

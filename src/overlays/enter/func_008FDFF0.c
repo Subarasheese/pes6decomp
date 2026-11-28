@@ -2,7 +2,6 @@
 #include "pes6/match_period_message.h"
 
 extern s32 func_0022CEF0(void);
-extern s32 func_00325930(const TeamCompetition *round);
 extern s32 func_00325E40(void *round);
 extern s32 func_00325B90(s32 *selection);
 

@@ -1,31 +1,12 @@
 /* compiler: mwcc-3.0.1b198 */
 #include "pes6/match_period_message.h"
-typedef struct {
-    u8 reserved00[4];
-    s16 rank;
-    u8 reserved06[5], flag, slot, reserved0d, inactive;
-} RankRecord;
-typedef struct {
-    s16 rank;
-    u8 reserved02[6], slot, reserved09[7];
-} RankSideEntry;
-typedef struct {
-    u8 reserved00[3], active, reserved04[0x144];
-    RankSideEntry team[2];
-} RankSelection;
-typedef struct {
-    s32 kind;
-    u8 reserved04[0x2c];
-    s32 mode;
-    u8 reserved34[0x8c4];
-    RankSelection selection;
-} RankState;
+#include "pes6/match_report_rank.h"
+
 typedef struct {
     u8 reserved00[0x44];
     RankState *state;
 } RankJob;
 extern s32 func_003258F0(RankState *state, u8 side);
-extern RankRecord *func_00325730(RankState *state, u16 id);
 extern u8 D_00591C09[];
 s32 func_0033BCC0(struct Pes6BitSet *bits, RankJob *job) {
     s32 side = (u8)Pes6Job_GetArg(job, 0);

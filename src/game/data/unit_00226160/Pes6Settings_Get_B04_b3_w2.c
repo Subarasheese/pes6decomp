@@ -18,7 +18,7 @@ static inline Blk *get_block(void) {
     return NULL;
 }
 
-u8 Pes6Settings_Get_B04_b3_w2(void) {
+s32 Pes6Settings_Get_B04_b3_w2(void) {
     Blk *p = get_block();
 
     if (Pes6SaveData_IsUnavailable() == 1) {

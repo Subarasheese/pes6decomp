@@ -77,7 +77,16 @@ typedef struct {
 } Pes6SquadState8;
 typedef struct {
     Pes6SquadState8 first, second;
-    u8 last[36];
+    union {
+        u8 last[36];
+        struct {
+            u8 reserved100[2], flag102, reserved103;
+            s32 active104;
+            u8 reserved108[8];
+            s32 flag110;
+            u8 reserved114[16];
+        } match;
+    } tail;
 } Pes6SquadExtraState;
 typedef struct {
     u8 reserved00[0x10];
@@ -86,7 +95,8 @@ typedef struct {
     u8 emptyPlayer, state, reserved16[2];
     s32 field18;
     Pes6PlayerEquipment equipment;
-    u8 field40, field41, field42, pad43[3];
+    u8 field40, field41, field42, pad43;
+    u16 value44;
     u16 playerId;
     s8 teammate[32];
     Pes6LineupProfile current, saved;

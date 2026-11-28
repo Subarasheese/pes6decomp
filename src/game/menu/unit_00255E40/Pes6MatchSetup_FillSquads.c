@@ -99,7 +99,7 @@ void Pes6MatchSetup_FillSquads(void) {
                     extra->first.bytes[3] = 0;
 
                 func_00278130(&extra->second);
-                func_00277E60(extra->last);
+                func_00277E60(extra->tail.last);
             }
             func_002CA620(side, slot);
             if (func_00210DF0()) {

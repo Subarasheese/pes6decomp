@@ -1,11 +1,8 @@
 /* compiler: ee-gcc-2.9 */
-#include "pes6/m2c.h"
+#include "pes6/https/evp_prompt.h"
 
-extern char D_00CC95B0[];
-
-s8 *func_00BB43A8(void) {
-    if ((*(s8 *)D_00CC95B0) == 0) {
-        return NULL;
-    }
-    return ((void *)D_00CC95B0);
+char *func_00BB43A8(void) {
+    if (!D_00CC95B0[0])
+        return 0;
+    return D_00CC95B0;
 }

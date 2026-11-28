@@ -1,20 +1,11 @@
 /* compiler: ee-gcc-2.96-nsa-G0 */
-#include "types.h"
-typedef struct {
-    s32 reserved00, value;
-} KeyStatus;
-typedef struct {
-    u8 reserved00[4];
-    KeyStatus *status;
-    u8 reserved08[0x38];
-    s32 *limits;
-} KeyContext;
-extern s32 func_00BE40C8(KeyContext *, void *, void *, void *);
-extern s32 func_00BE5168(KeyContext *, s32);
-s32 func_00BE4DD8(KeyContext *ctx, void *param, void *key, void *data) {
+#include "pes6/https/method_dispatch.h"
+
+extern s32 func_00BE5168(MethodPair *, s32);
+s32 func_00BE4DD8(MethodPair *ctx, void *key, void **choices, void *options) {
     s32 status;
     ctx->status->value = 0;
-    status = func_00BE40C8(ctx, param, key, data);
+    status = func_00BE40C8(ctx, key, choices, options);
     if (status)
         return status;
     {

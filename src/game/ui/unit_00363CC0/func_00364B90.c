@@ -1,10 +1,9 @@
 /* compiler: mwcc-3.0.1b210 */
+#include "pes6/match_player_state_rows.h"
 #include "pes6/match_period_message.h"
 typedef struct {
     s32 kind;
 } PlayerRoster;
-extern s32 func_00311A50(u8 *side, u8 *slot, u8 player);
-extern s32 func_00326890(void *roster, u8 side, u8 slot, s32 mask);
 extern s32 func_00325EF0(PlayerRoster *roster);
 s32 func_00364B90(RosterMessage *ctx) {
     u8 side;
