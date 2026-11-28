@@ -48816,22 +48816,6 @@
   },
   {
    "image": "lobby",
-   "address": "009E5FF0",
-   "symbol": "func_009E5FF0",
-   "original_sha256": "502d41b2c77d8699da23df849f4ca4e68c10df0d978deba7bb0a157627809aad",
-   "source": "nonmatching/lobby/func_009E5FF0.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "dff76ceab84cae0cd6ea4fce211dde9742c92bcf9ba23a658178db5c6361273c",
-   "minimum_similarity": 0,
-   "confidence": "low",
-   "review": "Complete automated translation and compiler/structural checks: resolved relocations, original address evidence, direct call targets and indirect transfer counts. This is not a semantic-equivalence proof.",
-   "known_issues": [
-    "Types, local layouts, and call contracts remain provisional; runtime behavior needs independent review.",
-    "Instruction similarity is below 50%; this is a low-confidence research draft."
-   ]
-  },
-  {
-   "image": "lobby",
    "address": "009E66F0",
    "symbol": "func_009E66F0",
    "original_sha256": "d0b031973888aff64fd0d9d272511434cbfe030db9dd73869a0d5804d62cc8fa",
@@ -102298,21 +102282,6 @@
    "compiler": "mwcc-3.0.1b151",
    "source_sha256": "36092e08bd54353a03eb4f53780df56cbc66096b6326562ebc77e3f6f5c15761",
    "original_sha256": "f2e96eeaed53010054ce3be69c19c31751bea293759c9cfea035edef06cb7d77",
-   "minimum_similarity": 0,
-   "review": "Repaired by an agent from m2c output (the draft failed tools/equiv.py), then judged equivalent by the strengthened tools/equiv.py and independently re-judged (docs/equivalent.md has cases and coverage); compiler/structural checks as for every draft. Behavioural evidence on test cases, not a semantic-equivalence proof.",
-   "known_issues": [
-    "Compiled instruction layout differs from the original.",
-    "Types, local layouts, and call contracts remain provisional; equivalence holds only on the generated cases."
-   ]
-  },
-  {
-   "image": "main",
-   "address": "00151550",
-   "symbol": "func_00151550",
-   "source": "nonmatching/main/func_00151550.c",
-   "compiler": "mwcc-3.0.1b210",
-   "source_sha256": "aa7b31410967a1c6be0a524f7589fd454011c9e7abaa261d12c10c82f2eb0d86",
-   "original_sha256": "a95bcb2e1a36480081ccc30ad0d21a6915577493340a8e0104614452d8309954",
    "minimum_similarity": 0,
    "review": "Repaired by an agent from m2c output (the draft failed tools/equiv.py), then judged equivalent by the strengthened tools/equiv.py and independently re-judged (docs/equivalent.md has cases and coverage); compiler/structural checks as for every draft. Behavioural evidence on test cases, not a semantic-equivalence proof.",
    "known_issues": [
